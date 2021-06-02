@@ -3,7 +3,6 @@
 
 
 <script> 
-    let themeUrl = (window.baseThemeURL) ? window.baseThemeURL: window.baseUrlTheme;
     //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
     import { afterUpdate, onMount, beforeUpdate } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';

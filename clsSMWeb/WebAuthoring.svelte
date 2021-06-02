@@ -29,7 +29,6 @@
     let defaultStartXml = '<smxml type="22" addhtml="0" name="Web">';
     let isCaption = "";     
     let isAutograde = "";  
-    let themeUrl = window.baseThemeURL || window.baseUrlTheme;
     let mode = document.querySelector(".switch-input.switch-input");
     let htmlEditor;
     let cssEditor;

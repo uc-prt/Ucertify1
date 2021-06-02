@@ -935,9 +935,9 @@
                                     <div id="dragandrophandler">Drag files here</div>
                                     <p class="orpara">Or</p>
                                     <!-- Required files to upload -->
-                                    <link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.baseUrlTheme}ux/media_modal_box/css/jquery.fileupload-ui.css" crossorigin="anonymous">
-                                    <link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.baseUrlTheme}media_modal_box/blueimp/css/blueimp-gallery.min.css" crossorigin="anonymous"/>
-                                    <noscript><link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.baseUrlTheme}ux/media_modal_box/css/jquery.fileupload-noscript.css" crossorigin="anonymous"></noscript>
+                                    <link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.themeUrl}ux/media_modal_box/css/jquery.fileupload-ui.css" crossorigin="anonymous">
+                                    <link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.themeUrl}media_modal_box/blueimp/css/blueimp-gallery.min.css" crossorigin="anonymous"/>
+                                    <noscript><link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.themeUrl}ux/media_modal_box/css/jquery.fileupload-noscript.css" crossorigin="anonymous"></noscript>
 
                                     <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
                                         <noscript><input type="hidden" name="redirect" value=""></noscript>
