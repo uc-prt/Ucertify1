@@ -1,0 +1,16 @@
+.light-cyan-bg {
+    background-color: #d4e4ff; 
+    color: #333;
+}
+.width10 {
+    width: 90%;
+}
+.width1 {
+    width: 8%;
+}
+.pointer {
+    cursor: pointer !important;
+}
+.clear-both {
+    clear: both;	
+}

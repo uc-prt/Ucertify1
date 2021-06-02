@@ -1,0 +1,119 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest src",
+    "dev": "rollup -c -w",
+    "start": "sirv public",
+    "build_q1": "rollup -c ./clsSMDragNDrop/rollup.config.js",
+    "dev_q1": "rollup -c ./clsSMDragNDrop/rollup.config.js -w",
+    "build_q4": "rollup -c ./clsSMHotspot/rollup.config.js",
+    "dev_q4": "rollup -c ./clsSMHotspot/rollup.config.js -w",
+    "build_q5": "rollup -c ./clsSMEssay/rollup.config.js",
+    "dev_q5": "rollup -c ./clsSMEssay/rollup.config.js -w",
+    "build_q7": "rollup -c ./clsSMTree/rollup.config.js",
+    "dev_q7": "rollup -c ./clsSMTree/rollup.config.js -w",
+    "build_q9": "rollup -c ./clsSMFill/rollup.config.js",
+    "dev_q9": "rollup -c ./clsSMFill/rollup.config.js -w",
+    "build_q27": "rollup -c ./clsSMChoiceMatrix/rollup.config.js",
+    "dev_q27": "rollup -c ./clsSMChoiceMatrix/rollup.config.js -w",
+    "build_q22": "rollup -c ./clsSMWeb/rollup.config.js",
+    "dev_q22": "rollup -c ./clsSMWeb/rollup.config.js -w",
+    "build_q24": "rollup -c ./clsSMEval/rollup.config.js",
+    "dev_q24": "rollup -c ./clsSMEval/rollup.config.js -w",
+    "build_q14": "rollup -c ./clsSMMatchList/rollup.config.js",
+    "dev_q14": "rollup -c ./clsSMMatchList/rollup.config.js -w",
+    "build_q35": "rollup -c ./clsSMAlignMatch/rollup.config.js",
+    "dev_q35": "rollup -c ./clsSMAlignMatch/rollup.config.js -w",
+    "build_q6": "rollup -c ./clsSMChoose/rollup.config.js",
+    "dev_q6": "rollup -c ./clsSMChoose/rollup.config.js -w",
+    "build_q26": "rollup -c ./clsSMChooseMultiGrid/rollup.config.js",
+    "dev_q26": "rollup -c ./clsSMChooseMultiGrid/rollup.config.js -w",
+    "build_q57": "rollup -c ./clsSMChoose/rollup.config.js",
+    "dev_q57": "rollup -c ./clsSMChoose/rollup.config.js -w",
+    "build_q30": "rollup -c ./clsSMSlider/rollup.config.js",
+    "dev_q30": "rollup -c ./clsSMSlider/rollup.config.js -w",
+    "build_q44": "rollup -c ./clsSMShadedGrid/rollup.config.js",
+    "dev_q44": "rollup -c ./clsSMShadedGrid/rollup.config.js -w",
+    "build_q56": "rollup -c ./clsSMGridded/rollup.config.js",
+    "dev_q56": "rollup -c ./clsSMGridded/rollup.config.js -w",
+    "build_q20": "rollup -c ./clsSMGraph/rollup.config.js",
+    "dev_q20": "rollup -c ./clsSMGraph/rollup.config.js -w",
+    "build_q37": "rollup -c ./clsSMMixedItem/rollup.config.js",
+    "dev_q37": "rollup -c ./clsSMMixedItem/rollup.config.js -w",
+    "build_q43": "rollup -c ./clsSMAudioRecorder/rollup.config.js",
+    "dev_q43": "rollup -c ./clsSMAudioRecorder/rollup.config.js -w",
+    "build_q38": "rollup -c ./clsSMChart/rollup.config.js",
+    "dev_q38": "rollup -c ./clsSMChart/rollup.config.js -w",
+    "build_q41": "rollup -c ./clsSMDrawing/rollup.config.js",
+    "dev_q41": "rollup -c ./clsSMDrawing/rollup.config.js -w"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@testing-library/svelte": "^3.0.3",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "node-sass": "^5.0.0",
+    "postcss-load-config": "^2.1.2",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0",
+    "svelte-jester": "^1.3.0",
+    "svelte-material-ui": "^1.0.0",
+    "svelte-mui": "^0.3.3-4",
+    "svelte-preprocess": "^4.5.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta3",
+    "highcharts": "^9.0.1",
+    "hotkeys-js": "^3.8.1",
+    "javscript_helper": "^1.0.36",
+    "jquery": "^3.5.1",
+    "postcss": "^7.0.35",
+    "rollup-plugin-css-only": "^3.1.0",
+    "sirv-cli": "^1.0.0",
+    "sortablejs": "^1.13.0",
+    "sortablejs-swap": "^1.2.0",
+    "suneditor": "^2.34.3",
+    "sweetalert": "^2.1.2",
+    "xml2js": "^0.4.19"
+  },
+  "jest": {
+    "bail": false,
+    "moduleFileExtensions": [
+      "js",
+      "svelte"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.svelte$": "svelte-jester"
+    },
+    "verbose": true
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "postcss": {
+    "parser": "sugarss",
+    "map": false,
+    "plugins": {
+      "postcss-plugin": {}
+    }
+  }
+}

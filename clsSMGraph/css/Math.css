@@ -1,0 +1,277 @@
+#mthmain {
+    box-shadow: 0 0 0px 1px #ccc;
+}
+
+#option-toolbar {
+    background: #e8e8e8;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 42px;
+}
+
+.controls,
+.line_toolbox,
+.parabola_toolbox {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0;
+}
+
+.controls li {
+    display: inline;
+    float: left;
+    cursor: pointer;
+    font-size: 13px !important;
+    height: 41px;
+    padding: 9px 16px;
+    font-weight: 700;
+    line-height: unset!important;
+}
+
+.controls li:hover,
+.selected-option,
+.btn_active {
+    background-color: transparent;
+}
+
+.selected-option,
+.btn_active {
+    -webkit-box-shadow: inset 0 0 0 1px #ADADAD, inset 0px 2px 12px #ADADAD;
+    -moz-box-shadow: inset 0 0 0 1px #ADADAD, inset 0px 2px 12px #ADADAD;
+    box-shadow: inset 0 0 0 1px #ADADAD, inset 0px 2px 12px #ADADAD;
+}
+
+.footer_toolbox {
+    background-color: #e8e8e8;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    zoom: 1;
+    height: 33px;
+    border: 1px solid #ccc;
+}
+
+.footer_toolbox li {
+    float: left;
+    width: 11%;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 6px;
+    cursor: pointer
+}
+
+.btn_active_disabled {
+    cursor: not-allowed !important;
+}
+
+#mthmain .btn-group {
+    padding: 5px;
+}
+
+.delElem {
+    float: right;
+    padding: 5px 5px 0;
+    right: 2px;
+}
+
+.edit-tools,
+.delete-tools {
+    position: absolute;
+    top: 2px;
+    z-index: 2;
+}
+
+.delete-tools {
+    right: 34px;
+}
+
+.edit-tools {
+    right: 3px;
+}
+
+.model-icon {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    z-index: 100;
+}
+
+.cursor-down,
+.cursor-down-correct,
+.cursor-down-incorrect,
+.cursor-down-hover,
+.cursor-down-active {
+    padding: 7px 16px;
+    /*8px 0px 8px 15px;*/
+    display: inline-block;
+    font-size: 12px;
+    float: left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.cursor-down:after,
+.cursor-down-correct:after,
+.cursor-down-incorrect:after,
+.cursor-down-hover:after,
+.cursor-down-active:after {
+    position: absolute;
+    display: block;
+    bottom: -9px;
+    left: 50%;
+    margin-left: -7px;
+    border-color: #888888 transparent transparent;
+    border-style: solid;
+    border-width: 10px 8px 0 8px;
+    content: '';
+    width: 0;
+}
+
+.cursor-down {
+    background-color: #DDDDDD;
+}
+
+.cursor-down-hover {
+    background-color: #3E3E3E;
+    color: #fff !important;
+}
+
+.cursor-down-correct {
+    background-color: #E7F4E1;
+}
+
+.cursor-down-incorrect {
+    background-color: #FBDDDD;
+}
+
+.cursor-down-active {
+    background-color: #D6F5F7;
+}
+
+.cursor-down-active:after {
+    border-top: 10px solid #0000FF;
+}
+
+.cursor-down:after,
+.cursor-down-hover:after {
+    border-top: 10px solid #3E3E3E;
+}
+
+.cursor-down-correct:after {
+    border-top: 10px solid #62AE41;
+}
+
+.cursor-down-incorrect:after {
+    border-top: 10px solid #DA1919;
+}
+
+.remove-eq {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    cursor: pointer;
+}
+
+.add-equation {
+    position: relative;
+    bottom: 30px;
+}
+
+.btn-point {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) 1px -6px;
+}
+
+.btn-segment {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -41px -6px;
+}
+
+.btn-SLH {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -83px -6px;
+}
+
+.btn-SRH {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -125px -6px;
+}
+
+.btn-SBH {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -167px -6px;
+}
+
+.btn-RL {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -210px -6px;
+}
+
+.btn-RR {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -251px -6px;
+}
+
+.btn-RRH {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -294px -6px;
+}
+
+.btn-RLH {
+    width: 48px !important;
+    height: 32px;
+    background: url(images/plotNumberline.png) -335px -6px;
+}
+
+.sliderange {
+    padding: 10px;
+}
+
+.sliderbar {
+    height: auto;
+    background-color: #e8e8e8;
+    border: 2px solid #ccc;
+}
+
+.sliderbar input[type='range'] {
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 8px;
+    height: 3px;
+    border: 1px solid #adadad;
+    background-color: #fff;
+}
+
+.sliderbar input[type=range]:focus {
+    outline: none;
+}
+
+.sliderbar input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #ecf0f1;
+    border: 1px solid #adadad;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ADAButton {
+    position: absolute;
+    right: 39px;
+}
