@@ -14,7 +14,7 @@
 	import Loader from '../helper/Loader.svelte';
 	import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
     import {smVal} from './lib/ValidateItems';
-    import l from '../../lib/Lang.js'
+    import l from '../src/libs/Lang.js'
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
 
 

@@ -9,7 +9,7 @@
     import { Button, Dialog } from 'svelte-mui/src';
     import Loader from '../helper/Loader.svelte';
     import {writable} from 'svelte/store';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import { AH } from '../helper/HelperAI.svelte';
     export const xml = window.uaXML && !/smans/gi.test(window.uaXML) ? window.uaXML : window.QXML;
     export let inQuizPlayer;

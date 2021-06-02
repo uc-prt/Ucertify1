@@ -8,7 +8,7 @@
 -->
 <script>
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import { writable } from "svelte/store";
     
     import ItemHelper from '../helper/ItemHelper.svelte';

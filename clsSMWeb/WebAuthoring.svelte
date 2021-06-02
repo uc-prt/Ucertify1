@@ -14,7 +14,7 @@
 </svelte:head> -->
 
 <script>
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import { onMount, beforeUpdate } from 'svelte';
     import { Checkbox } from 'svelte-mui/src';
     import { writable } from 'svelte/store';

@@ -31,7 +31,7 @@
     import swal from 'sweetalert';
     import Draggable from './libs/plugins/Draggable';
     import Resizable from './libs/plugins/Resizable';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
 
     export let xml;
     export let getChildXml;

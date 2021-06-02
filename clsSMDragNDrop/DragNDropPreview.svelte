@@ -27,7 +27,7 @@
 	import ButtonPreview from './libs/preview/ButtonPreview.svelte';
 	import StepPreview from './libs/preview/StepPreview.svelte';
 	import TabPreview from './libs/preview/TabPreview.svelte';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
 
 
 	// exporting the variables

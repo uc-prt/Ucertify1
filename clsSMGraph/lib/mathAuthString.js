@@ -9,7 +9,7 @@
  */
 // importing JUI
 import JUI from 'javscript_helper';
-import l from '../../../lib/Lang';
+import l from '../../src/libs/Lang';
 const JS = new JUI();
 
 let isPointDraw = true;

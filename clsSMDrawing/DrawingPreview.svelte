@@ -9,7 +9,7 @@
 <script>
     import { afterUpdate, onMount } from "svelte";
 	import { AH , XMLToJSON} from '../helper/HelperAI.svelte';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
     // exporting the variables

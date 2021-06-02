@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, JSONToXML , AH } from '../helper/HelperAI.svelte';
     import swal from 'sweetalert';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import Draggable from "../clsSMDragNDrop/libs/plugins/Draggable";
     import Resizable from "../clsSMDragNDrop/libs/plugins/Resizable";
     import DrawingModal from "./DrawingModal.svelte";

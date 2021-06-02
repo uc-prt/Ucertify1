@@ -12,7 +12,7 @@
 	import ucMlid from './matchlistJSString';
 	import {Draggable} from "javscript_helper/JUI.js";
 	//import smVal from '../lib/ValidateItems';
-	import l from '../../lib/Lang';	
+	import l from '../src/libs/Lang';	
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
