@@ -914,7 +914,7 @@ function instance($$self, $$props, $$invalidate) {
 			as: "style"
 		};
 
-		AH.createLink(themeUrl + "pe-items/svelte/css/mathquill.css", config);
+		AH.createLink(themeUrl + "css/mathquill.css", config);
 	}
 
 	// $: {
@@ -1087,7 +1087,7 @@ function instance($$self, $$props, $$invalidate) {
 			AH.addScript("https://ucertify.com/themes/bootstrap4/prepengine/mathquill.js"); //This file should be downloaded and used locally.
 		} else {
 			//console.log("checking path =>"+editor.baseUrlTheme+"prepengine/mathquill.js");
-			AH.addScript("", editor.baseUrlTheme + "pe-items/svelte/clsSMStepAlgo/libs/mathQuill_new.js", {
+			AH.addScript("", editor.baseUrlTheme + "clsSMStepAlgo/libs/mathQuill_new.js", {
 				callback() {
 					
 				}

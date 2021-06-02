@@ -689,7 +689,7 @@ function create_fragment(ctx) {
 			t1 = space();
 			div = element("div");
 			if (if_block) if_block.c();
-			attr_dev(link, "href", link_href_value = "" + ((window.baseUrlTheme || window.baseThemeURL) + "pe-items/svelte/helper/sunEditor/src/assets/css/suneditor.css"));
+			attr_dev(link, "href", link_href_value = "" + ((window.baseUrlTheme || window.baseThemeURL) + "helper/sunEditor/src/assets/css/suneditor.css"));
 			attr_dev(link, "rel", "stylesheet");
 			add_location(link, file, 138, 4, 4606);
 			attr_dev(p, "id", "demo");

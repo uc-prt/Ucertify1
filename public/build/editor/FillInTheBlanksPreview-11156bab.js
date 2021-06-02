@@ -825,7 +825,7 @@ function create_if_block_2(ctx) {
 		c: function create() {
 			link = element("link");
 			attr_dev(link, "rel", "stylesheet");
-			attr_dev(link, "href", link_href_value = window.themeUrl + "pe-items/svelte/css/mathquill.css");
+			attr_dev(link, "href", link_href_value = window.themeUrl + "css/mathquill.css");
 			add_location(link, file, 872, 2, 30532);
 		},
 		m: function mount(target, anchor) {
@@ -1250,7 +1250,7 @@ function instance($$self, $$props, $$invalidate) {
 	onMount(() => {
 		window.J = jquery;
 		ucFill.setUpdate(updateModule.bind(this));
-		AH.addScript("", editor.baseUrlTheme + "pe-items/svelte/clsSMFill/libs/mathQuill_new.js");
+		AH.addScript("", editor.baseUrlTheme + "clsSMFill/libs/mathQuill_new.js");
 		let mathItem = document.getElementById(containerID);
 
 		mathItem = mathItem

@@ -136,7 +136,7 @@
     }
 </script>
 <svelte:head>
-    <link href="{window.baseUrlTheme || window.baseThemeURL}pe-items/svelte/helper/sunEditor/src/assets/css/suneditor.css" rel="stylesheet" />
+    <link href="{window.baseUrlTheme || window.baseThemeURL}helper/sunEditor/src/assets/css/suneditor.css" rel="stylesheet" />
 </svelte:head>
 <main>
     <p id ="demo"></p>

@@ -11438,7 +11438,7 @@ function create_fragment$f(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = themeUrl + "pe-items/svelte/clsSMDragNDrop/css/dragndrop.min.css");
+			attr_dev(link, "href", link_href_value = themeUrl + "clsSMDragNDrop/css/dragndrop.min.css");
 			add_location(link, file$f, 389, 0, 10781);
 			attr_dev(input, "id", "base");
 			attr_dev(input, "type", "radio");

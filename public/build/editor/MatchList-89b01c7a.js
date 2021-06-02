@@ -2454,7 +2454,7 @@ function instance($$self, $$props, $$invalidate) {
 			as: "style"
 		};
 
-		AH$1.createLink(themeUrl + "pe-items/svelte/clsSMMatchList/css/matchlistAuth.css", config);
+		AH$1.createLink(themeUrl + "clsSMMatchList/css/matchlistAuth.css", config);
 	}
 
 	onMount(() => {

@@ -1570,7 +1570,7 @@ function instance($$self, $$props, $$invalidate) {
 			as: "style"
 		};
 
-		AH.createLink(themeUrl + "pe-items/svelte/clsSMDrawing/css/drawing.css", config);
+		AH.createLink(themeUrl + "clsSMDrawing/css/drawing.css", config);
 
 		// checked for mac device
 		is_mac = navigator.userAgent.indexOf("Mac") != -1;

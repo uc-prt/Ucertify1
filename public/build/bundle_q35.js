@@ -4658,7 +4658,7 @@ var app = (function () {
     			attr(link, "onload", "this.rel='stylesheet'");
     			attr(link, "rel", "preload");
     			attr(link, "as", "style");
-    			attr(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMAlignMatch/css/alignmatch.min.css");
+    			attr(link, "href", link_href_value = editor.baseUrlTheme + "clsSMAlignMatch/css/alignmatch.min.css");
     			attr(div1, "class", div1_class_value = "categorycontainer center-block " + (/*windowwidth*/ ctx[3] > 1200 ? "span9" : ""));
     			attr(div2, "class", "text-center");
     			attr(div3, "class", div3_class_value = "alignTestarea px-3 mx-auto mt-3 " + (/*targetView*/ ctx[4] == "block" ? "h" : ""));

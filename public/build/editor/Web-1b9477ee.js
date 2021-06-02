@@ -1288,10 +1288,10 @@ function instance($$self, $$props, $$invalidate) {
 
 	function loadLibs() {
 		if (!editorState) {
-			AH.createLink("pe-items/svelte/clsSMWeb/libs/codemirror.min.css");
-			AH.createLink("pe-items/svelte/clsSMWeb/libs/monokai.css");
-			AH.createLink("pe-items/svelte/clsSMWeb/libs/simplescrollbars.css");
-			AH.createLink("pe-items/svelte/clsSMWeb/libs/webitem.min.css");
+			AH.createLink("clsSMWeb/libs/codemirror.min.css");
+			AH.createLink("clsSMWeb/libs/monokai.css");
+			AH.createLink("clsSMWeb/libs/simplescrollbars.css");
+			AH.createLink("clsSMWeb/libs/webitem.min.css");
 		}
 	}
 
@@ -4380,10 +4380,10 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	beforeUpdate(() => {
 		// if(!is_visible) {
-		//     createLink('pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
-		//     createLink('pe-items/svelte/clsSMWeb/libs/monokai.css');
-		//     createLink('pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
-		//     createLink('pe-items/svelte/clsSMWeb/libs/webitem.min.css');
+		//     createLink('clsSMWeb/libs/codemirror.min.css');
+		//     createLink('clsSMWeb/libs/monokai.css');
+		//     createLink('clsSMWeb/libs/simplescrollbars.css');
+		//     createLink('clsSMWeb/libs/webitem.min.css');
 		//     is_visible = 1;
 		// }
 		// contains the xml
@@ -6084,10 +6084,10 @@ function instance$2($$self, $$props, $$invalidate) {
 			as: "style"
 		};
 
-		AH.createLink(themeUrl + "pe-items/svelte/clsSMWeb/libs/codemirror.min.css", config);
-		AH.createLink(themeUrl + "pe-items/svelte/clsSMWeb/libs/monokai.css", config);
-		AH.createLink(themeUrl + "pe-items/svelte/clsSMWeb/libs/simplescrollbars.css", config);
-		AH.createLink(themeUrl + "pe-items/svelte/clsSMWeb/libs/webitem.min.css", config);
+		AH.createLink(themeUrl + "clsSMWeb/libs/codemirror.min.css", config);
+		AH.createLink(themeUrl + "clsSMWeb/libs/monokai.css", config);
+		AH.createLink(themeUrl + "clsSMWeb/libs/simplescrollbars.css", config);
+		AH.createLink(themeUrl + "clsSMWeb/libs/webitem.min.css", config);
 	}
 
 	// called once throughtout the program execution just after render method

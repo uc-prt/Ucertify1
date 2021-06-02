@@ -1627,7 +1627,7 @@ function create_fragment$1(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMAlignMatch/css/alignmatch.min.css");
+			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "clsSMAlignMatch/css/alignmatch.min.css");
 			add_location(link, file$1, 664, 4, 33529);
 			attr_dev(div1, "class", div1_class_value = "categorycontainer center-block " + (/*windowwidth*/ ctx[3] > 1200 ? "span9" : ""));
 			add_location(div1, file$1, 666, 8, 33811);

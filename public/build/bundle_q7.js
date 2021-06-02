@@ -18918,7 +18918,7 @@ var app = (function () {
     			main = element("main");
     			if_block.c();
     			attr_dev(link0, "rel", "stylesheet");
-    			attr_dev(link0, "href", link0_href_value = "" + (themeUrl + "pe-items/svelte/clsSMTree/libs/treeview.min.css"));
+    			attr_dev(link0, "href", link0_href_value = "" + (themeUrl + "clsSMTree/libs/treeview.min.css"));
     			add_location(link0, file$1, 617, 8, 29220);
     			attr_dev(link1, "rel", "stylesheet");
     			attr_dev(link1, "href", link1_href_value = editor.baseUrlTheme + "prepengine/jstree/style.min.css");

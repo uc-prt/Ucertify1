@@ -3631,7 +3631,7 @@ function instance$1($$self, $$props, $$invalidate) {
 			if (typeof JXG != "undefined") {
 				GRAPH_AUTH.initGraph();
 			} else {
-				AH.addScript("", themeUrl + "pe-items/svelte/clsSMGraph/lib/jsxgraph.min.js", {
+				AH.addScript("", themeUrl + "clsSMGraph/lib/jsxgraph.min.js", {
 					callback() {
 						GRAPH_AUTH.initGraph();
 					}

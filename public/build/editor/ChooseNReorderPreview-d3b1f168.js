@@ -1313,7 +1313,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMChoose/css/choose.min.css");
+			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "clsSMChoose/css/choose.min.css");
 			add_location(link, file, 10, 1, 228);
 			add_location(center0, file, 414, 8, 10804);
 			attr_dev(div0, "class", "choose_header font17 pl-4");

@@ -5512,10 +5512,10 @@ function create_fragment(ctx) {
 			main = element("main");
 			if_block.c();
 			attr_dev(link0, "rel", "stylesheet");
-			attr_dev(link0, "href", link0_href_value = "" + (window.themeUrl + "pe-items/svelte/clsSMTree/libs/treeview.min.css"));
+			attr_dev(link0, "href", link0_href_value = "" + (window.themeUrl + "clsSMTree/libs/treeview.min.css"));
 			add_location(link0, file, 613, 8, 28400);
 			attr_dev(link1, "rel", "stylesheet");
-			attr_dev(link1, "href", link1_href_value = window.editor.baseUrlTheme + "pe-items/svelte/css/jstree/style.min.css");
+			attr_dev(link1, "href", link1_href_value = window.editor.baseUrlTheme + "css/jstree/style.min.css");
 			add_location(link1, file, 614, 8, 28506);
 			add_location(main, file, 616, 4, 28634);
 		},

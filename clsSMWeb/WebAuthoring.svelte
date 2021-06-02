@@ -7,10 +7,10 @@
  *  Last Updated By : Pradeep Yadav
 -->
 <!-- <svelte:head>
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css"  /> 
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css"  />
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css"  />
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css"  /> 
 </svelte:head> -->
 
 <script>
@@ -148,10 +148,10 @@
     
     beforeUpdate(()=> { 
         // if(!is_visible) {
-        //     createLink('pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
-        //     createLink('pe-items/svelte/clsSMWeb/libs/monokai.css');
-        //     createLink('pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
-        //     createLink('pe-items/svelte/clsSMWeb/libs/webitem.min.css');
+        //     createLink('clsSMWeb/libs/codemirror.min.css');
+        //     createLink('clsSMWeb/libs/monokai.css');
+        //     createLink('clsSMWeb/libs/simplescrollbars.css');
+        //     createLink('clsSMWeb/libs/webitem.min.css');
         //     is_visible = 1;
         // }
 

@@ -638,7 +638,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMAudioRecorder/css/AudioStyle.min.css");
+			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "clsSMAudioRecorder/css/AudioStyle.min.css");
 			add_location(link, file, 468, 0, 22623);
 			attr_dev(div0, "class", "row");
 			add_location(div0, file, 470, 4, 22828);

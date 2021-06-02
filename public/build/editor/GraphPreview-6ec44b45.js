@@ -2405,7 +2405,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = themeUrl + "pe-items/svelte/clsSMGraph/css/Math.min.css");
+			attr_dev(link, "href", link_href_value = themeUrl + "clsSMGraph/css/Math.min.css");
 			add_location(link, file, 380, 4, 15348);
 			li0.value = "plotgraph";
 			attr_dev(li0, "class", "selected-option text-uppercase m-0");
@@ -2718,7 +2718,7 @@ function instance($$self, $$props, $$invalidate) {
 			if (typeof JXG == "object" && editorState) {
 				$$invalidate(1, state.init = true, state);
 			} else if (typeof editorState == "undefined") {
-				AH.addScript("", themeUrl + "pe-items/svelte/clsSMGraph/lib/jsxgraph.min.js", {
+				AH.addScript("", themeUrl + "clsSMGraph/lib/jsxgraph.min.js", {
 					callback() {
 						$$invalidate(1, state.init = true, state);
 					}

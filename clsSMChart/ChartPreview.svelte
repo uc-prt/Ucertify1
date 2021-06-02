@@ -80,7 +80,7 @@
     // updating module on change of the xml
     beforeUpdate(async()=> {
         if (!editorState && !state.init) {
-            AH.addScript('', themeUrl + 'pe-items/svelte/clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', baseUrlTheme + 'clsSMChart/lib/highchart_draggable.js', { callback: function () {
                 state.init = true;
             }});
         }

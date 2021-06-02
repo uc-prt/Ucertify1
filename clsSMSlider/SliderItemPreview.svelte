@@ -233,7 +233,7 @@
     }
     
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href="{editor.baseUrlTheme}pe-items/svelte/clsSMSlider/css/slider.min.css" />
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href="{editor.baseUrlTheme}clsSMSlider/css/slider.min.css" />
 {#if onError != "" }
     <div class="alert alert-danger font-weight-bold">
         <span>{l.oops_msg} </span>

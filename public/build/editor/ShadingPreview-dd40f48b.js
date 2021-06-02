@@ -584,7 +584,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMShadedGrid/css/ShadingStyle.min.css");
+			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "clsSMShadedGrid/css/ShadingStyle.min.css");
 			add_location(link, file, 376, 0, 13365);
 			add_location(tbody, file, 385, 8, 13839);
 			attr_dev(table, "id", "table");

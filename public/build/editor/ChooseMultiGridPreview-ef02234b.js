@@ -3470,7 +3470,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css");
+			attr_dev(link, "href", link_href_value = editor.baseUrlTheme + "clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css");
 			add_location(link, file, 404, 0, 12901);
 			attr_dev(div0, "class", "choose_header font17 text-left rounded-top m-0");
 			add_location(div0, file, 418, 2, 13269);

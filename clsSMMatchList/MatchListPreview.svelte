@@ -113,7 +113,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'pe-items/svelte/clsSMMatchList/css/matchList.min.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchList.min.css', config);
 		AH.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
     }
 	

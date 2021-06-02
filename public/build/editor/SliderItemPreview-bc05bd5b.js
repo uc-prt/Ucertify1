@@ -543,7 +543,7 @@ function create_fragment(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = "" + (editor.baseUrlTheme + "pe-items/svelte/clsSMSlider/css/slider.min.css"));
+			attr_dev(link, "href", link_href_value = "" + (editor.baseUrlTheme + "clsSMSlider/css/slider.min.css"));
 			add_location(link, file, 235, 0, 10001);
 			attr_dev(div0, "class", "slider_item_container");
 			add_location(div0, file, 249, 8, 10503);

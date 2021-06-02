@@ -25775,7 +25775,7 @@ function create_fragment$i(ctx) {
 			attr_dev(link, "onload", "this.rel='stylesheet'");
 			attr_dev(link, "rel", "preload");
 			attr_dev(link, "as", "style");
-			attr_dev(link, "href", link_href_value = themeUrl + "pe-items/svelte/clsSMDragNDrop/css/codemirror.min.css");
+			attr_dev(link, "href", link_href_value = themeUrl + "clsSMDragNDrop/css/codemirror.min.css");
 			add_location(link, file$i, 723, 0, 29585);
 			attr_dev(input0, "id", "baseAuth");
 			attr_dev(input0, "type", "radio");

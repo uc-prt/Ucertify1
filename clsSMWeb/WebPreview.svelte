@@ -83,10 +83,10 @@
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink('pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
-            AH.createLink('pe-items/svelte/clsSMWeb/libs/monokai.css');
-            AH.createLink('pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink('pe-items/svelte/clsSMWeb/libs/webitem.min.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css');
         }
     }
     
@@ -1729,10 +1729,10 @@
     </script>
     
     <div>
-        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
+        <!-- <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
 
     <div id="authoringArea" class="font14" >
         {#if window.isIE || window.isIEEleven} 

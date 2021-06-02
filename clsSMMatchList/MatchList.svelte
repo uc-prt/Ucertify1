@@ -91,7 +91,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'pe-items/svelte/clsSMMatchList/css/matchlistAuth.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{

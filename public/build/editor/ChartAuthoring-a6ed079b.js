@@ -2069,7 +2069,7 @@ function instance$1($$self, $$props, $$invalidate) {
 	// for adding the highchart draggable plugin and initiating the chart
 	afterUpdate(async () => {
 		if (!is_resource_added && xml) {
-			AH.addScript("", themeUrl + "pe-items/svelte/clsSMChart/lib/highchart_draggable.js", {
+			AH.addScript("", themeUrl + "clsSMChart/lib/highchart_draggable.js", {
 				callback() {
 					CHART_AUTH.initChart();
 					$$invalidate(3, editorState.links = true, editorState);

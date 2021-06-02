@@ -2192,7 +2192,7 @@ function instance($$self, $$props, $$invalidate) {
 	// updating module on change of the xml
 	beforeUpdate(async () => {
 		if (!editorState && !state.init) {
-			AH.addScript("", themeUrl + "pe-items/svelte/clsSMChart/lib/highchart_draggable.js", {
+			AH.addScript("", themeUrl + "clsSMChart/lib/highchart_draggable.js", {
 				callback() {
 					$$invalidate(2, state.init = true, state);
 				}
