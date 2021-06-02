@@ -8,7 +8,7 @@
 -->
 <script>
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import { writable } from "svelte/store";
     
     import ItemHelper from '../helper/ItemHelper.svelte';
@@ -44,7 +44,7 @@
             if (typeof (JXG) == 'object' && editorState) {
                 state.init = true;
             } else if (typeof(editorState) == 'undefined') {
-                AH.addScript('', themeUrl + 'pe-items/clsSMGraph/lib/jsxgraph.min.js', {callback: function () {
+                AH.addScript('', themeUrl + 'pe-items/svelte/clsSMGraph/lib/jsxgraph.min.js', {callback: function () {
                     state.init = true;
                 }});
             }
@@ -378,7 +378,7 @@
     }
 </script>
 <div>
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + "pe-items/clsSMGraph/css/Math.min.css"}/>
+    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + "pe-items/svelte/clsSMGraph/css/Math.min.css"}/>
     
     <center>
         <ItemHelper 

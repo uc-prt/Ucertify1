@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import GRAPH_AUTH from './lib/mathAuthString'
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import MathModal from "./lib/MathModal.svelte";
     import swal from 'sweetalert';
     export let xml;
@@ -187,7 +187,7 @@
             if (typeof(JXG) != 'undefined') {
                 GRAPH_AUTH.initGraph();
             } else {
-                AH.addScript('', themeUrl + 'pe-items/clsSMGraph/lib/jsxgraph.min.js', { callback: function () {
+                AH.addScript('', themeUrl + 'pe-items/svelte/clsSMGraph/lib/jsxgraph.min.js', { callback: function () {
                     GRAPH_AUTH.initGraph();
                 }});
             }

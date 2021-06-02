@@ -790,15 +790,17 @@
     window.imageUploadFromGallery = function(file_name, is_multiple = 0) {
         try {
             let field_name = AH.select('.mce-imageUploadField').value;
-            if (AH.selectAll("." + field_name).length && field_name != undefined && is_multiple != 1) {
+            if (field_name != undefined && AH.selectAll("." + field_name).length && is_multiple != 1) {
                 AH.select('.' + field_name + ' .mce-textbox').value = (MEDIA_URL + file_name);
             } else {
-                AH.selectAll( manual_item_id, 'value',  file_name)
-                if (window.parent.setImage) {
-                    window.parent.setImage(0, file_name);
-                } else {
-                    setImage(0, file_name);
-                }
+                AH.selectAll( manual_item_id, 'value',  file_name);
+                setTimeout(()=> {
+                    if (window.parent.setImage) {
+                        window.parent.setImage(0, file_name);
+                    } else {
+                        setImage(0, file_name);
+                    }
+                }, 500);
             }
             media_upload_modal.hide();
         } catch (msg) {

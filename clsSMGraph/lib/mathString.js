@@ -10,7 +10,7 @@
 
 // importing JUI
 import JUI from 'javscript_helper';
-import l from '../../src/libs/Lang';
+import l from '../../../lib/Lang';
 const JS = new JUI();
 
 let GRAPH = {};

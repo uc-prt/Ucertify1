@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import CHART_AUTH from './lib/chartAuthoringScript';
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import ChartModalBox from "./lib/ChartModalBox.svelte";
     export let xml;
     export let editorState;
@@ -135,7 +135,7 @@
     // for adding the highchart draggable plugin and initiating the chart
     afterUpdate(async() => {
         if (!is_resource_added && xml) {
-            AH.addScript('', themeUrl + 'pe-items/clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', themeUrl + 'pe-items/svelte/clsSMChart/lib/highchart_draggable.js', { callback: function () {
                 CHART_AUTH.initChart();
                 editorState.links = true;
             }});

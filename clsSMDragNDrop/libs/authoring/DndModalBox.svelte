@@ -8,7 +8,7 @@
 -->
 <script>
     import ModalEvent from "./ModalEvent.svelte";
-    import l from '../../../src/libs/Lang';
+    import l from '../../../../lib/Lang';
     export let isDNDExtended = 0;
 </script>
 <div id="authoring-modal" class="modal fade" tabIndex="-1">

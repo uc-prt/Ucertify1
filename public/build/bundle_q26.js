@@ -6679,7 +6679,7 @@ var app = (function () {
     			attr(link, "onload", "this.rel='stylesheet'");
     			attr(link, "rel", "preload");
     			attr(link, "as", "style");
-    			attr(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css");
+    			attr(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css");
     			attr(div0, "class", "choose_header font17 text-left rounded-top m-0");
     			attr(ul, "id", "sortable");
     			attr(ul, "data-row", ul_data_row_value = /*preview_data*/ ctx[4].maxRow);

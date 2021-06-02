@@ -9,7 +9,7 @@
     import { Button, Dialog } from 'svelte-mui/src';
     import Loader from '../helper/Loader.svelte';
     import {writable} from 'svelte/store';
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import { AH } from '../helper/HelperAI.svelte';
     export const xml = window.uaXML && !/smans/gi.test(window.uaXML) ? window.uaXML : window.QXML;
     export let inQuizPlayer;
@@ -83,10 +83,10 @@
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink('pe-items/clsSMWeb/libs/codemirror.min.css');
-            AH.createLink('pe-items/clsSMWeb/libs/monokai.css');
-            AH.createLink('pe-items/clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink('pe-items/clsSMWeb/libs/webitem.min.css');
+            AH.createLink('pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
+            AH.createLink('pe-items/svelte/clsSMWeb/libs/monokai.css');
+            AH.createLink('pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink('pe-items/svelte/clsSMWeb/libs/webitem.min.css');
         }
     }
     
@@ -1729,10 +1729,10 @@
     </script>
     
     <div>
-        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/monokai.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
+        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
 
     <div id="authoringArea" class="font14" >
         {#if window.isIE || window.isIEEleven} 

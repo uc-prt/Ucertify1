@@ -8346,7 +8346,7 @@ var app = (function () {
     			as: "style"
     		};
 
-    		AH$1.createLink(themeUrl + "pe-items/clsSMMatchList/css/matchList.min.css", config);
+    		AH$1.createLink(themeUrl + "pe-items/svelte/clsSMMatchList/css/matchList.min.css", config);
     		AH$1.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
     	}
 

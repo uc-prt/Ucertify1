@@ -10,7 +10,7 @@
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
     import { AH , XMLToJSON, JSONToXML} from '../helper/HelperAI.svelte';
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import Loader from '../helper/Loader.svelte';
     import swal from 'sweetalert';
     import Sortable from 'sortablejs';

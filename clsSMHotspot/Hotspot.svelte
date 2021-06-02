@@ -74,7 +74,7 @@
         // doscribPlugin
         // only drawOnCanvasAuth() is in use else are not used @pradeep sir Please check
         //AH.addScript(HotspotAuthoring);
-        AH.createLink(editor.baseUrlTheme + "pe-items/clsSMHotspot/css/hotspot.min.css", {preload: true});
+        AH.createLink(editor.baseUrlTheme + "pe-items/svelte/clsSMHotspot/css/hotspot.min.css", {preload: true});
         didMount();
     })
 
@@ -125,7 +125,8 @@
 
         // binding the event for the image upload dialog
         AH.listen(document, "click", "#upload_media", ()=> {
-            AH.getBS("#modal-media-upload", 'Modal').show();
+            //AH.getBS("#modal-media-upload", 'Modal').show();
+            window.setImage("backgroundImage");
         });
 
         AH.bind(document, 'click', ()=> {
@@ -473,27 +474,26 @@
         if (change == 'img') {
             // goes in this block if it is the image dialog
             // setting state and storing the value
-            state.openImg = false;
             state.bgImg = AH.select('#backgroundImage').value;
             state.alt = AH.select('#imgAlt').value;
             state.imgheight = AH.select('#imgHeight').value;
             state.imgwidth = AH.select('#imgWidth').value;
             state.hotBorder = AH.select('#hotBorder').value;
             state.hotBorderColor = AH.select('#hotBorderColor').value;
+            globalThis.sda = AH.selectAll("#backgroundImage, #imgAlt, #imgHeight, #imgWidth, #hotBorder, #hotBorderColor");
 
             // here we are updating the value of alt,bgimg,imgheight,imgwidth in the xml state
-            state.xml = state.xml.replace(/alt="(.*?)"/gmi, 'alt="' + AH.select('#imgAlt').value.replace(/"/g, '&quot;') + '"');
-            state.xml = state.xml.replace(/bgimg="(.*?)"/gmi, 'bgimg="' + AH.select('#backgroundImage').value + '"');
-            state.xml = state.xml.replace(/imgheight="(.*?)"/gmi, 'imgheight="' + AH.select('#imgHeight').value + '"');
-            state.xml = state.xml.replace(/imgwidth="(.*?)"/gmi, 'imgwidth="' + AH.select('#imgWidth').value + '"');
-            var jj = XMLToJSON(state.xml);
+            state.xml = state.xml.replace(/alt="(.*?)"/gmi, `alt="${state.alt.replace(/"/g, '&quot;')}"`);
+            state.xml = state.xml.replace(/bgimg="(.*?)"/gmi, `bgimg="${state.bgImg}"`);
+            state.xml = state.xml.replace(/imgheight="(.*?)"/gmi, `imgheight="${state.imgheight}"`);
+            state.xml = state.xml.replace(/imgwidth="(.*?)"/gmi, `imgwidth="${state.imgwidth}"`);
+            let jj = XMLToJSON(state.xml);
 
             // setting value of borderm bordercolor, linecolor
-            jj.smxml.div._border = AH.select('#hotBorder').value;
-            jj.smxml.div._bordercolor = AH.select('#hotBorderColor').value;
+            jj.smxml.div._border = state.hotBorder;
+            jj.smxml.div._bordercolor = state.hotBorderColor;
             jj.smxml.div._linecolor = window.color;
-            var image = new Image();
-            image.src = bgImgPath + AH.select('#backgroundImage').value;
+            let image = new Image();
             image.onload = function () {
                 bgImgHeight = this.height + 'px';
                 bgImgWidth = this.width + 'px';
@@ -511,6 +511,8 @@
                 // for storing and updating the xml
                 getChildXml(state.xml);
             };
+            image.src = bgImgPath + state.bgImg;
+            state.openImg = false;
         } else {
             var isValidationOk = handleWarning();
             // goes here if it is draggable elment dialog
@@ -537,8 +539,7 @@
     function handleSubmit(change) {
         let json_data = XMLToJSON(state.xml), argument_data = change, isWidthValid = true, isHeightValid = true, handlemodal = false;
         if (json_data.smxml.div._type == 'imagehighlight') {
-            var image = new Image();
-            image.src = bgImgPath + AH.select('#backgroundImage').value;
+            let image = new Image();
             image.onload = function () {
                 // this block handle with default image height and width when uploaded image failed the condition
                 if (handlemodal) {
@@ -552,19 +553,18 @@
                 // handle with width
                 if (this.width >= 100 && this.width <= 1000) {
                     isWidthValid = true;
-                } else {
-                    AH.showmsg(l.width_warning, 4, true);
-                    isWidthValid = false;
-                }
-                // handle with height if width is ok
-                if (isWidthValid) {
+                    // handle with height if width is ok
                     if (this.height >= 80 && this.height <= 550) {
                         isHeightValid = true;
                     } else {
-                        AH.showmsg(l.height_warning, 4, true);
+                        AH.alert(l.height_warning);
                         isHeightValid = false;
                     }
+                } else {
+                    AH.alert(l.width_warning);
+                    isWidthValid = false;
                 }
+                
                 // enters in this block if height and width passes the defined min and max condition
                 if (isHeightValid && isWidthValid) {
                     // handle in case when uploading image failed and then default image sets
@@ -575,6 +575,7 @@
                         handleUpdatedData(argument_data);
                     }
                 } else {
+                    console.log("Default Image set");
                     // in case when height and width does not passes the defined min and max condition
                     state.openImg = true;
                     image.src = bgImgPath + json_data.smxml._bgimg;
@@ -582,6 +583,7 @@
                     handlemodal = true;
                 }
             };
+            image.src = bgImgPath + AH.select('#backgroundImage').value;
         } else {
             handleUpdatedData(argument_data);
         }
@@ -973,10 +975,7 @@
                     disabled="true"
                     value={state.bgImg}
                     margin="normal"
-                    style="
-                        pointer-events: none;
-                        width: 76%;
-                    "
+                    style="pointer-events: none; width: 76%;"
                     class="form-control mr-2"
                 />
                 <button

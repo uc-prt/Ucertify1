@@ -401,7 +401,7 @@
   onload="this.rel='stylesheet'"
   rel="preload"
   as="style"
-  href={editor.baseUrlTheme + "pe-items/clsSMChoose/css/ChooseMultiGrid.min.css"}
+  href={editor.baseUrlTheme + "pe-items/svelte/clsSMChoose/css/ChooseMultiGrid.min.css"}
 />
 <div id="chid">
   <ItemHelper

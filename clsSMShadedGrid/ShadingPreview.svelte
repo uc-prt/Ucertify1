@@ -374,7 +374,7 @@
     }
 
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/clsSMShadedGrid/css/ShadingStyle.min.css"} />
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/svelte/clsSMShadedGrid/css/ShadingStyle.min.css"} />
 <div class="shadingPreview">
     <ItemHelper 
         on:setReview = {setReview}

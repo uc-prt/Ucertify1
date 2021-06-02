@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import CHART from './lib/chart'
-    import l from '../src/libs/Lang';
+    import l from '../../lib/Lang';
     import Highcharts from 'highcharts';
     import ItemHelper from "../helper/ItemHelper.svelte";
     export let xml;
@@ -80,7 +80,7 @@
     // updating module on change of the xml
     beforeUpdate(async()=> {
         if (!editorState && !state.init) {
-            AH.addScript('', themeUrl + 'pe-items/clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', themeUrl + 'pe-items/svelte/clsSMChart/lib/highchart_draggable.js', { callback: function () {
                 state.init = true;
             }});
         }
