@@ -13,7 +13,7 @@
 <script>  
 	import { onMount,afterUpdate } from "svelte";
 	import { writable } from "svelte/store";
-	import l from '../../lib/Lang.js'
+	import l from '../src/libs/Lang'
 	import lib1 from './parseCSV.js';
 	import {XMLToJSON, AH} from "../helper/HelperAI.svelte";
 	export let getChildXml;

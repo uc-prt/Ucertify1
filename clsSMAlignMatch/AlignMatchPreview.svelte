@@ -662,7 +662,7 @@
             handleReviewClick = {handleReviewMode}
         />
     </div>
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/svelte/clsSMAlignMatch/css/alignmatch.min.css"} />
+    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/clsSMAlignMatch/css/alignmatch.min.css"} />
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">
         <div class="categorycontainer center-block {(windowwidth > 1200) ? 'span9' : ''}">
             {#if state.xml}

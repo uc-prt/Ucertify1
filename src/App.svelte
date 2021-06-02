@@ -12,9 +12,9 @@
 	import Loader from '../helper/Loader.svelte';
 	import Editor from './Editor.svelte';
 	import EditorModules from './EditorModules.svelte';
-	import l from '../../lib/Lang';
+	import l from './libs/Lang';
 	import Button from 'svelte-mui/src/Button.svelte';
-import { editor } from './libs/editorLib/language';
+	import { editor } from './libs/editorLib/language';
 
 	let allItem = [];
 	let groupList = [];

@@ -7,7 +7,7 @@
  *  Last Updated By : Ayush Srivastava
 -->
 <script>
-    import l from '../../../lib/Lang';
+    import l from '../../src/libs/Lang';
 </script>
 
 <div id="authoring-modal" class="modal fade" tabindex="-1">

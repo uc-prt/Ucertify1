@@ -2,7 +2,7 @@
     import {onMount} from 'svelte';
     import {AH, XMLToJSON} from '../helper/HelperAI.svelte';
     import {Checkbox, Dialog, Button } from 'svelte-mui/src';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import IconsList from './IconsList.js';
     import { writable } from 'svelte/store';
     export let xml;

@@ -14,7 +14,7 @@
 	import Loader from '../helper/Loader.svelte';
 	import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
     import {smVal} from './lib/ValidateItems';
-    import l from '../../lib/Lang.js'
+    import l from '../src/libs/Lang'
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
 
 
@@ -91,7 +91,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'pe-items/svelte/clsSMMatchList/css/matchlistAuth.css', config);
+        AH.createLink(themeUrl + 'pe-items/clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{

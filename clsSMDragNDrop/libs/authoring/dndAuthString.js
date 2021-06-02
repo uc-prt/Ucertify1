@@ -10,7 +10,7 @@
 import ContextMenu from '../plugins/context';
 import CodeMirror from '../plugins/javascript_syntax';
 import swal from 'sweetalert';
-import l from '../../../../lib/Lang';
+import l from '../../../src/libs/Lang';
 
 const DND_AUTH = {};
 

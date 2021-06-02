@@ -3817,7 +3817,7 @@ var app = (function () {
     			attr(link, "onload", "this.rel='stylesheet'");
     			attr(link, "rel", "preload");
     			attr(link, "as", "style");
-    			attr(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/svelte/clsSMShadedGrid/css/ShadingStyle.min.css");
+    			attr(link, "href", link_href_value = editor.baseUrlTheme + "pe-items/clsSMShadedGrid/css/ShadingStyle.min.css");
     			attr(table, "id", "table");
     			attr(table, "class", "table-bordered shadingTable");
     			set_style(table, "pointer-events", /*isReview*/ ctx[0] ? "none" : "");

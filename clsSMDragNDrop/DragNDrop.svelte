@@ -31,7 +31,7 @@
     import swal from 'sweetalert';
     import Draggable from './libs/plugins/Draggable';
     import Resizable from './libs/plugins/Resizable';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
 
     export let xml;
     export let getChildXml;
@@ -721,7 +721,7 @@
     }
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/svelte/clsSMDragNDrop/css/codemirror.min.css'}>
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/clsSMDragNDrop/css/codemirror.min.css'}>
 
 <div class="input_border dragable-container overflow-visible p">
     <div id="steps" class="h" >

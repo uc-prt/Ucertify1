@@ -9,7 +9,7 @@
 <script>
     import { afterUpdate, onMount } from "svelte";
 	import { AH , XMLToJSON} from '../helper/HelperAI.svelte';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
     // exporting the variables
@@ -174,7 +174,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'pe-items/svelte/clsSMDrawing/css/drawing.css', config);
+        AH.createLink(themeUrl + 'pe-items/clsSMDrawing/css/drawing.css', config);
         // checked for mac device
         is_mac = (navigator.userAgent.indexOf("Mac") != -1)
         // updates the position of rotationbar and change the center position of the circles that lies on rotationbar

@@ -9,7 +9,7 @@
 
 <svelte:head>
     
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/svelte/clsSMChoose/css/choose.min.css"} />
+    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/clsSMChoose/css/choose.min.css"} />
 </svelte:head>
 <script>
     import l from '../src/libs/editorLib/language.js';

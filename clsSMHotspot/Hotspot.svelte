@@ -74,7 +74,7 @@
         // doscribPlugin
         // only drawOnCanvasAuth() is in use else are not used @pradeep sir Please check
         //AH.addScript(HotspotAuthoring);
-        AH.createLink(editor.baseUrlTheme + "pe-items/svelte/clsSMHotspot/css/hotspot.min.css", {preload: true});
+        AH.createLink(editor.baseUrlTheme + "pe-items/clsSMHotspot/css/hotspot.min.css", {preload: true});
         didMount();
     })
 

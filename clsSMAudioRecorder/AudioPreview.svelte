@@ -466,7 +466,7 @@
         }
     }
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/svelte/clsSMAudioRecorder/css/AudioStyle.min.css"} />
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "pe-items/clsSMAudioRecorder/css/AudioStyle.min.css"} />
 <div id="preview_container" class="container">
     <div class="row">
         <ItemHelper 

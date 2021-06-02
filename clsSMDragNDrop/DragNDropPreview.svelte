@@ -27,7 +27,7 @@
 	import ButtonPreview from './libs/preview/ButtonPreview.svelte';
 	import StepPreview from './libs/preview/StepPreview.svelte';
 	import TabPreview from './libs/preview/TabPreview.svelte';
-    import l from '../../lib/Lang';
+    import l from '../src/libs/Lang';
 
 
 	// exporting the variables
@@ -387,7 +387,7 @@
     }
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/svelte/clsSMDragNDrop/css/dragndrop.min.css'} >
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/clsSMDragNDrop/css/dragndrop.min.css'} >
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}

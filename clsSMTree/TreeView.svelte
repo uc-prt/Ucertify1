@@ -638,10 +638,10 @@
         // used for handle the UI of preview component according to change in state or props
 </script> 
 <svelte:head>
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMTree/libs/jstree.min.css"/>
-    <script src="{themeUrl}pe-items/svelte/clsSMTree/libs/jstree.min.js"></script>
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMTree/libs/treeview.min.css" />
-    <link rel="stylesheet" href={editor.baseUrlTheme + "pe-items/svelte/css/jstree/style.min.css"} />
+    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMTree/libs/jstree.min.css"/>
+    <script src="{themeUrl}pe-items/clsSMTree/libs/jstree.min.js"></script>
+    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMTree/libs/treeview.min.css" />
+    <link rel="stylesheet" href={editor.baseUrlTheme + "pe-items/css/jstree/style.min.css"} />
 </svelte:head>
 <main>
     {#if state.blank}
