@@ -8,7 +8,7 @@
 	 *  Package     : pe-items
 	 *  Created     : 11 March 2021
 	*/
-	import { user } from "../../../services";
+	import { user } from "../../../store";
 	import { onMount, beforeUpdate } from 'svelte';
 	import { Button, Dialog } from 'svelte-mui/src';
 	import { writable } from 'svelte/store';
