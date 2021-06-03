@@ -147,10 +147,10 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'pe-items/clsSMWeb/libs/codemirror.min.css', config);
-        AH.createLink(themeUrl + 'pe-items/clsSMWeb/libs/monokai.css', config);
-        AH.createLink(themeUrl + 'pe-items/clsSMWeb/libs/simplescrollbars.css', config);
-		AH.createLink(themeUrl + 'pe-items/clsSMWeb/libs/webitem.min.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css', config);
+		AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css', config);
     }
 
 	// called once throughtout the program execution just after render method

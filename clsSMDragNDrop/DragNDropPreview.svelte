@@ -387,7 +387,7 @@
     }
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/clsSMDragNDrop/css/dragndrop.min.css'} >
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/dragndrop.min.css'} >
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}

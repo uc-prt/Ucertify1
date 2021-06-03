@@ -721,7 +721,7 @@
     }
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={themeUrl + 'pe-items/clsSMDragNDrop/css/codemirror.min.css'}>
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/codemirror.min.css'}>
 
 <div class="input_border dragable-container overflow-visible p">
     <div id="steps" class="h" >

@@ -7,10 +7,10 @@
  *  Last Updated By : Pradeep Yadav
 -->
 <!-- <svelte:head>
-    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/codemirror.min.css"  /> 
-    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/monokai.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/simplescrollbars.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/webitem.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css"  />
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css"  />
+    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css"  /> 
 </svelte:head> -->
 
 <script>
@@ -29,7 +29,6 @@
     let defaultStartXml = '<smxml type="22" addhtml="0" name="Web">';
     let isCaption = "";     
     let isAutograde = "";  
-    let themeUrl = window.baseThemeURL || window.baseUrlTheme;
     let mode = document.querySelector(".switch-input.switch-input");
     let htmlEditor;
     let cssEditor;
@@ -148,10 +147,10 @@
     
     beforeUpdate(()=> { 
         // if(!is_visible) {
-        //     createLink('pe-items/clsSMWeb/libs/codemirror.min.css');
-        //     createLink('pe-items/clsSMWeb/libs/monokai.css');
-        //     createLink('pe-items/clsSMWeb/libs/simplescrollbars.css');
-        //     createLink('pe-items/clsSMWeb/libs/webitem.min.css');
+        //     createLink('clsSMWeb/libs/codemirror.min.css');
+        //     createLink('clsSMWeb/libs/monokai.css');
+        //     createLink('clsSMWeb/libs/simplescrollbars.css');
+        //     createLink('clsSMWeb/libs/webitem.min.css');
         //     is_visible = 1;
         // }
 

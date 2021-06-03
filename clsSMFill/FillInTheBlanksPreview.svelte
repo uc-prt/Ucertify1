@@ -55,7 +55,7 @@
 	onMount(()=> {
 		window.J = ju;
 		ucFill.setUpdate(updateModule.bind(this));
-		AH.addScript("", editor.baseUrlTheme+"/clsSMFill/libs/mathQuill_new.js");
+		AH.addScript("", editor.baseUrlTheme+"clsSMFill/libs/mathQuill_new.js");
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		if (state.isMathquill) {
@@ -870,7 +870,7 @@
 	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	{#if state.isMathquill}
-		<link rel="stylesheet" href={window.themeUrl+"pe-items/css/mathquill.css"} />
+		<link rel="stylesheet" href={window.themeUrl+"css/mathquill.css"} />
 	{/if}
 	<ItemHelper 
 		bind:this={smControllerCallback}
@@ -914,7 +914,7 @@
 	</center>
 </div>
 <style type="text/css">
-	/*@import 'layout/themes/bootstrap4/pe-items/css/bootstrap5Beta1.css'; */
+	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
 	:global(xmp) {
 		display: inline;
 	}

@@ -3,7 +3,6 @@
 
 
 <script> 
-    let themeUrl = (window.baseThemeURL) ? window.baseThemeURL: window.baseUrlTheme;
     //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
     import { afterUpdate, onMount, beforeUpdate } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';
@@ -83,10 +82,10 @@
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink('pe-items/clsSMWeb/libs/codemirror.min.css');
-            AH.createLink('pe-items/clsSMWeb/libs/monokai.css');
-            AH.createLink('pe-items/clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink('pe-items/clsSMWeb/libs/webitem.min.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css');
         }
     }
     
@@ -1729,10 +1728,10 @@
     </script>
     
     <div>
-        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/monokai.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
+        <!-- <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
 
     <div id="authoringArea" class="font14" >
         {#if window.isIE || window.isIEEleven} 

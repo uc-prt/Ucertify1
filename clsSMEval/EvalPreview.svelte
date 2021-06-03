@@ -8,13 +8,14 @@
 	 *  Package     : pe-items
 	 *  Created     : 11 March 2021
 	*/
-	import { user } from "../../../store";
+	import { user, course, mergedConfig } from "../../../../store";
 	import { onMount, beforeUpdate } from 'svelte';
 	import { Button, Dialog } from 'svelte-mui/src';
 	import { writable } from 'svelte/store';
 	import l from '../src/libs/editorLib/language';
 	import { AH } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
+	import userCourseClass from "../../../../lib/class/user_course.class";
 
 	export let xml;
 	export let uxml;

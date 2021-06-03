@@ -1794,7 +1794,7 @@
             AI.insert(document.body, css, 'afterend');
             AI.ajax({
                 type: 'GET',
-                url: baseUrlTheme + 'ux/js/katex.min.js',
+                url: themeUrl + 'ux/js/katex.min.js',
                 async: false,
                 dataType: 'script',
             }).then(function(script) {

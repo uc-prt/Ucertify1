@@ -14,7 +14,6 @@
 	import EditorModules from './EditorModules.svelte';
 	import l from './libs/Lang';
 	import Button from 'svelte-mui/src/Button.svelte';
-	import { editor } from './libs/editorLib/language';
 
 	let allItem = [];
 	let groupList = [];

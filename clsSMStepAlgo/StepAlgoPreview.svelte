@@ -152,7 +152,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-		AH.createLink(themeUrl+"pe-items/css/mathquill.css", config);
+		AH.createLink(baseUrlTheme+"css/mathquill.css", config);
 	}
 
 	// $: {
@@ -320,7 +320,7 @@
 			AH.addScript("https://ucertify.com/themes/bootstrap4/prepengine/mathquill.js"); //This file should be downloaded and used locally.
 		} else {
 			//console.log("checking path =>"+editor.baseUrlTheme+"prepengine/mathquill.js");
-			AH.addScript("",editor.baseUrlTheme+"pe-items/clsSMStepAlgo/libs/mathQuill_new.js", { callback: function () {
+			AH.addScript("",editor.baseUrlTheme+"clsSMStepAlgo/libs/mathQuill_new.js", { callback: function () {
 
 			}});
 		}
