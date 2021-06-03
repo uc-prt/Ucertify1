@@ -55,7 +55,7 @@
 	onMount(()=> {
 		window.J = ju;
 		ucFill.setUpdate(updateModule.bind(this));
-		AH.addScript("", editor.baseUrlTheme+"pe-items/clsSMFill/libs/mathQuill_new.js");
+		AH.addScript("", editor.baseUrlTheme+"/clsSMFill/libs/mathQuill_new.js");
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		if (state.isMathquill) {
