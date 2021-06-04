@@ -102,8 +102,11 @@
 	// for displaying the answer
 	function displayAns() {
 		let ans = ucMlid.checkAns("#"+containerID);
+
+		onUserAnsChange({uXml:ans.u,ans:ans.ans});
+
 		if(editorState) {
-			showAns(ans);
+			showAns(ans.ans);
 		}
 	}
 
