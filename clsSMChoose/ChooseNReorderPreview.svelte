@@ -8,14 +8,14 @@
 *  Last update :  -->
 <svelte:head>
     
-	<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMChoose/css/choose.min.css"} />
+	<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + "clsSMChoose/css/choose.min.css"} />
 </svelte:head>
 <script>
 	import { afterUpdate, onMount } from "svelte";
 	import ucChoose from './chooseAuthString';
 	import { writable } from "svelte/store";
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import {AH,XMLToJSON} from "../helper/HelperAI.svelte";
+	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import Sortable from 'sortablejs';
 	
     
@@ -28,6 +28,8 @@
 	export let editorState;
 	export let isReview; 
 	export let uaXML;
+
+    //alert("fisrt",ucChoose.result);
 
 	
     
@@ -63,11 +65,11 @@
 		} else {
 			ans = ucChoose.CheckResultchoose("#"+containerID);
 		}
-		
+		onUserAnsChange({uXml:ans.u,ans:ans.b});
 		
 		// show the answer wether the answer is correct or not
 		if (editorState) {
-			showAns(ans);
+			showAns(ans.b);
 		}
     } 
 	$:{
@@ -183,7 +185,7 @@
 			
 			var timer = setTimeout(function() {
 				// if there isno user ans found then remove tha nas
-				if (!window.uaXML) {
+				if (!uaXML) {
 					removeUserAns();
 				}
 				
@@ -236,7 +238,7 @@
 		parseXMLPreview(loadXml);
 
 		// checking for user ans (uaXML)
-		if (window.uaXML) {
+		if (uaXML) {
 			let uxml = XMLToJSON(uaXML);
 			// if in uxml smans and list is found
 			if (uxml && uxml.SMANS && uxml.SMANS && uxml.SMANS.list) {

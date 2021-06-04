@@ -16,6 +16,7 @@ const AH = new JUI();
 var ucChoose = {};
 ucChoose.ajax_eId = "#choose";
 ucChoose.userAnsXML = '';
+//ucChoose.a ='';
 ucChoose.errorCatchFlag = 1;
 //var textarea_flag = false;
 let ua, us, cs, ca;
@@ -175,6 +176,7 @@ ucChoose.review = function(chid, correctans) {
 
 
 ucChoose.CheckResultchoose = function(chid) {
+    let result = {}
     var yourScore = true;
     var temp = 0;
     let temp_sort = AH.find(chid, '#sortable');
@@ -215,20 +217,23 @@ ucChoose.CheckResultchoose = function(chid) {
     }
 
     ucChoose.userAnsXML = '<SMANS type="6"><list useranswer="' + ansxml + '" /></SMANS>';
-    ISSPECIALMODULEUSERXMLCHANGE = 1;
+    //ISSPECIALMODULEUSERXMLCHANGE = 1;
     
-    if (document.querySelector("#special_module_user_xml"))
-        document.querySelector("#special_module_user_xml").value = ucChoose.userAnsXML;
     
-    if (document.querySelector("#answer"))
-        document.querySelector("#answer").checked = yourScore;
+    //AH.select("#special_module_user_xml").value = ucChoose.userAnsXML;
+    result.u =  ucChoose.userAnsXML;
+    result.b = yourScore;
+    
+    
+    //AH.select("#answer").checked = yourScore;
     if (yourScore == true) {
         //console.trace();
-        return ("Correct");
+        return (result);
     } else {
         //console.trace();
-        return ("Incorrect");
+        return (result);
     }
+    
 }
 //touch handler
 ucChoose.touchHandler = function(event) {
@@ -819,6 +824,7 @@ ucChoose.setDragSequence = function(chid, el, ty) {
 
 ucChoose.CheckResultSentenceChoose = function(chid) {
     var yourScore = true;
+    let res = {};
     cs = AH.find("#choose", "#sortable").getAttribute("checkSeq");
     //var i = 1
     var ansxml = "";
@@ -840,10 +846,14 @@ ucChoose.CheckResultSentenceChoose = function(chid) {
         AH.setAttr("#answer", {
             "checked": yourScore
         });
+
+        res.u = ucChoose.userAnsXML
+        res.ans = yourScore;
+
     if (yourScore == true) {
-        return ("Correct");
+        return (res);
     } else {
-        return ("Incorrect");
+        return (res);
     }
 }
 
