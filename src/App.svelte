@@ -1,10 +1,4 @@
 <script>
-	export let ajaxData;
-	//export let type;
-	export let subtype;
-	//export let content_guid;
-	//export let content_icon;
-	//export let userArray;
 	import { onMount, beforeUpdate, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import Drawer from '../helper/Drawer.svelte';
@@ -14,6 +8,8 @@
 	import EditorModules from './EditorModules.svelte';
 	import l from './libs/Lang';
 	import Button from 'svelte-mui/src/Button.svelte';
+	export let ajaxData;
+	export let subtype;
 
 	let allItem = [];
 	let groupList = [];
