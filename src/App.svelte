@@ -93,6 +93,7 @@
 		}
 	});
 
+	// To find revision of content guid
 	function checkRevision(res) {
 		return new Promise((resolve, reject)=> {
 			if (editorUrl.get('get-diff')) {
@@ -113,6 +114,7 @@
 		});
 	}
 
+	// To get data of guid and set params for edit.
 	function onDataGet() {
 		if (AH.isValid(ajaxRes)) {
 			ajaxRes = JSON.parse(ajaxRes);
