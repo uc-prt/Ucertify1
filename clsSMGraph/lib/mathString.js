@@ -804,8 +804,6 @@ GRAPH.getUnique = function(array) {
 
 // returns Correct or Incorrect after matching the answer 
 GRAPH.checkAns = function (mid) {
-    let userAnswers = "";
-    let inNativeIsCorrect = false;
     // used to create user answer xml
     GRAPH.userAnsXML = "<smans type='20'>\n";
     GRAPH.result = true;	// There is pass False value by Abhishek Kumar 9th april 2019
@@ -816,41 +814,17 @@ GRAPH.checkAns = function (mid) {
         GRAPH.userAnsXML = GRAPH.checkChildAnswer(mid, elements[index]);
     }
     GRAPH.userAnsXML += "</smans>";
+    
     if (window.inNative) {
         // used for mobile team
         window.getHeight();
+        window.postMessage(JSON.stringify({
+            userAnswers: GRAPH.userAnsXML,
+            inNativeIsCorrect: GRAPH.result
+        }), '*');
     }
-    // asssign the data of userAnsXML to element have id special_module_user_xml
-    JS.select("#special_module_user_xml").value = GRAPH.userAnsXML;
-    // contains the data of userAnsXML from element have id special_module_user_xml
-    userAnswers = JS.select("#special_module_user_xml").value;
-    let sendDataToNative = {
-        userAnswers,
-        inNativeIsCorrect
-    };
-    if (GRAPH.result) {
-        // assign the value to inNativeIsCorrect key of sendDataToNative object
-        sendDataToNative.inNativeIsCorrect = true;
-        // safely enables cross-origin communication between Window objects
-        window.postMessage(JSON.stringify(sendDataToNative), '*');
-        // check the element have id answer
-        JS.select("#answer").checked = true;
-        if (typeof (is_sm) != "undefined") {
-            JS.showmsg(l.correct, 3000);
-        }
-        return l.correct;
-    } else {
-        // assign the value to inNativeIsCorrect key of sendDataToNative object
-        sendDataToNative.inNativeIsCorrect = false;
-        // safely enables cross-origin communication between Window objects
-        window.postMessage(JSON.stringify(sendDataToNative), '*');
-        // uncheck the element have id answer
-        JS.select("#answer").checked = false;
-        if (typeof (is_sm) != "undefined") {
-            JS.showmsg(l.incorrect, 3000);
-        }
-        return l.incorrect;
-    }
+
+    return {uXml: GRAPH.userAnsXML, ans: GRAPH.result};
 }
 
 // returns the user answer xml and defines the GRAPH.result value according to matching the answer that helps chackAns method to show the Correct or Incorrect on the basis of variable GRAPH.result

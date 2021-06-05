@@ -10,7 +10,7 @@
 	// Importing all the required components
 	import { onMount, beforeUpdate, afterUpdate } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import { AH, XMLToJSON } from "../helper/HelperAI.svelte";
+	import { AH, onUserAnsChange, XMLToJSON } from "../helper/HelperAI.svelte";
 	import { writable } from "svelte/store";
 	import DND from './libs/preview/dndString';
 	import TextboxPreview from './libs/preview/TextboxPreview.svelte';
@@ -152,10 +152,12 @@
 
 	// for checking the answer and creating the user ans
 	function displayAns() {
-		let ans = DND.checkAns("#"+ container_id);
+		let result = DND.checkAns("#"+ container_id);
+		if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
 		if (editorState) {
-			showAns(ans);
+			showAns(result.ans ? "Correct" : "Incorrect");
 		}
+		onUserAnsChange(result);
 	}
 
 	// call whenever there is change in xml and changes the module accordingly

@@ -74,7 +74,7 @@
     "bootstrap": "^5.0.0-beta3",
     "highcharts": "^9.0.1",
     "hotkeys-js": "^3.8.1",
-    "javscript_helper": "^1.0.36",
+    "javscript_helper": "^1.0.37",
     "jquery": "^3.5.1",
     "postcss": "^7.0.35",
     "rollup-plugin-css-only": "^3.1.0",
