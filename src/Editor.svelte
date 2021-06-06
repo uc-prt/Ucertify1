@@ -734,11 +734,11 @@
 			let element = AH.closest(_this, 'section:not(.listing_section), [data-parent="parent_element"]');
 			AH.find(element, '.ebook_item_text', {action: 'attr', actionData: {id: ''} });
 			if (AH.find(_this.parentElement, ".verticle_timeline2", 'all').length > 0) {
-				AH.find(element, ".timeline_controls").remove();
+				AH.find(element, ".timeline_controls", {action: 'remove'});
 			} 
 			element.after(element.cloneNode(true));
-			element.nextSibling.querySelector(".remove_me").remove?.();
-			let sections = document.querySelectorAll('#authoringSection div[type="timeline"] section, #authoringSection div[type="slideshow"] section, #authoringSection li[data-parent="parent_element"],  #authoringSection li[data-parent="parent_element"]');
+			AH.find(element.nextSibling, ".remove_me", {action: 'remove'});
+			let sections = AH.selectAll('#authoringSection div[type="timeline"] section, #authoringSection div[type="slideshow"] section, #authoringSection li[data-parent="parent_element"],  #authoringSection li[data-parent="parent_element"]');
 			for (let i = 0; i < sections.length; i++) {
 				sections[i].setAttribute("id", (i + 1));
 			}
@@ -752,10 +752,10 @@
 			let currentElm = AH.parent(currentControls, 'section:not(.listing_section), li[data-parent="parent_element"], .dot[data-parent="parent_element"]')
 			if (currentElm?.previousElementSibling.getAttribute("id") != undefined) {
 				let previousData = currentElm.previousElementSibling;
-				previousData = previousData.innerHTML;
 				AH.find(previousData, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
-				AH.find(currentSection, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
+				AH.find(currentElm, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
 				let currentData = currentElm.innerHTML;
+				previousData = previousData.innerHTML;
 				// let getPreviousData = currentElm.previousElementSibling.getAttribute("id");
 				// let getCurrentData = currentElm.getAttribute("id");
 				if (AH.selectAll(currentControls, ".verticle_timeline2").length > 0) { 
@@ -769,7 +769,7 @@
 					ucEditor.initEditor(false, "#authoringSection .ebook_item_text");
 				}, 300);
 			} else {
-				AH.alert?.("It's first element", 4, true);
+				AH.alert("It's first element", 4, true);
 			}
 			AH.select('.remove_me').remove?.();
 		});
