@@ -473,8 +473,8 @@
 				let step_caption = "hint";
 
 				if (_this.querySelectorAll('.uc_hint_section').length > 0) {
-					_this.removeClass('list2');
-					_this.querySelector('.uc_hint_section').remove();
+					AH.select(_this, 'removeClass', 'list2');
+					AH.find(_this, '.uc_hint_section', {action: 'remove'});
 					_this.querySelectorAll('li').forEach(function (elm) {
 						elm.style.display = '';
 					});
