@@ -147,7 +147,7 @@ export const editorConfig = {
                 case 'stem' : 
                     let check = Items.UI.doNotCheckStem && !Items.UI.doNotCheckStem(state);
                     if (state.stem == "" && !check) {
-                        state.message = "You must specify a question.";
+                        updateModule('message', "You must specify a question.");
                         updateModule('saveDialog', false);
                         updateModule('snackback', true);
                         AH.activate(0);
@@ -156,7 +156,7 @@ export const editorConfig = {
                 break;
                 case 'title' : 
                     if (state.title == "") {
-                        state.message = "You must specify a title.";
+                        updateModule('message', "You must specify a title.");
                         updateModule('saveDialog', false);
                         updateModule('snackback', true);
                         AH.activate(0);
