@@ -264,7 +264,7 @@
             }
         }
         // not clear what does it work
-        window.ajaxContentUpdate && ajaxContentUpdate({
+        window.prettifyContent && prettifyContent({
             imgAltText: 1,
             container: ['#alignmatch-table']
         });
