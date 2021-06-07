@@ -17,6 +17,7 @@
     export let xml; 
     export let uxml;
     export let isReview;
+    let useransNew;
 
     let cm = { cdata:"" };
     let isIE;
@@ -245,8 +246,10 @@
         // updaing the value in the textarea 
         //jQuery("#special_module_user_xml").val(JSON.stringify(userans)); // Replaced;
 
-        if (document.getElementById('special_module_user_xml'))
-        document.getElementById('special_module_user_xml').value = JSON.stringify(userans);
+        
+        //AH('special_module_user_xml').value = JSON.stringify(userans);
+
+        useransNew = JSON.stringify(userans);
 
         displayAnswer();  
     }
@@ -261,6 +264,7 @@
         } else {
             if (editorState) showAns((ans) ? "Correct" : "Incorrect");
         }
+        onUserAnsChange({uXml: useransNew, ans: ans})
     } 
 
     // function check the answer

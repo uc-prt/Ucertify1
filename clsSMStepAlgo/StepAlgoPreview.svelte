@@ -11,7 +11,7 @@
 	import ALGO from "./Step.js";
     import l from '../src/libs/editorLib/language.js';
     import { onMount,afterUpdate, beforeUpdate } from 'svelte';
-    import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
+    import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import FillInTheBlanksToolbar from '../clsSMFill/FillInTheBlanksToolbar.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	
@@ -26,6 +26,7 @@
     let fill_math = [];
     var answer_array = [];
 	let btntype;
+	let resultNew = {};
 
 
     let var_list = '';
@@ -683,14 +684,13 @@
 		if(window.inNative) {
 			window.getHeight && window.getHeight();
         }
-		ISSPECIALMODULEUSERXMLCHANGE = 1;
+		//ISSPECIALMODULEUSERXMLCHANGE = 1; ## fixed in onUserAnsChange;
 		var cond = flagxml ? 'lists='+JSON.stringify(special_module.var_list) : ' ';
 		
 		//jQuery("#special_module_user_xml").val("<smans><div "+ cond +" currStep='"+steps+"' userAns='"+JSON.stringify(user_ans)+"'></div></smans>");
-		AH.select("#special_module_user_xml").value = "<smans><div "+ cond +" currStep='"+steps+"' userAns='"+JSON.stringify(user_ans)+"'></div></smans>";
-		// if(document.querySelector("#special_module_user_xml")!=null) {
-		// 	document.querySelector("#special_module_user_xml").value = "<smans><div "+ cond +" currStep='"+steps+"' userAns='"+JSON.stringify(user_ans)+"'></div></smans>";
-		// }
+		//AH.select("#special_module_user_xml").value = "<smans><div "+ cond +" currStep='"+steps+"' userAns='"+JSON.stringify(user_ans)+"'></div></smans>"; ## fixed in onUserAnsChange;
+
+		resultNew.special = "<smans><div "+ cond +" currStep='"+steps+"' userAns='"+JSON.stringify(user_ans)+"'></div></smans>";
 	}
 
 	function overAll() {
@@ -711,24 +711,25 @@
 				if (check == false) {
 					//jQuery("#answer").prop("checked", false);
 					AH.select("#answer").checked = false;
+					resultNew.answer = false;
 					inNativeIsCorrect = false;
 				} else {
 					//jQuery("#answer").prop("checked", true);
-					if(document.querySelector("#answer") != null) {
-						document.querySelector("#answer").checked = true;
+						AH.select("#answer").checked = true;
+						resultNew.answer = true;
 						inNativeIsCorrect = true;
-					}
 				}
 			}
 		}
 
 		//userAnswers = jQuery('#special_module_user_xml').val();
-		if(document.querySelector("#special_module_user_xml") !=null )
-		userAnswers = document.querySelector("#special_module_user_xml").value;
+		//userAnswers = document.querySelector("#special_module_user_xml").value;
+		userAnswers = resultNew.special;
 		if (window.inNative) {
 			window.postMessage('height___'+document.getElementsByClassName('inNativeStyle')[0].offsetHeight,'*');
 			window.postMessage(JSON.stringify({ userAnswers, inNativeIsCorrect }), '*');
 		}
+		onUserAnsChange({uXml:resultNew.special,ans:resultNew.answer});
 	}
 
 	function addSticky() {
