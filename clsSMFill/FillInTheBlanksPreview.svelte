@@ -14,7 +14,7 @@
 	import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
-	import { AH, XMLToJSON } from '../helper/HelperAI.svelte';
+	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
 	export let manual_grade;
 	export let xml;
 	export let uxml;
@@ -397,9 +397,13 @@
 		// show the answer and also bind the keys event for ada
 		ucFill.modeOn("on");
 		ucFill.showdragans(ajax_eId, 'u', 1);
-		// console.log(ucFill.iscorrect); // Get the correct/incorrect value
-		// AH.select("#special_module_user_xml").value; // Get the updated user xml
-		console.log(AH.select("#special_module_user_xml").value);
+
+		// To save the user answer
+		var save_result = {};
+		save_result.ans = ucFill.iscorrect;
+		save_result.uXml = AH.select("#special_module_user_xml").value;
+		onUserAnsChange();
+
 		AH.selectAll('.remed_disable', 'show');
 		autoresize(1);
 		let mathItem = document.getElementById(containerID);
