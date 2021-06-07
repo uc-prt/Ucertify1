@@ -397,6 +397,9 @@
 		// show the answer and also bind the keys event for ada
 		ucFill.modeOn("on");
 		ucFill.showdragans(ajax_eId, 'u', 1);
+		// console.log(ucFill.iscorrect); // Get the correct/incorrect value
+		// AH.select("#special_module_user_xml").value; // Get the updated user xml
+		console.log(AH.select("#special_module_user_xml").value);
 		AH.selectAll('.remed_disable', 'show');
 		autoresize(1);
 		let mathItem = document.getElementById(containerID);
@@ -913,6 +916,7 @@
 		</div>
 	</center>
 </div>
+<textarea class="h" id="special_module_user_xml"></textarea>
 <style type="text/css">
 	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
 	:global(xmp) {

@@ -8,6 +8,7 @@ export default class fillJS {
 		this.labBinded = true;
 		this.delPreSpaces = {};
 		this.init();
+		this.iscorrect = '-2';
 	}
 	init() {
 		this.delPreSpaces = {
@@ -385,7 +386,6 @@ export default class fillJS {
 				is_correct = -1;
 				this.totalcorrect = JS.find(pElem, "[correctans='1']", 'all').length;
 				this.a = 0;
-				
 				JS.find(pElem, "option", 'all').forEach((_this, i)=> {
 					_this.removeAttribute("selected");
 					if (ansType=='c') {
@@ -453,6 +453,7 @@ export default class fillJS {
 			JS.find(fillid, '.correct_incorrect_icon_fill', {action:'remove'})
 			pElem.setAttribute('title','');
 		}
+		this.iscorrect = is_correct;
 	}
 
 	fillTestText(fillid, pElem) {
