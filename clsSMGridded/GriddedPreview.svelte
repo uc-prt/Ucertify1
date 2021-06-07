@@ -19,6 +19,8 @@
     export let isReview;
     export let xml;
     export let showAns;
+    export let uxml;
+    export let editorState;
 
     // Declare global variables ////
 
@@ -123,9 +125,11 @@
             state.decimal_point = MYXML.smxml._fixed_point;
 
             
-            if (window.uaXML) {
+            //if (window.uaXML) {
+            if(uxml) {
                 let timer = setTimeout(function() {
-                    parseUserAns(window.uaXML);
+                    //parseUserAns(window.uaXML);
+                    parseUserAns(uxml)
                     clearTimeout(timer);
                 },50);
             }
@@ -154,7 +158,8 @@
         //if (this.props.remedStatus != nextProps.remedStatus) {
            
         //} 
-        if (window.QXML) {
+        //if (window.QXML) {
+        if(xml) {
             console.log('qxml');
         }
         firstRowItemPre();
@@ -235,7 +240,8 @@
                 countRes = l.incorrect;
                 // return false;
             }
-            if (!window.QXML) {
+            // if (!window.QXML) {
+            if(editorState) {
                 showAns(countRes);
             }
             
@@ -324,7 +330,8 @@
                 countRes = l.incorrect;
                 // return false;
             }
-            if (!window.QXML) {
+            //if (!window.QXML) {
+            if(editorState) {
                 showAns(countRes);
             }
             
@@ -534,7 +541,8 @@
 
         //document.querySelector(".tokenHeader").setAttribute("tabindex","0");
         setTimeout(getCorrect(),200); 
-        if (!window.QXML) {
+        // if (!window.QXML) {
+        if(editorState) {
             showAns((isAnswerCorrect)?(l.correct):(l.incorrect));
         } 
     }
