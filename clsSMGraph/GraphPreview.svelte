@@ -12,7 +12,7 @@
     import { writable } from "svelte/store";
     
     import ItemHelper from '../helper/ItemHelper.svelte';
-	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
+	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     import GRAPH from './lib/mathString';
 
     export let xml;
@@ -182,13 +182,15 @@
     // responsible for showing the answer
     function displayAns() {
         // used for switch on next question in prepengine if current question is attempted
-        ISSPECIALMODULEUSERXMLCHANGE = 1;
+        //ISSPECIALMODULEUSERXMLCHANGE = 1;
         // collect Correct or Incorrect which is returned by checkAns method 
-        let ans = GRAPH.checkAns("#mathmain");
+        let result = GRAPH.checkAns("#mathmain");
+        if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
         if (editorState) {
             // shows the answer according to the value of its argument passed
-            showAns(ans);
+            showAns(result.ans ? "Correct":"Incorrect");
         }
+        onUserAnsChange(result)
     }
 
     // function responsible for loading the module

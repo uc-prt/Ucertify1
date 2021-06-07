@@ -37,9 +37,10 @@ CHART.checkAns = function(mid) {
         // return the false if remediation mode is off
         return false;
     }
+    let userAnsXML = "";
     if (CHART.tempVar == 'u') {
         // creates user answer xml
-        let userAnsXML = "<smans type='19'>\\n";
+        userAnsXML = "<smans type='19'>\\n";
         // by default set the value of result true
         result = true;
         let elements = JS.select(mid).children;
@@ -52,28 +53,9 @@ CHART.checkAns = function(mid) {
         if (window.inNative) {
             window.getHeight && window.getHeight();
         }
-        // denotes that user answer xml value changed
-        window.ISSPECIALMODULEUSERXMLCHANGE = 1;
-        // stores the user answer xml value
-        JS.select("#special_module_user_xml").value = userAnsXML;
-        if (result) {
-            // check the element have id answer
-            JS.select("#answer").checked = true;
-            if (typeof(is_sm) != "undefined") {
-                // shows the correct message
-                if (typeof(showmsg) == "function") JS.showmsg("Correct", 3000);
-            }
-        } else {
-            // uncheck the element have id answer
-            JS.select("#answer").checked = false;
-            if (typeof(is_sm) != "undefined") {
-                // shows the incorrect message
-                if (typeof(showmsg) == "function") JS.showmsg("Incorrect", 3000);
-            }
-        }
     }
     // returns the status of the result
-    return result;
+    return {uXml: userAnsXML, ans:result};
 }
 
 // sets the value of result and returns the user answer xml after update it

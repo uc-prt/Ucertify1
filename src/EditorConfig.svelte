@@ -147,7 +147,7 @@ export const editorConfig = {
                 case 'stem' : 
                     let check = Items.UI.doNotCheckStem && !Items.UI.doNotCheckStem(state);
                     if (state.stem == "" && !check) {
-                        state.message = "You must specify a question.";
+                        updateModule('message', "You must specify a question.");
                         updateModule('saveDialog', false);
                         updateModule('snackback', true);
                         AH.activate(0);
@@ -156,7 +156,7 @@ export const editorConfig = {
                 break;
                 case 'title' : 
                     if (state.title == "") {
-                        state.message = "You must specify a title.";
+                        updateModule('message', "You must specify a title.");
                         updateModule('saveDialog', false);
                         updateModule('snackback', true);
                         AH.activate(0);
@@ -994,11 +994,11 @@ export const editorConfig = {
                 "label":"Hint Feature",    
                 "html":"<div type='ebook-item' sub_type='${itemType}' data-section='${stemClass}' class='ebook_item_text'><ul class='uc_answer_hint list2'><li>Hint1</li><li>Hint2</li><li>Hint3</li><li>Hint4</li></ul></div>",
             },
-            "sub-slideshow":{
-                "default_image":"//s3.amazonaws.com/jigyaasa_content_static/time_000obY.png",
-                "label":"Sub-Slideshow",
-                "html":"<div type='ebook-item' sub_type='${itemType}' data-section='${stemClass}' class='ebook_item_text'><div type='sub-slideshow' class='slide_data'><section><article><img src='//s3.amazonaws.com/jigyaasa_content_static/interactive_item/paragraph.png' /><br/>Content one</article></section><section><article>Content Two</article></section><section><article><img src='//s3.amazonaws.com/jigyaasa_content_static/interactive_item/paragraph.png'/><br/>Content Three</article></section><section><article>Content Four</article></section></div></div>"
-            },
+            // "sub-slideshow":{
+            //     "default_image":"//s3.amazonaws.com/jigyaasa_content_static/time_000obY.png",
+            //     "label":"Sub-Slideshow",
+            //     "html":"<div type='ebook-item' sub_type='${itemType}' data-section='${stemClass}' class='ebook_item_text'><div type='sub-slideshow' class='slide_data'><section><article><img src='//s3.amazonaws.com/jigyaasa_content_static/interactive_item/paragraph.png' /><br/>Content one</article></section><section><article>Content Two</article></section><section><article><img src='//s3.amazonaws.com/jigyaasa_content_static/interactive_item/paragraph.png'/><br/>Content Three</article></section><section><article>Content Four</article></section></div></div>"
+            // },
             config:{
                 "hide":true,
                 "render_tags" : true,

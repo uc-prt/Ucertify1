@@ -250,7 +250,7 @@
             });
         });
         let ans = (correctLength == resultLength && resultLength == state.userAns.length) ? true : false;
-        onUserAnsChange({ans: ans, uXml: "", correctPoints: state.correctAns.length, ansPoint: resultLength});
+        onUserAnsChange({ans: ans, uXml: ""});
 
         showAns && showAns(ans ? "Correct" : "Incorrect");
     }

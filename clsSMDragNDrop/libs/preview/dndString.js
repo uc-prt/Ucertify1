@@ -1712,9 +1712,6 @@ DND.markUserAnswerChoiceMatrix = function(is_correct, anstest) {
 }
 // function for cheking module answers
 DND.checkAns = function(dndid) {
-    let returnValue = '';
-    let userAnswers = '';
-    let inNativeIsCorrect = null;
     let userAnsXML = "<smans type='15'>\n";
     result = true;
     user_points = 0;
@@ -1733,38 +1730,21 @@ DND.checkAns = function(dndid) {
             window.getHeight();
         }
     }
-    ISSPECIALMODULEUSERXMLCHANGE = 1;
-
-    AI.select('#special_module_user_xml').value = userAnsXML;
-
     DND.calculatePoint(dnd_element.getAttribute('totalcorrectans'), user_points);
 
-    if (result) {
-        AI.select("#answer").checked = true;
-        if (typeof(is_sm) != "undefined") AI.showmsg("Correct", 3000);
-        returnValue = 'Correct';
-    } else {
-        AI.select("#answer").checked = false
-        if (typeof(is_sm) != "undefined") AI.showmsg("Incorrect", 3000);
-        returnValue = 'Incorrect';
-    }
-
-    userAnswers = AI.select('#special_module_user_xml').value
-    inNativeIsCorrect = returnValue == "Correct" ? true : false;
-
     if (window.inNative) {
-        postMessage(JSON.stringify({
-            userAnswers: userAnswers,
-            inNativeIsCorrect: inNativeIsCorrect
+        window.postMessage(JSON.stringify({
+            userAnswers: userAnsXML,
+            inNativeIsCorrect: result
         }), '*');
     }
-    return returnValue;
+    return {uXml: userAnsXML, ans: result};
 }
 
 // function for changing the user and ans points
 DND.calculatePoint = function(answer_points, user_points) {
-    AI.select('#answer_points').value = answer_points;
-    AI.select('#user_points').value = user_points;
+    AI.select('#answer_points', 'value', answer_points);
+    AI.select('#user_points', 'value', user_points);
 }
 
 // function for cheking module by traversing the child
