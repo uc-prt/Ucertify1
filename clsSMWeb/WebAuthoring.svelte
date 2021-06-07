@@ -3,18 +3,20 @@
  *  Description : Show the editors html,css and js
  *  Author      : Sundaram Tripathi
  *  Package     : pe-items
- *  Last update : 24-May-2021
+ *  Last update : 24-June-2021
  *  Last Updated By : Pradeep Yadav
+ *  Latest Update by : Sundaram Tripathi
 -->
 <!-- <svelte:head>
-    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css"  /> 
-    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css"  />
-    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css"  />
-    <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css"  /> 
+    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css"  />
+    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css"  />
+    <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css"  /> 
 </svelte:head> -->
 
 <script>
-    import l from '../src/libs/Lang';
+    //import l from '../../lib/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import { onMount, beforeUpdate } from 'svelte';
     import { Checkbox } from 'svelte-mui/src';
     import { writable } from 'svelte/store';
@@ -24,11 +26,13 @@
     export let toggleMode;
     export let isReview;
     export let showAns;
+
         
     let isPreview = 0;
     let defaultStartXml = '<smxml type="22" addhtml="0" name="Web">';
     let isCaption = "";     
     let isAutograde = "";  
+    let themeUrl = window.baseThemeURL || window.baseUrlTheme;
     let mode = document.querySelector(".switch-input.switch-input");
     let htmlEditor;
     let cssEditor;
@@ -41,6 +45,7 @@
     let readJS = 1;
     let state = {};
     let disabled_hide = ['Editable','Hidden','Disabled'];
+
 
 
     let stateData = writable({
@@ -62,6 +67,7 @@
     })
 
     function changeTheme() {
+        console.log('chacking theme');
         let check = document.querySelector("#goDark").checked;
         state.goDark = check;
         stateData.update( (item) => {
@@ -71,13 +77,13 @@
 
         window.sessionStorage.goDark = check;
         if (check) {
-            htmlEditor.setOption("theme", "monokai");
-            cssEditor.setOption("theme", "monokai");
-            jsEditor.setOption("theme", "monokai");
+            htmlEditor && htmlEditor.setOption("theme", "monokai");
+            cssEditor && cssEditor.setOption("theme", "monokai");
+            jsEditor && jsEditor.setOption("theme", "monokai");
         } else {
-            htmlEditor.setOption("theme", "default");
-            cssEditor.setOption("theme", "default");
-            jsEditor.setOption("theme", "default");
+            htmlEditor && htmlEditor.setOption("theme", "default");
+            cssEditor && cssEditor.setOption("theme", "default");
+            jsEditor && jsEditor.setOption("theme", "default");
         }
     }
 
@@ -147,15 +153,15 @@
     
     beforeUpdate(()=> { 
         // if(!is_visible) {
-        //     createLink('clsSMWeb/libs/codemirror.min.css');
-        //     createLink('clsSMWeb/libs/monokai.css');
-        //     createLink('clsSMWeb/libs/simplescrollbars.css');
-        //     createLink('clsSMWeb/libs/webitem.min.css');
+        //     createLink('pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
+        //     createLink('pe-items/svelte/clsSMWeb/libs/monokai.css');
+        //     createLink('pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
+        //     createLink('pe-items/svelte/clsSMWeb/libs/webitem.min.css');
         //     is_visible = 1;
         // }
 
         // contains the xml
-        //xml = xml ? xml : window.QXML;
+        xml = xml ? xml : state.xml;
         if (toggleMode) {
             // defined in 'Web.js' it loads Preview or Authoring component according to the value of this variable but in this file it is not in use
             isPreview = 0;
@@ -169,6 +175,9 @@
 
      // called once throught the program execution just after render method
     onMount(()=> {
+
+            AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
+            
 
             AH.bind(".modal", 'show.bs.modal', ()=> {
                 setTimeout(function () {
@@ -212,7 +221,7 @@
             })
 
             // used for show the tooltip
-            AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip');
+            //AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip');
             AH.select('#preview', 'hide');
            // setTimeout(function () {
                 if (typeof (CodeMirror) == "function") {
@@ -224,7 +233,7 @@
                     //jQuery(function () {
                         AI.ajax({
                             type: "GET",
-                            url: themeUrl + "pe-items/lib/codemirror.js",
+                            url: themeUrl + "src/libs/codemirror.js",
                             dataType: "script",
                         }).then(function (data){
                                 //  AI.activate(0);
@@ -242,7 +251,7 @@
                 }
                 AI.ajax({
                     type: "GET",
-                    url: themeUrl + "pe-items/lib/split.js",
+                    url: themeUrl + "src/libs/split.js",
                     async: true,
                     dataType: "script",
                 }).then((data)=> {
@@ -665,11 +674,16 @@
 
     function parseXML() {
         let htmlData = stringBetween(xml, "tag");
+        
+        if(htmlData != null)
         htmlEditor.setValue(htmlData ? htmlData.trim() : "");
         let cssData = stringBetween(xml, "css");
+        
+        if(cssData != null)
         cssEditor.setValue(cssData ? cssData.trim() : "");
         let jsData = stringBetween(xml, "js");
         
+        if(jsData != null)
         jsEditor.setValue(jsData ? jsData.trim() : "");
         let disableData = findAttribute(xml, "disable", "web");
         let html_disable = document.querySelector("#html_disable");
@@ -739,7 +753,7 @@
 </script>
     
     
-<div id="authoringArea" style="line-height: 20pxfont-size: 14px;">
+<div id="authoringArea" style="line-height:20px;font-size:14px;">
     <div>
         <div class="container-fluid">
             <div class="row">
@@ -772,7 +786,7 @@
                     <div class="inline-block width150 relative bottom6 pull-left ml-lg">
                         <span class="themeStyle form-check form-check-inline">
                             <Checkbox  
-                                defaultChecked={state.goDark} 
+                                checked={state.goDark} 
                                 on:click={changeTheme} 
                                 id="goDark"
                             >
@@ -790,7 +804,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="wrap" style='width:100%; background:white; '>
+                <div id="wrap" style='width:100%; background:white;padding:0px;'>
                     <div id="top_content">
                         <div id="firstEditorDiv" style='display:flex;'>
                             <div id="html_panel" class="card m-0 p-0 rounded-0">
@@ -872,7 +886,7 @@
                 </div>
                 <div class="modal-body overflow-auto">
                     <div class="panel-group" id="grade_accordion">
-                        <div class="card mb">
+                        <div class="card mb-2">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#test_case_collapse">
                                 <h4 class="panel-title">
                                     <a 
@@ -904,7 +918,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb">
+                        <div class="card mb-2">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#internal_script_collapse">
                                 <h4 class="panel-title">
                                     <a 
@@ -936,7 +950,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-xl">
+                        <div class="card mb-2">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#external_script_collapse">
                                 <h4 class="panel-title">
                                     <a 

@@ -12,6 +12,7 @@
 	import { writable } from 'svelte/store';
 	import { AH } from '../helper/HelperAI.svelte';
 	export let xml;
+	export let uaXML;
 	export let inEditor;
 	export let editorState;
 	export let toggleMode;
@@ -147,10 +148,10 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css', config);
-        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css', config);
-        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css', config);
-		AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css', config);
+        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/codemirror.min.css', config);
+        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/monokai.css', config);
+        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/simplescrollbars.css', config);
+		AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/webitem.min.css', config);
     }
 
 	// called once throughtout the program execution just after render method
@@ -227,9 +228,10 @@
 		{:else if state.currentComponent == 1} 
 			<WebPreview 
 				key="1"
-				xml={window.QXML} 
+				xml={xml} 
 				inQuizPlayer={ editorState ? 0 : 1}  
 				editorState={editorState}
+				uaXML={uaXML}
 			/> 
 		{:else if state.currentComponent == 0}
 			<WebAuthoring  
