@@ -690,13 +690,7 @@
 			save_result.ans = useans;
 			save_result.uXml = new_xml;
 			onUserAnsChange(save_result); // To save the answer
-			// Need to move this code in DE
-			let reviewAnsData = {};
-			if (useans == '1') {
-				reviewAnsData = { class: 'success', icon: 'icomoon-24px-correct-2', answer: 'Correct' }
-			} else {
-				reviewAnsData = { class: 'danger', icon: 'icomoon-24px-incorrect-2', answer: 'Incorrect' }
-			}   
+			// Need to move this code in DE 
 
 			if (result.indexOf("<submit_output>") != -1 ) {
 				result = result.split("<submit_output>");
