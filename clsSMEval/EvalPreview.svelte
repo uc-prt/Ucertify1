@@ -13,13 +13,15 @@
 	import { Button, Dialog } from 'svelte-mui/src';
 	import { writable } from 'svelte/store';
 	import l from '../src/libs/editorLib/language';
-	import { AH } from '../helper/HelperAI.svelte';
+	import { AH, onUserAnsChange } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 
 	export let xml;
 	export let uxml;
 	export let ansStatus;
 	export let isReview;
+	export let content_guid;
+	export let sample_input;
 	let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/pe-items/evalPro/index.php';
 	let user_guid = '';
 	let tempGuid;
@@ -76,8 +78,6 @@
 		user_guid = user.user_guid;
 	})
 	onMount(()=> {
-		console.log(xml);
-		console.log(uxml);
 		loadLibs()
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
 		db_name = findAttribute(window.QXML, 'db_name');
@@ -208,6 +208,8 @@
 		}
 
 		AH.listen(document, 'click', '#answerCheck', remediationMode.bind(this));
+		AH.listenAll('#learn,#next,#previous', 'click', submitEvalAns.bind(this));
+		
 		//state.goDark = !state.goDark;
 		/*
 		AH.ajax({
@@ -666,6 +668,55 @@
 		answerCheckEvalpro();
 	}
 
+	function submitEvalAns() {
+		let _uxml = AH.select("#special_module_user_xml").value;
+		_uxml = _uxml || window.QXML;
+		AH.ajax({
+			url: evalpro_url, 
+			data: {
+				'func': 'check_answer',
+				'special_module_user_xml': _uxml,
+				'user_guid': user_guid,
+				'content_guid': content_guid
+			},
+		}).then((response)=> {
+			var result = JSON.parse(response);
+			result = result?.extAnswerStr;
+			var useans = result?.answer;
+			var new_xml = result?.new_xml;
+			var save_result = {};
+			save_result.ans = useans;
+			save_result.uXml = new_xml;
+			onUserAnsChange(save_result); // To save the answer
+			// Need to move this code in DE 
+
+			if (result.indexOf("<submit_output>") != -1 ) {
+				result = result.split("<submit_output>");
+				var error_detail = result[1].split("||");
+				if (error_detail[0] == "1") {
+					AH.select("#output", 'html', '<pre class="compilerPre d-flex overflow-x-scroll overflow-y-scroll">'+ error_detail[4] + "</pre>");
+					AH.select("#output", 'css', {background: "rgb(255, 240, 240)"});
+				} else if (error_detail[4] != "") {
+					if ((error_detail[4]).includes("image_data:")) {
+						var image_url = (error_detail[4]).split("image_data:");
+						AH.select("#output", 'html', '<img src="data:image/jpg;base64, ' + image_url[1] + '" />');
+					} else if (error_detail[1] == "2") {
+						var formating_class= error_detail['3'] == '1' ? '' : 'd-flex overflow-x-scroll overflow-y-scroll';
+						AH.select("#output", 'html', "<pre class=" + formating_class + ">" + error_detail[4] + "</pre>");
+					} else if (error_detail[1] == "1") {
+						AH.select("#output", 'html', "<pre>" + error_detail[4] + "</pre>");
+					} else {
+						AH.select("#output", 'html', error_detail[4]);
+					}
+					AH.select("#output", 'css', {background: "rgb(255, 255, 255)"});
+				} else {
+					AH.select("#output", 'html', "Your code didn\'t print anything.");
+				}
+				
+				// result = result[0];
+			}
+		});
+	}
 	function answerCheckEvalpro() {
 		if (window.inNative) {
 			window.getHeight && window.getHeight();
@@ -754,7 +805,7 @@
 		AH.select("#reset_button", 'attr', {disabled: true});
 		let uXML = AH.select("#special_module_user_xml").value;
 		AH.select("#output", 'css', {background: "rgb(255, 255, 255)"});
-		AH.select("#output", 'html', '<div class="EvalbgBlue relative" style="top:40%"><div class="Evalloader"><span>{</span><span>}</span></div></div>');
+		AH.select("#output", 'html', '<div class="EvalbgBlue relative" style="position: relative; top:50%; transform: translateY(-50%);"><div class="Evalloader"><span>{</span><span>}</span></div></div>');
 		let preCode = stringBetween(window.uaXML, "pre");
 		let postCode = stringBetween(window.uaXML, "post");
 		let code = "";
@@ -776,8 +827,8 @@
 			stdin: AH.select("#sampleInput").value,
 			'run_code': 1,
 			'user_guid': user_guid,
-			'test_session_unique_id': window.test_session_uid,
-			'content_guid': window.content_guid,
+			// 'test_session_unique_id': window.test_session_uid,
+			'content_guid': content_guid,
 			'db_name': db_name,
 			'is_graph' : is_graph,
 			'ignore_error' : ignore_error,
@@ -801,7 +852,8 @@
 				color: "black",
 				background: "transparent"
 			});
-			AH.select("#evalProRunCode", 'attr', {disabled: false});
+			//AH.select("#evalProRunCode").removeAttribute('disabled');
+			e.target.disabled = false;
 			if (res.status_message == "Successful") {
 				if (res.output) {
 					let oup = res.output;
@@ -976,10 +1028,9 @@
 
 		let postData = stringBetween(xml, "post");
 		(typeof(postEditor) == "object" ? postEditor.setValue(postData ? postData.trim() : "") : true);
-
+		
 		changeDirection(null, null, "Right");
-		let sample = AH.select("#sampleInput").value;
-		sample = sample.replace(/\|.*/g, "");
+		let sample = sample_input.replace(/\|.*/g, "");
 		let submit_output = stringBetween(xml, "submitoutput");
 		if (submit_output != "" && submit_output != null && submit_output != 'undefined') {
 			submit_output = submit_output.split("||");
@@ -1306,6 +1357,7 @@
 			</div>
 		</div>
 		<textarea class="h" id="qxml_inp" name="qxml_inp" value={window.QXML} readOnly></textarea>
+		<textarea class="h" id="special_module_user_xml"></textarea>
 		<input type="hidden" id="ansModeAnswer" value="" />
 	</div>
 	<Dialog bind:visible={state.confirmBoxOpen} width={545}>
@@ -1347,5 +1399,13 @@
 	:global(.CodeMirror) {
 		font-family: Monaco, monospace, "Courier New", Courier, Arial !important;
 		word-spacing: 3px !important;
+	}
+	:global(.compilerPre) {
+		background: 0 0;
+		font-size: 15px!important;
+		border: none;
+		color: red;
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 </style>
