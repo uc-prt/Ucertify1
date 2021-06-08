@@ -23,8 +23,7 @@
 	export let content_guid;
 	export let sample_input;
 
-	// let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/pe-items/evalPro/index.php';
-	let evalpro_url = 'http://localhost/pe-gold3/layout/themes/bootstrap4/pe-items/evalPro/index.php';
+	let evalpro_url = location.origin . '/layout/themes/bootstrap4/pe-items/evalPro/index.php';
 	let user_guid = '';
 	let tempGuid;
 	let client = {};
