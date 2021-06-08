@@ -23,7 +23,7 @@
 	export let content_guid;
 	export let sample_input;
 
-	let evalpro_url = location.origin . '/layout/themes/bootstrap4/pe-items/evalPro/index.php';
+	let evalpro_url = location.origin + '/layout/themes/bootstrap4/pe-items/evalPro/index.php';
 	let user_guid = '';
 	let tempGuid;
 	let client = {};
