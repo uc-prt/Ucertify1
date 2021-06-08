@@ -870,7 +870,7 @@
 	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	{#if state.isMathquill}
-		<link rel="stylesheet" href={window.themeUrl+"css/mathquill.css"} />
+		<link rel="stylesheet" href={window.itemFolder + "css/mathquill.css"} />
 	{/if}
 	<ItemHelper 
 		bind:this={smControllerCallback}

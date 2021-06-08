@@ -386,10 +386,11 @@
 	function changeLoadState() {
         AH.select('#pre_sample_image').remove();
         image_loaded = 1;
-    }
+	}
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/dragndrop.min.css'} >
+<link rel="stylesheet" href={window.itemFolder + 'clsSMDragNDrop/css/dragndrop.min.css'}>
+
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}
