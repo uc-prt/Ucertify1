@@ -402,7 +402,7 @@
 		var save_result = {};
 		save_result.ans = ucFill.iscorrect;
 		save_result.uXml = AH.select("#special_module_user_xml").value;
-		onUserAnsChange();
+		onUserAnsChange(save_result);
 
 		AH.selectAll('.remed_disable', 'show');
 		autoresize(1);
