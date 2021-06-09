@@ -2026,7 +2026,7 @@
     </div>
 
     <style>
-        .height44  {
+        :global(.height44)  {
             height: 44px;
         }
     </style>
