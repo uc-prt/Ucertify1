@@ -1732,6 +1732,7 @@
             Split(['#html_panel'],{
                 sizes:[100]
             })
+            AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
             
 
@@ -1751,6 +1752,7 @@
             Split(['#js_panel'],{
                 sizes:[100]
             })
+            AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
         }
 
@@ -1766,6 +1768,7 @@
             Split(['#css_panel'],{
                 sizes:[100]
             })
+            AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
             
         }
