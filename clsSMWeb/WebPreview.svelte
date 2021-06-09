@@ -93,10 +93,10 @@
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink(baseThemeURL+'pe-items/svelte/clsSMWeb/libs/codemirror.min.css');
-            AH.createLink(baseThemeURL+'pe-items/svelte/clsSMWeb/libs/monokai.css');
-            AH.createLink(baseThemeURL+'pe-items/svelte/clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink(baseThemeURL+'pe-items/svelte/clsSMWeb/libs/webitem.min.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/codemirror.min.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/monokai.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/webitem.min.css');
         }
     }
     

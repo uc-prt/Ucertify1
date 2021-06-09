@@ -148,10 +148,10 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/codemirror.min.css', config);
-        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/monokai.css', config);
-        AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/simplescrollbars.css', config);
-		AH.createLink(themeUrl + 'svelte_items/clsSMWeb/libs/webitem.min.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css', config);
+        AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css', config);
+		AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css', config);
     }
 
 	// called once throughtout the program execution just after render method
