@@ -5760,7 +5760,7 @@ var app = (function () {
     	append(document_1$1.head, style);
     }
 
-    // (1825:8) {#if window.isIE || window.isIEEleven}
+    // (1828:8) {#if window.isIE || window.isIEEleven}
     function create_if_block_1(ctx) {
     	let div;
 
@@ -5779,7 +5779,7 @@ var app = (function () {
     	};
     }
 
-    // (1904:20) {:else}
+    // (1907:20) {:else}
     function create_else_block$1(ctx) {
     	let div21;
     	let div20;
@@ -6028,7 +6028,7 @@ var app = (function () {
     	};
     }
 
-    // (1834:16) {#if window.inNative }
+    // (1837:16) {#if window.inNative }
     function create_if_block$5(ctx) {
     	let div19;
     	let div18;
@@ -6256,7 +6256,7 @@ var app = (function () {
     	};
     }
 
-    // (2007:1) <div slot="title" style="text-align: left;">
+    // (2010:1) <div slot="title" style="text-align: left;">
     function create_title_slot(ctx) {
     	let div0;
     	let div1;
@@ -6280,7 +6280,7 @@ var app = (function () {
     	};
     }
 
-    // (2019:2) <Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
+    // (2022:2) <Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
     function create_default_slot_1(ctx) {
     	let t_value = language.cancel + "";
     	let t;
@@ -6299,7 +6299,7 @@ var app = (function () {
     	};
     }
 
-    // (2018:1) <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    // (2021:1) <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
     function create_footer_slot(ctx) {
     	let div;
     	let button;
@@ -6356,7 +6356,7 @@ var app = (function () {
     	};
     }
 
-    // (2002:12) <Dialog               bind:visible={state.remediationToggle}   width="650"      on:close={() => state.remediationToggle = false}  >
+    // (2005:12) <Dialog               bind:visible={state.remediationToggle}   width="650"      on:close={() => state.remediationToggle = false}  >
     function create_default_slot(ctx) {
     	let t0;
     	let div1;
@@ -8451,6 +8451,7 @@ var app = (function () {
     			Split(["#top_content", "#bottom_content"], { sizes: [50, 50] });
     			AH.select("#accordion", "css", { display: "flex" });
     			Split(["#html_panel"], { sizes: [100] });
+    			AH.select("#top_content", "css", { height: "100%" });
     			AH.select("#firstEditorDiv", "removeAttr", "display");
     		}
 
@@ -8459,6 +8460,7 @@ var app = (function () {
     			Split(["#top_content", "#bottom_content"], { sizes: [50, 50] });
     			AH.select("#accordion", "css", { display: "flex" });
     			Split(["#js_panel"], { sizes: [100] });
+    			AH.select("#top_content", "css", { height: "100%" });
     			AH.select("#firstEditorDiv", "removeAttr", "display");
     		}
 
@@ -8468,6 +8470,7 @@ var app = (function () {
     			Split(["#top_content", "#bottom_content"], { sizes: [50, 50] });
     			AH.select("#accordion", "css", { display: "flex" });
     			Split(["#css_panel"], { sizes: [100] });
+    			AH.select("#top_content", "css", { height: "100%" });
     			AH.select("#firstEditorDiv", "removeAttr", "display");
     		}
     	}
