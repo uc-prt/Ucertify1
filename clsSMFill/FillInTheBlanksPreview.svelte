@@ -879,14 +879,14 @@
 	{#if state.isMathquill}
 		<link rel="stylesheet" href={window.itemFolder + "css/mathquill.css"} />
 	{/if}
-	<ItemHelper 
-		bind:this={smControllerCallback}
-		on:setReview = {setReview}
-		on:unsetReview = {unsetReview}
-		handleReviewClick={handleReview}
-		reviewMode={isReview}
-	/>
 	<center>
+		<ItemHelper 
+			bind:this={smControllerCallback}
+			on:setReview = {setReview}
+			on:unsetReview = {unsetReview}
+			handleReviewClick={handleReview}
+			reviewMode={isReview}
+		/>
 		<div 
 			id={containerID}
 			class="fillmain {isReview ? 'pe-none' : null}"

@@ -1228,10 +1228,12 @@
 
 <div>
 	<div id="authoringArea" class="" style="line-height: 20px;">
-		<ItemHelper 
-			on:setReview = {setReview}
-			on:unsetReview = {unsetReview}
-		/>
+		<center>
+			<ItemHelper 
+				on:setReview = {setReview}
+				on:unsetReview = {unsetReview}
+			/>
+		</center>
 		<button type="button" class="h h-imp" id="evalRerender" onClick={reRender}></button>
 		<div class="row mx-0 evalpro_module position-relative" style="height: calc(100vh - 45px);">
 			<div id="editor-top" style="width: 60%; height: calc(100vh - 45px); min-width: 300px; padding-right: 0 !important;" class="float-left px-0">
