@@ -8,7 +8,7 @@
 -->
 <script>
     import { afterUpdate, onMount } from "svelte";
-	import { AH , XMLToJSON} from '../helper/HelperAI.svelte';
+	import { AH , onUserAnsChange, XMLToJSON} from '../helper/HelperAI.svelte';
     import l from '../src/libs/Lang';
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
@@ -1677,7 +1677,7 @@
         // defined that user answer xml changed
         window.ISSPECIALMODULEUSERXMLCHANGE = 1;
         // sets the user answer xml
-        AH.select("#special_module_user_xml").value = userAnsXML;
+        AH.select("#special_module_user_xml", 'value', userAnsXML);
 
     }
 
@@ -1928,7 +1928,8 @@
             }
         }
         // check or uncheck the element have id 'answer' according to the value of variable isAnswerCorrect
-        AH.select("#answer").checked = state.correctAnswer;
+       // AH.select("#answer").checked = state.correctAnswer;
+        onUserAnsChange({uXml: userAnsXML, ans: state.correctAnswer});
     }
 
     // Center of the circle (cx, cy)
@@ -2200,7 +2201,7 @@
             if (uxml) {
                 if (uxml.search('<smans type="41">') == -1 || uxml.search('<smans type="41"></smans>') == 0 || uxml.search('undefined') != -1) {
                     // blanks the user answer xml
-                    AH.select("#special_module_user_xml").value = "";
+                    AH.select("#special_module_user_xml", 'value', "");
                 } else {
                     if (isReview) {
                         AH.selectAll('.previewBtnGrp', 'addClass', 'h');

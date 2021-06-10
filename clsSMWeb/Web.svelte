@@ -93,8 +93,6 @@
 					// loads preview component
 					state.currentComponent = 1;//<WebPreview xml={xml} inQuizPlayer={0} key={1} />;
 					
-					// ajaxContentUpdate({imgAltText:1,container:['#tilteShow']});
-					// ajaxContentUpdate({imgAltText:1,container:['#stemShow']});
 				} else {
 					// sets the value of variable isPreview 0 that means loads the authoring component
 					isPreview = 0;

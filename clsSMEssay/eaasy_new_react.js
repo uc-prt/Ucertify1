@@ -1,13 +1,12 @@
 
 
-const essayUploadUrl = window.baseUrl+'reactUpload.php/'; // UCINFO.ITEM_THEME_URL+"controller/v2/" + 'Upload.php/';
-//const wysiwyg = require('./libs/bootstrap-wysiwyg.js').wysiwyg;
+const essayUploadUrl = window.baseUrl+'reactUpload.php/';
 import JUI from 'javscript_helper/JUI.js';
 let editor;
 export default class EssayNewReact extends JUI {
     constructor(eid, essayEditor) {
         super();
-        //this.labBinded = true;
+        this.timer = {};
         this.eid = eid;
         this.essay_ready(eid, essayEditor);
     }
@@ -32,24 +31,13 @@ export default class EssayNewReact extends JUI {
             });
 
             essayEditor.onChange = (contents, core)=> {
-                //console.log("Essay Editor on changed", contents);
                 this.updateXML(eid, 200, contents);
             }
             essayEditor.onKeyDown = (e, core)=> {
-                //console.log("Essay Editor on key down", e.target.innerHTML);
                 if (e.keyCode == 86 || e.keyCode == 67) {
                     this.updateXML(eid, 200, e.target.innerHTM);
                 }
             }
-
-            // setTimeout(()=> {
-            //     this.listenAll(eidNode.querySelectorAll('a, button, input'), "click keyup keydown", ()=> {
-            //         this.updateXML(eid);
-            //     });
-
-            // }, 300);
-
-            //this.updateXML(eid);
 
             let ua = window.navigator.userAgent;
             let ms_old_ie = ua.indexOf('MSIE ');
@@ -160,7 +148,8 @@ export default class EssayNewReact extends JUI {
     }
 
     updateXML(essayID, time, content) {
-        setTimeout(()=> {
+        if (this.timer['updateXML']) clearTimeout(this.timer['updateXML']);
+        this.timer['updateXML'] = setTimeout(()=> {
             let val = content || editor.getContents();
             let file_str = "";
             this.find(essayID,'.essay_upload_status li', 'all').forEach((_this)=> {
@@ -175,7 +164,9 @@ export default class EssayNewReact extends JUI {
             }
             let userAnsXML = `<smans type='5'><userans><![CDATA[${val}]]></userans><upload><![CDATA[${file_str}]]></upload><path><![CDATA[${this.getPath()}]]></path></smans>`;
             window.ISSPECIALMODULEUSERXMLCHANGE = 1;
-            this.select('#special_module_user_xml').value = userAnsXML;
+            this.select('#special_module_user_xml', 'value', userAnsXML);
+            // from onUserAnsChange 
+            globalThis.saveUserAnswerInSapper?.({uXml: userAnsXML, ans: "manual"});
             if (window.inNative) window.postMessage(JSON.stringify({userAnsXML, essayPreview: true}), "*");
         }, time);
     }

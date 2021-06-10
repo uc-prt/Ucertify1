@@ -22,7 +22,7 @@
 		ajaxContentUpdate, 
 		mathMLRender,
 		ucTimeline
-	} from '../helper/PrepengineFooter.svelte';
+	} from '../helper/helperFunctions';
 	import Media from "./components/Media.svelte";
 	import l from './libs/editorLib/language';
 	import ImageAnnotation from './components/ImageAnnotation';
@@ -137,6 +137,7 @@
 		prevPlayerValue			: {category: "knowledge_check"},
 		prevPlayerState			: {},
 		links					: false,
+		message					: "",
     });
 	let dxml = '';
 	let _media;
@@ -236,7 +237,7 @@
 	function showAns(msg) {
 		if (_editorBuffer['snack_timer']) clearTimeout(_editorBuffer['snack_timer']);
 		_editorBuffer['snack_timer'] = setTimeout(()=> {
-			editorBuffer['message'] = msg;
+			state.message = msg;
 			state.snackback = true;
 		}, 500)
 		
@@ -267,7 +268,7 @@
 			break;
 			case 'addNew': actionData.loaditem = 'Default';
 			break;
-			case 'message': editorBuffer[key] = value;
+			case 'message': state.message = value;
 			break;
             default:
                 state[key] = value;
@@ -473,8 +474,8 @@
 				let step_caption = "hint";
 
 				if (_this.querySelectorAll('.uc_hint_section').length > 0) {
-					_this.removeClass('list2');
-					_this.querySelector('.uc_hint_section').remove();
+					AH.select(_this, 'removeClass', 'list2');
+					AH.find(_this, '.uc_hint_section', {action: 'remove'});
 					_this.querySelectorAll('li').forEach(function (elm) {
 						elm.style.display = '';
 					});
@@ -734,11 +735,11 @@
 			let element = AH.closest(_this, 'section:not(.listing_section), [data-parent="parent_element"]');
 			AH.find(element, '.ebook_item_text', {action: 'attr', actionData: {id: ''} });
 			if (AH.find(_this.parentElement, ".verticle_timeline2", 'all').length > 0) {
-				AH.find(element, ".timeline_controls").remove();
+				AH.find(element, ".timeline_controls", {action: 'remove'});
 			} 
 			element.after(element.cloneNode(true));
-			element.nextSibling.querySelector(".remove_me").remove?.();
-			let sections = document.querySelectorAll('#authoringSection div[type="timeline"] section, #authoringSection div[type="slideshow"] section, #authoringSection li[data-parent="parent_element"],  #authoringSection li[data-parent="parent_element"]');
+			AH.find(element.nextSibling, ".remove_me", {action: 'remove'});
+			let sections = AH.selectAll('#authoringSection div[type="timeline"] section, #authoringSection div[type="slideshow"] section, #authoringSection li[data-parent="parent_element"],  #authoringSection li[data-parent="parent_element"]');
 			for (let i = 0; i < sections.length; i++) {
 				sections[i].setAttribute("id", (i + 1));
 			}
@@ -752,10 +753,10 @@
 			let currentElm = AH.parent(currentControls, 'section:not(.listing_section), li[data-parent="parent_element"], .dot[data-parent="parent_element"]')
 			if (currentElm?.previousElementSibling.getAttribute("id") != undefined) {
 				let previousData = currentElm.previousElementSibling;
-				previousData = previousData.innerHTML;
 				AH.find(previousData, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
-				AH.find(currentSection, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
+				AH.find(currentElm, '.ebook_item_text', {action: 'attr', actionData: {id: ""} });
 				let currentData = currentElm.innerHTML;
+				previousData = previousData.innerHTML;
 				// let getPreviousData = currentElm.previousElementSibling.getAttribute("id");
 				// let getCurrentData = currentElm.getAttribute("id");
 				if (AH.selectAll(currentControls, ".verticle_timeline2").length > 0) { 
@@ -769,7 +770,7 @@
 					ucEditor.initEditor(false, "#authoringSection .ebook_item_text");
 				}, 300);
 			} else {
-				AH.alert?.("It's first element", 4, true);
+				AH.alert("It's first element", 4, true);
 			}
 			AH.select('.remove_me').remove?.();
 		});
@@ -1770,7 +1771,7 @@
 				!changedKeys.includes(type) && changedKeys.push(type);
 				content = replaceUnwantedTags(content, type);
 				if (content.indexOf('contenteditable') > -1) {
-					editorBuffer['message'] = "Something went wrong, your data may be in inaccurate while saving";
+					state.message = "Something went wrong, your data may be in inaccurate while saving";
 					state.activate = true;
 				}
 				let typeSelector = document.querySelector(`#${type}_show`);
@@ -1996,14 +1997,14 @@
 			state[type] =  ucEditor.getContent(type, 'raw');
 		})
 		if (is_owner != 1 && is_viewer == 1) {
-			editorBuffer['message'] = JSL.viewer_error_msg_js;
+			state.message = JSL.viewer_error_msg_js;
 			state.snackback = true;
 			state.saveDialog = false;
 			return false;
 		}
 		if (is_domain == 1 && state.domain.length != 5 && (state.viewConfig.isQuestion || getQueryString("is_flashcard") == 1)) {
 			if (from_coverage == "" && is_new != 1 && in_frame == "1") {
-				editorBuffer['message'] = "Please select a domain.";
+				state.message = "Please select a domain.";
 				state.snackback = true;
 				state.domainToggle = true;
 				state.saveDialog = false;
@@ -2029,7 +2030,7 @@
 		}
 		let temp_content_guid = (is_new == '1') ? '' : state.guid;
 		if ((is_new == 1 || temp_content_guid == "")  && !editor.course) {
-			editorBuffer['message'] = "Please select a course.";
+			state.message = "Please select a course.";
 			state.is_new = "1";
 			state.snackback = true;
 			state.domainToggle = true;
@@ -2099,7 +2100,7 @@
 					AH.toggleDom('#saveProcess', 'hide');
 					if (state.viewConfig.showOtherType) {
 						showOtherType(save_response);
-						editorBuffer['message'] = l.save_success;
+						state.message = l.save_success;
 						state.snackback = true;
 					}
 					else {
@@ -2110,12 +2111,12 @@
 							}
 							if (from_myproject == 1) {
 								if (user_current_permission == 3 || is_owner == 1) {
-									editorBuffer['message'] = l.save_success;
+									state.message = l.save_success;
 								} else {
-									editorBuffer['message'] = l.save_success_owner;
+									state.message = l.save_success_owner;
 								}
 							} else {
-								editorBuffer['message'] = l.save_success;
+								state.message = l.save_success;
 							}
 							AH.set('save_item', false);
 							AH.set('current_guid', save_response['content_guid']);
@@ -2160,8 +2161,8 @@
 							}
 						}
 						else {
-							editorBuffer['message'] = save_response['error'].toString();
-							if (editorBuffer['message'] == "You Must Specify title for the content.") {
+							state.message = save_response['error'].toString();
+							if (state.message == "You Must Specify title for the content.") {
 								modal = {
 									header  : {
 										body: "No Title",
@@ -2181,7 +2182,7 @@
 							}
 							if (window.in_full_preview == 1) {
 								state.saveDialog = false;
-								window.parent.showErrorMessage(editorBuffer['message'], window.frameElement);
+								window.parent.showErrorMessage(state.message, window.frameElement);
 								AH.toggleDom(document.querySelector('.backBtn').parentElement, 'hide');
 							}
 							state.snackback = true;
@@ -2200,7 +2201,7 @@
 					}
 					localStorageData(data, 'save');
 					AH.toggleDom('#saveProcess', 'hide');
-					editorBuffer['message'] = "Data stored in Local Storage";
+					state.message = "Data stored in Local Storage";
 					state.snackback = true;
 					state.saveDialog = false;
 					AH.activate(0);
@@ -2208,7 +2209,7 @@
 			}, 200);
 		} else {
 			state.saveDialog = false;
-			editorBuffer['message'] = l.save_error;
+			state.message = l.save_error;
 			state.snackback = true;
 			if (window.in_full_preview == 1) {
 				window.parent.showErrorMessage(l.save_error, window.frameElement);
@@ -2282,7 +2283,7 @@
 		}).then((response)=> {
 			AH.toggleDom(document.getElementById('saveProcess'), 'hide');
 			AH.selectAll('.save_buttons, #savingContent', 'show');
-			editorBuffer['message'] = "Status has been changed successfully";
+			state.message = "Status has been changed successfully";
 			try {
 				response = JSON.parse(response);
 				if (response.stage && AH.get('stage') != response.stage) {
@@ -2949,8 +2950,8 @@
 	</div>
 </Dialog>
 <Snackbar bind:visible={state.snackback} bg="#333" bottom={true}  timeout={10} style="position:fixed; bottom:50px">
-	{#if editorBuffer['message']}
-		{editorBuffer['message']}
+	{#if state.message}
+		{state.message}
 	{:else} 
 		Some Error occured during this process.
 	{/if}

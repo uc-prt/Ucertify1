@@ -9,7 +9,7 @@
 <script>
     import { afterUpdate, beforeUpdate, onMount } from "svelte";
 	import { writable } from "svelte/store";
-	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
+	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     import CHART from './lib/chart'
     import l from '../src/libs/Lang';
     import Highcharts from 'highcharts';
@@ -464,11 +464,13 @@
 
     // responsible for showing the answer
     function displayAns() {
-        let ans = (CHART.checkAns('#chartmain0')) ? l.correct : l.incorrect;
+        let result = CHART.checkAns('#chartmain0');
+        if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
         if (editorState) {
             // shows the answer according to the value of its argument passed
-            showAns(ans);
+            showAns(result.ans ? "Correct":"Incorrect");
         }
+        onUserAnsChange(result);
     }
 
     // function when the review mode is off

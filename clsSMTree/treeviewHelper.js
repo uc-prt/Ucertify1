@@ -1,6 +1,7 @@
 import {jsTree} from './libs/oldJsTree.svelte';
 import ju from '../src/libs/jslib';
-//import {formatXml} from '../scripts/editorScript/function';
+import JUI from 'javscript_helper/JUI.js';
+const JS = new JUI();
 let J = {};
 class treeviewHelper {
     constructor(options) {
@@ -432,7 +433,7 @@ class treeviewHelper {
         //     return false;
         // }
         if (window.inNative) {
-            window.postMessage('height___' + AI.select("#treemain0").clientHeight, '*'); // increases the height of react native outer container
+            window.postMessage('height___' + JS.select("#treemain0").clientHeight, '*'); // increases the height of react native outer container
         }
         if (this.tempVar == 'u') {
             try {
@@ -450,7 +451,7 @@ class treeviewHelper {
                     }
                 });
                 
-                userAnswers = (formatXml(this.userAnsXML.xml ? this.userAnsXML.xml : (new XMLSerializer()).serializeToString(this.userAnsXML[0])));
+                userAnswers = (JS.formatXml(this.userAnsXML.xml ? this.userAnsXML.xml : (new XMLSerializer()).serializeToString(this.userAnsXML[0])));
                 this.checkedAns = {
                     uXml: userAnswers,
                     ans: this.result,
@@ -463,6 +464,7 @@ class treeviewHelper {
                         inNativeIsCorrect: this.result
                     }), "*");
                 }
+                globalThis.saveUserAnswerInSapper?.(this.checkedAns);
                 return this.checkedAns;
             } catch (event) {
                 console.warn(event);
@@ -536,15 +538,15 @@ class treeviewHelper {
                     if (cans != uans) {
                         this.result = false;
                         // sets the attribute 'as' with value 0 of element with tid equals to pElem.li_attr.tid if cans != uans 
-                        AI.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 0);
+                        JS.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 0);
                     } else {
                         // sets the attribute 'as' with value 1 of element with tid equals to pElem.li_attr.tid
-                        AI.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 1);
+                        JS.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 1);
                     }
                 } else {
                     this.result = false;
                     // sets the attribute 'as' with value 0 of element with tid equals to pElem.li_attr.tid if calculatePoint is not defined
-                    AI.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 0);
+                    JS.select('[tid="' + pElem.li_attr.tid + '"]').setAttribute('as', 0);
                 }
             }
         }
@@ -555,13 +557,13 @@ class treeviewHelper {
     showans(treeid, type) {
         if (type == "c") {
             // hides the draggable elements from Draggable container and adds border on its parent element that is 'J('.treecorrect_outer')
-            AI.selectAll(".treecorrect_outer", 'addClass', "treecorrect_outer_border");
-            AI.setCss(".treecorrect", {
+            JS.selectAll(".treecorrect_outer", 'addClass', "treecorrect_outer_border");
+            JS.setCss(".treecorrect", {
                 display: "none"
             });
         }
         // Assign the userxml value in the variable special_module_user_xml_temp
-        //var special_module_user_xml_temp = AI.select('#special_module_user_xml').value;
+        //var special_module_user_xml_temp = JS.select('#special_module_user_xml').value;
         // Droppable area container where data will be drop for correct answer
         var tree1 = J.jstree.reference('.treeall');
         // Draggable area container from where data will be drag and drop on Droppable area for correct answer
@@ -577,8 +579,8 @@ class treeviewHelper {
         if (type == "c") {
             var timer5 = setTimeout(()=> {
                 // Shows the Draggable elements on Draggable area container and removes border from it's parent
-                AI.selectAll(".treecorrect_outer", 'removeClass', "treecorrect_outer_border");
-                AI.setCss(".treecorrect", {
+                JS.selectAll(".treecorrect_outer", 'removeClass', "treecorrect_outer_border");
+                JS.setCss(".treecorrect", {
                     display: "block"
                 });
                 // clear the timeout
@@ -705,17 +707,17 @@ class treeviewHelper {
     // hide/show the button of currect answer and your answer and checks the answer and shows if argument 'on' passed in case of calling it
     modeOn(modeType) {
         // initially hides the buttons inside the element with id sm_controller
-        AI.selectAll('.test, .review', 'addClass', 'h');
+        JS.selectAll('.test, .review', 'addClass', 'h');
         if (modeType) {
             // shows the buttons inside the element with id sm_controller
-            AI.selectAll('.review', 'removeClass', 'h');
+            JS.selectAll('.review', 'removeClass', 'h');
             // disabled the drggable option and pushed the user data in uans array
             this.unBindLab();
             // shows the user answer
             this.showans(this.ajax_eId, 'u');
         } else {
             //removes the h class from draggable container
-            AI.selectAll('.test', 'removeClass', 'h');
+            JS.selectAll('.test', 'removeClass', 'h');
             // Enables to drag and drop the element for matching the answer and completing the task
             this.bindLab();
             // shows the user answer

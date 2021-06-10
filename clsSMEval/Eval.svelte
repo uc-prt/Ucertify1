@@ -11,7 +11,7 @@
      */
     import { onMount, beforeUpdate, tick } from 'svelte';
     import { Button, Dialog, Snackbar } from 'svelte-mui/src';
-    import {tag_player} from '../helper/PrepengineFooter.svelte';
+    import {tag_player} from '../helper/helperFunctions';
     import l from '../src/libs/editorLib/language';
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';

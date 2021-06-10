@@ -14,7 +14,7 @@
 	import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
-	import { AH, XMLToJSON } from '../helper/HelperAI.svelte';
+	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
 	export let manual_grade;
 	export let xml;
 	export let uxml;
@@ -397,6 +397,13 @@
 		// show the answer and also bind the keys event for ada
 		ucFill.modeOn("on");
 		ucFill.showdragans(ajax_eId, 'u', 1);
+
+		// To save the user answer
+		var save_result = {};
+		save_result.ans = ucFill.iscorrect;
+		save_result.uXml = AH.select("#special_module_user_xml").value;
+		onUserAnsChange(save_result);
+
 		AH.selectAll('.remed_disable', 'show');
 		autoresize(1);
 		let mathItem = document.getElementById(containerID);
@@ -870,16 +877,16 @@
 	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	{#if state.isMathquill}
-		<link rel="stylesheet" href={window.themeUrl+"css/mathquill.css"} />
+		<link rel="stylesheet" href={window.itemFolder + "css/mathquill.css"} />
 	{/if}
-	<ItemHelper 
-		bind:this={smControllerCallback}
-		on:setReview = {setReview}
-		on:unsetReview = {unsetReview}
-		handleReviewClick={handleReview}
-		reviewMode={isReview}
-	/>
 	<center>
+		<ItemHelper 
+			bind:this={smControllerCallback}
+			on:setReview = {setReview}
+			on:unsetReview = {unsetReview}
+			handleReviewClick={handleReview}
+			reviewMode={isReview}
+		/>
 		<div 
 			id={containerID}
 			class="fillmain {isReview ? 'pe-none' : null}"
@@ -913,6 +920,7 @@
 		</div>
 	</center>
 </div>
+<textarea class="h" id="special_module_user_xml"></textarea>
 <style type="text/css">
 	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
 	:global(xmp) {

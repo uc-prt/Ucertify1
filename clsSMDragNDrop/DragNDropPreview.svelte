@@ -10,7 +10,7 @@
 	// Importing all the required components
 	import { onMount, beforeUpdate, afterUpdate } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import { AH, XMLToJSON } from "../helper/HelperAI.svelte";
+	import { AH, onUserAnsChange, XMLToJSON } from "../helper/HelperAI.svelte";
 	import { writable } from "svelte/store";
 	import DND from './libs/preview/dndString';
 	import TextboxPreview from './libs/preview/TextboxPreview.svelte';
@@ -152,10 +152,12 @@
 
 	// for checking the answer and creating the user ans
 	function displayAns() {
-		let ans = DND.checkAns("#"+ container_id);
+		let result = DND.checkAns("#"+ container_id);
+		if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
 		if (editorState) {
-			showAns(ans);
+			showAns(result.ans ? "Correct" : "Incorrect");
 		}
+		onUserAnsChange(result);
 	}
 
 	// call whenever there is change in xml and changes the module accordingly
@@ -384,10 +386,11 @@
 	function changeLoadState() {
         AH.select('#pre_sample_image').remove();
         image_loaded = 1;
-    }
+	}
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/dragndrop.min.css'} >
+<link rel="stylesheet" href={window.itemFolder + 'clsSMDragNDrop/css/dragndrop.min.css'}>
+
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}

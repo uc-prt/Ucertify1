@@ -17,6 +17,7 @@
     export let xml; 
     export let uxml;
     export let isReview;
+    let useransNew;
 
     let cm = { cdata:"" };
     let isIE;
@@ -245,8 +246,10 @@
         // updaing the value in the textarea 
         //jQuery("#special_module_user_xml").val(JSON.stringify(userans)); // Replaced;
 
-        if (document.getElementById('special_module_user_xml'))
-        document.getElementById('special_module_user_xml').value = JSON.stringify(userans);
+        
+        //AH('special_module_user_xml').value = JSON.stringify(userans);
+
+        useransNew = JSON.stringify(userans);
 
         displayAnswer();  
     }
@@ -256,11 +259,13 @@
         // check the ans
         let ans = checkAns();
         // mark the answer correct or incorrect x
+        ans = (ans == 1) ? true : false;
         if (uxml)  {
             AH.select("#answer").checked = ans; 
         } else {
             if (editorState) showAns((ans) ? "Correct" : "Incorrect");
         }
+        onUserAnsChange({uXml: useransNew, ans: ans})
     } 
 
     // function check the answer
@@ -556,47 +561,44 @@
 </main>
     
 <style>
-    .fa-check {
+    :global(.fa-check) {
         color: #46A546;
         position:relative;
         left:50px;
     }
 
-    .fa-close {
+    :global(.fa-close) {
         color: #A80000; 
         left:50px;
     }
 
-    .fa-close,
-    .fa-check {
+    :global(.fa-close,.fa-check) {
         margin-left: -26px; 
         font-size: 18px; 
         position: relative;
         bottom: 10px;
     }
 
-    .fa-close,
-    .fa-check,
-    .middle_align {
+    :global(.fa-close,.fa-check,.middle_align) {
         vertical-align: middle!important;
     }
 
-    .middle_align {
+    :global(.middle_align) {
         width: 164px;
         min-width: 164px;
     } 
 
-    .topic_input {
+    :global(.topic_input) {
         min-width: 257px;
     }
 
-    .preview_header {
+    :global(.preview_header) {
         font-size: 16pt;
         font-weight: bold;
         vertical-align: middle;
     }
 
-    .adjust_width {
+    :global(.adjust_width) {
         width: 10%;
         text-align: center;
     }

@@ -755,6 +755,7 @@ ucMlid.showAns = function(mlid) {
 }
 
 ucMlid.checkAns = function(mlid) {
+    let rest = {};
     let result = true,
         smans = '',
         list1seq = '',
@@ -810,21 +811,24 @@ ucMlid.checkAns = function(mlid) {
         originalseq2 = originalseq2.substr(0, originalseq2.length - 1);
         smans = smans.substr(0, smans.length - 1);
         const userAnsXML = "<smans type='14'>\n\t<matchlist list1seq='" + list1seq + "' list2seq='" + list2seq + "' userans='" + smans + "' originalseq1='" + originalseq1 + "' originalseq2='" + originalseq2 + "'></matchlist>\n</smans>";
-        window.ISSPECIALMODULEUSERXMLCHANGE = 1;
+        //window.ISSPECIALMODULEUSERXMLCHANGE = 1; ## Fixed in HelperAI.svelte
         //jQuery("#special_module_user_xml").val(userAnsXML);
     
-        AH.select("#special_module_user_xml").value = userAnsXML;
+        //AH.select("#special_module_user_xml").value = userAnsXML; ## Fixed in HelperAI.svelte
+
+        rest.u = userAnsXML;
+        rest.ans = result;
 
         //alert(userAnsXML);
 
         if (result) {
-            AH.select("#answer").checked = true;
+            //AH.select("#answer").checked = true; ## Fixed in HelperAI.svelte
             if (typeof(is_sm) != "undefined") AH.showmsg("Correct");
-            return "Correct";
+            return(rest);
         } else {
-            AH.select("#answer").checked = false;
+            //AH.select("#answer").checked = false; ## Fixed in HelperAI.svelte
             if (typeof(is_sm) != "undefined") AH.showmsg("Incorrect");
-            return "Incorrect";
+            return(rest);
         }
        
     }

@@ -1,6 +1,6 @@
 <script>
     import { beforeUpdate, onMount } from "svelte";
-    import {AH, XMLToJSON} from '../helper/HelperAI.svelte';
+    import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import sunEditor from 'suneditor';
     import plugins from 'sunEditor/src/plugins';

@@ -17,17 +17,14 @@
         if (handleReviewClick) handleReviewClick(event.target.getAttribute('mode'), event);
     }
 </script>
-<center class="pb-2">
-    <button type="button" class="h h-imp" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
-    <button type="button" class="h h-imp" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
-    {#if reviewMode}
-        <div class="smControlerBtn btn-group" role="group" aria-label="Answer buttons">
-            <button type="button" mode="c" class="btn btn-light correct-ans" on:click="{handleSmClick}">Correct Answer</button>
-            <button type="button" mode="u" class="btn btn-light your-ans active" on:click="{handleSmClick}">Your Answer</button>
-        </div>
-    {/if}
-</center>
-
+<button type="button" class="h h-imp" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
+<button type="button" class="h h-imp" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
+{#if reviewMode}
+    <div class="smControlerBtn btn-group" role="group" aria-label="Answer buttons">
+        <button type="button" mode="c" class="btn btn-light correct-ans" on:click="{handleSmClick}">Correct Answer</button>
+        <button type="button" mode="u" class="btn btn-light your-ans active" on:click="{handleSmClick}">Your Answer</button>
+    </div>
+{/if}
 <style>
     :global(.smControlerBtn .btn-light:not([disabled]):not(.disabled).active) {
         color: #fff!important;
