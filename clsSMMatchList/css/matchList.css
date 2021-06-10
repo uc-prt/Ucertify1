@@ -43,8 +43,8 @@
 }
 
 [id^=matchmain] .row-fluid .span3 {
-    width: 21.914893617021278%;
-    *width: 21.861702127659576%
+    width: 21.914893617021278%!important;
+    *width: 21.861702127659576%!important
 }
 
 [id^=matchmain] .heading {
