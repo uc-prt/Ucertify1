@@ -418,7 +418,7 @@
 	</div>
 
 	<center>
-		<div class="btn-group mb-xl clearfix review h" id="sm_controller">
+		<div class="btn-group mb-xl clearfix review h mb-3" id="sm_controller">
 			<button 
 				type="button" 
 				class="btn btn-light correct-ans" 
