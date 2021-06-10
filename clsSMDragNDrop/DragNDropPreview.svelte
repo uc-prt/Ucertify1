@@ -128,9 +128,9 @@
 		if (state.xml != xml) {
 			loadModule(xml);
 		}
-
 		// run only in case of editor no need to run it in case of preview
-		if (state.review != isReview && editorState) {
+		// if (state.review != isReview && editorState ) { // Its creating issue in student area
+		if (state.review != isReview ) {
 			preview_store.update( (item) => {
 				item.review = isReview;
 				return item;
