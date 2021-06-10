@@ -1,7 +1,7 @@
 <script>
 	import { onMount, beforeUpdate, afterUpdate , tick, onDestroy } from 'svelte';
 	import { Button, Dialog, Checkbox, Snackbar, Textfield } from 'svelte-mui/src';
-	import {tag_player} from '../helper/PrepengineFooter.svelte';
+	import {tag_player} from '../helper/helperFunctions';
 	import { writable } from 'svelte/store';
 	import l from '../src/libs/editorLib/language';
 	import Loader from '../helper/Loader.svelte';

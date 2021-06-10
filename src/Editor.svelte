@@ -22,7 +22,7 @@
 		ajaxContentUpdate, 
 		mathMLRender,
 		ucTimeline
-	} from '../helper/PrepengineFooter.svelte';
+	} from '../helper/helperFunctions';
 	import Media from "./components/Media.svelte";
 	import l from './libs/editorLib/language';
 	import ImageAnnotation from './components/ImageAnnotation';

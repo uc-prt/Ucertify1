@@ -178,13 +178,19 @@ export default class Draggable {
                     this.onOver && this.onOver(current);
                 }
             });
+            
+            AI.listen('body', 'mouseover', drop, (current) => {
+                this.target = current;
+                this.target.classList.add('drop-hover');
+            });
+
             AI.listen('body','mouseout', drop, () => {
                 if (this.isStart && this.node && this.isMoving && this.target) {
                     this.onOut && this.onOut(this.target);
-                    this.target.classList.remove('drop-hover');
                     this.target.style.opacity = '1';
                     this.target = null;
                 }
+                this.target.classList.remove('drop-hover');
             });
         }
     };

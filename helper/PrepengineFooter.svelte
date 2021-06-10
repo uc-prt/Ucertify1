@@ -1560,6 +1560,7 @@
     }
 
     export function ajaxContentUpdate(config) {
+        console.log("coming here", config);
         let funclist = Object.keys(contentUpdateFuncs);
         let func_len = funclist.length;
         for (let i = 0; i < func_len; i++) {
@@ -1794,7 +1795,7 @@
             AI.insert(document.body, css, 'afterend');
             AI.ajax({
                 type: 'GET',
-                url: themeUrl + 'ux/js/katex.min.js',
+                url: baseUrlTheme + 'src/libs/katex.min.js',
                 async: false,
                 dataType: 'script',
             }).then(function(script) {
