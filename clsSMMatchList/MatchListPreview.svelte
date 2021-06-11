@@ -679,6 +679,13 @@
 		}
 	}
 
+	AH.listen(document,'click','.clr',(_this)=>{
+		AH.selectAll('.clr','removeClass','btn-primary');
+		AH.selectAll('.clr','addClass','btn-light');
+		AH.select(_this,'removeClass','btn-light');
+		AH.select(_this,'addClass','btn-primary');
+	})
+
 
 
 </script>
@@ -714,9 +721,9 @@
 				</div>
 				<div class={btnflag == 0 ? "h":""}>
 					<div class="btn-group clearfix review_default h" id="sm_controller_default">
-						<button type="button" tabindex="0" class="btn btn-light correct-ans" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
-						<button type="button" tabindex="0" class="btn btn-primary both-ans" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
-						<button type="button" tabindex="0" class="btn btn-light your-answer" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
+						<button type="button" tabindex="0" class="btn btn-light correct-ans clr" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
+						<button type="button" tabindex="0" class="btn btn-primary both-ans clr" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
+						<button type="button" tabindex="0" class="btn btn-light your-answer clr" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
 					</div>
 				</div>
 				<div class="row-fluid">

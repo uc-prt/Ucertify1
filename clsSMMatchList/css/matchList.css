@@ -43,8 +43,8 @@
 }
 
 [id^=matchmain] .row-fluid .span3 {
-    width: 21.914893617021278%;
-    *width: 21.861702127659576%
+    width: 21.914893617021278%!important;
+    *width: 21.861702127659576%!important
 }
 
 [id^=matchmain] .heading {
@@ -57,7 +57,7 @@
 [id^=matchmain] .arrow {
     min-height: 44px;
     padding: 7px 10px;
-    background: url(../../images/arrow_matchtype.png) no-repeat 100% 50%;
+    background: url(./arrow_matchtype.png) no-repeat 100% 50%;
     margin-left: -10.5%;
     margin-right: -10%;
     *margin-left: -7.12766%

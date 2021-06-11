@@ -12,7 +12,7 @@
 </script>
 
 <main>
-    {#if editorState.content_icon == 2}
+    <!-- {#if editorState.content_icon == 2} -->
         <StepAlgoPreview xml = {xml} remedStatus = {remedStatus} showAns = {showAns} stopPreviewUpdate = {stopPreviewUpdate} isReview = {isReview}  />
-    {/if}
+    <!-- {/if} -->
 </main>
