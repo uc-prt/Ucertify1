@@ -8,7 +8,7 @@
 -->
 <script>
     import { onMount, afterUpdate } from "svelte";
-    import { XMLToJSON, AH} from '../helper/HelperAI.svelte';
+    import { XMLToJSON, AH, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import l from '../src/libs/editorLib/language';
     export let xml;
@@ -56,12 +56,12 @@
 
     // Called every time when any state gets changed
     $: {
+        loadModule(xml);
 		if (isReview) {
             setReview();
 		} else {
             unsetReview();
         }
-        loadModule(xml);
 	}
 
     // load the module according to the value of xml
@@ -82,12 +82,8 @@
             // used to set the value of the state showTranscript from the value of showTranscript key of xml json
             state.showTranscript = ((MYXML.smxml._showTranscript == 'true') ? true: false);
             if (uxml) {
-                let timer = setTimeout(function() {
-                    // parses the user answer xml and update the xml
-                    parseUserAns(uxml);
-                    // clear the timeout
-                    clearTimeout(timer);
-                }, 100);
+                // parses the user answer xml and update the xml
+                parseUserAns(uxml);
             }
         } catch(event) {
             console.warn({
@@ -422,6 +418,8 @@
             // shows the answer
             if (editorState) {
                 showAns(ans);
+            } else {
+                onUserAnsChange({uXml: uxml, ans: ans});
             }
         } else {
             // message, no data found for match the answer
@@ -466,7 +464,7 @@
         }
     }
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMAudioRecorder/css/AudioStyle.min.css"} />
+<link onload="this.rel='stylesheet'" rel="preload" as="style" href={window.baseUrlTheme + "clsSMAudioRecorder/css/AudioStyle.min.css"} />
 <div id="preview_container" class="container">
     <div class="row">
         <ItemHelper 

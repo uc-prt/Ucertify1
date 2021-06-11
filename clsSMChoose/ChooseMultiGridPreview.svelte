@@ -11,7 +11,7 @@
 	import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import Sortable from 'sortablejs-swap';
-    import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
+    import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     export let xml;
     export let uxml;
     export let showAns;
@@ -78,7 +78,7 @@
             state.xml = xml;
             // updates the value of sliders elements and load the module
             loadModule(xml);
-            box_width = ((638 - preview_data.countcol * 2) / preview_data.countcol) + 'px';
+            box_width = (632 / preview_data.countcol).toFixed(2) + 'px';
 		}
     }
 
@@ -141,6 +141,11 @@
                 corr_ans_count++;
             }
         });
+        AH.selectAll('.matchlist_item').forEach(val => {
+			if ((val.style.width) != box_width) {
+				val.style.width = box_width;
+			}
+		})
     })
 
     // updates the value of sliders elements and load the module
@@ -352,6 +357,8 @@
         if (editorState) {
             // shows the answer correct or incorrect according to the value of variable 'ans'
             showAns(ans);
+        } else {
+            onUserAnsChange({uXml: uxml, ans: ans});
         }
     }
 
@@ -398,120 +405,120 @@
 </script>
 
 <link
-  onload="this.rel='stylesheet'"
-  rel="preload"
-  as="style"
-  href={editor.baseUrlTheme + "clsSMChoose/css/ChooseMultiGrid.min.css"}
+    onload="this.rel='stylesheet'"
+    rel="preload"
+    as="style"
+    href={editor.baseUrlTheme + "clsSMChoose/css/ChooseMultiGrid.min.css"}
 />
 <div id="chid">
-  <ItemHelper
-    on:setReview={setReview}
-    on:unsetReview={unsetReview}
-    reviewMode={isReview}
-    handleReviewClick={handleReviewMode}
-  />
-  <div id="choose" class="text-center mx-auto">
-    <div class="choose_header font17 text-left rounded-top m-0">
-      {state.headingCorrect}
-    </div>
-    <div class="choose_body bg-white">
-      <ul
-        id="sortable"
-        data-row={preview_data.maxRow}
-        data-col={preview_data.maxCol}
-        class="p-2 d-inline-block w-100 m-0"
-      >
-        {#if showcorrectanswer == false}
-          {#each preview_data.correctxmlarray as value, i}
-            <li
-              tabindex={value.ischecked == true ? '-1' : '0'}
-              id={'p'+i}
-              name={i}
-              key={'p'+i}
-              data-optid={i}
-              data-ischecked={value.ischecked}
-              class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
-              style="width: {box_width}"
+    <ItemHelper
+        on:setReview={setReview}
+        on:unsetReview={unsetReview}
+        reviewMode={isReview}
+        handleReviewClick={handleReviewMode}
+    />
+    <div id="choose" class="text-center mx-auto">
+        <div class="choose_header font17 text-left rounded-top m-0">
+            {state.headingCorrect}
+        </div>
+        <div class="choose_body bg-white">
+            <ul
+                id="sortable"
+                data-row={preview_data.maxRow}
+                data-col={preview_data.maxCol}
+                class="p-2 d-inline-block w-100 m-0"
             >
-              {#if value.value.charAt(0) == "!"}
-                {#if value.value.charAt(1) == "*"}
-                  <img
-                    style="height: 70px; width: 100%; object-fit: contain;"
-                    class="px-2"
-                    src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
-                    alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                  />
-                {:else}
-                  {value.value.slice(1)}
+                {#if showcorrectanswer == false}
+                    {#each preview_data.correctxmlarray as value, i}
+                        <li
+                            tabindex={value.ischecked == true ? '-1' : '0'}
+                            id={'p'+i}
+                            name={i}
+                            key={'p'+i}
+                            data-optid={i}
+                            data-ischecked={value.ischecked}
+                            class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
+                            style="width: {box_width}"
+                        >
+                            {#if value.value.charAt(0) == "!"}
+                                {#if value.value.charAt(1) == "*"}
+                                    <img
+                                        style="height: 70px; width: 100%; object-fit: contain;"
+                                        class="px-2"
+                                        src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
+                                        alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                                    />
+                                {:else}
+                                    {value.value.slice(1)}
+                                {/if}
+                            {:else if value.value.charAt(0) == "*"}
+                                <img
+                                    style="height: 70px; width: 100%; object-fit: contain;"
+                                    class="px-2"
+                                    src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
+                                    alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                                />
+                            {:else}
+                                {value.value}
+                            {/if}
+                        </li>
+                    {/each}
                 {/if}
-              {:else if value.value.charAt(0) == "*"}
-                <img
-                  style="height: 70px; width: 100%; object-fit: contain;"
-                  class="px-2"
-                  src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
-                  alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                />
-              {:else}
-                {value.value}
-              {/if}
-            </li>
-          {/each}
-        {/if}
-        {#each preview_data.localCData as value, i}
-          <li
-            tabindex={value.ischecked == true ? '-1' : '0'}
-            id={'p'+i}
-            name={i}
-            key={'p'+i}
-            data-optid={i}
-            data-ischecked={value.ischecked}
-            on:keydown={hotkeysAda}
-            class="matchlist_item {showcorrectanswer == false ? 'd-none' : 'd-flex'} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} align-items-center justify-content-center position-relative ui-draggable m-0"
-            style="width: {box_width}"
-          >
-            {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-              {#if value.iscorrect == true}
-                <span
-                  class="icomoon-new-24px-checkmark-circle-1 s4 text-success position-absolute userans_status"
-                />
-              {:else}
-                <span
-                  class="icomoon-new-24px-cancel-circle-1 s4 text-danger position-absolute userans_status"
-                />
-              {/if}
-            {/if}
-            {#if value.value.charAt(0) == "!"}
-              {#if value.value.charAt(1) == "*"}
-                <img
-                  img_val={value.value}
-                  style="height: 70px; width: 100%; object-fit: contain;"
-                  class="px-2"
-                  src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
-                  alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                />
-              {:else}
-                {value.value.slice(1)}
-              {/if}
-            {:else if value.value.charAt(0) == "*"}
-              <img
-                img_val={value.value}
-                style="height: 70px; width: 100%; object-fit: contain;"
-                class="px-2"
-                src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
-                alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-              />
-            {:else}
-              {value.value}
-            {/if}
-          </li>
-        {/each}
-      </ul>
+                {#each preview_data.localCData as value, i}
+                    <li
+                        tabindex={value.ischecked == true ? '-1' : '0'}
+                        id={'p'+i}
+                        name={i}
+                        key={'p'+i}
+                        data-optid={i}
+                        data-ischecked={value.ischecked}
+                        on:keydown={hotkeysAda}
+                        class="matchlist_item {showcorrectanswer == false ? 'd-none' : 'd-flex'} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} align-items-center justify-content-center position-relative ui-draggable m-0"
+                        style="width: {box_width}"
+                    >
+                        {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
+                            {#if value.iscorrect == true}
+                                <span
+                                    class="icomoon-new-24px-checkmark-circle-1 s4 text-success position-absolute userans_status"
+                                />
+                            {:else}
+                                <span
+                                    class="icomoon-new-24px-cancel-circle-1 s4 text-danger position-absolute userans_status"
+                                />
+                            {/if}
+                        {/if}
+                        {#if value.value.charAt(0) == "!"}
+                            {#if value.value.charAt(1) == "*"}
+                                <img
+                                    img_val={value.value}
+                                    style="height: 70px; width: 100%; object-fit: contain;"
+                                    class="px-2"
+                                    src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
+                                    alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                                />
+                            {:else}
+                                {value.value.slice(1)}
+                            {/if}
+                        {:else if value.value.charAt(0) == "*"}
+                            <img
+                                img_val={value.value}
+                                style="height: 70px; width: 100%; object-fit: contain;"
+                                class="px-2"
+                                src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
+                                alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                            />
+                        {:else}
+                            {value.value}
+                        {/if}
+                    </li>
+                {/each}
+            </ul>
+        </div>
+        <div
+            class="choose_bottom font12 m-0 text-left font-weight-bold text-danger p-2 rounded-bottom"
+            id="instruction"
+        >
+            {l.drag_drop_set_seq_msg}
+        </div>
     </div>
-    <div
-      class="choose_bottom font12 m-0 text-left font-weight-bold text-danger p-2 rounded-bottom"
-      id="instruction"
-    >
-      {l.drag_drop_set_seq_msg}
-    </div>
-  </div>
 </div>
