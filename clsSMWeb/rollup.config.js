@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import path from 'path';
+import autoPreprocess from'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -42,9 +43,10 @@ export default {
 			dev: !production,
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
-			css: css => {
-				css.write('bundle_q22.css');
-			}
+			emitCss: false,
+			preprocess: autoPreprocess({
+				postcss: true,
+			}),
 		}),
 
 		// If you have external dependencies installed from
