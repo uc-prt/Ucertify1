@@ -128,9 +128,9 @@
 		if (state.xml != xml) {
 			loadModule(xml);
 		}
-
 		// run only in case of editor no need to run it in case of preview
-		if (state.review != isReview && editorState) {
+		// if (state.review != isReview && editorState ) { // Its creating issue in student area
+		if (state.review != isReview ) {
 			preview_store.update( (item) => {
 				item.review = isReview;
 				return item;
@@ -386,10 +386,11 @@
 	function changeLoadState() {
         AH.select('#pre_sample_image').remove();
         image_loaded = 1;
-    }
+	}
 </script>
 
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/dragndrop.min.css'} >
+<link rel="stylesheet" href={window.itemFolder + 'clsSMDragNDrop/css/dragndrop.min.css'}>
+
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}
@@ -417,7 +418,7 @@
 	</div>
 
 	<center>
-		<div class="btn-group mb-xl clearfix review h" id="sm_controller">
+		<div class="btn-group mb-xl clearfix review h mb-3" id="sm_controller">
 			<button 
 				type="button" 
 				class="btn btn-light correct-ans" 
