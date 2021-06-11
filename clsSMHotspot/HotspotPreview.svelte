@@ -411,111 +411,113 @@
 	
 </script>
 <main>
-	<ItemHelper 
-		on:setReview = {setReview}
-		on:unsetReview = {unsetReview}
-	/>
-	<div id="previewArea" class="relative">
-		<!-- if the type is text click or text select -->
-		{#if moduleArr[item_type] == "4"}
-			<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto'>
-				<tbody>
-					<tr>
-						<td class="border">
-							<div id="SM0" class="relative">
-								<div 
-									id='SM0' 
-									class="SM position-relative m-0 p-0" 
-									style="{`
-										position: relative;
-										margin: 0px;
-										padding: 0px;
-										width: 100%;
-										height: 100%;
-										border: ${(itemBorder) ? itemBorder + 'px solid' : ''};
-										borderColor: ${itemBorderColor};
-									`}"
-								>
-									<img 
-										id="im0" 
-										tabindex="0" 
-										style="max-width:none; width: {state.imgwidth}; height: {state.imgheight};" 
-										class="hotSpotImg" 
-										src={bgImgPath+img_url} 
-										alt={alt} 
-										on:click={checkAnswer}
-									/>
+	<center>
+		<ItemHelper 
+			on:setReview = {setReview}
+			on:unsetReview = {unsetReview}
+		/>
+		<div id="previewArea" class="relative">
+			<!-- if the type is text click or text select -->
+			{#if moduleArr[item_type] == "4"}
+				<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto'>
+					<tbody>
+						<tr>
+							<td class="border">
+								<div id="SM0" class="relative">
 									<div 
-										id='hotArea' 
-										class="hotArea hotArea hotAreaPreview" 
+										id='SM0' 
+										class="SM position-relative m-0 p-0" 
 										style="{`
-											display: ${targetView};
-											left:${itemAreaLeft};
-											top:${itemAreaTop};
-											height:${itemAreaHeight};
-											width:${itemAreaWidth};
+											position: relative;
+											margin: 0px;
+											padding: 0px;
+											width: 100%;
+											height: 100%;
+											border: ${(itemBorder) ? itemBorder + 'px solid' : ''};
+											borderColor: ${itemBorderColor};
 										`}"
 									>
-										&nbsp;
+										<img 
+											id="im0" 
+											tabindex="0" 
+											style="max-width:none; width: {state.imgwidth}; height: {state.imgheight};" 
+											class="hotSpotImg" 
+											src={bgImgPath+img_url} 
+											alt={alt} 
+											on:click={checkAnswer}
+										/>
+										<div 
+											id='hotArea' 
+											class="hotArea hotArea hotAreaPreview" 
+											style="{`
+												display: ${targetView};
+												left:${itemAreaLeft};
+												top:${itemAreaTop};
+												height:${itemAreaHeight};
+												width:${itemAreaWidth};
+											`}"
+										>
+											&nbsp;
+										</div>
+										<span
+											id='target' 
+											class="target targetImg icomoon-plus-circle-2"
+											class:showBlock="{isUxmlTarget}"
+											style = "{`
+												left:${ans_x}px;
+												top:${ans_y}px;
+											`}"
+										>
+										</span>
 									</div>
-									<span
-										id='target' 
-										class="target targetImg icomoon-plus-circle-2"
-										class:showBlock="{isUxmlTarget}"
-										style = "{`
-											left:${ans_x}px;
-											top:${ans_y}px;
-										`}"
-									>
-									</span>
 								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>	
-		{:else if moduleArr[item_type] == "3"}
-			<center key="imageHeight_3">
-				<div 
-					style="
-						height: 32px; 
-						width: {window.inNative ? window.innerWidth : state.imgwidth}; 
-						background: #d9e7fd; 
-						border-top: 2px solid #96bbf6;
-					"
-				>
+							</td>
+						</tr>
+					</tbody>
+				</table>	
+			{:else if moduleArr[item_type] == "3"}
+				<center key="imageHeight_3">
 					<div 
-						id="reset" 
-						style="height: 27px; width: 90px;"
-						class="reset btn btn-outline-primary btn-sm mt-sm2 mr-sm2 float-end">
-						<span class="icomoon-new-24px-reset-1 s3" style="vertical-align: text-top"></span> 
-						<span class="position-relative bottom1">Reset</span>
+						style="
+							height: 32px; 
+							width: {window.inNative ? window.innerWidth : state.imgwidth}; 
+							background: #d9e7fd; 
+							border-top: 2px solid #96bbf6;
+						"
+					>
+						<div 
+							id="reset" 
+							style="height: 27px; width: 90px;"
+							class="reset btn btn-outline-primary btn-sm mt-sm2 mr-sm2 float-end">
+							<span class="icomoon-new-24px-reset-1 s3" style="vertical-align: text-top"></span> 
+							<span class="position-relative bottom1">Reset</span>
+						</div>
 					</div>
-				</div>
-				<div 
-					id="hptmain0"
-					totalCorrectAns={totalCorrectAns}
-					dd={state.imgwidth}
-					style="
-						width: {state.imgwidth || '250px'}; 
-						height: {state.imgheight || '600px'}; 
-						background-image: url('{bgImgPath+img_url}'); 
-						background-repeat: no-repeat; 
-						position: relative; 
-						border: 2px solid #d9e7fd;
-					"
-				></div>
-				{#if scrollEnabled}
 					<div 
-						class="position-fixed index0" 
-						style="right: 0; top: 0; left: 0; bottom: 0; background: rgba(0,0,0,0.4)"
+						id="hptmain0"
+						totalCorrectAns={totalCorrectAns}
+						dd={state.imgwidth}
+						style="
+							width: {state.imgwidth || '250px'}; 
+							height: {state.imgheight || '600px'}; 
+							background-image: url('{bgImgPath+img_url}'); 
+							background-repeat: no-repeat; 
+							position: relative; 
+							border: 2px solid #d9e7fd;
+						"
 					></div>
-				{/if}
-			</center>
-		{:else}
-			{@html loadModule(moduleArr[item_type])}
-		{/if}
-	</div>
+					{#if scrollEnabled}
+						<div 
+							class="position-fixed index0" 
+							style="right: 0; top: 0; left: 0; bottom: 0; background: rgba(0,0,0,0.4)"
+						></div>
+					{/if}
+				</center>
+			{:else}
+				{@html loadModule(moduleArr[item_type])}
+			{/if}
+		</div>
+	</center>
 	<input 
 		type="hidden" 
 		id="special_module_parse" 
