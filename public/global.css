@@ -8367,3 +8367,60 @@ input:checked + .uc_syntax_slider:before {
 .overlay, .side-panel {
   z-index: 9999 !important;
 }
+.divider {
+  border-right: solid 2px #ccc;
+}
+
+.CMRad,
+.f_-14 {
+display:none;
+}
+.customRadCM {
+width:20px;
+height:20px;
+display:inline-flex;
+line-height:22px;
+text-align:center;
+color:black;
+font-size:40pt;
+cursor:pointer;
+position:relative;
+top:3px;
+} 
+.CMRad:checked + .customRadCM:before,.full_opacity {
+opacity:1;
+}
+.customRadCM:before {
+position:absolute;
+top:1px;
+left:1px;
+height:18px;
+width:18px;
+content:'';
+opacity:0;
+}
+.tureitemColorCM:before,
+.falseitemColorCM:before { 
+content:'\2713';
+color:#fff;
+font-size:15px;
+line-height:18px;
+}
+.tureitemColorCM:before {   
+background:green;
+}  
+.falseitemColorCM:before {
+background:red;  
+}
+.tureitemColorCM {
+background:#AEECA7;
+}
+.falseitemColorCM { 
+background:#E28E96;
+}
+.tureitemColorCM:hover {
+background:#6FCF64;
+}
+.falseitemColorCM:hover {
+background:#F44A37;
+}

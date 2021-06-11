@@ -9,7 +9,7 @@
     import l from '../src/libs/editorLib/language.js';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import {writable} from 'svelte/store';
-    import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
+    import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
     import GriddedHelper from './GriddedHelper.svelte';
     
@@ -191,6 +191,7 @@
 
     function setUserAns (event)  {
         let countRes;
+        let resNew;
 
        //////// This code set the answer///////////
         let attr = event.target.attributes.getNamedItem('data-tag').value;
@@ -247,6 +248,8 @@
             
             
             AH.select("#special_module_user_xml").value = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+
+            resNew = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>";
             if (bool != ' ' && c == user.length) {
                 //jQUery("#answer").prop("checked", bool);
                 AH.select("#answer",'attr',{"checked":bool});
@@ -254,6 +257,7 @@
                 //jQuery("#answer").prop("checked", isAnswerCorrect);
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
+            onUserAnsChange({uXML:resNew,ans:countRes});
         
         
     }

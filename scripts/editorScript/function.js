@@ -10,8 +10,7 @@ function addScript(jsString) {
 function showUcExpStep(currStep) {
 	//let that = currStep.closest(".uc_step_explanation");
 	let that = AI.prevElm(currStep, '.uc_step_explanation');
-	window.curr = that;
-	AI.select(AI.find(that, '.uc_step', 'hidden')[0], 'show');
+	AI.select(AI.find(that, '.uc_step', 'hidden')[0], 'show', 'block');
 	let len = AI.find(that, '.uc_step', 'hidden').length;
 	if (len === 0) {
 		AI.select(currStep, 'hide');
@@ -102,14 +101,15 @@ function replacePreTag(content, config) {
 // @TODO:? @abhishek we have similar function in prepengine footer too, why we can centalize funcion and define and use form one single file
 function showHints(t) {
 	let that = t.closest(".uc_answer_hint");
-	AI.select(AI.find(that, "li", 'hidden')[0], 'show');
+	AI.select(AI.find(that, "li", 'hidden')[0], 'show', 'block');
 	let list_length = AI.find(that, "li", 'hidden').length;
 	if (list_length === 0) {
 		list_length = "No";
-		AI.find(that, ".hint_show").setAttribute("disabled", true);
+		AI.find(that, ".hint_show", {action: 'attr', actionData: {disabled: true} });
 	}
-	AI.find(that, ".li_count").innerHTML = list_length;
+	AI.find(that, ".li_count", {action: 'html', actionData: list_length});
 }
+
 //@TODO: @abhishek what is the diff between addscript and requireDcript funciton. also this function is duplicate and exist in other file too
 function requireScript(path, callback) {
 	const script = document.createElement("script");
