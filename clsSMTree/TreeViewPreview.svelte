@@ -619,12 +619,14 @@
             <div></div>
         {:else}
             <div>
-                <ItemHelper 
-                    on:setReview = {setReview}
-                    on:unsetReview = {unsetReview}
-                    handleReviewClick={(mode)=> ucTree.showans('#treemain0', mode)}
-                    reviewMode={isReview}
-                />
+                <center>
+                    <ItemHelper 
+                        on:setReview = {setReview}
+                        on:unsetReview = {unsetReview}
+                        handleReviewClick={(mode)=> ucTree.showans('#treemain0', mode)}
+                        reviewMode={isReview}
+                    />
+                </center>
                 <button type="button" on:click={delNodes} class="h h-imp" style="display: none" id="delNodes"></button>
                 <center>
                     <div id="treemain0" data-totalCorrectAns={state.totalCorrectAns} class="treemain">

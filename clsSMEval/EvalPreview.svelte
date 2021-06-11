@@ -139,7 +139,6 @@
 				unsetReview();
 			}
 		}
-		
 		if (!window.isReviewMode && editor ) { //re-rendering codeMirror
 			window.uaXML = window.uaXML ? window.uaXML : window.QXML;
 			UXML = window.uaXML;
@@ -150,8 +149,7 @@
 			if (postEditor) {
 				postEditor.toTextArea();
 			}
-			
-			let privXML = stringBetween(xml, "editor");
+			let privXML = stringBetween(UXML, "editor");
 			renderCodeMirror();
 			editor.setValue(privXML.trim());
 		}
