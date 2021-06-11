@@ -12,6 +12,7 @@
 	import { writable } from 'svelte/store';
 	import { AH } from '../helper/HelperAI.svelte';
 	export let xml;
+	export let uaXML;
 	export let inEditor;
 	export let editorState;
 	export let toggleMode;
@@ -225,9 +226,10 @@
 		{:else if state.currentComponent == 1} 
 			<WebPreview 
 				key="1"
-				xml={window.QXML} 
+				xml={xml} 
 				inQuizPlayer={ editorState ? 0 : 1}  
 				editorState={editorState}
+				uaXML={uaXML}
 			/> 
 		{:else if state.currentComponent == 0}
 			<WebAuthoring  

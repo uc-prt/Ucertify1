@@ -1,22 +1,33 @@
-
-
-
+<!--
+ *  File Name   : WebAuthoring.svelte
+ *  Description : Show the editors html,css and js
+ *  Author      : Sundaram Tripathi
+ *  Package     : pe-items
+ *  Last update : 02-June-2021
+ *  Last Updated By : Pradeep Yadav
+-->
 
 <script> 
+    let themeUrl = (window.baseThemeURL) ? window.baseThemeURL: window.baseUrlTheme;
     //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
     import { afterUpdate, onMount, beforeUpdate } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';
     import Loader from '../helper/Loader.svelte';
     import {writable} from 'svelte/store';
-    import l from '../src/libs/Lang';
+    //import l from '../../lib/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import { AH } from '../helper/HelperAI.svelte';
-    export const xml = window.uaXML && !/smans/gi.test(window.uaXML) ? window.uaXML : window.QXML;
     export let inQuizPlayer;
     export let editorState;
+    export let xml;
+    export let uaXML;
+    export let isReview;
+    xml = uaXML && !/smans/gi.test(uaXML) ? uaXML : xml;
     let isPreview = "";
     // defines that editor is not initialized
     let rendered = 0;
     // contains the xml
+    
     
     let mode = document.querySelector(".switch-input.switch-input");
     let htmlEditor;   
@@ -33,6 +44,7 @@
     let splitter3 = '';
     let userAnswer = '';
     let isOldTestcase = false;
+    let resultSaving;
     let state = {};
     let stateData = writable({
         xml                         : '',
@@ -47,7 +59,7 @@
         titleData                   : "", 
         stemData                    : "",
         remediationData             : "",
-        goDark                      : (window.sessionStorage.goDark && window.sessionStorage.goDark == true ? true : false)
+        goDark                      : (window.sessionStorage.goDark && window.sessionStorage.goDark == "true" ? true : false)
     });
         
     let unsubscribe = stateData.subscribe((items)=>{
@@ -57,8 +69,9 @@
        
     // called every time when any props or state gets changed
     beforeUpdate(()=>{
-        if (window.QXML) {
-            if (window.isReviewMode) {
+        if (xml != state.xml) {
+            state.xml = xml;
+            if (isReview) {
                 let timer = setTimeout(function () {
                     // checks the answer and not allowed user to perform the task
                     setReview();
@@ -76,16 +89,14 @@
         }
     });
 
-    afterUpdate(()=>{
-        document.querySelectorAll('.CodeMirror').forEach(function(el,i){ el.CodeMirror.refresh(); });
-    })
+
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css');
-            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css');
-            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/codemirror.min.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/monokai.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink(baseUrlTheme+'clsSMWeb/libs/webitem.min.css');
         }
     }
     
@@ -104,9 +115,12 @@
         
             document.querySelector('#html_pane').addEventListener('click',function(_this) {
                 AI.select(_this).querySelector('a').classList.remove('active');
-                document.getElementById('css_panel').style.display = 'none';
-                document.getElementById('js_panel').style.display = 'none';
-                document.getElementById('html_panel').style.display = 'block';
+                //document.getElementById('css_panel').style.display = 'none';
+                AH.select("#css_panel",'css',{display:'none'});
+                //document.getElementById('js_panel').style.display = 'none';
+                AH.select("#js_panel",'css',{display:'none'});
+                //document.getElementById('html_panel').style.display = 'block';
+                AH.select("#html_panel",'css',{display:'block'});
                 let container = document.querySelect('#html_panel');
                 container.querySelector('a').classList.add('active');
                 let html_tags = htmlEditor.getValue();
@@ -125,8 +139,10 @@
             document.querySelector('#html_pane').addEventListener('click',function(_this){
                 let contain = AI.select(_this);
                 contain.querySelect('a').classList.remove('active');
-                document.getElementById('html_panel').style.display = 'none';
-                document.getElementById('js_panel').style.display = 'none';
+                //document.getElementById('html_panel').style.display = 'none';
+                AH.select("#html_panel",'css',{display:'none'});
+                //document.getElementById('js_panel').style.display = 'none';
+                AH.select("#js_panel",'css',{display:none});
                 let container = document.getElementById('css_panel');
                 container.style.display = 'block';
                 container.querySelector('a').classList.add('active');
@@ -147,9 +163,11 @@
             document.querySelector('#js_pane').addEventListener('click',function(_this){
                 let js_Pane = AI.select(_this);
                 js_Pane.querySelector('a').classList.remove('active');
-                document.getElementById('css_panel').style.display = 'none';
-                document.getElementById('html_panel').style.display = 'none';
-                let js_panel_container = document.getElementById('js_panel');
+                //document.getElementById('css_panel').style.display = 'none';
+                AH.select("#css_panel",'css',{display:'none'});
+                //document.getElementById('html_panel').style.display = 'none';
+                AH.select("#html_panel",'css',{display:'none'});
+                let js_panel_container = AH.select('#js_panel');
                 js_panel_container.style.display = 'block';
                 js_panel_container.querySelect('a').classlist.add('active');
                 let js_data = jsEditor.getValue();
@@ -174,7 +192,7 @@
                         // Specifies the type of request
                         //type: "GET",
                         // Specifies the URL to send the request to
-                        url: themeUrl + "pe-items/lib/codemirror.js",
+                        url: themeUrl + "src/libs/codemirror.js",
                         // Denotes that request will not be handled asynchronously
                         //async: false,
                         // Denotes data type expected of the server response
@@ -210,7 +228,7 @@
                     // Specifies the type of request
                    // type: "GET",
                     // Specifies the URL to send the request to
-                    url: themeUrl + "pe-items/lib/split.js",
+                    url: themeUrl + "src/libs/split.js",
                     // Denotes that request will not be handled asynchronously
                     //async: false, 
                    // // Denotes data type expected of the server response
@@ -295,22 +313,22 @@
         }
         // it is used only re-render purpose as its value first changes but callback function again reset it its initial value
         
-        state.goDark =!state.goDark;
+        //state.goDark =!state.goDark;
     });
 
     function setReview() {
         // checks the answer
         answerCheckWeb();
-        htmlEditor.setOption("readOnly", true);
-        cssEditor.setOption("readOnly", true);
-        jsEditor.setOption("readOnly", true);
+        htmlEditor && htmlEditor.setOption("readOnly", true);
+        cssEditor && cssEditor.setOption("readOnly", true);
+        jsEditor && jsEditor.setOption("readOnly", true);
     }
 
     function unsetReview() {
         if (typeof (CodeMirror) == "function") {
-            htmlEditor.setOption("readOnly", (readHTML ? false : true));
-            cssEditor.setOption("readOnly", (readCSS ? false : true));
-            jsEditor.setOption("readOnly", (readJS ? false : true));
+            htmlEditor && htmlEditor.setOption("readOnly", (readHTML ? false : true));
+            cssEditor && cssEditor.setOption("readOnly", (readCSS ? false : true));
+            jsEditor && jsEditor.setOption("readOnly", (readJS ? false : true));
         }
     }
 
@@ -392,37 +410,38 @@
         if (showJS && (showHTML || showCSS)) {
             // sets the width 50% of html/css editor if only one exist otherwise sets width 50% of parent element which contains both editor that have id 'firstEditorDiv' and float left
            // jQuery("#firstEditorDiv")[0].style.cssText = "float:left;width:50%"; // Replaced
-            document.getElementById("firstEditorDiv")[0].style.cssText = 'float:left;width:50%';
+            document.getElementById("firstEditorDiv").style.cssText = 'float:left;width:50%';
             // sets the width 50% of js editor and float left
             //jQuery("#jsEditorDiv")[0].style.cssText = "float:left;width:50%"; // Replaced
-            document.getElementById("jsEditorDiv")[0].style.cssText = 'float:left;width:50%';
+            document.getElementById("jsEditorDiv").style.cssText = 'float:left;width:50%';
             // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
             //jQuery("#top_content")[0].style.cssText = "clear:both;overflow:auto"; // Replaced
-            document.getElementById("top_content")[0].style.cssText = "clear:both;overflow:auto"
+            document.getElementById("top_content").style.cssText = "clear:both;overflow:auto"
         }
         if (showHTML && showCSS) {
             // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
             //jQuery("#top_content")[0].style.cssText = "clear:both;overflow:auto"; // Replaced
-           document.querySelector("#top_content")[0].style.cssText = 'clear:both;overflow:auto';
+           document.querySelector("#top_content").style.cssText = 'clear:both;overflow:auto';
             // sets html editor's width 50% and float left
            // jQuery("#html_panel")[0].style.cssText = "float:left;width:50%"; // Replaced
-            document.querySelector("#html_panel")[0].style.cssText = "float:left;width:50%";
+            document.querySelector("#html_panel").style.cssText = "float:left;width:50%";
             // sets css editor's width 50% and float left
            // jQuery("#css_panel")[0].style.cssText = "float:left;width:50%"; // Replaced
-            document.querySelector("#css_panel")[0].style.cssText = "float:left;width:50%";
+            document.querySelector("#css_panel").style.cssText = "float:left;width:50%";
         }
         if ((showHTML + showCSS + showJS) == 1) {
             // sets css property  width 50% and float left of parent element that contains html, css and js editor 
             //jQuery("#top_content")[0].style.cssText = "float:left;width:60%";
-            document.querySelector("#top_content")[0].style.cssText = "float:left;width:60%";
+            document.querySelector("#top_content").style.cssText = "float:left;width:60%";
             // sets css property  width 40% and float left of element that contains result editor 
-            document.querySelector("#bottom_content")[0].style.cssText = "float:left;width:40%";
+            document.querySelector("#bottom_content").style.cssText = "float:left;width:40%";
             //jQuery("#bottom_content")[0].style.cssText = "float:left;width:40%";
         }
     }
 
     // changes theme of the html, js and css editors according to the checked status of 'Dark Mode' checkbox 
     function changeTheme() {
+        console.log();
         // contains the checked status of the 'Dark Mode' checkbox
         let check = document.querySelector("#goDark").checked;
         // updates the value of state 'goDark' according to the value of variable 'check'
@@ -593,13 +612,15 @@
     }
 
      // used for show the result of testcases
-     function answerCheckWeb(isRun = true) {
+    function answerCheckWeb(isRun = true) {
+        let resNew = {};
+        resNew.u = resultSaving;
         // contains rows of Remediation dialog box in each row 2 columns exist in first column testcase number defined and in second column their result status defined
         let case_result = [];
         // shows the output of the code in 'Result' editor according to the value of argument variable 'isRun'
         isRun ? runCode() : "";
         // contains the string defined in 'Testcases' field of 'Autograde' dialog box
-        let get_test_cases = stringBetween(window.QXML, '<autograde type="testcase">', '</autograde>');
+        let get_test_cases = stringBetween(state.xml, '<autograde type="testcase">', '</autograde>');
         // enters in this block if any testcase defined in 'Testcases' of 'Autograde' dialog box
         if (get_test_cases) {
             // contains the string if exist in variable 'get_test_cases' otherwise blank value contains
@@ -627,7 +648,7 @@
             }
         }
         // contains the testcases defined in 'Internal Script' field of 'Autograde' dialog box
-        let get_internal_cases = stringBetween(window.QXML, '<autograde type="internal">', '</autograde>');
+        let get_internal_cases = stringBetween(state.xml, '<autograde type="internal">', '</autograde>');
         // enters in this block if any testcase defined in 'Internal Script' of 'Autograde' dialog box
         if (get_internal_cases) {
             // contains string if exist in 'Internal Script' otherwise contains blank value
@@ -652,7 +673,7 @@
             }
         }
         // contains the testcases defined in 'External Script' field of 'Autograde' dialog box
-        let get_external_cases = stringBetween(window.QXML, '<autograde type="custom">', '</autograde>');
+        let get_external_cases = stringBetween(state.xml, '<autograde type="custom">', '</autograde>');
         // enters in this block if any testcase defined in 'External Script' of 'Autograde' dialog box
         if (get_external_cases) {
             // contains the value of 'Extenal Script' field 
@@ -678,11 +699,13 @@
         if (/Failed/gi.test(case_str)) {
             // uncheck the element have id 'answer' if 'Failed' string exist in result string
             //jQuery("#answer").prop("checked", false);
+            resNew.a = false;
             AI.select("#answer").checked = false;
             // sets the value 'false' of variable 'inNativeIsCorrect' to show incorrect answer in mobile
             inNativeIsCorrect = false;
         } else {
             //jQuery("#answer").prop("checked", true);
+            resNew.a = true;
             AI.select("#answer").checked = true;
             // sets the value 'true' of variable 'inNativeIsCorrect' to show correct answer in mobile
             inNativeIsCorrect = true;
@@ -696,7 +719,7 @@
             window.postMessage(JSON.stringify({ userAnswers: document.getElementById("special_module_user_xml").value, inNativeIsCorrect }));
         }
         // defines the table containing the field 'Test Case' and 'Result' in table head and value stored in variable 'case_str' as body part of the table
-        let reviewLayout = "<table style=\"width:500px;\" class=\"table\"><thead class=\"thead-inverse\"><tr><th>Test Case</th><th>Result</th></tr></thead>" + case_str + "</table>";
+        let reviewLayout = "<table style=\"width:500px;\" class=\"table\"><thead class=\"thead-inverse\"><tr style='background-color:#4285F4'><th style='background-color:#4285F4'>Test Case</th><th>Result</th></tr></thead>" + case_str + "</table>";
         // enters in this block if remediation mode is on
         if (state.remediationToggle) {
             // sets the table in element have id 'remediationModel' means in remediation dialog box
@@ -704,6 +727,7 @@
             
             document.getElementById('remediationModel').innerHTML = reviewLayout;
         }
+        onUserAnsChange({uXml:resNew.u,ans:resNew.a});
         // returns the defined table
         return (reviewLayout);
     }
@@ -1197,8 +1221,7 @@
                                 let a = allCheck[i].getAttribute(tag_name[1]) ? allCheck[i].getAttribute(tag_name[1]) : "";
                                 // removes the semicolon from value of defined attribute
                                 a = a.replace(/;/g, '');
-                                let urlPrefixReg = new RegExp(/https:\/\/s3.amazonaws.com\/jigyaasa_content_stream\/|https:\/\/s3.amazonaws.com\/jigyaasa_content_static\//,'gm'); // regx returning the comparing of url stream/static
-                                if (a.replace(/\s+/g, '').trim().replace(urlPrefixReg, "") == tag_name[2].replace(/\s+/g, '').trim()) {
+                                if (a.replace(/\s+/g, '').trim() == tag_name[2].replace(/\s+/g, '').trim()) {
                                     // increases the value of counter by 1 if matched value of defined attribute is equals to the value of defined value in testcase
                                     counter++;
                                 }
@@ -1520,7 +1543,7 @@
         AI.empty('#authoringDiv player');
         // used for set the data of player tag
       //  tag_player(jQuery('#authoringDiv')); // Replaced
-          tag_player(document.querySelect('#authoringDiv'));
+          tag_player(AH.select('#authoringDiv'));
         // adds the class 'hidecontent' to player tag empty that exist inside element have id: authoringDiv
        // jQuery('#authoringDiv').find('player').addClass('hidecontent'); // Replaced
         AI.select('#authoringDiv').querySelector('player').classList.add('hidecontent');
@@ -1550,7 +1573,7 @@
         date = date.getTime();
         let iframeId = "uC" + date;
      //   jQuery('#result_div').html('<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>'); //Replaced
-     document.querySelector('#result_div').innerHTML = '<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>';
+          AH.select('#result_div').innerHTML = '<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>';
         // returns the combined data of html, css and js after wrapping the css editor value in style tag and js editor value in script tag and hides the 'Loading...' containing after load
         let source = prepareSource();
         let iframe = document.querySelector('#uC' + date);
@@ -1571,16 +1594,16 @@
         jsEditor.setValue("");
         // makes blank value of user answer xml
      //   jQuery("#special_module_user_xml").val(""); // Replaced
-    if (document.getElementById('special_module_user_xml')!=null)
-        document.getElementById('special_module_user_xml').value ='';
+        AH.select('#special_module_user_xml').value ='';
         // makes blank the value of 'uaXML' of window object
         window.uaXML = "";
     }
 
      // used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
     function parseXML(xml) {
+        console.log('checking');
         // contains the xml 
-        xml = xml ? xml : window.QXML;  
+        xml = xml ? xml : state.xml;  
         // contains the html editor value from xml
         let htmlData = stringBetween(xml, "tag");
         // sets the value of html editor
@@ -1594,7 +1617,7 @@
         // sets the value of js editor
         jsEditor.setValue(jsData ? jsData.trim() : "");
         // contains the value of 'disable' attribute of web tag from xml
-        let disableData = findAttribute(window.QXML, "disable", "web");
+        let disableData = findAttribute(xml, "disable", "web");
         if (/html/g.test(disableData)) {
             // sets the value '0' of variable 'readHTML' to indicate that html editor is 'readonly' and no any operation can be performed on this editor
             readHTML = 0;
@@ -1612,7 +1635,7 @@
             cssEditor.setOption("readOnly", true);
         }
         // contains the value of 'hide' attribute of 'web' tag from xml
-        let hideData = findAttribute(window.QXML, "hide", "web");
+        let hideData = findAttribute(xml, "hide", "web");
         // updates the value of variable 'hideData' according to its value
         hideData = hideData ? hideData : ",,";
         // converts 'hideData' into array and 
@@ -1620,7 +1643,10 @@
         // used for hide the html, css or js editor according to the value of array 'hideData' defined at index '0', '1', '2'
         hideEditors(parseInt(hideData[0]), parseInt(hideData[1]), parseInt(hideData[2]));
         // changes theme of the html, js and css editors according to the checked status of 'Dark Mode' checkbox 
-        changeTheme();
+        setTimeout(function() {
+            changeTheme();
+        },100);
+        
     }
 
     // used for hide the html, css or js editor according to the value of argument variable 'html', 'css', 'js'
@@ -1635,34 +1661,41 @@
         if (window.inNative) {
             if (!showHTML) {
             //    jQuery("#html_panel, #html_pane, #css_panel").hide(); // Replaced
-                document.getElementById('html_panel').style.display = 'none';
-                document.getElementById('html_pane').style.display = 'none';
-                document.getElementById('css_panel').style.display = 'none';
+                // document.getElementById('html_panel').style.display = 'none';
+                // document.getElementById('html_pane').style.display = 'none';
+                // document.getElementById('css_panel').style.display = 'none';
+                AH.selectAll('#html_panel,#html_pane,#css_panel','hide');
+        
             }
             if (!showCSS) {
             //    jQuery("#css_panel,#css_pane,#js_panel").hide(); // Replaced
-                document.getElementById('css_panel').style.display = 'none';
-                document.getElementById('css_pane').style.display = 'none';
-                document.getElementById('js_panel').style.display = 'none';
+                // document.getElementById('css_panel').style.display = 'none';
+                // document.getElementById('css_pane').style.display = 'none';
+                // document.getElementById('js_panel').style.display = 'none';
+                AH.selectAll('#css_panel,#css_pane,#js_panel','hide');
             }
             if (!showJS) {
             //    jQuery("#js_panel,#js_pane,#css_panel").hide(); // Replaced
-                document.getElementById('js_panel').style.display = 'none';
-                document.getElementById('js_pane').style.display = 'none';
-                document.getElementById('css_panel').style.display = 'none';
+                // document.getElementById('js_panel').style.display = 'none';
+                // document.getElementById('js_pane').style.display = 'none';
+                // document.getElementById('css_panel').style.display = 'none';
+                AH.selectAll('#js_panel,#js_pane,#css_panel','hide');
 
             }
             if (showHTML && showCSS && showJS) {
             //    jQuery("#css_panel,#js_panel").hide(); // Replaced
-                document.getElementById('css_panel').style.display = 'none';
-                document.getElementById('js_panel').style.display = 'none';
+                // document.getElementById('css_panel').style.display = 'none';
+                // document.getElementById('js_panel').style.display = 'none';
+                AH.selectAll('#css_panel,#js_panel','hide');
+
             }
             return;
         }
         if (!showHTML) {
             // hides the html editor if the value of variable 'showHTML' is 0
           //jQuery("#html_panel").hide(); // Replaced
-            document.getElementById('html_panel').style.display = 'none';
+            //document.getElementById('html_panel').style.display = 'none';
+            AH.select("#html_panel",'hide');
             Split(['#css_panel','#js_panel'],{
                 sizes:[50,50],
             })
@@ -1670,7 +1703,8 @@
         if (!showCSS) {
            //  hides the css editor if the value of variable 'showCSS' is 0
             //jQuery("#css_panel").hide(); // Replaced
-            document.getElementById('css_panel').style.display = 'none';
+            //document.getElementById('css_panel').style.display = 'none';
+            AH.select("#css_panel","hide");
             Split(['#html_panel','#js_panel'],{
                 sizes:[50,50],
             })
@@ -1678,17 +1712,72 @@
         if (!showJS) {
            //  hides the js editor if the value of variable 'showJS' is 0
             //jQuery("#js_panel").hide(); // Replaced
-            document.getElementById('js_panel').style.display = 'none';
+            //document.getElementById('js_panel').style.display = 'none';
+            AH.selectAll("#js_panel","hide");
             Split(['#css_panel','#html_panel'],{
                 sizes:[50,50],
             })
+        }
+
+        if(!showCSS && !showJS ) {
+            
+            console.log('checking splitter');
+            AH.selectAll("#css_panel,#js_panel",'hide');
+
+            Split(['#top_content','#bottom_content'],{
+                sizes:[50,50]
+            })
+            AH.select("#accordion",'css',{display:'flex'});
+
+            Split(['#html_panel'],{
+                sizes:[100]
+            })
+            AH.select('#top_content','css',{height:'100%'});
+            AH.select("#firstEditorDiv",'removeAttr','display');
+            
+
+        }
+
+        if(!showCSS && !showHTML) {
+
+            
+            AH.selectAll('#css_panel,#html_panel','hide');
+           
+
+            Split(['#top_content','#bottom_content'],{
+                sizes:[50,50]
+            })
+            AH.select("#accordion",'css',{display:'flex'});
+
+            Split(['#js_panel'],{
+                sizes:[100]
+            })
+            AH.select('#top_content','css',{height:'100%'});
+            AH.select("#firstEditorDiv",'removeAttr','display');
+        }
+
+        if(!showHTML && !showJS) {
+            AH.select("#firstEditorDiv",'removeAttr', 'display');
+            AH.selectAll('#js_panel,#html_panel','hide');
+
+            Split(['#top_content','#bottom_content'],{
+                sizes:[50,50]
+            })
+            AH.select("#accordion",'css',{display:'flex'});
+
+            Split(['#css_panel'],{
+                sizes:[100]
+            })
+            AH.select('#top_content','css',{height:'100%'});
+            AH.select("#firstEditorDiv",'removeAttr','display');
+            
         }
     }
 
     // used for update the user answer xml value
     function saveWebAnswer(code, code_lang) {
         // contains the user answer xml of question xml
-        let qxml = !/smans/g.test(window.uaXML) && window.uaXML ? window.uaXML : window.QXML;
+        let qxml = !/smans/g.test(uaXML) && uaXML ? uaXML : xml;
         // variable for hold the html, css and js editor value in xml format way
         let uXml = "";
         if (code_lang == 'html') {
@@ -1709,29 +1798,31 @@
         ISSPECIALMODULEUSERXMLCHANGE = 1;
         // save the user answer xml
         //jQuery("#special_module_user_xml").val(uXml); // Replaced
-        if (document.getElementById('special_module_user_xml')!=null)
-            document.getElementById('special_module_user_xml').value = uXml;
+        
+        AH.select('#special_module_user_xml').value = uXml;
+        
         
         // assign the user answer xml in variable 'userAnswers'
         //let userAnswers = userAnswer = jQuery("#special_module_user_xml").val(); // Replaced
         let userAnswers;
-        if(document.querySelector("#special_module_user_xml")!=null)
-             userAnswers = userAnswer = document.getElementById("special_module_user_xml").value;
+        
+        userAnswers = userAnswer = AH.select("#special_module_user_xml").value;
         // used for mobile team
         if (window.inNative) {
             window.postMessage('height___' + document.getElementsByClassName('container-fluid')[0].offsetHeight, '*');
             window.postMessage(JSON.stringify({ userAnswers, inNativeIsCorrect: false }), '*');
         }
         // assign the user answer xml value in 'uaXML' variable of window object
-        window.uaXML = uXml;
+        uaXML = uXml;
+        resultSaving = uXml;
     }
     </script>
     
     <div>
-        <!-- <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
-        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/monokai.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/simplescrollbars.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
+        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
+        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
 
     <div id="authoringArea" class="font14" >
         {#if window.isIE || window.isIEEleven} 
@@ -1752,18 +1843,18 @@
                                     <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
                                 </div>
                                 <div class="float-right mt-2 mr-2">
-                                    <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block"></span></button>
-                                    <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
+                                    <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-toggle="dropdown" id="dropdownMenuButton1"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
                                         <li>
-                                            <label htmlFor="goDark" class="dropdown-item mb-0 pointer">
-                                                <input type="checkbox" defaultChecked={state.goDark} on:click={changeTheme} id="goDark" class="position-absolute transparent" />
+                                            <label for="goDark" class="dropdown-item mb-0 pointer">
+                                                <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="position-absolute bg-transparent" />
                                                 <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
                                             </label>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="inline-block pull-right">
-                                    <button type="button" class="btn btn-primary runcode_btn ml mt" on:click={runCode}>{l.run}</button>
+                                <div class="inline-block pull-right">x`
+                                    <button type="button" class="btn btn-primary runcode_btn ml" on:click={runCode}>{l.run}</button>
                                 </div>
                             </div>
                             <div style={'width: 100%;background: white;'} class="content_parent">
@@ -1817,25 +1908,25 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div id="web_toolbar" class="bg-light w-100 height44 web_toolbar text-dark">
-                                    <div class="mt-2 pt pl-3 float-left">
+                                    <div class="mt-2 pt-1 pl-2 float-left">
                                         <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
                                     </div>
                                     <div class="float-right mt-2">
-                                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block"></span></button>
-                                        <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
+                                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
                                             <li>
-                                                <label htmlFor="goDark" class="dropdown-item mb-0 pointer">
-                                                    <input type="checkbox" defaultChecked={state.goDark} on:click={changeTheme} id="goDark" class="position-absolute transparent" />
+                                                <label for="goDark" class="dropdown-item mb-0 pointer">
+                                                    <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="transparent h" />
                                                     <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
                                                 </label>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="inline-block pull-right">
-                                        <button type="button" class="btn btn-primary runcode_btn ml mt" on:click={runCode}>{l.run}</button>
+                                        <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
                                     </div>
                                 </div>
-                                <div id="accordion" style={'width:100%; background:white; '}>
+                                <div id="accordion" style={'width:100%; background:white; padding:0px;'}>
                                     <div id="top_content">
                                         <div id="firstEditorDiv" style='display:flex;'>
                                             <div id="html_panel" class="card m-0 p-0 rounded-0">
@@ -1936,3 +2027,9 @@
         <input type="hidden" id="ansModeAnswer" value="" />
     </div>
     </div>
+
+    <style>
+        :global(.height44)  {
+            height: 44px;
+        }
+    </style>

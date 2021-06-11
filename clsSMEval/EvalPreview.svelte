@@ -80,10 +80,10 @@
 	onMount(()=> {
 		loadLibs()
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
-		db_name = findAttribute(window.QXML, 'db_name');
-		is_graph = findAttribute(window.QXML, 'is_graph');
-		ignore_error = findAttribute(window.QXML, 'ignore_error');
-		ignore_formatting = findAttribute(window.QXML, 'ignore_formatting');
+		db_name = findAttribute(xml, 'db_name');
+		is_graph = findAttribute(xml, 'is_graph');
+		ignore_error = findAttribute(xml, 'ignore_error');
+		ignore_formatting = findAttribute(xml, 'ignore_formatting');
 		let smxml = (xml).match(/<smxml(.*?)>/gim);
 		let type = smxml.toString().match(/type="(.*?)"|type='(.*?)'/gim);
 		type = type[0].replace(/type=|"/gim, '');
@@ -642,6 +642,7 @@
 			data: {
 				'ajax': 1,
 				'in_editor': 0,
+				'is_svelte' : 1,
 				'user_guid': user_guid,
 				'db_name': db_name,
 				'language': language,
@@ -675,6 +676,7 @@
 			url: evalpro_url, 
 			data: {
 				'func': 'check_answer',
+				'is_svelte' : 1,
 				'special_module_user_xml': _uxml,
 				'user_guid': user_guid,
 				'content_guid': content_guid
@@ -728,6 +730,7 @@
 			data: {
 				"uxml": _uxml,
 				"ajax": 1,
+				'is_svelte' : 1,
 				'in_editor': 1,
 				'user_guid': user_guid
 			},
@@ -826,6 +829,7 @@
 			repltype: state.lang_type,
 			stdin: AH.select("#sampleInput").value,
 			'run_code': 1,
+			'is_svelte' : 1,
 			'user_guid': user_guid,
 			// 'test_session_unique_id': window.test_session_uid,
 			'content_guid': content_guid,
