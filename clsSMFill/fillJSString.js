@@ -200,8 +200,7 @@ export default class fillJS {
 					if (drag_id && JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
 						this.dnd.disableDrag('#' + drag_id);
 						// Remove the dragable disabled from previous
-						let previous_element = Object.entries(this.previous_droped_item);
-						if (previous_element.length && this.previous_droped_item[drop_target]) {
+						if (Object.entries(this.previous_droped_item) && this.previous_droped_item[drop_target]) {
 							this.previous_droped_item[drop_target].setAttribute('draggable','true');
 							this.previous_droped_item[drop_target].setAttribute('aria-disabled','false');
 							this.previous_droped_item[drop_target].classList.remove('ui-draggable-disabled', 'ui-state-disabled');
