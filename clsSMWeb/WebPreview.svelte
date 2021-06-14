@@ -93,10 +93,10 @@
 
     function loadLibs() {
         if(!editorState) {
-            AH.createLink(baseUrlTheme+'clsSMWeb/libs/codemirror.min.css');
-            AH.createLink(baseUrlTheme+'clsSMWeb/libs/monokai.css');
-            AH.createLink(baseUrlTheme+'clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink(baseUrlTheme+'clsSMWeb/libs/webitem.min.css');
+            AH.createLink(window.itemFolder+'clsSMWeb/libs/codemirror.min.css');
+            AH.createLink(window.itemFolder+'clsSMWeb/libs/monokai.css');
+            AH.createLink(window.itemFolder+'clsSMWeb/libs/simplescrollbars.css');
+            AH.createLink(window.itemFolder+'clsSMWeb/libs/webitem.min.css');
         }
     }
     

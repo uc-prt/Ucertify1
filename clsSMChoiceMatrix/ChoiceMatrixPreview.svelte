@@ -487,7 +487,7 @@
                         <th
                             class = {"preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : "text-center")}
                             tab-index = "0"
-                            style = "background-color:{theme_color[state.theme]}"
+                            style = "background-color:{theme_color[state.theme]}!important;"
                             
                         >{state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                         {#if state.cdata}
@@ -496,7 +496,7 @@
                                     key = {i}
                                     class = {"preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
                                     tab-index = "0"
-                                    style = "background-color:{theme_color[state.theme]}"
+                                    style = "background-color:{theme_color[state.theme]}!important"
                                 >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                             {/each}
                         {/if}
@@ -509,7 +509,7 @@
                                 <td
                                     class = {data.id}
                                     tab-index = "0"
-                                    style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")};font-size:14pt;vertical-align:middle;font-family:{state.font}"
+                                    style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}!important;font-size:14pt;vertical-align:middle;font-family:{state.font}"
                                 >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
                                 
                                 {#each cm.cdata.option as data2, j} 

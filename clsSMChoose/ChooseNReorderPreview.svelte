@@ -8,7 +8,7 @@
 *  Last update :  -->
 <svelte:head>
     
-	<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + "clsSMChoose/css/choose.min.css"} />
+	<link onload="this.rel='stylesheet'" rel="preload" as="style" href={window.itemFolder + "clsSMChoose/css/choose.min.css"} />
 </svelte:head>
 <script>
 	import { afterUpdate, onMount } from "svelte";
