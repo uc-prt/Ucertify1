@@ -12,6 +12,8 @@
     import ItemHelper from '../helper/ItemHelper.svelte';
     import ShowAnswer from './showAnswer.svelte';
     import l from '../src/libs/editorLib/language';
+    import './css/alignmatch.min.css';
+    
     export let xml;
     export let uxml;
     export let showAns;
@@ -662,7 +664,7 @@
             handleReviewClick = {handleReviewMode}
         />
     </div>
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMAlignMatch/css/alignmatch.min.css"} />
+    
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">
         <div class="categorycontainer center-block {(windowwidth > 1200) ? 'span9' : ''}">
             {#if state.xml}

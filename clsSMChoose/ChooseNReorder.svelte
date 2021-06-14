@@ -7,10 +7,6 @@
 *  Package     : pe-items
 *  Last update :  -->
 
-<svelte:head>
-    
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMChoose/css/choose.min.css"} />
-</svelte:head>
 <script>
     import l from '../src/libs/editorLib/language.js';
     
@@ -20,9 +16,8 @@
     import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
     import { beforeUpdate } from 'svelte';
     import smVal from '../src/libs/editorLib/ValidateItems';
+    import './css/choose.min.css';
     
-
-
     let localCData = [];
     let oldCData = [];
     let state = {};

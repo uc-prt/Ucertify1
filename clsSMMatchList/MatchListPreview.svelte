@@ -16,7 +16,9 @@
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
+	import './css/matchList.min.css';
 	import { Button, Dialog } from 'svelte-mui/src';
+	
 	export let showAns;
 	export let cmed;
 	export let xml;
@@ -116,7 +118,6 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchList.min.css', config);
 		AH.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
     }
 	

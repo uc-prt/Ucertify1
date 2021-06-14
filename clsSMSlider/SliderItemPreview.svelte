@@ -11,6 +11,8 @@
     import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import { XMLToJSON, onUserAnsChange } from '../helper/HelperAI.svelte';
+    import './css/slider.min.css';
+    
     export let xml;
     export let uxml;
     export let showAns;
@@ -233,7 +235,7 @@
     }
     
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.baseUrlTheme}clsSMSlider/css/slider.min.css" />
+
 {#if onError != "" }
     <div class="alert alert-danger font-weight-bold">
         <span>{l.oops_msg} </span>
