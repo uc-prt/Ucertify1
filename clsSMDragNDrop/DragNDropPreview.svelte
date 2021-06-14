@@ -27,7 +27,8 @@
 	import ButtonPreview from './libs/preview/ButtonPreview.svelte';
 	import StepPreview from './libs/preview/StepPreview.svelte';
 	import TabPreview from './libs/preview/TabPreview.svelte';
-    import l from '../src/libs/Lang';
+	import l from '../src/libs/Lang';
+	import './css/dragndrop.min.css';
 
 
 	// exporting the variables
@@ -389,8 +390,6 @@
 	}
 </script>
 
-<link rel="stylesheet" href={window.itemFolder + 'clsSMDragNDrop/css/dragndrop.min.css'}>
-
 <div>
 	<ItemHelper 
 		on:setReview = {setReview}
@@ -464,7 +463,7 @@
 				<StepPreview modules={state.data[0].step} containerID={container_id} {checkImages} uxml={uxml}/>
 				<TabPreview modules={state.data[0].tab} containerID={container_id} {checkImages} uxml={uxml}/>
 				{#if state.data[0].hotspot}
-					<img class="targetImg" tabindex="0" alt="target_img" src={themeUrl +"pe-items/images/target.png"} style="display: none" />
+					<img class="targetImg" tabindex="0" alt="target_img" src={window.itemFolder +"images/target.png"} style="display: none" />
 				{/if}
 			{/if}
 		</div>

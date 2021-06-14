@@ -4933,5 +4933,5 @@
       else MathQuill[key] = val;
     }(key, MQ1[key]));
     
-    }());
+}());
     
