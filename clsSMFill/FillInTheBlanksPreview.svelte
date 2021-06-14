@@ -15,6 +15,8 @@
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
+	import '../css/mathquill.css';
+
 	export let manual_grade;
 	export let xml;
 	export let uxml;
@@ -55,7 +57,7 @@
 	onMount(()=> {
 		window.J = ju;
 		ucFill.setUpdate(updateModule.bind(this));
-		AH.addScript("", editor.baseUrlTheme+"/clsSMFill/libs/mathQuill_new.js");
+		AH.addScript("", editor.baseUrlTheme + "clsSMFill/libs/mathQuill_new.js");
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		if (state.isMathquill) {
@@ -876,9 +878,6 @@
 </script>
 	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
-	{#if state.isMathquill}
-		<link rel="stylesheet" href={window.itemFolder + "css/mathquill.css"} />
-	{/if}
 	<center>
 		<ItemHelper 
 			bind:this={smControllerCallback}

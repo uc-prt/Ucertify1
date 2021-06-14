@@ -17,6 +17,12 @@
     //import l from '../../lib/Lang';
     import l from '../src/libs/editorLib/language.js';
     import { AH } from '../helper/HelperAI.svelte';
+
+    import './libs/codemirror.min.css';
+    import './libs/monokai.css';
+    import './libs/simplescrollbars.css';
+    import './libs/webitem.min.css';
+
     export let inQuizPlayer;
     export let editorState;
     export let xml;
@@ -101,7 +107,7 @@
     }
     
     onMount(()=>{
-        loadLibs()
+        //loadLibs()
         // used for mobile team
         if (window.inNative) {
             window.getHeight && window.getHeight();
@@ -1816,7 +1822,7 @@
         uaXML = uXml;
         resultSaving = uXml;
     }
-    </script>
+</script>
     
     <div>
         <!-- <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
@@ -2007,7 +2013,8 @@
 	width="650"
     on:close={() => state.remediationToggle = false}
 >
-	<div slot="title" style="text-align: left;">
+    
+    <div slot="title" style="text-align: left;">
 		<div style="">{l.remediation}</div>
 	</div>
 	<div>

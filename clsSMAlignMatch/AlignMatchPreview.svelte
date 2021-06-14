@@ -12,6 +12,8 @@
     import ItemHelper from '../helper/ItemHelper.svelte';
     import ShowAnswer from './showAnswer.svelte';
     import l from '../src/libs/editorLib/language';
+    import './css/alignmatch.min.css';
+    
     export let xml;
     export let uxml;
     export let showAns;

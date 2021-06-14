@@ -17,6 +17,7 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import Sortable from 'sortablejs';
+	import './css/choose.min.css';
 	
     
     export let cmed;

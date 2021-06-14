@@ -16,7 +16,9 @@
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
+	import './css/matchList.min.css';
 	import { Button, Dialog } from 'svelte-mui/src';
+	
 	export let showAns;
 	export let cmed;
 	export let xml;

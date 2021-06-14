@@ -42,10 +42,6 @@
     text-align: center;
 }
 
-.myP tbody {
-    cursor: pointer;
-}
-
 .items_element:hover {
     border: 1.2px solid #777;
 }

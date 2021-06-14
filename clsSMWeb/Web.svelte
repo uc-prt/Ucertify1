@@ -11,6 +11,12 @@
     import { beforeUpdate, onMount, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import { AH } from '../helper/HelperAI.svelte';
+
+	import './libs/codemirror.min.css';
+    import './libs/monokai.css';
+    import './libs/simplescrollbars.css';
+	import './Langlibs/webitem.min.css';
+	
 	export let xml;
 	export let uaXML;
 	export let inEditor;
@@ -154,7 +160,7 @@
 
 	// called once throughtout the program execution just after render method
 	onMount(async ()=> {
-		loadLibs();
+		//loadLibs();
 		await tick();
 		if (editorState) {
 			//AI.set('web',this);
