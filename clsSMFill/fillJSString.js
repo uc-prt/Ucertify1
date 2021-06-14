@@ -9,6 +9,7 @@ export default class fillJS {
 		this.delPreSpaces = {};
 		this.init();
 		this.iscorrect = '-2';
+		this.previous_droped_item = {};
 	}
 	init() {
 		this.delPreSpaces = {
@@ -164,6 +165,7 @@ export default class fillJS {
 			onDrop: ( event, dragElm )=> {
 				const _this = event.target;
 				const drop_id = dragElm.getAttribute('droped') ? dragElm.getAttribute('droped') : dragElm.getAttribute('id');
+				
 				if (_this.getAttribute("droped").trim() != "") {
 					//JS.find(fillid, '#' + _this.getAttribute("droped")).draggable('enable');
 				}
@@ -188,6 +190,7 @@ export default class fillJS {
 					JS.selectAll(_this, 'attr', {droped: "", userans: ""});
 				}
 				drag_id = _this.id;
+				
 				if (_this.classList.contains('dropable')) {	
 					const rel_id = JS.select('#' + drop_target).getAttribute('droped');
 					if (rel_id && JS.select('#' + rel_id).getAttribute('drag-single') == 1) {
@@ -196,10 +199,24 @@ export default class fillJS {
 				} else {
 					if (drag_id && JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
 						this.dnd.disableDrag('#' + drag_id);
+						// Remove the dragable disabled from previous
+						if (Object.entries(this.previous_droped_item) && this.previous_droped_item[drop_target]) {
+							this.previous_droped_item[drop_target].setAttribute('draggable','true');
+							this.previous_droped_item[drop_target].setAttribute('aria-disabled','false');
+							this.previous_droped_item[drop_target].classList.remove('ui-draggable-disabled', 'ui-state-disabled');
+						}
+						
+						// Add the diabled features to current droped item
+						let selected = document.querySelector('#' + drag_id);
+						selected.setAttribute('draggable','false');
+						selected.setAttribute('aria-disabled','true');
+						selected.classList.add('ui-draggable-disabled', 'ui-state-disabled');
+						this.previous_droped_item[drop_target] = selected;
 					}
 				}
 				this.checkAns(fillid);
 				drop_target="";
+				
 			},
 			scroll: 'true',
 			refreshPositions: true,
