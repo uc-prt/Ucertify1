@@ -97,14 +97,14 @@
 
 
 
-    function loadLibs() {
-        if(!editorState) {
-            AH.createLink(window.itemFolder+'clsSMWeb/libs/codemirror.min.css');
-            AH.createLink(window.itemFolder+'clsSMWeb/libs/monokai.css');
-            AH.createLink(window.itemFolder+'clsSMWeb/libs/simplescrollbars.css');
-            AH.createLink(window.itemFolder+'clsSMWeb/libs/webitem.min.css');
-        }
-    }
+    // function loadLibs() {
+    //     if(!editorState) {
+    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/codemirror.min.css');
+    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/monokai.css');
+    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/simplescrollbars.css');
+    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/webitem.min.css');
+    //     }
+    // }
     
     onMount(()=>{
         //loadLibs()

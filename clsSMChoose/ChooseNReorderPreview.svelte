@@ -6,10 +6,7 @@
 *  Version     : 1.0
 *  Package     : pe-items
 *  Last update :  -->
-<svelte:head>
-    
-	<link onload="this.rel='stylesheet'" rel="preload" as="style" href={window.itemFolder + "clsSMChoose/css/choose.min.css"} />
-</svelte:head>
+
 <script>
 	import { afterUpdate, onMount } from "svelte";
 	import ucChoose from './chooseAuthString';

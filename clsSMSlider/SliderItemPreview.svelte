@@ -11,6 +11,8 @@
     import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import { AH, XMLToJSON, onUserAnsChange } from '../helper/HelperAI.svelte';
+    import './css/slider.min.css';
+
     export let xml;
     export let uxml;
     export let showAns;
@@ -68,17 +70,17 @@
             }
         }
 	}
-    function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'stylesheet',
-            as: 'style'
-        }
-        AH.createLink(window.itemFolder + 'clsSMSlider/css/slider.min.css', config);
+    // function loadLibs() {
+    //     let config = {
+    //         preload: true,
+    //         type: 'stylesheet',
+    //         as: 'style'
+    //     }
+    //     AH.createLink(window.itemFolder + 'clsSMSlider/css/slider.min.css', config);
 		
-    }
+    // }
     onMount(() => {
-        loadLibs();
+        //loadLibs();
         loadModule(xml);
         // used for native team
         if (window.inNative) {

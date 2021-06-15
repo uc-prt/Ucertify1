@@ -15,7 +15,7 @@
 	import './libs/codemirror.min.css';
     import './libs/monokai.css';
     import './libs/simplescrollbars.css';
-	import './Langlibs/webitem.min.css';
+	import './libs/webitem.min.css';
 	
 	export let xml;
 	export let uaXML;
@@ -146,17 +146,17 @@
         
 	})
 
-	function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'stylesheet',
-            as: 'style'
-        }
-        AH.createLink(window.itemFolder + 'clsSMWeb/libs/codemirror.min.css', config);
-        AH.createLink(window.itemFolder + 'clsSMWeb/libs/monokai.css', config);
-        AH.createLink(window.itemFolder + 'clsSMWeb/libs/simplescrollbars.css', config);
-		AH.createLink(window.itemFolder + 'clsSMWeb/libs/webitem.min.css', config);
-    }
+	// function loadLibs() {
+    //     let config = {
+    //         preload: true,
+    //         type: 'stylesheet',
+    //         as: 'style'
+    //     }
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/codemirror.min.css', config);
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/monokai.css', config);
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/simplescrollbars.css', config);
+	// 	AH.createLink(window.itemFolder + 'clsSMWeb/libs/webitem.min.css', config);
+    // }
 
 	// called once throughtout the program execution just after render method
 	onMount(async ()=> {
