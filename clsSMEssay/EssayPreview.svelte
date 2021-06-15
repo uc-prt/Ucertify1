@@ -50,6 +50,7 @@
             buttonList: [
                 ['formatBlock'],
                 ['bold', 'italic', 'underline'],
+                ['link'],
                 ['list', 'outdent', 'indent', 'align'],
                 ['removeFormat'],
             ],
