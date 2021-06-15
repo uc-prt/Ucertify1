@@ -664,7 +664,6 @@
             handleReviewClick = {handleReviewMode}
         />
     </div>
-    
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">
         <div class="categorycontainer center-block {(windowwidth > 1200) ? 'span9' : ''}">
             {#if state.xml}

@@ -377,11 +377,11 @@
 							on:keyup = {handleMaxwidth.bind(this)} 
 							on:change = {handleMaxwidth.bind(this)} 
 						/>
-                        <span class ='d-inline-block mt-sm pt-sm ml-1 width20 float-left'>px</span>
+                        <span class ='d-inline-block mt-2 ml-1 width20 float-left'>px</span>
                     </div>
                 </div>
                 <div class = "table-responsive mt-4 d-flex align-items-center">
-                    <table class = "table table-bordered relative w-75 ml-0 mt-0" id = "my_table">
+                    <table class = "table table-bordered relative w-100 ml-0 mt-0" id = "my_table">
                         <thead>
                             <tr class = "table-head">
                                 <th 
@@ -436,7 +436,7 @@
                                                 id = {data.id}  
                                                 on:input = {updateTermValue} 
                                                 value = {data.text}
-                                                class = "form-control form-control-md width96 float-left min_height_38" style = "outline: none;height: 38px;"
+                                                class = "form-control form-control-md width_90 float-left min_height_38 mr-2" style = "outline: none;height: 38px;"
                                                 
                                             />
                                             <div 
@@ -471,7 +471,7 @@
                     </table>
                 </div>
                 <small class = "text-danger font13"><strong>* {l.note_label}</strong> {l.comment_choiceMatrix}</small>
-                <div class = "text-center" style = {'width:80%;'}>
+                <div class = "text-center" style = {'width:100%;'}>
                         <button 
                             type = "button" 
                             class = "btn btn-outline-primary btn-sm add_stem pr-md ml-2 px-2" 
@@ -586,8 +586,8 @@
 	height: 34px !important;
 }
 
-.width96 {
-	width: 96%;
+.width_90 {
+	width: 90%;
 }
 
 

@@ -15,7 +15,7 @@
 	import './libs/codemirror.min.css';
     import './libs/monokai.css';
     import './libs/simplescrollbars.css';
-	import './Langlibs/webitem.min.css';
+	import './libs/webitem.min.css';
 	
 	export let xml;
 	export let uaXML;
@@ -152,10 +152,10 @@
     //         type: 'stylesheet',
     //         as: 'style'
     //     }
-    //     AH.createLink(baseUrlTheme + 'clsSMWeb/libs/codemirror.min.css', config);
-    //     AH.createLink(baseUrlTheme + 'clsSMWeb/libs/monokai.css', config);
-    //     AH.createLink(baseUrlTheme + 'clsSMWeb/libs/simplescrollbars.css', config);
-	// 	AH.createLink(baseUrlTheme + 'clsSMWeb/libs/webitem.min.css', config);
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/codemirror.min.css', config);
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/monokai.css', config);
+    //     AH.createLink(window.itemFolder + 'clsSMWeb/libs/simplescrollbars.css', config);
+	// 	AH.createLink(window.itemFolder + 'clsSMWeb/libs/webitem.min.css', config);
     // }
 
 	// called once throughtout the program execution just after render method
