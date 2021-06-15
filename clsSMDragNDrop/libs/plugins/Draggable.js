@@ -190,7 +190,9 @@ export default class Draggable {
                     this.target.style.opacity = '1';
                     this.target = null;
                 }
-                this.target.classList.remove('drop-hover');
+                if (this.target != null) {
+                    this.target.classList.remove('drop-hover');
+                }
             });
         }
     };
