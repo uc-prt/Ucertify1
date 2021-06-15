@@ -338,13 +338,13 @@
     </div>
 {:else}
     <div class="hotspot-token-preview" tabindex="0">
+        <center>
         <ItemHelper 
             on:setReview={setReview}
             on:unsetReview={unsetReview}
             handleReviewClick={handleReviewClick}
             reviewMode={state.isReview}
         />
-        <center>
         <div 
             class="token_highlight_heading font17 p-2 text-left"
             style="
@@ -356,11 +356,13 @@
             {l.token_highlight}
         </div>
         <div
-            class="p-2 word_break"
+            class="p-2"
             style="
                 max-width: 600px;
                 border: 2px solid #d9e7fd;
                 display: flow-root;
+                text-align: left;
+                justify-content: left;
             "
         >
             {#if state.itemLayout}
@@ -372,18 +374,16 @@
                         {data.value = data.value.replace(/#cm/g, ',')}
                     {/if}
                     {#if data.value == "," || data.value == "."}
-                        <div class="float-left position-relative" style="width: 1.5px; height: 1px">
+                        <div class="float-left position-relative d-inline" style="width: 1.5px; height: 1px">
                             <span
-                                class="float-left position-absolute top2"
-                                style="left: -1.5px"
-                            >
-                                {data.value}
-                            </span>
+                                class="float-left position-absolute"
+                                style="left: -2.5px"
+                            >{data.value}</span>
                         </div>
                     {:else if data.value == "#newline#"}
                         <br/>
                     {:else}
-                        <div key={i} class="tokenHeader position-relative float-left">
+                        <div key={i} class="tokenHeader position-relative float-left d-inline">
                             <span
                                 data-id={"ID"+i}
                                 data-correct={getCorrect("ID"+i)}
@@ -395,7 +395,7 @@
                                     margin: 2px;
                                     user-select: none;
                                     border: 1px solid transparent;
-                                    padding: 1px 3px 1px 3px;
+                                    padding: 1px 3px;
                                     border-radius: 3px;
                                     pointer-events: {state.pointerEvents}
                                 "
