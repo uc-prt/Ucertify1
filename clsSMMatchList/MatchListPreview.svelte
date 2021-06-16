@@ -296,7 +296,6 @@
 	}
 
 	beforeUpdate(()=>{
-		debugger;
 		// checking for the change in the new xml
 		if(state.xml != xml) {
 			state.xml = xml;
