@@ -23,7 +23,7 @@
 	export let cmed;
 	export let xml;
 	export let isReview;
-	export let uxml;
+	export let uaXML;
 	export let editorState;
 
 	let listheading1 = "";
@@ -103,6 +103,7 @@
 	}
 	// for displaying the answer
 	function displayAns() {
+		debugger;
 		let ans = ucMlid.checkAns("#"+containerID);
 
 		onUserAnsChange({uXml:ans.u,ans:ans.ans});
@@ -296,6 +297,7 @@
 	}
 
 	beforeUpdate(()=>{
+		debugger;
 		// checking for the change in the new xml
 		if(state.xml != xml) {
 			state.xml = xml;
@@ -339,9 +341,9 @@
 
 	// it basically parse the user answer and calls only one time in test area 
 	function parseUserAnswer() {
-		let matchUa = XMLToJSON(uxml);
-		if(uxml && matchUa.smans && matchUa.smans.matchlist && matchUa.smans.matchlist._userans) {
-			let matchUa = XMLToJSON(uxml);
+		let matchUa = XMLToJSON(uaXML);
+		if(uaXML && matchUa.smans && matchUa.smans.matchlist && matchUa.smans.matchlist._userans) {
+			let matchUa = XMLToJSON(uaXML);
 			let listseq1 = matchUa.smans.matchlist._list1seq.split(",");
 			let listseq2 = matchUa.smans.matchlist._list2seq.split(",");
 			originalseq1 = ((matchUa.smans.matchlist._originalseq1)? matchUa.smans.matchlist._originalseq1.split(",") : "" );
@@ -402,7 +404,7 @@
 	// it is called whenever xml is updated 
 	function showModule() {
 		// for checking user ans
-		if(!uxml) {
+		if(!uaXML) {
 			// remove the user ans if there is no user ans
 			ucMlid.removeUserAns();
 		}
