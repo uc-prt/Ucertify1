@@ -14,7 +14,7 @@
     import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import FillInTheBlanksToolbar from '../clsSMFill/FillInTheBlanksToolbar.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	
+	import '../css/mathquill.css';
 
 	
 
@@ -147,14 +147,14 @@
 	})
 
 
-	function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'stylesheet',
-            as: 'style'
-        }
-		AH.createLink(baseUrlTheme+"css/mathquill.css", config);
-	}
+	// function loadLibs() {
+    //     let config = {
+    //         preload: true,
+    //         type: 'stylesheet',
+    //         as: 'style'
+    //     }
+	// 	//AH.createLink(baseUrlTheme+"css/mathquill.css", config);
+	// }
 
 	// $: {
 	// 	if(state.isMathquill) {
