@@ -5,6 +5,7 @@
     import sunEditor from 'suneditor';
     import plugins from 'sunEditor/src/plugins';
     import EssayNewReact from './eaasy_new_react.js';
+    import '../helper/sunEditor/src/assets/css/suneditor.css';
 
     export let xml;
     export let uaxml;
@@ -136,9 +137,6 @@
         ucEssay.modeOn('');
     }
 </script>
-<svelte:head>
-    <link href="{window.baseUrlTheme || window.baseThemeURL}helper/sunEditor/src/assets/css/suneditor.css" rel="stylesheet" />
-</svelte:head>
 <main>
     <p id ="demo"></p>
     <div>
