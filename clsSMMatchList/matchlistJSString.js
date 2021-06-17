@@ -361,7 +361,8 @@ ucMlid.bindKeyup = function(mlid) {
             _this.classList.remove("copiedclr");
         })
         copied_id = copy_drag[0].id;
-        copy_drag.className = "copiedclr";
+        //copy_drag.className = "copiedclr";
+        AH.select(copy_drag[0],'addClass','copiedclr');
     }
 
     ucMlid.cleanTitle = function(){
@@ -385,6 +386,7 @@ ucMlid.bindKeyup = function(mlid) {
     } // No Need to fix
 
     function pasteDraggable() {
+        
         //var _dropthis = jQuery(mlid).find(".ks:focus");
         let _dropthis = AH.find(mlid,".ks:focus");
         if (copied_id != "" /*&& _dropthis.hasClass('ui-droppable')*/ ) {
@@ -444,7 +446,7 @@ ucMlid.bindKeyup = function(mlid) {
             //-------------------------------
 
             //jQuery(mlid).find("#lines").remove();
-            AH.find(mlid,"#lines", {action:'remove'});
+            //AH.find(mlid,"#lines", {action:'remove'}); // Fixed the line css issues
             let circle;
             //var str = '<svg id="lines"><marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" stroke-width = "2" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>'; @eslint issues solved
             let str = '<svg id="lines">';
@@ -456,8 +458,8 @@ ucMlid.bindKeyup = function(mlid) {
                 base = index[2];
                 index = index[0].split("_");
                 circle = '<div class="matchlist-delete center-block" d="M' + (parseInt(index[1]) + 20) + ',' + index[0] + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '" base="' + base + '" style="left:' + (parseInt(index[1]) ) + 'px;top:' + (parseInt(index[0]) - 9) + 'px">&times</div>';
-                str += '<path fill="none" d="M' + (parseInt(index[1]) + 20) + ',' + (parseInt(index[0]) -5) + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '"  base="' + base + '" stroke-width = "2" stroke="' + clr + '"></path>';
-                str += '<path fill="none" d="M' + (parseInt(index[1])+20) + ',' + index[0] + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '" marker-end="url(#triangle)" class="line" base="'+base+'" stroke-width = "50"></path>';
+                str += '<path fill="none" d="M' + (parseInt(index[1]) + 20) + ',' + (parseInt(index[0]) - 5) + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '"  base="' + base + '" stroke-width = "2" stroke="' + clr + '"></path>';
+                str += '<path fill="none" d="M' + (parseInt(index[1])+20) + ',' + (parseInt(index[0]) - 5) + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '" marker-end="url(#triangle)" class="line" base="'+base+'" stroke-width = "50"></path>';
                 str += '<g transform="translate(' + (parseInt(value[1]) - 11) + ',' + (parseInt(value[0]) - 6) + ') rotate(0) scale(4) translate(0,0) scale(.3)" base="' + base + '"><g fill="' + clr + '" stroke="none" ><path d="M 0 0 L 10 5 L 0 10 z" /></g></g>';
             });
             str += '</svg>';
