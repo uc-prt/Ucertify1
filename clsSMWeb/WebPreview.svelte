@@ -23,8 +23,10 @@
     import './libs/simplescrollbars.css';
     import './libs/webitem.min.css';
 
+    import '../src/libs/codemirror';
+    import Split from '../src/libs/split';
+
     export let inQuizPlayer;
-    export let editorState;
     export let xml;
     export let uaXML;
     export let isReview;
@@ -188,103 +190,22 @@
             }
         }
 
-        setTimeout(function () {
-            if (typeof (CodeMirror) == "function") {
-                // initialize the html, css and js editor by converting textareas having id 'html_editor', 'css_editor', 'js_editor' in html, css and js editor
-                renderCodeMirror();
-            } else {
-                //jQuery(function () {
-                    AI.ajax({
-                        // Specifies the type of request
-                        //type: "GET",
-                        // Specifies the URL to send the request to
-                        url: themeUrl + "src/libs/codemirror.js",
-                        // Denotes that request will not be handled asynchronously
-                        //async: false,
-                        // Denotes data type expected of the server response
-                        //dataType: "script",
-                        // Denotes that browser will cache the requested pages
-                        //cache: true,
-                        // Runs the function when the request succeeds
-                        // success: function (data) {
-                        //     let sc = document.createElement("script");
-                        // // sets the data received from 'codemirror.js' file inside the script tag
-                        //     sc.innerHTML = data;
-                        // // appends this created script tag in body element of the document
-                        //     document.body.appendChild(sc);   
-                            // renderCodeMirror();
-                        // }
-                    }).then(function(data) {
-                        let sc = document.createElement("script");
-                        // sets the data received from 'codemirror.js' file inside the script tag
-                            sc.innerHTML = data;
-                        // appends this created script tag in body element of the document
-                            document.body.appendChild(sc);   
-                            renderCodeMirror();
-                            // Fixed codemirror alignments
-                            // document.querySelectorAll('.CodeMirror').forEach(function(el,i){
-                            //     el.CodeMirror.refresh();
-                            // })
+        setTimeout(()=>{
+            renderCodeMirror();
 
-                    }) 
-                //});
+            if (document.querySelector("#splitterWeb")) {
+                // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
+                splitter();
+                // returns from the function to prevent from re-appened the code if it was already defined
+                return true;
             }
-            //jQuery(function () {
-                    AI.ajax({
-                    // Specifies the type of request
-                   // type: "GET",
-                    // Specifies the URL to send the request to
-                    url: themeUrl + "src/libs/split.js",
-                    // Denotes that request will not be handled asynchronously
-                    //async: false, 
-                   // // Denotes data type expected of the server response
-                   // dataType: "script",
-                    // Denotes that browser will cache the requested pages
-                   // cache: true,
-                    // Runs the function when the request succeeds
-                /*    success: function (data) {
-                        if (document.querySelector("#splitterWeb")) {
-                            // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                            splitter();
-                            // returns from the function to prevent from re-appened the code if it was already defined
-                            return true;
-                        }
-                        // creates script element
-                        let script_data = document.createElement("script");
-                        // sets the data received from 'splitter.js' file inside the script tag
-                        script_data.innerHTML = data;
-                        // appends this created script tag in body element of the document
-                        document.body.appendChild(script_data);
-                        if (!inQuizPlayer) {
-                            // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                            splitter();
-                        } else {
-                            // sets the width and floating property of the js, html, css and result editor
-                            changeStyle();
-                        }
-                    }   */
-                }).then(function(data){
-                    if (document.querySelector("#splitterWeb")) {
-                            // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                            splitter();
-                            // returns from the function to prevent from re-appened the code if it was already defined
-                            return true;
-                        }
-                        // creates script element
-                        let script_data = document.createElement("script");
-                        // sets the data received from 'splitter.js' file inside the script tag
-                        script_data.innerHTML = data;
-                        // appends this created script tag in body element of the document
-                        document.body.appendChild(script_data);
-                        if (!inQuizPlayer) {
-                            // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                            splitter();
-                        } else {
-                            // sets the width and floating property of the js, html, css and result editor
-                            changeStyle();
-                        }
-                });
-            //});
+            if (!inQuizPlayer) {
+                // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
+                splitter();
+            } else {
+                // sets the width and floating property of the js, html, css and result editor
+                changeStyle();
+            }
         }, 500);
 
     /*    jQuery(document).off('click', '#answerCheck').on('click', '#answerCheck', function () {

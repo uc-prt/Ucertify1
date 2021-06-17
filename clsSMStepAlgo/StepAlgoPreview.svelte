@@ -16,8 +16,6 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import '../css/mathquill.css';
 
-	
-
     let step_xml;
     let smans = {};
     let usans = {};
@@ -44,12 +42,7 @@
     export let xml;
     export let stopPreviewUpdate;
 	export let isReview;
-	export let editorState;
 	export let uxml;
-
-
-
-	
 
     let stateData = writable({
             blank                   : true,
@@ -98,12 +91,7 @@
 				}
 			}
 		}
-		//if (this.props.remedStatus != nextProps.remedStatus) {
-
-			
-			
-		//}
-
+	
 		if (xml != state.xml) {
 			state.xml = xml;
 			if (stopPreviewUpdate == true) return false;
@@ -118,54 +106,14 @@
 			let new_xml = XMLToJSON(state.xml);
 			loadModule(new_xml);
 		}
-
-		// if (state.review != isReview && editorState) {
-        //         stateData.update( (item) => {
-        //             item.review = isReview;
-        //             return item;
-        //         });
-        //         if (isReview) {
-        //             setReview(); 
-        //         } else {
-        //             unsetReview();
-        //         }
-        // }
-
-		
-		// if (isReview) {
-		// 	var timer = setTimeout(function() {
-		// 		setReview();
-		// 		clearTimeout(timer);
-		// 	},500);	
-		// } else {
-		// 	var timer_next = setTimeout(function() {
-		// 		unsetReview();
-		// 		clearTimeout(timer_next);
-		// 	},200);
-		// }
-		
 	})
-
-
-	// function loadLibs() {
-    //     let config = {
-    //         preload: true,
-    //         type: 'stylesheet',
-    //         as: 'style'
-    //     }
-	// 	//AH.createLink(baseUrlTheme+"css/mathquill.css", config);
-	// }
-
-	// $: {
-	// 	if(state.isMathquill) {
-	// 		alert('checking');
-	// 		loadLibs();
-	// 	}
-	// }
 
 	onMount(()=>{
 		window.J = ju;
 		AI.set('stepAlgo', this);
+
+		AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
+
 		if(window.inNative) {
 			window.getHeight && window.getHeight();
         }
@@ -173,24 +121,6 @@
 			//jQuery('.toolbar_container_one').addClass('h-imp');
 			AH.selectAll('.toolbar_container_one','addClass','h-imp');
 		}, 100);
-
-		// jQuery(document).on('click keyup change focus', '.edit_step', function(e) {
-			
-		// 	console.log(e.type);
-		// 	let element = jQuery(this);
-		// 	if (element.hasClass('mathquill')) {
-		// 		mathquillAns(element, false);	
-		// 	} else {
-		// 		let inp_id = element.attr('id');	
-		// 		let inp_div = element.closest('div').attr('seq');
-		// 		let inp_val = element.val();
-		// 		usans = createAns(usans, inp_id, inp_div, inp_val);
-		// 		special_module.usans = usans;
-		// 		let smans_overall = smans;
-		// 		setUserAns(usans);
-		// 	}
-		// });
-
 
 		AH.listen(document,'click','.edit_step',(_element) => {
 			setOutline(_element)
@@ -318,13 +248,8 @@
 
 		if(window.inNative) {
 			window.checkReview = (isReview) => isReview ? self.setReview() : self.unsetReview();
-			AH.addScript("https://ucertify.com/themes/bootstrap4/prepengine/mathquill.js"); //This file should be downloaded and used locally.
-		} else {
-			//console.log("checking path =>"+editor.baseUrlTheme+"prepengine/mathquill.js");
-			AH.addScript("", editor.baseUrlTheme + "clsSMStepAlgo/libs/mathQuill_new.js", { callback: function () {
-
-			}});
 		}
+		AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
 	})
 
 	function setOutline(_element) {
