@@ -484,4 +484,11 @@
 	:global(.correct_incorrect_icon) {
 		z-index: 9 !important;
 	}
+	:global(input.dnd_textbox) {
+		text-align: center;
+		border-radius: 4px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
 </style>
