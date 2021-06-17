@@ -1,3 +1,6 @@
+<!-- <svelte:head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</svelte:head> -->
 
 <script>
 /**
@@ -10,13 +13,16 @@
  */
 	import {ucFill} from './fillJSString';
 	import ju from '../src/libs/jslib';
-	//import smVal from '../lib/ValidateItems';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
+
+	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
 	import '../css/mathquill.css';
+	import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
+	import './libs/mathQuill_new';
 
 	export let manual_grade;
 	export let xml;
@@ -58,7 +64,6 @@
 	onMount(()=> {
 		window.J = ju;
 		ucFill.setUpdate(updateModule.bind(this));
-		AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		if (state.isMathquill) {
