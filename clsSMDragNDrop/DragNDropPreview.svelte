@@ -488,7 +488,7 @@
 		text-align: center;
 		border-radius: 4px;
 		background-color: #fff;
-    	border: 1px solid #ccc;
-    	border-radius: 4px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
 	}
 </style>
