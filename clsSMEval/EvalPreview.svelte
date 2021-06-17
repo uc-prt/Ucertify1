@@ -15,6 +15,7 @@
 	import l from '../src/libs/editorLib/language';
 	import { AH, onUserAnsChange } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
+	import '../src/libs/codemirror';
 
 	export let xml;
 	export let uxml;
@@ -197,19 +198,21 @@
 		AH.select('#preview', 'hide');
 		state.xml = xml;
 		let baseUrl = location.origin;
-		if (typeof(CodeMirror) == "function") {
-			renderCodeMirror();
-		} else {
-			AH.ajax({
-                type: "GET",
-                url: baseUrl + "/itemJs/codemirror.js",
-                dataType: "script",
-            }).then((data)=> {
-				console.log();
-                AH.addScript(data, "", {target: "body"});
-                renderCodeMirror();
-            })
-		}
+		// if (typeof(CodeMirror) == "function") {
+		// 	renderCodeMirror();
+		// } else {
+		// 	AH.ajax({
+        //         type: "GET",
+        //         url: baseUrl + "/itemJs/codemirror.js",
+        //         dataType: "script",
+        //     }).then((data)=> {
+		// 		console.log();
+        //         AH.addScript(data, "", {target: "body"});
+        //         renderCodeMirror();
+        //     })
+		// }
+
+		renderCodeMirror();
 
 		AH.listen(document, 'click', '#answerCheck', remediationMode.bind(this));
 		
