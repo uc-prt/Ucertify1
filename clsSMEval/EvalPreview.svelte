@@ -32,7 +32,9 @@
 	let xmlArr = [];
 	let langArr = [];
 	let lang_type = [];
-	//let xml = !(/<SMXML/gi.test(window.uaXML)) || !window.uaXML ? window.QXML : window.uaXML;
+	window.QXML = xml;
+	window.uaXML = uxml;
+	xml = !(/<SMXML/gi.test(uxml)) || !uxml ? xml : uxml;
 	let mode = document.querySelector(".switch-input.switch-input");
 	let showPre = "";
 	let showPost = "";
@@ -49,6 +51,8 @@
 	let is_graph = 0;
 	let ignore_error = 0;
 	let ignore_formatting = 0;
+	let ignore_reset_db = 0;
+	let is_pre_tag  = 0;
 	let marker = [];
 	let state = {};
 	let hdd = writable({
@@ -80,10 +84,12 @@
 	onMount(()=> {
 		loadLibs()
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
-		db_name = findAttribute(xml, 'db_name');
-		is_graph = findAttribute(xml, 'is_graph');
-		ignore_error = findAttribute(xml, 'ignore_error');
-		ignore_formatting = findAttribute(xml, 'ignore_formatting');
+		db_name = findAttribute(window.QXML, 'db_name');
+		is_graph = findAttribute(window.QXML, 'is_graph');
+		ignore_error = findAttribute(window.QXML, 'ignore_error');
+		ignore_formatting = findAttribute(window.QXML, 'ignore_formatting');
+		ignore_reset_db = findAttribute(window.QXML, 'ignore_reset_db');
+		is_pre_tag = findAttribute(window.QXML, 'is_pre_tag');
 		let smxml = (xml).match(/<smxml(.*?)>/gim);
 		let type = smxml.toString().match(/type="(.*?)"|type='(.*?)'/gim);
 		type = type[0].replace(/type=|"/gim, '');
@@ -133,13 +139,13 @@
 		showEditor = parseInt(findAttribute(xml, "showeditor", "SMXML"));
 		showEditor = (Number.isNaN(showEditor)) ? 2 : showEditor;
 		if (window.QXML) {
-			if (window.isReviewMode) {
+			if (isReview) {
 				setReview();
 			} else {
 				unsetReview();
 			}
 		}
-		if (!window.isReviewMode && editor ) { //re-rendering codeMirror
+		if (!isReview && editor ) { //re-rendering codeMirror
 			window.uaXML = window.uaXML ? window.uaXML : window.QXML;
 			UXML = window.uaXML;
 			editor.toTextArea();
@@ -206,7 +212,6 @@
 		}
 
 		AH.listen(document, 'click', '#answerCheck', remediationMode.bind(this));
-		AH.listenAll('#learn,#next,#previous', 'click', submitEvalAns.bind(this));
 		
 		//state.goDark = !state.goDark;
 		/*
@@ -253,6 +258,7 @@
 		}
 		//@prabhat: removed the extra ajax call from submit click
 		// answerCheckEvalpro();
+		submitEvalAns();
 	}
 
 	function unsetReview() {
@@ -288,7 +294,7 @@
 		try {
 			$usedLine = editor.lineCount();
 			language = state.lang_type;
-			disableline = !window.isReviewMode ? stringBetween(xml, "enableline") : 0;
+			disableline = !isReview ? stringBetween(xml, "enableline") : 0;
 			var max_enable_line = disableline.split(",");
 			max_enable_line = parseInt(max_enable_line[max_enable_line.length-1]);
 			if ($usedLine > max_enable_line) {
@@ -557,7 +563,7 @@
 			}
 		});
 
-		if (window.isReviewMode) {
+		if (isReview) {
 			//@prabhat: removed the extra ajax call from submit click
 			// answerCheckEvalpro();
 			editor.setOption("readOnly", true);
@@ -670,6 +676,9 @@
 	function submitEvalAns() {
 		let _uxml = AH.select("#special_module_user_xml").value;
 		_uxml = _uxml || window.QXML;
+		if ( _uxml == undefined || _uxml == 'undefined' || _uxml == '') { 
+			return; 
+		}
 		AH.ajax({
 			url: evalpro_url, 
 			data: {
@@ -681,15 +690,12 @@
 			},
 		}).then((response)=> {
 			var result = JSON.parse(response);
-			result = result?.extAnswerStr;
-			var useans = result?.answer;
-			var new_xml = result?.new_xml;
 			var save_result = {};
-			save_result.ans = useans;
-			save_result.uXml = new_xml;
+			save_result.ans =  result?.answer;
+			save_result.uXml = result?.new_xml;
 			onUserAnsChange(save_result); // To save the answer
 			// Need to move this code in DE 
-
+			result = result?.extAnswerStr;
 			if (result.indexOf("<submit_output>") != -1 ) {
 				result = result.split("<submit_output>");
 				var error_detail = result[1].split("||");

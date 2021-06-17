@@ -103,7 +103,6 @@
 	}
 	// for displaying the answer
 	function displayAns() {
-		debugger;
 		let ans = ucMlid.checkAns("#"+containerID);
 
 		onUserAnsChange({uXml:ans.u,ans:ans.ans});
@@ -297,7 +296,6 @@
 	}
 
 	beforeUpdate(()=>{
-		debugger;
 		// checking for the change in the new xml
 		if(state.xml != xml) {
 			state.xml = xml;
