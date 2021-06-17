@@ -10,7 +10,7 @@ const app = new App({
 		ansStatus: 0,
 		isReview: window.isReviewMode || false,
 		smqCounter : window.idCounter,
-		CM : window.idCounter
+		cmed : window.idCounter
 	}
 });
 
