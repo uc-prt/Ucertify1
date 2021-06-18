@@ -490,13 +490,13 @@ ucMlid.bindKeyup = function(mlid) {
       
         var _dropthis = AH.find(mlid,".ks:focus");
         if (copied_id != "") {
-
-            var _ui_drag = AH.find(mlid,"#" + '[id="'+copied_id+'"]' + "");
+            //var _ui_drag = AH.find(mlid,"#" + '[id="'+copied_id+'"]' + "");
+            var _ui_drag = AH.select(mlid+' #'+copied_id);
             _ui_drag.classList.remove('copiedclr');
             _dropthis.style.position="relative";
             var drop_id = _ui_drag.getAttribute('data-droped') ? _ui_drag.getAttribute('data-droped') : _ui_drag.getAttribute('id');
             _dropthis.setAttribute('data-droped', drop_id);
-            _dropthis.innerHtml = AH.select(_ui_drag).innerHtml;
+            _dropthis.innerHTML = _ui_drag.innerHTML;
             _dropthis.setAttribute('data-userans', drop_id);
             let ui_drag_style = window.getComputedStyle(_ui_drag);
 			_dropthis.style.backgroundColor = ui_drag_style.getPropertyValue('background-color');
@@ -557,8 +557,8 @@ ucMlid.bindKeyup = function(mlid) {
         let top = 0;
         var _removethis = AH.find(mlid,".ks:focus");
         top = parseInt(_removethis.offsetTop + _removethis.clientHeight / 2) + "_" + parseInt(_removethis.offsetLeft + _removethis.offsetWidth);
-        AH.clone(_removethis);
-        _removethis.classList.add("clone");
+        //AH.clone(_removethis);
+        //_removethis.classList.add("clone");
         AH.setCss(_removethis,{
             "position": "absolute",
             "top":  _removethis.offsetTop,
@@ -568,7 +568,7 @@ ucMlid.bindKeyup = function(mlid) {
         })
         _removethis.removeAttribute("style")
         _removethis.style.position = "relative";
-        AH.remove(".clone");
+        //AH.remove(".clone");
         if(_removethis.classList.contains("ui-droppable")) {
             _removethis.classList.remove("dropped");
             _removethis.innerHTML = "Place Here";
@@ -670,22 +670,22 @@ ucMlid.bindKeyup = function(mlid) {
                     break;
                 case 'enter':
                     event.preventDefault();
-                    if (checkFocus("list1") || checkFocus("list4")) {
-                        copyDraggable();
-                    } else if (checkFocus("list2")) {
-                        pasteDraggable();
-                    } else if (checkFocus("list3")) {
+                    if (checkFocus("list3")) {
                         pasteDraggableList3();
+                    }
+                    else if (checkFocus("list2")) {
+                        pasteDraggable();
+                    } else if (checkFocus("list1") || checkFocus("list4")) {
+                        copyDraggable();
                     }
                     break;
                 case 'delete':
                     event.preventDefault();
-                    if (checkFocus("list1")) {
-                        removeDraggable();
-                    } else if (checkFocus("list3")) {
+                    if (checkFocus("list3")) {
                         removeDraggableList3();
-                    }
-                    break;
+                    } else  if (checkFocus("list1")) {
+                        removeDraggable();
+                    } 
                 case 'esc':
                     if (checkFocus("ks")) {
                         event.preventDefault();
