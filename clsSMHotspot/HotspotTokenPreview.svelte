@@ -250,7 +250,7 @@
             });
         });
         let ans = (correctLength == resultLength && resultLength == state.userAns.length) ? true : false;
-        onUserAnsChange({ans: ans, uXml: ""});
+        onUserAnsChange({ans: ans, uXml: uxml});
 
         showAns && showAns(ans ? "Correct" : "Incorrect");
     }
@@ -283,7 +283,8 @@
             window.getHeight && window.getHeight();
         }
         // updating the uaXml
-        AH.select("#special_module_user_xml", 'value', "<smans><div userAns='"+state.userAns.join()+"'></div></smans>")
+        uxml = "<smans><div userAns='" + state.userAns.join()+"'></div></smans>";
+        // AH.select("#special_module_user_xml", 'value', "<smans><div userAns='"+state.userAns.join()+"'></div></smans>")
         // check for correct answer
         checkAns();
     }
