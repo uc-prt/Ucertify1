@@ -43,7 +43,7 @@
         pointerEvents: "auto",
         checkLockCell: "",
         lockedCellValue: "",
-        pointerEvents: ""
+        //pointerEvents: ""
     }
 
     onMount(() => {
