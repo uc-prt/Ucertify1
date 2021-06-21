@@ -723,9 +723,9 @@
 				</div>
 				<div class={btnflag == 0 ? "h":""}>
 					<div class="btn-group clearfix review_default h" id="sm_controller_default">
-						<button type="button" tabindex="0" class="btn btn-light correct-ans clr" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
-						<button type="button" tabindex="0" class="btn btn-primary both-ans clr" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
-						<button type="button" tabindex="0" class="btn btn-light your-answer clr" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
+						<button type="button" tabindex={0} class="btn btn-light correct-ans clr" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
+						<button type="button" tabindex={0} class="btn btn-primary both-ans clr" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
+						<button type="button" tabindex={0} class="btn btn-light your-answer clr" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -749,7 +749,7 @@
 									data-correctans={data.correctans}
 									data-userans={data.userans}
 									style={'position:relative;'}
-									tabindex="0"
+									tabindex={0}
 									draggable = "true"
 									data-originalseq={(data.originalseq)?data.originalseq:"0"}
 								>
@@ -769,7 +769,7 @@
 							data-userans=""
 							dropzone = "1"
 							style={'position:relative;'}
-							tabindex="0"
+							tabindex={0}
 							data-originalseq={(data.originalseq)?data.originalseq:"0"}
 						>
 							{@html setList2Html(data,alphabet[i])}
@@ -785,7 +785,7 @@
 									<div 
 										id={data.id}
 										class="list1"
-										tabIndex="0"
+										tabindex={0}
 										data-correctans={data.correctans}
 										data-userans={data.userans}
 										
@@ -805,7 +805,7 @@
 										mrel={data.id}
 										dropzone = "1"
 										draggable = "true"
-										tabIndex="0"
+										tabindex={0}
 										aria-label={`Droped`}
 										data-originalseq={(data.originalseq)?data.originalseq:"0"}
 									>
@@ -825,7 +825,7 @@
 									draggable = "true"
 
 									data-userans=""
-									tabindex="0"
+									tabindex={0}
 									data-originalseq={(data.originalseq)?data.originalseq:"0"}
 								>
 									{@html setList2Html(data,alphabet[i])}

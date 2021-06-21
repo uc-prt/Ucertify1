@@ -669,12 +669,12 @@
             {#if state.xml}
                 {#each state.xml.category.categories as datai, index}
                     <div class="row np mb-3" key={index}>
-                        <div class="prevbutton col-lg-1 col-md-1 col-sm-2 col-2 px-sm-3 px-0 prevbutton_{index}" tabindex="0" title="previous" on:click|preventDefault="{prevbutton}" on:keydown="{keydownAda}">
+                        <div class="prevbutton col-lg-1 col-md-1 col-sm-2 col-2 px-sm-3 px-0 prevbutton_{index}" tabindex={0} title="previous" on:click|preventDefault="{prevbutton}" on:keydown="{keydownAda}">
                             <span class="icomoon-arrow-left font26 btnGrp"></span>
                         </div>
                         <div class="categoryinnercontainer p-0 r-lg col-lg-10 col-md-10 col-sm-8 col-8">
                             <div class="categorytitle card_border">
-                                <div class="font20 text-center text-dark" tabindex="0" title={datai.text}>{@html datai.text}</div>
+                                <div class="font20 text-center text-dark" tabindex={0} title={datai.text}>{@html datai.text}</div>
                             </div>
                             <div class="categoryitemcontainer p-1 categoryitemcontainer_{index}">
                                 <div class="categoryiteminnercontainer w-100 h-100 text-center">
@@ -684,9 +684,9 @@
                                                 {#if state.correct_match['category_'+ dataj.sequence] == false}
                                                     <div class="element bg-white m-0" seq_no='category_{dataj.sequence}' key={dataj.id} data-tags={dataj.tags} style="display: none">
                                                         {#if dataj.imageurl != ''}
-                                                            <img data-check={index} src="//s3.amazonaws.com/jigyaasa_content_static//{dataj.imageurl}" on:load={onImgLoad} class="img-fluid" tabindex="0" alt="{(dataj.imagealt) ? dataj.imagealt : "No alt of image"}" title={(dataj.imagealt) ? dataj.imagealt : "No alt of image"}/>
+                                                            <img data-check={index} src="//s3.amazonaws.com/jigyaasa_content_static//{dataj.imageurl}" on:load={onImgLoad} class="img-fluid" tabindex={0} alt="{(dataj.imagealt) ? dataj.imagealt : "No alt of image"}" title={(dataj.imagealt) ? dataj.imagealt : "No alt of image"}/>
                                                         {:else if dataj.label != ''}
-                                                            <div class="elementText" tabindex="0" title={dataj.label}>{@html dataj.label}</div>
+                                                            <div class="elementText" tabindex={0} title={dataj.label}>{@html dataj.label}</div>
                                                         {/if}
                                                     </div>
                                                 {/if}
@@ -696,7 +696,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="nextbutton col-md-1 col-lg-1 col-sm-2 col-2 px-sm-3 px-0 nextbutton_{index}" tabindex="0" title="next" on:click="{nextbutton}" on:keydown="{keydownAda}">
+                        <div class="nextbutton col-md-1 col-lg-1 col-sm-2 col-2 px-sm-3 px-0 nextbutton_{index}" tabindex={0} title="next" on:click="{nextbutton}" on:keydown="{keydownAda}">
                             <span class="icomoon-arrow-right-2 font26 btnGrp"></span>
                         </div>
                     </div>
