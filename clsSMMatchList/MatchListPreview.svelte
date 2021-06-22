@@ -23,7 +23,7 @@
 	export let cmed;
 	export let xml;
 	export let isReview;
-	export let uaXML;
+	export let uxml;
 	export let editorState;
 
 	let listheading1 = "";
@@ -339,9 +339,9 @@
 
 	// it basically parse the user answer and calls only one time in test area 
 	function parseUserAnswer() {
-		let matchUa = XMLToJSON(uaXML);
-		if(uaXML && matchUa.smans && matchUa.smans.matchlist && matchUa.smans.matchlist._userans) {
-			let matchUa = XMLToJSON(uaXML);
+		let matchUa = XMLToJSON(uxml);
+		if(uxml && matchUa.smans && matchUa.smans.matchlist && matchUa.smans.matchlist._userans) {
+			let matchUa = XMLToJSON(uxml);
 			let listseq1 = matchUa.smans.matchlist._list1seq.split(",");
 			let listseq2 = matchUa.smans.matchlist._list2seq.split(",");
 			originalseq1 = ((matchUa.smans.matchlist._originalseq1)? matchUa.smans.matchlist._originalseq1.split(",") : "" );
@@ -402,7 +402,7 @@
 	// it is called whenever xml is updated 
 	function showModule() {
 		// for checking user ans
-		if(!uaXML) {
+		if(!uxml) {
 			// remove the user ans if there is no user ans
 			ucMlid.removeUserAns();
 		}
@@ -410,9 +410,9 @@
 		ucMlid.showUserAns("#"+containerID);
 		ucMlid.remove_lines("#"+containerID);
 		ucMlid.modeOn();
-		
-		if(editorState) {
+		if(!editorState) {
 			// if it is open in test area parse the user answer
+			console.log('parseUserAnswer');
 			parseUserAnswer();
 		}
 

@@ -25,7 +25,7 @@
 	export let stopPreviewUpdate;
 	export let editorState;
 	export let isReview; 
-	export let uaXML;
+	export let uxml;
 
     //alert("fisrt",ucChoose.result);
 
@@ -183,7 +183,7 @@
 			
 			var timer = setTimeout(function() {
 				// if there isno user ans found then remove tha nas
-				if (!uaXML) {
+				if (!uxml) {
 					removeUserAns();
 				}
 				
@@ -236,12 +236,13 @@
 		parseXMLPreview(loadXml);
 
 		// checking for user ans (uaXML)
-		if (uaXML) {
-			let uxml = XMLToJSON(uaXML);
+		if (uxml) {
+			//let uaXML = uxml;
+			let uaXML = XMLToJSON(uxml);
 			// if in uxml smans and list is found
-			if (uxml && uxml.SMANS && uxml.SMANS && uxml.SMANS.list) {
+			if (uaXML && uaXML.SMANS && uaXML.SMANS && uaXML.SMANS.list) {
 				// split the user answer with ,
-				let userans = uxml.SMANS.list._useranswer.split(",");
+				let userans = uaXML.SMANS.list._useranswer.split(",");
 				let newCData = [];
 				// iterating through the userans and store the information in localCData
 				for (let i in userans) {

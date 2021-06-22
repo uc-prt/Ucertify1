@@ -21,7 +21,7 @@ if(newXml.smxml.list._row && newXml.smxml.list._col) {
 		target: document.getElementById(window.moduleContainer) || document.body,
 		props: {
 			xml: window.QXML || defXMl,
-			uaXML: window.uaXML,
+			uxml: window.uaXML,
 			ansStatus: 0,
 			isReview: window.isReviewMode || false,
 			smqCounter : window.idCounter,

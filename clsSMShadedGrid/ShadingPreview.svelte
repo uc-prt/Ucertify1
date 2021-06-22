@@ -43,7 +43,7 @@
         pointerEvents: "auto",
         checkLockCell: "",
         lockedCellValue: "",
-        pointerEvents: ""
+        //pointerEvents: ""
     }
 
     onMount(() => {
@@ -119,10 +119,10 @@
     // Set correct answer color
     function setCorrectAnswerColor(id) {
 		// Return grid Color green for correct answer, red for incorrect answer and grey for not performed
-		ansCheck = (state.iconVisible == "" && state.userAns.includes(id)) ? ((getCorrect(id)) ? " gridCorrect" : " gridIncorrect") : ""; 
+		ansCheck =  (state.iconVisible == "" && state.userAns.includes(id)) ? ((getCorrect(id)) ? " gridCorrect" : " gridIncorrect") : ""; 
 		ansNotPerformed = (state.iconVisible == "" && !state.userAns.includes(id)) ? ((getNotPerformed(id)) ? " gridNotPerformed" : "") : ""; 
 		ansCheck = ansCheck + ansNotPerformed;
-		return ansCheck;
+		 return ansCheck;
     }
     
     //to show shaded grid according to uxml
@@ -151,23 +151,23 @@
     // updates the xml after parsing the xml and shows answer
     function parseXMLPreview(MYXML) {
 		try {
-            state.rowCount = MYXML.smxml._rowCount;
-            state.colCount = MYXML.smxml._colCount;
-            state.gridWidth = parseInt(MYXML.smxml._cellWidth) * sizeMultipleIndex;
-            state.gridHeight = parseInt(MYXML.smxml._cellHeight) * sizeMultipleIndex;
-            state.correctAns = MYXML.smxml._correctAns.split(",");
-            state.correctCount = MYXML.smxml._correctCount;
-            state.cellLocked = MYXML.smxml._lockedCell;
-            state.hiddenCell = MYXML.smxml._hiddenCell;
-            state.shadedCell = MYXML.smxml._shadedCell;
-            state.lockedCellValue = MYXML.smxml._lockedCellValue;
-            setDefaultValues();
-			
-			if (uxml) {
-                parseUserAns(uxml);
-			}
+                state.rowCount = MYXML.smxml._rowCount;
+                state.colCount = MYXML.smxml._colCount;
+                state.gridWidth = parseInt(MYXML.smxml._cellWidth) * sizeMultipleIndex;
+                state.gridHeight = parseInt(MYXML.smxml._cellHeight) * sizeMultipleIndex;
+                state.correctAns = MYXML.smxml._correctAns.split(",");
+                state.correctCount = MYXML.smxml._correctCount;
+                state.cellLocked = MYXML.smxml._lockedCell;
+                state.hiddenCell = MYXML.smxml._hiddenCell;
+                state.shadedCell = MYXML.smxml._shadedCell;
+                state.lockedCellValue = MYXML.smxml._lockedCellValue;
+                setDefaultValues();
+                
+                if (uxml) {
+                    parseUserAns(uxml);
+                }
 		} catch(error) {
-            console.warn({'error':error.message,'function name':'parseXMLPreview','File name':'ShadingPreview.js'});
+                console.warn({'error':error.message,'function name':'parseXMLPreview','File name':'ShadingPreview.js'});
         }
 	}
 
