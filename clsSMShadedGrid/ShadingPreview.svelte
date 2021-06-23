@@ -11,6 +11,7 @@
     import { XMLToJSON, AH, onUserAnsChange} from '../helper/HelperAI.svelte';
     import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
+    import "./css/ShadingStyle.min.css";
     export let xml;
     export let uxml;
     export let isReview;
@@ -374,7 +375,7 @@
     }
 
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMShadedGrid/css/ShadingStyle.min.css"} />
+<!-- <link onload="this.rel='stylesheet'" rel="preload" as="style" href={editor.baseUrlTheme + "clsSMShadedGrid/css/ShadingStyle.min.css"} /> -->
 <div class="shadingPreview">
     <ItemHelper 
         on:setReview = {setReview}
