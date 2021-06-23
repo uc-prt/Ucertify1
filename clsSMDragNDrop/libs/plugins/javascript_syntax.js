@@ -1,5 +1,6 @@
 // TODO actually recognize syntax of TypeScript constructs
-import CodeMirror from './codemirror.js';
+import CodeMirror from '../../../src/libs/codemirror';
+
 CodeMirror.defineMode("javascript", function(config, parserConfig) {
   var indentUnit = config.indentUnit;
   var statementIndent = parserConfig.statementIndent;

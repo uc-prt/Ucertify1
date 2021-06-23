@@ -471,7 +471,7 @@
 				"searchreplace code fullscreen",
 				"insertdatetime media table contextmenu paste res equationeditor "
 			],
-			content_css: themeUrl+'pe-items/tinymce/plugins/equationeditor/mathquill.css',
+			content_css: themeUrl+'pe-items/src/libs/mathquill.css',
 			toolbar: [
 				' bold italic underline | equationeditor | tabl | custom-alignleft custom-aligncenter custom-alignright '
 			],

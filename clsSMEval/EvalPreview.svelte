@@ -15,7 +15,7 @@
 	import l from '../src/libs/editorLib/language';
 	import { AH, onUserAnsChange } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import '../src/libs/codemirror';
+	//import '../src/libs/codemirror';
 
 	export let xml;
 	export let uxml;
@@ -111,12 +111,10 @@
 	function loadLibs() {
         let config = {
             preload: true,
-            type: 'stylesheet',
-            as: 'style'
+            type: 'text/javascript',
+            as: 'script'
         }
-        // AH.createLink(themeUrl + 'pe-items/lib/codemirror.min.css', config);
-        // AH.createLink(themeUrl + 'pe-items/lib/monokai.css', config);
-        // AH.createLink(themeUrl + 'pe-items/lib/simplescrollbars.css', config);
+        AH.createLink(window.itemFolder + 'src/libs/codemirror.js', config);
     }
 
 	beforeUpdate(()=> {
@@ -198,19 +196,6 @@
 		AH.select('#preview', 'hide');
 		state.xml = xml;
 		let baseUrl = location.origin;
-		// if (typeof(CodeMirror) == "function") {
-		// 	renderCodeMirror();
-		// } else {
-		// 	AH.ajax({
-        //         type: "GET",
-        //         url: baseUrl + "/itemJs/codemirror.js",
-        //         dataType: "script",
-        //     }).then((data)=> {
-		// 		console.log();
-        //         AH.addScript(data, "", {target: "body"});
-        //         renderCodeMirror();
-        //     })
-		// }
 
 		renderCodeMirror();
 
@@ -1394,9 +1379,6 @@
 </div>
 
 <style lang="scss" global>
-    @import '../itemCss/codemirror.min.css';
-    @import '../itemCss/monokai.css';
-    @import '../itemCss/simplescrollbars.css';
 
 	body {
 		overflow: hidden!important;

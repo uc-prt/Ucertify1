@@ -1,7 +1,3 @@
-<!-- <svelte:head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-</svelte:head> -->
-
 <script>
 /**
  *  File Name   : FillInTheBlanksPreview.js
@@ -20,9 +16,9 @@
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
-	import '../css/mathquill.css';
+	import '../src/libs/mathquill.css';
 	import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
-	import './libs/mathQuill_new';
+	import '../src/libs/mathQuill_new';
 
 	export let manual_grade;
 	export let xml;

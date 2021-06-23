@@ -16,6 +16,11 @@
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
+
+    import '../src/libs/codemirror.min.css';
+    import '../src/libs/monokai.css';
+    import '../src/libs/simplescrollbars.css';
+
     export let toggleMode;
     export let xml;
     export let getChildXml = () => {};
@@ -90,26 +95,11 @@
     });
 
     $: if (xml != state.xml) state.xml = xml;
-    
-    /**
-     * Function to load the libraries.
-     */
-    function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'stylesheet',
-            as: 'style'
-        }
-        AH.createLink(themeUrl + 'pe-items/lib/codemirror.min.css', config);
-        AH.createLink(themeUrl + 'pe-items/lib/monokai.css', config);
-        AH.createLink(themeUrl + 'pe-items/lib/simplescrollbars.css', config);
-    }
 
     /**
      * Function call before render. Do all the necessory configuration before rendering.
     */
     onMount(()=> {
-        loadLibs();
         let smxml = xml.match(/<smxml(.*?)>/gim);
         let type = smxml.toString().match(/type="(.*?)"|type='(.*?)'/gim);
         type = type[0].replace(/type=|"/gim, '');
@@ -152,7 +142,7 @@
         } else {
             AH.ajax({
                 type: "GET",
-                url: themeUrl + "pe-items/lib/codemirror.js",
+                url: themeUrl + "pe-items/src/libs/codemirror.js",
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});

@@ -14,7 +14,7 @@
     import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import FillInTheBlanksToolbar from '../clsSMFill/FillInTheBlanksToolbar.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import '../css/mathquill.css';
+	import '../src/libs/mathquill.css';
 
     let step_xml;
     let smans = {};
@@ -112,7 +112,8 @@
 		window.J = ju;
 		AI.set('stepAlgo', this);
 
-		AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
+		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+		AH.addScript("", window.itemFolder + "src/libs/mathQuill_new.js");
 
 		if(window.inNative) {
 			window.getHeight && window.getHeight();
@@ -134,43 +135,6 @@
 			setOutline(_element)
 		})
 
-
-		// document.querySelector('.edit_step').addEventListener('focus', (_element)=>{
-		// 	console.log('event lishener =>'+_element);
-		// })
-
-
-
-		/*jQuery(document).on("click", "span.mq-editable-field.mq-focused", function(event) {
-			console.log('checking mathquill');
-			let is_fillid = true;
-			let fillid;
-			let span_math = jQuery(this);
-			while(is_fillid) {
-				span_math = span_math.parent();
-				if (span_math.attr('id')) {
-					is_fillid = false;
-					fillid = span_math.attr('id');
-					fillId = fillid;
-				}
-			}
-			
-			let latex_array = [];
-			jQuery("#" +fillid + " span.mq-editable-field").map(function() {
-				let command_id = jQuery(this).attr('mathquill-command-id');
-				latex_array.push(command_id);
-			}).get();
-			let math_id = jQuery(this).attr('mathquill-command-id');
-			let index_id = latex_array.indexOf(math_id);
-			state.spanId = index_id;
-			state.divId = fillid;
-			
-			jQuery('.toolbar_container_one').removeClass('h-imp');
-			state.showToolbar = true;
-			
-		});*/
-
-
 		AH.listen(document,'click','span.mq-editable-field.mq-focused',(_e)=>{
 			let span_math = _e;
 			let is_fillid = true;
@@ -183,20 +147,13 @@
 					fillId = fillid;
 				}
 			}
-			//let latex_array = [];
-			// jQuery("#" +fillid + " span.mq-editable-field").map(function() {
-			// 	console.log('checking map');
-			// 	let command_id = jQuery(this).attr('mathquill-command-id');
-			// 	latex_array.push(command_id);
-			// }).get();
+		
 			let latex_array = [];
 			AH.selectAll("#" +fillid + " span.mq-editable-field").forEach((_this)=> {
 				let command_id = _this.getAttribute('mathquill-command-id');
 				latex_array.push(command_id);
 			}); // Need to fixed it
 
-			//let math_id = jQuery(this).attr('mathquill-command-id');
-			//let index_id = latex_array.indexOf(math_id);
 			let math_id = _e.getAttribute('mathquill-command-id');
 			let index_id = latex_array.indexOf(math_id);
 			state.spanId = index_id;
@@ -566,15 +523,7 @@
 	}
 
 	function nextStep() {
-		
-		// jQuery('.edit_step').each(function() {		
-		// 	if (jQuery(this).hasClass('mathquill')) {	
-		// 		jQuery(this).prevAll('.disable_div').removeClass('h');		
-		// 	} else {		
-		// 		//jQuery(this).prop('disabled', 'disabled');
-		// 	}		
-		// 	jQuery(this).addClass('data-check');		
-		// });
+	
 		AH.selectAll('.edit_step').forEach((_this)=>{
 			if(_this.classList.contains('mathquill')) {
 				if(((_this.previousElementSibling).classList.contains("disable_div"))) {
