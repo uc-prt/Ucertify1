@@ -18,10 +18,10 @@
     import l from '../src/libs/editorLib/language.js';
     import { AH } from '../helper/HelperAI.svelte';
 
-    import './libs/codemirror.min.css';
-    import './libs/monokai.css';
-    import './libs/simplescrollbars.css';
-    import './libs/webitem.min.css';
+    import '../src/libs/codemirror.min.css';
+    import '../src/libs/monokai.css';
+    import '../src/libs/simplescrollbars.css';
+    import '../src/libs/webitem.min.css';
 
     import '../src/libs/codemirror';
     import Split from '../src/libs/split';
@@ -99,14 +99,15 @@
 
 
 
-    // function loadLibs() {
-    //     if(!editorState) {
-    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/codemirror.min.css');
-    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/monokai.css');
-    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/simplescrollbars.css');
-    //         AH.createLink(window.itemFolder+'clsSMWeb/libs/webitem.min.css');
-    //     }
-    // }
+    function loadLibs() {
+        let config = {
+            preload: true,
+            type: 'text/javascript',
+            as: 'script'
+        }
+        AH.createLink(window.itemFolder + 'src/libs/codemirror.js', config);
+        AH.createLink(window.itemFolder + 'src/libs/split.js', config);
+    }
     
     onMount(()=>{
         //loadLibs()
@@ -206,7 +207,7 @@
                 // sets the width and floating property of the js, html, css and result editor
                 changeStyle();
             }
-        }, 500);
+        }, 1000);
 
     /*    jQuery(document).off('click', '#answerCheck').on('click', '#answerCheck', function () {
             // shows the output of the code written on the editors and sets the value of state 'remediationToggle' to true for identify that remediation mode is on
@@ -438,7 +439,7 @@
     } 
 
         // initialize the html, css and js editor by converting textareas having id 'html_editor', 'css_editor', 'js_editor' in html, css and js editor
-        function renderCodeMirror() {
+    function renderCodeMirror() {
         if (rendered) {
             // returns true to prevent from re-initialize the editors if it was already initialized
             return true;
@@ -1746,10 +1747,6 @@
 </script>
     
     <div>
-        <!-- <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/codemirror.min.css" type="text/css" /> 
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/monokai.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/simplescrollbars.css" type="text/css" />
-        <link rel="stylesheet" href="{themeUrl}pe-items/svelte/clsSMWeb/libs/webitem.min.css" type="text/css" /> -->
 
     <div id="authoringArea" class="font14" >
         {#if window.isIE || window.isIEEleven} 

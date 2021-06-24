@@ -33,6 +33,7 @@
     import Resizable from './libs/plugins/Resizable';
     import l from '../src/libs/Lang';
 
+    import '../src/libs/codemirror.min.css';
     export let xml;
     export let getChildXml;
 
@@ -720,8 +721,6 @@
         image_loaded = 1;
     }
 </script>
-
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + 'clsSMDragNDrop/css/codemirror.min.css'}>
 
 <div class="input_border dragable-container overflow-visible p">
     <div id="steps" class="h" >
