@@ -12,6 +12,7 @@
     import ItemHelper from '../helper/ItemHelper.svelte';
     import Sortable from 'sortablejs-swap';
     import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
+    import "./css/ChooseMultiGrid.min.css";
     export let xml;
     export let uxml;
     export let showAns;
@@ -404,12 +405,12 @@
 	}
 </script>
 
-<link
+<!-- <link
     onload="this.rel='stylesheet'"
     rel="preload"
     as="style"
     href={editor.baseUrlTheme + "clsSMChoose/css/ChooseMultiGrid.min.css"}
-/>
+/> -->
 <div id="chid">
     <ItemHelper
         on:setReview={setReview}
