@@ -110,7 +110,7 @@
     }
     
     onMount(()=>{
-        //loadLibs()
+        loadLibs()
         // used for mobile team
         if (window.inNative) {
             window.getHeight && window.getHeight();
