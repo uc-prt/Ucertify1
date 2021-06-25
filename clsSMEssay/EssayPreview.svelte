@@ -88,10 +88,7 @@
         // Parsing XMLs
         try {
             let essay = essayXML.smxml.default ? essayXML.smxml.default : essayXML.smxml;
-            console.log('yes', (essayUser.smans.userans).charCodeAt(0)!=10 );
-            console.log('yes2', essay.__cdata !== undefined);
             uAns = essayUser && (essayUser.smans.userans).charCodeAt(0)!=10 ? essayUser.smans.userans : (essay.__cdata !== undefined ? essay.__cdata : '');
-            console.log('uAns2', uAns);
             //self.userAnsXML = $('#special_module_user_xml').val();
             localEssayData = {
                 userans: uAns,
