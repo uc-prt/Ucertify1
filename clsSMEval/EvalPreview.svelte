@@ -15,7 +15,7 @@
 	import l from '../src/libs/editorLib/language';
 	import { AH, onUserAnsChange } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	//import '../src/libs/codemirror';
+	import '../src/libs/codemirror';
 
 	export let xml;
 	export let uxml;
@@ -83,7 +83,7 @@
 		user_guid = user.user_guid;
 	})
 	onMount(()=> {
-		loadLibs()
+		//loadLibs()
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
 		db_name = findAttribute(window.QXML, 'db_name');
 		is_graph = findAttribute(window.QXML, 'is_graph');
@@ -109,12 +109,10 @@
 	})
 
 	function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'text/javascript',
-            as: 'script'
-        }
-        AH.createLink(window.itemFolder + 'src/libs/codemirror.js', config);
+
+		AH.addScript('', window.itemFolder + 'src/libs/codemirror.js', { callback: () => {
+			renderCodeMirror();
+		}});
     }
 
 	beforeUpdate(()=> {
@@ -196,8 +194,6 @@
 		AH.select('#preview', 'hide');
 		state.xml = xml;
 		let baseUrl = location.origin;
-
-		renderCodeMirror();
 
 		AH.listen(document, 'click', '#answerCheck', remediationMode.bind(this));
 		
