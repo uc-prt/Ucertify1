@@ -6,6 +6,8 @@
     import ItemHelper from '../helper/ItemHelper.svelte';
     import { writable } from 'svelte/store';
     
+    import './libs/treeview.min.css';
+    import '../css/jstree/style.css';
     //import {jsTree} from './libs/jstree.min.js';
     export let isReview;
     export let xml;
@@ -610,10 +612,6 @@
     
         // used for handle the UI of preview component according to change in state or props
     </script> 
-    <svelte:head>
-        <link rel="stylesheet" href="{window.baseUrlTheme}clsSMTree/libs/treeview.min.css" />
-        <link rel="stylesheet" href={window.editor.baseUrlTheme + "css/jstree/style.min.css"} />
-    </svelte:head>
     <main>
         {#if state.blank}
             <div></div>
