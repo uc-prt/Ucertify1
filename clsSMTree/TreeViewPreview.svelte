@@ -11,7 +11,7 @@
     //import {jsTree} from './libs/jstree.min.js';
     export let isReview;
     export let xml;
-    export let uaxml;
+    export let uxml;
     export let editorState = false;
     export let showAns;
     let isRerender = 1;
@@ -168,7 +168,7 @@
             await tick();
             isRerender++;
             // For loading the module according to change the value of props 
-            loadModule(xml, uaxml);
+            loadModule(xml, uxml);
             console.log("Parsing completed");
         }
     });
