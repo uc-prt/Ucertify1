@@ -4,7 +4,7 @@
  *  Author      : Sundaram Tripathi
  *  Version     : 1.0
  *  Package     : pe-gold
- *  Last update : 14-March-2021  -->
+ *  Last update : 26-june-2021  -->
 <script>
     import l from '../src/libs/editorLib/language.js';
     import ItemHelper from '../helper/ItemHelper.svelte';
@@ -322,7 +322,6 @@
                     c = 0;
                 //return true;
                 } else {
-                   
                     countRes = l.incorrect;
                     isAnswerCorrect = false;
                     c = 0;
@@ -330,7 +329,6 @@
                     
                 }
             } else {
-                 
                 countRes = l.incorrect;
                 // return false;
             }
