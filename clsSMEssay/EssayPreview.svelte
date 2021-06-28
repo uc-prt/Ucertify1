@@ -8,7 +8,7 @@
     import '../helper/sunEditor/src/assets/css/suneditor.css';
 
     export let xml;
-    export let uaxml;
+    export let uxml;
     export let isReview;
     export let editorState;
     let ucEssay;
@@ -31,7 +31,7 @@
 
     onMount(()=> {
         editorState && AH.set(editorState.content_type+"_refresh", setEssayContent.bind(this));
-        loadXML(xml, uaxml);
+        loadXML(xml, uxml);
         // Intialize editor plugin
         initEdit();
     });
@@ -71,13 +71,13 @@
         if (xml != state.xml) {
             state.xml = xml ;
             console.log("Updating from Preview");
-            loadXML(xml, uaxml);
+            loadXML(xml, uxml);
         }
     });
     
     // its for loading the xml.
-    function loadXML(essayXML, uaxml) {
-        let essayUser = (uaxml) ? XMLToJSON(uaxml) : "";
+    function loadXML(essayXML, uxml) {
+        let essayUser = (uxml) ? XMLToJSON(uxml) : "";
         essayXML = XMLToJSON(essayXML);
        // userxml_is_empty = updateAttrToLower(userxml_is_empty);
         // if(userxml_is_empty) {
@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <ul class={localEssayData.type == "0" ? "essay_upload_status text-left h" : "essay_upload_status text-left working_file" } style="list-style-type: none;">
-                    {#if localEssayData.upload != ''}
+                    {#if localEssayData.upload != '' }
                         {#each localEssayData.upload.split(',') as uploaded, index}
                             <li class="working">
                                 <span class="download">
