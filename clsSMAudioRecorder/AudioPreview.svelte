@@ -11,6 +11,7 @@
     import { XMLToJSON, AH, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import l from '../src/libs/editorLib/language';
+    import "./css/AudioStyle.min.css";
     export let xml;
     export let uxml;
     export let showAns;
@@ -464,7 +465,7 @@
         }
     }
 </script>
-<link onload="this.rel='stylesheet'" rel="preload" as="style" href={window.baseUrlTheme + "clsSMAudioRecorder/css/AudioStyle.min.css"} />
+<!-- <link onload="this.rel='stylesheet'" rel="preload" as="style" href={window.baseUrlTheme + "clsSMAudioRecorder/css/AudioStyle.min.css"} /> -->
 <div id="preview_container" class="container">
     <div class="row">
         <ItemHelper 
