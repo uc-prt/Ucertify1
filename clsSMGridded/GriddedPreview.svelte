@@ -4,7 +4,7 @@
  *  Author      : Sundaram Tripathi
  *  Version     : 1.0
  *  Package     : pe-gold
- *  Last update : 14-March-2021  -->
+ *  Last update : 26-june-2021  -->
 <script>
     import l from '../src/libs/editorLib/language.js';
     import ItemHelper from '../helper/ItemHelper.svelte';
@@ -322,7 +322,6 @@
                     c = 0;
                 //return true;
                 } else {
-                   
                     countRes = l.incorrect;
                     isAnswerCorrect = false;
                     c = 0;
@@ -330,7 +329,6 @@
                     
                 }
             } else {
-                 
                 countRes = l.incorrect;
                 // return false;
             }
@@ -662,111 +660,113 @@
 </script>
 
 <main>
-    <div class="griddedModule">
-        <center> 
-            <ItemHelper 
-                handleReviewClick={handleReview}
-                reviewMode={isReview}
-	        />
-        </center>
-        <table border="1" id="tab2" style={'border-collapse:collapse;text-align:center'} >
-            <tr style="display:flex;">
-                {#each ColsPre as val,i}
-                    {#if val.decpoint == true}
-                        <input type="text" style={'width:50px;text-align:center;'}  value="." disabled="true" class="tdFont" />
-                    {:else}
-                        
-                            <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?" ":myAns[i]} class="tdFont">
-                        
-                            <span  class={state.iconVisible+' relative'}>
-                                <span id={val.spanid} class="answer_icon">
+    <center>
+        <div class="griddedModule">
+            <center> 
+                <ItemHelper 
+                    handleReviewClick={handleReview}
+                    reviewMode={isReview}
+                />
+            </center>
+            <table border="1" id="tab2" style={'border-collapse:collapse;text-align:center'} >
+                <tr style="display:flex;">
+                    {#each ColsPre as val,i}
+                        {#if val.decpoint == true}
+                            <input type="text" style={'width:50px;text-align:center;'}  value="." disabled="true" class="tdFont" />
+                        {:else}
+                            
+                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?" ":myAns[i]} class="tdFont">
+                            
+                                <span  class={state.iconVisible+' relative'}>
+                                    <span id={val.spanid} class="answer_icon">
+                                    </span>
                                 </span>
-                            </span>
-                        
-                    {/if}
-                {/each}
-            </tr>
-        </table>
+                            
+                        {/if}
+                    {/each}
+                </tr>
+            </table>
 
-            {#if state.plus_minus == 1}
+                {#if state.plus_minus == 1}
+                    <GriddedHelper 
+                        on:handleClickCombo = {handleClickCombo}
+                        loop = {Cols}
+                        class1 = "tdFont plus_tab"
+                        className="tdFontP plus_tab items_element"
+                        tableId ="plus_minus_tab"
+                        tableClass ="plus_minus_tab gridded_tab mt-0 myP"
+                        value = "+"
+                    ></GriddedHelper>
+                    <GriddedHelper 
+                        on:handleClickCombo = {handleClickCombo}
+                        loop = {Cols_Minus}
+                        class1 = "tdFont plus_tab"
+                        className="tdFontP plus_tab items_element minus_point"
+                        tableId ="plus_minus_tab"
+                        tableClass ="plus_minus_tab gridded_tab mt-0 myP"
+                        value = "-"
+                    ></GriddedHelper>
+                {/if}
+
+            {#if state.decimal_val == 1}
                 <GriddedHelper 
                     on:handleClickCombo = {handleClickCombo}
-                    loop = {Cols}
-                    class1 = "tdFont plus_tab"
-                    className="tdFontP plus_tab items_element"
-                    tableId ="plus_minus_tab"
-                    tableClass ="plus_minus_tab gridded_tab mt-0 myP"
-                    value = "+"
-                ></GriddedHelper>
-                <GriddedHelper 
-                    on:handleClickCombo = {handleClickCombo}
-                    loop = {Cols_Minus}
-                    class1 = "tdFont plus_tab"
-                    className="tdFontP plus_tab items_element minus_point"
-                    tableId ="plus_minus_tab"
-                    tableClass ="plus_minus_tab gridded_tab mt-0 myP"
-                    value = "-"
+                    loop = {Cols_decimal}
+                    class1 = "tdFont points"
+                    className="tdFontP text-center items_element decl_point"
+                    tableId ="slash_tab"
+                    tableClass ="slash_tab gridded_tab mt-0 mb-0 myP"
+                    value = "."
                 ></GriddedHelper>
             {/if}
+            {#if state.slash_val == 1}
+                <GriddedHelper  
+                    on:handleClickCombo = {handleClickCombo}
+                    loop = {Cols_slash}
+                    class1 = "tdFont points"
+                    className="tdFontP text-center items_element sla_point"
+                    tableId ="tdFontP slash_tab"
+                    tableClass ="slash_tab gridded_tab mt-0"
+                    value = "/"
+                ></GriddedHelper>
+            {/if}
+        
+            <table id="gridded_sheet" class="gridded_tab mt-0 lastGrid create_tab myP">
+                <tbody>
+                    {#each totalRows as data,no}
+                        <tr key={data.key}>
+                            {#each totalCols as val,i}
+                                {#if val.decpoint}
+                                    <td key={val.key} class ='tdFont text-center' width="50" disabled="true">    
+                                    </td>
+                                {:else}
+                                    <td width="50" class="text-center">
+                                        <span tabindex={val.tabIndex} key={val.key} name={val.name} data-tag={val.dataTag} class="tdFontP text-center td_data algn items_element" id={val.id} on:click={handleClick}>{+no}</span>
+                                    </td>
+                                {/if}
+                            {/each}
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
 
-        {#if state.decimal_val == 1}
-            <GriddedHelper 
-                on:handleClickCombo = {handleClickCombo}
-                loop = {Cols_decimal}
-                class1 = "tdFont points"
-                className="tdFontP text-center items_element decl_point"
-                tableId ="slash_tab"
-                tableClass ="slash_tab gridded_tab mt-0 mb-0 myP"
-                value = "."
-            ></GriddedHelper>
-        {/if}
-        {#if state.slash_val == 1}
-            <GriddedHelper  
-                on:handleClickCombo = {handleClickCombo}
-                loop = {Cols_slash}
-                class1 = "tdFont points"
-                className="tdFontP text-center items_element sla_point"
-                tableId ="tdFontP slash_tab"
-                tableClass ="slash_tab gridded_tab mt-0"
-                value = "/"
-            ></GriddedHelper>
-        {/if}
-       
-        <table id="gridded_sheet" class="gridded_tab mt-0 lastGrid create_tab myP">
-            <tbody>
-                {#each totalRows as data,no}
-                    <tr key={data.key}>
-                        {#each totalCols as val,i}
-                            {#if val.decpoint}
-                                <td key={val.key} class ='tdFont text-center' width="50" disabled="true">    
-                                </td>
-                            {:else}
-                                <td width="50" class="text-center">
-                                    <span tabindex={val.tabIndex} key={val.key} name={val.name} data-tag={val.dataTag} class="tdFontP text-center td_data algn items_element" id={val.id} on:click={handleClick}>{+no}</span>
-                                </td>
-                            {/if}
-                        {/each}
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-
-    </div>
+        </div>
+    </center>
 </main>
 
 <style>
     
-    .layoutHeading {
+    :global(.layoutHeading) {
         font-weight: bold;
         font-size: 16px;
         color: #1877b1;
     }
 
-    .items_element:hover {
+    :global(.items_element:hover) {
         border: 1.2px solid #777;
     }
 
-    .moreOptions {
+    :global(.moreOptions) {
         -webkit-box-shadow: 3px 4px 6px #c4c5c5;
         -moz-box-shadow: 3px 4px 6px #c4c5c5;
         box-shadow: 3px 4px 6px #c4c5c5;
@@ -775,105 +775,105 @@
         border-bottom: 1px solid #1877b1;
     }
 
-    .moreOptionDetails {
+    :global(.moreOptionDetails) {
         background-color: #f7f7f7;
     }
 
-    .input_col {
+    :global(.input_col) {
         position: relative;
         left: 5px;
     }
 
-    .layoutheading {
+    :global(.layoutheading) {
         padding: 5px;
         font-size: 20px;
         font-weight: bold;
     }
 
 
-    .numbr_range {
+    :global(.numbr_range) {
         position: relative;
         left: 130px;
     }
 
-    .numbr_range_txt {
+    :global(.numbr_range_txt) {
         position: relative;
         left: 200px;
     }
 
-    .plus_minus_fraction {
+    :global(.plus_minus_fraction) {
         position: relative;
         top: 20px;
     }
 
-    .floating_fraction {
+    :global(.floating_fraction) {
         position: relative;
         top: 27px;
     }
 
-    .plus_minus_span {
+    :global(.plus_minus_span) {
         position: relative;
         left: 5px;
     }
 
-    .floating_decimal {
+    :global(.floating_decimal) {
         float: right;
         margin-right: 45px;
     }
 
-    .fontStyle {
+    :global(.fontStyle) {
         width: 100px;
         float: right;
         margin-right: 60px;
     }
 
-    .fraction_slash {
+    :global(.fraction_slash) {
         position: relative;
         left: 177px;
     }
 
-    .minus_tab,
+    :global(.minus_tab,
     .plus_tab,
-    .slash_tab {
+    .slash_tab) {
         text-align: center;
     }
 
-    .gridded_tab {
-        background-color: #f0f0f0;
-        user-select: none;
+    :global(.gridded_tab) {
+        background-color: #f0f0f0!important;
+        user-select: none!important;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
     }
 
-    .font_size_label {
+    :global(.font_size_label) {
         position: relative;
         left: 198px;
     }
 
-    .font_size {
+    :global(.font_size) {
         position: relative;
         left: 225px;
     }
 
 
-    .decimal_col {
+    :global(.decimal_col) {
         position: relative;
         left: 208px;
         width: 90px;
     }
 
-    .correct_color {
+    :global(.correct_color) {
         background-color: #E9FFE9;
     }
 
-    .fixed_decimal_check {
+    :global(.fixed_decimal_check) {
         position: relative;
         top: 26px;
         left: 13px;
     }
 
-    .correct_incorrect_icon_fill {
+    :global(.correct_incorrect_icon_fill) {
         position: relative;
         width: 19px;
         height: 19px;
@@ -883,63 +883,63 @@
         border-radius: 50%;
     }
 
-    .row_column_decimal {
+    :global(.row_column_decimal) {
         position: relative;
         top: 30px;
         left: 5px;
 
     }
 
-    .fixed_point_class {
+    :global(.fixed_point_class) {
         position: relative;
         left: 7px;
     }
 
-    .row_column {
+    :global(.row_column) {
         position: relative;
         left: 5px;
     }
 
-    .answer_icon {
+    :global(.answer_icon) {
         position: absolute;
         top: 7px;
         right: 34px;
     }
 
-    .myP tbody {
+    :global(.myP tbody) {
         cursor: pointer;
     }
 
-    .col_range {
+    :global(.col_range) {
         width: 205px;
     }
 
-    .posSize {
+    :global(.posSize) {
         position: relative;
         left: 7px;
     }
 
-    .fontSmall {
+    :global(.fontSmall) {
         font-size: 12px;
         text-align: center;
     }
 
-    .fontNormal {
+    :global(.fontNormal) {
         font-size: 14px;
         text-align: center;
     }
 
-    .fontLarge {
+    :global(.fontLarge) {
         font-size: 24px;
         text-align: center;
     }
 
-    .fontExtraLarge {
+    :global(.fontExtraLarge) {
         font-size: 26px;
         text-align: center;
     }
 
-    .grid {
+    :global(.grid) {
         position: relative;
         top: 10px;
         box-shadow: 10px 5px 10px #000;
@@ -959,29 +959,29 @@
         border: 2px solid #fff;
     }
 
-    .minus_point,
-    .decl_point {
+    :global(.minus_point,
+    .decl_point) {
         padding: 6px 12px;
     }
 
-    .sla_point {
+    :global(.sla_point) {
         padding: 6px 11px;
     }
 
-    .griddedModule table tr td:last-child {
+    :global(.griddedModule table tr td:last-child) {
         border-right: 1px solid #ccc !important;
     }
 
-    .griddedModule .lastGrid tr:last-child td {
+    :global(.griddedModule .lastGrid tr:last-child td) {
         border-bottom: 1px solid #ccc !important;
     }
 
-    .griddedModule td {
+    :global(.griddedModule td) {
         border: 1px solid #f0f0f0 !important;
         border-left: 1px solid #ccc !important;
     }
 
-    .token:hover {
+    :global(.token:hover) {
         border: 1px solid #000 !important;
     }
 
@@ -989,7 +989,7 @@
         border: 1px solid #fff !important;
     }
 
-    .token_selected {
+    :global(.token_selected) {
         background-color: #64bb63;
         color: #fff;
     }
@@ -998,9 +998,14 @@
         color: #000 !important;
     }
 
-    .griddedModule .expandIcon {
+    :global(.griddedModule .expandIcon) {
         font-size: 27px;
         font-weight: bold;
         color: #1877b1;
+    }
+    :global(table td, table th) {
+        padding: .5rem .5rem!important;
+        vertical-align: top!important;
+        border-top: 1px solid #dee2e6!important;
     }
 </style>
