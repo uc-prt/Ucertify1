@@ -16,7 +16,7 @@
     import {writable} from 'svelte/store';
     //import l from '../../lib/Lang';
     import l from '../src/libs/editorLib/language.js';
-    import { AH } from '../helper/HelperAI.svelte';
+    import { AH,onUserAnsChange } from '../helper/HelperAI.svelte';
 
     import '../src/libs/codemirror.min.css';
     import '../src/libs/monokai.css';
@@ -880,6 +880,8 @@
 
      // returns true or false according to the match property value of defined css selector
     function style_match(src, selector, inp) {
+        let str;
+        let pseudo_elm_selector
         // denotes the status of the testcase according to the matched value
         let flag_check = 1;
         // Window object that allows to access the iframe's document and its internal DOM
