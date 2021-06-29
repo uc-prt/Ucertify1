@@ -1831,10 +1831,14 @@
                     {:else}
                         <div class="container-fluid">
                             <div class="row">
-                                <div id="web_toolbar" class="bg-light w-100 height44 web_toolbar text-dark">
+                                <div id="web_toolbar" class="bg-light w-100 height44 web_toolbar text-dark d-flex justify-content-between">
                                     <div class="mt-2 pt-1 pl-2 float-left">
                                         <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
                                     </div>
+                                    <div class="d-flex">
+                                        <div class="inline-block pull-right">
+                                            <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
+                                        </div>
                                     <div class="float-right mt-2">
                                         <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
                                         <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
@@ -1846,9 +1850,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="inline-block pull-right">
-                                        <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
-                                    </div>
+                                </div>
                                 </div>
                                 <div id="accordion" style={'width:100%; background:white; padding:0px;'}>
                                     <div id="top_content">
