@@ -28,9 +28,9 @@
 
     export let inQuizPlayer;
     export let xml;
-    export let uaXML;
+    export let uxml;
     export let isReview;
-    xml = uaXML && !/smans/gi.test(uaXML) ? uaXML : xml;
+    xml = uxml && !/smans/gi.test(uxml) ? uxml : xml;
     let isPreview = "";
     // defines that editor is not initialized
     let rendered = 0;
@@ -1526,7 +1526,7 @@
      //   jQuery("#special_module_user_xml").val(""); // Replaced
         AH.select('#special_module_user_xml').value ='';
         // makes blank the value of 'uaXML' of window object
-        window.uaXML = "";
+        window.uxml = "";
     }
 
      // used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
@@ -1707,7 +1707,7 @@
     // used for update the user answer xml value
     function saveWebAnswer(code, code_lang) {
         // contains the user answer xml of question xml
-        let qxml = !/smans/g.test(uaXML) && uaXML ? uaXML : xml;
+        let qxml = !/smans/g.test(uxml) && uxml ? uxml : xml;
         // variable for hold the html, css and js editor value in xml format way
         let uXml = "";
         if (code_lang == 'html') {
@@ -1743,7 +1743,7 @@
             window.postMessage(JSON.stringify({ userAnswers, inNativeIsCorrect: false }), '*');
         }
         // assign the user answer xml value in 'uaXML' variable of window object
-        uaXML = uXml;
+        uxml = uXml;
         resultSaving = uXml;
     }
 </script>
