@@ -19,7 +19,7 @@ export default class hotspotScript {
             this.labBinded = true;
             const textClickListen = function(event){
                 if (this.labBinded) {
-                    let _this  = event.target, getVal = '';
+                    let _this  = event, getVal = '';
                     if (_this.classList.contains('selected')) {	
                         _this.getAttribute('data-userans', 0);
                         _this.classList.remove('selected');
@@ -74,9 +74,13 @@ export default class hotspotScript {
         this.userAnsXML = "<smans type='4'>\\n";
         this.result = true;
         this.temp = 0;
-        JS.select(hid).children.forEacheach((_elm)=>{
-            this.userAnsXML = this.checkChildAnswer(hid, _elm, this.userAnsXML);
-        });
+        let selector = JS.select(hid).children;
+        for (let i = 0; i < selector.length; i++) {
+            this.userAnsXML = this.checkChildAnswer(hid, selector[i], this.userAnsXML);
+        }
+        // JS.select(hid).children.forEach((_elm)=>{
+        //     this.userAnsXML = this.checkChildAnswer(hid, _elm, this.userAnsXML);
+        // });
         this.userAnsXML += "</smans>";
         window.ISSPECIALMODULEUSERXMLCHANGE = 1;
        // JS.select("#special_module_user_xml").value = (userAnsXML);
@@ -90,7 +94,7 @@ export default class hotspotScript {
             sendDataToNative.inNativeIsCorrect = this.result;
             window.postMessage(JSON.stringify(sendDataToNative), '*')
         }
-        return {uxml: userAnsXML, status: result};
+        return {uxml: this.userAnsXML, status: this.result};
     }
 
     // checking child answer and return useransxml
