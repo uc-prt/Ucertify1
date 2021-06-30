@@ -58,7 +58,11 @@
 	let count = 0;
 	let xaxis = [];
 	let yaxis = [];
-
+	let divHeight = 0;
+	let divWidth = 0;
+	var typeName = 'textclick';
+	var correctAnsStr = '';
+	var correctHtml = '';
 	const unsubscribe = ((items)=>{
 		state = items;
 	})
@@ -96,6 +100,20 @@
 		parseXml = XMLToJSON(xml);
 		xmlParser();
 		preRender();
+		HotJS.readyThis('hptmain0', isReview);
+		if (isReview) {
+			HotJS.modeOnHot(1);
+		} else {
+			HotJS.modeOnHot();
+		}
+
+		AH.listen('#previewArea', 'click', '.textClick', function() {
+			checkAnswer();
+		});
+		
+		AH.listen('#previewArea', 'click', '[type="textselect"]', function() {
+			checkAnswer();
+		});
 	});
 
 	function xmlParser() {
@@ -105,8 +123,8 @@
 		if (item_type == undefined || item_type == "") {
 			item_type = parseXml['smxml']['_name'].toLowerCase();
 		}
+		typeName = item_type;
 		img_url = parseXml['smxml']['_bgimg'];
-
 		switch (moduleArr[item_type]) {
 			// in case of text click 
 			case "1": 
@@ -114,7 +132,7 @@
 					divHeight = parseXml.smxml._height+'px';
 					divWidth = parseXml.smxml._width+'px';
 					// for parsing the xml
-					//parseTextClick(parseXml.smxml.div.__cdata);
+					parseTextClick(parseXml.smxml.div.__cdata);
 					AH.select(AH.parent('#textID0'), 'show', 'block');
 					AH.selectAll('#drawPreview,table[id="hptmain2"]', 'hide');
 					break;
@@ -126,7 +144,7 @@
 					divHeight = parseXml.smxml._height;
 					divWidth = parseXml.smxml._width+'px';
 					// for parsing the xml
-					//parseTextSelect(parseXml.smxml.div.__cdata);
+					parseTextSelect(parseXml.smxml.div.__cdata);
 					AH.select(AH.parent('#textID0'), 'show', 'block');
 					AH.selectAll('#drawPreview,table[id="hptmain2"]', 'hide');
 					break;
@@ -208,15 +226,19 @@
 	}
 
 	function checkAnswer (event) {
-		let result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
-		isUxmlTarget = true;
-		ans_x = result.left;
-		ans_y = result.top;
-		ansStatus = result.ans;
-		if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
+		let result = {}; 
+		if (typeName == 'textclick' || typeName == 'textselect') {
+			result = HotJS.check_Ans('#previewArea #hptmain0');
+		} else {
+			result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
+			isUxmlTarget = true;
+			ans_x = result.left;
+			ans_y = result.top;
+			ansStatus = result.ans;
+			if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
+		}
 		onUserAnsChange(result);
 	}
-[]
 	function onModalTouch(event) {
 		console.log(event);
 	}
@@ -371,6 +393,62 @@
 			if (window.inNative) window.postMessage(JSON.stringify({ inNativeIsCorrect, userAnswers }), "*");
 		}
 	}
+	
+	function parseTextClick(cdata) {
+		var cdataStr = '';
+		// get the correct answer in correctans
+		var correctans = cdata.match(/%{(.*?)}%/gm);
+		if (correctans) {
+			totalCorrectAns = correctans.length;
+			for(var i=0;i<correctans.length;i++) {
+				// replacing the space with <uc:space> and then replacing the correctans with it
+				correctAnsStr = correctans[i].replace(/\s+/gm,'<uc:space>');
+				cdata = cdata.replace(correctans[i],correctAnsStr);
+			}
+		}
+		correctAnsStr = '';
+		cdata = cdata.split(' ');
+		for(var i=0;i<cdata.length;i++) {
+			//if the data is correct answer
+			if (cdata[i].match(/%{|%}/gm)) {
+				// for setting the data-correctans 1 if that value is correct
+				cdata[i] = cdata[i].replace(/<uc:space>/gm,' ').replace(/%{|}%/gm,''); 
+				cdataStr += '<p class="textClick" data-index="'+i+'" data-userans="0" data-correctans="1">'+cdata[i]+'</p>';
+				correctAnsStr += cdata[i]+'|';
+			} else {
+				// for setting the data-correctans 0 if that value is correct
+				cdataStr += '<p class="textClick" data-index="'+i+'" data-userans="0" data-correctans="0">'+cdata[i]+'</p>';
+			} 
+		}
+		correctAnsStr = correctAnsStr.replace(/\|$/gm,'');
+		 // showing the text in the preview area 	
+		AH.select(' #previewArea  #textID0').innerHTML =  cdataStr;
+	}
+	function parseTextSelect(cdata) {
+		correctAnsStr = '';
+		// store the correct answer in correct ans 
+		var correctans = cdata.match(/%{(.*?)}%/gm);
+		// if exists
+		if (correctans) {
+			// storing it the correct ans in correctAnsStr seperted by | 
+			for (var index_no = 0; index_no <correctans.length; index_no += 1) {
+				correctAnsStr += correctans[index_no].replace(/%{|}%/gm, '') + '|';
+			}
+			// replace the symbol with the span
+			correctHtml = cdata.replace(/%{/gm, '<span class="selecttext selected">').replace(/}%/gm, '<span>');
+			totalCorrectAns = correctans.length;
+
+			// removing last pipe symbol in the correctAnsStr
+			correctAnsStr = correctAnsStr.replace(/\|$/gm, '');
+		}
+		// removing the symbol from the cdata
+		var showdata = cdata.replace(/%{|}%/gm, '');
+		var timer = setTimeout(function() {			
+			// show the text in the html
+			AH.select(' #previewArea  #textID0').innerHTML =  showdata;
+			clearTimeout(timer);
+		}.bind(self), 100);
+	}
 
 	function loadModule(_type) {
 		switch(_type) {
@@ -395,7 +473,7 @@
 								id="textID0" 
 								type="${typeName}" 
 								data-correcthtml="${correctHtml}" 
-								data-correctans="${correctAnsStr} "
+								data-correctans="${correctAnsStr}"
 								data-userans="${data_userans}" 
 								data-userhtml="${data_userhtml}" 
 								class="drag-resize hotspotTxt" 
@@ -535,7 +613,6 @@
 		margin: 0 auto;
 		font-size: 26px;
 	}
-
 	.targetImg {
 		display : none;
 		position: absolute;
@@ -546,7 +623,7 @@
 		background: #fff;
 		color: #1c3ad4;
 	}	
-
+	
 	.showBlock {
 		display : block;
 	}
