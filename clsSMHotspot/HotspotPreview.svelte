@@ -603,7 +603,6 @@
 		userans="" 
 		value={userCorrect} 
 	/>
-	<textarea class="h" id="special_module_user_xml"></textarea>
 </main>
 
 <style>
