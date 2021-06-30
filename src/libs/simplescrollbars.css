@@ -1,4 +1,4 @@
-.CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
+.CodeMirror-simplescroll-horizontal div,.CodeMirror-simplescroll-vertical div {
   position: absolute;
   background: #ccc;
   -moz-box-sizing: border-box;

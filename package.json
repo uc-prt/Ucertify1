@@ -71,18 +71,25 @@
     "svelte-preprocess": "^4.5.2"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.6",
     "bootstrap": "^5.0.0-beta3",
     "highcharts": "^9.0.1",
     "hotkeys-js": "^3.8.1",
     "javscript_helper": "^1.0.37",
     "jquery": "^3.5.1",
-    "postcss": "^7.0.35",
+    "postcss": "^8.3.5",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.1.0",
+    "postcss-nested": "^5.0.5",
+    "postcss-plugin": "^1.0.0",
     "rollup-plugin-css-only": "^3.1.0",
     "sirv-cli": "^1.0.0",
     "sortablejs": "^1.13.0",
     "sortablejs-swap": "^1.2.0",
+    "sugarss": "^4.0.1",
     "suneditor": "^2.34.3",
     "sweetalert": "^2.1.2",
+    "webpack": "^5.41.1",
     "xml2js": "^0.4.19"
   },
   "jest": {
@@ -108,12 +115,5 @@
         }
       ]
     ]
-  },
-  "postcss": {
-    "parser": "sugarss",
-    "map": false,
-    "plugins": {
-      "postcss-plugin": {}
-    }
   }
 }

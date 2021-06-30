@@ -1813,3 +1813,26 @@ export function mathMLRender(id_mathML, is_required) {
         });
     }
 }
+
+export function ajaxContentUpdate(config) {
+    console.log("coming here", config);
+    let funclist = Object.keys(contentUpdateFuncs);
+    let func_len = funclist.length;
+    for (let i = 0; i < func_len; i++) {
+        let func = funclist[i];
+        config[func] = config[func] || 0;
+        if (config[func] == 1) {
+            if (typeof contentUpdateFuncs[func] === 'function') {
+                contentUpdateFuncs[func](config);
+            }
+        }
+    }
+    // disable find
+    // if (jQuery && typeof jQuery.fn.disableFind == 'function') {
+    //     if (AH.selectAll('[uc_item_content_subtype="8"]').length == 0) {
+    //         if (typeof config.protect_find == 'undefined') {
+    //             AH.selectAll('.uc_protect_find').disableFind();
+    //         }
+    //     }
+    // }
+}
