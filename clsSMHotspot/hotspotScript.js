@@ -131,15 +131,22 @@ export default class hotspotScript {
     // for showing the answer
     showansdrag(hid, ansType, review) {
         if (typeof review === "undefined") review = 0;
-        JS.select(hid).children?.forEach?.((_elm)=> {
-            this.showchilddragans(hid, _elm, ansType, review);
-        });
+        let selector = JS.select(hid).children;
+        if (selector) {
+            for (let i = 0; i < selector.length; i++) {
+                this.showchilddragans(hid, selector[i], ansType, review);
+            }
+        }
+        // JS.select(hid).children?.forEach?.((_elm)=> {
+        //     this.showchilddragans(hid, _elm, ansType, review);
+        // });
     }
 
     // for showing the answer of child element
     showchilddragans(hid, pElem, ansType, review) {
         let hidNode = JS.select(pElem);
         let typ = hidNode.getAttribute('type');
+        console.log('ansType', ansType);
         switch (typ) {
             case "textclick": {
                 if (ansType == 'c') {	
@@ -162,7 +169,6 @@ export default class hotspotScript {
                     }
                     userans = userans.split('|');
                     userans = userans.filter(function(e){return e});
-                    
                     if ((typeof review != "undefined" && review == 1)) {
                         JS.find(hid, '.selected', {action: 'removeClass', actionData: 'selected'});
                         var ansKey  = pElem.getAttribute('data-correctans').split('|');
@@ -178,7 +184,9 @@ export default class hotspotScript {
                     } else {
                         userans.forEach((value)=> {			
                             this.selectText(hid,value,'c','selected');
-                            JS.select (hid+" p span").remove();
+                            if (JS.select(hid+" p span").length) {
+                                JS.select(hid+" p span").remove();
+                            }
                             JS.select(".textClick", 'removeClass',['show_incorrect', 'show_correct']);
                         });		
                     }
@@ -419,7 +427,9 @@ export default class hotspotScript {
 
     // for the selection of text
     selectText(hid, value, ansType, classname) {
-        JS.selectAll(hid+' p').forEach((_elm)=> {
+        let selector = JS.selectAll(hid+' p');
+        for (var i=0; i < selector.length; i++ ) {
+            let _elm = selector[i];
             if (_elm.textContent.trim() == value) {
                 _elm.classList.add(classname);
                 if(ansType=='u') {
@@ -431,8 +441,8 @@ export default class hotspotScript {
                     }
                     JS.insert(_elm, '<span class="correct_incorrect_icon" style="position:absolute;z-index:100;width:18px;height:18px;bottom:16px;background:white;border-radius:12px;font-size: 18px;"> '  + text_indicator_html + '</span></span>');
                 }
-            }		
-        });
+            }	
+        }
     }
 
     // for highlighting the text

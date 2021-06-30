@@ -101,6 +101,11 @@
 		xmlParser();
 		preRender();
 		HotJS.readyThis('hptmain0', isReview);
+		if (isReview) {
+			HotJS.modeOnHot(1);
+		} else {
+			HotJS.modeOnHot();
+		}
 		//@Prabhat: Need to move this code
 		AH.listen('#previewArea', 'click', '.textClick', function() {
 			checkAnswer();
@@ -610,7 +615,6 @@
 		margin: 0 auto;
 		font-size: 26px;
 	}
-
 	.targetImg {
 		display : none;
 		position: absolute;
