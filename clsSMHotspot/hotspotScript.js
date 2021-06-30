@@ -146,7 +146,6 @@ export default class hotspotScript {
     showchilddragans(hid, pElem, ansType, review) {
         let hidNode = JS.select(pElem);
         let typ = hidNode.getAttribute('type');
-        console.log('ansType', ansType);
         switch (typ) {
             case "textclick": {
                 if (ansType == 'c') {	

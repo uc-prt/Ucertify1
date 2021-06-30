@@ -106,7 +106,7 @@
 		} else {
 			HotJS.modeOnHot();
 		}
-		//@Prabhat: Need to move this code
+
 		AH.listen('#previewArea', 'click', '.textClick', function() {
 			checkAnswer();
 		});
@@ -237,7 +237,6 @@
 			ansStatus = result.ans;
 			if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
 		}
-		console.log('result', result);
 		onUserAnsChange(result);
 	}
 	function onModalTouch(event) {
