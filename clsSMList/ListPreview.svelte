@@ -42,29 +42,29 @@
         }
     }
 </script>
-<div>
+<main>
     <div id="preview_container" class="container w-100 px-3 py-3">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     {#if state.data_cdata_prev}
-                        <table class="table w-100" id="prev_csv_data_table">
+                        <table class="table w-100" id="prev_csv_data_table" tabindex={0}>
                             <tr>
-                                <th class="text-center align-middle"><b class="font17">#</b></th>
-                                <th class="align-middle text-center"><b class="font17">{state.data_cdata_prev[0].c1}</b></th>
-                                <th class="align-middle text-center"><b class="font17">{state.data_cdata_prev[0].c2}</b></th>
-                                <th class="align-middle text-center"><b class="font17">{l.current_item}</b></th>
-                                <th class="align-middle text-center"><b class="font17">{l.used_in_items}</b></th>
+                                <th class="text-center align-middle" tabindex={0}><b class="font17">#</b></th>
+                                <th class="align-middle text-center" tabindex={0}><b class="font17">{state.data_cdata_prev[0].c1}</b></th>
+                                <th class="align-middle text-center" tabindex={0}><b class="font17">{state.data_cdata_prev[0].c2}</b></th>
+                                <th class="align-middle text-center" tabindex={0}><b class="font17">{l.current_item}</b></th>
+                                <th class="align-middle text-center" tabindex={0}><b class="font17">{l.used_in_items}</b></th>
                             </tr>
                             
                                 {#each state.data_cdata_prev as object_data, index}
                                         {#if index > 0}
                                             <tr>
-                                                <td class="text-center align-middle">{((index < 10)? '0' + index: index)}</td>
-                                                <td class="align-middle word-wrap-break text-center">{object_data.c1}</td>
-                                                <td class="align-middle word-wrap-break text-center">{object_data.c2}</td>
-                                                <td class="align-middle text-center">{object_data.cg}</td>
-                                                <td class="align-middle word-wrap-break text-center">{object_data.ag.join(',')}</td>
+                                                <td class="text-center align-middle" tabindex={0}>{((index < 10)? '0' + index: index)}</td>
+                                                <td class="align-middle word-wrap-break text-center" tabindex={0}>{object_data.c1}</td>
+                                                <td class="align-middle word-wrap-break text-center" tabindex={0}>{object_data.c2}</td>
+                                                <td class="align-middle text-center" tabindex={0}>{object_data.cg}</td>
+                                                <td class="align-middle word-wrap-break text-center" tabindex={0}>{object_data.ag.join(',')}</td>
                                             </tr>
                                         {/if}
                                 {/each}
@@ -74,4 +74,4 @@
             </div>
         </div>
     </div>
-</div>
+</main>
