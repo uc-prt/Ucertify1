@@ -1,4 +1,4 @@
-import JUI from 'javscript_helper/JUI.js';
+import JUI from '../src/libs/javscript_helper/JUI.js';
 function Point(a, b) {
     if (true === isNaN(Number(a))) {
         this.x = 0;

@@ -6,13 +6,14 @@
     export let showAns;
     export let stopPreviewUpdate;
     export let editorState;
+    export let content_icon;
     export let isReview;
-   
+
 
 </script>
 
 <main>
-    <!-- {#if editorState.content_icon == 2} -->
+    {#if editorState?.content_icon == 2 ||  content_icon == 2}
         <StepAlgoPreview xml = {xml} remedStatus = {remedStatus} showAns = {showAns} stopPreviewUpdate = {stopPreviewUpdate} isReview = {isReview}  />
-    <!-- {/if} -->
+    {/if}
 </main>

@@ -1,4 +1,4 @@
-import JUI, {Draggable} from 'javscript_helper/JUI.js';
+import JUI, {Draggable} from '../src/libs/javscript_helper/JUI.js';
 const JS = new JUI();
 export default class fillJS {
 	constructor(options) {

@@ -8,7 +8,7 @@
  *  Dependency  : JUI
  */
 // importing JUI
-import JUI from 'javscript_helper';
+import JUI from '../../src/libs/javscript_helper/JUI';
 import l from '../../src/libs/Lang';
 const JS = new JUI();
 

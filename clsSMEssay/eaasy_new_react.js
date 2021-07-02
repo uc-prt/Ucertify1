@@ -1,7 +1,7 @@
 
 
 const essayUploadUrl = window.baseUrl+'reactUpload.php/';
-import JUI from 'javscript_helper/JUI.js';
+import JUI from '../src/libs/javscript_helper/JUI.js';
 let editor;
 export default class EssayNewReact extends JUI {
     constructor(eid, essayEditor) {
