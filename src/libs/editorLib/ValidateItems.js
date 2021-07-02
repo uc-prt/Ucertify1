@@ -7,7 +7,7 @@
  */
 import l from "./Lang.js";
 // importing JUI
-import JUI from 'javscript_helper';
+import JUI from '../javscript_helper/JUI';
 const AH = new JUI();
 
 let smVal = {

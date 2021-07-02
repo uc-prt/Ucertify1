@@ -10,7 +10,7 @@
 
     import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
     import {AH, JSONToXML, XMLToJSON} from '../helper/HelperAI.svelte';
-    import {Draggable} from '../javscript_helper/JUI.js';
+    import {Draggable} from '../src/libs/javscript_helper/JUI.js';
     import DooScribPlugin from './HotspotDrawingScript.js';
     import HotspotAuthScript from './Hotspot_authoringScript.js';
     import l from '../src/libs/editorLib/language';
