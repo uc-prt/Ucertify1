@@ -6,7 +6,7 @@
  *  Package     : pe-gold
  *  Last update : 31 Jan 2021
  */
-import JUI from 'javscript_helper';
+import JUI from '../src/libs/javscript_helper/JUI';
 import hotkeys from 'hotkeys-js';
 import Sortable from 'sortablejs';
 

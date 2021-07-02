@@ -10,7 +10,7 @@
 
 	
 	import ucMlid from './matchlistJSString';
-	import {Draggable} from "javscript_helper/JUI.js";
+	import {Draggable} from "../src/libs/javscript_helper/JUI.js";
 	//import smVal from '../lib/ValidateItems';
 	import l from '../src/libs/Lang';	
 	import { beforeUpdate, onMount } from 'svelte';
