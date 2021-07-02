@@ -166,6 +166,12 @@
 		// 	},200)
 		// })
 
+		AI.listen('#matchmain ','click','.matchlist-delete',function(e){
+			setTimeout(function(){
+				displayAns()
+			},200)    
+		})
+
 
 		AH.listen(document,'click','#set-review',function(){
 			setReview();
