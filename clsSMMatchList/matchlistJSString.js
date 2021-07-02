@@ -1,5 +1,5 @@
 import hotkeys from 'hotkeys-js';
-import JUI,{Draggable} from "../../../javscript_helper/JUI.js";
+import JUI,{Draggable} from "../javscript_helper/JUI.js";
 
 const AH = new JUI();
 const ucMlid = {};

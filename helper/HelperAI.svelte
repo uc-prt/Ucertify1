@@ -1,7 +1,7 @@
 <script context="module">
 
     import X2JS from "../scripts/editorScript/xml2json";
-    import JUI, {JStore} from '../../../javscript_helper/JUI.js';
+    import JUI, {JStore} from '../javscript_helper/JUI.js';
     export const UCUTIL = {
 
     };

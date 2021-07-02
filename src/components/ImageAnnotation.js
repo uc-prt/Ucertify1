@@ -14,7 +14,7 @@
  * this min file is called by including the media.js file and passing image_annotation value to 1
  * in the default configuration. 
  */
-import JUI, {Draggable} from '../../../../javscript_helper/JUI.js';
+import JUI, {Draggable} from '../../javscript_helper/JUI.js';
 import swal from 'sweetalert';
 import l from '../libs/editorLib/language';
 const JS = new JUI();

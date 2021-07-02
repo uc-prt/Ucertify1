@@ -1,4 +1,4 @@
-import JUI from '../../../javscript_helper/JUI.js';
+import JUI from '../javscript_helper/JUI.js';
 const JS = new JUI();
 export default class HotspotAuthScript {
 	constructor() {

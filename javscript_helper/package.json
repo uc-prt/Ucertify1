@@ -1,0 +1,35 @@
+{
+  "name": "javscript_helper",
+  "version": "1.0.37",
+  "description": "Provide JQ alternative functions and features",
+  "main": "JUI.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indianleo/pradeep-pro.git"
+  },
+  "keywords": [
+    "JS",
+    "JQ",
+    "javascript",
+    "Tags",
+    "tagsinput",
+    "tagging",
+    "JUI",
+    "ES6",
+    "jq alternative",
+    "draggable",
+    "vanila",
+    "pradeep yadav",
+    "js library",
+    "javascript helper"
+  ],
+  "author": "Pradeep Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indianleo/pradeep-pro/issues"
+  },
+  "homepage": "https://github.com/indianleo/pradeep-pro/tree/master/helper#readme"
+}
