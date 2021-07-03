@@ -1,6 +1,6 @@
 <script>
     //import l from '../lib/Lang';
-    import { onMount, onDestroy, beforeUpdate, afterUpdate, tick} from 'svelte';
+    import { onMount, onDestroy, beforeUpdate, tick} from 'svelte';
     import {ucTree} from './treeviewHelper';
     import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
@@ -173,16 +173,16 @@
         }
     });
 
-    afterUpdate(()=> {
-        if (parsedXml?.smxml?.tree?.__cdata) {
+    // afterUpdate(()=> {
+    //     if (parsedXml?.smxml?.tree?.__cdata) {
 
-            // used to initialized tree plugin and bind some required events that needed
-            ucTree.readyThis('#' + treeid, state.parsedOptions);
-            // Forces to re-render the component
-            calcNodes(parsedXml.smxml.tree.__cdata);
+    //         // used to initialized tree plugin and bind some required events that needed
+    //         ucTree.readyThis('#' + treeid, state.parsedOptions);
+    //         // Forces to re-render the component
+    //         calcNodes(parsedXml.smxml.tree.__cdata);
             
-        }
-    })
+    //     }
+    // })
     
     // For cut and copy the Draggable element
     function cutAndCopyFunctionality() {
