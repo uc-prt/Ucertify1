@@ -401,13 +401,6 @@
 		// show the answer and also bind the keys event for ada
 		ucFill.modeOn("on");
 		ucFill.showdragans(ajax_eId, 'u', 1);
-
-		// To save the user answer
-		var save_result = {};
-		save_result.ans = ucFill.iscorrect;
-		save_result.uXml = AH.select("#special_module_user_xml").value;
-		onUserAnsChange(save_result);
-
 		AH.selectAll('.remed_disable', 'show');
 		autoresize(1);
 		let mathItem = document.getElementById(containerID);
@@ -416,7 +409,7 @@
 			AH.setCss(ajax_eId, {"position": "relative"});
 			AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 		}
-
+		displayAns();
 		// for editor
 		// ucFill.modeOn("on");
 		// state.showToolbar = false;
@@ -469,6 +462,11 @@
 	function displayAns() {
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
+		// To save the user answer
+		var save_result = {};
+		save_result.ans = ucFill.iscorrect;
+		save_result.uXml = AH.select("#special_module_user_xml").value;
+		onUserAnsChange(save_result);
 		if(editorState) { showAns(ans); }
 	}
 
