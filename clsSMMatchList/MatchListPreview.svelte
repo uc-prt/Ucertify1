@@ -5,7 +5,8 @@
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
 *  Package     : pe-items
-*  Last update :  -->
+*  Last update :  04-june-21 
+-->
 <script>
 
 	
@@ -126,29 +127,45 @@
 		loadLibs();
 		
 		dragable = new Draggable({
+			onDragEnter: ((event)=>{	
+				AH.select(event.target,'addClass','drop-hover');
+			}),
+			onDragLeave:((event)=>{
+				console.log('onDragLeave',event.target);
+				AH.select(event.target,'removeClass','drop-hover');
+			}),
 			onDragEnd:(event)=>{
 				displayAns();
 
-			console.log('onDragEnd');
-            if (!ucMlid.is_valid_drop) {
-                if (ucMlid.sinfo) {
-                    ucMlid.sinfo = false;
-                    setTimeout(function() {
-                        ucMlid.sinfo = true;
-                    }, 60 * 1000);
-                    // if (!UCINFO.isIphone) {
-                        if (typeof(AH.alert) == 'function') 
-                            AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
-							console.log('checking box');
-                        if(ucMlid.chkDoNotShow(user_guid) != true) {
-							state.dropDialog = true;
-                            // if (typeof(bindDialog) == 'function') 
-                                // bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
-                        }
-                    //}
-                }
-                // return true;
-            }
+				AH.selectAll('.list2').forEach(function(data,_this){
+					AH.select(data,'removeClass','drop-hover');
+				})
+
+				AH.selectAll('.list3').forEach(function(data,_this){
+					AH.select(data,'removeClass','drop-hover');
+				})
+				
+
+				console.log('onDragEnd');
+				if (!ucMlid.is_valid_drop) {
+					if (ucMlid.sinfo) {
+						ucMlid.sinfo = false;
+						setTimeout(function() {
+							ucMlid.sinfo = true;
+						}, 60 * 1000);
+						// if (!UCINFO.isIphone) {
+							if (typeof(AH.alert) == 'function') 
+								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
+								console.log('checking box');
+							if(ucMlid.chkDoNotShow(user_guid) != true) {
+								state.dropDialog = true;
+								// if (typeof(bindDialog) == 'function') 
+									// bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
+							}
+						//}
+					}
+					// return true;
+				}
         	}
 		})
 		
