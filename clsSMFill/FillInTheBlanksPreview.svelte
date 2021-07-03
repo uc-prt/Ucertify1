@@ -462,11 +462,7 @@
 	function displayAns() {
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
-		// To save the user answer
-		var save_result = {};
-		save_result.ans = ucFill.iscorrect;
-		save_result.uXml = AH.select("#special_module_user_xml").value;
-		onUserAnsChange(save_result);
+		onUserAnsChange(ans);
 		if(editorState) { showAns(ans); }
 	}
 
