@@ -5,7 +5,7 @@
  *  Version     : 1.0
  *  Package     : pe-gold
  *  Last update : 26-june-2021  -->
-<script>
+ <script>
     import l from '../src/libs/editorLib/language.js';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import {writable} from 'svelte/store';
@@ -34,6 +34,7 @@
     let answerStatus = '';
     let authAnsSplit;
     let incorrectCls = "";
+    let userXML;
 
 
 
@@ -78,9 +79,9 @@
         //         $(this).click();
         //     }
         // });
-        AH.listen(document,'keydown','.td_data',((e)=>{
+        AH.listen(document,'keydown','.td_data',((data,e)=>{
             if(e.which === 13) {
-                e.click();
+                data.click();
             }
         }))
 
@@ -127,11 +128,11 @@
             
             //if (window.uaXML) {
             if(uxml) {
-                let timer = setTimeout(function() {
+                // let timer = setTimeout(function() {
                     //parseUserAns(window.uaXML);
                     parseUserAns(uxml)
-                    clearTimeout(timer);
-                },50);
+                //     clearTimeout(timer);
+                // },50);
             }
 		} catch (error) {
                 onError = error;
@@ -192,6 +193,7 @@
     function setUserAns (event)  {
         let countRes;
         let resNew;
+        let ansBool;
 
        //////// This code set the answer///////////
         let attr = event.target.attributes.getNamedItem('data-tag').value;
@@ -245,10 +247,12 @@
             if(editorState) {
                 showAns(countRes);
             }
-            
-            
-            AH.select("#special_module_user_xml").value = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+            ansBool = (countRes == "correct") ? true : false;
 
+            userXML = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+            
+            //AH.select("#special_module_user_xml").value = userXML
+            
             resNew = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>";
             if (bool != ' ' && c == user.length) {
                 //jQUery("#answer").prop("checked", bool);
@@ -257,7 +261,8 @@
                 //jQuery("#answer").prop("checked", isAnswerCorrect);
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
-            onUserAnsChange({uXML:resNew,ans:countRes});
+            uxml = userXML
+            onUserAnsChange({uXml:resNew,ans:ansBool});
         
         
     }

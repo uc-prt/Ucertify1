@@ -9,7 +9,7 @@
  */
 
 // importing JUI
-import JUI from 'javscript_helper';
+import JUI from '../../src/libs/javscript_helper/JUI';
 const JS = new JUI();
 
 let CHART = {};
