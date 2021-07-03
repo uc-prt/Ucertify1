@@ -592,7 +592,6 @@ export default class fillJS {
 				
 			}
 		}
-		return{ uXml: this.userAnsXML, ans: this.result}
 	}
 
 	checkInArray(tree, branch) {

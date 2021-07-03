@@ -462,7 +462,9 @@
 	function displayAns() {
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
-		onUserAnsChange(ans);
+		// To save the user answer
+		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
+		onUserAnsChange(answer);
 		if(editorState) { showAns(ans); }
 	}
 
