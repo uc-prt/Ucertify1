@@ -91,7 +91,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchlistAuth.css', config);
+        AH.createLink(itemUrl + 'clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{
