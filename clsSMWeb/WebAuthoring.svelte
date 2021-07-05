@@ -8,17 +8,10 @@
  *  Latest Update by : Sundaram Tripathi
 -->
 <!-- <svelte:head>
-<<<<<<< HEAD
     <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/codemirror.min.css"  /> 
     <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/monokai.css"  />
     <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/simplescrollbars.css"  />
     <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/webitem.min.css"  /> 
-=======
-    <link rel="stylesheet" href="{themeUrl}svelte_items/svelte/clsSMWeb/libs/codemirror.min.css"  /> 
-    <link rel="stylesheet" href="{themeUrl}svelte_items/svelte/clsSMWeb/libs/monokai.css"  />
-    <link rel="stylesheet" href="{themeUrl}svelte_items/svelte/clsSMWeb/libs/simplescrollbars.css"  />
-    <link rel="stylesheet" href="{themeUrl}svelte_items/svelte/clsSMWeb/libs/webitem.min.css"  /> 
->>>>>>> 095e7db038e2fbe7c0713e4ec4fca5dc2431d2ba
 </svelte:head> -->
 
 <script>
@@ -160,17 +153,10 @@
     
     beforeUpdate(()=> { 
         // if(!is_visible) {
-<<<<<<< HEAD
         //     createLink('pe-items/svelte_items/clsSMWeb/libs/codemirror.min.css');
         //     createLink('pe-items/svelte_items/clsSMWeb/libs/monokai.css');
         //     createLink('pe-items/svelte_items/clsSMWeb/libs/simplescrollbars.css');
         //     createLink('pe-items/svelte_items/clsSMWeb/libs/webitem.min.css');
-=======
-        //     createLink('svelte_items/svelte/clsSMWeb/libs/codemirror.min.css');
-        //     createLink('svelte_items/svelte/clsSMWeb/libs/monokai.css');
-        //     createLink('svelte_items/svelte/clsSMWeb/libs/simplescrollbars.css');
-        //     createLink('svelte_items/svelte/clsSMWeb/libs/webitem.min.css');
->>>>>>> 095e7db038e2fbe7c0713e4ec4fca5dc2431d2ba
         //     is_visible = 1;
         // }
 
