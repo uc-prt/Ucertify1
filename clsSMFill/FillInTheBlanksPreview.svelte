@@ -4,7 +4,7 @@
  *  Description : Container for all Fill in The Blanks preview Module
  *	Author      : Pradeep Yadav
  *  Version     : 1.0
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 17 Dec 2017
  */
 	import {ucFill} from './fillJSString';

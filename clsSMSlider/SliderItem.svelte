@@ -2,7 +2,7 @@
  *  File Name   : SliderItem.svelte
  *  Description : Container for Slider Authoring Module
  *  Author      : Rashmi Kumari
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 19-Jan-2021
  *  Last Updated By : Rashmi Kumari
 -->

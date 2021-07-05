@@ -4,7 +4,7 @@
 *  Description : Drag the option
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  04-june-21 
 -->
 <script>

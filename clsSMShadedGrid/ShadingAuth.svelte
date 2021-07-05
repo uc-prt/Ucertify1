@@ -2,7 +2,7 @@
  *  File Name   : ShadingAuth.svelte
  *  Description : Container for Shading Authoring Module
  *  Author      : Rashmi Kumari
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 05-Feb-2021
  *  Last Updated By : Rashmi Kumari
 -->

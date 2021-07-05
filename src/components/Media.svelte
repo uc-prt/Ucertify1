@@ -613,7 +613,7 @@
     function getLibraryFiles() {
 
         if (default_media_configuration.is_editor) {
-            // mergingScript('pe-items/script/media_merge.min.js'); 
+            // mergingScript('svelte_items/script/media_merge.min.js'); 
             return true;
         }
         // for the file uploading 

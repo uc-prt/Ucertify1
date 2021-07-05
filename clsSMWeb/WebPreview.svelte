@@ -2,7 +2,7 @@
  *  File Name   : WebAuthoring.svelte
  *  Description : Show the editors html,css and js
  *  Author      : Sundaram Tripathi
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 02-June-2021
  *  Last Updated By : Pradeep Yadav
 -->

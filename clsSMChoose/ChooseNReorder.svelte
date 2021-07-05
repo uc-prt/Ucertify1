@@ -4,7 +4,7 @@
 *  Description : Container for all Choose And Reorder Authoring Module
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  -->
 
 <script>
