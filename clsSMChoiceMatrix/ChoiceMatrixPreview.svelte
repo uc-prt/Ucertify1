@@ -481,7 +481,7 @@
             reviewMode={isReview}
         />
         <center>
-            <table class = {"table table-bordered testmode_table "} id="test_table" style="{'position:relative, margin-top:20px,width:'+state.maxWidth+"px"}};font-family: Georgia;">
+            <table class = {"table table-bordered testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">
                 <thead>
                     <tr class = "table-head">
                         <th

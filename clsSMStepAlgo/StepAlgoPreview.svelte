@@ -109,6 +109,14 @@
 	})
 
 	onMount(()=>{
+
+		AH.listen(document,'keydown','.edit_step',function(data,e) {
+			//let ele = $(this);
+			
+			let l = (data.value.split('').length * 10) + 30 +'px';
+			data.style.width = l;
+		})
+
 		window.J = ju;
 		AI.set('stepAlgo', this);
 
@@ -655,7 +663,7 @@
 			}
 			element_id = "s"+steps_counter+"_t"+i;
 			element_div = "s"+steps_counter;
-			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none"  style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" />';
+			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none"  style="width:38px;'+csStyle+'" />';
 			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="" class="corr_div h-imp">'+data[0]+'</span>'+textbox+'</span>';
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans)
