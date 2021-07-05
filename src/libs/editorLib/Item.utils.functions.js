@@ -3,7 +3,7 @@
  *  Author      : Pradeep Yadav
  *  Function    : Item Helper
  *  Version     : 1.0
- *  Packege     : pe-items.lib
+ *  Packege     : svelte_items.lib
  *  Last update : 28 May 2019
  *  Dependency  : No any dependency ( Core javascript library )
  */

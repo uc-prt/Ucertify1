@@ -4,7 +4,7 @@
      *  Description : Container for EvalPro Module
      *  Author      : Pradeep Yadav
      *  Version     : 1.2
-     *  Package     : pe-items/svelte
+     *  Package     : svelte_items/svelte
      *  Created     : 30 Feb 2021
      *  Updated By  : Prabhat Kumar <prabhat.kumar@ucertify.com>
      *  Updated Date: 12-May-2021
@@ -142,7 +142,7 @@
         } else {
             AH.ajax({
                 type: "GET",
-                url: themeUrl + "pe-items/src/libs/codemirror.js",
+                url: themeUrl + "svelte_items/src/libs/codemirror.js",
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});
@@ -633,7 +633,7 @@
         AH.select("#evalProRunCode", 'attr', {disabled: "disabled"});
         AH.select("#output").innerHTML = ('<div class="EvalbgBlue"><div class="Evalloader"><span>{</span><span>}</span></div></div>');
         AH.ajax({
-            url: themeUrl + "pe-items/evalPro/index.php",
+            url: themeUrl + "svelte_items/evalPro/index.php",
             type: 'POST',
             data: {
                 'ajax': 1,
@@ -723,7 +723,7 @@
         setDefaultXML('answer_check');
         let uxml = generateXml(true);
         AH.ajax({
-            url: themeUrl + "pe-items/evalPro/index.php", 
+            url: themeUrl + "svelte_items/evalPro/index.php", 
             data: {
                 "uxml": uxml,
                 "ajax": 1,
@@ -825,7 +825,7 @@
         }
         AH.ajax({
             type: "POST",
-            url: themeUrl + "pe-items/evalPro/index.php",
+            url: themeUrl + "svelte_items/evalPro/index.php",
             data: {
                 code: code,
                 repltype: state.lang_type,
@@ -1527,7 +1527,7 @@
                 {#each lang_type as lang}
                     <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleLanguageSelection.bind(this, lang)} key={lang} style="height:60px; cursor: pointer; padding-left: 20px">
                         <div class="text-center d-inline-block" style="height: 50px; width: 50px; background: #ccc;border-radius: 50%;">
-                            <img style="border-radius: 50%;height:50px;" src={window.themeUrl + "/pe-items/images/"+ (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
+                            <img style="border-radius: 50%;height:50px;" src={window.themeUrl + "/svelte_items/images/"+ (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
                         </div>
                         <div class="pl-1 d-inline-block" style="padding: 15px;">{lang.charAt(0).toUpperCase() + lang.slice(1)}</div>
                     </div>

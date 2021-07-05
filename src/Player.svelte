@@ -62,7 +62,7 @@
     onMount(async()=> {
         console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
-            AH.addScript("", baseUrlTheme + 'pe-items/lib/webparser.js');
+            AH.addScript("", baseUrlTheme + 'svelte_items/lib/webparser.js');
         }
         prevState = state;
         state.prevValue = editorState.playerArr;

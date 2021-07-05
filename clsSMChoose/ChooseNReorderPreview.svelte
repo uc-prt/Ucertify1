@@ -4,7 +4,7 @@
 *  Description : Show the module according to authoring side.
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  -->
 
 <script>

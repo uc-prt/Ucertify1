@@ -3,7 +3,7 @@
 *  Description : show the boxes for users side
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  -->
 <script>
     import {writable} from 'svelte/store';

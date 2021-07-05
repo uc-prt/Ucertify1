@@ -2,7 +2,7 @@
  *   File Name   : ChoiceMatrixPreview.svelte
  *   Description : Choice Matrix module
  *   Author      : Sundaram Tripathi (uc-sdt)
- *   Package     : pe-items
+ *   Package     : svelte_items
  *   Last update : 05-May-2021
  *   Last Update By : Pradeep Yadav
  -->

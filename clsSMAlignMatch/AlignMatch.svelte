@@ -2,7 +2,7 @@
  *  File Name   : AlignMatch.svelte
  *  Description : Container for AlignMatch Authoring Module
  *  Author      : Rashmi Kumari
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 05-Jan-2021
  *  Last Updated By : Rashmi Kumari
 -->

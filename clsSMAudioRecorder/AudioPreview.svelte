@@ -2,7 +2,7 @@
  *  File Name   : AudioPreview.svelte
  *  Description : Container for all AudioRecorder Preview Module
  *  Author      : Rashmi Kumari
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 15-Feb-2021
  *  Last Updated By : Rashmi Kumari
 -->

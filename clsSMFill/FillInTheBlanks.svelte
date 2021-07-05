@@ -4,7 +4,7 @@
  *  Description : Container for all Fill In The Blanks Authoring Module
  *	Author      : Pradeep Yadav
  *  Version     : 1.0
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 21 Jan 2021
  *  Last updated by : Pradeep Yadav
  */
@@ -373,7 +373,7 @@
 				prependToContext: true
 			});
 		});
-		tinymce.PluginManager.load('equationeditor', themeUrl+'pe-items/tinymce/plugins/equationeditor/plugin.min.js');
+		tinymce.PluginManager.load('equationeditor', themeUrl+'svelte_items/tinymce/plugins/equationeditor/plugin.min.js');
 		tinymce.init({
 			selector: '.tinymce-editor-res',
 			inline: true,
@@ -471,7 +471,7 @@
 				"searchreplace code fullscreen",
 				"insertdatetime media table contextmenu paste res equationeditor "
 			],
-			content_css: themeUrl+'pe-items/src/libs/mathquill.css',
+			content_css: themeUrl+'svelte_items/src/libs/mathquill.css',
 			toolbar: [
 				' bold italic underline | equationeditor | tabl | custom-alignleft custom-aligncenter custom-alignright '
 			],

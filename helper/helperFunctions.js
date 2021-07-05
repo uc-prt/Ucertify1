@@ -1800,7 +1800,7 @@ export function mathMLRender(id_mathML, is_required) {
         AH.insert(document.body, css, 'afterend');
         AH.ajax({
             type: 'GET',
-            url: location.origin + '/client/themes/pe-items/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',
+            url: location.origin + '/client/themes/svelte_items/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',
             async: false,
             dataType: 'script',
         }).then(function (script) {
