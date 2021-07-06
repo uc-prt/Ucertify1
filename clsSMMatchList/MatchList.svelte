@@ -16,6 +16,7 @@
     import {smVal} from './lib/ValidateItems';
     import l from '../src/libs/Lang.js'
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
+	import './css/matchlistAuth.css'
 
 
 	////exporting vaiables
@@ -91,7 +92,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchlistAuth.css', config);
+        //AH.createLink(baseUrlTheme + 'svelte_items/clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{

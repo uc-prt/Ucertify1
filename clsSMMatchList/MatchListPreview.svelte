@@ -131,7 +131,6 @@
 				AH.select(event.target,'addClass','drop-hover');
 			}),
 			onDragLeave:((event)=>{
-				console.log('onDragLeave',event.target);
 				AH.select(event.target,'removeClass','drop-hover');
 			}),
 			onDragEnd:(event)=>{
