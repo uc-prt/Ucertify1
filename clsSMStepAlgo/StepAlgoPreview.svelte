@@ -1136,7 +1136,7 @@
 			<div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				{#each answer_array as item,index}
 			
-						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3">
+						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3"  tabindex={0}>
 							<div id={"s"+index} class={"bg-white " + ((state.display == 1) ? ((special_module.smans != undefined) ?  ((special_module.smans["s"+index] != undefined) ? ((special_module.smans["s"+index].overall == 1) ? 'border_green': 'border_red') : '')  : '')  : '')}>
 								<div id={'data-block_'+index} class={"main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " +((index == state.classChange) ? ((state.isColor) ? 'border_green' : 'border_red') : '')} key={index}>
 									<div seq={"s"+index}>{@html item.__cdata}</div>
