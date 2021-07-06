@@ -96,7 +96,7 @@
     }
 
     onMount(()=>{
-		loadLibs();
+		//loadLibs();
         // preventing the enter key in the textarea
         AI.listen(document,'keydown','textarea',function(event) {
             if(event.keyCode == 13) {
