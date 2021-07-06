@@ -121,7 +121,7 @@
 		AI.set('stepAlgo', this);
 
 		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
-		AH.addScript("", window.itemFolder + "src/libs/mathQuill_new.js");
+		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 
 		if(window.inNative) {
 			window.getHeight && window.getHeight();
@@ -214,7 +214,8 @@
 		if(window.inNative) {
 			window.checkReview = (isReview) => isReview ? self.setReview() : self.unsetReview();
 		}
-		AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
+		//AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
+		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 	})
 
 	function setOutline(_element) {
