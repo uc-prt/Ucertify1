@@ -6,9 +6,6 @@
  *  Last update : 05-May-2021
  *  Last Updated By : Pradeep Yadav
 -->
-<svelte:head>
-	<link href="./choiceMatrix.css" rel="stylesheet" />
-</svelte:head>
 
 <script>  
 	import { onMount,afterUpdate } from "svelte";
