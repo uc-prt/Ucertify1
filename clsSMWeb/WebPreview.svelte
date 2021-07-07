@@ -6,7 +6,6 @@
  *  Last update : 02-June-2021
  *  Last Updated By : Pradeep Yadav
 -->
-
 <script> 
     let themeUrl = (window.baseThemeURL) ? window.baseThemeURL: window.baseUrlTheme;
     //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
@@ -22,9 +21,6 @@
     import '../src/libs/monokai.css';
     import '../src/libs/simplescrollbars.css';
     import '../src/libs/webitem.min.css';
-
-    import '../src/libs/codemirror';
-    import Split from '../src/libs/split';
 
     export let inQuizPlayer;
     export let xml;
@@ -73,8 +69,6 @@
     let unsubscribe = stateData.subscribe((items)=>{
         state = items;
     })
-
-       
     // called every time when any props or state gets changed
     beforeUpdate(()=>{
         if (xml != state.xml) {
@@ -97,31 +91,11 @@
         }
     });
 
-
-
-    function loadLibs() {
-        let config = {
-            preload: true,
-            type: 'text/javascript',
-            as: 'script'
-        }
-        AH.createLink(window.itemFolder + 'src/libs/codemirror.js', config);
-        AH.createLink(window.itemFolder + 'src/libs/split.js', config);
-    }
     
     onMount(()=>{
-        loadLibs()
         // used for mobile team
         if (window.inNative) {
             window.getHeight && window.getHeight();
-         /*   jQuery('#html_pane').on('click', function () {
-                jQuery(this).find('a').removeClass('active');
-                jQuery('#css_panel,#js_panel').css('display', 'none');
-                jQuery('#html_panel').css('display', 'block').find('a').addClass('active');
-                let html_tags = htmlEditor.getValue();
-                htmlEditor.setValue(html_tags);
-            }); //Replaced*/
-        
             document.querySelector('#html_pane').addEventListener('click',function(_this) {
                 AI.select(_this).querySelector('a').classList.remove('active');
                 //document.getElementById('css_panel').style.display = 'none';
@@ -135,15 +109,6 @@
                 let html_tags = htmlEditor.getValue();
                 htmlEditor.setValue(html_tags);
             })
-
-
-            /*jQuery('#css_pane').on('click', function () {
-                jQuery(this).find('a').removeClass('active');
-                jQuery('#html_panel,#js_panel').css('display', 'none');
-                jQuery('#css_panel').css('display', 'block').find('a').addClass('active');
-                let css_data = cssEditor.getValue();    
-                cssEditor.setValue(css_data);
-            });*/// Replaced
 
             document.querySelector('#html_pane').addEventListener('click',function(_this){
                 let contain = AI.select(_this);
@@ -159,16 +124,6 @@
                 cssEditor.setValue(css_data);
             })  
 
-
-
-        /*    jQuery('#js_pane').on('click', function () {
-                jQuery(this).find('a').removeClass('active');
-                jQuery('#css_panel,#html_panel').css('display', 'none');
-                jQuery('#js_panel').css('display', 'block').find('a').addClass('active');
-                let js_data = jsEditor.getValue();
-                jsEditor.setValue(js_data);
-            });  */
-
             document.querySelector('#js_pane').addEventListener('click',function(_this){
                 let js_Pane = AI.select(_this);
                 js_Pane.querySelector('a').classList.remove('active');
@@ -181,7 +136,6 @@
                 js_panel_container.querySelect('a').classlist.add('active');
                 let js_data = jsEditor.getValue();
                 jsEditor.setValue(js_data);
-
             })
             // conditon can be removed as its defined above
             if (window.inNative) {
@@ -190,16 +144,37 @@
                 }, 500);
             }
         }
-
-        setTimeout(()=>{
+        // codemirror.js adding in body
+        if (typeof (CodeMirror) == "function") {
+            // initialize the html, css and js editor by converting textareas having id 'html_editor', 'css_editor', 'js_editor' in html, css and js editor
             renderCodeMirror();
-
+        } else {
+            AI.ajax({
+                url:  baseUrlTheme + "src/libs/codemirror.js",
+            }).then(function(data) {
+                let sc = document.createElement("script");
+                // sets the data received from 'codemirror.js' file inside the script tag
+                sc.innerHTML = data;
+                // appends this created script tag in body element of the document
+                document.body.appendChild(sc);   
+                renderCodeMirror();
+            }) 
+        }
+        AI.ajax({  
+            url: baseUrlTheme + "src/libs/split.js",
+        }).then(function(data){
             if (document.querySelector("#splitterWeb")) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
                 splitter();
                 // returns from the function to prevent from re-appened the code if it was already defined
                 return true;
             }
+            // creates script element
+            let script_data = document.createElement("script");
+            // sets the data received from 'splitter.js' file inside the script tag
+            script_data.innerHTML = data;
+            // appends this created script tag in body element of the document
+            document.body.appendChild(script_data);
             if (!inQuizPlayer) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
                 splitter();
@@ -207,30 +182,15 @@
                 // sets the width and floating property of the js, html, css and result editor
                 changeStyle();
             }
-        }, 1000);
+        });
 
-    /*    jQuery(document).off('click', '#answerCheck').on('click', '#answerCheck', function () {
+        /*    jQuery(document).off('click', '#answerCheck').on('click', '#answerCheck', function () {
             // shows the output of the code written on the editors and sets the value of state 'remediationToggle' to true for identify that remediation mode is on
             remediationMode();
         });  // Replaced*/
         AI.listen(document,'click','#answerCheck',function(){
             remediationMode();
         })
-
-    /*    jQuery("#set-review").on('click', function () {
-            // checks the answer and not allowed user to perform the task
-            setReview();
-        });  //Replaced (Fixed with XML Part)
-    */
-    
-
-        // jQuery("#unset-review").on('click', function () {
-        //     // allowed user to perform the task in that editor which was not made readonly at the time of question creation
-        //     unsetReview(); //Replaced (Fixed with XML Part)
-        // });
-        
-        
-
 
         window.save_data = function () {
             if (typeof (CodeMirror) == "function") {
@@ -240,7 +200,6 @@
             }
         }
         // it is used only re-render purpose as its value first changes but callback function again reset it its initial value
-        
         //state.goDark =!state.goDark;
     });
 
