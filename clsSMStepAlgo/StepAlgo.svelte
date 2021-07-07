@@ -605,12 +605,12 @@
                         <span class="pointer d-inline-block plain_text" data-toggle="tooltip" title="Don't use any interactive item!" for={`viewonly_radio_${index}`}>{l.plain_text}</span>
                         <span class="stat-percent ms-4" style={'display:inline-block;position:relative;'}>
                             <span class="form-check form-switch">
-                                <input type="checkbox" class="form-check-input" id="switchElement"
+                                <input type="checkbox" class="form-check-input" id={"switchElement"+index}
                                     checked={(item.toggle == "1"? false: true)}
                                     on:change={(e)=>{handleRadio(index, 'fillAuthor_'+index,e)}}
                                     color="primary"
                                 >
-                                <label for="switchElement">{l.interactive}</label>
+                                <label for={"switchElement"+index}>{l.interactive}</label>
                                 
                             </span>
                         </span>

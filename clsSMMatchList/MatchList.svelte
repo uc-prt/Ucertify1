@@ -16,6 +16,7 @@
     import {smVal} from './lib/ValidateItems';
     import l from '../src/libs/Lang.js'
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
+	import './css/matchlistAuth.css'
 
 
 	////exporting vaiables
@@ -91,11 +92,11 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(itemUrl + 'clsSMMatchList/css/matchlistAuth.css', config);
+        //AH.createLink(itemUrl + 'clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{
-		loadLibs();
+		//loadLibs();
         // preventing the enter key in the textarea
         AI.listen(document,'keydown','textarea',function(event) {
             if(event.keyCode == 13) {

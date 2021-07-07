@@ -15,7 +15,9 @@
 	import l from '../src/libs/editorLib/language';
 	import { AH, onUserAnsChange } from '../helper/HelperAI.svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import '../src/libs/codemirror';
+	import  '../src/libs/codemirror.min.css';
+	import '../src/libs/monokai.css';
+	import '../src/libs/simplescrollbars.css';
 
 	export let xml;
 	export let uxml;
@@ -83,7 +85,6 @@
 		user_guid = user.user_guid;
 	})
 	onMount(()=> {
-		//loadLibs()
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
 		db_name = findAttribute(window.QXML, 'db_name');
 		is_graph = findAttribute(window.QXML, 'is_graph');
@@ -107,13 +108,6 @@
 		});
 		didMount();
 	})
-
-	function loadLibs() {
-
-		AH.addScript('', window.itemFolder + 'src/libs/codemirror.js', { callback: () => {
-			renderCodeMirror();
-		}});
-    }
 
 	beforeUpdate(()=> {
 		AH.select("#item_answer", 'addClass', ["mb-xl","multiItem"]);
@@ -193,7 +187,18 @@
 		getChildXml(xmlArr[state.lang_type]); //important
 		AH.select('#preview', 'hide');
 		state.xml = xml;
-		let baseUrl = location.origin;
+		if (typeof(CodeMirror) == "function") {
+			renderCodeMirror();
+		} else {
+			AH.ajax({
+                type: "GET",
+                url: baseUrlTheme + "src/libs/codemirror.js",
+                dataType: "script",
+            }).then((data)=> {
+                AH.addScript(data, "", {target: "body"});
+                renderCodeMirror();
+            })
+		}
 
 		AH.listen(document, 'click', '#answerCheck', remediationMode.bind(this));
 		
