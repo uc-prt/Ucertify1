@@ -106,7 +106,6 @@
 
     // parses the xml data and update the xml
     function parseXMLAuthoring(MYXML) {
-        
         try {
             if(count) {
             // contains the information of each rows in the form of json 
@@ -115,7 +114,6 @@
             }
             state.data_cdata = temp_array;
             state.xml = MYXML;
-            
         } catch (error) {
             console.log({ 'error': error });
         }
@@ -126,6 +124,7 @@
     function handleImport() {
         // opens the file select dialog box for import the csv
         document.querySelector('#fileUpload').click();
+
     }
 
     // used for update the xml
@@ -587,7 +586,7 @@
                             if (importedCsv) {
                                 // updates the xml
                                 updateXML(importedCsv);
-                                
+                                count = true;
                                 AH && AH.showmsg(l.file_uploaded, 4000);
                             }
                             fileUpload.value = '';
