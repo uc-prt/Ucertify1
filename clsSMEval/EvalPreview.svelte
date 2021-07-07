@@ -192,7 +192,7 @@
 		} else {
 			AH.ajax({
                 type: "GET",
-                url: baseUrlTheme + "src/libs/codemirror.js",
+                url: itemUrl + "src/libs/codemirror.js",
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});

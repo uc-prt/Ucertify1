@@ -142,7 +142,7 @@
         } else {
             AH.ajax({
                 type: "GET",
-                url: themeUrl + "svelte_items/src/libs/codemirror.js",
+                url: itemUrl + "src/libs/codemirror.js",
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});
