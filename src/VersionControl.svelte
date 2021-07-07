@@ -4,7 +4,7 @@
      *  Description : Revision history page
      *  Author      : Pradeep Yadav
      *  Version     : 1.2
-     *  Package     : pe-items/svelte
+     *  Package     : svelte_items/svelte
      *  Created     : 30 Feb 2021
      *  Updated By  : Prabhat Kumar<prabhat.kumar@ucertify.com>
      *  Updated Date: 12-May-2021

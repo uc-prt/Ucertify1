@@ -4,7 +4,7 @@
  *  Description : Container for all Hotspot Authoring Module
  *	Author      : Pradeep Yadav
  *  Version     : 1.0
- *  Package     : pe-items/svelte
+ *  Package     : svelte_items/svelte
  *  Last updated : 01 JAN 2021
  */
 

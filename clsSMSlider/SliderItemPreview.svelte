@@ -2,7 +2,7 @@
  *  File Name   : SliderItemPreview.svelte
  *  Description : Container for Slider preview Module
  *  Author      : Rashmi Kumari
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 19-Jan-2021
  *  Last Updated By : Rashmi Kumari
 -->

@@ -4,7 +4,7 @@
 *  Description : Match the list options and type
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  -->
 
 <script> 
@@ -91,7 +91,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMMatchList/css/matchlistAuth.css', config);
+        AH.createLink(itemUrl + 'clsSMMatchList/css/matchlistAuth.css', config);
     }
 
     onMount(()=>{

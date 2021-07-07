@@ -4,7 +4,7 @@
      *  Description : Header for Editor area
      *  Author      : Pradeep Yadav
      *  Version     : 1.2
-     *  Package     : pe-items/svelte
+     *  Package     : svelte_items/svelte
      *  Created     : 30 Feb 2021
      *  Updated By  : Prabhat Kumar<prabhat.kumar@ucertify.com>
      *  Updated Date: 12-May-2021
@@ -24,7 +24,7 @@
     export let analyzeVariable;
     export let toggleRemediation;
     export let l;
-    let deviceIframeContainer = ["background:url(" + editor.baseUrlTheme + "pe-items/images/mobile.svg);width:370px;height:707px;margin:0 auto;padding: 105px 5px;", "background:url(" + editor.baseUrlTheme + "pe-items/images/tab.svg);width:871px;height:1242px;margin:0 auto;padding: 105px 5px;"];
+    let deviceIframeContainer = ["background:url(" + editor.baseUrlTheme + "svelte_items/images/mobile.svg);width:370px;height:707px;margin:0 auto;padding: 105px 5px;", "background:url(" + editor.baseUrlTheme + "svelte_items/images/tab.svg);width:871px;height:1242px;margin:0 auto;padding: 105px 5px;"];
 	let deviceIframeProperty = ["overflow: auto;height: 500px;background: #fff;padding:0 10px;margin-left:2px;", "overflow: auto;height: 1045px;background: #fff;padding:0 10px;margin-left:2px;"];
     let openGudids;
     let editorRouter = [];

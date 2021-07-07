@@ -41,18 +41,19 @@ export default {
 		svelte({
 			// Optionally, preprocess components with svelte.preprocess:
 			// https://svelte.dev/docs#svelte_preprocess
-			preprocess: {
-				style: ({ content }) => {
-					return transformStyles(content);
-				}
-			},
+			// preprocess: {
+			// 	style: ({ content }) => {
+			// 		return transformStyles(content);
+			// 	}
+			// },
+			preprocess: autoPreprocess(),
 			emitCss: false,
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
 			// css: css => {
 			// 	css.write('bundle-editor.css');
 			// },
-			preprocess: autoPreprocess(),
+			
 			// You can pass any of the Svelte compiler options
 			compilerOptions: {
 				// enable run-time checks when not in production
@@ -81,17 +82,20 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+		// postcss({
+		// 	extract: true,
+		// 	minimize: true,
+		// 	use: [
+		// 		['sass', {
+		// 			includePaths: [
+		// 				'./src/theme',
+		// 				'./node_modules'
+		// 			]
+		// 		}]
+		// 	]
+		// }),
 		postcss({
-			extract: true,
-			minimize: true,
-			use: [
-				['sass', {
-					includePaths: [
-						'./src/theme',
-						'./node_modules'
-					]
-				}]
-			]
+			plugins: []
 		}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

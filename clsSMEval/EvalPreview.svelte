@@ -5,7 +5,7 @@
 	 *  Description : Container for EvalPro Module
 	 *	Author      : Pradeep Yadav
 	 *  Version     : 1.2
-	 *  Package     : pe-items
+	 *  Package     : svelte_items
 	 *  Created     : 11 March 2021
 	*/
 	import { user } from "../../../store";
@@ -25,7 +25,7 @@
 	export let isReview;
 	export let content_guid;
 	export let sample_input;
-	let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/pe-items/evalPro/index.php';
+	let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
 	let user_guid = '';
 	let tempGuid;
 	let client = {};
@@ -206,7 +206,7 @@
 		/*
 		AH.ajax({
 			type: "GET",
-			url: themeUrl+"pe-items/lib/splitter.js",
+			url: themeUrl+"svelte_items/lib/splitter.js",
 			async:false,
 			dataType: "script",
 			cache: true,

@@ -2,7 +2,7 @@
  *  File Name   : ChoiceMatrix.svelte
  *  Description : Decided the "Term" & "Option"
  *  Author      : Sundaram Tripathi
- *  Package     : pe-items
+ *  Package     : svelte_items
  *  Last update : 05-May-2021
  *  Last Updated By : Pradeep Yadav
 -->

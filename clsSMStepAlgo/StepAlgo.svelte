@@ -4,7 +4,7 @@
 *  Description : Saving answer tool and question model boxes
 *  Author      : Sundaram Tripathi
 *  Version     : 1.0
-*  Package     : pe-items
+*  Package     : svelte_items
 *  Last update :  -->
 <script>
     import {writable} from 'svelte/store';
@@ -442,7 +442,7 @@
                 prependToContext: true
             });
         });
-		tinymce.PluginManager.load('equationeditor', themeUrl+'pe-items/tinymce/plugins/equationeditor/plugin.min.js');
+		tinymce.PluginManager.load('equationeditor', themeUrl+'svelte_items/tinymce/plugins/equationeditor/plugin.min.js');
 		tinymce.init({
             selector: '.tinymce-editor-res',
             inline: true,
@@ -467,7 +467,7 @@
                 "searchreplace code fullscreen",
                 "insertdatetime media table contextmenu paste res equationeditor "
             ],
-            content_css: themeUrl+'pe-items/src/libs/mathquill.css',
+            content_css: themeUrl+'svelte_items/src/libs/mathquill.css',
             toolbar: [
             ' bold italic underline | equationeditor'
             ],
