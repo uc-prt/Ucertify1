@@ -364,7 +364,7 @@
                 // shows the answer correct or incorrect according to the value of variable 'ans'
                 showAns(ans);
             } else {
-                onUserAnsChange({uXml: JSON.stringify(preview_data.user_ans_xml).replace(/"/g,"'"), ans: ans});
+                onUserAnsChange({uXml: JSON.stringify(preview_data.user_ans_xml).replace(/"/g,"'"), ans: ansAns});
             }
         }
     
