@@ -245,7 +245,6 @@
     }
     
 </script>
-<!-- <link onload="this.rel='stylesheet'" rel="preload" as="style" href="{window.baseUrlTheme}clsSMSlider/css/slider.min.css" /> -->
 {#if onError != "" }
     <div class="alert alert-danger font-weight-bold">
         <span>{l.oops_msg} </span>

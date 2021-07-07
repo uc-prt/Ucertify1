@@ -44,7 +44,7 @@
         }
     // Built-in method of react lifecycle and called just afetr render method once throughtout the program execution  
     onMount(()=> {
-        //console.log({"abc":editor.baseUrlTheme});
+       
         //AH.addScript("", "../layout/themes/bootstrap4/ux/js/jstree.min.js");
         jsRef = new jsTree({}, document.getElementById('treemain0'));
         instance.empty().create(dummy(2, 10)).openAll();
@@ -638,10 +638,10 @@
         // used for handle the UI of preview component according to change in state or props
 </script> 
 <svelte:head>
-    <link rel="stylesheet" href="{baseUrlTheme}clsSMTree/libs/jstree.min.css"/>
-    <script src="{baseUrlTheme}clsSMTree/libs/jstree.min.js"></script>
-    <link rel="stylesheet" href="{baseUrlTheme}clsSMTree/libs/treeview.min.css" />
-    <link rel="stylesheet" href={editor.baseUrlTheme + "css/jstree/style.min.css"} />
+    <link rel="stylesheet" href="{itemUrl}clsSMTree/libs/jstree.min.css"/>
+    <script src="{itemUrl}clsSMTree/libs/jstree.min.js"></script>
+    <link rel="stylesheet" href="{itemUrl}clsSMTree/libs/treeview.min.css" />
+    <link rel="stylesheet" href="{itemUrl}css/jstree/style.min.css"} />
 </svelte:head>
 <main>
     {#if state.blank}

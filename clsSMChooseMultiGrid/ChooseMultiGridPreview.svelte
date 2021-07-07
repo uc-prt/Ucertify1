@@ -404,13 +404,6 @@
 		}
 	}
 </script>
-
-<!-- <link
-    onload="this.rel='stylesheet'"
-    rel="preload"
-    as="style"
-    href={window.baseUrlTheme + "clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css"}
-/> -->
 <div id="chid">
     <ItemHelper
         on:setReview={setReview}

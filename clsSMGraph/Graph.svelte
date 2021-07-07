@@ -187,7 +187,7 @@
             if (typeof(JXG) != 'undefined') {
                 GRAPH_AUTH.initGraph();
             } else {
-                AH.addScript('', baseUrlTheme + 'clsSMGraph/lib/jsxgraph.min.js', { callback: function () {
+                AH.addScript('', itemUrl + 'clsSMGraph/lib/jsxgraph.min.js', { callback: function () {
                     GRAPH_AUTH.initGraph();
                 }});
             }
