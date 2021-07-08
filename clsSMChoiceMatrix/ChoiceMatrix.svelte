@@ -16,6 +16,21 @@
 	export let getChildXml;
 	export let xml;
 
+	let theme_color = {
+		theme1: '#5B9BD5',
+		theme2: '#3B67BC',
+		theme3: '#F6C3A2',
+		theme4: '#70AD47',
+		theme5: '#745998'
+	}
+	let theme_color_terms = {
+		theme1: '#DEEAF6',
+		theme2: '#D4DEF1',
+		theme3: '#FAE0CF',
+		theme4: '#E2EFD9',
+		theme5: '#E1DAE9',
+	}
+
 	// variable declaration
 	let themeOption = ['light_blue','dark_blue','peach','green','purple'];
 	let widthVal = "";
@@ -107,19 +122,6 @@
 		state.maxWidth = ((MYXML.smxml._maxwidth)?parseInt(MYXML.smxml._maxwidth):800);
 			
 			
-			//document.getElementById("msg").value = rawData['stem'];
-			//jQuery('#msg').val(rawData.stem); // Need TO FIX
-			
-		
-
-		//	for checking the radio btn according to the xml
-		/*	let timer = setTimeout(function() {
-				jQuery(".preview_radio").each(function() {
-					jQuery(this)[0].checked = ((jQuery(this).attr('value') == jQuery(this).attr('data-correct')) ? true : false);
-				});
-				clearTimeout(timer);
-			}.bind(this),200) // Replaced 
-		*/
 
 		let timer = setTimeout(function() {
 			let radio_len1 = document.getElementsByClassName('preview_radio');
@@ -384,7 +386,7 @@
                                 <th 
 									class = "topic_input text-center" 
 									id = "hello" 
-									style = "background-color:{((state.theme == 'theme1') ? "#5B9BD5": ((state.theme == 'theme2') ? "#3B67BC": ((state.theme == 'theme3') ? "#F6C3A2": ((state.theme == 'theme4') ? "#70AD47": "#745998"))))}"
+									 style = "background-color:{theme_color[state.theme]}!important;"
 								>
                                     <textarea
                                         on:change = {updateStem} 
@@ -400,7 +402,7 @@
                                         <th
                                             key = {i} 
                                             class = {"middle_align text-center " + data.id} 
-											style = "background-color: {((state.theme == 'theme1') ? "#5B9BD5": ((state.theme == 'theme2') ? "#3B67BC": ((state.theme == 'theme3') ? "#F6C3A2": ((state.theme == 'theme4') ? "#70AD47": "#745998"))))}"
+											style = "background-color:{theme_color[state.theme]}!important"
                                         >
                                             <div class = "float-left">
                                                 <textarea 
@@ -428,7 +430,7 @@
                             {#if state.cdata}
                                 {#each state.cdata.term as data,i}
                                     <tr key={i}>
-                                        <td  class = {"min_width_200 h-auto " + data.id} style = "font-weight: bold; background-color:{(((i % 2) == 0)?((state.theme == 'theme1') ? "#DEEAF6": ((state.theme == 'theme2') ? "#D4DEF1": ((state.theme == 'theme3') ? "#FAE0CF": ((state.theme == 'theme4') ? "#E2EFD9": "#E1DAE9")))): "#FFF")}">
+                                        <td  class = {"min_width_200 h-auto " + data.id} style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}!important;">
                                             <textarea 
                                                 id = {data.id}  
                                                 on:input = {updateTermValue} 
@@ -446,8 +448,7 @@
                                         </td>
                                         {#each state.cdata.option as data2,j}
 												<td class = "text-center align-middle h-auto min_width_125 max_width_150" key={j}
-												style = "background-color:{(((i % 2) == 0)?((state.theme == 'theme1') ? "#DEEAF6": ((state.theme == 'theme2') ? "#D4DEF1": ((state.theme == 'theme3') ? "#FAE0CF": ((state.theme == 'theme4') ? "#E2EFD9": "#E1DAE9")))): "#FFF")}"
-												>
+												style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}!important;">
                                                     <label class = "label_choice pointer d-block w-100 mb-0" for={'a'+(i)+(j)}>
                                                         <input 
                                                             type = "radio" 
