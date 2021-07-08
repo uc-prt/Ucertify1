@@ -135,7 +135,7 @@
     // for adding the highchart draggable plugin and initiating the chart
     afterUpdate(async() => {
         if (!is_resource_added && xml) {
-            AH.addScript('', baseUrlTheme + 'clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', itemUrl + 'clsSMChart/lib/highchart_draggable.js', { callback: function () {
                 CHART_AUTH.initChart();
                 editorState.links = true;
             }});

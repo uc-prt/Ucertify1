@@ -44,7 +44,7 @@
             if (typeof (JXG) == 'object' && editorState) {
                 state.init = true;
             } else if (typeof(editorState) == 'undefined') {
-                AH.addScript('', baseUrlTheme + 'clsSMGraph/lib/jsxgraph.min.js', {callback: function () {
+                AH.addScript('', itemUrl + 'clsSMGraph/lib/jsxgraph.min.js', {callback: function () {
                     state.init = true;
                 }});
             }
@@ -380,7 +380,7 @@
     }
 </script>
 <div>
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={baseUrlTheme + "clsSMGraph/css/Math.min.css"}/>
+    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={itemUrl + "clsSMGraph/css/Math.min.css"}/>
     
     <center>
         <ItemHelper 
