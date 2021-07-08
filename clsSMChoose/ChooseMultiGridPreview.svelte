@@ -12,7 +12,8 @@
         import ItemHelper from '../helper/ItemHelper.svelte';
         import Sortable from 'sortablejs-swap';
         import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
-        import './css/ChooseMultiGrid.min.css';
+// import { preview_img } from "../../../../../../ucertify/src/themes/svelte_items/src/libs/editorLib/language";
+import './css/ChooseMultiGrid.min.css';
         export let xml;
         export let uxml;
         export let showAns;
@@ -67,7 +68,7 @@
                 if (uxml) {
                     let counter = 1, tempxml = XMLToJSON(xml);
                     preview_data.user_ans_xml = uxml;
-                    xml = preview_data.user_ans_xml;
+                    xml = preview_data.user_ans_xml;console.log(uxml,'j');
                 } 
                 // update the value of state 'xml'
                 state.xml = xml;
@@ -113,9 +114,12 @@
                                 value: AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val')
                             }
                         ];
-                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
                     }) ;
-                   
+                    //storeCorrectXYValue(preview_data.correctxmlarray);
+                    preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
+                    AH.selectAll('#sortable li').forEach((value, i) => {
+                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
+                    }) ;console.log(preview_data.userAns, 'kijk');
                     updateOnSorting();
                 },
             });
@@ -157,7 +161,7 @@
     loadXml = XMLToJSON(loadXml);
             state.headingCorrect = loadXml.smxml.list._headingCorrect;
             preview_data.maxRow = parseInt(loadXml.smxml.list._row);
-    preview_data.maxCol = parseInt(loadXml.smxml.list._col);
+    preview_data.maxCol = parseInt(loadXml.smxml.list._col);console.log(loadXml,'hhh');
             parseXMLPreview(loadXml);
         }
     
@@ -367,8 +371,8 @@
             if (editorState) {
                 // shows the answer correct or incorrect according to the value of variable 'ans'
                 showAns(ans);
-            } else {
-                let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';
+            } else {console.log('lllll', preview_data.userAns);
+                let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';console.log('gg', userXml);
                 onUserAnsChange({uXml: userXml, ans: ans});
             }
         }
@@ -407,6 +411,8 @@
     
                     AH.select('#sortable').replaceChild(AH.select(removeclass),aHolder);
                     AH.select('#sortable').replaceChild(AH.select(selected_opt),bHolder);
+                    preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
+                    console.log('hrllo', preview_data.correctxmlarray);
                     AH.selectAll('#sortable li').forEach((value, i) => {
                         preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
                     }) ;
