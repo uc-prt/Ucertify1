@@ -10,10 +10,9 @@
  import tagViewCss from './css/tagViewCss';
 export class API {
     constructor(options) {
-        this._servers = [
-            location.origin + (location.host == "localhost" ? '/pe-gold3/' : "/"),
-        ];
-        this._REMOTE_API_URL = this._servers[1] + 'pe-api/1/index.php';
+        this._servers = location.origin + (location.host == "localhost" ? 'https://www.ucertify.com/' : "/");
+
+        this._REMOTE_API_URL = this._servers + 'pe-api/1/index.php';
         this._client = {
             email: "pradeep.yadav@ucertify.com",
             password: "786pradeep",
