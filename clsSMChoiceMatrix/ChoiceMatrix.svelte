@@ -325,13 +325,13 @@
 			if (widthVal < 500) {  //// jQuery('#customWidth').val() remove this
                 state.maxWidth = 500;
 				let timer = setTimeout(function() { reverseXml(); clearTimeout(timer); },100);  //  Fixed
-				swal("Width should not be less than 500px");
+				AH.alert("Width should not be less than 500px");
 			}
 			if (widthVal > 1000) { //// jQuery('#customWidth').val() remove this
                 
                 state.maxWidth = 1000;
 				let timer = setTimeout(function() { reverseXml(); clearTimeout(timer); },100);  // Fixed
-				swal("Width should not be greater than 1000px");
+				AH.alert("Width should not be greater than 1000px");
 			} 
 		},1500);
 		// update the state
