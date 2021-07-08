@@ -75,7 +75,9 @@
 				searchQuery[key] = value;
 			}
 			if (editorUrl.get('content_guid')) {
+				console.log('server', server);
 				AH.getAPIDataJ('cat2.item_content_draft_get', where, async (res)=> {
+					console.log("YES");
 					apiData = await checkRevision(res);
 					apiData = apiData[editorUrl.get('content_guid')];
 					searchQuery['content'] = JSON.stringify(apiData);
@@ -83,6 +85,7 @@
 					onDataGet();
 				});
 			} else {
+				console.log("No");
 				ajaxRes = await AH.ajax({url: server, data: searchQuery});
 				onDataGet();
 			}
