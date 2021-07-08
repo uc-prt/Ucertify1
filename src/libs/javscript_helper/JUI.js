@@ -17,6 +17,7 @@ export class API {
             'http://172.10.195.203/pe-gold3/',
         ];
         this._REMOTE_API_URL = this._servers[1] + 'pe-api/1/index.php';
+        //@Prabhat: Why is this here. Need to remove this.
         this._client = {
             email: "pradeep.yadav@ucertify.com",
             password: "786pradeep",
@@ -647,6 +648,7 @@ export default class JUI extends API{
         }
         return new Promise((resolve, reject)=> {
             const request = new XMLHttpRequest();
+            console.log('URL', sendData.url);
             request.open(sendData.type || 'POST', sendData.url, true);
             if (sendData.responseType) {
                 request.responseType = sendData.responseType;
