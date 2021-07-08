@@ -645,6 +645,7 @@ export default class JUI extends API{
                     }	
                 }
             }
+            console.log('sendData', sendData);
         }
         return new Promise((resolve, reject)=> {
             const request = new XMLHttpRequest();
