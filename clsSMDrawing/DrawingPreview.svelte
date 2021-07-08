@@ -12,6 +12,8 @@
     import l from '../src/libs/Lang';
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
+    import '../src/libs/drawing.css';
+
     // exporting the variables
     export let xml;
 	export let uxml;
@@ -169,12 +171,12 @@
 
     // for adding all the necessary events and the css files
     onMount(async() => {
-        let config = {
-            preload: true,
-            type: 'stylesheet',
-            as: 'style'
-        }
-        AH.createLink(itemUrl + 'clsSMDrawing/css/drawing.css', config);
+        // let config = {
+        //     preload: true,
+        //     type: 'stylesheet',
+        //     as: 'style'
+        // }
+        // AH.createLink(itemUrl + 'clsSMDrawing/css/drawing.css', config);
         // checked for mac device
         is_mac = (navigator.userAgent.indexOf("Mac") != -1)
         // updates the position of rotationbar and change the center position of the circles that lies on rotationbar
