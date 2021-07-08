@@ -640,9 +640,11 @@ export default class JUI extends API{
                     }	
                 }
             }
+            console.log('sendData1', sendData);
         }
         return new Promise((resolve, reject)=> {
             const request = new XMLHttpRequest();
+            console.log('sendData2', sendData);
             request.open(sendData.type || 'POST', sendData.url, true);
             if (sendData.responseType) {
                 request.responseType = sendData.responseType;
