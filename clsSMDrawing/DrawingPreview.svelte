@@ -174,7 +174,7 @@
             type: 'stylesheet',
             as: 'style'
         }
-        AH.createLink(baseUrlTheme + 'clsSMDrawing/css/drawing.css', config);
+        AH.createLink(itemUrl + 'clsSMDrawing/css/drawing.css', config);
         // checked for mac device
         is_mac = (navigator.userAgent.indexOf("Mac") != -1)
         // updates the position of rotationbar and change the center position of the circles that lies on rotationbar

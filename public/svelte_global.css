@@ -24106,7 +24106,6 @@ div[data-section*="sec_button_new"]:last-child{
 }
 
 #authoringSection {
-  overflow-y: auto;
   margin: 1px 0 0;
 	padding: 5px 5px 15px 5px;
 	width: 100%;
