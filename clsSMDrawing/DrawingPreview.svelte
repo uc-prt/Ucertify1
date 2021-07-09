@@ -13,7 +13,7 @@
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
     import '../src/libs/drawing.css';
-
+    
     // exporting the variables
     export let xml;
 	export let uxml;
@@ -2235,6 +2235,17 @@
 
 </script>
 
+<style>
+    .mr-2 {
+        margin-right: 0.5em !important;
+    }
+    #previewSvg { 
+        width: 600px;
+        height: 520px;
+        margin-top:-550px;
+    }
+</style>
+
 <main id="drawingPreviewMain">
     <div id="drawing_shortcut_modal" class="modal fade" tabIndex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -2245,6 +2256,7 @@
                 </div>
                 <div class="modal-body overflow-y">
                     <!-- svelte-ignore a11y-unknown-role -->
+
                     <table role="shortcut" class="shortcutTable m-0 p-2 border-0 common-shortcut-table table-striped font15">
                         <tbody tabindex="0" role="shortcut">
                             <tr tabindex="0" role="shortcut"><td class="py-1 font-weight-bold w-50 pr-0">{l.keys}</td><td class="py-1"><div class="d-flex"><span class="pl-3 font-weight-bold">{l.des_txt}</span></div></td></tr>
@@ -2312,16 +2324,16 @@
                         <svg class="drawingCompassSvg h" focusable="false">
                             <svg>
                                 <g>
-                                    <circle class="drawingCompassRoute compass_route" cx="267.984375" cy="173" r="80"></circle>
+                                    <circle class="drawingCompassRoute compass_route" cx="267.984375" cy="173" r="80" fill-opacity="0" stroke="#C9C9C9" stroke-dasharray="2,10" stroke-width="2"></circle>
                                     <g>
-                                        <line class="compassRotationBar compass_radius" x1="267.984375" y1="173" x2="267.984375" y2="253"></line>
+                                        <line class="compassRotationBar compass_radius" x1="267.984375" y1="173" x2="267.984375" y2="253" stroke="#C9C9C9" stroke-width="2"></line>
                                     </g>
                                     <g >
-                                        <circle tabIndex="0" class="drawingCompassCenter compass_center" cx="267.984375" cy="173" r="17" aria-labelledby="compassCenterTitle compassCenterDesc" focusable="true" fill="url(#previewDrawingCenter)"></circle>
+                                        <circle tabIndex="0" class="drawingCompassCenter compass_center" cx="267.984375" cy="173" r="17" aria-labelledby="compassCenterTitle compassCenterDesc" focusable="true" fill="url(#previewDrawingCenter)" stroke="#C9C9C9"></circle>
                                         <title id="compassCenterTitle">{l.compass_center}</title>
                                         <desc id="compassCenterDesc">{l.shift_arrow_use}</desc>
                                         <defs>
-                                            <pattern id="previewDrawingCenter" width="20" height="20">
+                                            <pattern id="previewDrawingCenter" width="20" height="20" fill="red">
                                                 <svg x="0px" y="0px" viewBox="1 -3 21 35" width="33" height="41">
                                                     <path fill="#808080" class="st0" d="M3.22,15.1L1,12l2.22-3.1C3.22,10.97,3.22,13.03,3.22,15.1z" />
                                                     <path fill="#808080" class="st0" d="M8.9,3.22L12,1l3.1,2.22C13.03,3.22,10.97,3.22,8.9,3.22z" />
@@ -2333,7 +2345,7 @@
                                         </defs>
                                     </g>
                                     <g>
-                                        <circle class="compass_radius_icon mid_circle" cx="267.984375" cy="213" r="17" fill="url(#previewDrawingRadius)" transform="rotate(90,160,168)" aria-labelledby="compassRadiusTitle compassRadiusDesc" tabIndex="0" focusable="true"></circle>
+                                        <circle class="compass_radius_icon mid_circle" cx="267.984375" cy="213" r="17" fill="url(#previewDrawingRadius)" transform="rotate(90,160,168)" aria-labelledby="compassRadiusTitle compassRadiusDesc" tabIndex="0" focusable="true" stroke="#C9C9C9"></circle>
                                         <title id="compassRadiusTitle">{l.compass_radius + (previewCompassRadius * 0.02649).toFixed(2)}</title>
                                         <desc id="compassRadiusDesc">{l.shift_arrow_radius}</desc>
                                         <defs>
@@ -2373,7 +2385,7 @@
                                     </g>
                                     <g>
                                         <circle class="drawing-compass-pointer lastCircle" cx="267.984375" cy="253" r="3" fill={state.lineColor}></circle>
-                                        <circle class="drawing-compass-pointer-border lastCircle lastbigcircle" aria-labelledby="compassAngleTitle compassAngleDesc" cx="267.984375" cy="253" r="17" tabIndex="0" focusable="true"></circle>
+                                        <circle class="drawing-compass-pointer-border lastCircle lastbigcircle" aria-labelledby="compassAngleTitle compassAngleDesc" cx="267.984375" cy="253" r="17" tabIndex="0" focusable="true" fill-opacity="0" stroke="#C9C9C9"></circle>
                                         <title id="compassAngleTitle">{l.compass_draw}</title>
                                         <desc id="compassAngleDesc">{l.shift_arrow_draw}</desc>
                                     </g>
