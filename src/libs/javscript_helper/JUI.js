@@ -646,11 +646,9 @@ export default class JUI extends API{
                     }	
                 }
             }
-            console.log('sendData', sendData);
         }
         return new Promise((resolve, reject)=> {
             const request = new XMLHttpRequest();
-            console.log('URL', sendData.url);
             request.open(sendData.type || 'POST', sendData.url, true);
             if (sendData.responseType) {
                 request.responseType = sendData.responseType;
@@ -677,7 +675,7 @@ export default class JUI extends API{
         try {
             for (let i = 0; i < jsonArray.length; i++) {
                 for (let key in jsonArray[i]) {
-                  formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
+                    formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
                 }
             }
         } catch(error) {
