@@ -58,42 +58,38 @@
     
         $: {
             if (xml != state.xml) {
-    preview_data.isShuffeled = false;
-    state.showlabelofshuffle = 'block';
-    if (preview_data.user_ans_xml.length > 0) {
-    preview_data.user_ans_xml.length = 0;
-    }
+                preview_data.isShuffeled = false;
+                state.showlabelofshuffle = 'block';
+                if (preview_data.user_ans_xml.length > 0) {
+                    preview_data.user_ans_xml.length = 0;
+                }
                 state.isanyheading = false;
-    if (uxml) {
-    let counter = 1, tempxml = XMLToJSON(xml);
-    preview_data.user_ans_xml = uxml;console.log('rash',preview_data.user_ans_xml);
-                    /*for (let i in preview_data.user_ans_xml) {console.log('ff',i);
-                        //preview_data.user_ans_xml[i].gid = "g"+(parseInt(preview_data.user_ans_xml[i].x)+1);
-                        (tempxml.smxml.list._col == counter ? counter = 1 : counter++)
-                    }*/
-                    //xml = uxml;
-    }console.log('xml', xml)
+                if (uxml) {
+                    let counter = 1, tempxml = XMLToJSON(xml);
+                    preview_data.user_ans_xml = uxml;
+                    xml = preview_data.user_ans_xml;console.log(uxml,'j');
+                } 
                 // update the value of state 'xml'
                 state.xml = xml;
                 // updates the value of sliders elements and load the module
                 loadModule(xml);
                 box_width = (632 / preview_data.countcol).toFixed(2) + 'px';
-    }
+            }
         }
     
         onMount(() => {
             loadModule(xml);
             try {
-    if (uxml == '<smans type="6"></smans>') {
-    uxml = '';
-    }
-    } catch(error) {
-    console.warn({'error': error});
-    }
-    
-    if (window.inNative) {
-    window.getHeight && window.getHeight();
-    }
+                if (uxml == '<smans type="6"></smans>') {
+                    uxml = '';
+                }
+            } catch(error) {
+                console.warn({'error': error});
+            }
+                
+            if (window.inNative) {
+                window.getHeight && window.getHeight();
+            }
         });
     
         afterUpdate(()=> {
@@ -116,8 +112,12 @@
                                 value: AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val')
                             }
                         ];
-                        preview_data.userAns += AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val') + '\n';
                     }) ;
+                    //storeCorrectXYValue(preview_data.correctxmlarray);
+                    preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
+                    AH.selectAll('#sortable li').forEach((value, i) => {
+                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
+                    }) ;console.log(preview_data.userAns, 'kijk');
                     updateOnSorting();
                 },
             });
@@ -159,7 +159,7 @@
     loadXml = XMLToJSON(loadXml);
             state.headingCorrect = loadXml.smxml.list._headingCorrect;
             preview_data.maxRow = parseInt(loadXml.smxml.list._row);
-    preview_data.maxCol = parseInt(loadXml.smxml.list._col);
+    preview_data.maxCol = parseInt(loadXml.smxml.list._col);console.log(loadXml,'hhh');
             parseXMLPreview(loadXml);
         }
     
@@ -199,13 +199,22 @@
             }
             storeCorrectXYValue(preview_data.correctxmlarray);
             storeCorrectXYValue(preview_data.localCData);
-            shuffle();
+            if(!uxml) shuffle();
+            for (let i = 0; i < preview_data.localCData.length; i++) {
+                if (preview_data.localCData[i].value.charAt(0) != "!") {
+                    preview_data.localCData[i].ischecked = false;
+                } else {
+                    preview_data.localCData[i].ischecked = true;
+                }
+            }
             preview_data.user_ans_xml = [];
+            preview_data.userAns = '';
             preview_data.localCData.forEach((val, i) => {
                 preview_data.user_ans_xml.push({
                     id: i,
                     value: val.value
                 });
+                preview_data.userAns += (i != 0 ? ('\n') : '' ).concat(val.value);
             });
         }
     
@@ -270,13 +279,10 @@
     let arraytoshuffle = [];
     if (state.isanyheading == true) {
     for (let i = 0; i < array.length; i++) {
-    if (array[i].value.charAt(0) != "!") {
-    arraytoshuffle.push(array[i]);
-                        array[i].ischecked = false;
-    } else {
-                        array[i].ischecked = true;
-                    }
-    };
+        if (array[i].value.charAt(0) != "!") {
+            arraytoshuffle.push(array[i]);
+        }
+    }
     arraytoshuffle = makeshuffle(arraytoshuffle);
     let j = 0;
     for (let i = 0; i < array.length; i++) {
@@ -363,8 +369,9 @@
             if (editorState) {
                 // shows the answer correct or incorrect according to the value of variable 'ans'
                 showAns(ans);
-            } else {
-                onUserAnsChange({uXml: JSON.stringify(preview_data.user_ans_xml).replace(/"/g,"'"), ans: ans});
+            } else {console.log('lllll', preview_data.userAns);
+                let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';console.log('gg', userXml);
+                onUserAnsChange({uXml: userXml, ans: ans});
             }
         }
     
@@ -386,12 +393,13 @@
        
         // function to update shuffing in case of keyboard navigation
         function exchangeValue (selected_opt, removeclass) {
-    if (removeclass != undefined) {
-    if (selected_opt.getAttribute("id") != removeclass.getAttribute("id")) {
+            if (removeclass != undefined) {
+                if (selected_opt.getAttribute("id") != removeclass.getAttribute("id")) {
                     AH.selectAll('.copied', 'removeClass', 'copied');
-                    preview_data.user_ans_xml = [];
+                    //preview_data.user_ans_xml = [];
+                    preview_data.userAns = '';
                     let idofselectedopt = selected_opt.getAttribute("data-optid"),
-    idofremoveddiv = removeclass.getAttribute("data-optid");
+                        idofremoveddiv = removeclass.getAttribute("data-optid");
                     [preview_data.user_ans_xml[idofselectedopt].value, preview_data.user_ans_xml[idofremoveddiv].value] = [preview_data.user_ans_xml[idofremoveddiv].value, preview_data.user_ans_xml[idofselectedopt].value];
                     let aHolder = document.createElement("div");
                     let bHolder = document.createElement("div");
@@ -401,21 +409,25 @@
     
                     AH.select('#sortable').replaceChild(AH.select(removeclass),aHolder);
                     AH.select('#sortable').replaceChild(AH.select(selected_opt),bHolder);
-                   
+                    preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
+                    console.log('hrllo', preview_data.correctxmlarray);
+                    AH.selectAll('#sortable li').forEach((value, i) => {
+                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
+                    }) ;
                     if(window.inNative) {
-    window.getHeight && window.getHeight();
-    }
-    }
-    }
+                        window.getHeight && window.getHeight();
+                    }
+                }
+            }
             updateOnSorting();
-    }
+        }
     </script>
     
     <!-- <link
         onload="this.rel='stylesheet'"
         rel="preload"
         as="style"
-        href={ itemUrl + "clsSMChooseMultiGrid/css/ChooseMultiGrid.min.css"}
+        href={editor.baseUrlTheme + "clsSMChoose/css/ChooseMultiGrid.min.css"}
     /> -->
     <div id="chid">
         <ItemHelper
@@ -529,5 +541,4 @@
             </div>
         </div>
     </div>
-    
     
