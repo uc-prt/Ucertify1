@@ -363,7 +363,7 @@
             state.xml = state.xmlArr[lang];
             state.lang_type = lang;
             editor.setOption("mode", "text/x-" + term_lang);
-            windowHtml = state.xmlArr[xml_group[xml_group.length - 1]].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
+            windowHtml = state.xmlArr[lang].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
             getChildXml(windowHtml);
             parseXML(windowHtml);
             setDefaultXML();
@@ -1034,7 +1034,6 @@
                 resetDB();
             };
         }
-
         let editorData = stringBetween(xml, "editor");
         editor.setValue(editorData ? editorData.trim() : "");
 
@@ -1539,7 +1538,7 @@
                 {#each lang_type as lang}
                     <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleLanguageSelection.bind(this, lang)} key={lang} style="height:60px; cursor: pointer; padding-left: 20px">
                         <div class="text-center d-inline-block" style="height: 50px; width: 50px; background: #ccc;border-radius: 50%;">
-                            <img style="border-radius: 50%;height:50px;" src={window.themeUrl + "/svelte_items/images/"+ (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
+                            <img style="border-radius: 50%;height:50px;" src={window.itemUrl + "images/" + (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
                         </div>
                         <div class="pl-1 d-inline-block" style="padding: 15px;">{lang.charAt(0).toUpperCase() + lang.slice(1)}</div>
                     </div>
