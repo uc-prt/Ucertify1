@@ -8,6 +8,7 @@
  * Last updated date : 10-Aug-2020
  */
 $is_mincall = 1;
+header( 'Access-Control-Allow-Origin: *' );
 require_once '../../../../../prepengine-header.php';
 require_once 'evalProAnsCheck.php';
 
