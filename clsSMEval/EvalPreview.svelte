@@ -25,7 +25,7 @@
 	export let isReview;
 	export let content_guid;
 	export let sample_input;
-	let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+	let evalpro_url = 'https://demo-a.ucertify.com:8013/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
 	let user_guid = '';
 	let tempGuid;
 	let client = {};
