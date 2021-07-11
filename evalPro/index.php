@@ -12,7 +12,7 @@ header( 'Access-Control-Allow-Origin: *' );
 header( 'Access-Control-Allow-Methods: POST' );
 header( 'Access-Control-Allow-Credentials: true' );
 header( 'Access-Control-Allow-Headers: X-Requested-With, Content-Type' );
-header( 'Referrer-Policy: no-referrer' );
+
 require_once '../../../../../prepengine-header.php';
 require_once 'evalProAnsCheck.php';
 
