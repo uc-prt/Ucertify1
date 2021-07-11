@@ -25,7 +25,8 @@
     export let getChildXml = () => {};
     export let setInlineEditor;
     export let editorState;
-    let evalpro_url = 'https://demo-a.ucertify.com:8013/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+    let location_origin = (location.origin).replace('localhost', 'localhost:3000');
+    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let all_databases = {
             'mssql': ["MSSQL"], 
             'sql': ["740DB", "C170PRE", "C995HSTK", "C995PRE", "DBFUND", "GSA1", "c995", "myDBs", "ucDB", "RECRUIT"], 
