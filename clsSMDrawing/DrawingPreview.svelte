@@ -171,18 +171,11 @@
 
     // for adding all the necessary events and the css files
     onMount(async() => {
-        // let config = {
-        //     preload: true,
-        //     type: 'stylesheet',
-        //     as: 'style'
-        // }
-        // AH.createLink(itemUrl + 'clsSMDrawing/css/drawing.css', config);
         // checked for mac device
         is_mac = (navigator.userAgent.indexOf("Mac") != -1)
         // updates the position of rotationbar and change the center position of the circles that lies on rotationbar
         updatePreviewCompassCalculation(160, 118, 100, 90);
 
-                
         AH.listen('body', 'click', '#set-review', function () {
             setReview()
         });
