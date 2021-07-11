@@ -1385,7 +1385,7 @@
 		position: fixed;
 		width: 100%;
 	}
-	.split_container .left_pane, .split_container .panel) {
+	.split_container .left_pane, .split_container .panel {
 		padding: 0!important;
 	}
 	.pb-5, .py-5 {
