@@ -13,9 +13,6 @@
             }
         },
         checkDataOnSave: function(data, content_subtype, state, updateModule) {
-            console.log('data: ', data);
-            console.log('state: ', state);
-            console.log('updateModule: ', updateModule);
             let xml = state.xml;
             let parsed24Xml = XMLToJSON(xml);
             if (parsed24Xml && parsed24Xml.smxml._language == "sql") {
