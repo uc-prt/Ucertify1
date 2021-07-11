@@ -53,6 +53,7 @@
     let postData = "";
     let langArr = [];
     let state = {};
+    window.QXML = xml;
     let hdd = writable({
         open: false,
         xml: '',
@@ -322,7 +323,6 @@
      * Change to open the language dialog.
      */
     function handleLanguageModalOpen() {
-        console.log("open", state);
         state.open = !state.open;
         setTimeout(function() {
             document.querySelector('.evalpro_dialog > div+div.content').style.margin = "16px 0";
@@ -363,7 +363,7 @@
             state.xml = state.xmlArr[lang];
             state.lang_type = lang;
             editor.setOption("mode", "text/x-" + term_lang);
-            windowHtml = state.xmlArr[xml_group[xml_group.length - 1]].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
+            windowHtml = state.xmlArr[lang].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
             getChildXml(windowHtml);
             parseXML(windowHtml);
             setDefaultXML();
@@ -1026,7 +1026,7 @@
      * @param xml : XML.
      */
     function parseXML(xml) {
-        xml = xml ? xml : xml;
+        xml = xml ? xml : window.QXML;
         currentDB = findAttribute(xml, "db_name", "SMXML") ? findAttribute(xml, "db_name", "SMXML") : "myDBs";
         state.database = currentDB;
         if (findAttribute(xml, "language") == 'sql' || findAttribute(xml, "language") == 'mssql' || findAttribute(xml, "language") == 'psql') {
@@ -1034,7 +1034,6 @@
                 resetDB();
             };
         }
-
         let editorData = stringBetween(xml, "editor");
         editor.setValue(editorData ? editorData.trim() : "");
 
@@ -1204,7 +1203,19 @@
         caseStack.className = 'caseStack m-sm';
         inp = (typeof inp == 'object') ? "" : inp;
         let index = AH.select("#caseContainer").children.length;
-        caseStack.innerHTML = `<div class="w-100 p-3 mt-2 mb-2" style="background: #f1f1f1"><div class="w-100"><h5 class="float-left p-1" style="width: 90%"><lable class="bage mr-4 test_case_label">${l.testcase + (index + 1)}</lable><label class="container_eval mr-4">${l.case_insensitive}<input class="case_insensitive" type="checkbox" value="${state.case_insensitive}"><span class="checkmark_eval"></span></label><label class="container_eval mr-4">${l.ignore_special_char}<input class="ignore_special_char" type="checkbox" value="${state.ignore_special_char}"><span class="checkmark_eval"></span></label><label class="container_eval">${l.partial_match}<input class="partial_match" type="checkbox" value="${state.partial_match}" checked="checked"><span class="checkmark_eval"></span></label></h5><span tabIndex="0" class="float-right p-2 icomoon-new-24px-delete-1 s5 pointer caseDelBtn"></span></div><textarea class="form-control d-inline-block mr-md ${isSql}" style="width: 48%;height: 100px;" placeholder="${l.input_seperated_comma}">${inp}</textarea>
+        let case_insensitive = state.case_insensitive;
+        case_insensitive = case_insensitive.split(",");
+        let case_insensitive_checked = case_insensitive[i] == 1 ? 'checked="checked"' : '';
+
+        let ignore_special_char = state.ignore_special_char;
+        ignore_special_char = ignore_special_char.split(",");
+        let ignore_special_char_checked = ignore_special_char[i] == 1 ? 'checked="checked"' : '';
+
+        let partial_match = state.partial_match;
+        partial_match = partial_match.split(",");
+        let partial_match_checked = partial_match[i] == 1 ? 'checked="checked"' : '';
+
+        caseStack.innerHTML = `<div class="w-100 p-3 mt-2 mb-2" style="background: #f1f1f1"><div class="w-100"><h5 class="float-left p-1" style="width: 90%"><lable class="bage mr-4 test_case_label">${l.testcase + (index + 1)}</lable><label class="container_eval mr-4">${l.case_insensitive}<input class="case_insensitive" type="checkbox" value="${state.case_insensitive}" ${case_insensitive_checked}><span class="checkmark_eval"></span></label><label class="container_eval mr-4">${l.ignore_special_char}<input class="ignore_special_char" type="checkbox" value="${state.ignore_special_char}" ${ignore_special_char_checked}><span class="checkmark_eval"></span></label><label class="container_eval">${l.partial_match}<input class="partial_match" type="checkbox" value="${state.partial_match}" ${partial_match_checked}><span class="checkmark_eval"></span></label></h5><span tabIndex="0" class="float-right p-2 icomoon-new-24px-delete-1 s5 pointer caseDelBtn"></span></div><textarea class="form-control d-inline-block mr-md ${isSql}" style="width: 48%;height: 100px;" placeholder="${l.input_seperated_comma}">${inp}</textarea>
             <textarea class="form-control d-inline-block ml-md" style="height: 100px;width:${(state.lang_type == "sql" || state.lang_type == "psql" || state.lang_type == "mssql" ? "98%" : "48%")}" placeholder="${l.output}">${oup}</textarea></div>`;
         document.querySelector("#caseContainer").appendChild(caseStack);
         bindBtns();
@@ -1527,7 +1538,7 @@
                 {#each lang_type as lang}
                     <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleLanguageSelection.bind(this, lang)} key={lang} style="height:60px; cursor: pointer; padding-left: 20px">
                         <div class="text-center d-inline-block" style="height: 50px; width: 50px; background: #ccc;border-radius: 50%;">
-                            <img style="border-radius: 50%;height:50px;" src={window.themeUrl + "/svelte_items/images/"+ (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
+                            <img style="border-radius: 50%;height:50px;" src={window.itemUrl + "images/" + (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
                         </div>
                         <div class="pl-1 d-inline-block" style="padding: 15px;">{lang.charAt(0).toUpperCase() + lang.slice(1)}</div>
                     </div>
@@ -1539,11 +1550,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <input class="form-control testCaseInput h-imp" type="text" id="id1" />
+                        <h4>{l.add_testcase}</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body overflow-auto" style="max-height:440px;">
+                    <div class="modal-body overflow-auto mt-0 pt-0" style="max-height:440px;">
                         <div id="caseContainer" class="float-right mt-sm overflow-auto" style="width: 100%">
                             <div class="caseStack m-sm">
                                 <h5 class="float-left" style="width: auto">
