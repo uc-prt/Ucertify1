@@ -213,7 +213,7 @@
         padding-left: 15px;
         cursor: pointer;
     }
-    .essay-btn, #essayfile-button, #editfiles, .essay-btn-add {
+    .essay-btn, #essayfile-button, #editfiles {
         display: inline-block;
         padding: 4px 8px;
         font-size: 12px;
@@ -230,10 +230,10 @@
         background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
         background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
         background-repeat: repeat-x;
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);";
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
         border-color: #e6e6e6 #e6e6e6 #bfbfbf;
         border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled = false);";
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
         border: 1px solid #cccccc;
         border-bottom-color: #b3b3b3;
         -webkit-border-radius: 4px;
@@ -293,18 +293,6 @@
     }
     #drop input {
         display: none;
-    }
-    .dropdown-item {
-        display: block;
-        width: 100%;
-        padding: 4px 12px;
-        clear: both;
-        font-weight: 400;
-        color: #212529;
-        text-align: inherit;
-        white-space: nowrap;
-        background-color: transparent;
-        border: 0;
     }
     .essay-btn {
         margin-bottom: 15px;

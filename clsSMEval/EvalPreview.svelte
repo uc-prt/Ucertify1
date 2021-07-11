@@ -1378,24 +1378,25 @@
 		</div>
 	</Dialog>
 </div>
-<style>
+
+<style lang="scss" global>
 
 	body {
 		overflow: hidden!important;
 		position: fixed;
 		width: 100%;
 	}
-	.split_container .left_pane, .split_container .panel {
+	:global(.split_container .left_pane, .split_container .panel) {
 		padding: 0!important;
 	}
-	.pb-5, .py-5 {
+	:global(.pb-5, .py-5) {
 		padding-bottom: 3rem!important;
 	}
-	.CodeMirror {
+	:global(.CodeMirror) {
 		font-family: Monaco, monospace, "Courier New", Courier, Arial !important;
 		word-spacing: 3px !important;
 	}
-	.compilerPre {
+	:global(.compilerPre) {
 		background: 0 0;
 		font-size: 15px!important;
 		border: none;
