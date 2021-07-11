@@ -2098,12 +2098,12 @@
 					let json_response = save_response;
 					AH.selectAll('#savingContent, #saveAs, #saveButton,#cancelButton, #savePublish', 'show');
 					AH.toggleDom('#saveProcess', 'hide');
+					handleModal(''); // to hide the modal
 					if (state.viewConfig.showOtherType) {
 						showOtherType(save_response);
 						state.message = l.save_success;
 						state.snackback = true;
-					}
-					else {
+					} else {
 						save_response = JSON.parse(save_response);
 						if (!save_response['error'] || save_response['error'].length == 0) {
 							if (state.guid != '') {
