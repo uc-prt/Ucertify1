@@ -70,7 +70,8 @@ if ( $data['qxml'] != '' && $data['ajax'] ) {
 
 // on click of save and close in test mode and also from editor remidiation
 if ( $data['uxml'] && $data['ajax'] ) {
-	$response            = evalGrade( $data['uxml'], $user['user_guid'], -1, '' );
+	$user_guid   = isset( $data['user_guid'] ) ? $data['user_guid'] : $user['user_guid'];
+	$response            = evalGrade( $data['uxml'], $user_guid, -1, '' );
 	$response['html']    = getReport( $response['uxml'] );
 	$response['ajaxRes'] = 1;
 	displaycontent( json_encode( $response ) );
