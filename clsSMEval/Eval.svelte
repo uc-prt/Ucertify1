@@ -26,6 +26,7 @@
     export let getChildXml = () => {};
     export let setInlineEditor;
     export let editorState;
+    let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let all_databases = {
             'mssql': ["MSSQL"], 
             'sql': ["740DB", "C170PRE", "C995HSTK", "C995PRE", "DBFUND", "GSA1", "c995", "myDBs", "ucDB", "RECRUIT"], 
@@ -723,7 +724,7 @@
         setDefaultXML('answer_check');
         let uxml = generateXml(true);
         AH.ajax({
-            url: themeUrl + "svelte_items/evalPro/index.php", 
+            url: evalpro_url, 
             data: {
                 "uxml": uxml,
                 "ajax": 1,
@@ -825,7 +826,7 @@
         }
         AH.ajax({
             type: "POST",
-            url: themeUrl + "svelte_items/evalPro/index.php",
+            url: evalpro_url,
             data: {
                 code: code,
                 repltype: state.lang_type,
