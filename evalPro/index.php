@@ -9,6 +9,9 @@
  */
 $is_mincall = 1;
 header( 'Access-Control-Allow-Origin: *' );
+header( 'Access-Control-Allow-Methods: POST' );
+header( 'Access-Control-Allow-Credentials: true' );
+header( 'Access-Control-Allow-Headers: X-Requested-With, Content-Type' );
 require_once '../../../../../prepengine-header.php';
 require_once 'evalProAnsCheck.php';
 
@@ -24,7 +27,7 @@ if ( isset( $data['in_native'] ) ) {
 	}
 }
 
-check_user( $user );
+// check_user( $user );
 if ( ucIsset( $data['resetDB'], 1 ) || ucIsset( $data['resetDB'], 2 ) || ucIsset( $data['resetDB'], 3 ) ) {
 	print( evalProSqlDBReset( $data ) );
 	exit();
