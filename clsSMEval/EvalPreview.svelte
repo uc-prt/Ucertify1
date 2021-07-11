@@ -1379,7 +1379,7 @@
 	</Dialog>
 </div>
 
-<style lang="scss" global>
+<style type="text/css" global>
 
 	body {
 		overflow: hidden!important;
