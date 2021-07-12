@@ -2056,6 +2056,12 @@
 			} 
 			setTimeout(function () {
 				let data = state.viewConfig.isQuestion ? saveTypeQ(temp_content_guid) : saveTypeOther(temp_content_guid);
+				console.log('from_myproject', from_myproject);
+				console.log('temp_content_guid', temp_content_guid);
+				console.log('user_current_permission', user_current_permission);
+				console.log('from_myproject', from_myproject);
+				console.log('is_new', is_new);
+				console.log('state.draft', state.draft);
 				data['draft'] = ((from_myproject == 1 && temp_content_guid.length != 5) || (user_current_permission < 3 && from_myproject == 1) || is_new == 1) ? 1 : state.draft;
 				data['status'] = 1;
 				data['from_myproject'] = from_myproject;
