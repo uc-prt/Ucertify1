@@ -10,7 +10,6 @@
 	import Button from 'svelte-mui/src/Button.svelte';
 	export let ajaxData;
 	export let subtype;
-	console.log('ajaxData App', ajaxData);
 	let allItem = [];
 	let groupList = [];
 	let keywordsList = [];
@@ -75,15 +74,11 @@
 				searchQuery[key] = value;
 			}
 			if (editorUrl.get('content_guid')) {
-				console.log('where: ', where);
 				AH.getAPIDataJ('cat2.item_content_draft_get', where, async (res)=> {
 					apiData = await checkRevision(res);
 					apiData = apiData[editorUrl.get('content_guid')];
 					searchQuery['content'] = JSON.stringify(apiData);
-					console.log('server', server);
-					console.log('searchQuery', searchQuery);
 					ajaxRes = await AI.ajax({url: server, data: searchQuery });
-					console.log('ajaxRes1', ajaxRes);
 					onDataGet();
 				});
 			} else {
@@ -207,7 +202,6 @@
 			if (editorUrl.get('content_guid')) {
 				content_for_newEditor = ajaxRes['content_for_newEditor'] ? JSON.parse(ajaxRes['content_for_newEditor']) : "";
 				ajaxData = content_for_newEditor;
-				console.log('ajaxData App2', ajaxData);
 				state.content_guid = ajaxData.content_guid;
 				state.type = ajaxData.content_type;
 				subtype = parseInt(ajaxData.content_subtype);
