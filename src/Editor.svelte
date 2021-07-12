@@ -206,6 +206,7 @@
 				state.vtt = ajaxData?.content_text.vtt || '';
 			}
 			state.content_icon = ajaxData.content_icon;
+			console.log('ajaxData.draft', ajaxData.draft);
 			state.draft = ajaxData.draft;
 			setModule(xml); // Update xml for items
 		} else { 
