@@ -80,6 +80,8 @@
 					apiData = await checkRevision(res);
 					apiData = apiData[editorUrl.get('content_guid')];
 					searchQuery['content'] = JSON.stringify(apiData);
+					console.log('server', server);
+					console.log('searchQuery', searchQuery);
 					ajaxRes = await AI.ajax({url: server, data: searchQuery });
 					console.log('ajaxRes1', ajaxRes);
 					onDataGet();
