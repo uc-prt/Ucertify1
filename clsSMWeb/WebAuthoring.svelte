@@ -32,7 +32,6 @@
     let defaultStartXml = '<smxml type="22" addhtml="0" name="Web">';
     let isCaption = "";     
     let isAutograde = "";  
-    let themeUrl = window.baseThemeURL || window.baseUrlTheme;
     let mode = document.querySelector(".switch-input.switch-input");
     let htmlEditor;
     let cssEditor;
@@ -233,7 +232,7 @@
                     //jQuery(function () {
                         AI.ajax({
                             type: "GET",
-                            url: themeUrl + "src/libs/codemirror.js",
+                            url: itemUrl + "src/libs/codemirror.js",
                             dataType: "script",
                         }).then(function (data){
                                 //  AI.activate(0);
@@ -251,7 +250,7 @@
                 }
                 AI.ajax({
                     type: "GET",
-                    url: themeUrl + "src/libs/split.js",
+                    url: itemUrl + "src/libs/split.js",
                     async: true,
                     dataType: "script",
                 }).then((data)=> {

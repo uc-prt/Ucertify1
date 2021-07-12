@@ -7,7 +7,6 @@
  *  Last Updated By : Pradeep Yadav
 -->
 <script> 
-    let themeUrl = (window.baseThemeURL) ? window.baseThemeURL: window.baseUrlTheme;
     //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
     import { afterUpdate, onMount, beforeUpdate } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';
@@ -150,7 +149,7 @@
             renderCodeMirror();
         } else {
             AI.ajax({
-                url:  baseUrlTheme + "src/libs/codemirror.js",
+                url:  itemUrl + "src/libs/codemirror.js",
             }).then(function(data) {
                 let sc = document.createElement("script");
                 // sets the data received from 'codemirror.js' file inside the script tag
@@ -161,7 +160,7 @@
             }) 
         }
         AI.ajax({  
-            url: baseUrlTheme + "src/libs/split.js",
+            url: itemUrl + "src/libs/split.js",
         }).then(function(data){
             if (document.querySelector("#splitterWeb")) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
