@@ -38,6 +38,7 @@
     export let is_algo;		
 	export let ajaxData = "";
 	export let _user;
+	console.trace('ajaxData', ajaxData);
 	let stageComment = "";
 	let editorHeaderRef; // refrence of editorHeader
 	let editCount = 1;
