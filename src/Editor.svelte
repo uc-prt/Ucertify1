@@ -1923,6 +1923,7 @@
 		} else {
 			state.stopPreviewUpdate = false 
 			state.xml = childXml;
+			window.QXML = state.xml;
 		}
 	}
 

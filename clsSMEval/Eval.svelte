@@ -1319,7 +1319,7 @@
      * Function to add the enable line number in xml.
      */
     function enableLineXml() {
-        let enabledLine = document.querySelector("#enable-line").value ? document.querySelector("#enable-line").value : 0;
+        let enabledLine = AH.select("#enable-line").value ? AH.select("#enable-line").value : 0;
         return ("<enableline>" + enabledLine + "</enableline>");
     }
 
