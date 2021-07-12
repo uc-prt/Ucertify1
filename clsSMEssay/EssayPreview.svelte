@@ -213,7 +213,7 @@
         padding-left: 15px;
         cursor: pointer;
     }
-    .essay-btn, #essayfile-button, #editfiles, .essay-btn-add {
+    .essay-btn, #essayfile-button, #editfiles {
         display: inline-block;
         padding: 4px 8px;
         font-size: 12px;
@@ -293,18 +293,6 @@
     }
     #drop input {
         display: none;
-    }
-    .dropdown-item {
-        display: block;
-        width: 100%;
-        padding: 4px 12px;
-        clear: both;
-        font-weight: 400;
-        color: #212529;
-        text-align: inherit;
-        white-space: nowrap;
-        background-color: transparent;
-        border: 0;
     }
     .essay-btn {
         margin-bottom: 15px;
