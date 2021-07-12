@@ -2227,18 +2227,6 @@
     }
 
 </script>
-
-<style>
-    .mr-2 {
-        margin-right: 0.5em !important;
-    }
-    #previewSvg { 
-        width: 600px;
-        height: 520px;
-        margin-top:-550px;
-    }
-</style>
-
 <main id="drawingPreviewMain">
     <div id="drawing_shortcut_modal" class="modal fade" tabIndex="-1">
         <div class="modal-dialog modal-dialog-centered">

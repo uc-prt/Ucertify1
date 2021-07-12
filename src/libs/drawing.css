@@ -181,3 +181,15 @@ path.answer_mark:focus {
 .drawing_module_container button:disabled {
     pointer-events: auto !important;
 }
+
+#centerImg {
+    position: relative;
+}
+.mr-2 {
+    margin-right: 0.5em !important;
+}
+#previewSvg { 
+    width: 600px;
+    height: 520px;
+    position: absolute;
+}
