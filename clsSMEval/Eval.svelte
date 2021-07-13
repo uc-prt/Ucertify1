@@ -86,7 +86,8 @@
         postBlockShow: 0,
         is_graph: 0,
         ignore_error: 0,
-        ignore_formatting: 0
+        ignore_formatting: 0,
+        is_pre_tag : 0,
     })
 
     /**
@@ -836,7 +837,8 @@
                 'db_name': currentDB ? currentDB : "myDBs",
                 'is_graph': state.is_graph,
                 'ignore_error': state.ignore_error,
-                'ignore_formatting' : state.ignore_formatting
+                'ignore_formatting' : state.ignore_formatting,
+                'is_pre_tag' : state.is_pre_tag
             },
             dataType: 'json',
         }).then((res)=> {
@@ -1051,13 +1053,14 @@
         let is_graph = findAttribute(xml, "is_graph", "SMXML") ? parseInt(findAttribute(xml, "is_graph", "SMXML")) : 0;
         let ignore_error = findAttribute(xml, "ignore_error", "SMXML") ? parseInt(findAttribute(xml, "ignore_error", "SMXML")) : 0;
         let ignore_formatting = findAttribute(xml, "ignore_formatting", "SMXML") ? parseInt(findAttribute(xml, "ignore_formatting", "SMXML")) : 0;
+        let is_pre_tag   = findAttribute(xml, "is_pre_tag", "SMXML") ? parseInt(findAttribute(xml, "is_pre_tag", "SMXML")) : 0;
         state.preShow = showPre ? showPre : 0;
         state.postShow = showPost ? showPost : 0;
         state.editorShow = showEditor ? showEditor : 0;
         state.is_graph = is_graph;
         state.ignore_error = ignore_error;
         state.ignore_formatting = ignore_formatting;
-
+        state.is_pre_tag    = is_pre_tag;
         state.enableLines = stringBetween(xml, "enableline");
         AH.select("#enable-line", 'value', state.enableLines || 0);
 
@@ -1094,7 +1097,7 @@
             showDb = 'db_name="' + currentDB + '"';
             state.databases = all_databases[state.lang_type];
         }
-        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting + "\">";
+        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting +  "\" is_pre_tag=\"" + state.is_pre_tag + "\">";
         if (editor && type != "answer_check") {
             generateXml();
         }
