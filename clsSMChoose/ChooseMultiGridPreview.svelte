@@ -9,53 +9,52 @@
 <script>
     import { onMount, afterUpdate } from "svelte";
     import l from '../src/libs/editorLib/language';
-        import ItemHelper from '../helper/ItemHelper.svelte';
-        import Sortable from 'sortablejs-swap';
-        import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
-// import { preview_img } from "../../../../../../ucertify/src/themes/svelte_items/src/libs/editorLib/language";
-import './css/ChooseMultiGrid.min.css';
-        export let xml;
-        export let uxml;
-        export let showAns;
-        export let isReview;
-        export let editorState;
-        let targetView      = "none";
-        let showcorrectanswer, box_width, corr_ans_count;
-        let preview_data = {
-            layout : [],
-            maxRow : 0,
-            maxCol : 0,
-            localCData : [],
-            layoutchanged : [],
-            original_xml_copy:'',
-            countrow : 0,
-            countcol : 0,
-            totalheading : 0,
-            correctxmlarray : [],
-            user_ans_xml: [],
-            isShuffeled : false,
-            imagepath : "//s3.amazonaws.com/jigyaasa_content_static/",
-            result:'correct'
-        };
-        let state = {
-            snackback:false,
-            xml: "",
-            headingCorrect: "",
-            static: false,
-            isdragging: false,
-            colstobeshown: 3,
-            isanyheading: false,
-            showlabelofshuffle:'block'
-        }
+    import ItemHelper from '../helper/ItemHelper.svelte';
+    import Sortable from 'sortablejs-swap';
+    import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
+    import './css/ChooseMultiGrid.min.css';
+    export let xml;
+    export let uxml;
+    export let showAns;
+    export let isReview;
+    export let editorState;
+    let targetView      = "none";
+    let showcorrectanswer, box_width, corr_ans_count;
+    let preview_data = {
+        layout : [],
+        maxRow : 0,
+        maxCol : 0,
+        localCData : [],
+        layoutchanged : [],
+        original_xml_copy:'',
+        countrow : 0,
+        countcol : 0,
+        totalheading : 0,
+        correctxmlarray : [],
+        user_ans_xml: [],
+        isShuffeled : false,
+        imagepath : "//s3.amazonaws.com/jigyaasa_content_static/",
+        result:'correct'
+    };
+    let state = {
+        snackback:false,
+        xml: "",
+        headingCorrect: "",
+        static: false,
+        isdragging: false,
+        colstobeshown: 3,
+        isanyheading: false,
+        showlabelofshuffle:'block'
+    }
     
-        $: {
-            if (isReview) {
-                targetView = "block";
-                setReview();
+    $: {
+        if (isReview) {
+            targetView = "block";
+            setReview();
     } else {
                 targetView = "none";
             }
-        }
+    }
     
         $: {
             if (xml != state.xml) {
@@ -124,10 +123,10 @@ import './css/ChooseMultiGrid.min.css';
                 },
             });
             AH.selectAll('.matchlist_item').forEach(val => {
-    if ((val.style.width) != box_width) {
-    val.style.width = box_width;
-    }
-    })
+                if ((val.style.width) != box_width) {
+                    val.style.width = box_width;
+                }
+            })
         })
     
         function updateOnSorting() {
@@ -158,10 +157,10 @@ import './css/ChooseMultiGrid.min.css';
     
         // updates the value of sliders elements and load the module
         function loadModule(loadXml) {
-    loadXml = XMLToJSON(loadXml);
+            loadXml = XMLToJSON(loadXml);
             state.headingCorrect = loadXml.smxml.list._headingCorrect;
             preview_data.maxRow = parseInt(loadXml.smxml.list._row);
-    preview_data.maxCol = parseInt(loadXml.smxml.list._col);console.log(loadXml,'hhh');
+            preview_data.maxCol = parseInt(loadXml.smxml.list._col);console.log(loadXml,'hhh');
             parseXMLPreview(loadXml);
         }
     
@@ -222,110 +221,110 @@ import './css/ChooseMultiGrid.min.css';
     
         // add values in the array
         function datatopush(value,index) {
-    preview_data.localCData.push({
-    value: value.trim(),
-    colval: "",
-    rowval: "",
-    mainseq: "",
-    x:0,
-    y:0,
-    id:index
-    });
-    preview_data.correctxmlarray.push({
-    value:value.trim(),
-    colval:"",
-    rowval:"",
-    mainseq:"",
-    x:"",
-    y:"",
-    id:index,
-    });
+            preview_data.localCData.push({
+                value: value.trim(),
+                colval: "",
+                rowval: "",
+                mainseq: "",
+                x:0,
+                y:0,
+                id:index
+            });
+            preview_data.correctxmlarray.push({
+                value:value.trim(),
+                colval:"",
+                rowval:"",
+                mainseq:"",
+                x:"",
+                y:"",
+                id:index,
+            });
         }
     
         //store correct XY value
         function storeCorrectXYValue(layout) {
-    let temporary = 0,
-    counter = 0;
-    for (let i = 0; i < layout.length; i++) {
-    if (temporary == preview_data.countcol) {
-    temporary = 0;
-    counter = counter + 3;
-    }
-    layout[i].x = temporary;
-    layout[i].y = counter;
-    temporary++;
-    }
+            let temporary = 0,
+            counter = 0;
+            for (let i = 0; i < layout.length; i++) {
+                if (temporary == preview_data.countcol) {
+                temporary = 0;
+                counter = counter + 3;
+            }
+            layout[i].x = temporary;
+            layout[i].y = counter;
+            temporary++;
+            }
         }
     
         //to make shuffle array
         function makeshuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-    }
-    return array;
-    }
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                let temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
     
         //for shuffleing
-    function shuffle() {
-    preview_data.isShuffeled = true;
-    preview_data.localCData = shuffleArray(preview_data.localCData);
-    storeCorrectXYValue(preview_data.localCData);
-    state.showlabelofshuffle = 'none';
+        function shuffle() {
+            preview_data.isShuffeled = true;
+            preview_data.localCData = shuffleArray(preview_data.localCData);
+            storeCorrectXYValue(preview_data.localCData);
+            state.showlabelofshuffle = 'none';
         }
-       
+
         //shuffling
         function shuffleArray(array) {
-    let arraytoshuffle = [];
-    if (state.isanyheading == true) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].value.charAt(0) != "!") {
-            arraytoshuffle.push(array[i]);
-        }
-    }
-    arraytoshuffle = makeshuffle(arraytoshuffle);
-    let j = 0;
-    for (let i = 0; i < array.length; i++) {
-    if (array[i].value.charAt(0) != "!") {
-    array[i] = arraytoshuffle[j];
-    j++;
-    }
-    }
-    } else {
-    array = makeshuffle(array);
-    }        
-    array = storeIndexValue(array);
-    return array;
+            let arraytoshuffle = [];
+            if (state.isanyheading == true) {
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].value.charAt(0) != "!") {
+                        arraytoshuffle.push(array[i]);
+                    }
+                }
+                arraytoshuffle = makeshuffle(arraytoshuffle);
+                let j = 0;
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].value.charAt(0) != "!") {
+                        array[i] = arraytoshuffle[j];
+                        j++;
+                    }
+                }
+            } else {
+                array = makeshuffle(array);
+            }        
+            array = storeIndexValue(array);
+            return array;
         }
     
         //to store value of index
         function storeIndexValue(array) {
-    let k = 1,
-    j = 1,
-    count = 1;
-    for (let i = 0; i < array.length; i++) {
+            let k = 1,
+            j = 1,
+            count = 1;
+            for (let i = 0; i < array.length; i++) {
                 array[i].colval = j;
                 preview_data.correctxmlarray[i].colval = j;
                 array[i].rowval = k;
                 preview_data.correctxmlarray[i].rowval = k;
                 array[i].mainseq = k+"-"+j;
                 preview_data.correctxmlarray[i].mainseq = k+"-"+j;
-    j++;
+                j++;
                 if (array[i].value.charAt(0) != "!") {
                     preview_data.correctxmlarray[i].ischecked = false;
                 } else {
                     preview_data.correctxmlarray[i].ischecked = true;
                 }
-    if (count == preview_data.totalheading) {
-    j = 1;
-    k++;
-    count = 0;
-    }
-    count++;
-    }
-    return array;
+                if (count == preview_data.totalheading) {
+                    j = 1;
+                    k++;
+                    count = 0;
+                }
+                count++;
+            }
+            return array;
         }
     
         // checks and show the answer, shows correct answer and your answer button and not allow the user to perform the task
