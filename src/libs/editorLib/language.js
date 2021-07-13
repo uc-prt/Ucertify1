@@ -526,7 +526,7 @@ const l = {
     row_count: "Row Count",
     col_count: "Column Count",
     empty_field: "Field value can not be empty",
-    lock_author_cell: "To Lock author shaded cells, it should be part of correct answer",
+    lock_author_cell: "To lock author shaded cells, it should be part of correct answer",
     delete_graph: 'Click on this button to delete the graph',
     delete_chart: 'Click on this button to delete the last point of the chart',
     ada_graph_msg: 'Press any key on this button to open modalbox to set the point for draw the graph without click on the graph board',
