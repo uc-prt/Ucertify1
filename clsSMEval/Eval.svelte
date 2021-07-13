@@ -16,7 +16,6 @@
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
-
     import '../src/libs/codemirror.min.css';
     import '../src/libs/monokai.css';
     import '../src/libs/simplescrollbars.css';
@@ -26,6 +25,8 @@
     export let getChildXml = () => {};
     export let setInlineEditor;
     export let editorState;
+    let location_origin = (location.origin).replace('localhost', 'localhost:3000');
+    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let all_databases = {
             'mssql': ["MSSQL"], 
             'sql': ["740DB", "C170PRE", "C995HSTK", "C995PRE", "DBFUND", "GSA1", "c995", "myDBs", "ucDB", "RECRUIT"], 
@@ -723,7 +724,7 @@
         setDefaultXML('answer_check');
         let uxml = generateXml(true);
         AH.ajax({
-            url: themeUrl + "svelte_items/evalPro/index.php", 
+            url: evalpro_url, 
             data: {
                 "uxml": uxml,
                 "ajax": 1,
@@ -825,7 +826,7 @@
         }
         AH.ajax({
             type: "POST",
-            url: themeUrl + "svelte_items/evalPro/index.php",
+            url: evalpro_url,
             data: {
                 code: code,
                 repltype: state.lang_type,
@@ -1318,7 +1319,7 @@
      * Function to add the enable line number in xml.
      */
     function enableLineXml() {
-        let enabledLine = document.querySelector("#enable-line").value ? document.querySelector("#enable-line").value : 0;
+        let enabledLine = AH.select("#enable-line").value ? AH.select("#enable-line").value : 0;
         return ("<enableline>" + enabledLine + "</enableline>");
     }
 
