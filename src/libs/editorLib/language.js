@@ -372,6 +372,7 @@ const l = {
     is_graph : "Is Graph",
     ignore_error: "Ignore Error",
     ignore_formatting: "Ignore Formatting",
+    ignore_reset_db: 'Ignore Reset DB',
     pre_tag: "Pre Tag",
     run: "Run",
     run_code: "Run Code",

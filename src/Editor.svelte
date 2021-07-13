@@ -2894,7 +2894,7 @@
 	</div>
 </Dialog>
 <!-- SHow XML Dialog -->
-<Dialog width="600" bind:visible={state.xmlDialog} style="background-color:#fff;">
+<Dialog width="700" bind:visible={state.xmlDialog} style="background-color:#fff;">
 	<h4 class="mt-0 font21">
 		<div class="d-flex justify-content-between">
 			<div>{l.xml}</div>
