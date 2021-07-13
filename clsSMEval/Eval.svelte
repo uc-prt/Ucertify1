@@ -19,6 +19,7 @@
     import '../src/libs/codemirror.min.css';
     import '../src/libs/monokai.css';
     import '../src/libs/simplescrollbars.css';
+import { getPackedSettings } from 'http2';
 
     export let toggleMode;
     export let xml;
@@ -1265,6 +1266,16 @@
     }
 
     /**
+     * Function to get the value of is_graph, ignore_error, ignore_formatting, is_pre_tag
+    */
+    function getSettings() {
+        let is_graph = AH.select('.is_graph').checked;
+        let ignore_error = AH.select('.ignore_error').checked;
+        let ignore_formatting = AH.select('.ignore_formatting').checked;
+        let is_pre_tag = AH.select('.is_pre_tag').checked;
+        return { is_graph: is_graph, ignore_error: ignore_error, ignore_formatting: ignore_formatting, is_pre_tag: is_pre_tag };
+    }
+    /**
      * Function to delete the testcases.
      * @param event : Event parameter.
      */
@@ -1291,12 +1302,19 @@
         let case_match_insensitive = checkCaseInsensitive();
         let casematch_specail_char = checkSpecialChar();
         let partialmatch = checkMatchPartial();
+        let settings     = getSettings(); 
         state.case_insensitive = case_match_insensitive;
         state.ignore_special_char = casematch_specail_char;
         state.partial_match = partialmatch;
+
         tempXml = tempXml.replace(/case_sensitive='[\s\S]*?' +/g, "case_sensitive='" + case_match_insensitive + "' ");
         tempXml = tempXml.replace(/special_char='[\s\S]*?' +/g, "special_char='" + casematch_specail_char + "' ");
         tempXml = tempXml.replace(/partial_match='[\s\S]*?' +/g, "partial_match='" + partialmatch + "' ");
+        tempXml = tempXml.replace(/is_graph='[\s\S]*?' +/g, "is_graph='" + settings.is_graph + "' ");
+        tempXml = tempXml.replace(/ignore_error='[\s\S]*?' +/g, "ignore_error='" + settings.ignore_error + "' ");
+        tempXml = tempXml.replace(/ignore_formatting='[\s\S]*?' +/g, "ignore_formatting='" + settings.ignore_formatting + "' ");
+        tempXml = tempXml.replace(/is_pre_tag='[\s\S]*?' +/g, "is_pre_tag='" + settings.is_pre_tag + "' ");
+
         let caseStacks = AH.selectAll(".caseStack");
         let caseArr = [];
         caseStacks.forEach((e) => {
@@ -1560,6 +1578,27 @@
                         </button>
                     </div>
                     <div class="modal-body overflow-auto mt-0 pt-0" style="max-height:440px;">
+                        <div id="setting" class="setting">
+                            <h5 class="float-left p-1" style="width: 100%;padding: 18px !important;background: #f1f1f1;display: flex;justify-content: space-between;">
+                                <lable class="mt-1">{l.setting}: </lable>
+                                <label class="container_eval mr-4">{l.is_graph}
+                                    <input class="is_graph" type="checkbox" value="{state.is_graph}" data-attr="{state.is_graph}" checked={state.is_graph}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval mr-4">{l.ignore_error}
+                                    <input class="ignore_error" type="checkbox" value="{state.ignore_error}" checked={state.ignore_error}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval">{l.ignore_formatting}
+                                    <input class="ignore_formatting" type="checkbox" value="{state.ignore_formatting}" checked={state.ignore_formatting}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval">{l.pre_tag}
+                                    <input class="is_pre_tag" type="checkbox" value="{state.is_pre_tag}" checked:is_pre_tag>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                            </h5>
+                        </div>
                         <div id="caseContainer" class="float-right mt-sm overflow-auto" style="width: 100%">
                             <div class="caseStack m-sm">
                                 <h5 class="float-left" style="width: auto">
