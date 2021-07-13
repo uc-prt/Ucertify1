@@ -10,7 +10,6 @@
 	import Button from 'svelte-mui/src/Button.svelte';
 	export let ajaxData;
 	export let subtype;
-
 	let allItem = [];
 	let groupList = [];
 	let keywordsList = [];
