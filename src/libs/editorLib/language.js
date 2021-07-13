@@ -1,3 +1,5 @@
+const { graph } = require("../../../../pe-items/lib/Lang");
+
 const l = {
     add_new_task : "Add new task",
     edit_task : "Edit task",
@@ -367,6 +369,10 @@ const l = {
     enableline : "Enable-line",
     language: "Language",
     add_testcase: "Add Testcase",
+    is_graph : "Is Graph",
+    ignore_error: "Ignore Error",
+    ignore_formatting: "Ignore Formatting",
+    pre_tag: "Pre Tag",
     run: "Run",
     run_code: "Run Code",
     html_css_js: "HTML/ CSS/ JS",

@@ -1269,10 +1269,10 @@ import { getPackedSettings } from 'http2';
      * Function to get the value of is_graph, ignore_error, ignore_formatting, is_pre_tag
     */
     function getSettings() {
-        let is_graph = AH.select('.is_graph').checked;
-        let ignore_error = AH.select('.ignore_error').checked;
-        let ignore_formatting = AH.select('.ignore_formatting').checked;
-        let is_pre_tag = AH.select('.is_pre_tag').checked;
+        let is_graph = AH.select('.is_graph').checked ? 1 : 0;
+        let ignore_error = AH.select('.ignore_error').checked ? 1: 0;
+        let ignore_formatting = AH.select('.ignore_formatting').checked ? 1: 0;
+        let is_pre_tag = AH.select('.is_pre_tag').checked ? 1 : 0;
         return { is_graph: is_graph, ignore_error: ignore_error, ignore_formatting: ignore_formatting, is_pre_tag: is_pre_tag };
     }
     /**
