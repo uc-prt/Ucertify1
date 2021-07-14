@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.3/tinymce.min.js"></script>
+      
+      <script>
+         var nanospell_directory  = location.href.substring(0,location.href.lastIndexOf("/")+1);
+         //nanospell_directory is an absolute url for the nanospell plugin folder.  
+         //In this example we use JS to cheat ;)
+         
+          tinymce.init({
+               selector:'.tiny_edit',
+               external_plugins: {"nanospell": nanospell_directory+"plugin.js"},
+               nanospell_server: "php", // choose "php" "asp" "asp.net" or "java"
+               nanospell_autostart:true,
+               toolbar: false,
+               inline: true,
+               theme: "modern",
+               resize: true,
+               menubar: false,
+               toolbar: false,
+               elementpath: false,
+               statusbar: false,
+               formats: {
+                  bold: {
+                  inline: "b"
+                  },
+                  italic: {
+                  inline: "i"
+                  }
+               },
+               convert_urls: false, // For not let tinymce change url
+               relative_urls: false, // For not let tinymce change url
+               forced_root_block: false,
+               extended_valid_elements : "uc:syntax[id|class|num|nonum|white|console|hidelinenums]", // For know tinymce that it is valid tags and attrs
+               custom_elements: "uc:syntax", // For know tinymce that it is valid tags
+               closed: /^(br|hr|input|meta|img|link|param|area|seq|snt)$/,
+               preformatted: true,
+               entity_encoding: "numeric",
+               valid_elements: "*[*]",
+               plugins: [
+                  "lists link image charmap print preview anchor",
+                  "searchreplace code fullscreen",
+                  "insertdatetime media table contextmenu paste visualblocks",
+               ],
+               toolbar1: " code | undo  redo | bold italic underline strikethrough | custom-alignleft custom-aligncenter custom-alignright | mybutton2  mybutton | player",
+         }); 
+      </script>
+
+   </head>
+   <body>
+      <div class="tiny_edit">Easy! You should check out TinyMceSpellCheck.com!</div>
+      <br>
+      <div class="tiny_edit">And Here is anothwer Editor for Fun</div>
+   </body>
+</html>
