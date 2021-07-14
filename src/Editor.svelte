@@ -1466,7 +1466,9 @@
             editorConfig.findMathError();
             checkSection();
             if (getQueryString('switch_preview') == 1) {
-                AH.getBS('[href="#custom_columnize"]', 'Tab').show();
+				if (AH.getBS('[href="#custom_columnize"]', 'Tab')) {
+					AH.getBS('[href="#custom_columnize"]', 'Tab').show();
+				}
             }
         }
         activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
