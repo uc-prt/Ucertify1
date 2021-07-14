@@ -38,6 +38,7 @@
     export let is_algo;		
 	export let ajaxData = "";
 	export let _user;
+
 	let stageComment = "";
 	let editorHeaderRef; // refrence of editorHeader
 	let editCount = 1;
@@ -145,8 +146,6 @@
     const unsubscribe = hdd.subscribe((items) => {
 		state = items;
 	})
-
-	//$:console.log(state);
 	
     onMount(async ()=> {
 		AH.activate(2);
@@ -165,7 +164,7 @@
         state.itemXML = itemXML;
         AH.set('is_proposed', getQueryString('is_proposed'));
 		AH.set('save', true);
-        AH.set('draft', (ajaxData && ajaxData.draft) ? ajaxData.draft : 0);
+        AH.set('draft', (ajaxData && ajaxData.is_draft) ? ajaxData.is_draft : 0);
         if (content_guid) {
 			initComments(content_guid, _user.user_guid);
         }
@@ -206,7 +205,7 @@
 				state.vtt = ajaxData?.content_text.vtt || '';
 			}
 			state.content_icon = ajaxData.content_icon;
-			state.draft = ajaxData.draft;
+			state.draft = ajaxData.is_draft;
 			setModule(xml); // Update xml for items
 		} else { 
 			//@Pradeep: require default xml from ModuleQtype and use here.
@@ -288,7 +287,6 @@
 	
 	// action which called after first paint 
 	function didMount(node, action) {
-		//console.log("Did mounted", node, action);
 		if (editorBuffer['didMount']) clearTimeout(editorBuffer['didMount']);
 		editorBuffer['didMount'] = setTimeout(()=> {
 			let urlVars = AH.getUrlVars();
@@ -547,7 +545,6 @@
 		});
 
 		AH.listen(document, 'click', '.block-controls__move-up', function (_this) {
-			console.warn("Moveup");
 			let currentControl =  AH.parent(_this, ".controls_button");
 			let currentSection = currentControl.nextElementSibling;
 			let preSection = currentControl?.previousElementSibling?.previousElementSibling || false;
@@ -570,7 +567,6 @@
 		});
 
 		AH.listen(document, 'click', '.block-controls__move-down', function (_this) {
-			console.warn("Movedown");
 			let currentControl =  AH.parent(_this, ".controls_button");
 			let currentSection = currentControl.nextElementSibling;
 			let nextSection = currentSection.nextElementSibling;
@@ -593,7 +589,6 @@
 		});
 
 		AH.listen(document, 'click', '.block-controls__remove', function (_this) {
-			console.warn("Remove");
 			window.curr = AH.parent(_this, ".auth-editor");
 			let parent_tinymce_id = AH.parent(_this, ".auth-editor").getAttribute("id");
 			var totalChild = document.querySelectorAll('#' + parent_tinymce_id + ' div[data-section]').length;
@@ -616,7 +611,6 @@
 		});
 
 		AH.listen(document, 'click', '.block-controls__change-type', function (_this) {
-			console.warn("Change type");
 			AH.select('#advance_id', 'addClass', 'h-imp');
 			AH.select(".nested_items", 'html', ' ');
 			let currentControl = AH.parent(_this, ".controls_button");
@@ -651,7 +645,6 @@
 		});
 
 		AH.listen(document, 'click', '#type_change .type_list', function (currentTarget) {
-			console.warn("Type list");
 			let _this_selector = currentTarget.getAttribute("data-selector");
 			let _this_value = currentTarget.getAttribute("data-value");
 			let _this_type = currentTarget.getAttribute("data-type");
@@ -700,7 +693,6 @@
 		});
 
 		AH.listen(document, 'click', '#uc_checkbox_0', function (_this) {
-			console.warn("Uc checkbox");
 			let _this_selector = _this.parentElement.previousElementSibling.getAttribute("data-selector");
 			let _this_value = _this.parentElement.previousElementSibling.getAttribute("data-value");
 			let _this_type = _this.parentElement.previousElementSibling.getAttribute("data-type");
@@ -941,7 +933,6 @@
 
 		AH.listen(document, 'mouseover', '#authoringSection .uc_step', (_this)=> {
 			let control_panel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
-			//console.log(_this);
 			if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
 				AH.insert(_this.closest('.uc_step'), control_panel, 'beforeend');
 			}
@@ -949,7 +940,6 @@
 
 		AH.listen(document, 'mouseout', '#authoringSection .uc_step', (_this, event)=> {
 			let e = event.relatedTarget || event.toElement;
-			//console.log(e, _this);
 			//element that has gained focus while enterting the edit buttons group
 			if (_this.closest('.uc_step').querySelector('.controls_panel_button')) {
 				return;
@@ -1822,7 +1812,6 @@
 
 	// Update framebased and item xmls
 	function updateXml(e, moduleXMl = document.getElementById("xml_Dialog").value) {
-		//console.log(moduleXMl);
 		state.xmlDialog = false;
 		var newXml = XMLToJSON(moduleXMl);
 		if (!newXml) {
@@ -1934,6 +1923,7 @@
 		} else {
 			state.stopPreviewUpdate = false 
 			state.xml = childXml;
+			window.QXML = state.xml;
 		}
 	}
 
@@ -2091,7 +2081,6 @@
 					type: 'POST',
 					longUrl: true,
 				}).then((save_response)=> {
-					//console.log(save_response);
 					AH.set('save_response', save_response);
 					let isContinue = 0;
 					localStorageData(data, 'remove');
@@ -2232,7 +2221,6 @@
 				data   : _data,
 			}).then((data)=> {
 					//comment update
-					//console.log(data);
 			});
 		}
 		switch (AH.get('saveType')) {
@@ -2368,7 +2356,6 @@
 				data['question'] = editorConfig.replaceUnwantedEntity(data['question'], "revert");
 				data['explanation'] = editorConfig.replaceUnwantedEntity(data['explanation'], "revert");
 				data['content'] = editorConfig.replaceUnwantedEntity(data['content'], 'revert');
-				console.log(data);
 			} else {
 				data = data.replace(/<span data-mce-bogus[^>]*>/g, '');
 				data = data.replace(/<span anscounter[^>]*>(.*?)<\/span>/g, (p1, p2) => {
