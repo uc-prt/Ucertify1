@@ -1,5 +1,3 @@
-const { graph } = require("../../../../pe-items/lib/Lang");
-
 const l = {
     add_new_task : "Add new task",
     edit_task : "Edit task",
