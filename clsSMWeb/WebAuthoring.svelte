@@ -7,15 +7,8 @@
  *  Last Updated By : Pradeep Yadav
  *  Latest Update by : Sundaram Tripathi
 -->
-<!-- <svelte:head>
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/codemirror.min.css"  /> 
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/monokai.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/simplescrollbars.css"  />
-    <link rel="stylesheet" href="{themeUrl}pe-items/svelte_items/clsSMWeb/libs/webitem.min.css"  /> 
-</svelte:head> -->
 
 <script>
-    //import l from '../../lib/Lang';
     import l from '../src/libs/editorLib/language.js';
     import { onMount, beforeUpdate } from 'svelte';
     import { Checkbox } from 'svelte-mui/src';
@@ -25,7 +18,7 @@
     export let getChildXml;
     export let toggleMode;
     export let isReview;
-    export let showAns;
+    //export let showAns;
 
         
     let isPreview = 0;
@@ -46,6 +39,7 @@
     let disabled_hide = ['Editable','Hidden','Disabled'];
 
 
+    
 
     let stateData = writable({
         xml                         : '',
@@ -66,7 +60,7 @@
     })
 
     function changeTheme() {
-        console.log('chacking theme');
+
         let check = document.querySelector("#goDark").checked;
         state.goDark = check;
         stateData.update( (item) => {
@@ -757,7 +751,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="web_toolbar" style="height: 50px;" class="bg-light w-100 p-2">
-                    <div class="inline-block pull-left">
+                    <div class="inline-block pull-left"> 
                         <button 
                             type="button" 
                             data-bs-toggle="modal" 
@@ -898,9 +892,8 @@
                                     </a>
                                     <span 
                                         class="icomoon-help float-right s4" 
-                                        data-bs-toggle="tooltip" 
-                                        title="custom function name|input1,input2,..inputN|Output" 
-                                        data-bs-placement="left"
+                                        data-toggle="tooltip" 
+                                        title="custom function name|input1,input2,..inputN|Output "   data-placement="top"
                                     ></span>
                                 </h4>
                             </div>
@@ -930,9 +923,9 @@
                                     </a>
                                         <span 
                                         class="icomoon-help float-right s4" 
-                                        data-bs-toggle="tooltip" 
+                                        data-toggle="tooltip" 
                                         title="1. attr_match?HTML?tag name&#123;1&#125;?occurance.(for tag match) &#10;2. attr_match?HTML?tag name" 
-                                        data-bs-placement="left"
+                                        data-placement="left"
                                     ></span> 
                                 </h4>
                             </div>
@@ -962,9 +955,9 @@
                                     </a>
                                     <span 
                                         class="icomoon-help float-right s4" 
-                                        data-bs-toggle="tooltip" 
+                                        data-toggle="tooltip" 
                                         title="Write your own script" 
-                                        data-bs-placement="left"
+                                        data-placement="left"
                                     ></span>
                                 </h4>
                             </div>

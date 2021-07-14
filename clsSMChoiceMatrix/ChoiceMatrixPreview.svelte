@@ -328,13 +328,6 @@
 
     // for showing correct answer
     function previewCorrectAns() {
-    /*    jQuery(mainId+" .test_radio").each(function () {
-            if (jQuery(this).attr('value') == jQuery(this).attr('data-correct')) {
-                jQuery(this)[0].checked = true;
-            } else {
-                jQuery(this)[0].checked = false;
-            }
-        });   //Replaced     */ 
 
         let test_radio = document.querySelectorAll((mainId+" .test_radio"));
         for( let i = 0; i < test_radio.length; i++ ) {
@@ -387,8 +380,6 @@
 
     // This function showing correct or incorrect icon////////////////
     function showCorIncorIcon() {     
-        //jQuery(".dbg-success input:checked").siblings(".fa-check").css({ "display": "inline-flex" }); // Replaced
-        // debugger;
         AH.select(".dbg-success input", "checked").forEach((_elm)=>{
             AH.siblings(_elm,'.fa-check').forEach((_e)=>{
                 _e.style.display = "inline-flex";
@@ -396,7 +387,7 @@
         })
         
         
-        //jQuery(".dbg-danger input:checked").siblings(".fa-close").css({ "display": "inline-flex" });
+        
 
         AH.select(".dbg-danger input", "checked").forEach((_elm)=>{
             AH.siblings(_elm,'.fa-close').forEach((_e)=>{
@@ -407,7 +398,7 @@
 
         AH.selectAll('.dbg-success input, .dbg-danger input', 'removeAttr', 'as');
         
-        //jQuery(".dbg-success input:checked").attr("as",1); // Removed
+       
         AH.select(".dbg-success input", "checked").forEach((_succRem)=> {
             _succRem.setAttribute("as", 1);
         })
@@ -418,7 +409,7 @@
             _dangRem.setAttribute("as", 0);
         })
 
-            //jQuery(".dbg-success input:checked").siblings(".label_choice").attr("title","is marked as correct");
+         
         AH.select(".dbg-success input","checked").forEach((_elm)=> {
             AH.siblings(_elm,'.label_choice').forEach((_e)=> {
                 _e.setAttribute("title","is marked as correct");
