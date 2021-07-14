@@ -16,7 +16,6 @@
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
-
     import '../src/libs/codemirror.min.css';
     import '../src/libs/monokai.css';
     import '../src/libs/simplescrollbars.css';
@@ -26,6 +25,8 @@
     export let getChildXml = () => {};
     export let setInlineEditor;
     export let editorState;
+    let location_origin = (location.origin).replace('localhost', 'localhost:3000');
+    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let all_databases = {
             'mssql': ["MSSQL"], 
             'sql': ["740DB", "C170PRE", "C995HSTK", "C995PRE", "DBFUND", "GSA1", "c995", "myDBs", "ucDB", "RECRUIT"], 
@@ -53,6 +54,7 @@
     let postData = "";
     let langArr = [];
     let state = {};
+    window.QXML = xml;
     let hdd = writable({
         open: false,
         xml: '',
@@ -84,7 +86,8 @@
         postBlockShow: 0,
         is_graph: 0,
         ignore_error: 0,
-        ignore_formatting: 0
+        ignore_formatting: 0,
+        is_pre_tag : 0,
     })
 
     /**
@@ -322,7 +325,6 @@
      * Change to open the language dialog.
      */
     function handleLanguageModalOpen() {
-        console.log("open", state);
         state.open = !state.open;
         setTimeout(function() {
             document.querySelector('.evalpro_dialog > div+div.content').style.margin = "16px 0";
@@ -363,7 +365,7 @@
             state.xml = state.xmlArr[lang];
             state.lang_type = lang;
             editor.setOption("mode", "text/x-" + term_lang);
-            windowHtml = state.xmlArr[xml_group[xml_group.length - 1]].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
+            windowHtml = state.xmlArr[lang].replace(/language="[\s\S]*?" +/g, 'language="' + lang + '"');
             getChildXml(windowHtml);
             parseXML(windowHtml);
             setDefaultXML();
@@ -723,7 +725,7 @@
         setDefaultXML('answer_check');
         let uxml = generateXml(true);
         AH.ajax({
-            url: themeUrl + "svelte_items/evalPro/index.php", 
+            url: evalpro_url, 
             data: {
                 "uxml": uxml,
                 "ajax": 1,
@@ -825,7 +827,7 @@
         }
         AH.ajax({
             type: "POST",
-            url: themeUrl + "svelte_items/evalPro/index.php",
+            url: evalpro_url,
             data: {
                 code: code,
                 repltype: state.lang_type,
@@ -835,7 +837,8 @@
                 'db_name': currentDB ? currentDB : "myDBs",
                 'is_graph': state.is_graph,
                 'ignore_error': state.ignore_error,
-                'ignore_formatting' : state.ignore_formatting
+                'ignore_formatting' : state.ignore_formatting,
+                'is_pre_tag' : state.is_pre_tag
             },
             dataType: 'json',
         }).then((res)=> {
@@ -1026,7 +1029,7 @@
      * @param xml : XML.
      */
     function parseXML(xml) {
-        xml = xml ? xml : xml;
+        xml = xml ? xml : window.QXML;
         currentDB = findAttribute(xml, "db_name", "SMXML") ? findAttribute(xml, "db_name", "SMXML") : "myDBs";
         state.database = currentDB;
         if (findAttribute(xml, "language") == 'sql' || findAttribute(xml, "language") == 'mssql' || findAttribute(xml, "language") == 'psql') {
@@ -1034,7 +1037,6 @@
                 resetDB();
             };
         }
-
         let editorData = stringBetween(xml, "editor");
         editor.setValue(editorData ? editorData.trim() : "");
 
@@ -1051,13 +1053,14 @@
         let is_graph = findAttribute(xml, "is_graph", "SMXML") ? parseInt(findAttribute(xml, "is_graph", "SMXML")) : 0;
         let ignore_error = findAttribute(xml, "ignore_error", "SMXML") ? parseInt(findAttribute(xml, "ignore_error", "SMXML")) : 0;
         let ignore_formatting = findAttribute(xml, "ignore_formatting", "SMXML") ? parseInt(findAttribute(xml, "ignore_formatting", "SMXML")) : 0;
+        let is_pre_tag   = findAttribute(xml, "is_pre_tag", "SMXML") ? parseInt(findAttribute(xml, "is_pre_tag", "SMXML")) : 0;
         state.preShow = showPre ? showPre : 0;
         state.postShow = showPost ? showPost : 0;
         state.editorShow = showEditor ? showEditor : 0;
         state.is_graph = is_graph;
         state.ignore_error = ignore_error;
         state.ignore_formatting = ignore_formatting;
-
+        state.is_pre_tag    = is_pre_tag;
         state.enableLines = stringBetween(xml, "enableline");
         AH.select("#enable-line", 'value', state.enableLines || 0);
 
@@ -1094,7 +1097,7 @@
             showDb = 'db_name="' + currentDB + '"';
             state.databases = all_databases[state.lang_type];
         }
-        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting + "\">";
+        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting +  "\" is_pre_tag=\"" + state.is_pre_tag + "\">";
         if (editor && type != "answer_check") {
             generateXml();
         }
@@ -1204,7 +1207,19 @@
         caseStack.className = 'caseStack m-sm';
         inp = (typeof inp == 'object') ? "" : inp;
         let index = AH.select("#caseContainer").children.length;
-        caseStack.innerHTML = `<div class="w-100 p-3 mt-2 mb-2" style="background: #f1f1f1"><div class="w-100"><h5 class="float-left p-1" style="width: 90%"><lable class="bage mr-4 test_case_label">${l.testcase + (index + 1)}</lable><label class="container_eval mr-4">${l.case_insensitive}<input class="case_insensitive" type="checkbox" value="${state.case_insensitive}"><span class="checkmark_eval"></span></label><label class="container_eval mr-4">${l.ignore_special_char}<input class="ignore_special_char" type="checkbox" value="${state.ignore_special_char}"><span class="checkmark_eval"></span></label><label class="container_eval">${l.partial_match}<input class="partial_match" type="checkbox" value="${state.partial_match}" checked="checked"><span class="checkmark_eval"></span></label></h5><span tabIndex="0" class="float-right p-2 icomoon-new-24px-delete-1 s5 pointer caseDelBtn"></span></div><textarea class="form-control d-inline-block mr-md ${isSql}" style="width: 48%;height: 100px;" placeholder="${l.input_seperated_comma}">${inp}</textarea>
+        let case_insensitive = state.case_insensitive;
+        case_insensitive = case_insensitive.split(",");
+        let case_insensitive_checked = case_insensitive[i] == 1 ? 'checked="checked"' : '';
+
+        let ignore_special_char = state.ignore_special_char;
+        ignore_special_char = ignore_special_char.split(",");
+        let ignore_special_char_checked = ignore_special_char[i] == 1 ? 'checked="checked"' : '';
+
+        let partial_match = state.partial_match;
+        partial_match = partial_match.split(",");
+        let partial_match_checked = partial_match[i] == 1 ? 'checked="checked"' : '';
+
+        caseStack.innerHTML = `<div class="w-100 p-3 mt-2 mb-2" style="background: #f1f1f1"><div class="w-100"><h5 class="float-left p-1" style="width: 90%"><lable class="bage mr-4 test_case_label">${l.testcase + (index + 1)}</lable><label class="container_eval mr-4">${l.case_insensitive}<input class="case_insensitive" type="checkbox" value="${state.case_insensitive}" ${case_insensitive_checked}><span class="checkmark_eval"></span></label><label class="container_eval mr-4">${l.ignore_special_char}<input class="ignore_special_char" type="checkbox" value="${state.ignore_special_char}" ${ignore_special_char_checked}><span class="checkmark_eval"></span></label><label class="container_eval">${l.partial_match}<input class="partial_match" type="checkbox" value="${state.partial_match}" ${partial_match_checked}><span class="checkmark_eval"></span></label></h5><span tabIndex="0" class="float-right p-2 icomoon-new-24px-delete-1 s5 pointer caseDelBtn"></span></div><textarea class="form-control d-inline-block mr-md ${isSql}" style="width: 48%;height: 100px;" placeholder="${l.input_seperated_comma}">${inp}</textarea>
             <textarea class="form-control d-inline-block ml-md" style="height: 100px;width:${(state.lang_type == "sql" || state.lang_type == "psql" || state.lang_type == "mssql" ? "98%" : "48%")}" placeholder="${l.output}">${oup}</textarea></div>`;
         document.querySelector("#caseContainer").appendChild(caseStack);
         bindBtns();
@@ -1307,7 +1322,7 @@
      * Function to add the enable line number in xml.
      */
     function enableLineXml() {
-        let enabledLine = document.querySelector("#enable-line").value ? document.querySelector("#enable-line").value : 0;
+        let enabledLine = AH.select("#enable-line").value ? AH.select("#enable-line").value : 0;
         return ("<enableline>" + enabledLine + "</enableline>");
     }
 
@@ -1527,7 +1542,7 @@
                 {#each lang_type as lang}
                     <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleLanguageSelection.bind(this, lang)} key={lang} style="height:60px; cursor: pointer; padding-left: 20px">
                         <div class="text-center d-inline-block" style="height: 50px; width: 50px; background: #ccc;border-radius: 50%;">
-                            <img style="border-radius: 50%;height:50px;" src={window.themeUrl + "/svelte_items/images/"+ (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
+                            <img style="border-radius: 50%;height:50px;" src={window.itemUrl + "images/" + (lang == "c#" ? "csharp" : lang ) + "_lang.png"} alt="Language"/>
                         </div>
                         <div class="pl-1 d-inline-block" style="padding: 15px;">{lang.charAt(0).toUpperCase() + lang.slice(1)}</div>
                     </div>
@@ -1539,11 +1554,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <input class="form-control testCaseInput h-imp" type="text" id="id1" />
+                        <h4>{l.add_testcase}</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body overflow-auto" style="max-height:440px;">
+                    <div class="modal-body overflow-auto mt-0 pt-0" style="max-height:440px;">
                         <div id="caseContainer" class="float-right mt-sm overflow-auto" style="width: 100%">
                             <div class="caseStack m-sm">
                                 <h5 class="float-left" style="width: auto">

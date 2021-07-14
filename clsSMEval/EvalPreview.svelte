@@ -25,8 +25,9 @@
 	export let isReview;
 	export let content_guid;
 	export let sample_input;
-	let evalpro_url = 'https://demo-a.ucertify.com:8012/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
-	let user_guid = '';
+	let location_origin = (location.origin).replace('localhost', 'localhost:3000');
+    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+    let user_guid = '';
 	let tempGuid;
 	let client = {};
 	let markerFlag = false;
@@ -829,6 +830,8 @@
 			'db_name': db_name,
 			'is_graph' : is_graph,
 			'ignore_error' : ignore_error,
+			'ignore_reset_db' : ignore_reset_db,
+			'is_pre_tag' : is_pre_tag
 		}
 		if (window.inNative) {
 			codeData.in_native = 1;
@@ -854,7 +857,7 @@
 			if (res.status_message == "Successful") {
 				if (res.output) {
 					let oup = res.output;
-					if (state.lang_type == 'sql' || state.lang_type == 'psql' || state.lang_type == 'c++') {
+					if (state.lang_type == 'sql' || state.lang_type == 'psql' || state.lang_type == 'c++' || is_pre_tag == '1') {
 						AH.select('#output', 'html', '<pre>' + oup + '</pre>');
 					} else {
 						if (oup.includes("image_data:")) {
@@ -1379,7 +1382,7 @@
 	</Dialog>
 </div>
 
-<style lang="scss" global>
+<style lang="text/css" global>
 
 	body {
 		overflow: hidden!important;

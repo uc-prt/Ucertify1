@@ -1,4 +1,6 @@
 <script context="module">
+    import { XMLToJSON }  from '../helper/HelperAI.svelte';
+
     export const itemHelper = {
         getXml: function(frameNode, xml, subtype) {
             return frameNode.generateXml();
@@ -10,8 +12,8 @@
                 return false;
             }
         },
-        checkDataOnSave: function(data, content_subtype, self, updateModule) {
-            let xml = self.state.xml;
+        checkDataOnSave: function(data, content_subtype, state, updateModule) {
+            let xml = state.xml;
             let parsed24Xml = XMLToJSON(xml);
             if (parsed24Xml && parsed24Xml.smxml._language == "sql") {
                 let changedXML = xml.match(/<case>[\s\S]*?<\/case>/g).join("").split("<case>");

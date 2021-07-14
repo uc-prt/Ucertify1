@@ -1,0 +1,195 @@
+body, html{     
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+}
+
+[tabindex="0"]:focus {
+    box-shadow: 0 0 0 .09rem #89ace4!important;
+    outline: 0;
+}
+
+.compass_route {
+    stroke: #979797;
+    fill: transparent;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 0,9;
+}
+
+.compass_radius {
+    stroke: #979797;
+    stroke-width: 2;
+}
+
+.compass_center {
+    cursor: move;
+    stroke: #979797;
+    stroke-width: 2;
+}
+
+.compass_radius_icon {
+    stroke: #979797;
+    stroke-width: 2;
+}
+
+.compass_center:hover,
+.compass_center:focus,
+.compass_radius:focus,
+.compass_radius:hover,
+.compass_radius_icon:focus,
+.compass_radius_icon:hover {
+    stroke: #666666;
+}
+
+.compass_rotation:hover,
+.compass_radius_icon:hover,
+.compass_center:hover,
+.compass_rotation:focus,
+.compass_radius_icon:focus,
+.compass_center:focus {
+    opacity: 1;
+}
+
+.compass_rotation,
+.compassRotationBar,
+.compass_radius_icon {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.centerImg svg {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    cursor: crosshair;
+}
+
+.eraserHover:hover,
+.eraserHover:focus {
+    opacity: 0.5;
+}
+
+.drawing-compass-pointer-border {
+    opacity: 0.6;
+    stroke-width: 2;
+    stroke: #979797;
+    fill: #f8f8ff;
+}
+
+#svgImgPreview,
+#svgImg {
+    max-width: none;
+}
+
+.lastCircle_hover {
+    stroke: #000;
+    fill: #aaa;
+    cursor: grab;
+}
+
+.resize {
+    z-index: 20!important;
+    cursor: move;
+    background-color: rgba(240,240,240,.6)!important;
+    box-shadow: 0 0 1px #000 inset;
+    position:absolute;
+    top: 35px;
+    left: 57px;
+    height: 66px;
+    width: 66px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+#moveDrawIcon {
+    top: 50px;
+    left: 50px;
+    z-index: 500;
+    margin-top: -7px;
+    margin-left: -7px;
+}
+.drawing_module_container .btn-light {
+    background-color: #ebebeb !important;
+}
+.previewDrawingPaths path:focus {
+    opacity: 0.5;
+    outline: none;
+}
+
+.drawing_module_container .btn-light:not(:disabled):not(.disabled):active:focus,
+.drawing_module_container .btn-light:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 0.2rem #aaa9!important;
+}
+
+.currentFocusPoint {
+    stroke: #027f02!important;
+}
+
+.centerImg svg:focus {
+    -webkit-box-shadow: inset 1px 1px 12px #ccc !important;
+    -moz-box-shadow: inset 1px 1px 12px #ccc !important;
+    box-shadow: inset 1px 1px 12px #ccc !important;
+    outline: 0;
+}
+
+path.answer_mark:focus {
+    opacity: 0.5;
+}
+
+.resizer {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize
+}
+
+#drawing-modal .modal-body,
+#drawing_shortcut_modal .modal-body {
+    max-height: 350px;
+}
+
+.shortcutTable [tabindex="0"]:focus {
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
+#drawingPreviewMain .h {
+    display: none !important;
+}
+
+.drawing_bgimg {
+    margin-right: 32px;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+#upload_media {
+    margin-top: 28px;
+}
+
+.setting_btn {
+    right: 1px;
+    top: 1px;
+    z-index: 1;
+}
+
+.drawing_module_container button:disabled {
+    pointer-events: auto !important;
+}
+
+#centerImg {
+    position: relative;
+}
+.mr-2 {
+    margin-right: 0.5em !important;
+}
+#previewSvg { 
+    width: 600px;
+    height: 520px;
+    position: absolute;
+}
