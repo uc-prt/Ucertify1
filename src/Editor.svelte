@@ -2092,8 +2092,7 @@
 						showOtherType(save_response);
 						state.message = l.save_success;
 						state.snackback = true;
-					}
-					else {
+					} else {
 						save_response = JSON.parse(save_response);
 						if (!save_response['error'] || save_response['error'].length == 0) {
 							if (state.guid != '') {

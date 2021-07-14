@@ -20,7 +20,6 @@
 	export let isReview;
 	export let showAns;
 	export let editorState;
-
     let bgImgPath = 'https://s3.amazonaws.com/jigyaasa_content_static/';
     let xmlns = "http://www.w3.org/2000/svg";
     // denotes that drawing is not sketching
@@ -33,7 +32,7 @@
     let isDrawStop = 0;
     // shows that is drawing started by keyboard
     let startDrawingByKey = 0;
-    // used to creates an element with the specified namespace URI and qualified name
+    // used to creates an element wiloadth the specified namespace URI and qualified name
     let scribble;
     // denotes mouse co-ordinates
     let preview_mouseX, preview_mouseY;
@@ -137,6 +136,7 @@
         correctAnswer: false,
             // contains the xml of the props
         xml: '',
+        uxml : '', 
         // not used any where
         openImg: false,
         // not used any where
@@ -171,6 +171,7 @@
 
     // for adding all the necessary events and the css files
     onMount(async() => {
+        state.uxml = uxml;
         // checked for mac device
         is_mac = (navigator.userAgent.indexOf("Mac") != -1)
         // updates the position of rotationbar and change the center position of the circles that lies on rotationbar
@@ -1525,12 +1526,9 @@
         joinMarkedPoint(array);
     }
 
-    // used to load the module according to the data of smxml and smans xml
-    function loadModule(uaXML, drawMark) {
+    function checkAns (uaXML) {  
+        uaXML = XMLToJSON(uaXML);      
         // contains the json data of user answer xml
-        uaXML = XMLToJSON(uaXML);
-        // contains the x and y co-ordinate of the points marked by user
-        userMarkingPoint = JSON.parse(uaXML.smans.markpoints);
         if (uaXML.smans.userDrawPath == undefined) {
             // sets the value of userDataPath to blank that indicates that no drawing is sketched
             uaXML.smans.userDrawPath = '';
@@ -1539,6 +1537,15 @@
         userDrawPath = JSON.parse(uaXML.smans.userDrawPath);
         // defines the value true or false of the variable userAnsCorrect according to the value of ansCorrect of user answer xml
         userAnsCorrect = uaXML.smans.ansCorrect.toLowerCase() == 'true' ? true : false;
+        return userAnsCorrect; 
+    }
+
+    // used to load the module according to the data of smxml and smans xml
+    function loadModule(uaXML, drawMark) {
+        // contains the x and y co-ordinate of the points marked by user
+        userAnsCorrect = checkAns(uaXML);
+        uaXML = XMLToJSON(uaXML);
+        userMarkingPoint = JSON.parse(uaXML.smans.markpoints);
         // contains json data of xml props
         defaultXML = XMLToJSON(xml);
         // contains cdata of drawing of smxml that have to be performed by the help of drawing tools for correct answer
@@ -1672,8 +1679,9 @@
         // defined that user answer xml changed
         window.ISSPECIALMODULEUSERXMLCHANGE = 1;
         // sets the user answer xml
-        AH.select("#special_module_user_xml", 'value', userAnsXML);
-
+        state.uxml = userAnsXML;
+        var ans = checkAns(userAnsXML);
+        onUserAnsChange({uXml: userAnsXML, ans: ans });
     }
 
     // creates the drawing sketched by user
@@ -2196,7 +2204,8 @@
             if (uxml) {
                 if (uxml.search('<smans type="41">') == -1 || uxml.search('<smans type="41"></smans>') == 0 || uxml.search('undefined') != -1) {
                     // blanks the user answer xml
-                    AH.select("#special_module_user_xml", 'value', "");
+                    state.uxml = '';
+                    // AH.select("#special_module_user_xml", 'value', "");
                 } else {
                     if (isReview) {
                         AH.selectAll('.previewBtnGrp', 'addClass', 'h');
@@ -2220,7 +2229,7 @@
                         // it's also used below in this function so it can be removed
                         AH.select('#preview' + state.selectedTools[0], 'addClass', 'active');
                     }
-                    loadModule(AH.select("#special_module_user_xml").value, isReview);
+                    loadModule(state.uxml, isReview);
                 }
             }
         }
