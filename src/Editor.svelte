@@ -1466,7 +1466,9 @@
             editorConfig.findMathError();
             checkSection();
             if (getQueryString('switch_preview') == 1) {
-                AH.getBS('[href="#custom_columnize"]', 'Tab').show();
+				if (AH.getBS('[href="#custom_columnize"]', 'Tab')) {
+					AH.getBS('[href="#custom_columnize"]', 'Tab').show();
+				}
             }
         }
         activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
@@ -2893,7 +2895,7 @@
 	</div>
 </Dialog>
 <!-- SHow XML Dialog -->
-<Dialog width="600" bind:visible={state.xmlDialog} style="background-color:#fff;">
+<Dialog width="700" bind:visible={state.xmlDialog} style="background-color:#fff;">
 	<h4 class="mt-0 font21">
 		<div class="d-flex justify-content-between">
 			<div>{l.xml}</div>

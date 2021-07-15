@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.js"></script>
+        <!-- Update with your paths to everything -->
+        <script type="text/javascript" src="mathquill.min.js"></script>
+        <script type="text/javascript" src="equation_editor.js"></script>
+        <script type="text/javascript" src="html2canvas.js"></script>
+        <script type="text/javascript" src="filesaver.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="mathquill.css">
+        <link rel="stylesheet" type="text/css" href="equation_editor.css">
+        <style>
+            .latex_visible{
+                display: none;
+            }
+            .blank_image {
+                padding: 0;
+                text-align: right;
+                color: red;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body class="equation-editor">
+        <div class="cols">
+            <div class="math-form col">
+                <div class="button-bar"></div>
+                <div class="math"></div>
+                <div style="margin-top:5px;margin-bottom:5px;font-family: Helvetica,Arial,sans-serif;font-size:20px;font-weight: bold;" class="latex_equation latex_visible">Latex Equation</div>
+                <div class="mathtolatex latex_visible" style="width:452px;height:57px;border:1px solid #000;background-color: #fff;overflow:scroll;word-wrap: break-word;"></div>
+                <div style="margin-bottom: 5px;margin-top:15px;" class="visual_option latex_visible">
+                    <label for="fontsize">Font Size</label>
+                    <select id="fontsize" title="Font size">
+                            <option value="5px">5px</option>
+                            <option value="10px">10px</option>
+                            <option value="20px" selected="selected">20px</option>
+                            <option value="40px">40px</option>
+                            <option value="50px">50px</option>
+                            <option value="60px">60px</option>
+                    </select>
+                    <label for="text_color">Text Color</label>
+                    <input type="color" id="text_color" name="text_color" value="#000000">
+                    <label for="text_style">Text Style</label>
+                    <select id="text_style" title="Font size">
+                    <option value="normal" selected="selected">Normal</option>
+                    <option value="italic">Italic</option>
+                    </select>
+                    <button id="my_image">Image</button>
+                </div>
+                <p class="blank_image latex_visible">Blank image can't be downloaded</p>
+            </div>
+            <div class="button-groups col"></div>
+        </div>
+        <script type="text/javascript">
+            var params =   window.parent.tinymce.activeEditor.windowManager.getParams() ;
+            var existingLatex = params['existing_latex'];
+
+            var equationEditor = new EquationEditor.EquationEditorView({
+            $el: $('.equation-editor'),
+            existingLatex: existingLatex,
+            restrictions: window.parent.tinymce.equationEditorRestrictions
+            }).render();
+
+            params['latexInput'] = equationEditor.input();
+            window.parent.tinymce.activeEditor.windowManager.setParams(params);
+
+            $(document).ready(function() {
+                $('#fontsize').on('change', function() {
+                    $('.mathquill-editable').css({
+                        "font-size": $('#fontsize').val()
+                    });
+                });
+                $('#text_color').on('change', function() {
+                    $('.mathquill-editable').css({
+                        "color": $('#text_color').val()
+                    });
+                });
+                $('#text_style').on('change', function() {
+                    $('.mathquill-editable').css({
+                        "font-style": $('#text_style').val()
+                    });
+                });
+                $(function() {
+                    $(document).on('click','#my_image', function(){
+                        $('.mathquill-editable *').css({
+                            'background-color': 'transparent',
+                            'text-align': 'center'
+                        });
+                        if($('.mathquill-editable').children("var").attr("mathquill-command-id")) {
+                            html2canvas($(".mathquill-editable"), {
+                            onrendered: function(canvas) {
+                                canvas.toBlob(function(blob) {
+                                    saveAs(blob, "Dashboard.png");
+                                });
+                            }
+                        });
+                    } else {
+                        $(".blank_image").show().delay( 3000 ).hide(0);
+                    }
+                    });
+                });
+                var cpyTimer;
+                $('body').on('DOMSubtreeModified', '.mathquill-editable', function() {
+                    clearTimeout(cpyTimer);
+                    cpyTimer = setTimeout(function() {
+                        var copylatex = parent.window.latexCopyMath.windowManager.getParams().latexInput.mathquill("latex");
+                        $('.mathtolatex').text(copylatex);
+                    }, 300);
+                });
+                $('.math').ready(function() {
+                    $('.mathtolatex').removeClass('latex_visible');
+                    $('.visual_option').removeClass('latex_visible');
+                    $('.latex_equation').removeClass('latex_visible');
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -113,7 +113,7 @@
 		AH.listen(document,'keydown','.edit_step',function(data,e) {
 			//let ele = $(this);
 			
-			let l = (data.value.split('').length * 10) + 30 +'px';
+			let l = (data.value.split('').length * 10) + 45 +'px';
 			data.style.width = l;
 		})
 
@@ -1109,10 +1109,6 @@
 	{#if state.blank == false}
 		
 		<center>
-			<!-- <div class={"btn-group clearfix review " +state.smController} id="sm_controller">
-				<button type="button" class={btntype == "correctans" ? "btn btn-light correct-ans active" : "btn btn-light correct-ans"} on:click={() => {correctAnswer(); }}>{l.correct_answer}</button>
-				<button type="button" class={btntype == "yourans" ? "btn btn-light your-ans active" : "btn btn-light your-ans"} on:click={() => {yourAnswer();}}>{l.your_answer}</button>
-			</div> -->
 			<ItemHelper 
 				
 				on:setReview = {setReview}
