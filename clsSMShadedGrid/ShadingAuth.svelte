@@ -401,7 +401,7 @@
         <select 
             value={state.authorMethod} 
             name="authorMethod" 
-            class="bg-gray-hover form-control width-authoring d-inline-block" 
+            class="bg-gray-hover form-select width-authoring d-inline-block" 
             on:change={handleAuthoringMethod}
         >
             <option value="byLocation" id="byLoc_sel" data-show="locationMethod" data-hide="countMethod" selected="selected">{l.set_corr_loc}</option>
