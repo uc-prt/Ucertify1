@@ -7,7 +7,7 @@
 *  Last update :  -->
 <script>
     import {writable} from 'svelte/store';
-	import ju from '../src/libs/jslib';
+	//import ju from '../src/libs/jslib';
 	import ALGO from "./Step.js";
     import l from '../src/libs/editorLib/language.js';
     import { onMount,afterUpdate, beforeUpdate } from 'svelte';
@@ -117,7 +117,7 @@
 			data.style.width = l;
 		})
 
-		window.J = ju;
+		//window.J = ju;
 		AI.set('stepAlgo', this);
 
 		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
@@ -1243,14 +1243,28 @@
     :global([id^="fillmain"] .fill-row) {
         padding:6px;
     }
-    :global([id^="fillmain"] .fillelement, [id^="fillmain"] .drag-resize) {
+    :global(#fillmain .fillelement){
         height:30px;
         display:inline-block;
         position:relative;
         min-height: 30px;
         margin: 1px;
     }
-    :global([id^="fillmain"] input[type="text"], [id^="fillmain"] select) {	
+	:global(#fillmain .drag-resize) {
+        height:30px;
+        display:inline-block;
+        position:relative;
+        min-height: 30px;
+        margin: 1px;
+    }
+    :global([id^="fillmain"] input[type="text"]) {	
+        height:99%!important;
+        resize: none;
+        font-size:12px;
+        color: #000;
+        max-width: 800px;
+    }
+	:global([id^="fillmain"] select) {	
         height:99%!important;
         resize: none;
         font-size:12px;

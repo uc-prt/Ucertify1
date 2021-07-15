@@ -837,9 +837,9 @@
         left: 177px;
     }
 
-    :global(.minus_tab,
+    :global(.minus_tab),
     .plus_tab,
-    .slash_tab) {
+    .slash_tab {
         text-align: center;
     }
 
@@ -964,8 +964,8 @@
         border: 2px solid #fff;
     }
 
-    :global(.minus_point,
-    .decl_point) {
+    :global(.minus_point),
+    .decl_point {
         padding: 6px 12px;
     }
 
@@ -1008,7 +1008,12 @@
         font-weight: bold;
         color: #1877b1;
     }
-    :global(table td, table th) {
+    :global(table td) {
+        padding: .5rem .5rem!important;
+        vertical-align: top!important;
+        border-top: 1px solid #dee2e6!important;
+    }
+    :global(table th) {
         padding: .5rem .5rem!important;
         vertical-align: top!important;
         border-top: 1px solid #dee2e6!important;

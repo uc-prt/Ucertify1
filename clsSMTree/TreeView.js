@@ -798,4 +798,4 @@ ucTree.bindLab = function () {
     });
 }
 // By using this it can be used in that file where this file imported
-module.exports = ucTree;
+export default ucTree;

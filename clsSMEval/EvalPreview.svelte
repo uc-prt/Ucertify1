@@ -1389,10 +1389,16 @@
 		position: fixed;
 		width: 100%;
 	}
-	:global(.split_container .left_pane, .split_container .panel) {
+	:global(.split_container .left_pane) {
 		padding: 0!important;
 	}
-	:global(.pb-5, .py-5) {
+	:global(.split_container .panel) {
+		padding: 0!important;
+	}
+	:global(.pb-5) {
+		padding-bottom: 3rem!important;
+	}
+	:global(.py-5) {
 		padding-bottom: 3rem!important;
 	}
 	:global(.CodeMirror) {

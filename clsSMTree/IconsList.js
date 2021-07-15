@@ -5,4 +5,4 @@ for (var index = 0; index < icons_data.length; index ++) {
     icons_html += `<tr><td><span class="${icons_data[index]}"></span></td><td class="search">${icons_data[index]}</td></tr>`
 }
 icons_html += '</tbody></table></div>';
-module.exports = {icons_html};
+export icons_html;
