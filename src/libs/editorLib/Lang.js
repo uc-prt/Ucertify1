@@ -6,7 +6,7 @@
  *  Last updated : 15 July 2020
  *  Last updated by: Dharmendra Mishra
  */
-module.exports = {
+export default {
     authoring : "Authoring",
     change_view : "Change View",
     render_tag : "Render Tags",

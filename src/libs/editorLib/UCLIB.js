@@ -1016,4 +1016,4 @@ UCLIB.addCorrectAnswerStr = function ( answers ) {
   return correct.join(',');
 };
 
-module.exports = UCLIB;
+export default UCLIB;
