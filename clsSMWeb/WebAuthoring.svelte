@@ -7,7 +7,6 @@
  *  Last Updated By : Pradeep Yadav
  *  Latest Update by : Sundaram Tripathi
 -->
-
 <script>
     import l from '../src/libs/editorLib/language.js';
     import { onMount, beforeUpdate } from 'svelte';

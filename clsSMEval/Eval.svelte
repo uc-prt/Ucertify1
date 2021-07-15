@@ -87,6 +87,7 @@
         is_graph: 0,
         ignore_error: 0,
         ignore_formatting: 0,
+        ignore_reset_db: 0,
         is_pre_tag : 0,
     })
 
@@ -838,6 +839,7 @@
                 'is_graph': state.is_graph,
                 'ignore_error': state.ignore_error,
                 'ignore_formatting' : state.ignore_formatting,
+                'ignore_reset_db' : state.ignore_reset_db,
                 'is_pre_tag' : state.is_pre_tag
             },
             dataType: 'json',
@@ -1053,6 +1055,7 @@
         let is_graph = findAttribute(xml, "is_graph", "SMXML") ? parseInt(findAttribute(xml, "is_graph", "SMXML")) : 0;
         let ignore_error = findAttribute(xml, "ignore_error", "SMXML") ? parseInt(findAttribute(xml, "ignore_error", "SMXML")) : 0;
         let ignore_formatting = findAttribute(xml, "ignore_formatting", "SMXML") ? parseInt(findAttribute(xml, "ignore_formatting", "SMXML")) : 0;
+        let ignore_reset_db = findAttribute(xml, "ignore_reset_db", "SMXML") ? parseInt(findAttribute(xml, "ignore_reset_db", "SMXML")) : 0;
         let is_pre_tag   = findAttribute(xml, "is_pre_tag", "SMXML") ? parseInt(findAttribute(xml, "is_pre_tag", "SMXML")) : 0;
         state.preShow = showPre ? showPre : 0;
         state.postShow = showPost ? showPost : 0;
@@ -1060,6 +1063,7 @@
         state.is_graph = is_graph;
         state.ignore_error = ignore_error;
         state.ignore_formatting = ignore_formatting;
+        state.ignore_reset_db  = ignore_reset_db;
         state.is_pre_tag    = is_pre_tag;
         state.enableLines = stringBetween(xml, "enableline");
         AH.select("#enable-line", 'value', state.enableLines || 0);
@@ -1097,7 +1101,7 @@
             showDb = 'db_name="' + currentDB + '"';
             state.databases = all_databases[state.lang_type];
         }
-        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting +  "\" is_pre_tag=\"" + state.is_pre_tag + "\">";
+        defaultStartXml = "<SMXML type=\"" + state.module + "\" name=\"evalpro\" case_sensitive=\'" + state.case_insensitive + "\' special_char=\'" + state.ignore_special_char +"\' partial_match=\'" + state.partial_match + "\' language=\"" + state.lang_type + "\"" + preAttr + " " + postAttr + " " + editorAttr + " " + showDb + " is_graph=\"" + state.is_graph +  "\" ignore_error=\"" + state.ignore_error +  "\" ignore_formatting=\"" + state.ignore_formatting +   "\" ignore_reset_db=\"" + state.ignore_reset_db +  "\" is_pre_tag=\"" + state.is_pre_tag + "\">";
         if (editor && type != "answer_check") {
             generateXml();
         }
@@ -1265,6 +1269,17 @@
     }
 
     /**
+     * Function to get the value of is_graph, ignore_error, ignore_formatting, is_pre_tag
+    */
+    function getSettings() {
+        let is_graph = AH.select('.is_graph').checked ? 1 : 0;
+        let ignore_error = AH.select('.ignore_error').checked ? 1: 0;
+        let ignore_formatting = AH.select('.ignore_formatting').checked ? 1: 0;
+        let ignore_reset_db  = AH.select('.ignore_reset_db').checked ? 1 : 0;
+        let is_pre_tag = AH.select('.is_pre_tag').checked ? 1 : 0;
+        return { is_graph: is_graph, ignore_error: ignore_error, ignore_formatting: ignore_formatting, ignore_reset_db: ignore_reset_db, is_pre_tag: is_pre_tag };
+    }
+    /**
      * Function to delete the testcases.
      * @param event : Event parameter.
      */
@@ -1291,12 +1306,23 @@
         let case_match_insensitive = checkCaseInsensitive();
         let casematch_specail_char = checkSpecialChar();
         let partialmatch = checkMatchPartial();
+        let settings     = getSettings(); 
         state.case_insensitive = case_match_insensitive;
         state.ignore_special_char = casematch_specail_char;
         state.partial_match = partialmatch;
+        state.is_graph = settings.is_graph;
+        state.ignore_error = settings.ignore_error;
+        state.ignore_formatting = settings.ignore_formatting;
+        state.ignore_reset_db  = settings.ignore_reset_db;
+        state.is_pre_tag = settings.is_pre_tag;
         tempXml = tempXml.replace(/case_sensitive='[\s\S]*?' +/g, "case_sensitive='" + case_match_insensitive + "' ");
         tempXml = tempXml.replace(/special_char='[\s\S]*?' +/g, "special_char='" + casematch_specail_char + "' ");
         tempXml = tempXml.replace(/partial_match='[\s\S]*?' +/g, "partial_match='" + partialmatch + "' ");
+        tempXml = tempXml.replace(/is_graph="[\s\S]*?"/g, 'is_graph="' + settings.is_graph + '"');
+        tempXml = tempXml.replace(/ignore_error="[\s\S]*?"/g, 'ignore_error="' + settings.ignore_error + '"');
+        tempXml = tempXml.replace(/ignore_formatting="[\s\S]*?"/g, 'ignore_formatting="' + settings.ignore_formatting + '"');
+        tempXml = tempXml.replace(/ignore_reset_db="[\s\S]*?"/g, 'ignore_reset_db="' + settings.ignore_reset_db + '"');
+        tempXml = tempXml.replace(/is_pre_tag="[\s\S]*?"/g, 'is_pre_tag="' + settings.is_pre_tag + '"');
         let caseStacks = AH.selectAll(".caseStack");
         let caseArr = [];
         caseStacks.forEach((e) => {
@@ -1560,6 +1586,31 @@
                         </button>
                     </div>
                     <div class="modal-body overflow-auto mt-0 pt-0" style="max-height:440px;">
+                        <div id="setting" class="setting">
+                            <h5 class="float-left p-1" style="width: 100%;padding: 18px !important;background: #f1f1f1;display: flex;justify-content: space-between;">
+                                <lable class="mt-1">{l.setting}: </lable>
+                                <label class="container_eval mr-4">{l.is_graph}
+                                    <input class="is_graph" type="checkbox" value="{state.is_graph}" data-attr="{state.is_graph}" checked={state.is_graph}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval mr-4">{l.ignore_error}
+                                    <input class="ignore_error" type="checkbox" value="{state.ignore_error}" checked={state.ignore_error}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval">{l.ignore_formatting}
+                                    <input class="ignore_formatting" type="checkbox" value="{state.ignore_formatting}" checked={state.ignore_formatting}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval">{l.ignore_reset_db}
+                                    <input class="ignore_reset_db" type="checkbox" value="{state.ignore_reset_db}" checked={state.ignore_reset_db}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                                <label class="container_eval">{l.pre_tag}
+                                    <input class="is_pre_tag" type="checkbox" value="{state.is_pre_tag}" checked={state.is_pre_tag}>
+                                    <span class="checkmark_eval"></span>
+                                </label>
+                            </h5>
+                        </div>
                         <div id="caseContainer" class="float-right mt-sm overflow-auto" style="width: 100%">
                             <div class="caseStack m-sm">
                                 <h5 class="float-left" style="width: auto">

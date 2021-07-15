@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TinyMCE Equation Editor Example</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.js"></script>
+  <script type="text/javascript" src="C:/Users/Parul Singh/Desktop/tinymce_equation_editor/mathquill.min.js"></script>
+
+  <script type="text/javascript" src="C:/Users/Parul Singh/Desktop/tinymce_equation_editor/tinymce.min.js"></script>
+
+  <script type="text/javascript">
+    tinymce.PluginManager.load('equationeditor', 'plugin.min.js');
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'equationeditor',
+      content_css: 'C:/Users/Parul Singh/Desktop/tinymce_equation_editor/mathquill.css',
+      toolbar: [
+        'bold italic underline | bullist numlist | subscript superscript | alignleft aligncenter alignright | equationeditor'
+      ],
+    });
+  </script>
+</head>
+<body>
+  <textarea></textarea>
+</body>
+</html>
