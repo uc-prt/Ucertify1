@@ -45,17 +45,6 @@
                 AH.select(se_menu_list[i]).setAttribute('tabindex', 0);
             }
         });
-        document.addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) {
-                if (event.target.parentNode.className == 'se-menu-list') {
-                    
-                    AH.select(event.target).click();
-                }
-            }
-            if(event.shiftKey && event.keyCode == 9) { 
-                
-            }
-        });
     }
 
     function initEdit() {
