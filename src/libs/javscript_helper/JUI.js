@@ -831,7 +831,7 @@ export default class JUI extends API{
 
     // Listen target with in base node listner
     listen(baseSelector, eventName, selector, handler) {
-        let base = (typeof baseSelector == "object") ? baseSelector : document.querySelector(baseSelector);
+        let base = (typeof baseSelector == "object") ? baseSelector : (typeof document !== 'undefined' ? document.querySelector(baseSelector) : false);
         if (!base) return false;
         if (globalThis.eventTracker[selector]) {
             base.removeEventListener(eventName, globalThis.eventTracker[selector]);

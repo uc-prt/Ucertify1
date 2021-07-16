@@ -214,8 +214,6 @@
 		if(window.inNative) {
 			window.checkReview = (isReview) => isReview ? self.setReview() : self.unsetReview();
 		}
-		//AH.addScript("", window.mainSiteThemeUrl + "prepengine/mathquill.js");
-		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 	})
 
 	function setOutline(_element) {

@@ -1,6 +1,6 @@
 "use strict";
-window.isDraggableAdded = (window.isDraggableAdded) ? window.isDraggableAdded : false;
-window.isDraggable = (window.isDraggable) ? window.isDraggable :false;
+//window.isDraggableAdded = (window.isDraggableAdded) ? window.isDraggableAdded : false;
+//window.isDraggable = (window.isDraggable) ? window.isDraggable :false;
 
 export default class Draggable {
     /* 

@@ -9,10 +9,11 @@
     export function XMLToJSON(myXml) {
         //var myXml = xml;
         myXml = myXml.replace(/<\!--\[CDATA\[/g, "<![CDATA[").replace(/\]\]-->/g, "]]>");
+        console.log(myXml);
         // let x2js = new X2JS({
         //     useDoubleQuotes: true
         // });
-        //let newXml = JSON.stringify(x2js.xml_str2json(myXml));
+        // let newXml = JSON.stringify(x2js.xml_str2json(myXml));
         let newXml = JSON.stringify(X2JS.xml2json(myXml));
         newXml = newXml.replace("SMXML", "smxml");
         newXml = JSON.parse(newXml);
