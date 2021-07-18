@@ -450,7 +450,7 @@
                 >
                     {#if showcorrectanswer == false}
                         {#each preview_data.correctxmlarray as value, i}
-                            <li
+                            <li 
                                 tabindex={value.ischecked == true ? '-1' : '0'}
                                 id={'p'+i}
                                 name={i}
@@ -458,7 +458,7 @@
                                 data-optid={i}
                                 data-ischecked={value.ischecked}
                                 class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
-                                style="width: {box_width}"
+                                style="width: {box_width};overflow:auto;"
                             >
                                 {#if value.value.charAt(0) == "!"}
                                     {#if value.value.charAt(1) == "*"}
@@ -494,7 +494,7 @@
                             data-ischecked={value.ischecked}
                             on:keydown={hotkeysAda}
                             class="matchlist_item {showcorrectanswer == false ? 'd-none' : 'd-flex'} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} align-items-center justify-content-center position-relative ui-draggable m-0"
-                            style="width: {box_width}"
+                            style="width: {box_width};overflow:auto;"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
                                 {#if value.iscorrect == true}
