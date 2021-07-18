@@ -265,41 +265,5 @@ export default class LatexAlgo extends AlgoUtils {
         explanation = this.replaceVariables(explanation, var_list);
         res.explanation = explanation;
         return res;
-        // $('#special_module_user_xml').val(JSON.stringify(var_list));
-        /*
-        $(containers[0]).html(latex_string);
-        $(containers[1]).each(function () {
-            const _this = $(this);
-            latex_string = _this.html();
-            latex_string = this.replaceVariables(latex_string, var_list);
-            _this.html(latex_string);
-        });
-        if (duplicateCounter <= 3) {
-            var optionArray = [];
-            $(containers[1]).each(function () {
-                const _this = $(this);
-                var thishtml = _this.html();
-                thishtml = thishtml.replace(/<seq.*?>|<\/seq>/g,'');
-                optionhtml = thishtml.trim();
-                if (optionhtml != null && optionhtml != '') {
-                    if (optionArray.indexOf(optionhtml) > -1) {
-                        ALGO.init(qxml, uxml, mode, containers);
-                        return;
-                    } else {
-                        optionArray.push(optionhtml);
-                    }
-                }
-            });
-        } else {
-            console.warn('Duplicate answer limit exceeds');
-        }
-        if ($(containers[2]).html()) {
-            latex_string = $(containers[2]).html();
-            if (latex_string != '') {
-                latex_string = this.replaceVariables(latex_string, var_list);
-                $(containers[2]).html(latex_string);
-            }
-        }
-        */
     }
 }
