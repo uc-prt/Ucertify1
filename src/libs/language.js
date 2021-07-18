@@ -520,7 +520,7 @@ var l = LANG = {
     type_one_to_ten: "Please type between 1 to 10",
     double_digit: "Double digit not accepted",
     less_one : "Less then 1 not accepted",
-    number_from: "Number insert only 0 to ",
+    number_from: "Insert number between 0 to ",
     another_option: "Select another option",
     layout_options: "Layout Options",
     row_count: "Row Count",
