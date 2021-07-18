@@ -203,7 +203,8 @@
             event.target.value = 1;
             AH.alert(l.decimal_position+(state.colNum-1)+".");
             //$(".sa-info").show();
-            document.querySelector('.sa-info').style.display = 'block';
+            //document.querySelector('.sa-info').style.display = 'block';
+            AH.select('.sa-info','css',{display:'block'});
         }
         state.decimal_point = decimalPosition;
         updateXml();
