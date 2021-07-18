@@ -245,8 +245,7 @@ export default class LatexAlgo extends AlgoUtils {
         this.duplicateCounter = 0;
     }
 
-    init(res, mode, containers) {
-        console.log('res', res);
+    init(res) {
         let qxml = res.special_module_xml;
         let uxml = res.user_answer_details;
         this.duplicateCounter++;
