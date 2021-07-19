@@ -10,13 +10,14 @@
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
     import l from '../src/libs/Lang';
     import { writable } from "svelte/store";
-    
+    import swal from 'sweetalert';
     import ItemHelper from '../helper/ItemHelper.svelte';
 	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     import GRAPH from './lib/mathString';
 
     export let xml;
 	export let uxml;
+    console.log("uxml",uxml);
 	export let isReview;
 	export let showAns;
 	export let editorState;
@@ -44,7 +45,7 @@
             if (typeof (JXG) == 'object' && editorState) {
                 state.init = true;
             } else if (typeof(editorState) == 'undefined') {
-                AH.addScript('', itemUrl + 'clsSMGraph/lib/jsxgraph.min.js', {callback: function () {
+                AH.addScript('', itemUrl + 'src/libs/jsxgraph.min.js', {callback: function () {
                     state.init = true;
                 }});
             }
@@ -380,7 +381,7 @@
     }
 </script>
 <div>
-    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={itemUrl + "clsSMGraph/css/Math.min.css"}/>
+    <link onload="this.rel='stylesheet'" rel="preload" as="style" href={itemUrl + "src/libs/Math.min.css"}/>
     
     <center>
         <ItemHelper 
