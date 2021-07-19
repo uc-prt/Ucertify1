@@ -34,7 +34,18 @@
         loadXML(xml, uxml);
         // Intialize editor plugin
         initEdit();
+        addTabIndex();
     });
+
+    function addTabIndex() {
+        var se_menu = AH.selectAll('.se-menu-list');
+        se_menu.forEach(function(curr, index) {
+            let se_menu_list = curr.getElementsByTagName('li');
+            for (var i = 0; i < se_menu_list.length; ++i) {
+                AH.select(se_menu_list[i]).setAttribute('tabindex', 0);
+            }
+        });
+    }
 
     function initEdit() {
         essayEditor = sunEditor.create('essay_edit', { 
@@ -46,7 +57,6 @@
             resizingBar: false,
             showPathLabel: false,     
             plugins:plugins,
-            fontSize: 10,
             defaultStyle: "padding-left: 10px",
             buttonList: [
                 ['formatBlock'],

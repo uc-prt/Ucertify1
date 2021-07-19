@@ -645,11 +645,15 @@
 
     function handleReviewMode(mode) {
         if (mode == 'c') {
-            AH.select('.correctAnswer').style.display = 'block';
-            AH.select('.yourAnswer').style.display = 'none';
+            //AH.select('.correctAnswer').style.display = 'block';
+            AH.select('.correctAnswer','removeClass','h');
+            //AH.select('.yourAnswer').style.display = 'none';
+            AH.select('.yourAnswer','css',{display:'none'});
         } else if (mode == 'u') {
-            AH.select('.yourAnswer').style.display = 'block';
-            AH.select('.correctAnswer').style.display = 'none';
+            //AH.select('.yourAnswer').style.display = 'block';
+            AH.select('.yourAnswer','css',{display:'block'});
+            //AH.select('.correctAnswer').style.display = 'none';
+            AH.select('.correctAnswer','addClass','h');
         }
     }
 

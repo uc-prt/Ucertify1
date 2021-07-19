@@ -17,6 +17,7 @@
         if (handleReviewClick) handleReviewClick(event.target.getAttribute('mode'), event);
     }
 </script>
+<center>
 <button tabindex="0" type="button" class="h h-imp" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
 <button tabindex="0" type="button" class="h h-imp" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
 {#if reviewMode}
@@ -25,6 +26,7 @@
         <button tabindex="0" type="button" mode="u" class="btn btn-light your-ans active" on:click="{handleSmClick}">Your Answer</button>
     </div>
 {/if}
+</center>
 <style>
     :global(.smControlerBtn .btn-light:not([disabled]):not(.disabled).active) {
         color: #fff!important;
