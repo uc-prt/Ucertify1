@@ -32,6 +32,7 @@
     } 
 
     onMount(() => {
+        AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body' });
         // stores the xml value in xml state
         state.xml = xml;
         loadModule(xml);
@@ -469,7 +470,7 @@
                         class="btn btn-light py-0" 
                         aria-label={"Click for " + areaLabelForRecordButton}
                     >
-                        <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-placement="top" data-original-title={((state.status == "recording") ? "Stop Recording": "Start Recording")}></span>
+                        <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title={((state.status == "recording") ? "Stop Recording": "Start Recording")}></span>
                     </button>
                     <button 
                         type="button" 
@@ -480,7 +481,7 @@
                         class="btn btn-light py-0" 
                         aria-label={"Click for " + areaLabelForStopButton}
                     >
-                        <span class="icomoon-24px-autoplay-4 position-relative top1" data-bs-toggle="tooltip" data-placement="top" data-original-title="Play Audio"></span>
+                        <span class="icomoon-24px-autoplay-4 position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title="Play Audio"></span>
                     </button>
                     <button 
                         type="button" 
@@ -493,7 +494,7 @@
                         data-bs-target="#authoring_confirm_modal" 
                         aria-label="Click on this button for override the previous recording"
                     >
-                        <span class="icomoon-new-24px-reset-1 position-relative top1" data-bs-toggle="tooltip" data-placement="top" title="Reset Data"></span>
+                        <span class="icomoon-new-24px-reset-1 position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Data"></span>
                     </button>
                 </div>
             </div>
