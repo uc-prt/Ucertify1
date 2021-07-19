@@ -20,7 +20,7 @@
 	export let showAns;
 	export let editorState;
     let state = {};
-    console.log("uxml",uxml);
+   
     // newXml used for contain the xml in json format, chartObj contains the instance of the highcharts
     let newXml = "", chartObj = '';
     // used for contain the x and y point value of each row of 'Set Answer' dialog box that comes when keyup on ADA button
