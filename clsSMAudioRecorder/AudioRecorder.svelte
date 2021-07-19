@@ -7,7 +7,7 @@
  *  Last Updated By : Rashmi Kumari
 -->
 <script>
-    import { onMount } from "svelte";
+    import { onMount,afterUpdate,beforeUpdate } from "svelte";
     import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import l from '../src/libs/editorLib/language';
     export let getChildXml;
@@ -37,13 +37,20 @@
         loadModule(xml);
     });
 
-    $: {
+    // $: {
+    //     if ((xml != state.xml)) {
+    //         // stores the xml value in xml state
+	// 		state.xml = xml;
+    //         loadModule(xml);
+    //     }
+    // }
+    afterUpdate(()=>{
         if ((xml != state.xml)) {
             // stores the xml value in xml state
 			state.xml = xml;
             loadModule(xml);
         }
-    }
+    })
     // load the module according to the value of xml
     function loadModule(loadXml) {
         // contains json data of xml
@@ -87,7 +94,7 @@
 
     // used for update the xml and disabled the element for language selection and to show the transcript checkbox
     function checkState() {
-        let state_timer = setTimeout(function() {
+        //let state_timer = setTimeout(function() {
             // creates the xml according to the value of states: status, language, isReset, showTranscript and cdata
             let xml = '<smxml type="43" name="AudioRecorder" status="' + state.status + '" language="' + state.language + '" isReset="' + state.isReset + '" showTranscript="' + state.showTranscript + '"><!--[CDATA[' + state.cdata + ']]--></smxml>';
             // update the xml
@@ -110,8 +117,8 @@
             // used for screen reader to read the message when user open the reset modalbox
             areaLabelForModalContent = AH.select('#dialogBody').innerText;
             // clear the previously set timeout
-            clearTimeout(state_timer);
-        }, 100);
+        //    clearTimeout(state_timer);
+        //}, 100);
     }
 
     // updates the xml
@@ -266,7 +273,8 @@
         // when reset modalbox open after click on reset button
         if (resetClicked == 'yes') {
             // reset the previously recorded data
-            resetAudioData();
+                resetAudioData();
+            
             resetClicked = 'no';
         } else {
             // when reset modalbox open after click on record button
@@ -371,6 +379,7 @@
             /* stops the speech recognition service from listening to incoming audio, and attempts to return a SpeechRecognitionResult using the audio captured so far. */
             recognition.stop();
         }
+        
         state.language = '';
         state.cdata = '';
         state.disabled = true;
@@ -379,6 +388,7 @@
         state.isReset = true;
         // clears the timeout which is started when recording stared
         clearTimeout(manageTimer);
+        
         // used for update the xml and disabled the element for language selection and to show the transcript checkbox
         checkState();
     } 
