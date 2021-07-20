@@ -3,7 +3,7 @@
     import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import sunEditor from 'suneditor';
-    import plugins from 'sunEditor/src/plugins';
+    import plugins from 'suneditor/src/plugins';
     import EssayNewReact from './eaasy_new_react.js';
     import '../helper/sunEditor/src/assets/css/suneditor.css';
 

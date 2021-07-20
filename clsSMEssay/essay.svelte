@@ -2,7 +2,7 @@
     import { beforeUpdate,onMount } from "svelte";
     import { AH, XMLToJSON } from "../helper/HelperAI.svelte";
     import SUNEDITOR from 'suneditor';
-    import plugins from 'sunEditor/src/plugins';
+    import plugins from 'suneditor/src/plugins';
     import { Checkbox } from 'svelte-mui/src';
     export let xml;
     export let getChildXml;
