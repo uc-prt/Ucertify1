@@ -10,6 +10,7 @@
 
 // importing JUI
 import JUI from '../../src/libs/javscript_helper/JUI';
+import { XMLToJSON } from '../../helper/HelperAI.svelte';
 const JS = new JUI();
 
 let CHART = {};
