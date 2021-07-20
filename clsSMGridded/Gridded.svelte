@@ -409,7 +409,7 @@
                     ColsFirstRow = [
                         ...ColsFirstRow,{
                             id: 'td'+j,
-                            value: state.correctAnsSplit[j],
+                            value: (state.correctAnsSplit[j] == "%blank%") ? '' : state.correctAnsSplit[j],
                             name: j,
                             dataTag: j,
                             decpoint: false

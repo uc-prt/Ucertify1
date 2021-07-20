@@ -910,6 +910,7 @@ ucMlid.showMultimatchAnswer = function(mlid, is_not_review) {
     AH.find(mlid, ' .list3', 'all').forEach((_this)=> {
         AH.select(_this,'removeClass','dropped');
         _this.innerHTML = "Place here"
+        AH.select(_this,'css',{backgroundColor:'#fff'});
     })
     // let mlidlist3 = AH.selectAll(mlid+' .list3','removeClass','dropped');
     // // //AH.removeClass(mlidlist3,'dropped');
