@@ -21,7 +21,8 @@ ucChoose.errorCatchFlag = 1;
 //var textarea_flag = false;
 let ua, us, cs, ca;
 
-AH.listen(document, 'keyup', '.sm_input_text', function() {
+
+AH.listen('body', 'keyup', '.sm_input_text', function() {
     if (document.querySelector(".sm_input_text").value == "" && document.querySelector(".add-option")) {
         document.querySelector(".add-option").disabled = true;
     } else {
@@ -29,6 +30,7 @@ AH.listen(document, 'keyup', '.sm_input_text', function() {
             document.querySelector(".add-option").disabled = false;
     }
 })
+
 
 ucChoose.update_XMLValue = function() {
     var list = [];

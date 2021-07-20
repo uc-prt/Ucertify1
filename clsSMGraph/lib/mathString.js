@@ -15,7 +15,7 @@ const JS = new JUI();
 
 let GRAPH = {};
 GRAPH.userAnsXML = "";
-GRAPH.sinfo;
+GRAPH.sinfo = false;
 GRAPH.ajax_eId = "#mathmain";
 let board, point, prevPoint, is_correct;
 

@@ -9,6 +9,7 @@
     export function XMLToJSON(myXml) {
         //var myXml = xml;
         myXml = myXml.replace(/<\!--\[CDATA\[/g, "<![CDATA[").replace(/\]\]-->/g, "]]>");
+        
         let x2js = new X2JS({
             useDoubleQuotes: true
         });

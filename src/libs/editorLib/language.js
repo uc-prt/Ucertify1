@@ -873,5 +873,5 @@ const l = {
     korean_lang: 'Korean',
     drag_drop_set_seq_msg: 'Drag and Drop to set sequence.'
 };
-window.LANG = l;
-module.exports = l;
+//window.LANG = l;
+export default l;

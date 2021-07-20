@@ -8,7 +8,7 @@
  *  Last update : 17 Dec 2017
  */
 	import {ucFill} from './fillJSString';
-	import ju from '../src/libs/jslib';
+	//import ju from '../src/libs/jslib';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
 	import { writable } from 'svelte/store';
@@ -17,8 +17,8 @@
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
 	import '../src/libs/mathquill.css';
-	import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
-	import '../src/libs/mathQuill_new';
+	//import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
+	//import '../src/libs/mathQuill_new';
 
 	export let manual_grade;
 	export let xml;
@@ -41,6 +41,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
+	let MathQuill = "";
 	let hdd = writable({
 			matchtype : "0",
 			ignoretype:"",
@@ -57,8 +58,10 @@
 
 	$: (isReview) ? setReview() : unsetReview();
 
-	onMount(()=> {
-		window.J = ju;
+	onMount(async()=> {
+		//window.J = ju;
+		//MathQuill = await import('../src/libs/mathQuill_new');
+
 		ucFill.setUpdate(updateModule.bind(this));
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
@@ -923,29 +926,29 @@
 	:global(xmp) {
 		display: inline;
 	}
-	:global([id^="fillmain"]) {
+	:global(#fillmain) {
 		overflow:hidden;
 		max-width:1024px;
 		text-align:left;
 	}
-	:global([id^="fillmain"] pre) {
+	:global(#fillmain) pre {
 		background: none;
 		border: none;
 		font-size: 14px!important;
 	}
-	:global([id^="fillmain"] .string) {
+	:global(#fillmain) .string {
 		min-height:50px;
 		margin-top:10px;
 		margin-right:10px;
 	}
-	:global([id^="fillmain"] .footerStr) {
+	:global(#fillmain) .footerStr {
 		position:relative;
 		margin-top: 10px;
 		background-color: #ccc;
 		padding: 15px;
 		min-height: 60px;/*100px;*/
 	}
-	:global([id^="fillmain"] .footerStr .arrow-up) {
+	:global(#fillmain) .footerStr .arrow-up {
 		position: absolute;
 		top: -10px;
 		right: 50%;
@@ -955,10 +958,10 @@
 		border-right: 10px solid transparent;
 		border-bottom: 10px solid #ccc;
 	}
-	:global([id^="fillmain"] .fill-row) {
+	:global(#fillmain) .fill-row {
 		padding:6px;
 	}
-	:global([id^="fillmain"] .fillelement, [id^="fillmain"] .drag-resize){
+	:global(#fillmain) .fillelement, .drag-resize{
 		height:30px;
 		display:inline-block;
 		position:relative;
@@ -972,32 +975,32 @@
 	:global(td .fillelement) {
 		top: 0px !important;
 	}
-	:global([id^="fillmain"] input[type="text"], [id^="fillmain"] select) {	
+	:global(#fillmain input[type="text"]), select {	
 		height:99%!important;
 		resize: none;
 		font-size:12px;
 		color: #000;
 		max-width: 800px;
 	}
-	:global([id^="fillmain"] .drag-resize) {
+	:global(#fillmain .drag-resize) {
 		vertical-align:middle;
 		border:1px solid #31B731;
 		text-align:center;
 		padding:3px;
 		font-size: 14px;
 	}
-	:global([id^="fillmain"] .drag-resize.ui-draggable) {
+	:global(#fillmain .drag-resize.ui-draggable)  {
 		cursor:move;
 	}
-	:global([id^="fillmain"] .drop-hover) {
+	:global(#fillmain .drop-hover)  {
 		border: 1px dashed red!important;
 		box-shadow: 0 0 0 2px yellow inset;
 		outline: 1px solid blue;
 	}
-	:global([id^="fillmain"] .fillcheck ul) {
+	:global(#fillmain .fillcheck ul) {
 		width:220px;
 	}
-	:global([id^="fillmain"] .fillcheck li.selected) {
+	:global(#fillmain .fillcheck li.selected) {
 		background-color: #E5E5E5;
 	}
 	:global(.fillcheck .selected .icomoon-checkmark-3:before) {
@@ -1017,10 +1020,10 @@
 	:global(.MathJax_Display) {
 			display : inline!important;
 	}
-	:global([id^="fillmain"] .select) {
+	:global(#fillmain) .select {
 		font-size: 15px;
 	}
-	:global([id^="fillmain"] .textarea) {
+	:global(#fillmain) .textarea {
 		vertical-align: middle;
 		border-radius:3px;
 		background:#ffe;
@@ -1035,11 +1038,15 @@
 	:global(.sel) {
 		border :2px solid #FF0000!important;
 	}
-	:global(.bla [id^="fillmain"] .dragable:focus, .bla [id^="fillmain"] .dropable:focus) {
+	:global(#fillmain .dragable:focus) {
 		box-shadow: inset 0 0 0 1px transparent, inset 0 0 0 1px #ffffff, inset 0 0 0 2px #fff;
 		outline: none;
 	}
 
+	:global(#fillmain .dropable:focus) {
+		box-shadow: inset 0 0 0 1px transparent, inset 0 0 0 1px #ffffff, inset 0 0 0 2px #fff;
+		outline: none;
+	}
 	:global(.highlight_main) {
 		border : 1px dashed #000;
 	}
@@ -1048,7 +1055,7 @@
 		background-color: #CCC!important;
 	}
 
-	:global([id^="fillmain"] select::-ms-expand) {
+	:global(#fillmain select::-ms-expand) {
 		margin-left: 2px;
 	}
 	:global(.fillintheblank) {

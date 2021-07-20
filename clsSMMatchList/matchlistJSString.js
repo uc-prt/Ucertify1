@@ -72,7 +72,7 @@ ucMlid.remove_lines = function(mlid) {
 //     ucMlid.storeDoNotShow(user_guid, action);
 // });
 
-AH.listen(document,'click','.donotshowdialo',(_this) => {
+AH.listen('body','click','.donotshowdialo',(_this) => {
     ucMlid.storeDoNotShow(user_guid, (_this.checked == true) ? 'store' : 'remove');
 }) //will change
 

@@ -418,7 +418,7 @@
                     tabindex="0"
                     aria-label={l.ada_message} 
                 >
-                    <span title={l.delete} data-bs-toggle="tooltip"  class={window.inNative ? "delete_button": "icomoon-new-24px-delete-1"}></span>
+                    <span title={l.delete} data-bs-toggle="tooltip"  class={"icomoon-new-24px-delete-1"}></span>
                 </button>
             </div>
         </div>

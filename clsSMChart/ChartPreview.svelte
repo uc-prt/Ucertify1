@@ -27,7 +27,7 @@
     let tempRowVal = [];
     // holds the user answer value performed via ADA button 
     let holdUserAns = [];
-    window.Highcharts = Highcharts;
+    
     let preview_store = writable({
         userans: '',
         init: false,
@@ -156,6 +156,7 @@
 
     // Binding some initial events for answer checking
     onMount(async()=> {
+        window.Highcharts = Highcharts;
         try {
             if (uxml == '<smans type="38"></smans>') {
                 uxml = '';

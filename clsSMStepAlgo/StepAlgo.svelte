@@ -883,7 +883,22 @@
         min-height: 30px;
         margin: 1px;
     }
-    :global([id^="fillmain"] input[type="text"], [id^="fillmain"] select) {	
+
+    :global(#fillmain .drag-resize) {
+        height:30px;
+        display:inline-block;
+        position:relative;
+        min-height: 30px;
+        margin: 1px;
+    }
+    :global(#fillmain input[type="text"]) {	
+        height:99%!important;
+        resize: none;
+        font-size:12px;
+        color: #000;
+        max-width: 800px;
+    }
+    :global(#fillmain select) {	
         height:99%!important;
         resize: none;
         font-size:12px;

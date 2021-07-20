@@ -1,6 +1,6 @@
 
 
-const essayUploadUrl = window.baseUrl+'reactUpload.php/';
+const essayUploadUrl = 'http://ucertify.com/reactUpload.php/';//remove hard code, use from constant
 import JUI from '../src/libs/javscript_helper/JUI.js';
 let editor;
 export default class EssayNewReact extends JUI {

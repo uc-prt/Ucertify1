@@ -164,4 +164,4 @@ function setAccessKey (api) {
 	}
 }
 
-module.exports = API;
+export default API;

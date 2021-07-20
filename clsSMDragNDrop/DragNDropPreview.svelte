@@ -12,7 +12,6 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from "../helper/HelperAI.svelte";
 	import { writable } from "svelte/store";
-	import DND from './libs/preview/dndString';
 	import TextboxPreview from './libs/preview/TextboxPreview.svelte';
 	import DragPreview from './libs/preview/DragPreview.svelte';
 	import DropPreview from './libs/preview/DropPreview.svelte';
@@ -52,6 +51,7 @@
 	let container_id = 'dndmainPreview';
 	let moduleType = 1;
 	let state = {};
+	let DND = {};
 
 	// writable for preview
 	let preview_store = writable({
@@ -68,7 +68,10 @@
 	});
 
 	// this is called for the first time use for binding the events
-	onMount( function() {
+	onMount( async function() {
+
+		DND = await import ('./libs/preview/dndString');
+
 		if (window.inNative) {
 			if (typeof window.getHeight == "function") {	
 				window.getHeight && window.getHeight();

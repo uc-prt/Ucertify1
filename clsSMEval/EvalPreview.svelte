@@ -25,8 +25,8 @@
 	export let isReview;
 	export let content_guid;
 	export let sample_input;
-	let location_origin = (location.origin).replace('localhost', 'localhost:3000');
-    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+	let location_origin = "";
+    let evalpro_url = "";
     let user_guid = '';
 	let tempGuid;
 	let client = {};
@@ -36,10 +36,9 @@
 	let xmlArr = [];
 	let langArr = [];
 	let lang_type = [];
-	window.QXML = xml;
-	window.uaXML = uxml;
+	
 	xml = !(/<SMXML/gi.test(uxml)) || !uxml ? xml : uxml;
-	let mode = document.querySelector(".switch-input.switch-input");
+	
 	let showPre = "";
 	let showPost = "";
 	let showEditor = 2;
@@ -85,7 +84,14 @@
 	const userunsubs = user.subscribe((user) => {
 		user_guid = user.user_guid;
 	})
+
 	onMount(()=> {
+
+		location_origin = (location.origin).replace('localhost', 'localhost:3000');
+		evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+		window.QXML = xml;
+		window.uaXML = uxml;
+
 		lang_type = ["c", "c#", "c++", "java", "javascript", "mssql", "node.js", "php", "psql", "python", "r", "ruby", "sql"];
 		db_name = findAttribute(window.QXML, 'db_name');
 		is_graph = findAttribute(window.QXML, 'is_graph');
@@ -1389,10 +1395,16 @@
 		position: fixed;
 		width: 100%;
 	}
-	:global(.split_container .left_pane, .split_container .panel) {
+	:global(.split_container .left_pane) {
 		padding: 0!important;
 	}
-	:global(.pb-5, .py-5) {
+	:global(.split_container .panel) {
+		padding: 0!important;
+	}
+	:global(.pb-5) {
+		padding-bottom: 3rem!important;
+	}
+	:global(.py-5) {
 		padding-bottom: 3rem!important;
 	}
 	:global(.CodeMirror) {
