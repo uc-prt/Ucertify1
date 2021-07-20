@@ -921,9 +921,11 @@
 				
 
 					<div slot="footer" class="svelteFooter">
+						
+						<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
+
 						<Button variant="contained" on:click={removeRow}
 							class="bg-primary text-white"> Yes </Button>
-						<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
 					</div>
 			
 					
@@ -936,7 +938,7 @@
 
 	.colorgray {
         width:56px;
-        background-color: rgb(255, 206, 206);
+        background-color:#dee2e6;
     }
 	.colorgray1 {
 		width:74px;

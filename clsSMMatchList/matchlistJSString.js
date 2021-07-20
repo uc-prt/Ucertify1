@@ -246,7 +246,6 @@ ucMlid.showUserAns = function(mlid) {
             }
         }),
         isValidDrag:((event)=>{
-            console.log('isValidDrag'+event);
         }),
 
         // onDragEnd:((event)=>{
