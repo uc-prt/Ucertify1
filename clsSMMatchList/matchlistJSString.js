@@ -151,6 +151,7 @@ ucMlid.showUserAns = function(mlid) {
     window.mlid = mlid;
 
     function drop1(event,ui) {
+        
         //console.log('drop1', ui);
         ucMlid.is_valid_drop = true;
         let _this = event.target;
@@ -185,8 +186,8 @@ ucMlid.showUserAns = function(mlid) {
             base = index[2];
             index = index[0].split("_");
             circle = '<div class="matchlist-delete center-block" d="M'  + (parseInt(index[1]) ) + ',' + index[0] + 'C' + (parseInt(index[1]) + 88) + ' ,' + index[0] + ',' + (parseInt(index[1]) + 88) + ',' + value[0] + ',' + (parseInt(value[1]) - 10) + ',' + value[0] + '" base="' + base + '" style="left:' + (parseInt(index[1]) ) + 'px;top:' + (parseInt(index[0]) - 9) + 'px">&times</div>';
-            str += '<path fill="none" d="M' + (parseInt(index[1]) + 20) + ',' + (parseInt(index[0]) - 4) + 'C' + (parseInt(index[1]) + 88) + ' ,' + (parseInt(index[0]) - 4) + ',' + (parseInt(index[1]) + 88) + ',' + (parseInt(value[0]) - 4) + ',' + (parseInt(value[1]) - 10) + ',' + (parseInt(value[0]) - 3) + '"  base="' + base + '" stroke-width = "2" stroke="' + clr + '"></path>';
-            str += '<g transform="translate(' + (parseInt(value[1]) - 11) + ',' + (parseInt(value[0]) - 9) + ') rotate(0) scale(4) translate(0,0) scale(.3)" base="' + base + '"><g fill="' + clr + '" stroke="none" ><path d="M 0 0 L 10 5 L 0 10 z" /></g></g>';
+            str += '<path fill="none" d="M' + (parseInt(index[1])) + ',' + (parseInt(index[0]) - 7) + 'C' + (parseInt(index[1]) + 65) + ' ,' + (parseInt(index[0]) - 7) + ',' + (parseInt(index[1]) + 65) + ',' + (parseInt(value[0]) - 7) + ',' + (parseInt(value[1]) - 10) + ',' + (parseInt(value[0]) - 7) + '"  base="' + base + '" stroke-width = "2" stroke="' + clr + '"></path>';
+            str += '<g transform="translate(' + (parseInt(value[1]) - 11) + ',' + (parseInt(value[0]) - 14) + ') rotate(0) scale(4) translate(0,0) scale(.3)" base="' + base + '"><g fill="' + clr + '" stroke="none" ><path d="M 0 0 L 10 5 L 0 10 z" /></g></g>';
         });
         str += '</svg>';
         AH.insert(mlid, circle, 'afterbegin');
