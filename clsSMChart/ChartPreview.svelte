@@ -20,7 +20,7 @@
 	export let showAns;
 	export let editorState;
     let state = {};
-
+   
     // newXml used for contain the xml in json format, chartObj contains the instance of the highcharts
     let newXml = "", chartObj = '';
     // used for contain the x and y point value of each row of 'Set Answer' dialog box that comes when keyup on ADA button
@@ -80,7 +80,7 @@
     // updating module on change of the xml
     beforeUpdate(async()=> {
         if (!editorState && !state.init) {
-            AH.addScript('', itemUrl + 'clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', itemUrl + 'src/libs/highchart_draggable.js', { callback: function () {
                 state.init = true;
             }});
         }
@@ -136,7 +136,7 @@
                     return item;
                 });
                 initPreview();
-                AH.enableBsAll('[data-bs-toggle="tooltip"]', 'Tooltip');
+                AH.enableBsAll('[data-bs-toggle="tooltip"]', 'Tooltip',{container:'body'});
             }
 
             if (state.review != isReview && editorState) {
@@ -526,19 +526,19 @@
             {:else}
                 <div id="chart_header_container" style="width: {state.width}px;">
                     <div class="float-end pt-1 pr-1">
-                        <div class="float-start">
-                            <button tabindex="0" aria-label={l.add} id="add_prev" class="setdata btn-light btn w-auto h-auto p-1 bg-white border float-start" on:click={() => CHART.updatePointPreview('addPoint', 'answerID0')}>
-                                <span data-bs-toggle="tooltip" title={l.add} class="icomoon-plus s2"></span>
-                            </button>
-                            <button tabindex="0" aria-label={l.delete} id="delete_prev" class="setdata btn-light btn w-auto h-auto p-1 bg-white border ms-1 float-start"  on:click={() => CHART.updatePointPreview('removePoint', 'answerID0')}>
-                                <span data-bs-toggle="tooltip" title={l.delete} class="icomoon-new-24px-delete-1 s2"></span>
-                            </button>
-                            <button tabindex="0" id="ADA_Btn_point" aria-label={l.open_modal} class={"setdata ADA_Btn btn-light btn w-auto h-auto p-1 bg-white border ms-1 float-start"}  >
-                                <span data-bs-toggle="tooltip" title={l.ada_chart_msg} class="icomoon-keyboard-2 s2"></span>
-                            </button>
+                        <div class="float-start d-flex">
+                            <span tabindex="0" title={l.add} data-bs-toggle="tooltip" aria-label={l.add} data-original-title={l.add} id="add_prev"  class="setdata btn-light btn w-auto h-auto p-1 bg-white border " on:click={() => CHART.updatePointPreview('addPoint', 'answerID0')}>
+                                <span class="icomoon-plus s2"></span>
+                            </span>
+                            <span tabindex="0" title={l.delete} data-bs-toggle="tooltip" aria-label={l.delete} data-original-title={l.delete} id="delete_prev" class="setdata btn-light btn w-auto h-auto p-1 bg-white border "  on:click={() => CHART.updatePointPreview('removePoint', 'answerID0')}>
+                                <span  class="icomoon-new-24px-delete-1 s2"></span>
+                            </span>
+                            <span tabindex="0" title={l.ada_chart_msg} data-bs-toggle="tooltip" aria-label={l.open_modal} data-original-title={l.ada_chart_msg} id="ADA_Btn_point" class="setdata btn-light btn w-auto h-auto p-1 bg-white border"  >
+                                <span class="icomoon-keyboard-2 s2"></span>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </div>       
             {/if}
             <div id="answerID0" type={state.moduleType} width={state.width} height={state.height} class={'drag-resize chart_preview_container ' + state.moduleType} snapto={state.snapTo} xval={state.xval} yval={state.yval} yinterval={state.yinterval} ymin={state.ymin} ymax={state.ymax} defaultans={state.defaultans} userans={state.userans} correctans={state.correctans} xlabel={state.xlabel} ylabel={state.ylabel} title={state.title} color={state.color} style="width: {state.width}px;"></div>
         </div>
@@ -614,9 +614,13 @@
         left: 220px; 
         top: 7px;
     }
-
     #chart_header_container {
         background: #e0e0e0; 
-        height: 38px;
+        height: 41px;
+    }
+    .setdata {
+        -webkit-appearance: none;
+        cursor: pointer;
+        margin-right: 5px;
     }
 </style>

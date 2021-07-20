@@ -32,6 +32,7 @@
             textSize                : 14,
             resAns                  : '',
             correctAns              : [],
+            correctAnsSplit         : [],
             listAns                 : [],
             res                     : '',
             fixed_decimal_val       : 0,
@@ -63,7 +64,6 @@
     })
 
     afterUpdate(()=>{
-        
         if (xml != state.xml) {
             state.xml = xml;
             loadModule(xml);
@@ -89,7 +89,8 @@
                 state.decimal_val =  MYXML.smxml._decimal;
                 state.textSize = MYXML.smxml._font;
                 state.correctAns =  MYXML.smxml._correctAns;
-           
+                state.correctAnsSplit = MYXML.smxml._correctAns.split(',');
+
                 getChildXml(JSONToXML(MYXML));
                 if (MYXML.smxml._plusminus == 1) {
                     document.getElementById('plus_minus_checkbox').checked = true;
@@ -203,7 +204,8 @@
             event.target.value = 1;
             AH.alert(l.decimal_position+(state.colNum-1)+".");
             //$(".sa-info").show();
-            document.querySelector('.sa-info').style.display = 'block';
+            //document.querySelector('.sa-info').style.display = 'block';
+            AH.select('.sa-info','css',{display:'block'});
         }
         state.decimal_point = decimalPosition;
         updateXml();
@@ -389,6 +391,7 @@
     // Create very first row and store data according to click
     let ColsFirstRow = [];
     function firstRowItem() {
+
         let Rows = [];
         ColsFirstRow = [];
         let dec_point = state.decimal_point;
@@ -406,6 +409,7 @@
                     ColsFirstRow = [
                         ...ColsFirstRow,{
                             id: 'td'+j,
+                            value: (state.correctAnsSplit[j] == "%blank%") ? '' : state.correctAnsSplit[j],
                             name: j,
                             dataTag: j,
                             decpoint: false
@@ -560,10 +564,11 @@
             <tbody>
                 <tr>
                     {#each ColsFirstRow as val,i}
+                        
                         {#if val.decpoint == true}
                             <input type="text" style='width:50px;text-align:center;'  value="." class="tdFont" disabled="true" />
                         {:else}
-                                <input type="text" id={val.id} name={val.name} data-tag={val.dataTag} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} class="tdFont fo" />
+                                <input type="text" id={val.id} name={val.name} value={val.value == undefined ? '' : val.value } data-tag={val.dataTag} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} class="tdFont fo" />
                         {/if}
                     {/each}
                 </tr>

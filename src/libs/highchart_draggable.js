@@ -5,6 +5,7 @@
  * Version: 2.0.9 (2018-03-29)
  */
 
+
 /*global document, Highcharts */
 (function (factory) {
     if (typeof module === 'object' && module.exports) {
