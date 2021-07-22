@@ -23,7 +23,7 @@ let is_all_correct = true;
 
 // for storing to prevent dialog
 DND.prevent_dialog = false;
-window.DND = DND;
+//window.DND = DND;
 // for storing the storage data
 DND.storage = {
     store: function(obj, key, val) {
@@ -58,7 +58,7 @@ DND.storage = {
 DND.browser = {};
 DND.browser.msie = false;
 DND.browser.version = 0
-if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+if (typeof navigator !== 'undefined' && navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
     DND.browser.msie = true;
     DND.browser.version = RegExp.$1;
 }
@@ -136,7 +136,9 @@ DND.setStep = function(tabname) {
 }
 
 // making this global as it is used outside the code
-window.setStep = DND.setStep;
+if (typeof window !== 'undefined') {
+    window.setStep = DND.setStep;
+}
 
 // function for wrapping the element into other element
 DND.wrapInner = function(parent, wrapper, attribute, attributevalue) {
@@ -2101,14 +2103,17 @@ DND.clearText = function(id) {
 
 
 // function calling on the window load
-document.addEventListener("DOMContentLoaded", function() {
-    let dnd_textbox = AI.selectAll('.dnd_textbox');
-    for (let index = 0; index < dnd_textbox.length; index++) {
-        DND.textBoxAlignment(dnd_textbox[index]);
-    }
-    AI.listen('body', 'change', '.dnd_textbox', function(_this) {
-        DND.textBoxAlignment(_this);
-    })
-});
+if (typeof document !== 'undefined') {
+    document.addEventListener("DOMContentLoaded", function() {
+        let dnd_textbox = AI.selectAll('.dnd_textbox');
+        for (let index = 0; index < dnd_textbox.length; index++) {
+            DND.textBoxAlignment(dnd_textbox[index]);
+        }
+        AI.listen('body', 'change', '.dnd_textbox', function(_this) {
+            DND.textBoxAlignment(_this);
+        })
+    });
+}
+
 
 export default DND;

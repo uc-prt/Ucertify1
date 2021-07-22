@@ -10,7 +10,6 @@
 <script>
 
 	
-	import ucMlid from './matchlistJSString';
 	import {Draggable} from "../src/libs/javscript_helper/JUI.js";
 	//import smVal from '../lib/ValidateItems';
 	import l from '../src/libs/Lang';	
@@ -51,6 +50,7 @@
 	let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
 	let dragable;
 	var top1 = 0;
+	let ucMlid = {};
 
 	let state = {
 		xml: '',
@@ -123,7 +123,10 @@
 		AH.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
     }
 	
-	onMount(()=> {
+	onMount(async()=> {
+
+		ucMlid = await import ('./matchlistJSString');
+
 		loadLibs();
 		
 		dragable = new Draggable({
@@ -702,7 +705,7 @@
 		}
 	}
 
-	AH.listen(document,'click','.clr',(_this)=>{
+	AH.listen('body','click','.clr',(_this)=>{
 		AH.selectAll('.clr','removeClass','btn-primary');
 		AH.selectAll('.clr','addClass','btn-light');
 		AH.select(_this,'removeClass','btn-light');

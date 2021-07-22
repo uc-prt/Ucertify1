@@ -1923,4 +1923,4 @@ jQuery.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffec
     });
 
 }));
-module.exports =  plus;
+export default plus;

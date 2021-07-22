@@ -32,7 +32,7 @@
     // contains the xml
     
     
-    let mode = document.querySelector(".switch-input.switch-input");
+    let mode = "";
     let htmlEditor;   
     let cssEditor; 
     let jsEditor;
@@ -92,6 +92,7 @@
 
     
     onMount(()=>{
+        mode = document.querySelector(".switch-input.switch-input");
         // used for mobile team
         if (window.inNative) {
             window.getHeight && window.getHeight();

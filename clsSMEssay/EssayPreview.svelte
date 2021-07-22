@@ -3,7 +3,7 @@
     import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import sunEditor from 'suneditor';
-    import plugins from 'sunEditor/src/plugins';
+    import plugins from 'suneditor/src/plugins';
     import EssayNewReact from './eaasy_new_react.js';
     import '../helper/sunEditor/src/assets/css/suneditor.css';
 
@@ -240,10 +240,10 @@
         background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
         background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
         background-repeat: repeat-x;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+        /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0); */
         border-color: #e6e6e6 #e6e6e6 #bfbfbf;
         border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+        /* filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); */
         border: 1px solid #cccccc;
         border-bottom-color: #b3b3b3;
         -webkit-border-radius: 4px;

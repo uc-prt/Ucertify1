@@ -564,14 +564,20 @@
         left:50px;
     }
 
-    :global(.fa-close,.fa-check) {
+    :global(.fa-close) {
         margin-left: -26px; 
         font-size: 18px; 
         position: relative;
         bottom: 10px;
     }
 
-    :global(.fa-close,.fa-check,.middle_align) {
+    :global(.fa-check) {
+        margin-left: -26px; 
+        font-size: 18px; 
+        position: relative;
+        bottom: 10px;
+    }
+    :global(.fa-close), .fa-check,.middle_align {
         vertical-align: middle!important;
     }
 

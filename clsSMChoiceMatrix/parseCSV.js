@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     parseCSVFormat: function(data) {
 		let newJSON = {stem:"",term:[],option:[]};
 		let arr = data.split("\n");

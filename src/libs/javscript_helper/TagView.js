@@ -118,4 +118,4 @@ function TagView(el, option = {}) {
     }
     el.addEventListener('change', () => updateTag())
 }
-module.exports = TagView;
+export default TagView;

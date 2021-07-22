@@ -205,4 +205,4 @@ ALGO.math = {
 	}		
 };
 
-module.exports = ALGO;
+export default ALGO;
