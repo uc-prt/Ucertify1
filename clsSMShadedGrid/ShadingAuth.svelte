@@ -47,12 +47,6 @@
         loadModule(xml);
     });
 
-    // beforeUpdate(()=>{
-    //     setTimeout(function(){
-    //         handleAuthoringMethod();
-    //     },300)
-        
-    // })
 
     $: {
         let index, showAnsIndex;
