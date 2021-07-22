@@ -7,7 +7,7 @@
  *  Last Updated By : Rashmi Kumari
 -->
 <script>
-    import { onMount, afterUpdate } from "svelte";
+    import { onMount, afterUpdate, beforeUpdate } from "svelte";
     import { XMLToJSON, AH, JSONToXML} from '../helper/HelperAI.svelte';
     import l from '../src/libs/editorLib/language';
     import InputField from './inputField.svelte';
@@ -36,10 +36,23 @@
     let sizeMultipleIndex = 40;
     let table_value, total_row_count, table_corr_value;
 
+
+
+
     onMount(() => {
         state.xml = xml;
+        const e = new Event("change"); 
+        const element = document.querySelector('#set') 
+        element.dispatchEvent(e);
         loadModule(xml);
     });
+
+    // beforeUpdate(()=>{
+    //     setTimeout(function(){
+    //         handleAuthoringMethod();
+    //     },300)
+        
+    // })
 
     $: {
         let index, showAnsIndex;
@@ -95,12 +108,14 @@
 		loadXml = XMLToJSON(loadXml);
         // parses the xml and updates the sliders elements value
 		parseXMLAuthoring(loadXml);
+        
     }
 
     // parses the xml and updates the values of sliders elements
     function parseXMLAuthoring(MYXML) {
         try {
             state.correctAns = (MYXML.smxml._correctAns.trim()) ? MYXML.smxml._correctAns.split(",") : [];
+            state.authorMethod = MYXML.smxml._correctCount ? 'byCount' : 'byLocation';
             state.shadedCell = (MYXML.smxml._shadedCell.trim()) ? MYXML.smxml._shadedCell.split(",") : [];
             state.rowCount = MYXML.smxml._rowCount;
             state.colCount = MYXML.smxml._colCount;
@@ -402,6 +417,7 @@
             value={state.authorMethod} 
             name="authorMethod" 
             class="bg-gray-hover form-select width-authoring d-inline-block" 
+            id="set"
             on:change={handleAuthoringMethod}
         >
             <option value="byLocation" id="byLoc_sel" data-show="locationMethod" data-hide="countMethod" selected="selected">{l.set_corr_loc}</option>
