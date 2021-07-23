@@ -17,8 +17,8 @@
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
 	import '../src/libs/mathquill.css';
-	//import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
-	//import '../src/libs/mathQuill_new';
+	import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
+	import '../src/libs/mathQuill_new';
 
 	export let manual_grade;
 	export let xml;
@@ -41,7 +41,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
-	let MathQuill = "";
+	//let MathQuill = "";
 	let hdd = writable({
 			matchtype : "0",
 			ignoretype:"",
@@ -923,6 +923,7 @@
 <textarea class="h" id="special_module_user_xml"></textarea>
 <style type="text/css">
 	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
+	
 	:global(xmp) {
 		display: inline;
 	}
@@ -931,24 +932,24 @@
 		max-width:1024px;
 		text-align:left;
 	}
-	:global(#fillmain) pre {
+	:global(#fillmain pre) {
 		background: none;
 		border: none;
 		font-size: 14px!important;
 	}
-	:global(#fillmain) .string {
+	:global(#fillmain .string) {
 		min-height:50px;
 		margin-top:10px;
 		margin-right:10px;
 	}
-	:global(#fillmain) .footerStr {
+	:global(#fillmain .footerStr) {
 		position:relative;
 		margin-top: 10px;
 		background-color: #ccc;
 		padding: 15px;
 		min-height: 60px;/*100px;*/
 	}
-	:global(#fillmain) .footerStr .arrow-up {
+	:global(#fillmain .footerStr .arrow-up) {
 		position: absolute;
 		top: -10px;
 		right: 50%;
@@ -958,10 +959,18 @@
 		border-right: 10px solid transparent;
 		border-bottom: 10px solid #ccc;
 	}
-	:global(#fillmain) .fill-row {
+	:global(#fillmain .fill-row) {
 		padding:6px;
 	}
-	:global(#fillmain) .fillelement, .drag-resize{
+	:global(#fillmain .fillelement){
+		height:30px;
+		display:inline-block;
+		position:relative;
+		min-height: 30px;
+		margin: 1px 0 1px 0;
+		top: -3px;
+	}
+	:global(#fillmain .drag-resize) {
 		height:30px;
 		display:inline-block;
 		position:relative;
@@ -1020,10 +1029,10 @@
 	:global(.MathJax_Display) {
 			display : inline!important;
 	}
-	:global(#fillmain) .select {
+	:global(#fillmain .select) {
 		font-size: 15px;
 	}
-	:global(#fillmain) .textarea {
+	:global(#fillmain .textarea) {
 		vertical-align: middle;
 		border-radius:3px;
 		background:#ffe;
