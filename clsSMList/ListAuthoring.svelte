@@ -50,6 +50,14 @@
     
 
     onMount(()=>{
+
+        AH.listen(document,'click','.checkall',function(_this){
+            console.log('Test ',_this.checked);
+            let chk = _this.checked;
+            
+            AH.selectAll('table.table input[type=checkbox]:enabled,.sticky-col input[type=checkbox]:enabled,.sticky-intersect input[type=checkbox]:enabled','checked',chk);
+            AH.select(_this,'attr',chk);
+        })
         // used to show the tooltip
         // jQuery('#authoring_container').tooltip({
         //     selector: '[data-toggle="tooltip"]'
@@ -876,7 +884,7 @@
         onUpdate={editorModalUpdate.bind(this)}
         handle={state.editorModalHandle}
     /> -->
-    <Dialog
+    <!-- <Dialog
 		bind:visible={state.EditorModalBox} on:close={() => {state.EditorModalBox = false}} style={'width:500px;'} >
             <div slot="title">{l.save_header}</div>
             <div>
@@ -894,9 +902,9 @@
                 </Button>
             </div>
 					
-	</Dialog>
+	</Dialog> -->
 
-    <!-- <Dialog
+    <Dialog
 					bind:visible={state.EditorModalBox} on:close={() => {state.EditorModalBox = false}}
 					style={'width:500px;'}
 				>
@@ -918,7 +926,7 @@
 			
 					
 					
-				</Dialog> -->
+				</Dialog>
 
 
 
