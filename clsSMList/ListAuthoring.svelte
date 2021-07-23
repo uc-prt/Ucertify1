@@ -173,6 +173,7 @@
 
     // used for update the guids which exist in "Current Guid" and "Used in Guids" field of respective row
     function handleUpdate(rowNo) {
+        debugger;
         editorModalUpdate(false);
         updateOldGuidsOption(rowNo, state.data_cdata[rowNo].cg, state.data_cdata[rowNo].pg, state.data_cdata[rowNo].rn, state.data_cdata[rowNo].ag);
     }
@@ -894,6 +895,37 @@
             </div>
 					
 	</Dialog>
+
+    <!-- <Dialog
+					bind:visible={state.EditorModalBox} on:close={() => {state.EditorModalBox = false}}
+					style={'width:500px;'}
+				>
+					<div style="font-weight:bold;">{l.save_header}</div>
+					<div>
+						<div class="row">
+						<span class="col-md-12" style={'margin-top:40px;margin-bottom:40px;'}>{l.child_update}</span>
+						</div>
+					</div>
+				
+
+					<div slot="footer" class="svelteFooter">
+						
+						<input type="button" variant="contained" on:click={() => {state.EditorModalBox = false}} class="btn btn-light colorgray" value="No" />
+
+						<Button variant="contained" on:click={()=>{handleUpdate(row_no)}}
+							class="bg-primary text-white"> OK </Button>
+					</div>
+			
+					
+					
+				</Dialog> -->
+
+
+
+
+
+
+
 </div>
 
 <style>
