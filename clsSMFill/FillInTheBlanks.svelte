@@ -1431,12 +1431,15 @@
 							</div>
 							<div class="col-sm-3 pt-1">
 								<Button 
+									variant="fab" 
 									color="primary"
 									aria-label="Response"
-									style="border:1px solid #4285f4; color:#4285f4;text-transform: none; height: 30px;" 
 									on:click={addEditable.bind(this,i)}
 									class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
-								>+ Response</Button>
+									style="width: 120px; height:30px; text-transform: none; border: 1px solid #4285f4; color: #4285f4;"
+								>
+									+ Response
+								</Button>
 							</div>
 							<div class="col-sm-1 pt-2">
 								<div class="latexEditButton d-inline-block" tabIndex="0" style="height:28px;">
@@ -1472,7 +1475,7 @@
 							aria-label="Add"
 							on:click={addMathEquation}
 							class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
-							style="width: 120px; height:30px; border: 1px solid #4285f4; color: #4285f4;"
+							style="width: 120px; height:30px; text-transform: none; border: 1px solid #4285f4; color: #4285f4;"
 						>
 							+ Add option
 						</Button>
