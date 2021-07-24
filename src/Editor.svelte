@@ -1466,7 +1466,7 @@
             editorConfig.findMathError();
             checkSection();
             if (getQueryString('switch_preview') == 1) {
-				if (AH.getBS('[href="#custom_columnize"]', 'Tab')) {
+				if (AH.getBS('[href="#custom_columnize"]', 'Tab').hasOwnProperty('show')) {
 					AH.getBS('[href="#custom_columnize"]', 'Tab').show();
 				}
             }
@@ -2075,7 +2075,7 @@
 					console.warn("Saving is paused -");
 					return;
 				} 
-			
+				console.log(baseUrl);
 				AH.ajax({
 					url: baseUrl + 'editor/index.php', // point to server-side PHP script
 					datatype: 'json',
@@ -2727,7 +2727,7 @@
                         <div id="columnize">
                             <div 
                                 id="previewSection" 
-                                className="px-2 base" 
+                                class="px-2 base" 
                                 annotation_id={state.guid}
                                 data-parent-guid={state.guid}
                                 style="overflow-X: auto; padding-bottom: 15px;"
