@@ -181,7 +181,6 @@
 
     // used for update the guids which exist in "Current Guid" and "Used in Guids" field of respective row
     function handleUpdate(rowNo) {
-        debugger;
         editorModalUpdate(false);
         updateOldGuidsOption(rowNo, state.data_cdata[rowNo].cg, state.data_cdata[rowNo].pg, state.data_cdata[rowNo].rn, state.data_cdata[rowNo].ag);
     }
