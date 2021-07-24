@@ -52,7 +52,6 @@
 	let container_id = 'dndmainPreview';
 	let moduleType = 1;
 	let state = {};
-
 	// writable for preview
 	let preview_store = writable({
 		xml: '',
