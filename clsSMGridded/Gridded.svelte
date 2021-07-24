@@ -160,12 +160,13 @@
         let val = event.target.value;
         if (!(val > 0 && val <= 10)) {
             AH.alert(l.grid_one_to_ten);
+            event.target.value = 4;
             return false;
         }
         if (event.target.name == "col_nmbr") {
             if (event.target.value < 1) {
                 AH.alert(l.col_less_one);
-                eva
+                
                 event.target.value = 1;
                 return false;
             } else if (event.target.value > 6) {
