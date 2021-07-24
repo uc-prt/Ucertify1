@@ -8423,3 +8423,6 @@ background:#6FCF64;
 .falseitemColorCM:hover {
 background:#F44A37;
 }
+.pointer:hover {
+  cursor: pointer;
+}
