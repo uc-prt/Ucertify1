@@ -8426,3 +8426,12 @@ background:#F44A37;
 .pointer:hover {
   cursor: pointer;
 }
+.swal-text {
+  color: rgba(0,0,0,1) !important;
+}
+.swal-button--cancel {
+  color: rgba(0,0,0,1) !important;
+}
+.swal-button--danger {
+  background-color: #F44A37;
+}
