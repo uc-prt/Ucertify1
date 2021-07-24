@@ -1017,7 +1017,7 @@
 				// for mathemetical expression
 				//if(this.state.fillInTheBlanksChoice == 6) {
 					let MathArray = [];
-					for(let i=0; i<=count; i++) {
+					for(let i=0; i<=math_eq_count; i++) {
 						if(document.querySelector("#input"+i)) {
 							// if any value is blank then change the value of validate to 1
 							if (!AH.select("#input"+i).value) {
@@ -1027,7 +1027,7 @@
 						}
 					}
 
-					let e = MathArray.join("##",count);
+					let e = MathArray.join("##",math_eq_count);
 
 					// for validation
 					if (validate == 0) {
@@ -1420,7 +1420,7 @@
 				<div>
 					{#each state.fillEquation as data, i}
 						<div key={i} class="row ml-0 mb-2">
-							<div class="col-sm-7">
+							<div class="col-sm-7 pl-0">
 								<input
 									type="text"
 									id={"input"+i}
@@ -1432,10 +1432,11 @@
 							<div class="col-sm-3 pt-1">
 								<Button 
 									color="primary"
+									aria-label="Response"
 									style="border:1px solid #4285f4; color:#4285f4;text-transform: none; height: 30px;" 
 									on:click={addEditable.bind(this,i)}
-									class="btn btn-outline-primary bg-white shadow-sm"
-								>+ response</Button>
+									class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
+								>+ Response</Button>
 							</div>
 							<div class="col-sm-1 pt-2">
 								<div class="latexEditButton d-inline-block" tabIndex="0" style="height:28px;">
@@ -1470,10 +1471,10 @@
 							color="primary"
 							aria-label="Add"
 							on:click={addMathEquation}
-							class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right"
+							class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
 							style="width: 120px; height:30px; border: 1px solid #4285f4; color: #4285f4;"
 						>
-							+ Option
+							+ Add option
 						</Button>
 					</div>
 					<div class="text-danger mt-5 pt-4 font-weight-bold ml-1">* Note:</div>
