@@ -17,7 +17,8 @@
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
 	import '../src/libs/mathquill.css';
-	import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
+	import '../src/libs/jquery.min.js';
+	//import 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js';
 	import '../src/libs/mathQuill_new';
 
 	export let manual_grade;
