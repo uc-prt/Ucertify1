@@ -204,8 +204,7 @@
             decimalPosition = 1;
             event.target.value = 1;
             AH.alert(l.decimal_position+(state.colNum-1)+".");
-            //$(".sa-info").show();
-            //document.querySelector('.sa-info').style.display = 'block';
+            
             AH.select('.sa-info','css',{display:'block'});
         }
         state.decimal_point = decimalPosition;
@@ -215,12 +214,12 @@
 
     // Update the xml
     function updateXml() {
-        // setTimeout( function() {
+        
             
             let updatedXml = '<smxml type="56" name="Gridded" plusminus="'+state.plus_minus+'" slash="'+state.slash_val+'" decimal="'+state.decimal_val+'" fixed_point="'+state.decimal_point+'" font="'+state.textSize+'" row="'+state.rowNum+'" col="'+state.colNum+'" correctAns="'+state.res+'" ><!--[CDATA[]]--></smxml>';
             getChildXml(updatedXml);
             
-        // }, 500);
+      
         
     }
 
@@ -595,17 +594,6 @@
                 value = "-"
             ></GriddedHelper>
         {/if}
-        {#if state.decimal_val == 1}
-            <GriddedHelper 
-                on:handleClickCombo={handleClickCombo}
-                loop = {Cols_slash}
-                class1 = "tdFont points"
-                className="tdFont text-center items_element decl_point"
-                tableId ="slash_tab"
-                tableClass ="slash_tab gridded_tab mt-0 myP"
-                value = "."
-            ></GriddedHelper>
-        {/if}
         {#if state.slash_val == 1}
                 <GriddedHelper 
                     on:handleClickCombo={handleClickCombo}
@@ -617,6 +605,18 @@
                     value = "/"
                 ></GriddedHelper>
         {/if}
+        {#if state.decimal_val == 1}
+            <GriddedHelper 
+                on:handleClickCombo={handleClickCombo}
+                loop = {Cols_slash}
+                class1 = "tdFont points"
+                className="tdFont text-center items_element decl_point"
+                tableId ="slash_tab"
+                tableClass ="slash_tab gridded_tab mt-0 myP"
+                value = "."
+            ></GriddedHelper>
+        {/if}
+        
 
         <table id="gridded_sheet" class="gridded_tab lastGrid mt-0 myP">
             

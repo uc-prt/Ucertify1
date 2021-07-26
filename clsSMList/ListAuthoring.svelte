@@ -47,7 +47,25 @@
         state = items;
     })
 
-    
+    let handle_disable = false;
+    let progress_data = '';
+    let handle_generate;
+
+    $:{
+        console.log('Editor State =>'+editorState.guid);
+        console.log("Checking $");
+        if (state.data_cdata && state.data_cdata[1].cg) {
+            handle_disable = true;
+        }
+        handle_generate = state.xml && ((state.xml.smxml._disabled_generate == 1) ? true: false);
+        //alert(state.xml.smxml);
+        if (state.data_cdata) {
+            progress_data = Math.ceil((state.counter * 100) / (state.data_cdata.length - 1)) + '%';
+        }
+        if(state.data_cdata) {
+            child_generated = (state.data_cdata[1].cg) ? false: true;
+        }
+    }
 
     onMount(()=>{
 
@@ -113,15 +131,16 @@
     }
 
     // parses the xml data and update the xml
-    function parseXMLAuthoring(MYXML) {
+    function parseXMLAuthoring(data) {
+        debugger;
         try {
             if(count) {
             // contains the information of each rows in the form of json 
-                temp_array = JSON.parse(MYXML.smxml.__cdata).list;
+                temp_array = JSON.parse(data.smxml.__cdata).list;
                 count =false;
             }
             state.data_cdata = temp_array;
-            state.xml = MYXML;
+            state.xml = data;
         } catch (error) {
             console.log({ 'error': error });
         }
@@ -254,6 +273,8 @@
                 //         resolve(json_received_string.content_guid);
                 //     }
                 // });
+                console.log('check disabled 1 =>',state.xml.smxml._disabled_generate);
+                updateXML(state.xml.smxml._disabled_generate);
                 AH.ajax({
                     type: "post",
                     url: baseUrl + 'editor/index.php',
@@ -283,6 +304,8 @@
                         if (current_row_val == (state.data_cdata.length - 1)) {
                             // updates the xml with created guids
                             updateXML(JSON.stringify({ "list": temp_array }));
+                            console.log('check disabled2 =>',state.xml.smxml._disabled_generate);
+                            
                             //updateXML(JSON.stringify({ "list": Object.assign({},temp_array) }));
                         }
                     }
@@ -769,25 +792,7 @@
     //         child_generated = (state.data_cdata[1].cg) ? false: true
     //     }
     // }
-    let handle_disable = false;
-    let progress_data = '';
-    let handle_generate;
-
-    $:{
-        console.log('Editor State =>'+editorState.guid);
-        console.log("Checking $");
-        if (state.data_cdata && state.data_cdata[1].cg) {
-            handle_disable = true;
-        }
-        handle_generate = state.xml && ((state.xml.smxml._disabled_generate == 1) ? true: false);
-        //alert(state.xml.smxml);
-        if (state.data_cdata) {
-            progress_data = Math.ceil((state.counter * 100) / (state.data_cdata.length - 1)) + '%';
-        }
-        if(state.data_cdata) {
-            child_generated = (state.data_cdata[1].cg) ? false: true;
-        }
-    }
+    
 
      // used for hide and show the warning dialog box
     function editorModalUpdate(args) {
