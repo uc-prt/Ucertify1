@@ -2075,7 +2075,6 @@
 					console.warn("Saving is paused -");
 					return;
 				} 
-				console.log(baseUrl);
 				AH.ajax({
 					url: baseUrl + 'editor/index.php', // point to server-side PHP script
 					datatype: 'json',
