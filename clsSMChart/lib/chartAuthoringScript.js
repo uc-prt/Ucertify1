@@ -182,10 +182,8 @@ CHART_AUTH.elemModal = function (type, key) {
 
 // updates the values of chart board container and also of xml according to the values changed in edit modalbox
 CHART_AUTH.updateElem = function (type, key) {
-    
     let attributes_list = JS.find(JS.select('#authoring-modal .' + CHART_AUTH.visible_class), 'select, textarea, input', 'all');
     let attributes = CHART_AUTH.serialize(attributes_list);
-    
     let charttype, title, xlab, ylab, xval = '', yval, xmin, xmax, xint, ymin, ymax, yint, defans, color, snapTo, where;
     let attr = [], wd, hd;
     // used for define the x-axis values
@@ -717,7 +715,8 @@ CHART_AUTH.updatePoint = function (type, id) {
                     insert.setAttribute('correctans', '|' + cans + '|');
                 } else {
                     // warning messege when tried to delete the column or point that is only left on chart board and no any more column/point exist
-                    JS.showmsg("Default Item(s) can not be Deleted", 3000);
+                    //JS.showmsg("Default Item(s) can not be Deleted", 3000);
+                    JS.alert("Default Item(s) can not be Deleted");
                 }
             }
 
