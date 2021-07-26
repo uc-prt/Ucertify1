@@ -15,6 +15,7 @@
 	import l from '../src/libs/Lang';	
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
+	import ucMlid from './matchlistJSString';
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import './css/matchList.min.css';
 	import { Button, Dialog } from 'svelte-mui/src';
@@ -50,7 +51,7 @@
 	let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
 	let dragable;
 	var top1 = 0;
-	let ucMlid = {};
+	//let ucMlid = {};
 
 	let state = {
 		xml: '',
@@ -125,7 +126,7 @@
 	
 	onMount(async()=> {
 
-		ucMlid = await import ('./matchlistJSString');
+		// ucMlid = await import ('./matchlistJSString');
 
 		loadLibs();
 		
