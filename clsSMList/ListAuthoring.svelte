@@ -131,16 +131,15 @@
     }
 
     // parses the xml data and update the xml
-    function parseXMLAuthoring(data) {
-        debugger;
+    function parseXMLAuthoring(MYXML) {
         try {
             if(count) {
             // contains the information of each rows in the form of json 
-                temp_array = JSON.parse(data.smxml.__cdata).list;
+                temp_array = JSON.parse(MYXML.smxml.__cdata).list;
                 count =false;
             }
             state.data_cdata = temp_array;
-            state.xml = data;
+            state.xml = MYXML;
         } catch (error) {
             console.log({ 'error': error });
         }
