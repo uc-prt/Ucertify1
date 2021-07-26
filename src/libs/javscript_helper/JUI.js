@@ -758,8 +758,8 @@ export default class JUI extends API{
         let typeAction = (typeof data == "object") ? "action" : data;
         if (base) {
             switch (typeAction) {
-                case 'all' : return base.querySelectorAll(target);
-                case 'child' : return base.querySelector(target).childNodes;
+                case 'all' : return base?.querySelectorAll(target);
+                case 'child' : return base?.querySelector(target).childNodes;
                 case 'hidden': return Array.prototype.filter.call(base.querySelectorAll(target), (elm)=> elm.offsetWidth == 0 && elm.offsetHeight == 0);
                 case 'visible': return Array.prototype.filter.call(base.querySelectorAll(target), (elm)=> elm.offsetWidth > 0 && elm.offsetHeight > 0);
                 case 'checked': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.checked);

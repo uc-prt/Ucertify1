@@ -4,13 +4,13 @@
  *  Author      : Sundaram Tripathi
  *  Package     : svelte_items
  *  Last update : 05-May-2021
- *  Last Updated By : Pradeep Yadav
+ *  Last Updated By : Sundaram Tripathi
 -->
 
 <script>  
 	import { onMount,afterUpdate } from "svelte";
 	import { writable } from "svelte/store";
-	import l from '../src/libs/Lang.js'
+	import l from '../src/libs/Lang.js';
 	import lib1 from './parseCSV.js';
 	import {XMLToJSON, AH} from "../helper/HelperAI.svelte";
 	export let getChildXml;
@@ -247,7 +247,7 @@
 			//updating the cdata
 			reverseXml();
 		} else {
-			AH.showmsg("You must have at least two rows.");  
+			AH.alert("You must have at least two rows.");  
 		}
 	}
 
@@ -314,7 +314,7 @@
 		// getting the value of width
 		widthVal = document.querySelector('#customWidth').value;
 		// setting the width of the table
-	//	jQuery('#test_table').width(widthVal+"px"); // Replaced
+	
 	document.getElementById('test_table').style.width = widthVal +'px';
 
 		// check for th timeout if exist clear the timeout to save memory
@@ -470,13 +470,14 @@
                 </div>
                 <small class = "text-danger font13"><strong>* {l.note_label}</strong> {l.comment_choiceMatrix}</small>
                 <div class = "text-center" style = {'width:100%;'}>
+					
                         <button 
                             type = "button" 
                             class = "btn btn-outline-primary btn-sm add_stem pr-md ml-2 px-2" 
                             id = "btn" 
 							on:click = {addStem}
-							style = {'width: 171px;'}
-                        >
+							style = {'width: 122px;'}
+                        > <span class="font24">&#43;</span>
                             {l.add_row}
 						</button>
 
@@ -485,12 +486,10 @@
 						class = "btn btn-outline-primary btn-sm add_option pr-md ml-2 px-2" 
 						id = "btn_opt" 
 						on:click = {addOption}
-						style = {'width: 171px;'}
-					>
+						style = {'width: 122px;'}
+					> <span class="font24">&#43;</span>
 						{l.add_column}
 					</button>
-						
-                   
                 </div>
             </div>   
         </div>
@@ -587,6 +586,11 @@
 .width_90 {
 	width: 90%;
 }
+
+.font24 {
+		font-size: 15px !important;
+		/* //margin-right: 5px; */
+    }
 
 
 

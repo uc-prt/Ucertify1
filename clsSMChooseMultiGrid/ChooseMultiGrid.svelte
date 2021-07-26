@@ -428,7 +428,7 @@
 				{#each authoring_data.localCData1.slice(0, parseInt(state.maxrow)) as item, i}
 					<tr>
 						<td class="text-center width46">
-							<span tabindex="0" title="Delete Row" class="pointer font18 position-relative" id="delrow{i}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationRow(i)}}" >
+							<span tabindex="0" title="Delete Row" role="button" class="pointer font18 position-relative" id="delrow{i}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationRow(i)}}" >
 								<span aria-hidden="true" class="remove-item icomoon-24px-delete-1 s3 text-dark"></span>
 							</span>
 						</td>

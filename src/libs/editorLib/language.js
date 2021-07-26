@@ -330,7 +330,7 @@ const l = {
     getting_docx : "Please, be patient. We are generating the Content in Docx Formatting for you.",
     getting_help : "Please, be patient. We are generating the help for you.",
     warning : "Warning!",
-    row_limit : "You have reached the minimum number of rows you can delete.",
+    row_limit : "You have reached the minimum number of rows you can not to be deleted.",
     col_limit : "You have reached the minimum number of columns you can delete.",
     del_confirmation : "Are you sure you want to delete it?",
     wrong_value_information : "Values of the row and column should always be multiples of ",

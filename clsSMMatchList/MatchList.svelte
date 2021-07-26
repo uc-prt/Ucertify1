@@ -110,8 +110,14 @@
 		// });
 		// for deleting the image
 		AI.listen(document,'click','.image_delete', (_ele) => {
+			let newValue
 			let oldImage = AI.find(_ele.parentElement.parentElement,'textarea').value;
-			let newValue = state.xml.replace(oldImage, "insert value");
+			if(AI.find(_ele.parentElement.parentElement,'textarea').id == "matchList1") {
+				newValue = state.xml.replace(oldImage, "Insert value2");
+			} else {
+				newValue = state.xml.replace(oldImage, "Insert value1");
+			}
+			
 			getChildXml(newValue);
 		})
 
@@ -921,9 +927,11 @@
 				
 
 					<div slot="footer" class="svelteFooter">
+						
+						<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
+
 						<Button variant="contained" on:click={removeRow}
 							class="bg-primary text-white"> Yes </Button>
-						<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
 					</div>
 			
 					
@@ -936,7 +944,7 @@
 
 	.colorgray {
         width:56px;
-        background-color: rgb(255, 206, 206);
+        background-color:#dee2e6;
     }
 	.colorgray1 {
 		width:74px;

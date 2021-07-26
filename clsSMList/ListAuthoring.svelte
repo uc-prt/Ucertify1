@@ -50,6 +50,14 @@
     
 
     onMount(()=>{
+
+        AH.listen(document,'click','.checkall',function(_this){
+            console.log('Test ',_this.checked);
+            let chk = _this.checked;
+            
+            AH.selectAll('table.table input[type=checkbox]:enabled,.sticky-col input[type=checkbox]:enabled,.sticky-intersect input[type=checkbox]:enabled','checked',chk);
+            AH.select(_this,'attr',chk);
+        })
         // used to show the tooltip
         // jQuery('#authoring_container').tooltip({
         //     selector: '[data-toggle="tooltip"]'
@@ -875,7 +883,7 @@
         onUpdate={editorModalUpdate.bind(this)}
         handle={state.editorModalHandle}
     /> -->
-    <Dialog
+    <!-- <Dialog
 		bind:visible={state.EditorModalBox} on:close={() => {state.EditorModalBox = false}} style={'width:500px;'} >
             <div slot="title">{l.save_header}</div>
             <div>
@@ -893,7 +901,38 @@
                 </Button>
             </div>
 					
-	</Dialog>
+	</Dialog> -->
+
+    <Dialog
+					bind:visible={state.EditorModalBox} on:close={() => {state.EditorModalBox = false}}
+					style={'width:500px;'}
+				>
+					<div style="font-weight:bold;">{l.save_header}</div>
+					<div>
+						<div class="row">
+						<span class="col-md-12" style={'margin-top:40px;margin-bottom:40px;'}>{l.child_update}</span>
+						</div>
+					</div>
+				
+
+					<div slot="footer" class="svelteFooter">
+						
+						<input type="button" variant="contained" on:click={() => {state.EditorModalBox = false}} class="btn btn-light colorgray" value="No" />
+
+						<Button variant="contained" on:click={()=>{handleUpdate(row_no)}}
+							class="bg-primary text-white"> OK </Button>
+					</div>
+			
+					
+					
+				</Dialog>
+
+
+
+
+
+
+
 </div>
 
 <style>

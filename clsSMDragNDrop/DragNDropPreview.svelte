@@ -28,6 +28,8 @@
 	import TabPreview from './libs/preview/TabPreview.svelte';
 	import l from '../src/libs/Lang';
 	import './css/dragndrop.min.css';
+	import DND from './libs/preview/dndString';
+	import target_img from '../images/target.png';
 
 
 	// exporting the variables
@@ -51,7 +53,7 @@
 	let container_id = 'dndmainPreview';
 	let moduleType = 1;
 	let state = {};
-	let DND = {};
+	//let DND = {};
 
 	// writable for preview
 	let preview_store = writable({
@@ -70,7 +72,7 @@
 	// this is called for the first time use for binding the events
 	onMount( async function() {
 
-		DND = await import ('./libs/preview/dndString');
+		//DND = await import ('./libs/preview/dndString');
 
 		if (window.inNative) {
 			if (typeof window.getHeight == "function") {	
@@ -128,6 +130,7 @@
 
 	// call everytime when updating will happen
 	afterUpdate(async() => {
+		
 		// if there is change in xml
 		if (state.xml != xml) {
 			loadModule(xml);
@@ -148,7 +151,6 @@
 			} else {
 				DND.modeOn(0);
 			}
-			
 		}
 	});
 
@@ -466,7 +468,7 @@
 				<StepPreview modules={state.data[0].step} containerID={container_id} {checkImages} uxml={uxml}/>
 				<TabPreview modules={state.data[0].tab} containerID={container_id} {checkImages} uxml={uxml}/>
 				{#if state.data[0].hotspot}
-					<img class="targetImg" tabindex="0" alt="target_img" src={window.itemFolder +"images/target.png"} style="display: none" />
+					<img class="targetImg" tabindex="0" alt="target_img" src={target_img} style="display: none" />
 				{/if}
 			{/if}
 		</div>
