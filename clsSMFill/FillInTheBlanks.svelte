@@ -580,9 +580,7 @@
 			value:"",
 			id:math_eq_count
 		};
-		console.log('tempArr', tempArr);
 		state.fillEquation = [...state.fillEquation, tempArr];
-		console.log('fillEquation', state.fillEquation);
 	}
 	/*---------End of the function-------------*/
 
