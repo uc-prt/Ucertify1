@@ -609,7 +609,7 @@ export default {
     table_width: "Table width",
     themes: "Themes",
     add_row: "Add row",
-    add_column: 'Add Column',
+    add_column: 'Add column',
     upload_data: 'Upload Data',
     hour: 'Hour',
     day: 'Day',

@@ -520,9 +520,9 @@
         </div>
 
         <div slot="footer" class="svelteFooter">
+            <input type="button" variant="contained" on:click={() => {state.open = false}} class="btn btn-light colorgray" value="No" />
             <Button variant="contained" on:click={removeItem.bind(this,state.data_value,state.data_id)}
                 class="bg-primary text-white"> Yes </Button>
-            <input type="button" variant="contained" on:click={() => {state.open = false}} class="btn btn-light colorgray" value="No" />
         </div>
     </Dialog>
 
