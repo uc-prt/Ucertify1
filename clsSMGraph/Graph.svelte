@@ -13,7 +13,6 @@
     import GRAPH_AUTH from './lib/mathAuthString'
     import l from '../src/libs/Lang';
     import MathModal from "./lib/MathModal.svelte";
-    import swal from 'sweetalert';
     export let xml;
     export let editorState;
     export let getChildXml;
@@ -23,11 +22,9 @@
     let auth_store = writable({
 		xml : "",
 	});
-
     const unsubscribe = auth_store.subscribe(value => {
 		state = value;
 	});
-
     // reset the lab after removing the algorithm
     $: if (!editorState.variable_button && editorState.stopAuthoringUpdate) {
         editorState.stopAuthoringUpdate = false;
@@ -38,7 +35,6 @@
             GRAPH_AUTH.initGraph();
         }
     }
-
     // functions responsible for loading the module on the basis of xml
     beforeUpdate(async() => {
         AH.selectAll('#mthmain [tabindex="0"].active', 'removeClass', 'active');
@@ -47,7 +43,6 @@
 			loadModule(xml);
 		}
 	});
-
     // function responsible for binding the events
     onMount(async()=> {
         AH.listen('body', 'keyup', '.equation', function () {
@@ -63,73 +58,60 @@
                 });
             }
         });
-
         AH.listen('body', 'change', '#graph-type', function () {
             GRAPH_AUTH.resetModal();
         });
-
         AH.listen('body', 'mousemove', '#mthmain, .addElement, .resetElement', function () {
             updateXml();
         });
-
         AH.listen('body', 'mouseup', '#mthmain, .addElement, .resetElement', function () {
             updateXml();
         });
-
         AH.listen('body', 'click', '#mthmain, .addElement, .resetElement', function () {
             updateXml();
         });
-
         AH.listen('body', 'click', '#xmlDone', function () {
             editorState.variable_button = false;
             if (!(!editorState.variable_button && editorState.stopAuthoringUpdate)) {
                 GRAPH_AUTH.initGraph();
             }
         });
-
         AH.listen('body', 'keypress', '#mthmain [tabindex="0"]', function (current, event) {
             if ((event.keyCode == 13 || event.which == 13) && (event.target.id != 'delete_btn' && event.target.id != 'updateRow')) {
                 current.click();
             }
         });
-
         AH.listen('body', 'hidden.bs.modal', '#authoring-modal', function () {
             GRAPH_AUTH.visible_class = '';
         });
-
         AH.listen('body', 'change', 'input.integer', function (current) {
             changeValue(current);
         });
-
         AH.listen('body', 'keyup', 'input.integer', function (current) {
             changeValue(current);
         });
-
         AH.listen('body', 'input', 'input.integer', function (current) {
             changeValue(current);
         });
-
         AH.listen('body', 'click', '#deleteElm', function (current) {
             let cur_elem = current.children[0];
             let attrs = GRAPH_AUTH.setInAssoc(GRAPH_AUTH.storage.store('#ID0' , 'attributes')); 
             cur_elem.classList.toggle('active');
             if ( AH.select('#' + attrs.id).classList.contains('point') || AH.select('#' + attrs.id).classList.contains('circle') || AH.select('#' + attrs.id).classList.contains('association') ) {
                 if (cur_elem.classList.contains('active')) {
-                    swal(l.delete_msg);
+                    AH.alert(l.delete_msg);
                     cur_elem.style.color = 'black';
                 }
             } else if (cur_elem.classList.contains('active')) {
                 cur_elem.style.color = 'black';
-                swal(l.last_delete_msg);
+                AH.alert(l.last_delete_msg);
             }
         });
-
         AH.listen('body', 'keypress', '#authoring-modal input', function (current, event) {
             if (event.which == 13) {
                 return false;
             }
         });
-
         AH.listen('body', 'keyup', '#authoring-modal .validate', function (current, event) {
             event.preventDefault();
             event.stopPropagation();
@@ -156,11 +138,9 @@
                 });
             }
         });
-
         AH.listen('body', 'change', '#authoring-modal .select', function (current) {
             GRAPH_AUTH.resetData(current);
         });
-
         AH.listen('body', 'click', '.add-equation', function () {
             AH.insert('.numberlinePlot', AH.select('.plotEq').innerHTML, 'beforeend');
             AH.find('.numberlinePlot', '.remove-eq', {
@@ -170,17 +150,14 @@
                 }
             });
         });
-
         AH.listen('body', 'click', '.remove-eq', function (current) {
             current.parentElement.remove();
         });
-
         AH.listen('body', 'click', '.footer_toolbox li', function (current) {
             current.classList.add('btn_active');
             AH.selectAll(AH.siblings(current), 'removeClass', 'btn_active')
         });
     });
-
     // for updating the xml into the state
     afterUpdate(async() => {
         if (!is_resource_added) {
@@ -201,12 +178,10 @@
             });
         }
     })
-
     // for checking the the number is numeric or
     function isNumeric(num) {
         return !isNaN(parseFloat(num)) && isFinite(num);
     }
-
     // call whenever there is change in the graph type select box
     function changeValue(current) {
         let fixed = current.value.replace(/[^0-9]/g, "");
@@ -214,7 +189,6 @@
             current.value = fixed;
         }
     }
-
     // function responsible for updating the xml
     function updateXml() {
         if (editorState.stopAuthoringUpdate) {
@@ -226,7 +200,6 @@
             getChildXml(xml);
         }
     }
-
     // funcion responsible for loading the module
     function loadModule(loadXml) {
         // assign the json value to variable loadXml after converting xml into json
@@ -234,15 +207,13 @@
         // sets the value of variable QXML and re-render the component
         parseXMLAuthoring(loadXml);
     }
-
     // function responsible for parsing the xml
     function parseXMLAuthoring(MYXML) {
         QXML = MYXML.smxml.plot;
         if (QXML._type == 'association') {
-            swal(l.deprecated);
+            AH.alert(l.deprecated);
         }
     }
-
     // function responsible for solving the algorithm and after that stops the update until algorithm is remove
     function solveAuthoring() {
         AH.activate(2);
@@ -250,7 +221,6 @@
         let data = {};
         data['special_module_xml'] = tempXml;
         data['algo_qxml'] = AH.select("#algo_qxml").nodeName ? AH.select("#algo_qxml").value : '';
-
         AH.ajax({
             url: baseUrl + 'editor/index.php',
             data: { ajax: "1", action: 'parse_algo', content_text: JSON.stringify(data) },
@@ -260,12 +230,10 @@
             }
         }).then( function(response) {
             let res = JSON.parse(response);
-
             AH.select('#special_module_xml').value = res.special_module_xml;
             loadModule(res.special_module_xml)
             
             GRAPH_AUTH.initGraph();
-
             editorState.stopPreviewUpdate = true;
             editorState.stopAuthoringUpdate = true;
             GRAPH_AUTH.stopUpdate = true;

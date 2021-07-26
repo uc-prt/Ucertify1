@@ -58,12 +58,10 @@
         // contains the color value of the xml
         color: ""
 	});
-
     // for subscribing the store
     const unsubscribe = auth_store.subscribe(value => {
 		state = value;
 	});
-
     // for updating the module/xml whenever there is change in the xml
     beforeUpdate(async() => {
 		if (state.xml != xml) {
@@ -71,13 +69,11 @@
             updateXmlAuthData(xml);
 		}
 	});
-
     // for binding some events
     onMount(async() => {
         AH.listen('body','keyup', '#authoring-modal .validate', function (current, event) {
             event.preventDefault();
             event.stopPropagation();
-
             if (event.keyCode == 13) {
                 if (AH.selectAll('#authoring-modal .showError').length == 0) {
                     AH.select('#authoring-modal .addElement').click();
@@ -87,17 +83,15 @@
             }
             CHART_AUTH.validate(current);
         });
-
         AH.listen('body','change', 'select', function (current) {
             CHART_AUTH.changeType(current);
         });
-
         AH.listen('body','click', '.resetElement', function () {
             CHART_AUTH.resetModal();
             AH.select("#chart-width").value = AH.select("#chart-width").getAttribute("data-dwidth");
             AH.select("#chart-height").value = AH.select("#chart-height").getAttribute("data-dheight");
             AH.select("#xlabel").value = AH.select("#xlabel").getAttribute("data-dxtitle");
-            AH.select("#ylabel").value = AH.select("#ylabel").getAttribute("data-dylabel");
+            AH.select("#ylabel").value = AH.select("#ylabel").getAttribute("data-dytitle");
             AH.select("#defaultans").value = AH.select("#defaultans").getAttribute("data-dans");
             AH.select("#color").selectedIndex = 0;
             AH.select("#snapto").value = AH.select("#snapto").getAttribute("data-dsnapto");
@@ -107,53 +101,47 @@
             AH.select("#xmin").value = AH.select("#xmin").getAttribute("data-dxmin");
             AH.select("#xmax").value = AH.select("#xmax").getAttribute("data-dxmax");
             AH.select("#xinterval").value = AH.select("#xinterval").getAttribute("data-dxinterval");
-
             if (AH.select("#chart-type").value == "dotplot") {
                 AH.select("#authoring-modal #chart_title").value = "Dot Plot";
             } else if (AH.select("#chart-type").value == "column") {
                 AH.select("#authoring-modal #chart_title").value = "Column";
             } else if (AH.select("#chart-type").value == "line") {
-                AH.select("#authoring-modal #chart_title").value = "Line";
+                AH.select("#authoring-modal #chart_title").value = "Line Chart";
             } else if (AH.select("#chart-type").value == "histogram") {
                 AH.select("#authoring-modal #chart_title").value = "Histogram";
             }
         });
-
         AH.listen('body','mousemove', '#chartmain', function () {
             updateXML();
         });
-
         AH.listen('body','click', '#chartmain, .addElement, .updateGraph', function () {
             updateXML();
         });
-
         AH.listen('body', 'click', '#xmlDone', function () {
             CHART_AUTH.initChart();
         });
     });
-
     // for adding the highchart draggable plugin and initiating the chart
     afterUpdate(async() => {
         if (!is_resource_added && xml) {
-            AH.addScript('', itemUrl + 'clsSMChart/lib/highchart_draggable.js', { callback: function () {
+            AH.addScript('', itemUrl + 'src/libs/highchart_draggable.js', { callback: function () {
                 CHART_AUTH.initChart();
                 editorState.links = true;
             }});
             is_resource_added = true;
         }
     })
-
     // function for updating the xml
     function updateXML() {
         if (state.xml != AH.select('#special_module_xml').value) {
             getChildXml(AH.select('#special_module_xml').value);
         }
     }
-
     // updates all states value according to the value of xml
     function updateXmlAuthData(xml_data) {
         // contains the json data of the xml
         let newXml = XMLToJSON(xml_data);
+        console.log("newXML",newXml);
         // parses the xml and updates the value of all states except 'xml' and 'moduleType'
         parseXml(newXml);
         auth_store.update( (item) => {
@@ -168,7 +156,6 @@
             });
         }
     }
-
     // function for updating the state and parsing the xml
     function parseXml(QXML) {
         // updates the value of the states
@@ -179,6 +166,7 @@
             item.correctans = QXML.smxml.chart._correctans;
             // updates the value of state 'defaultans' with defaultans attribute value of chart tag of xml
             item.defaultans = QXML.smxml.chart._defaultans;
+    
             // updates the value of state 'height' with height attribute value of chart tag of xml
             item.height = QXML.smxml.chart._height;
             // updates the value of state 'snapTo' with snapTo attribute value of chart tag of xml
@@ -218,16 +206,16 @@
                 <div style="height: 41px" class="position-relative w-100">
                     <div class="float-end mr-2 pt-1">
                         <span>
-                            <button aria-label={l.add} class="setdata btn-light btn m-0 w-auto h-auto p-1 bg-white border ml" data-toggle="tooltip" on:click={() => { CHART_AUTH.updatePoint('addPoint', cid) }} data-original-title={l.add} >
+                            <button title={l.add} data-bs-toggle="tooltip" aria-label={l.add} data-original-title={l.add} tabindex="0" class="setdata btn-light btn m-0 w-auto h-auto p-1 bg-white border ml"  on:click={() => { CHART_AUTH.updatePoint('addPoint', cid) }}  >
                                 <span class="icomoon-plus s2 updateGraph"></span>
                             </button>
-                            <button aria-label={l.delete} tabindex="0" class="setdata btn btn-light m-0 w-auto h-auto p-1 bg-white border ml" data-toggle="tooltip" on:click={() => { CHART_AUTH.updatePoint('removePoint', cid) }} data-original-title={l.delete}>
+                            <button  title={l.delete} data-bs-toggle="tooltip" aria-label={l.delete} data-original-title={l.delete} tabindex="0" class="setdata btn btn-light m-0 w-auto h-auto p-1 bg-white border ml" on:click={() => { CHART_AUTH.updatePoint('removePoint', cid) }}>
                                 <span class="icomoon-new-24px-delete-1 s2 updateGraph"></span>
                             </button>
                         </span>
                         <span id="option-toolbar">
                             <span class="btn-group model-icon tools" on:click={() => { CHART_AUTH.elemModal('plotchart', cid) }} data-t="plotchart">
-                                <button aria-label={l.edit_chart} tabindex="0" data-toggle="tooltip" data-original-title={l.edit_chart}  class="bg-white btn btn-light p-1"><i class="icomoon-24px-edit-1"></i></button>
+                                <button title={l.edit_chart} aria-label={l.edit_chart} tabindex="0" data-bs-toggle="tooltip" data-original-title={l.edit_chart}  class="bg-white btn btn-light p-1"><i class="icomoon-24px-edit-1"></i></button>
                             </span>
                         </span>
                     </div>

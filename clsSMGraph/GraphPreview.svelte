@@ -10,11 +10,9 @@
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
     import l from '../src/libs/Lang';
     import { writable } from "svelte/store";
-    import swal from 'sweetalert';
     import ItemHelper from '../helper/ItemHelper.svelte';
 	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     import GRAPH from './lib/mathString';
-
     export let xml;
 	export let uxml;
     console.log("uxml",uxml);
@@ -34,11 +32,9 @@
         modalViewLayout: [],
         checked: true,
 	});
-
     const unsubscribe = preview_store.subscribe(value => {
 		state = value;
 	});
-
     // functions responsible for loading the module
     beforeUpdate(async() => {
         if (!state.init) {
@@ -57,7 +53,6 @@
             loadModule(xml);
         }
     })
-
     // functions responsible for doing the changes according to the xml
     afterUpdate(async() => {
         if (state.init) {
@@ -73,12 +68,10 @@
                     item.xml = xml;
                     return item;
                 });
-
                 if (isReview && typeof (editorState) == 'undefined') {
                     setReview();
                 }
             }
-
             if (state.review != isReview && editorState) {
                 preview_store.update( (item) => {
                     item.review = isReview;
@@ -92,7 +85,6 @@
                 }
                 AH.selectAll('#mathmain #delButton.active', 'removeClass','active');
             }
-
             if (state.checked && typeof(showAns) == 'undefined') {
                 GRAPH.checkAns("#mathmain");
                 state.checked = false;
@@ -100,48 +92,41 @@
             AH.enableBsAll('[data-bs-toggle="tooltip"]', 'Tooltip')
         }
     })
-
     // Responible for binding the events
     onMount(async()=> {
         if (window.inNative) {
             window.getHeight && window.getHeight();
         }
         AH.set("q_refresh", refreshModule);
-
         if (!editorState) {
             refreshModule();
         }
-
         AH.listen('body', 'keydown', '#mathmain #delButton', function (current, event) {
             if (event.ctrlKey && event.altKey && (event.which == 49 || event.keyCode == 49)) {
                 openModal();
             }
         });
-
         AH.listen('body', 'keydown', '#mathmain #ADA_button', function (current, event) {
             if (event.keyCode == 13) {
                 openModal();
             }
         });
-
         AH.listen('body', 'click', '#mathmain', function (current, event) {
             if (event.target.parentNode.id != 'delButton' && event.target.id != 'ADA_button' && event.target.id != 'delButton' && event.target.parentNode.id != 'ADA_button' && event.target.id != 'option-toolbar') {
                 displayAns();
             }
         });
-
         AH.listen('body', 'mouseup', '#mathmain', function (current, event) {
             if (event.target.parentNode.id != 'delButton' && event.target.id != 'ADA_button' && event.target.id != 'delButton' && event.target.parentNode.id != 'ADA_button' && event.target.id != 'option-toolbar') {
                 displayAns();
             }
         });
-
         AH.listen('body', 'click', '.delElem', function (current) {
             let cur_elem = current.children[0];
             cur_elem.classList.toggle('active');
             if ( AH.select('.selected-option').innerHTML == 'point' || AH.select('.selected-option').innerHTML == 'circle' || AH.select('.selected-option').innerHTML == 'association' ) {
                 if (cur_elem.classList.contains('active')) {
-                    swal(l.delete_msg);
+                    AH.alert(l.delete_msg);
                     AH.find('#mathmain', '#ID0Preview').style.cursor = "pointer";
                 } else {
                     AH.find('#mathmain', '#ID0Preview').style.cursor = "default";
@@ -149,7 +134,7 @@
                 }
             } else if (cur_elem.classList.contains('active')) {
                 cur_elem.style.color = 'black';
-                swal(l.last_delete_msg);
+                AH.alert(l.last_delete_msg);
                 AH.setCss(current, {
                     backgroundColor: "transparent",
                     boxShadow: "none"
@@ -157,20 +142,17 @@
                 AH.find('#mathmain', '#ID0Preview').style.cursor = "default";
             }
         });
-
         AH.listen('body', 'click', '#mathmain .footer_toolbox li', function (current) {
             current.classList.add('btn_active');
             AH.selectAll(AH.siblings(current), 'removeClass', 'btn_active')
         });
     })
-
     // for refreshing the module
     function refreshModule() {
         if (typeof JXG != 'undefined' && AH.select('#ID0Preview').nodeName && AH.select('#ID0Preview').offsetHeight) {
             initModule();
         }
     }
-
     // function for iniating module 
     function initModule() {
         GRAPH.readyThis("#mathmain");
@@ -179,7 +161,6 @@
         /* allows user to perform the task and hides 'correct answer' and 'your answer' button */
         GRAPH.modeOn();
     }
-
     // responsible for showing the answer
     function displayAns() {
         // used for switch on next question in prepengine if current question is attempted
@@ -193,7 +174,6 @@
         }
         onUserAnsChange(result)
     }
-
     // function responsible for loading the module
     function loadModule (loadXml) {
         loadXml = XMLToJSON(loadXml);
@@ -210,7 +190,6 @@
             }	
         }
     }
-
     // function responsible for parsing the xml
     function parseXMLAuthoring(MYXML) {
         preview_store.update( (item) => {
@@ -219,15 +198,12 @@
             return item;
         });
     }
-
     // function responsible for opening the modal
     function openModal() {
         AH.getBS('#graph_modal', 'Modal').show();
         loadModalView();
-
         AH.selectAll('[resetValue="1"]', 'value', '');
     }
-
     // function for setting the uxml on key update
     function modifyUxmlOnKey() {
         let tempRowVal = [];
@@ -246,7 +222,6 @@
                     tempRowVal.push(tempCol);
                 });
                 // updates the value of 'data-userans' attribute of graph board container inside preview container where id starts with 'ID' character after joining the 'tempRowVal' array value with '|' 
-
                 AH.find("#mathmain", '[id^=ID]').setAttribute("data-userans", tempRowVal.join('|'));
                 // calls unsetReview method
                 unsetReview();
@@ -299,7 +274,6 @@
                     let tempCol = [col[0].value + "," + col[1].value + "," + col[2].value];
                     tempRowVal.push(tempCol);
                 });
-
                 AH.find("#mathmain", '[id^=ID]').setAttribute("data-userans", tempRowVal.join('|'));
                 unsetReview()
                 break;
@@ -307,7 +281,6 @@
         displayAns();
         AH.getBS('#graph_modal', 'Modal').hide();
     }
-
     // used for ADA and adds or removes the row 
     function updateRow (type) {
         if (type == "add") {
@@ -315,7 +288,7 @@
             state.noOfRow = state.noOfRow + 1;
         } else if (type == 'remove') {
             if (state.noOfRow == 1) {
-                swal("Default row can't be deleted");
+                AH.alert("Default row can't be deleted");
             } else {
                 //  decreases the row by 1 if 'remove' button clicked and row is greater than 1
                 state.noOfRow = state.noOfRow - 1;
@@ -341,7 +314,6 @@
             return item;
         });
     }
-
     /* shows correct or incorrect message and correct answer and your answer button and does not allow user to perform the task */
     function setReview() {
         AH.selectAll('#mathmain #delButton.active', 'removeClass','active');
@@ -353,7 +325,6 @@
         // display the correct or incorrect 
         displayAns();
     }
-
     /* hides correct or incorrect message and correct answer and your answer button and allow user to perform the task removes red or green color of border of preview container */
     function unsetReview() {
         AH.selectAll('#mathmain #delButton.active', 'removeClass','active');
@@ -363,7 +334,6 @@
         // does not show the point and graph stroke and fill color to indicate that answer is correct or incorrect, shows border color of preview container in gray color */
         GRAPH.showansdrag('#mathmain', 'u', 0);
     }
-
     // function for handling the review mode
     function handleReviewMode(mode) {
         if (mode == 'c') {
@@ -372,7 +342,6 @@
             GRAPH.showansdrag('#mathmain', 'u', 1)
         }
     }
-
     // function for resetting the modal
     function resetAdaModal () {
         state.noOfRow = 1;
