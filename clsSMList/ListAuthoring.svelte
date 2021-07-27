@@ -52,8 +52,6 @@
     let handle_generate;
 
     $:{
-        console.log('Editor State =>'+editorState.guid);
-        console.log("Checking $");
         if (state.data_cdata && state.data_cdata[1].cg) {
             handle_disable = true;
         }
@@ -70,7 +68,6 @@
     onMount(()=>{
 
         AH.listen(document,'click','.checkall',function(_this){
-            console.log('Test ',_this.checked);
             let chk = _this.checked;
             
             AH.selectAll('table.table input[type=checkbox]:enabled,.sticky-col input[type=checkbox]:enabled,.sticky-intersect input[type=checkbox]:enabled','checked',chk);
@@ -272,7 +269,6 @@
                 //         resolve(json_received_string.content_guid);
                 //     }
                 // });
-                console.log('check disabled 1 =>',state.xml.smxml._disabled_generate);
                 updateXML(state.xml.smxml._disabled_generate);
                 AH.ajax({
                     type: "post",
@@ -287,7 +283,6 @@
                         AH.activate(0);
                     }
                 }).then(function(response) {
-                    console.log(response);
                 // contains the response in object form
                     // contains the response in object form
                     let json_received_string = JSON.parse(response);
@@ -303,7 +298,6 @@
                         if (current_row_val == (state.data_cdata.length - 1)) {
                             // updates the xml with created guids
                             updateXML(JSON.stringify({ "list": temp_array }));
-                            console.log('check disabled2 =>',state.xml.smxml._disabled_generate);
                             
                             //updateXML(JSON.stringify({ "list": Object.assign({},temp_array) }));
                         }
@@ -332,7 +326,6 @@
 
     // used for delete the row
     function handleDelete(index_no) {
-        console.log('checking');
         if (state.data_cdata.length >= 6) {
             // removes the respective row from xml
             state.data_cdata.splice(index_no, 1);
@@ -410,7 +403,6 @@
                         let json_received_string = JSON.parse(response);
                         if (json_received_string.content_guid && (close_activator == true)) {
                             // close the activator
-                            console.log('ajaxRequestForDataUpdate');
                             AH.activate(0);
                             // shows the warning message
                             
@@ -428,7 +420,7 @@
 
     async function updateOldGuidsOption(rowNo, current_guid, parent_guid, created_with_rows, used_in) {
         // shows the activator
-        console.log('updateOldGuidsOption 1');
+        
         AH.activate(2);
         for (let index_no = 0; index_no < state.data_cdata.length; index_no += 1) {
             if (index_no != 0) {
@@ -438,7 +430,7 @@
                     if (!received_data) {
                         
                         AH.showmsg(l.check_net_update_ids, 4000);
-                        console.log('updateOldGuidsOption 2');
+                        
                         AH.activate(0);
                         break;
                     }
@@ -449,7 +441,6 @@
                     if (!received_data1) {
                         
                         AH.showmsg(l.check_net_update_ids, 4000);
-                        console.log('updateOldGuidsOption 3');
                         AH.activate(0);
                     }
                 }
@@ -467,7 +458,6 @@
 
     // used for set the parent guid in each rows xml and updates the xml
     function setParentGuid(guid_data) {
-        console.log("guid_data "+guid_data);
         // used for defined the title of child items
         // state.xml.smxml._pt = $('#title').html();
         state.xml.smxml._pt = document.querySelector('#title').innerHTML;
@@ -478,8 +468,6 @@
         for (let key in state.data_cdata) {
             state.data_cdata[key].pg = guid_data;
         }
-
-        console.log({'cdata ':state.data_cdata});
         //updates the xml
         updateXML(JSON.stringify({ "list": state.data_cdata }));
     }
@@ -493,7 +481,6 @@
      // used for generate the guid for each rows
     async function handleGenerateItems() {
         
-        console.log('handle generate');
         if ((state.data_cdata).length >= 5) {
             // used for disabled the Generate/Update Items button
             state.xml.smxml._disabled_generate = 1;
@@ -714,7 +701,6 @@
 
     function updateParentGuid() {
         // @eslint issue, it's global method
-        console.log("updateParentGuid 1");
         AH.activate(2);
         // AH.ajax({
         //     //ajax: "1",
@@ -767,7 +753,6 @@
                 AH && AH.showmsg(l.check_net_and_save, 4000);
             }
             // @eslint issue, it's global method
-            console.log("updateParentGuid 2");
             AH.activate(0);
             // hides the progress bar
             //jQuery('#warning_label_container').addClass('h');
