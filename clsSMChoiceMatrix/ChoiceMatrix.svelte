@@ -356,7 +356,7 @@
 						</label>
                         <select on:click = {changeTheme} 
                             value = {state.theme}
-                            class = "form-control form-control-md px-2 enroll_date_td width150 float-left"
+                            class = "form-select form-control-md px-2 enroll_date_td width150 float-left"
                             id = "select_themes"
                             name = "select_themes"
 						>
