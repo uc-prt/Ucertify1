@@ -74,21 +74,13 @@
     }
 
     onMount(()=>{
-        // $('body').on('keydown', '.td_data', function(e) { 
-        //     if (e.which === 13) {
-        //         $(this).click();
-        //     }
-        // });
+       
         AH.listen(document,'keydown','.td_data',((data,e)=>{
             if(e.which === 13) {
                 data.click();
             }
         }))
-
-        // jQuery('#sm_controller button').click(function() {
-        //     jQuery('#sm_controller button').removeClass("active btn-secondary text-white bg-secondary");
-        //     jQuery(this).addClass('active btn-secondary text-white bg-secondary');
-        // });
+        
         AH.listen(document,'click','#sm_controller button',((e)=>{
             AH.selectAll('#sm_controller button','removeClass',['active,btn-secondary,text-white,bg-secondary']);
             AH.selectAll(e,'addClass',['active,btn-secondary,text-white,bg-secondary']);
@@ -128,11 +120,9 @@
             
             //if (window.uaXML) {
             if(uxml) {
-                // let timer = setTimeout(function() {
-                    //parseUserAns(window.uaXML);
+                
                     parseUserAns(uxml)
-                //     clearTimeout(timer);
-                // },50);
+                
             }
 		} catch (error) {
                 onError = error;
@@ -156,10 +146,7 @@
             state.xml = xml;
             loadModule(xml);
         }  
-        //if (this.props.remedStatus != nextProps.remedStatus) {
-           
-        //} 
-        //if (window.QXML) {
+       
         if(xml) {
             console.log('qxml');
         }
@@ -255,10 +242,10 @@
             
             resNew = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>";
             if (bool != ' ' && c == user.length) {
-                //jQUery("#answer").prop("checked", bool);
+               
                 AH.select("#answer",'attr',{"checked":bool});
             } else {
-                //jQuery("#answer").prop("checked", isAnswerCorrect);
+                
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
             uxml = userXML
@@ -342,16 +329,10 @@
                 showAns(countRes);
             }
             
-            
-            //jQuery("#special_module_user_xml").val("<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>");
             AH.select("#special_module_user_xml").value = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
             if (bool != ' ' && c == user.length) {
-                //jQUery("#answer").prop("checked", bool);
-                
                 AH.select("#answer",'attr',{"checked":bool});
             } else {
-                //jQuery("#answer").prop("checked", isAnswerCorrect);
-                
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
         
@@ -463,7 +444,7 @@
                         }
                     }
                 }
-                //totalRows.push(<tr key={"row"+i}>{totalCols}</tr>);
+                
                 totalRows = [
                     ...totalRows,{
                         key: "row"+i
@@ -538,15 +519,12 @@
         state.pointerEvents = "none"
         isReview = true;
         showAnswer("yans", "showIcon");
-        //jQuery('#sm_controller .your-ans').addClass("btn-light active");
 
         AH.selectAll('#sm_controller .your-ans','addClass',['btn-light','active']);
 
-
-        //jQuery(".tokenHeader").attr("tabindex", "0");
         AH.selectAll(".tokenHeader","attr",{"tabindex":0})
 
-        //document.querySelector(".tokenHeader").setAttribute("tabindex","0");
+       
         setTimeout(getCorrect(),200); 
         // if (!window.QXML) {
         if(editorState) {
@@ -557,11 +535,9 @@
     function getCorrect() {
 	    for (let i = 0; i < state.correctAns.length; i++) {
             if (state.correctAns[i] == state.userList[i]) {
-                //jQuery('#t_'+i).removeClass("icomoon-new-24px-cancel-circle-1").addClass("icomoon-new-24px-checkmark-circle-1");
                 AH.select('#t_'+i,'removeClass','icomoon-new-24px-cancel-circle-1');
                 AH.select('#t_'+i,'addClass','icomoon-new-24px-checkmark-circle-1');
             } else {
-                //jQuery('#t_'+i).removeClass("icomoon-new-24px-checkmark-circle-1").addClass("icomoon-new-24px-cancel-circle-1");
                 AH.select('#t_'+i,'removeClass','icomoon-new-24px-checkmark-circle-1');
                 AH.select('#t_'+i,'addClass','icomoon-new-24px-cancel-circle-1')
             }
@@ -574,7 +550,6 @@
         state.pointerEvents = "auto"
         isReview = false;
         showAnswer("yans", "hideIcon");
-        //jQuery(".tokenHeader").removeAttr("tabindex");
         AH.selectAll(".tokenHeader", 'removeAttr', 'tabindex');
     }
 
@@ -660,7 +635,7 @@
 			showAnswer("yans", "showIcon");
 		}
     }
-    //let displayClass = ((state.iconVisible == "" && (state.userAns).includes(val.id)));
+    
 
 </script>
 
@@ -713,28 +688,30 @@
                     ></GriddedHelper>
                 {/if}
 
-            {#if state.decimal_val == 1}
-                <GriddedHelper 
-                    on:handleClickCombo = {handleClickCombo}
-                    loop = {Cols_decimal}
-                    class1 = "tdFont points"
-                    className="tdFontP text-center items_element decl_point"
-                    tableId ="slash_tab"
-                    tableClass ="slash_tab gridded_tab mt-0 mb-0 myP"
-                    value = "."
-                ></GriddedHelper>
-            {/if}
-            {#if state.slash_val == 1}
-                <GriddedHelper  
-                    on:handleClickCombo = {handleClickCombo}
-                    loop = {Cols_slash}
-                    class1 = "tdFont points"
-                    className="tdFontP text-center items_element sla_point"
-                    tableId ="tdFontP slash_tab"
-                    tableClass ="slash_tab gridded_tab mt-0"
-                    value = "/"
-                ></GriddedHelper>
-            {/if}
+                {#if state.slash_val == 1}
+                    <GriddedHelper  
+                        on:handleClickCombo = {handleClickCombo}
+                        loop = {Cols_slash}
+                        class1 = "tdFont points"
+                        className="tdFontP text-center items_element sla_point"
+                        tableId ="tdFontP slash_tab"
+                        tableClass ="slash_tab gridded_tab mt-0"
+                        value = "/"
+                    ></GriddedHelper>
+                {/if}
+
+                {#if state.decimal_val == 1}
+                    <GriddedHelper 
+                        on:handleClickCombo = {handleClickCombo}
+                        loop = {Cols_decimal}
+                        class1 = "tdFont points"
+                        className="tdFontP text-center items_element decl_point"
+                        tableId ="slash_tab"
+                        tableClass ="slash_tab gridded_tab mt-0 mb-0 myP"
+                        value = "."
+                    ></GriddedHelper>
+                {/if}
+            
         
             <table id="gridded_sheet" class="gridded_tab mt-0 lastGrid create_tab myP">
                 <tbody>
