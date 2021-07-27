@@ -443,7 +443,7 @@
                             </div>
                             <div class="col-md-12 px-0 pull-left pb-3">
                                 <label for="related_tags${index}" class="control-label float-left pr-4"><span class="mendatory_label float-left">Tags</span></label>
-                                <input type="text" require="1" title="Add multiple tags by pressing Enter key" data-role="tagsinput" class="tagin float-left mr-2 col-md-6" data-key="tags" data-index="${index}" placeholder="Add multiple tags by pressing Enter key" name="related_tags${index}" id="related_tags${index}" />
+                                <input type="text" require="1" title="Add multiple tags by pressing Enter key" class="col-md-12 float-left form-control height32 m-b-sm" data-key="tags" data-role="tagsinput" data-index="${index}" placeholder="Add multiple tags by pressing Enter key" name="related_tags${index}" id="related_tags${index}" />
                             </div>
                         </div>
                     </div>
