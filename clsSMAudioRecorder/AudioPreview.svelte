@@ -174,9 +174,9 @@
             // stores user answer xml data in uaXML variable of window object to access it globally
             uxml = AH.select("#special_module_user_xml").value;
             // used for screen reader to read the message when user reached on play button
-            areaLabelForPreviewStopButton = AH.select('#stopButtonTooltip').getAttribute('data-original-title');
+            areaLabelForPreviewStopButton = AH.select('#stopButtonTooltip').getAttribute('title');
             // used for screen reader to read the message when user reached on record button
-            areaLabelForPreviewRecordButton = AH.select('#recordButtonTooltip').getAttribute('data-original-title');
+            areaLabelForPreviewRecordButton = AH.select('#recordButtonTooltip').getAttribute('title');
             // used for screen reader to read the message when user open the reset modalbox
             areaLabelForPreviewModalContent = AH.select('#previewDialogBody').innerText;
             if (state.correctAns.trim() != '') {
@@ -537,7 +537,7 @@
                             class="btn btn-light py-0" 
                             aria-label="Click for {areaLabelForPreviewRecordButton}"
                         >
-                            <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-placement="top" data-original-title={((state.status == "recording") ? "Stop Recording": "Start Recording")} id="recordButtonTooltip" name="recordButtonTooltip"></span>
+                            <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title={((state.status == "recording") ? "Stop Recording": "Start Recording")} id="recordButtonTooltip" name="recordButtonTooltip"></span>
                         </button>
                         <button 
                             type="button" 
@@ -548,7 +548,7 @@
                             class="btn btn-light py-0" 
                             aria-label="Click for {areaLabelForPreviewStopButton}"
                         >
-                            <span class="icomoon-24px-autoplay-4 position-relative top1" data-bs-toggle="tooltip" data-placement="top" data-original-title="Play Audio" id="stopButtonTooltip" name="stopButtonTooltip"></span>
+                            <span class="icomoon-24px-autoplay-4 position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title="Play Audio" id="stopButtonTooltip" name="stopButtonTooltip"></span>
                         </button>
                         <button 
                             type="button" 

@@ -124,6 +124,7 @@
         // for mark point color
         markPointColor: '#00FF00'
 	});
+
     let state = {};
     const unsubscribe = auth_store.subscribe(value => {
 		state = value;
@@ -136,7 +137,6 @@
             state.xml = xml;
         }
     })
-
     // call after html render and added the necessary events
     onMount(async() => {
         drawing_paths = AH.select('.drawing_paths');
@@ -254,7 +254,7 @@
             // removes the class active from element have class 'authoring_btn' or id 'focus_point'
             AH.selectAll('.authoring_btn, #focus_point', 'removeClass', 'active');
             // adds the class active to 'Add Point' button
-            current.classList.add('active')
+            current.classList.add('active');
             // assign the value 'authoring_point' to variable 'authoringMode'
             authoringMode = 'authoring_point';
             // removes the class 'eraserHover' from the elements have tag name path inside the element have id authoringSvg
@@ -551,7 +551,7 @@
             swal({
                 text: l.reset_module,
                 icon: "warning",
-                buttons: true,
+                buttons: ["cancel","ok"],
             }).then((value) => {
                 if (value) {
                     // reset all the activity and makes it in initial condition as it looks like just after load
@@ -1444,7 +1444,7 @@
                         <button type="button" tabindex="0" data-title="compass" title={l.compass} name="compass" id="authoring_compass" class="btn btn-light auth_toolbar geometryTool tooltip_btn authoring_btn"><i class="icomoon-compass1"></i></button>
                     </div>
                     <div tabindex="0" class="btn-group mr-2" role="group" aria-label={l.removing_tools}>
-                        <button type="button" tabindex="0" data-title="eraser" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn tooltip_btn"><i class="icomoon-delete-sm"></i></button>
+                        <button type="button" tabindex="0" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn tooltip_btn"><i class="icomoon-delete-sm"></i></button>
                         <button type="button" title={l.clear_screen} tabindex="0"  name="clearScreen" id="authoring_clearScreen" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-close-2"></i></button>
                         <button type="button" tabindex="0" title={l.redo} name="redo" id="authoring_redo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-redo-2"></i></button>
                         <button type="button" tabindex="0" title={l.undo} name="undo" id="authoring_undo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-undo-2"></i></button>

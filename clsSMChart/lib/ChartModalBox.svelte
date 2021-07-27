@@ -50,17 +50,17 @@
                     <div class="row mx-0">
                         <div class="form-group col-sm-6 col-12 px-1">
                             <label class="control-label font-weight-normal mb-0" for="xlabel">{l.xaxis_title}</label>
-                            <input type="text" class="form-control form-control-md" id="xlabel" name="xlabel" placeholder="Enter Text" data-dxtitle ="Set Frequency" />
+                            <input type="text" class="form-control form-control-md" id="xlabel" name="xlabel" placeholder="Enter Text" data-dxtitle ="Hours" />
                         </div>
                         <div class="form-group col-sm-6 col-12 px-1">
                             <label class="control-label font-weight-normal mb-0" for="ylabel">{l.yaxis_title}</label>
-                            <input type="text" class="form-control form-control-md" id="ylabel" name="ylabel" placeholder="Enter Text" data-dytitle =""/>
+                            <input type="text" class="form-control form-control-md" id="ylabel" name="ylabel" placeholder="Enter Text" data-dytitle ="Values"/>
                         </div>
                     </div>
                     <div class="row mx-0">
                         <div class="form-group col-sm-6 col-12 px-1">
                             <label class="control-label font-weight-normal mb-0 d-inline-flex" for="defaultans"><div class="mendatory_label float-left">{l.default_answer}</div><div class="mendatory_field"></div></label>
-                            <input type="text" class="validate form-control form-control-md" id="defaultans" name="defaultans" placeholder="Enter answer" data-dans = "2,3,3" readonly = "readonly" aria-describedby="defaultAnsHelpBlock" />
+                            <input type="text" class="validate form-control form-control-md" id="defaultans" name="defaultans" placeholder="Enter answer" data-dans = "10,20,30" readonly = "readonly" aria-describedby="defaultAnsHelpBlock" />
                             <small id="defaultAnsHelpBlock" class="text-danger font-weight-bold"> {l.default_representation}</small>	
                         </div>								
                         <div class="col-sm-6 col-12 form-group px-1">
@@ -132,9 +132,7 @@
         -moz-appearance: none;
         appearance: none; 
     }
-
     .modal_height {
         max-height: 350px;
     }
 </style>
-        

@@ -61,7 +61,7 @@
 
 	$: {
 	if (isReview == true) {
-			console.log('review mode');
+			
 			// for displaying the ans
 			displayAns();
 			AH.select("#shuffleArea", "hide" );
@@ -148,7 +148,7 @@
 				})
 				
 
-				console.log('onDragEnd');
+				
 				if (!ucMlid.is_valid_drop) {
 					if (ucMlid.sinfo) {
 						ucMlid.sinfo = false;
@@ -158,7 +158,7 @@
 						// if (!UCINFO.isIphone) {
 							if (typeof(AH.alert) == 'function') 
 								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
-								console.log('checking box');
+								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
 								// if (typeof(bindDialog) == 'function') 
@@ -437,7 +437,7 @@
 		ucMlid.modeOn();
 		if(!editorState) {
 			// if it is open in test area parse the user answer
-			console.log('parseUserAnswer');
+			//console.log('parseUserAnswer');
 			parseUserAnswer();
 		}
 
@@ -607,7 +607,7 @@
 				list2 = temparr;
 			}
 	    } catch(error) {
-			console.log({error,fun:'ParseXMLPreview',file:'MatchlistPreview.js'});
+			console.log({error,fun:'ParseXMLPreview',file:'MatchlistPreview.svelte'});
 		}
 	}
 
@@ -624,7 +624,6 @@
 
 	// shuffle the option
 	function shuffleItems() {
-		console.log("Shuffled");
 		isShuffeled = true;
 		ucMlid.removeUserAns();
 		ucMlid.showUserAns("#"+containerID);
@@ -655,7 +654,7 @@
 
 	function setList1Html(item,count) { 
 		function randomChoice (arr) {
-			console.log("arr arr");
+			
 			let randIndex = Math.floor(Math.random() * arr.length);
 			item.originalseq = randIndex; // change
 			return arr[randIndex];
