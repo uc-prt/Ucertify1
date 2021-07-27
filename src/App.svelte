@@ -82,6 +82,8 @@
 					onDataGet();
 				});
 			} else {
+				console.log('server_url', server);
+				console.log('searchQuery', searchQuery);
 				ajaxRes = await AH.ajax({url: server, data: searchQuery});
 				onDataGet();
 			}
@@ -113,12 +115,14 @@
 	function onDataGet() {
 		if (AH.isValid(ajaxRes)) {
 			ajaxRes = JSON.parse(ajaxRes);
+			console.log('ajaxRes', ajaxRes);
 			Object.keys(ajaxRes).forEach((key)=>{
 				if (window.hasOwnProperty(key)) window[key] = ajaxRes[key];
 			});
 			if (ajaxRes['userArray']) {
 				window.userArray = ajaxRes['userArray'];
 				let response = JSON.parse(ajaxRes['userArray']);
+				console.log('response', response);
 				window.editor.save = response.save;
 				window.editor.course = response.course;
 				window.user_guid = response.user_guid;
