@@ -3,11 +3,11 @@
  *  File Name   : FillInTheBlanks.svelte
  *  Description : Container for all Fill In The Blanks Authoring Module
  *	Author      : Pradeep Yadav
- *  Version     : 1.0
- *  Package     : svelte_items
- *  Last update : 21 Jan 2021
- *  Last updated by : Pradeep Yadav
- */
+	*  Version     : 1.0
+	*  Package     : svelte_items
+	*  Last update : 21 Jan 2021
+	*  Last updated by : Pradeep Yadav
+	*/
 	import { AH, XMLToJSON } from '../helper/HelperAI.svelte';
 	import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
 	import { writable } from 'svelte/store';
@@ -18,7 +18,10 @@
 	export let getChildXml;
 	// variable declararion
 	let cmTime = {};
-	let count = 0;
+	let math_eq_count = 0;
+	let multiline_count = 0;
+	let drag_drop_count = 0;
+	let drop_down_count = 0;
 	window.spanCounter = 0;
 	window.currentId = "";
 	window.currentInp = "";
@@ -44,31 +47,27 @@
 		fillDropDown:[
 				{
 					value:"",
-					id:"",
+					id:"0",
 					checked:""	
-						
 				}
 			],
 		fillDragDrop:[
 			{
 				value:"",
-				id:"",
-				checked:"checked"	
-					
+				id:"0",
+				checked:"checked"		
 			}
 		],
 		fillMultiLine:[
 			{
 				value:"",
-				id:""	
-					
+				id:"0"	
 			}
 		],
 		fillEquation:[
 			{
 				value:"",
-				id:""	
-					
+				id:"0"	
 			}
 		],
 		anchorEl: null,
@@ -102,7 +101,7 @@
 	})
 
 	onDestroy(()=> {
-        tinymce.remove('.tinymce-editor-res');
+		tinymce.remove('.tinymce-editor-res');
 	})
 
 	// this function is responsible for loading the module
@@ -321,8 +320,8 @@
 				handleOpen();	
 				cmTime = {};
 			}
-        });
-        AH.listen(document, 'keydown', '.drop_down_delete, .drag_drop_delete, .mathematical_delete, .latexEditButton', (_this, event)=> {
+		});
+		AH.listen(document, 'keydown', '.drop_down_delete, .drag_drop_delete, .mathematical_delete, .latexEditButton', (_this, event)=> {
 			if ((event.keyCode == 13 || event.which == 13)) {
 				// click the element which currently get the focus and enter key is down
 				_this.click();
@@ -361,7 +360,7 @@
 		AH.listen(document, "click", ".editMath", (_this, e)=> {
 			//console.log(($(this).attr('id')));
 			window.currentId = _this.getAttribute('id');
-    	});
+		});
 		tinyMCE.PluginManager.add('res', function(editor, url) {
 			editor.addMenuItem('resp', {
 				text:l.add_response,
@@ -543,43 +542,45 @@
 	** These function responsible for adding the options
 	*/
 	function addDropDownOption() {
+		drop_down_count++;
 		let tempArr = state.fillDropDown;
 		tempArr.push({
 			value:"",
-			id:"",
+			id: drop_down_count,
 			checked:""
 		});
 		state.fillDropDown = tempArr;
 	}
 
 	function addDragDropOption() {
+		drag_drop_count++;
 		let tempArr = state.fillDragDrop;
 		tempArr.push({
 			value:"",
-			id:"",
+			id:drag_drop_count,
 			checked:"checked"
 		});
 		state.fillDragDrop = tempArr;
 	}
 
 	function addMultiLineOption() {
+		multiline_count++;
 		let tempArr = state.fillMultiLine;
 		tempArr.push({
 			value:"",
-			id:""
+			id:multiline_count
 		});
 		state.fillMultiLine = tempArr;
 	}
 
 	function addMathEquation() {	
-		count++;
-		let tempArr = state.fillEquation;
-		tempArr.push({
+		math_eq_count++;
+		//let tempArr = state.fillEquation;
+		let tempArr = {
 			value:"",
-			id:""
-		});
-
-		state.fillEquation = tempArr;
+			id:math_eq_count
+		};
+		state.fillEquation = [...state.fillEquation, tempArr];
 	}
 	/*---------End of the function-------------*/
 
@@ -638,15 +639,14 @@
 		/*Restore Default MathEquation Option*/
 		if (state.fillInTheBlanksChoice == 6) {
 			window.currentId = null;
-			state.fillEquation = [];
-			state.fillEquation.push({
-				value:"",
-				id:""
-			});
+			state.fillEquation = [{
+				value:"a+b",
+				id:"0"
+			}];
 		}
 		/*END*/
 
-        state.open = false; /*Open Response Dialog*/
+		state.open = false; /*Open Response Dialog*/
 	}
 
 	/*
@@ -700,7 +700,7 @@
 		state.customStyle = (ans.indexOf("#style#") != -1) ? true : false;
 		state.fillInTheBlanksChoice = 6;
 		state.open = true;
-		let tempEqArr = state.fillEquation;
+		let tempEqArr = {};
 		let latexEdit = {};
 
 		if (ans.indexOf("#style#") != -1) {
@@ -712,12 +712,12 @@
 				//$("#input"+i).attr('value',anskey[i])
 				latexEdit[i] = anskey[i];
 				//document.querySelector("#latexEdit"+i) && document.querySelector("#latexEdit"+i).setAttribute('latex', anskey[i]);
-				tempEqArr.push({
+				tempEqArr = {
 					value: anskey[i],
-					id: ""
-				});
+					id: i
+				};
 			}
-			state.fillEquation = tempEqArr;
+			state.fillEquation = [...state.fillEquation, tempEqArr];
 			state.latexEditData = latexEdit;
 		}		
 	}
@@ -1015,7 +1015,7 @@
 				// for mathemetical expression
 				//if(this.state.fillInTheBlanksChoice == 6) {
 					let MathArray = [];
-					for(let i=0; i<=count; i++) {
+					for(let i=0; i<=math_eq_count; i++) {
 						if(document.querySelector("#input"+i)) {
 							// if any value is blank then change the value of validate to 1
 							if (!AH.select("#input"+i).value) {
@@ -1025,7 +1025,7 @@
 						}
 					}
 
-					let e = MathArray.join("##",count);
+					let e = MathArray.join("##",math_eq_count);
 
 					// for validation
 					if (validate == 0) {
@@ -1080,31 +1080,23 @@
 	function removeMathEquation(id) {
 		let len = Object.values(state.fillEquation).length;
 		if (len != 1) {
-			let val = state.fillEquation[id].value;
-			delete state.fillEquation[id];
-			delete document.querySelector("#input"+id).parentNode.parentNode;
-			//this.state.fillEquation= this.state.fillEquation.filter(value => Object.keys(value).length !== 0);
-			//count = count-1;
-			//console.log($("#"+window.currentId).attr("latex"));
-		
-			// this.state.fillEquation.length
-			//this.forceUpdate();
+			state.fillEquation = state.fillEquation.filter(curr => curr.id != id);
 		}	
 	}
 
 	// for adding user response in fib mathametical expression
 	function addEditable(i) {
 		let txt = AH.select("#input"+i);
-    	let caretPos   = txt.selectionStart;
+		let caretPos   = txt.selectionStart;
 		let textAreaTxt = txt.value;
 		var txtToAdd  = "user Response";
-    	txt.value = textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos);
+		txt.value = textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos);
 	}
 	
 	// open the latex dialog
-    function latexEdit(i) {
-    	//$('.editMath').addClass('latexEdit');
-    	//$('.editMath').trigger('click');
+	function latexEdit(i) {
+		//$('.editMath').addClass('latexEdit');
+		//$('.editMath').trigger('click');
 		//$('.latexEdit').trigger('click');
 		if (!window.currentId) {
 			AH.showmsg("Equation did not crateated yet.")
@@ -1136,7 +1128,7 @@
 		}
 
 		let setting_arr = [];
-        
+		
 		if (state.case_sensetive == true) {
 			setting_arr.push("1");
 		}
@@ -1148,7 +1140,7 @@
 		}
 		state.valueMultiple = setting_arr;
 		storeAttr(); 
-        //self.forceUpdate();		
+		//self.forceUpdate();		
 	}
 </script>
 <div>
@@ -1175,7 +1167,7 @@
 		contentEditable={true}
 	>
 	</div>
-	<Dialog width="600" bind:visible={state.open}>
+	<Dialog width="600" bind:visible={state.open} style="background:#fff;padding-bottom:10px;">
 		<div slot="title" style="text-align: left;">
 			<div class="d-flex flex-column">
 				<div class="mr-lg float-left pl-2 m-l-xxs" style="paddingTop: 5px; padding-left: 5px; font-size: 25px">{l.fill_header}</div>
@@ -1426,7 +1418,7 @@
 				<div>
 					{#each state.fillEquation as data, i}
 						<div key={i} class="row ml-0 mb-2">
-							<div class="col-sm-7">
+							<div class="col-sm-7 pl-0">
 								<input
 									type="text"
 									id={"input"+i}
@@ -1437,11 +1429,15 @@
 							</div>
 							<div class="col-sm-3 pt-1">
 								<Button 
+									variant="fab" 
 									color="primary"
-									style="border:1px solid #4285f4; color:#4285f4;text-transform: none; height: 30px;" 
+									aria-label="Response"
 									on:click={addEditable.bind(this,i)}
-									class="btn btn-outline-primary bg-white shadow-sm"
-								>+ response</Button>
+									class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
+									style="width: 120px; height:30px; text-transform: none; border: 1px solid #4285f4; color: #4285f4;"
+								>
+									+ Response
+								</Button>
 							</div>
 							<div class="col-sm-1 pt-2">
 								<div class="latexEditButton d-inline-block" tabIndex="0" style="height:28px;">
@@ -1459,7 +1455,7 @@
 							</div>
 							<div class="col-sm-1 pt-2">
 								<span 
-									on:click={removeMathEquation.bind(this,i)}  
+									on:click={removeMathEquation.bind(this,data.id)}  
 									class="icomoon-24px-delete-1 text-dark pointer position-relative s3 mathematical_delete"
 									style="height:28px;bottom: 1px;"
 									data-bs-toggle="tooltip" 
@@ -1476,10 +1472,10 @@
 							color="primary"
 							aria-label="Add"
 							on:click={addMathEquation}
-							class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right"
-							style="width: 120px; height:30px; border: 1px solid #4285f4; color: #4285f4;"
+							class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
+							style="width: 120px; height:30px; text-transform: none; border: 1px solid #4285f4; color: #4285f4;"
 						>
-							+ Option
+							+ Add option
 						</Button>
 					</div>
 					<div class="text-danger mt-5 pt-4 font-weight-bold ml-1">* Note:</div>
@@ -1493,13 +1489,13 @@
 			<Button
 				on:click={handleClose}
 				unelevated={true}
-            	outlined={true}
+				outlined={true}
 				class="text-capitalize"
 			> {l.cancel} </Button>
 			<Button
 				on:click={storeAns}
 				unelevated={true}
-            	outlined={true}
+				outlined={true}
 				class="text-capitalize"
 				color="primary"
 			> {l.done} </Button>
@@ -1543,7 +1539,7 @@
 				on:click={openSetting}
 				color="primary"
 				unelevated={true}
-            	outlined={true}
+				outlined={true}
 			>OK</Button>
 		</div>
 	</Dialog>

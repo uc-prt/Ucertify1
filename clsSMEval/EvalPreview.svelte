@@ -24,9 +24,9 @@
 	export let ansStatus;
 	export let isReview;
 	export let content_guid;
-	export let sample_input;
-	let location_origin = "";
-    let evalpro_url = "";
+	export let sample_input = '';
+	let location_origin = (location.origin).replace('localhost', 'localhost:3000');
+    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let user_guid = '';
 	let tempGuid;
 	let client = {};
@@ -86,9 +86,6 @@
 	})
 
 	onMount(()=> {
-
-		location_origin = (location.origin).replace('localhost', 'localhost:3000');
-		evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
 		window.QXML = xml;
 		window.uaXML = uxml;
 
