@@ -23,6 +23,7 @@
     let isIE;
     let mainId = ""; 
     let state = {};
+    let ansDisable = 0;
     let stateData = writable({
         cdata: "",
         stem: "",
@@ -50,16 +51,22 @@
         state = items;
     })
 
-    $: if (isReview) {
+    $: 
+    {
+        if (isReview) {
             // this condition will true in test area
-            modeOn();                                   
+            modeOn();
+            if(editorState && ansDisable == 0) {
+                ansDisable = 1;
+                displayAnswer();
+            }                                   
         } else {
-            
+            ansDisable = 0;
             previewUserAns();
             modeOff();
-            
-            
         }
+    }
+    
     
     ///////  XML change then automatically reload code ///////////////
     beforeUpdate(()=> {
