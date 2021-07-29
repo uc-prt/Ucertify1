@@ -331,7 +331,7 @@ const l = {
     getting_help : "Please, be patient. We are generating the help for you.",
     warning : "Warning!",
     row_limit : "You have reached the minimum number of rows you can not to be deleted.",
-    col_limit : "You have reached the minimum number of columns you can delete.",
+    col_limit : "You have reached the minimum number of columns you can not be deleted.",
     del_confirmation : "Are you sure you want to delete it?",
     wrong_value_information : "Values of the row and column should always be multiples of ",
     min_row_col_value : "Insufficient value to make a table; there should be atleast four values.",
