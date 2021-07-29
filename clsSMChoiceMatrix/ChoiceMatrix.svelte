@@ -443,7 +443,7 @@
                                                 on:click = {removeTerm.bind(this,data.id)}
                                                 tab-index = "0"
                                             >
-                                                <span class = {icon_class}></span>
+                                                <span class = "{icon_class}+ iconPos"></span>
                                             </div>
                                         </td>
                                         {#each state.cdata.option as data2,j}
@@ -591,7 +591,10 @@
 		font-size: 15px !important;
 		/* //margin-right: 5px; */
     }
-
+.iconPos {
+	position:relative;
+	top:5px;
+}
 
 
 </style>
