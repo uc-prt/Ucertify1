@@ -120,6 +120,7 @@
             type: 'stylesheet',
             as: 'style'
         }
+        //AH.createLink(window.itemFolder + 'clsSMMatchList/css/matchList.min.css', config);
 		AH.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
     }
 	
@@ -157,7 +158,7 @@
 						}, 60 * 1000);
 						// if (!UCINFO.isIphone) {
 							if (typeof(AH.alert) == 'function') 
-								AH.alert('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
+								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
 								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
