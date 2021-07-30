@@ -158,7 +158,7 @@
 						}, 60 * 1000);
 						// if (!UCINFO.isIphone) {
 							if (typeof(AH.alert) == 'function') 
-								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
+								AH.alert('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
 								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
