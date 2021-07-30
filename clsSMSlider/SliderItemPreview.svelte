@@ -70,15 +70,7 @@
             }
         }
 	}
-    // function loadLibs() {
-    //     let config = {
-    //         preload: true,
-    //         type: 'stylesheet',
-    //         as: 'style'
-    //     }
-    //     AH.createLink(window.itemFolder + 'clsSMSlider/css/slider.min.css', config);
-		
-    // }
+  
     onMount(() => {
         //loadLibs();
         loadModule(xml);
