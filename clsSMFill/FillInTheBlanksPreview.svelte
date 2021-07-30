@@ -772,12 +772,11 @@
 		// splitting it with |
 		data = data.split("|");
 		let anskey = data[0].trim();
-
 		// parse the attr in json
 		let attrs = JSON.parse(data[1]);
 		// creating textarea
 		let multilineBox  = `<textarea class="textarea ks" rows="${attrs.rows}" cols="${attrs.cols}" anskey="${anskey}" value="${userAnswerM}" defaultans="${((attrs.defaultAns) ? attrs.defaultAns: "")}" userans="${userAnswerM}" haskeywords="" hasnotkeywords="" keywordtype="1" autocomplete="off" data-role="none">${userAnswerM}</textarea>`;
-		let tag = `<div id="elem${i}" class="fillelement" style="height:auto">${multilineBox}</div>`;
+		let tag = `<span id="elem${i}" class="fillelement" style="height:auto">${multilineBox}</span>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData, tag);
 	}

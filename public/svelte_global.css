@@ -19911,16 +19911,16 @@ float: right;
 padding-right: 15px;
 }
 .factheader {
-background: url("../../images/fact-head.gif") repeat-x center bottom;
+background: url("../../../images/fact-head.gif") repeat-x center bottom;
 height: 38px;
 }
 .factfooter {
-background: url("../../images/fact-bottom.gif") repeat-x center bottom;
+background: url("../../../images/fact-bottom.gif") repeat-x center bottom;
 height: 12px;
 }
 .factbody {
 padding: 20px 80px 10px;
-background: url("../../images/fact-border.gif") center bottom;
+background: url("../../../images/fact-border.gif") center bottom;
 }
 .tips .description,  
 .notes .description,
@@ -19994,24 +19994,24 @@ width: 40px;
 height: 40px;
 }
 .snt-brain {
-background-image: url(../../images/know.png);
+background-image: url(../../../images/know.png);
 }
 .snt-chain {
-background-image: url(../../images/chain.png);
+background-image: url(../../../images/chain.png);
 }
 .snt-gp {
-background-image: url(../../images/global-perspective.png);
+background-image: url(../../../images/global-perspective.png);
 border-radius: 4px;
 }
 .snt-ip {
-background-image: url(../../images/industry-perspective.png);
+background-image: url(../../../images/industry-perspective.png);
 border-radius: 4px;
 }
 .snt-bits {
-background-image: url(../../images/snt-bits.png);
+background-image: url(../../../images/snt-bits.png);
 }
 .snt-bytes {
-background-image: url(../../images/snt-bytes.png);
+background-image: url(../../../images/snt-bytes.png);
 }
 .reading-nursing .description {
 padding-left: 85px!important;
@@ -20025,46 +20025,46 @@ min-height: 70px;
 position: relative; 
 }
 .snt-hand {
-background-image: url(../../images/resp.png);
+background-image: url(../../../images/resp.png);
 background-size: 60px 45px;
 width: 60px;
 height: 45px;
 }
 .snt-learn-wgu {
-background-image: url(../../images/learn-wgu.png);
+background-image: url(../../../images/learn-wgu.png);
 background-size: 42px 42px;
 width: 42px;
 height: 42px;
 }
 .snt-realworld {
-background-image: url(../../images/realworld.png);
+background-image: url(../../../images/realworld.png);
 }
 .snt-spotlight {
-background-image: url(../../images/spotlight.png);
+background-image: url(../../../images/spotlight.png);
 }
 .snt-job {
-background-image: url(../../images/job.png);
+background-image: url(../../../images/job.png);
 }
 .snt-exam {
-background-image: url(../../images/exam.png);
+background-image: url(../../../images/exam.png);
 }
 .snt-reflect-nursing {
-background-image: url(../../images/learn-reflect-nursing.png);
+background-image: url(../../../images/learn-reflect-nursing.png);
 }
 .snt-reading-nursing {
-background-image: url(../../images/reading-nursing.png);
+background-image: url(../../../images/reading-nursing.png);
 background-size: 50px 40px;
 width: 50px;
 height: 40px;
 }
 /*.snt-activity{
-  background-image: url(../../images/activity.png);
+  background-image: url(../../../images/activity.png);
   background-size: 40px 40px;
   width: 40px;
   height: 40px;   
 }*/
 .redhat .description {
-background: url(../../images/redhat.png) 5px 5px no-repeat;
+background: url(../../../images/redhat.png) 5px 5px no-repeat;
 }
 .ins_note {
 padding: 15px 15px 15px 40px;
@@ -20072,7 +20072,7 @@ background-color: #F1F1F4;
 border-radius: 5px;
 position: relative;
 margin-bottom: 20px;
-background-image: url(../../images/instructor-tip.png);
+background-image: url(../../../images/instructor-tip.png);
 background-repeat: no-repeat;
 background-position: 5px 16px;
 }
@@ -20089,7 +20089,7 @@ font-size: 16px;
 position: relative;
 margin-bottom: 20px;
 margin-top: 20px;
-background-image: url(../../images/instructor-tip.png);
+background-image: url(../../../images/instructor-tip.png);
 background-repeat: no-repeat;
 background-position: 5px 25px;
 }
@@ -21134,7 +21134,7 @@ margin-top: 10px
 .arrow-bullet {
 /* margin-left: 20px; */
 word-break: break-word;
-list-style-image: url(../../images/blue-bullet.gif) !important;
+list-style-image: url(../../../images/blue-bullet.gif) !important;
 }
 .arrow-bullet-list>li {
 border: 1px solid #e7eaec;
@@ -21168,7 +21168,7 @@ border: 2px solid #0078cd;
 }
 .tick-bullet {
 /* margin-left: 20px; */
-list-style-image: url(../../images/tick-bullet.png) !important;
+list-style-image: url(../../../images/tick-bullet.png) !important;
 }
 
 .arrowlist-bullet {
@@ -21180,7 +21180,7 @@ list-style-image: url(../../images/tick-bullet.png) !important;
 .arrowlist-bullet > li {
 padding: 2px;
 vertical-align: 2px;
-background: url(../../images/arrow-list.png) no-repeat 0 5px;
+background: url(../../../images/arrow-list.png) no-repeat 0 5px;
 padding-left: 23px;
 }
 
@@ -21705,7 +21705,7 @@ display: block;
 /* angles */
 
 .ui-rotatable-handle {
-background: url("../../images/rotator_tool.png") no-repeat 50%;
+background: url("../../../images/rotator_tool.png") no-repeat 50%;
 background-size: 20px 72px;
 width: 21px;
 height: 79px;
@@ -22722,7 +22722,7 @@ font-size: inherit!important;
 }
 .show_it,.hide_it {
 background-color: #f5f5f5!important;
-background-image: url(../../images/copy.png)!important;
+background-image: url(../../../images/copy.png)!important;
 box-shadow: 5px 5px 5px #bbb;
 border: 1px solid #ccc;
 cursor: pointer;
@@ -25471,4 +25471,14 @@ background:#6FCF64;
 }
 .falseitemColorCM:hover {
 background:#F44A37;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+.swal-text,
+.swal-button--cancel {
+  color: rgba(0,0,0,1) !important;
+}
+.swal-button--danger {
+  background-color: #F44A37;
 }

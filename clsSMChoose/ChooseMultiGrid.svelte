@@ -414,7 +414,7 @@
 					{#each authoring_data.localCData1.slice(0, parseInt(state.maxcol)+1) as data, i } 
 						{#if i != 0}
 							<th key={i-1} class="text-left bg-white align-middle">
-								<div tabindex="0" title="Delete Column" role="button" id="delcol{i-1}" key="delcol{i-1}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationCol(data.id-1)}}">
+								<div tabindex="0" title="Delete Column" role="button" id="delcol{i-1}" data-id={i-1} key="delcol{i-1}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationCol(i-1)}}">
 									<span aria-hidden="true" class="remove-item icomoon-24px-delete-1 s3 text-dark"></span>
 								</div>
 							</th>
@@ -428,7 +428,7 @@
 				{#each authoring_data.localCData1.slice(0, parseInt(state.maxrow)) as item, i}
 					<tr>
 						<td class="text-center width46">
-							<span tabindex="0" title="Delete Row" class="pointer font18 position-relative" id="delrow{i}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationRow(i)}}" >
+							<span tabindex="0" title="Delete Row" role="button" class="pointer font18 position-relative" id="delrow{i}" on:keydown="{keydownAda}" on:click="{() => {openConfirmationRow(i)}}" >
 								<span aria-hidden="true" class="remove-item icomoon-24px-delete-1 s3 text-dark"></span>
 							</span>
 						</td>

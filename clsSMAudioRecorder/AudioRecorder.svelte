@@ -104,12 +104,16 @@
                 // disabled the show transcript checkbox and language select dropdown
                 AH.select('.disability_apply, #showTranscript').disabled = 'disabled',
                 // makes label of language select and show transcript to look like disabled
-                AH.selectAll('.transcript_container, .select_label_container label', 'addClass', 'disabledState')
+                AH.selectAll('.transcript_container, .select_label_container label', 'addClass', 'disabledState'),
+                // disabled transcript option
+                AH.selectAll('.transcript_container,#showTranscript')[1].disabled = true
             ) : (
                 // enables the show transcript checkbox and language select dropdown
                 AH.select('.disability_apply, #showTranscript').disabled = '',
                 // makes label of language select and show transcript to look like active
-                AH.selectAll('.transcript_container, .select_label_container label', 'removeClass', 'disabledState')
+                AH.selectAll('.transcript_container, .select_label_container label', 'removeClass', 'disabledState'),
+                // enable transcript option
+                AH.selectAll('.transcript_container,#showTranscript')[1].disabled = false
             );
             // used for screen reader to read the message when user reached on play button
             areaLabelForStopButton = AH.select('#authoring_container #stopButton span').getAttribute('data-original-title');
@@ -420,7 +424,7 @@
             <div class="select_label_container">
                 <label for="language_select"><b>{l.select_lang}</b></label>
             </div>
-            <select id="language_select" name="language" class="disability_apply form-control form-control-sm" on:change={handleChange} on:blur={handleChange} value={state.language} aria-label="Select the language for Recording">
+            <select id="language_select" name="language" class="disability_apply form-select form-control-sm" on:change={handleChange} on:blur={handleChange} value={state.language} aria-label="Select the language for Recording">
                 <option value="en-US" aria-label="English United States">{l.english_us}</option>
                 <option value="de-DE" aria-label="German">{l.german_lang}</option>
                 <option value="fr-FR" aria-label="French">{l.french_lang}</option>
@@ -429,6 +433,8 @@
                 <option value="ja-JP" aria-label="Japanese">{l.japanese_lang}</option>
                 <option value="ko-KR" aria-label="Korean">{l.korean_lang}</option>
                 <option value="it-IT" aria-label="Italian">{l.italiano}</option>
+                <option value="en-IN" aria-label="English UK">{l.english_in}</option>
+
             </select>
             <div class="form-check form-check-inline transcript_container mt-3">
                 <label for="showTranscript" class="custom_checkbox_new float-left mr-1">
