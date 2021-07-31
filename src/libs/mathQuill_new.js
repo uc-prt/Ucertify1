@@ -8,11 +8,13 @@
  * one at http://mozilla.org/MPL/2.0/.
  */
 
+import jQuery from "jquery";
+
 (function() {
 
-  var jQuery = window.jQuery,
-    undefined,
-    mqCmdId = 'mathquill-command-id',
+  //var jQuery = window.jQuery,
+    //undefined,
+    var mqCmdId = 'mathquill-command-id',
     mqBlockId = 'mathquill-block-id',
     min = Math.min,
     max = Math.max;
