@@ -555,6 +555,20 @@
                         margin-left: 3px;
                     "
                 >{editorState.draft == "1" ? "Draft" : "Published"}</div>
+                <div
+                    class="badge badge-primary font-weight-normal pt-1"
+                    id="item_status"
+                    style="
+                        font-size: 14px;
+                        letter-spacing: 1px;
+                        width: fit-content;
+                        display: inline;
+                        height: 23px;
+                        font-family: 'PT Sans Caption', sans-serif;
+                        margin-top: 4px;
+                        margin-left: 3px;
+                    "
+                >V2.0</div>
                 {#if window.frameElement}
                     <button
                         type="button"
