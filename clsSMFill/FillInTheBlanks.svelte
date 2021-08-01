@@ -1057,12 +1057,12 @@
 
 	// for removing the drag and drop options
 	function removeDragDrop(id) {
+		let tempFDD = state.fillDragDrop;
 		let len = Object.values(state.fillDragDrop).length;
 		if (len != 1) {
-			state.fillDragDrop.length
-			delete state.fillDragDrop[id];
-			//this.forceUpdate();
+			tempFDD.splice(id, 1);
 		}	
+		state.fillDragDrop = tempFDD;
 	}
 
 	// for removing the drop down options
