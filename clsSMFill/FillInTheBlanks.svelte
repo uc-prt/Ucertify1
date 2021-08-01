@@ -1544,7 +1544,7 @@
 		</div>
 	</Dialog>
 
-	<Snackbar bind:visible={state.snackback} bg="#f44336" bottom={true} timeout={4000} style="position:fixed; bottom:50px">
+	<Snackbar bind:visible={state.snackback} bg="#f44336" bottom={true} timeout={4000} style="position:fixed; bottom:50px;z-index:99999">
 		{#if message}
 			{message}
 		{:else} 
