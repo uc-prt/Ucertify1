@@ -79,15 +79,15 @@
                             {l.xinterval_val}</label>										
                             <div class="col-md-4 px-1 d-inline-block float-start">
                                 <label class="control-label font-weight-normal mb-0" for="xmin">{l.min}</label>
-                                <input type="number" class="num validate form-control form-control-md" id="xmin" name="xmin" placeholder="No." data-dxmin = "1" />
+                                <input type="number" class="num validate form-control form-control-md" id="xmin" name="xmin" placeholder="No." data-dxmin = "10" />
                             </div>
                             <div class="col-md-4 px-1 d-inline-block float-start">
                                 <label class="control-label font-weight-normal mb-0" for="xmax">{l.max}</label>
-                                <input type="number" class="num validate form-control form-control-md" id="xmax" name="xmax" placeholder="No." data-dxmax = "3" />
+                                <input type="number" class="num validate form-control form-control-md" id="xmax" name="xmax" placeholder="No." data-dxmax = "60" />
                             </div>
                             <div class="col-md-4 px-1 d-inline-block float-start">
                                 <label class="control-label font-weight-normal mb-0" for="xinterval">{l.interval_txt}</label>
-                                <input type="number" class="num validate form-control form-control-md" id="xinterval" name="xinterval" placeholder="No." data-dxinterval = "1" />
+                                <input type="number" class="num validate form-control form-control-md" id="xinterval" name="xinterval" placeholder="No." data-dxinterval = "10" />
                             </div>
                         </div>
                         <div class="form-group col-sm-6 col-12 px-1 ymultiple details">

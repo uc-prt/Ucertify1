@@ -838,8 +838,8 @@ CHART_AUTH.validate = function (current) {
         CHART_AUTH.isValid = false;
         JS.selectAll('.error', 'remove');
         JS.setCss(current, {
-            border: '1px solid red',
-            background:  "#FFCECE"
+            //border: '1px solid red',
+            //background:  "#FFCECE"
         })
         if (current.value == '') {
             current.classList.add('showError');
@@ -892,7 +892,7 @@ CHART_AUTH.changeType = function (current) {
             JS.select('.details').style.display = 'block';
             JS.select('#color').disabled = (value == 'histogram');
         }
-        JS.select('#chart_title').value = (value == 'histogram') ? 'Histogram' : ((value == 'line') ? 'Line Chart' : 'Bar Chart');
+        //JS.select('#chart_title').value = (value == 'histogram') ? 'Histogram' : ((value == 'line') ? 'Line Chart' : 'Bar Chart');
     }
 }
 

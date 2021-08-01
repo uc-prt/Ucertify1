@@ -1139,7 +1139,7 @@ GRAPH.showchildansdrag = function (mid, pElem, ansType, review) {
                                     prevPoint = point.board.prevPoint;
                                 } else {
                                     /* calls GRAPH.drawelem for value of is_false after setting the stroke and color of the point */
-                                    is_false = GRAPH.drawelem(elem, GRAPH.result, is_false);
+                                    is_false = GRAPH.drawelem(elem, GRAPH.sinfo, is_false);
                                 }
                                 break;
                             }

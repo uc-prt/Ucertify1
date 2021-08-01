@@ -64,6 +64,7 @@
 	});
     // for updating the module/xml whenever there is change in the xml
     beforeUpdate(async() => {
+        debugger;
 		if (state.xml != xml) {
             AH.select('#special_module_xml').value = xml;
             updateXmlAuthData(xml);
@@ -133,12 +134,13 @@
     })
     // function for updating the xml
     function updateXML() {
-        if (state.xml != AH.select('#special_module_xml').value) {
-            getChildXml(AH.select('#special_module_xml').value);
+       if (state.xml != AH.select('#special_module_xml').value) {
+           getChildXml(AH.select('#special_module_xml').value);
         }
     }
     // updates all states value according to the value of xml
     function updateXmlAuthData(xml_data) {
+        debugger;
         // contains the json data of the xml
         let newXml = XMLToJSON(xml_data);
         console.log("newXML",newXml);

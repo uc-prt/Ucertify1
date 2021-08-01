@@ -15,6 +15,7 @@
     import Draggable from "../clsSMDragNDrop/libs/plugins/Draggable";
     import Resizable from "../clsSMDragNDrop/libs/plugins/Resizable";
     import DrawingModal from "./DrawingModal.svelte";
+    import { Button, Dialog} from 'svelte-mui/src';
     export let xml;
     // export let editorState;
     export let getChildXml;
@@ -129,7 +130,7 @@
     const unsubscribe = auth_store.subscribe(value => {
 		state = value;
 	});
-
+    console.log("state",state);
     afterUpdate(async()=> {
 		if (state.xml != xml) {
             // for changing the data when XML is changed manually 
@@ -548,16 +549,17 @@
         });
 
         AH.listen('body', 'click', '#reset_btn', function () {
-            swal({
-                text: l.reset_module,
-                icon: "warning",
-                buttons: ["cancel","ok"],
-            }).then((value) => {
-                if (value) {
-                    // reset all the activity and makes it in initial condition as it looks like just after load
-                    resetModule();
-                }
-            });
+            // swal({
+            //     text: l.reset_module,
+            //     icon: "warning",
+            //     buttons: ["cancel","ok"],
+            // }).then((value) => {
+            //     if (value) {
+            //         // reset all the activity and makes it in initial condition as it looks like just after load
+            //         resetModule();
+            //     }
+            // });
+            state.openDeleteDialog = true;
         });
 
         AH.listen('body', 'click', '#focus_point', function () {
@@ -954,6 +956,7 @@
         getChildXml(defaultXML);
         // assign the value of changed xml into state xml
         state.xml = defaultXML;
+        console.log("1",state.xml);
     }
 
     // calculates the angle using initial and final point and find the radius of the compass
@@ -1022,6 +1025,7 @@
         isAccessibleMarking = 1;
         // joins the focus points craeted by using 'Add focus Point' button otherwise return as it was before
         joinFocusPoint(tempAccessPoints);
+        console.log("state",state.xml)
     }
 
     // joins the focus points craeted by using 'Add focus Point' button otherwise return as it was before
@@ -1087,12 +1091,13 @@
         authoringMode = state.selectedTools[0].substr(-(state.selectedTools[0].length - 1));
         // this function set the default data
         setDefaultData();
-        // blanks the value of cdata exist inside div element of the xml showing that no points added
-        parseXMLForPoint('');
         // removes the active class from the element have class 'authoring_btn' or have id 'authoring_point' or have id 'focus_point'
         AH.selectAll('.authoring_btn,#authoring_point,#focus_point', 'removeClass', 'active');
         // parses the point that can be access via keyboard on preview side
         parseXMLForAccessPoint();
+        // blanks the value of cdata exist inside div element of the xml showing that no points added
+        // parseXMLForPoint('');
+        setTimeout(()=>{parseXMLForPoint('')},1000);
         // clear the undo count
         undoCount = 0;
         // clear the added point
@@ -1103,6 +1108,7 @@
         scribblePath = [];
         // clear the all added points
         selectionArray = [];
+        state.openDeleteDialog = false;
     }
 
     // this function set the default data
@@ -1561,4 +1567,19 @@
         </center>
         <DrawingModal l={l} />
     </div>
+    <Dialog
+		bind:visible={state.openDeleteDialog}
+		style={'width:500px;background-color:#FFF;'}
+	>
+		<div>
+			<div class="row">
+				<span class="col-md-12" style={'margin-top:40px;margin-bottom:40px;text-align:center;'}>{l.del_confirmation}</span>
+			</div>
+		</div>
+		<div slot="footer" class="svelteFooter" style={'width:100%;text-align:center;'}>	
+			<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false}} class="btn btn-light colorgray" value="Cancel" />
+            <Button variant="contained" on:click={resetModule}
+				class="bg-primary text-white"> Yes </Button>
+		</div>
+    </Dialog>
 </main>
