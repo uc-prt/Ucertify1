@@ -325,6 +325,7 @@
                 return is_blank = 1;
             }
         });
+        
         if (is_blank == 0) {
             for (let index = 0; index < files.length; index++) {
                 if (document.getElementById('image_file'+index) != null) {
