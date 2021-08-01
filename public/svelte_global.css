@@ -712,11 +712,6 @@ blockquote {
   margin: 0 0 1rem;
 }
 
-b,
-strong {
-  font-weight: bolder;
-}
-
 small {
   font-size: 80%;
 }
@@ -25481,4 +25476,8 @@ background:#F44A37;
 }
 .swal-button--danger {
   background-color: #F44A37;
+}
+b,
+strong {
+  font-weight: bold;
 }

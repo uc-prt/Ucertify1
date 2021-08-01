@@ -1057,12 +1057,12 @@
 
 	// for removing the drag and drop options
 	function removeDragDrop(id) {
+		let tempFDD = state.fillDragDrop;
 		let len = Object.values(state.fillDragDrop).length;
 		if (len != 1) {
-			state.fillDragDrop.length
-			delete state.fillDragDrop[id];
-			//this.forceUpdate();
+			tempFDD.splice(id, 1);
 		}	
+		state.fillDragDrop = tempFDD;
 	}
 
 	// for removing the drop down options
@@ -1544,7 +1544,7 @@
 		</div>
 	</Dialog>
 
-	<Snackbar bind:visible={state.snackback} bg="#f44336" bottom={true} timeout={4000} style="position:fixed; bottom:50px">
+	<Snackbar bind:visible={state.snackback} bg="#f44336" bottom={true} timeout={4000} style="position:fixed; bottom:50px;z-index:99999">
 		{#if message}
 			{message}
 		{:else} 

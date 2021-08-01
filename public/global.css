@@ -8433,3 +8433,7 @@ background:#F44A37;
 .swal-button--danger {
   background-color: #F44A37;
 }
+b,
+strong {
+  font-weight: bold;
+}
