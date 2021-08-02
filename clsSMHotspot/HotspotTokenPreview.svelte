@@ -30,6 +30,7 @@
 
     // go in block if there is change in remediation mode
     $:{
+        
         if (isReview) {
             setReview(); 
             if(editorState && ansSwitch == 0) {
@@ -404,7 +405,7 @@
                         <div key={i} class="tokenHeader position-relative float-left d-inline">
                             <span
                                 data-id={"ID"+i}
-                                data-correct={getCorrect("ID"+i)}
+                                data-correct={AH.findInArray("ID"+i, state.correctAns)}
                                 on:click={setSelected.bind(this, i)}
                                 data-selected={data.selected}
                                 tabIndex={(state.pointerEvents == "auto") ? "0" : "1"}
@@ -436,9 +437,9 @@
                                 "
                             >
                                 <span 
-                                    class="position-relative {getCorrect("ID"+i) ? 'icomoon-new-24px-checkmark-circle-1': 'icomoon-new-24px-cancel-circle-1'}" 
-                                    style="color: {getCorrect('ID'+i) ? 'green' : 'red'}; bottom: 3px; left: 0;" 
-                                    aria-label={(getCorrect("ID"+i))?"marked as correct":"marked as incorrect"}
+                                    class="position-relative {AH.findInArray("ID"+i, state.correctAns) ? 'icomoon-new-24px-checkmark-circle-1': 'icomoon-new-24px-cancel-circle-1'}" 
+                                    style="color: {AH.findInArray("ID"+i, state.correctAns) ? 'green' : 'red'}; bottom: 3px; left: 0;" 
+                                    aria-label={AH.findInArray("ID"+i, state.correctAns) ? "marked as correct":"marked as incorrect"}
                                 ></span>
                             </span>
                         </div>
