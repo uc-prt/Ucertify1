@@ -955,7 +955,6 @@
         getChildXml(defaultXML);
         // assign the value of changed xml into state xml
         state.xml = defaultXML;
-        console.log("1",state.xml);
     }
 
     // calculates the angle using initial and final point and find the radius of the compass
@@ -1024,7 +1023,6 @@
         isAccessibleMarking = 1;
         // joins the focus points craeted by using 'Add focus Point' button otherwise return as it was before
         joinFocusPoint(tempAccessPoints);
-        console.log("state",state.xml)
     }
 
     // joins the focus points craeted by using 'Add focus Point' button otherwise return as it was before
