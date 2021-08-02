@@ -676,6 +676,7 @@ export default class fillJS {
 							this.temp++;
 						}
 						this.uAnsSel = this.uAnsSel+(index)+",";
+						_value.setAttribute('userans', index);
 					}
 				});
 				if (this.a != this.totalcorrect) this.result = false;

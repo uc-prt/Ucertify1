@@ -243,8 +243,12 @@
                 {/if}
             </div>
         </div>
-        <div slot="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
-            <Button color="secondary" raised="true" title="close button" on:click={handleClose}>Close</Button>
+        <div slot="footer" class="svelteFooter">
+            <Button
+				on:click={handleClose}
+				unelevated={true}
+				outlined={true}
+			> {l.cancel} </Button>
         </div>
     </Dialog>
 </main>
