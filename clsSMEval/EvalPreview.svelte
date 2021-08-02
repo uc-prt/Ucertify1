@@ -25,8 +25,7 @@
 	export let isReview;
 	export let content_guid;
 	export let sample_input = '';
-	let location_origin = (location.origin).replace('localhost:3000', 'localhost/pe-gold3');
-    let evalpro_url = location_origin + '/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
+    let evalpro_url =  'https://www.jigyaasa.info/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
     let user_guid = '';
 	let tempGuid;
 	let client = {};
