@@ -133,8 +133,8 @@
     })
     // function for updating the xml
     function updateXML() {
-        if (state.xml != AH.select('#special_module_xml').value) {
-            getChildXml(AH.select('#special_module_xml').value);
+       if (state.xml != AH.select('#special_module_xml').value) {
+           getChildXml(AH.select('#special_module_xml').value);
         }
     }
     // updates all states value according to the value of xml
