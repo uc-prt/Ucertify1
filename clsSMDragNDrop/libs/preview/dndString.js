@@ -442,11 +442,25 @@ DND.readyThis = function(dndid) {
         div.append(input)
         div.append(label);
         content.append(div)
+        // Added the close button (X) at the top right side in sweetalert modal.
+        jsSwal = function() {
+            swal(arguments[0]);
+            if (arguments[0].showCloseButton) {
+                let closeButton = document.createElement('button');
+                closeButton.className = 'swal2-close';
+                closeButton.onclick = function() { swal.close(); };
+                closeButton.textContent = '×';
+                let modal = document.querySelector('.swal-modal');
+                modal.appendChild(closeButton);
+            }
+        }
+
         jsSwal({
             text: "How to Drop?",
             content: content,
             timer: 10000,
             buttons: false,
+            showCloseButton: true
         });
 
     }

@@ -8437,3 +8437,30 @@ b,
 strong {
   font-weight: bold;
 }
+.swal-button--confirm {
+  background-color: #dd6b55; /* confirmButtonColor: "#DD6B55", */
+}
+
+.swal-modal .swal2-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.2em;
+  height: 1.2em;
+  transition: color 0.1s ease-out;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: serif;
+  font-size: 38px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.swal-modal .swal2-close:hover {
+  color: rgba(0, 0, 0, 1);
+  outline: 0;
+}
+.swal-modal .swal2-close:focus {
+  outline: 0;
+}
