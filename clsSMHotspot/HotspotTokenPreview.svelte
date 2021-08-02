@@ -9,6 +9,7 @@
     export let isReview;
     export let showAns;
     export let uxml;
+    let ansSwitch = 0;
     let state = {};
     let hdd = writable({
             xml: "",
@@ -27,6 +28,22 @@
         state = items;
     })
 
+    // go in block if there is change in remediation mode
+    $:{
+        if (isReview) {
+            setReview(); 
+            if(editorState && ansSwitch == 0) {
+                // check tha answer
+                ansSwitch = 1;
+                checkAns();
+            }
+        } else {
+            // if review mode is off
+            ansSwitch = 0;
+            if (editorState) unsetReview();
+        }
+    }
+
     // calls whenever there is change in props or state
     beforeUpdate(()=> {
         // go in block if there is change in xml
@@ -40,14 +57,14 @@
         }
 
         // go in block if there is change in remediation mode
-        if (isReview) {
-            // check tha answer
-            checkAns();
-            setReview(); 
-        } else {
-            // if review mode is off
-            if (editorState) unsetReview();
-        }
+        // if (isReview) {
+        //     // check tha answer
+        //     checkAns();
+        //     setReview(); 
+        // } else {
+        //     // if review mode is off
+        //     if (editorState) unsetReview();
+        // }
     })
 
     // run just after rendering
