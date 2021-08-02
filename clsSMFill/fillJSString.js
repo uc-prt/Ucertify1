@@ -612,7 +612,7 @@ export default class fillJS {
 	checkChildAnswer(fillid, pElem, userAnsXML) {
 		if (pElem.classList.contains('dropable')) {
 			var ansKey = pElem.getAttribute('anskey').split(',');
-			if (JS.findInArray(pElem.getAttribute('userans'), ansKey) == false) {
+			if (JS.findInArray(pElem.getAttribute('userans'), ansKey) == undefined || JS.findInArray(pElem.getAttribute('userans'), ansKey) == false) {
 				this.result = false;
 			} else {
 				this.temp++;
@@ -676,6 +676,7 @@ export default class fillJS {
 							this.temp++;
 						}
 						this.uAnsSel = this.uAnsSel+(index)+",";
+						_value.setAttribute('userans', index);
 					}
 				});
 				if (this.a != this.totalcorrect) this.result = false;

@@ -320,10 +320,8 @@
 
     function mediaInfoSubmit(event) {
         var is_blank = 0;
-        let foundVisible = Array.prototype.filter.call(AH.select('#media_details').children, (elm)=> !elm.hidden);
-        var required_fields = foundVisible.filter((elm)=> elm.querySelector('[require="1"]') );
-        required_fields.forEach(function(_this2) {
-            if (_this2.value == '') {
+        AH.selectAll('[require="1"]').forEach(function(elem) {
+            if (elem.value == '') {
                 return is_blank = 1;
             }
         });
