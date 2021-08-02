@@ -15,7 +15,6 @@
     import GRAPH from './lib/mathString';
     export let xml;
 	export let uxml;
-    console.log("uxml",uxml);
 	export let isReview;
 	export let showAns;
 	export let editorState;
