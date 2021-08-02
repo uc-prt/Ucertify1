@@ -56,8 +56,10 @@ function checkMatchCase( $dataAttr, $result, $testInput ) {
  */
 function submitEvaluate( $data, $testcases ) {
 	$uXML                     = $data['special_module_user_xml'];
-	$user                     = getGlobalArray( 'user' );
-	$data['user_guid']        = $user['user_guid'];
+	if (!isset($data['user_guid'])) {
+		$user = getGlobalArray( 'user' );
+		$data['user_guid'] = $user['user_guid'];
+	} 
 	$XMLNODE                  = xml2array( $uXML );
 	$lineSection              = $XMLNODE[0]['attributes']['lineSection'];
 	$showpre                  = is_numeric( $XMLNODE[0]['attributes']['showpre'] ) ? $XMLNODE[0]['attributes']['showpre'] : 0;

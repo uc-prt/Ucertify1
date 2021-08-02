@@ -15,7 +15,6 @@ header( 'Access-Control-Allow-Headers: X-Requested-With, Content-Type' );
 
 require_once '../../../../../prepengine-header.php';
 require_once 'evalProAnsCheck.php';
-
 if ( isset( $data['in_native'] ) ) {
 	header( 'Access-Control-Allow-Origin: *' );
 	header( 'Access-Control-Allow-Methods: POST' );
@@ -28,6 +27,21 @@ if ( isset( $data['in_native'] ) ) {
 	}
 }
 
+if (isset($data['func']) && $data['func'] == 'check_answer') {
+	$testcases                       = getTestCases( $data['content_guid'] );
+	$submit_output                   = submitEvaluate( $data, $testcases );
+	$data['special_module_user_xml'] = $submit_output['uxml'];
+	$response = array();
+	$response['answer']  = false;
+	$response['new_xml'] = $data['special_module_user_xml'];
+	if ( $submit_output['status_message'] == 'Successful' ) {
+		$evres           = evalGrade( $data['special_module_user_xml'], $data['user_guid'], 1, $testcases );
+		$response['new_xml'] = $evres['uxml'];
+		$response['answer'] = ucIsset( $evres['answer'], '1' ) ? true : false;
+	} 
+	$response['extAnswerStr'] = '<submit_output>' . $submit_output['output'];
+	return json_encode_uc($response);
+}
 // check_user( $user );
 if ( ucIsset( $data['resetDB'], 1 ) || ucIsset( $data['resetDB'], 2 ) || ucIsset( $data['resetDB'], 3 ) ) {
 	print( evalProSqlDBReset( $data ) );
