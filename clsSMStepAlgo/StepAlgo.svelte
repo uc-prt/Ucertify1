@@ -749,7 +749,7 @@
 
                     </div>
                     <div class="svelteFooter">
-                        <Button variant="contained" on:click={handleClose} >
+                        <Button variant="contained" on:click={handleClose} class="colorStyle" >
                             {l.cancel}
                         </Button>,
                         <Button variant="contained" on:click={storeAns}
@@ -958,5 +958,8 @@
         cursor: no-drop!important;
         opacity: 0.5!important;
     }
-                
+
+    :global(.colorStyle) {
+        background-color: #dee2e6!important;
+    }
 </style>

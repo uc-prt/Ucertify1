@@ -753,17 +753,14 @@
                 
                         {#if state.isalgo === true}
 							
-							<div class="h-imp">
-								{tempdata1 = data.value1.split("%%")}
-								{tempdata2 = data.value2.split("%%")}
-							</div>
+							
 
                                 
                                     <div key={i} class="d-flex align-items-center mb-2" dir={state.dir}>
                                         <div class="d-inline-block clear-both pointer light-cyan-bg mx-0 my-1 p-2 width10">
                                             <div class="float-left clear-both">
 												
-                                                {#each tempdata2 as temp, j}
+                                                {#each data.value2.split("%%") as temp, j}
 
                                                         <div class="d-flex align-items-center">
                                                             <div class="pull-left word_break width200 p-1 max_width_300" style={'border-radius:3px;'}>
@@ -791,7 +788,7 @@
                                             </div>
                                             <div class="pull-right">
 												
-                                                {#each tempdata1 as temp1, k}
+                                                {#each data.value1.split("%%") as temp1, k}
                                                 
                                                         <div class="d-flex align-items-center">
                                                             <div class="pull-left word_break width200 p-1 max_width_300" style={"border-radius:3px;"}>
