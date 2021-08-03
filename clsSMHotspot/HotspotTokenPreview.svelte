@@ -28,6 +28,7 @@
         state = items;
     })
 
+
     // go in block if there is change in remediation mode
     $:{
         
@@ -384,14 +385,16 @@
                 justify-content: left;
             "
         >
-            {#if state.itemLayout}
+            {#if state.itemLayout}   
                 {#each state.itemLayout as data, i }
-                    {#if data.value.indexOf('##pt') > -1 }
-                        {data.value = data.value.replace(/##pt/g, '.')}
-                    {/if}
-                    {#if data.value.indexOf('#cm') > -1 }
-                        {data.value = data.value.replace(/#cm/g, ',')}
-                    {/if}
+                    <div class="h">
+                        {#if data.value.indexOf('##pt') > -1 }
+                            {data.value = data.value.replace(/##pt/g, '.')}
+                        {/if}
+                        {#if data.value.indexOf('#cm') > -1 }
+                            {data.value = data.value.replace(/#cm/g, ',')}
+                        {/if}
+                    </div>
                     {#if data.value == "," || data.value == "."}
                         <div class="float-left position-relative d-inline" style="width: 1.5px; height: 1px">
                             <span
