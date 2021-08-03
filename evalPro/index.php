@@ -8,6 +8,7 @@
  * Last updated date : 10-Aug-2020
  */
 $is_mincall = 1;
+header( 'Access-Control-Allow-Origin: *' );
 header( 'Access-Control-Allow-Methods: POST' );
 header( 'Access-Control-Allow-Credentials: true' );
 header( 'Access-Control-Allow-Headers: X-Requested-With, Content-Type' );
@@ -39,7 +40,7 @@ if (isset($data['func']) && $data['func'] == 'check_answer') {
 		$response['answer'] = ucIsset( $evres['answer'], '1' ) ? true : false;
 	} 
 	$response['extAnswerStr'] = '<submit_output>' . $submit_output['output'];
-	return json_encode_uc($response);
+	displaycontent(json_encode_uc($response));
 }
 // check_user( $user );
 if ( ucIsset( $data['resetDB'], 1 ) || ucIsset( $data['resetDB'], 2 ) || ucIsset( $data['resetDB'], 3 ) ) {
