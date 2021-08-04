@@ -118,7 +118,7 @@
             AH.selectAll('.treeview_record' , 'hide');
             AH.selectAll(class_name + ' tr', 'show');
         } else {
-            if (AH.select(table, 'visible')) {
+            if (table.nodeName != undefined) {
                 AH.find(table, 'tr', 'all').forEach((row, index)=> {
                     var allCells = AH.find(row, '.search', 'all');
                     if (allCells.length > 0) {
@@ -130,7 +130,7 @@
                                 return false;
                             }
                         });
-                        (found == true) ? AH.toggleDom(row, 'show') : AH.toggleDom(row, 'hide');
+                        (found == true) ? AH.select(row,'css',{display:''}) :  AH.select(row,'css',{display:'none'});
                     }
                 });
                 if (AH.find(table, '.search', 'visible').length > 0) {
