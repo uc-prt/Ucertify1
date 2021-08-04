@@ -292,7 +292,6 @@
 	}
 	
 	function openMediaDialog() {
-		//jQuery("#modal-media-upload").modal("show");
 		AH.getBS("#modal-media-upload", "Modal").show();
 	}
 
@@ -414,6 +413,7 @@
     
 	// whenever the image icon is clicked this function calls
 	function openImageDialog(class_name) {
+		AH.getBS(AI.select('#addImageModal'), 'Modal').show();
 		state.openImageDialog = true;
 		state.imageClass = class_name;
 		// extrcting image details
@@ -434,10 +434,12 @@
 			AH.select('#MatchlistAlt').value = image.alt;
 			clearTimeout(timer['image']);
 		},200);
+
     }
     
     // calls when image icon is clicked and is_algo is true 
 	function openImageDialogAlgo(class_name, ids, i, clname) {
+		AH.getBS(AI.select('#addImageModal'), 'Modal').show();
 		state.openImageDialog = true;
 		clsname = class_name;
 		index = ids;
@@ -878,7 +880,7 @@
             </div>
         </div>
 	</center>
-	<Dialog bind:visible={state.openImageDialog} disableEnforceFocus={true} style={'width:600px;'}>
+			<!-- <Dialog bind:visible={state.openImageDialog} disableEnforceFocus={true} style={'width:600px;'}>
 				<div style="text-align: left;font-weight:bold;" class="mb-5">
 					<div>Add Image</div>
 				</div>
@@ -909,7 +911,48 @@
 								Done
 							</Button>
 						</div>
-				</Dialog>
+			</Dialog> -->
+
+
+
+				<div class="modal" id="addImageModal">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Add Image</h4>
+								<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true" >&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="imageDialog">
+									<div class="row mx-0">
+										<div class="col-md-6 px-1">
+											<div class="form-group">
+												<label class="control-label font-weight-normal mb-0" for="MatchlistImg">Background Image</label>
+												<input type="text" class="form-control form-control-md" id="MatchlistImg" placeholder="Image url" />
+											</div>
+										</div>
+										<div class="col-md-6 px-1">
+											<div class="form-group">
+												<label class="control-label font-weight-normal mb-0" for="MatchlistAlt">Background Alt</label>
+												<input type="text" class="form-control form-control-md" id="MatchlistAlt" placeholder="Background alt text" />
+											</div>
+										</div>
+										<div class="col-md-6 px-1">
+											<button type="button" class="btn btn-md btn-outline-primary" id="upload_img" name="upload_img" on:click="{openMediaDialog}">Upload image</button>
+											<div class="upload_status"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer mt-0">
+								<button type="button" on:click={closeImageDialog} class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+								<button type="button" id="cdata" on:click={insertImage} class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
 				
 				<Dialog
 					bind:visible={state.openDeleteDialog}
