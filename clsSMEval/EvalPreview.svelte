@@ -109,10 +109,12 @@
 				AH.select("#editor-footer").click();
 			}
 		});
+		console.log("onMount");
 		didMount();
 	})
 
 	beforeUpdate(()=> {
+		console.log("beforeupdate");
 		AH.select("#item_answer", 'addClass', ["mb-xl","multiItem"]);
 		AH.select('#answerCheck', 'css', {
 			visibility: "hidden",
@@ -191,6 +193,7 @@
 		AH.select('#preview', 'hide');
 		state.xml = xml;
 		if (typeof(CodeMirror) == "function") {
+			console.log('didMount');
 			renderCodeMirror();
 		} else {
 			AH.ajax({
@@ -199,6 +202,7 @@
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});
+				console.log('didmount2');
                 renderCodeMirror();
             })
 		}
@@ -458,7 +462,8 @@
 		}
 	}
 
-	function renderCodeMirror() {		
+	function renderCodeMirror() {	
+		console.log('renderCodeMirror');	
 		if (showPre > 0) {
 			preEditor = CodeMirror.fromTextArea(document.getElementById("pre-editor"), {
 				lineNumbers: true,
@@ -1338,7 +1343,7 @@
 					</div>
 					
 					<div class="card card-default rounded-0 border-right-0 font17 inNativeStyleInput output_div overflow-hidden" style="margin-bottom: 0px;">   
-						<div tabIndex="0" class="card-header px-2" style="height:44px;">
+						<div tabIndex="0" class="card-header px-2" style="height:47px;">
 							{l.output}
 						</div>
 						<div 
