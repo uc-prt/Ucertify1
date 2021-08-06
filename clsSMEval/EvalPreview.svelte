@@ -109,12 +109,10 @@
 				AH.select("#editor-footer").click();
 			}
 		});
-		console.log("onMount");
 		didMount();
 	})
 
 	beforeUpdate(()=> {
-		console.log("beforeupdate");
 		AH.select("#item_answer", 'addClass', ["mb-xl","multiItem"]);
 		AH.select('#answerCheck', 'css', {
 			visibility: "hidden",
@@ -202,8 +200,7 @@
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});
-				console.log('didmount2');
-                renderCodeMirror();
+				renderCodeMirror();
             })
 		}
 
@@ -463,7 +460,6 @@
 	}
 
 	function renderCodeMirror() {	
-		console.log('renderCodeMirror');	
 		if (showPre > 0) {
 			preEditor = CodeMirror.fromTextArea(document.getElementById("pre-editor"), {
 				lineNumbers: true,
