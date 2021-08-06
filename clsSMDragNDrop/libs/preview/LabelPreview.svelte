@@ -42,7 +42,7 @@
                 style : styling,
                 classes: "dndlabel dndTest "+((data._label_class) ? data._label_class : ""),
                 paraStyle: para_styling,
-                parahtml:  (data._richtext ? data.__cdata : ((data._title != undefined) ? AH.ignoreEnity(data._title) : ''))
+                parahtml:  setInnerHtml(data._richtext ? data.__cdata : ((data._title != undefined) ? AH.ignoreEnity(data._title) : ''))
             }];
         });
     } else {
