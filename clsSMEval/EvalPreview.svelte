@@ -200,7 +200,7 @@
                 dataType: "script",
             }).then((data)=> {
                 AH.addScript(data, "", {target: "body"});
-				renderCodeMirror();
+                renderCodeMirror();
             })
 		}
 
