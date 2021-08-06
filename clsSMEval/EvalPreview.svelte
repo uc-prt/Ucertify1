@@ -191,7 +191,6 @@
 		AH.select('#preview', 'hide');
 		state.xml = xml;
 		if (typeof(CodeMirror) == "function") {
-			console.log('didMount');
 			renderCodeMirror();
 		} else {
 			AH.ajax({
