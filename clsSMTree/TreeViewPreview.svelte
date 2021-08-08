@@ -238,26 +238,25 @@
     function setReview() {
         ucTree.tempVar = 'c';
         isReview = true;
-        if (timer['review']) clearTimeout(timer['review']);
-            try {
-                timer['review'] = setTimeout(function () {
-                    if (AI.find('#' + treeid, '.treeall')) {
-                        ucTree.treeInit('#' + treeid, state.parsedOptions);
-                        if (editorState) {
-                            showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
-                        } else {
-                            // Shows correct or incorrect according to the return value of ucTree.checkAns() method
-                            let result = ucTree.checkAns('#' + treeid);
-                            onUserAnsChange(result);
-                            result && ucTree.showans(result.ans);
-                        }
-                        // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perform the task
-                        ucTree.modeOn('on');
-                    }
-                }, 900);
-            } catch (error) {
-                console.log({ 'error': error });
+        try {
+            if (AI.find('#' + treeid, '.treeall')) {
+                setTimeout(function(){
+                    ucTree.treeInit('#' + treeid, state.parsedOptions);
+                }, 1000);
+                if (editorState) {
+                    showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
+                } else {
+                    // Shows correct or incorrect according to the return value of ucTree.checkAns() method
+                    let result = ucTree.checkAns('#' + treeid);
+                    onUserAnsChange(result);
+                    result && ucTree.showans(result.ans);
+                }
+                // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perform the task
+                ucTree.modeOn('on');
             }
+        } catch (error) {
+            console.log({ 'error': error });
+        }
     }
     
     // Used to enabled the activity to be performed when it is not in review mode
