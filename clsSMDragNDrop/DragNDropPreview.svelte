@@ -445,6 +445,7 @@
             {/if}
 
 			{#if state.data && image_loaded}
+				
 				<DragPreview modules={state.data[0].drag} containerID={container_id} />
 				<DragPreview modules={state.data[1]} containerID={container_id} />
 				<DropPreview modules={state.data[0].drop} containerID={container_id} uxml={uxml}/>

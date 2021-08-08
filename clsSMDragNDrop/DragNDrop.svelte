@@ -50,6 +50,7 @@
     let module_type = 1;
     let state = {};
     let image_loaded = 0;
+    let imgBorder = '';
     // creating store
     let auth_store = writable({
 		xml : "",
@@ -194,6 +195,7 @@
         });
 
         AH.listen(document, 'click', '.addElement, #updateDnd', function() {
+            
             let borderclass = (AH.select('#authoring-modal #base-borderrequired').checked) ? borderclassname : '';
             auth_store.update( (item) => {
                 item.bgImage = AH.select('#authoring-modal #base-bgimg').value;
@@ -506,6 +508,8 @@
 		module_type = MYXML.smxml._type || 1;
 		imgHeight = MYXML.smxml._height;
 		imgWidth = MYXML.smxml._width;
+        imgBorder = (MYXML.smxml._borderrequired == undefined) ? 0 : 1;
+        
         auth_store.update( (item) => {
             item.bgImage = bgImg
             item.imgHeight = imgHeight;
@@ -791,7 +795,8 @@
         <div class="smnotes"></div>
     </center>
     <div class="parent h" data-parent="dndmain"></div>
-    <DndModalBox isDNDExtended={DND_AUTH.isDNDExtended} />
+    
+    <DndModalBox isDNDExtended={DND_AUTH.isDNDExtended} imgBorder={imgBorder} />
 </div>
 
 <svelte:window on:keydown={handleKeyDown} />

@@ -10,6 +10,7 @@
     import ModalEvent from "./ModalEvent.svelte";
     import l from '../../../src/libs/Lang';
     export let isDNDExtended = 0;
+    export let imgBorder;
 </script>
 <div id="authoring-modal" class="modal fade" tabIndex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -18,7 +19,7 @@
                 <h4 class="modal-title">{l.draggable}</h4>
                 <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body modal_height overflow-y">
+            <div class="modal-body modal_height">
                 <div class="drag h">
                     <div class="row mx-0">
                         <div class="col-sm-12">
@@ -1198,7 +1199,7 @@
                                 <div class="col-sm-6 mt-3 pt-1 px-1">
                                     <button type="button" id="upload_media" class="btn btn-outline-primary float-start">{l.upload_media_text}</button>
                                     <div class="form-group float-start mt-2">
-                                        <input type="checkbox" class="checkbox inline margin-bottom ml-3 position-relative top2" id="base-borderrequired" name="borderrequired" defaultvalue="1" checked/>
+                                        <input type="checkbox" class="checkbox inline margin-bottom ml-3 position-relative top2" id="base-borderrequired" name="borderrequired" defaultvalue="1" checked={imgBorder == 1 ? "checked" : ''}/>
                                         <label class="control-label ml-1 font-weight-normal mb-0 position-relative top1" for="base-borderrequired">{l.add_border}</label>
                                     </div>
                                 </div>
@@ -1285,6 +1286,6 @@
 
 <style>
     .modal_height {
-        max-height: 350px;
+        max-height: 417px;
     }
 </style>

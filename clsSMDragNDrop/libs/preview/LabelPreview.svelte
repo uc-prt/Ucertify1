@@ -11,6 +11,7 @@
     import { AH } from "../../../helper/HelperAI.svelte";
     export let modules;
     export let containerID = '';
+				
     let label_preview_data = [];
     let labelPreview = modules;
     
@@ -41,7 +42,7 @@
                 style : styling,
                 classes: "dndlabel dndTest "+((data._label_class) ? data._label_class : ""),
                 paraStyle: para_styling,
-                parahtml: setInnerHtml( data._richtext ? data.__cdata : AH.ignoreEnity(data._title) ),
+                parahtml:  setInnerHtml(data._richtext ? data.__cdata : ((data._title != undefined) ? AH.ignoreEnity(data._title) : ''))
             }];
         });
     } else {
