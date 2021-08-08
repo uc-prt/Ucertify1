@@ -141,7 +141,7 @@
         // used for mobile team
         if (window.inNative && window.inNative != undefined) {
             timer['pre_timer4'] = setTimeout(function () {
-                window.postMessage(`height___${AI.select("#treemain0").clientHeight}`, '*'); // increases the height of react native outer container
+                window.postMessage(`height___${AH.select("#treemain0").clientHeight}`, '*'); // increases the height of react native outer container
                 clearTimeout(timer['pre_timer4']);
             }, 2000);
         }
@@ -239,7 +239,7 @@
         ucTree.tempVar = 'c';
         isReview = true;
         try {
-            if (AI.find('#' + treeid, '.treeall')) {
+            if (AH.find('#' + treeid, '.treeall')) {
                 setTimeout(function(){
                     ucTree.treeInit('#' + treeid, state.parsedOptions);
                 }, 1000);
