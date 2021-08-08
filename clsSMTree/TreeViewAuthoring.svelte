@@ -13,7 +13,7 @@
     const note2 = "Key|Option text|Icon (Put comma after each line) Where  option text is the label for option of contextmenu list and icon is icon for that label and key is numeric value that helps to create the list option.";
     let sort = 0;
     let allowSort = 1;
-    let icons_html = IconsList['icons_html'];
+    let icons_html = IconsList;
     let state = {};
 
     const hdd = writable({
@@ -118,7 +118,7 @@
             AH.selectAll('.treeview_record' , 'hide');
             AH.selectAll(class_name + ' tr', 'show');
         } else {
-            if (AH.select(table, 'visible')) {
+            if (table.nodeName != undefined) {
                 AH.find(table, 'tr', 'all').forEach((row, index)=> {
                     var allCells = AH.find(row, '.search', 'all');
                     if (allCells.length > 0) {
@@ -130,7 +130,7 @@
                                 return false;
                             }
                         });
-                        (found == true) ? AH.toggleDom(row, 'show') : AH.toggleDom(row, 'hide');
+                        (found == true) ? AH.select(row,'css',{display:''}) :  AH.select(row,'css',{display:'none'});
                     }
                 });
                 if (AH.find(table, '.search', 'visible').length > 0) {
@@ -246,9 +246,14 @@
         <div slot="footer" class="svelteFooter">
             <Button
 				on:click={handleClose}
-				unelevated={true}
-				outlined={true}
-			> {l.cancel} </Button>
+				class="btnColor"
+			> {l.close} </Button>
         </div>
     </Dialog>
 </main>
+<style>
+    :global(.btnColor) {
+        background-color: #dee2e6!important;
+        box-shadow: 2px 2px 5px #000;
+    }
+</style>

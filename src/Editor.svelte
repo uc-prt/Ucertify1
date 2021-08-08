@@ -38,6 +38,7 @@
     export let is_algo;		
 	export let ajaxData = "";
 	export let _user;
+	export let subtype;
 
 	let stageComment = "";
 	let editorHeaderRef; // refrence of editorHeader
@@ -2565,7 +2566,7 @@
 	}
 
 </script>
-<main>
+<main role="main" tabindex="0">
 	<EditorHeader
 		bind:this={editorHeaderRef}
 		bind:editorState={state}
@@ -2584,6 +2585,7 @@
         id="editorViewPane" 
         class="col-lg-11 mx-auto" 
         key="1" 
+		tabindex="0"
 	>
         <ul class="nav nav-tabs editorTabs" id="edi_tabs">
             <li><a data-bs-toggle="tab" href="#authoringDiv" class="active">{"Authoring"}</a></li>
@@ -2756,7 +2758,7 @@
 										></div>
 									{/if}
 									{#if state.viewConfig.itemModule}
-										<div id="xml_show" class="overflow">
+										<div id="xml_show" class="overflow" role="application" tabindex="0" aria-label="application. {l['itemtype_' + subtype]}">
 											<svelte:component 
 												this={Items.preview} 
 												editorState={state}

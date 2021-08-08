@@ -9,6 +9,7 @@
     export let isReview;
     export let showAns;
     export let uxml;
+    let ansSwitch = 0;
     let state = {};
     let hdd = writable({
             xml: "",
@@ -27,6 +28,24 @@
         state = items;
     })
 
+
+    // go in block if there is change in remediation mode
+    $:{
+        
+        if (isReview) {
+            setReview(); 
+            if(editorState && ansSwitch == 0) {
+                // check tha answer
+                ansSwitch = 1;
+                checkAns();
+            }
+        } else {
+            // if review mode is off
+            ansSwitch = 0;
+            if (editorState) unsetReview();
+        }
+    }
+
     // calls whenever there is change in props or state
     beforeUpdate(()=> {
         // go in block if there is change in xml
@@ -40,14 +59,14 @@
         }
 
         // go in block if there is change in remediation mode
-        if (isReview) {
-            // check tha answer
-            checkAns();
-            setReview(); 
-        } else {
-            // if review mode is off
-            if (editorState) unsetReview();
-        }
+        // if (isReview) {
+        //     // check tha answer
+        //     checkAns();
+        //     setReview(); 
+        // } else {
+        //     // if review mode is off
+        //     if (editorState) unsetReview();
+        // }
     })
 
     // run just after rendering
@@ -366,14 +385,16 @@
                 justify-content: left;
             "
         >
-            {#if state.itemLayout}
+            {#if state.itemLayout}   
                 {#each state.itemLayout as data, i }
-                    {#if data.value.indexOf('##pt') > -1 }
-                        {data.value = data.value.replace(/##pt/g, '.')}
-                    {/if}
-                    {#if data.value.indexOf('#cm') > -1 }
-                        {data.value = data.value.replace(/#cm/g, ',')}
-                    {/if}
+                    <div class="h">
+                        {#if data.value.indexOf('##pt') > -1 }
+                            {data.value = data.value.replace(/##pt/g, '.')}
+                        {/if}
+                        {#if data.value.indexOf('#cm') > -1 }
+                            {data.value = data.value.replace(/#cm/g, ',')}
+                        {/if}
+                    </div>
                     {#if data.value == "," || data.value == "."}
                         <div class="float-left position-relative d-inline" style="width: 1.5px; height: 1px">
                             <span
@@ -387,7 +408,7 @@
                         <div key={i} class="tokenHeader position-relative float-left d-inline">
                             <span
                                 data-id={"ID"+i}
-                                data-correct={getCorrect("ID"+i)}
+                                data-correct={AH.findInArray("ID"+i, state.correctAns)}
                                 on:click={setSelected.bind(this, i)}
                                 data-selected={data.selected}
                                 tabIndex={(state.pointerEvents == "auto") ? "0" : "1"}
@@ -419,9 +440,9 @@
                                 "
                             >
                                 <span 
-                                    class="position-relative {getCorrect("ID"+i) ? 'icomoon-new-24px-checkmark-circle-1': 'icomoon-new-24px-cancel-circle-1'}" 
-                                    style="color: {getCorrect('ID'+i) ? 'green' : 'red'}; bottom: 3px; left: 0;" 
-                                    aria-label={(getCorrect("ID"+i))?"marked as correct":"marked as incorrect"}
+                                    class="position-relative {AH.findInArray("ID"+i, state.correctAns) ? 'icomoon-new-24px-checkmark-circle-1': 'icomoon-new-24px-cancel-circle-1'}" 
+                                    style="color: {AH.findInArray("ID"+i, state.correctAns) ? 'green' : 'red'}; bottom: 3px; left: 0;" 
+                                    aria-label={AH.findInArray("ID"+i, state.correctAns) ? "marked as correct":"marked as incorrect"}
                                 ></span>
                             </span>
                         </div>
