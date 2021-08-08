@@ -141,7 +141,7 @@
         // used for mobile team
         if (window.inNative && window.inNative != undefined) {
             timer['pre_timer4'] = setTimeout(function () {
-                window.postMessage(`height___${AI.select("#treemain0").clientHeight}`, '*'); // increases the height of react native outer container
+                window.postMessage(`height___${AH.select("#treemain0").clientHeight}`, '*'); // increases the height of react native outer container
                 clearTimeout(timer['pre_timer4']);
             }, 2000);
         }
@@ -238,26 +238,25 @@
     function setReview() {
         ucTree.tempVar = 'c';
         isReview = true;
-        if (timer['review']) clearTimeout(timer['review']);
-            try {
-                timer['review'] = setTimeout(function () {
-                    if (AI.find('#' + treeid, '.treeall')) {
-                        ucTree.treeInit('#' + treeid, state.parsedOptions);
-                        if (editorState) {
-                            showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
-                        } else {
-                            // Shows correct or incorrect according to the return value of ucTree.checkAns() method
-                            let result = ucTree.checkAns('#' + treeid);
-                            onUserAnsChange(result);
-                            result && ucTree.showans(result.ans);
-                        }
-                        // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perform the task
-                        ucTree.modeOn('on');
-                    }
-                }, 900);
-            } catch (error) {
-                console.log({ 'error': error });
+        try {
+            if (AH.find('#' + treeid, '.treeall')) {
+                setTimeout(function(){
+                    ucTree.treeInit('#' + treeid, state.parsedOptions);
+                }, 1000);
+                if (editorState) {
+                    showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
+                } else {
+                    // Shows correct or incorrect according to the return value of ucTree.checkAns() method
+                    let result = ucTree.checkAns('#' + treeid);
+                    onUserAnsChange(result);
+                    result && ucTree.showans(result.ans);
+                }
+                // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perform the task
+                ucTree.modeOn('on');
             }
+        } catch (error) {
+            console.log({ 'error': error });
+        }
     }
     
     // Used to enabled the activity to be performed when it is not in review mode
@@ -506,13 +505,14 @@
             "icon": icons[4],
             "action": "deleteList"
         };
+        
         // Parses the Json data into string using JSON.stringify() method and then parses string into JSON format using JSON.parse() method
         var jsonData = JSON.parse(JSON.stringify(json));
-        Object.values(jsonData).forEach((item)=> {
-            if (item.action == 'contextAction') {
-                item.action = ucTree.contextAction;
-            } else if (item.action == 'deleteList') {
-                item.action = ucTree.deleteList;
+        Object.keys(jsonData).forEach((key) => {
+            if (jsonData[key].action == 'contextAction') {
+                jsonData[key].action = ucTree.contextAction.bind(ucTree);
+            } else if (jsonData[key].action == 'deleteList') {
+                jsonData[key].action = ucTree.deleteList.bind(ucTree);
             }
         });
         state.parsedOptions = jsonData;
