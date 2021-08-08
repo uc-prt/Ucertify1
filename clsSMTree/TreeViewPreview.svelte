@@ -506,13 +506,14 @@
             "icon": icons[4],
             "action": "deleteList"
         };
+        
         // Parses the Json data into string using JSON.stringify() method and then parses string into JSON format using JSON.parse() method
         var jsonData = JSON.parse(JSON.stringify(json));
-        Object.values(jsonData).forEach((item)=> {
-            if (item.action == 'contextAction') {
-                item.action = ucTree.contextAction;
-            } else if (item.action == 'deleteList') {
-                item.action = ucTree.deleteList;
+        Object.keys(jsonData).forEach((key) => {
+            if (jsonData[key].action == 'contextAction') {
+                jsonData[key].action = ucTree.contextAction.bind(ucTree);
+            } else if (jsonData[key].action == 'deleteList') {
+                jsonData[key].action = ucTree.deleteList.bind(ucTree);
             }
         });
         state.parsedOptions = jsonData;
