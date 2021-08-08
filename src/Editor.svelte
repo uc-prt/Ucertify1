@@ -38,6 +38,7 @@
     export let is_algo;		
 	export let ajaxData = "";
 	export let _user;
+	export let subtype;
 
 	let stageComment = "";
 	let editorHeaderRef; // refrence of editorHeader
@@ -2756,7 +2757,8 @@
 										></div>
 									{/if}
 									{#if state.viewConfig.itemModule}
-										<div id="xml_show" class="overflow">
+										<div id="xml_show" class="overflow" role="application" tabindex="0">
+											<p class="sr-only">{l['itemtype_' + subtype]}</p>
 											<svelte:component 
 												this={Items.preview} 
 												editorState={state}
