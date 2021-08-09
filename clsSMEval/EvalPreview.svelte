@@ -458,7 +458,7 @@
 		}
 	}
 
-	function renderCodeMirror() {		
+	function renderCodeMirror() {	
 		if (showPre > 0) {
 			preEditor = CodeMirror.fromTextArea(document.getElementById("pre-editor"), {
 				lineNumbers: true,
@@ -1338,7 +1338,7 @@
 					</div>
 					
 					<div class="card card-default rounded-0 border-right-0 font17 inNativeStyleInput output_div overflow-hidden" style="margin-bottom: 0px;">   
-						<div tabIndex="0" class="card-header px-2" style="height:44px;">
+						<div tabIndex="0" class="card-header px-2" style="height:47px;">
 							{l.output}
 						</div>
 						<div 
