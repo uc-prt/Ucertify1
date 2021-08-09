@@ -893,9 +893,9 @@
 			ignoretype={state.ignoretype}
 			manual_grade={manual_grade || 0}
 			totalcorrectans={state.totalcorrectans}
+			style='font-family:"Open Sans",sans-serif; font-size: 16px'
 		>
-		
-			<div class="string" id="previewArea" style="font-family:'Roboto, sans-serif; font-size: 1em"></div>
+			<div class="string" id="previewArea"></div>
 			{#if state.showToolbar} 
 				<FillInTheBlanksToolbar  
 					spanId={state.spanId} 
