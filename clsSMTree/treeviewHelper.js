@@ -23,13 +23,13 @@ class treeviewHelper {
         let treeid = "#" + obj.reference.closest('[id^="treemain"]').attr("id");
         this.lcrt = J(treeid).find('.treeall')
         // id of draggable element on which contextmenu event fired 
-        let id = obj.reference.parentNode.getAttribute('id');
+        let id = obj.reference.parent().attr('id');
         // find available tree structure on Droppable area 
         let tree = this.lcrt.jstree(true)._model.data;
         // Assigned cseq in tree structure received after selecting the contextmenu dialog option    
         tree[id].li_attr.cseq = obj.item.seq;
         // set the attribute cseq of draggable element on which contextmenu event fired  
-        obj.reference.parentNode.setAttribute('cseq', obj.item.seq);
+        obj.reference.parent().attr('cseq', obj.item.seq);
         // set the icon for draggable element on which contextmenu event fired according to selected value from contextmenu bar
         this.lcrt.jstree(true).set_icon(id, obj.item.icon);
         // Calls for check the answer
@@ -37,14 +37,14 @@ class treeviewHelper {
     };
 
     // Remove the draggable element from droppable conatiner to draggable container
-    deleteList(obj) {
-        let treeid = "#" + obj.reference.closest('[id^="treemain"]').getAttribute("id");
+    deleteList(obj) {   
+        let treeid = "#" + obj.reference.closest('[id^="treemain"]').attr("id");
         /* Container element where elements are dropped after drag */
         this.lcrt = J(treeid).find('.treeall');
         /* Container element of draggable element from where element is dragged for perform the operation */
         this.lall = J(treeid).find('.treecorrect');
         /* Id of draggable element on which contextmenu event fired */
-        let id = obj.reference.parentNode.getAttribute('id');
+        let id = obj.reference.parent().attr('id');
         // Cut the draggable element on which contextmenu event fired from droppable area    
         this.lcrt.jstree(true).cut(id);
         // Paste the draggable element on which contextmenu event fired on draggable area
