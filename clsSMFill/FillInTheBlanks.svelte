@@ -1167,7 +1167,7 @@
 		contentEditable={true}
 	>
 	</div>
-	<Dialog width="600" bind:visible={state.open} style="background:#fff;padding-bottom:10px;">
+	<Dialog width="600" bind:visible={state.open} style="">
 		<div slot="title" style="text-align: left;">
 			<div class="d-flex flex-column">
 				<div class="mr-lg float-left pl-2 m-l-xxs" style="paddingTop: 5px; padding-left: 5px; font-size: 25px">{l.fill_header}</div>
