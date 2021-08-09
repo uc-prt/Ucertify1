@@ -63,19 +63,19 @@
         state = items;
     })
 
-	$:{
-		if (isReview) {
-			var timer = setTimeout(function() {
-				setReview();
-				clearTimeout(timer);
-			},500);	
-		} else {
-			var timer_next = setTimeout(function() {
-				unsetReview();
-				clearTimeout(timer_next);
-			},200);
-		}
-	}
+	// $:{
+	// 	if (isReview) {
+	// 		var timer = setTimeout(function() {
+	// 			setReview();
+	// 			clearTimeout(timer);
+	// 		},500);	
+	// 	} else {
+	// 		var timer_next = setTimeout(function() {
+	// 			unsetReview();
+	// 			clearTimeout(timer_next);
+	// 		},200);
+	// 	}
+	// }
 
 	beforeUpdate(()=>{
 		if(state.isMathquill) {
@@ -118,7 +118,7 @@
 		})
 
 		//window.J = ju;
-		AI.set('stepAlgo', this);
+		AH.set('stepAlgo', this);
 
 		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
@@ -766,12 +766,12 @@
 			}
 			if (optionrem>1) {
 				//jQuery('#'+elem).prev().removeClass('h-imp');
-				AH.select(AI.select('#'+elem).previousElementSibling,'removeClass','h-imp');
+				AH.select(AH.select('#'+elem).previousElementSibling,'removeClass','h-imp');
 			}
 			if(step_xml.smxml._fixed != 1) {
 				var timer = setTimeout(function() {
 					//jQuery('#'+elem).prev().addClass('h-imp');
-					AH.select(AI.select('#'+elem).previousElementSibling,'addClass','h-imp');
+					AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
 				 	clearTimeout(timer);
 				},2000);
 			}
