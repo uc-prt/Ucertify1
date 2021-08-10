@@ -1172,7 +1172,7 @@
 
 	// Switching in special paste dialog
 	function switchSpecialPaste(event) {
-		state.radioValue = event.target.getAttribute('action') || 'plain';
+		state.radioValue = event.getAttribute('action') || 'plain';
 	}
 
 	// Mange special paste dilaog 
@@ -1195,7 +1195,7 @@
 								<textarea class="w-100 border border-dark" style="resize: none;" id="plainText" rows="9" cols="100"></textarea>
 							</div>
 							<div id="formatted" class="tab-pane fade">
-								<div class="w-100 overflow-auto border border-dark" style="height: 195px" id="formattedText" contenteditable="true"></div>
+								<div class="w-100 overflow-auto border border-dark" style="height: 200px;background: #fff;" id="formattedText" contenteditable="true"></div>
 							</div>
 						</div>
 					</div>`
@@ -1222,8 +1222,7 @@
 			if (state.radioValue == 'plain') {
 				data = AH.select('#plainText').value;
 				data = "" + data.replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/ /g, "&#160;").replace(/\n/g, "<br>") + "";
-			}
-			else if (state.radioValue == 'formatted') {
+			} else if (state.radioValue == 'formatted') {
 				data = document.getElementById('formattedText').innerHTML;
 				filterAttr.forEach(function (attr) {
 					let regx = new RegExp(` ${attr}="([^"]*?)"`, 'gi');
@@ -1689,7 +1688,7 @@
 				saveXML();
 			}
 		});
-		if (!AH.get('isAjax')) {;
+		if (!AH.get('isAjax')) {
 			AH.selectAll("#content, #stem, #remediation", 'html', setInitialButton());
 		}
 		AH.listen(document, 'click', '.modal_items .item_int', function (_this) {
