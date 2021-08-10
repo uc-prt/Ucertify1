@@ -358,7 +358,6 @@
 	// calls just after rendering , and initiallizes the tinyMCE Plugin and its events
 	function initEditor() {
 		AH.listen(document, "click", ".editMath", (_this, e)=> {
-			//console.log(($(this).attr('id')));
 			window.currentId = _this.getAttribute('id');
 		});
 		tinyMCE.PluginManager.add('res', function(editor, url) {
@@ -1095,11 +1094,8 @@
 	
 	// open the latex dialog
 	function latexEdit(i) {
-		//$('.editMath').addClass('latexEdit');
-		//$('.editMath').trigger('click');
-		//$('.latexEdit').trigger('click');
 		if (!window.currentId) {
-			AH.showmsg("Equation did not crateated yet.")
+			AH.showmsg("Equation didn't created yet.")
 			return;
 		}
 		state.open = true;//false
@@ -1167,25 +1163,25 @@
 		contentEditable={true}
 	>
 	</div>
-	<Dialog width="600" bind:visible={state.open} style="">
-		<div slot="title" style="text-align: left;">
-			<div class="d-flex flex-column">
-				<div class="mr-lg float-left pl-2 m-l-xxs" style="paddingTop: 5px; padding-left: 5px; font-size: 25px">{l.fill_header}</div>
-				<div class="left10 position-relative">
-					<div class="btn-group mt-2 ml-0">
-						<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 1 ? 'active' : '')}" value={1} on:click={updateDialog.bind(this, 1)} >Text</button>
-						<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 2 ? 'active' : '')}" value={2} on:click={updateDialog.bind(this, 2)} >Drop downs</button>
-						<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 3 ? 'active' : '')}" value={3} on:click={updateDialog.bind(this, 3)} >Drag & drop</button>
-						<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 5 ? 'active' : '')}" value={5} on:click={updateDialog.bind(this, 5)} >Multiline</button>
-						<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 6 ? 'active' : '')}" value={6} on:click={updateDialog.bind(this, 6)} >Mathematical equations</button>
-					</div>
+	<Dialog width="700" bind:visible={state.open} style="background-color:#fff;">
+		<h4 class="mt-0 font21">
+			<div class="d-flex justify-content-between">
+				<div>{l.fill_header}</div>
+			</div>
+			<div class="left10 position-relative">
+				<div class="btn-group mt-2 ml-0">
+					<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 1 ? 'active' : '')}" value={1} on:click={updateDialog.bind(this, 1)} >Text</button>
+					<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 2 ? 'active' : '')}" value={2} on:click={updateDialog.bind(this, 2)} >Drop downs</button>
+					<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 3 ? 'active' : '')}" value={3} on:click={updateDialog.bind(this, 3)} >Drag & drop</button>
+					<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 5 ? 'active' : '')}" value={5} on:click={updateDialog.bind(this, 5)} >Multiline</button>
+					<button type="button" class="btn btn-light px-2 {(state.fillInTheBlanksChoice == 6 ? 'active' : '')}" value={6} on:click={updateDialog.bind(this, 6)} >Mathematical equations</button>
 				</div>
 			</div>
-		</div>
-		<div id="responseDialog" style="height:320px;">
+		</h4>
+		<div id="responseDialog" style="height:320px;overflow-y:auto; padding-right: 18px;">
 			{#if state.fillInTheBlanksChoice == 1}
 				<div>
-					<div class="d-flex justify-content-start ml-1 height36">
+					<div class="d-flex justify-content-start height36">
 						<Checkbox 	
 							checked={state.codetype}
 							id="codetype"
@@ -1226,14 +1222,14 @@
 						id="customStyleText"
 						disabled={!state.customStyle}
 						rowsMax={4}
-						style="width: 99%, margin: 5px"
+						style="width: 99%; margin: 5px;"
 						class="form-control ml-1"
 						placeholder="Custom Style"
 						value="{state.customStyleData}"
 					/>
 					<div class="text-danger font-weight-bold">* Note:</div>
-					<div class="text-danger" style="text-indent:15px">{l.fill_text_help1}</div>
-					<div class="text-danger" style="text-indent:15px">{l.fill_text_help2}</div>
+					<div class="text-danger" style="padding-left:15px">{l.fill_text_help1}</div>
+					<div class="text-danger" style="padding-left:15px">{l.fill_text_help2}</div>
 				</div>
 			{/if}
 			{#if state.fillInTheBlanksChoice == 2}
@@ -1261,7 +1257,7 @@
 								type="text"
 								id={"dropDown"+i}
 								style="margin: 5px; left:8px"
-								value={data.value}
+								bind:value={data.value}
 								placeholder={l.fill_dropdown_placeholder}
 								data-correct={"correct" + i}
 								class="width10 form-control"
@@ -1290,9 +1286,9 @@
 					</div>
 					<br />
 					<div class="text-danger mt-5 font-weight-bold ml-1">* Note:</div>
-					<div class="text-danger ml-1" style="text-indent: 15px">{l.fill_dropdown_help1}</div>
-					<div class="text-danger ml-1" style="text-indent: 15px">{l.fill_dropdown_help2}</div>
-					<div class="text-danger ml-1" style="text-indent: 15px">{l.fill_dropdown_help3}</div>
+					<div class="text-danger ml-1" style="padding-left: 15px">{l.fill_dropdown_help1}</div>
+					<div class="text-danger ml-1" style="padding-left: 15px">{l.fill_dropdown_help2}</div>
+					<div class="text-danger ml-1" style="padding-left: 15px">{l.fill_dropdown_help3}</div>
 				</div>
 			{/if}
 			{#if state.fillInTheBlanksChoice == 3}
@@ -1321,7 +1317,7 @@
 							<input
 								type="text"
 								id={"dragDrop"+i}
-								value={data.value}
+								bind:value={data.value}
 								style="margin:5px;left: 8px"
 								placeholder={l.fill_dropdown_placeholder}
 								class="width10 form-control"
@@ -1351,10 +1347,10 @@
 						</Button>
 					</div>
 					<div class="text-danger mt-5 pt-3 font-weight-bold">* Note:</div>
-					<div class="text-danger" style="text-indent: 15px">{l.fill_dragdrop_help1}</div>
-					<div class="text-danger" style="text-indent: 15px">{l.fill_dragdrop_help2}</div>
-					<div class="text-danger" style="text-indent: 15px">{l.fill_dragdrop_help3}</div>
-					<div class="text-danger" style="text-indent: 15px">{l.fill_dragdrop_help4}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_dragdrop_help1}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_dragdrop_help2}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_dragdrop_help3}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_dragdrop_help4}</div>
 				</div>
 			{/if}
 			{#if state.fillInTheBlanksChoice == 4}
@@ -1423,7 +1419,7 @@
 									type="text"
 									id={"input"+i}
 									class="form-control latexInp position-relative top3 width-xl1 ml-1"
-									value={data.value}
+									bind:value={data.value}
 									placeholder={l.fill_text_placeholder}
 								/>
 							</div>
@@ -1479,9 +1475,9 @@
 						</Button>
 					</div>
 					<div class="text-danger mt-5 pt-4 font-weight-bold ml-1">* Note:</div>
-					<div class="text-danger" style="text-indent: 20px">{l.fill_math_help1}</div>
-					<div class="text-danger" style="text-indent: 20px">{l.fill_math_help2}</div>
-					<div class="text-danger" style="text-indent: 20px">{l.fill_math_help3}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_math_help1}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_math_help2}</div>
+					<div class="text-danger" style="padding-left: 15px">{l.fill_math_help3}</div>
 				</div>
 			{/if}
 		</div>
@@ -1491,6 +1487,7 @@
 				unelevated={true}
 				outlined={true}
 				class="text-capitalize"
+				color="#ccc"
 			> {l.cancel} </Button>
 			<Button
 				on:click={storeAns}
