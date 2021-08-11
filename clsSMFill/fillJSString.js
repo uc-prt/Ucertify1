@@ -349,6 +349,7 @@ export default class fillJS {
 	}
 	
 	showchilddragans(fillid, pElem, ansType, review) { 
+		console.trace("YESS");
 		let is_correct = -2;
 		if (pElem.classList.contains('dropable')) {
 			pElem.innerHTML = pElem.getAttribute('caption').replace(/\#doublequote#/gmi,'"');

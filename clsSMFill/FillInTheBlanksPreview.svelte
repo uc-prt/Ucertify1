@@ -83,15 +83,7 @@
 	** This function will call when compent recieving new prop in other words whenever 
 	** any thing changes in xml this function will call automatically
 	*/
-	beforeUpdate((nextProps)=> {
-		// check for the remediation mode 
-		// if the remediation mode is on
-		// if (isReview) {
-		// 	// show the ansert by calling the setReview function
-		// 	setReview();
-		// } else {
-		// 	unsetReview()
-		// }
+	beforeUpdate(() => {
 		// for checking that there is change in the xml
 		if (xml != state.xml) {
 			if (editorState && editorState.stopPreviewUpdate == true) return false;
@@ -115,7 +107,6 @@
 							txt.setAttribute('tabindex','0');
 							txt.innerHTML = node.childNodes[item].textContent;
 							node.childNodes[item].replaceWith(txt);
-							//node.childNodes[item].nodeValue = <span tabinde="0">{}</span>;
 						}
 					}
 				}
@@ -141,7 +132,7 @@
 		}
 		// parsing the authoring xml
 		parseXmlAuthoring(parsedXml, parsedUxml);
-		ucFill.showdragans(ajax_eId, 'u');
+		//ucFill.showdragans(ajax_eId, 'u'); //@prabhat: Its creating issue when we check the answer from editor for the drop down.
 		if(!xml) {
 			let errMsg = smVal.validate(editorState.content_type, editorState.subtype , editorState.content_icon);
 			smValidate(errMsg);
@@ -262,6 +253,7 @@
 	    		answerType = (answerType) ? answerType[0].replace(/\||}%/gm,'') : '';
 	    		answerType = answerType.trim();
 				checkType.push(answerType);
+				console.log('answerType', answerType);
 				// in case of textbox or codetype
 	    		if(answerType == '' || answerType == 'c') {
 					AH.selectAll(".smnotes", 'show');
@@ -329,9 +321,11 @@
 		AH.selectAll("#"+containerID, 'attr', {"totalcorrectans": totalMarks} );
 		// Resolve html entity
 		cdata = AH.ignoreEnity(cdata);
-		
+		console.log('cdata1', cdata);
 		// put the cdata in the previewarea
-		AH.find("#"+containerID, "#previewArea", {action:'html', actionData: cdata});
+		
+		AH.select("#previewArea", 'html', cdata);
+		//AH.find("#"+containerID, "#previewArea", {action:'html', actionData: cdata});
 		// put the dragData in the dragarea
 		AH.find("#"+containerID, ".dragArea",{action: 'html', actionData: dragData});
 		let parent = AH.find("#"+containerID, ".dragArea");
@@ -751,12 +745,15 @@
 			innerVal = innerVal.replace(/\#cm/gmi,",").replace(/\#pl/gmi,"+");
 			// creating options
 			options += `<option value="${j}" correctans="${isCorrect}" userans="${userAnswer}" ${selected}>&nbsp;${innerVal}</option>`;
-		})
+		});
+		console.log('options', options);
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
 		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
 		// replace the cdata
+		console.log('tag', tag);
 		cdata = cdata.replace(originalData,tag);
+		console.log('cdata', cdata);
 	}
 
 	function createMultilineBox(data, i, uaXML=false) {
@@ -875,7 +872,7 @@
 		}
 	}
 </script>
-	
+<div class="string h hidden" id="testingArea"></div>	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	<center>
 		<ItemHelper 
@@ -895,7 +892,8 @@
 			totalcorrectans={state.totalcorrectans}
 			style='font-family:"Open Sans",sans-serif; font-size: 16px'
 		>
-			<div class="string" id="previewArea"></div>
+	
+		<div class="string" id="previewArea"></div>
 			{#if state.showToolbar} 
 				<FillInTheBlanksToolbar  
 					spanId={state.spanId} 
