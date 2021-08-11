@@ -867,7 +867,6 @@
 		}
 	}
 </script>
-<div class="string h hidden" id="testingArea"></div>	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	<center>
 		<ItemHelper 
