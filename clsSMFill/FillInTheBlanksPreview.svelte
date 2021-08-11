@@ -299,7 +299,7 @@
 						// creating textbox in preview area
 						createMathDiv(originalKey,i);
 					}
-	    		} else if(answerType.indexOf("{" == 0) || answerType.indexOf("{" == 1)) {
+					} else if(answerType.indexOf("{" == 0) || answerType.indexOf("{" == 1)) {
 					AH.selectAll(".smnotes", 'show');
 					// checking for the user ans
 					if (uaXMLNew) {
@@ -309,7 +309,7 @@
 						// create the textarea in the preview area
 						createMultilineBox(originalKey,i);	
 					}
-	    		}
+				}
 				let innerKey = originalKey.replace("%{","").replace("}%","");
 			});
 		}
@@ -317,19 +317,17 @@
 		// Resolve html entity
 		cdata = AH.ignoreEnity(cdata);
 		// put the cdata in the previewarea
-		
-		AH.select("#previewArea", 'html', cdata);
-		//AH.find("#"+containerID, "#previewArea", {action:'html', actionData: cdata});
+		AH.find("#"+containerID, "#previewArea", {action:'html', actionData: cdata});
 		// put the dragData in the dragarea
 		AH.find("#"+containerID, ".dragArea",{action: 'html', actionData: dragData});
 		let parent = AH.find("#"+containerID, ".dragArea");
-	    let divs = parent?.children ? Array.from(parent.children) : [];
-	    while (divs.length) {
-	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
-	    }
+		let divs = parent?.children ? Array.from(parent.children) : [];
+		while (divs.length) {
+			parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+		}
 		// set the max width of the textbox
-	    setMaxWidth();
-	    setSMNotes();
+		setMaxWidth();
+		setSMNotes();
 		runModule();
 		var timer = setTimeout(function(){
 			if(AH.find(ajax_eId, ".prettyprint", 'all').length >= 1) {
@@ -400,13 +398,6 @@
 			AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 		}
 		displayAns();
-		// for editor
-		// ucFill.modeOn("on");
-		// state.showToolbar = false;
-		// ucFill.showdragans(ajax_eId, 'u', 1);
-		// smControllerCallback.activeYourAnswer();
-		// AH.selectAll('.corr_div', 'hide');
-		// AH.selectAll('.remed_disable','show');
 	}
 
 	// function calls when remediation mode is off
@@ -423,12 +414,6 @@
 			AH.selectAll(ajax_eId, 'css', {"position": "unset"});
 			AH.selectAll(".spinner-wrapper", 'remove');
 		}
-
-		// if the remediation mode if off in editor
-		// ucFill.modeOn();
-		// ucFill.showdragans(ajax_eId, 'u', 0);
-		// AH.setCss('.edit_step', {'border':'none'});
-		// AH.selectAll('.corr_div','hide');
 	}
 
 	// for resizing the textarea
