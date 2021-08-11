@@ -110,7 +110,7 @@
 		onUserAnsChange({uXml:ans.u,ans:ans.ans});
 
 		if(editorState) {
-			showAns(ans.ans);
+			showAns(ans.ans ? 'Correct' : 'Incorrect');
 		}
 	}
 
