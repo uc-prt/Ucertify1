@@ -349,7 +349,6 @@ export default class fillJS {
 	}
 	
 	showchilddragans(fillid, pElem, ansType, review) { 
-		console.trace("YESS");
 		let is_correct = -2;
 		if (pElem.classList.contains('dropable')) {
 			pElem.innerHTML = pElem.getAttribute('caption').replace(/\#doublequote#/gmi,'"');
@@ -669,6 +668,7 @@ export default class fillJS {
 				this.a = 0;
 				this.totalcorrect = JS.find(pElem, "[correctans='1']", 'all').length;
 				JS.find(pElem, "option", 'all').forEach((_value, index)=> {
+					_value.setAttribute('userans', '');
 					if (_value.selected) {
 						this.a++;
 						if (_value.getAttribute("correctans") != 1) {

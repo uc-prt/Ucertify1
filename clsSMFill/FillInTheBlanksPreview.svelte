@@ -253,7 +253,6 @@
 	    		answerType = (answerType) ? answerType[0].replace(/\||}%/gm,'') : '';
 	    		answerType = answerType.trim();
 				checkType.push(answerType);
-				console.log('answerType', answerType);
 				// in case of textbox or codetype
 	    		if(answerType == '' || answerType == 'c') {
 					AH.selectAll(".smnotes", 'show');
@@ -321,7 +320,6 @@
 		AH.selectAll("#"+containerID, 'attr', {"totalcorrectans": totalMarks} );
 		// Resolve html entity
 		cdata = AH.ignoreEnity(cdata);
-		console.log('cdata1', cdata);
 		// put the cdata in the previewarea
 		
 		AH.select("#previewArea", 'html', cdata);
@@ -518,7 +516,6 @@
 	// for adding the event to select and add drag and drop functionality to element
 	function runModule() {
 		try {
-			console.log("runmodule");
 			// for adding the event to select and add drag and drop functionality to element
 			ucFill.readyFill(ajax_eId);
 		} catch(e) {
@@ -746,12 +743,10 @@
 			// creating options
 			options += `<option value="${j}" correctans="${isCorrect}" userans="${userAnswer}" ${selected}>&nbsp;${innerVal}</option>`;
 		});
-		console.log('options', options);
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
 		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
 		// replace the cdata
-		console.log('tag', tag);
 		cdata = cdata.replace(originalData,tag);
 		console.log('cdata', cdata);
 	}
