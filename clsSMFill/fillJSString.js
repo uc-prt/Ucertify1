@@ -413,9 +413,6 @@ export default class fillJS {
 					}
 				});
 				if (this.totalcorrect == this.a) is_correct = 1;
-				//console.log(JS.find(pElem, 'option', {action: 'selected'}))
-				//if ($(pElem).find(':selected').length < 1) $(pElem).find("option:first").prop("selected","selected");
-				//if (!pElem.selected) JS.find(pElem, "option", 'all')[0].setAttribute("selected", "selected");
 			} else if (pElem.nodeName == "INPUT" || pElem.nodeName == "TEXTAREA") {
 				if (typeof(pElem.type) == "undefined") {this.type = 'text';}
 				if (ansType=='c') {  //correct answer
