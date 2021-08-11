@@ -4,3 +4,4 @@ node_modules/
 
 # Ada Library Information
 *.ali
+create_bundle.ps1
