@@ -96,7 +96,6 @@
 					node = document.querySelectorAll('#previewArea td');
 					for (let item in node){ 
 						if(!node[item].firstElementChild && node[item].nodeName == 'TD'){
-							//console.log(node[item].childNodes[0].nodeType);
 							node[item].setAttribute('tabindex','0');
 						}
 					}
@@ -122,11 +121,9 @@
 		// checking for user ans
 		if (uxml) {
 			if (!window.isResetMath) {
-				console.warn("uxml loaded", window.isResetMath);
 				parsedUxml = XMLToJSON(uxml);
 				state.uxml = uxml;
 			} else {
-				console.warn("Uxml not loaded", window.isResetMath);
 				window.isResetMath = false;
 			}
 		}
@@ -187,7 +184,6 @@
 					}
 					if (AH.isValid(id) && document.querySelector(id)) {
 						document.querySelector(id).setAttribute('userans', uaXMLNew._userAns);
-						//console.log(currentAns, id, answerType, uaXMLNew._userAns);
 					}
 				}
 				
@@ -748,7 +744,6 @@
 		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData,tag);
-		console.log('cdata', cdata);
 	}
 
 	function createMultilineBox(data, i, uaXML=false) {
