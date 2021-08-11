@@ -406,16 +406,13 @@ export default class fillJS {
 				JS.find(pElem, "option", 'all').forEach((_this, i)=> {
 					_this.removeAttribute("selected");
 					if (ansType=='c') {
-						if (_this.getAttribute("correctans") > 0) _this.setAttribute("selected", true);
+						if (_this.getAttribute("correctans") > 0) _this.selected = true;
 					} else if (ansType=='u') {
-						if (_this.getAttribute("userans") > 0) _this.setAttribute("selected", true);
+						if (_this.getAttribute("userans") > 0) _this.selected = true;
 						if (_this.selected && _this.getAttribute('correctans') == 1) { this.a++; }
 					}
 				});
 				if (this.totalcorrect == this.a) is_correct = 1;
-				//console.log(JS.find(pElem, 'option', {action: 'selected'}))
-				//if ($(pElem).find(':selected').length < 1) $(pElem).find("option:first").prop("selected","selected");
-				//if (!pElem.selected) JS.find(pElem, "option", 'all')[0].setAttribute("selected", "selected");
 			} else if (pElem.nodeName == "INPUT" || pElem.nodeName == "TEXTAREA") {
 				if (typeof(pElem.type) == "undefined") {this.type = 'text';}
 				if (ansType=='c') {  //correct answer
@@ -668,6 +665,7 @@ export default class fillJS {
 				this.a = 0;
 				this.totalcorrect = JS.find(pElem, "[correctans='1']", 'all').length;
 				JS.find(pElem, "option", 'all').forEach((_value, index)=> {
+					_value.setAttribute('userans', '');
 					if (_value.selected) {
 						this.a++;
 						if (_value.getAttribute("correctans") != 1) {

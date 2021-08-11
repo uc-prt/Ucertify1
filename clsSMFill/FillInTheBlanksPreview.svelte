@@ -83,15 +83,7 @@
 	** This function will call when compent recieving new prop in other words whenever 
 	** any thing changes in xml this function will call automatically
 	*/
-	beforeUpdate((nextProps)=> {
-		// check for the remediation mode 
-		// if the remediation mode is on
-		// if (isReview) {
-		// 	// show the ansert by calling the setReview function
-		// 	setReview();
-		// } else {
-		// 	unsetReview()
-		// }
+	beforeUpdate(() => {
 		// for checking that there is change in the xml
 		if (xml != state.xml) {
 			if (editorState && editorState.stopPreviewUpdate == true) return false;
@@ -104,7 +96,6 @@
 					node = document.querySelectorAll('#previewArea td');
 					for (let item in node){ 
 						if(!node[item].firstElementChild && node[item].nodeName == 'TD'){
-							//console.log(node[item].childNodes[0].nodeType);
 							node[item].setAttribute('tabindex','0');
 						}
 					}
@@ -115,7 +106,6 @@
 							txt.setAttribute('tabindex','0');
 							txt.innerHTML = node.childNodes[item].textContent;
 							node.childNodes[item].replaceWith(txt);
-							//node.childNodes[item].nodeValue = <span tabinde="0">{}</span>;
 						}
 					}
 				}
@@ -131,17 +121,15 @@
 		// checking for user ans
 		if (uxml) {
 			if (!window.isResetMath) {
-				console.warn("uxml loaded", window.isResetMath);
 				parsedUxml = XMLToJSON(uxml);
 				state.uxml = uxml;
 			} else {
-				console.warn("Uxml not loaded", window.isResetMath);
 				window.isResetMath = false;
 			}
 		}
 		// parsing the authoring xml
 		parseXmlAuthoring(parsedXml, parsedUxml);
-		ucFill.showdragans(ajax_eId, 'u');
+		//ucFill.showdragans(ajax_eId, 'u'); //@prabhat: Its creating issue when we check the answer from editor for the drop down.
 		if(!xml) {
 			let errMsg = smVal.validate(editorState.content_type, editorState.subtype , editorState.content_icon);
 			smValidate(errMsg);
@@ -196,7 +184,6 @@
 					}
 					if (AH.isValid(id) && document.querySelector(id)) {
 						document.querySelector(id).setAttribute('userans', uaXMLNew._userAns);
-						//console.log(currentAns, id, answerType, uaXMLNew._userAns);
 					}
 				}
 				
@@ -312,7 +299,7 @@
 						// creating textbox in preview area
 						createMathDiv(originalKey,i);
 					}
-	    		} else if(answerType.indexOf("{" == 0) || answerType.indexOf("{" == 1)) {
+					} else if(answerType.indexOf("{" == 0) || answerType.indexOf("{" == 1)) {
 					AH.selectAll(".smnotes", 'show');
 					// checking for the user ans
 					if (uaXMLNew) {
@@ -322,26 +309,25 @@
 						// create the textarea in the preview area
 						createMultilineBox(originalKey,i);	
 					}
-	    		}
+				}
 				let innerKey = originalKey.replace("%{","").replace("}%","");
 			});
 		}
 		AH.selectAll("#"+containerID, 'attr', {"totalcorrectans": totalMarks} );
 		// Resolve html entity
 		cdata = AH.ignoreEnity(cdata);
-		
 		// put the cdata in the previewarea
 		AH.find("#"+containerID, "#previewArea", {action:'html', actionData: cdata});
 		// put the dragData in the dragarea
 		AH.find("#"+containerID, ".dragArea",{action: 'html', actionData: dragData});
 		let parent = AH.find("#"+containerID, ".dragArea");
-	    let divs = parent?.children ? Array.from(parent.children) : [];
-	    while (divs.length) {
-	        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
-	    }
+		let divs = parent?.children ? Array.from(parent.children) : [];
+		while (divs.length) {
+			parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+		}
 		// set the max width of the textbox
-	    setMaxWidth();
-	    setSMNotes();
+		setMaxWidth();
+		setSMNotes();
 		runModule();
 		var timer = setTimeout(function(){
 			if(AH.find(ajax_eId, ".prettyprint", 'all').length >= 1) {
@@ -412,13 +398,6 @@
 			AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 		}
 		displayAns();
-		// for editor
-		// ucFill.modeOn("on");
-		// state.showToolbar = false;
-		// ucFill.showdragans(ajax_eId, 'u', 1);
-		// smControllerCallback.activeYourAnswer();
-		// AH.selectAll('.corr_div', 'hide');
-		// AH.selectAll('.remed_disable','show');
 	}
 
 	// function calls when remediation mode is off
@@ -435,12 +414,6 @@
 			AH.selectAll(ajax_eId, 'css', {"position": "unset"});
 			AH.selectAll(".spinner-wrapper", 'remove');
 		}
-
-		// if the remediation mode if off in editor
-		// ucFill.modeOn();
-		// ucFill.showdragans(ajax_eId, 'u', 0);
-		// AH.setCss('.edit_step', {'border':'none'});
-		// AH.selectAll('.corr_div','hide');
 	}
 
 	// for resizing the textarea
@@ -524,7 +497,6 @@
 	// for adding the event to select and add drag and drop functionality to element
 	function runModule() {
 		try {
-			console.log("runmodule");
 			// for adding the event to select and add drag and drop functionality to element
 			ucFill.readyFill(ajax_eId);
 		} catch(e) {
@@ -751,7 +723,7 @@
 			innerVal = innerVal.replace(/\#cm/gmi,",").replace(/\#pl/gmi,"+");
 			// creating options
 			options += `<option value="${j}" correctans="${isCorrect}" userans="${userAnswer}" ${selected}>&nbsp;${innerVal}</option>`;
-		})
+		});
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
 		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
@@ -875,7 +847,6 @@
 		}
 	}
 </script>
-	
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	<center>
 		<ItemHelper 
@@ -895,7 +866,8 @@
 			totalcorrectans={state.totalcorrectans}
 			style='font-family:"Open Sans",sans-serif; font-size: 16px'
 		>
-			<div class="string" id="previewArea"></div>
+	
+		<div class="string" id="previewArea"></div>
 			{#if state.showToolbar} 
 				<FillInTheBlanksToolbar  
 					spanId={state.spanId} 
