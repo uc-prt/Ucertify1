@@ -1337,12 +1337,16 @@
 			editorConfig.setParentData(new_guid, urlVars['content_subtype']);
 		}
 		AH.toggleDom(".activator, .footerstr, .tooltip", 'hide');
-		document.querySelector(".tinymce-editor").addEventListener("click", function () {
-			tinyMCE.activeEditor.focus();
-			if (!AH.get('editorActivated')) {
-				activateEditor(100, true);
-			}
-		});
+		let tinymce_editor = document.querySelector(".tinymce-editor");
+		if (tinymce_editor) {
+			tinymce_editor.addEventListener("click", function () {
+				tinyMCE.activeEditor.focus();
+				if (!AH.get('editorActivated')) {
+					activateEditor(100, true);
+				}
+			});
+		}
+		
 		if ( (in_frame == 1) && (state.guid || "s,f".includes(state.content_type)) ) {
 			AH.toggleDom(AH.select('.backBtn').parentElement, 'hide');
 		}
