@@ -185,7 +185,7 @@
 		// 	},200)
 		// })
 
-		AI.listen('#matchmain ','click','.matchlist-delete',function(e){
+		AH.listen('#matchmain ','click','.matchlist-delete',function(e){
 			setTimeout(function(){
 				displayAns()
 			},200)    
@@ -291,7 +291,7 @@
 
 			var timer_next = setTimeout(function() {
 				//jQuery("#"+containerID).find('#sm_controller_default .your-ans').click();
-				AI.find("#"+containerID,'#sm_controller_default .your-ans').click();
+				AH.find("#"+containerID,'#sm_controller_default .your-ans').click();
 				clearTimeout(timer_next);				
 			}, 200);
 		}
