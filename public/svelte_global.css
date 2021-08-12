@@ -25513,3 +25513,6 @@ strong {
 .swal-modal .swal2-close:focus {
   outline: 0;
 }
+.remove_right_margin > div.content {  
+  margin-right: 0;
+}
