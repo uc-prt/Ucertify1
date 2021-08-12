@@ -1186,6 +1186,7 @@
 							checked={state.codetype}
 							id="codetype"
 							color="primary"
+							on:click={()=> {state.codetype = !state.codetype }}
 						>
 							<span>Code Type</span>
 						</Checkbox>
