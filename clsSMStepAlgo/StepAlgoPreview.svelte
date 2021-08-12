@@ -12,7 +12,8 @@
     import l from '../src/libs/editorLib/language.js';
     import { onMount,afterUpdate, beforeUpdate } from 'svelte';
     import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
-	import FillInTheBlanksToolbar from '../clsSMFill/FillInTheBlanksToolbar.svelte';
+	//import FillInTheBlanksToolbar from '../clsSMFill/FillInTheBlanksToolbar.svelte';
+	import FillInTheBlanksToolbar from  "./../src/libs/FillInTheBlanksToolbar.svelte"
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import '../src/libs/mathquill.css';
 
