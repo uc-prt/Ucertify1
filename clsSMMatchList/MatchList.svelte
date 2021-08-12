@@ -98,7 +98,7 @@
     onMount(()=>{
 		//loadLibs();
         // preventing the enter key in the textarea
-        AI.listen(document,'keydown','textarea',function(event) {
+        AH.listen(document,'keydown','textarea',function(event) {
             if(event.keyCode == 13) {
                 event.preventDefault();
             }
@@ -109,10 +109,10 @@
 		// 	}
 		// });
 		// for deleting the image
-		AI.listen(document,'click','.image_delete', (_ele) => {
+		AH.listen(document,'click','.image_delete', (_ele) => {
 			let newValue
-			let oldImage = AI.find(_ele.parentElement.parentElement,'textarea').value;
-			if(AI.find(_ele.parentElement.parentElement,'textarea').id == "matchList1") {
+			let oldImage = AH.find(_ele.parentElement.parentElement,'textarea').value;
+			if(AH.find(_ele.parentElement.parentElement,'textarea').id == "matchList1") {
 				newValue = state.xml.replace(oldImage, "Insert value2");
 			} else {
 				newValue = state.xml.replace(oldImage, "Insert value1");
@@ -127,7 +127,7 @@
 		// });
 		
 		
-		AI.listen(document,'mouseup','.ui-droppable',function() {
+		AH.listen(document,'mouseup','.ui-droppable',function() {
 			setTimeout(function() {
 				document.querySelectorAll(".matchlist-delete").forEach((_elm) => {
 					_elm.classList.add("tts_nospeak");
@@ -147,7 +147,7 @@
 		// 	event.preventDefault();
 		// 	}
 		// });
-		AI.listen(document,'keydown','.delete_match_node, .delete_match_node_auth', function(data,event) {
+		AH.listen(document,'keydown','.delete_match_node, .delete_match_node_auth', function(data,event) {
 			if((event.keyCode == 13 || event.which == 13)) {
 				// Need ti fix one more line here....
 				event.preventDefault();
@@ -240,13 +240,13 @@
 		} else if (e.target.id == "maxnode") {
 			// if there is change in maxnode
 			if (isNaN(e.target.value)) {
-				AI.showmsg(
+				AH.showmsg(
 					'Error Message',
 					'Please enter numeric value',
 					'error'
 				);
 			} else if (e.target.value > 6) {
-				AI.showmsg('Please insert value between 1 to 6');
+				AH.alert('Please insert value between 1 to 6');
 			} else {
 				state.maxnode = e.target.value;
 			}
@@ -270,12 +270,12 @@
     // whenever add button is clicked
 	function updateCData() {
 		//var rowInFirstColumn = jQuery("#matchListArea [class*='textarea_1']").length;
-		var rowInFirstColumn = AI.selectAll("#matchListArea [class*='textarea_1']").length;
+		var rowInFirstColumn = AH.selectAll("#matchListArea [class*='textarea_1']").length;
 		
 		//var rowInSeconfColumn = jQuery("#matchListArea [class*='textarea_2']").length;
-		var rowInSeconfColumn = AI.selectAll("#matchListArea [class*='textarea_2']").length;
+		var rowInSeconfColumn = AH.selectAll("#matchListArea [class*='textarea_2']").length;
 		if (rowInFirstColumn > 19 || rowInSeconfColumn > 19) {
-			AI && AI.showmsg('Maximum possible options are 20');
+			AH && AH.alert('Maximum possible options are 20');
 		} else {
 			row++;
 			// converting the xml in json using the function XMLToJSON 
@@ -413,7 +413,7 @@
     
 	// whenever the image icon is clicked this function calls
 	function openImageDialog(class_name) {
-		AH.getBS(AI.select('#addImageModal'), 'Modal').show();
+		AH.getBS(AH.select('#addImageModal'), 'Modal').show();
 		state.openImageDialog = true;
 		state.imageClass = class_name;
 		// extrcting image details
@@ -439,7 +439,7 @@
     
     // calls when image icon is clicked and is_algo is true 
 	function openImageDialogAlgo(class_name, ids, i, clname) {
-		AH.getBS(AI.select('#addImageModal'), 'Modal').show();
+		AH.getBS(AH.select('#addImageModal'), 'Modal').show();
 		state.openImageDialog = true;
 		clsname = class_name;
 		index = ids;
@@ -665,7 +665,7 @@
 					not_matched_data += localCData[index_no].value1 + "[" + localCData[index_no].value2 + "]\n";
 				}
 			} else {
-				AI.showmsg('At least one field required.');
+				AH.alert('At least one field required.');
 				not_matched_data += localCData[index_no].value1 + "[" + localCData[index_no].value2 + "]\n";
 			}
 		});
