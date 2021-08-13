@@ -245,7 +245,7 @@ export default class JUI extends API{
         super();
         this.trackInf = {};
         this.buffer = {};
-        this.bsCat1 = ['Modal', 'Tooltip', 'Collapse', 'Popover', 'ScrollSpy', 'Tab', 'Alert'];
+        this.bsCat1 = ['Modal', 'Tooltip', 'Collapse', 'Popover', 'ScrollSpy', 'Tab', 'Alert', 'Dropdown'];
         this.extraSelectors = ['hidden', 'visible', 'selected', 'checked', 'enabled', 'children', 'childNodes'];
         this.parseHtml = this.templateHtml.bind(this);
         this.isSSDloaded = "";
@@ -598,7 +598,7 @@ export default class JUI extends API{
                 if (options) {
                     return new bootstrap[comp](triggerElm, options);
                 } else {
-                    return new bootstrap[comp](triggerElm)
+                    return new bootstrap[comp](triggerElm);
                 }
             })
             return fireList;
@@ -620,7 +620,18 @@ export default class JUI extends API{
             console.error("Bootstrap can't disable for this component name");
         }
     }
-
+    initDropdown() { // Hide the dropdown click outside, when dropdown is appended in dom using ajax call.
+        let _this= this;
+        _this.enableBsAll('[data-toggle="dropdown"]', 'Dropdown');
+        _this.bind('body', 'click', function() {
+            _this.selectAll('[data-toggle="dropdown"]').forEach(function(currElem) {
+                currElem.classList.remove('show');
+            });
+            _this.selectAll('.dropdown-menu').forEach(function(currElem) {
+                currElem.classList.remove('show');
+            });
+        });
+    }
     // Js based ajax i.e $.ajax
     ajax(sendData) {
         let longData = "";

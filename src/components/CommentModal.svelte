@@ -27,6 +27,7 @@
             }).then((res)=> {
                 AH.activate(0);
                 AH.select('#comment_modal_body').innerHTML = res;
+                AH.initDropdown();
             });
         }
     }
@@ -43,6 +44,7 @@
                 }).then((res)=> {
                     AH.activate(0);
                     AI.select('#comment_modal_body').innerHTML = res;
+                    AH.initDropdown();
                     //$("[rel=tooltip]").tooltip();
                     AH.getBS('#comment_modal', 'Modal').show();
                 });
@@ -69,7 +71,10 @@
         /*comment edit*/
         AH.listen(document.body, 'click', '.comment_edit', function(_this) {
             AH.find('.comment_footer', '.reply_textbox').value = '';
-            AH.select('.comment_btns').remove();
+            console.log(AH.select('.comment_btns'));
+            if (AH.select('.comment_btns').hasOwnProperty('remove')) {
+                AH.select('.comment_btns').remove();
+            }
             AH.find(_this.closest('.comment_container'), '.reply_textbox').classList.add('h');
             let props = [
                 {class : 'btn btn-info btn-sm',          text : 'Save',  type : 'edit'},
@@ -80,7 +85,7 @@
                 AH.find(_this.closest('.comment_container'), '.comment_footer').classList.add('comment_foo');
             }
             let commentText = AH.find(_this.closest('.comment_container'), '.comment_text');
-            window.commentTextData = commentText.text();
+            window.commentTextData = commentText.innerText;
             commentText.setAttribute('contentEditable', true);
             commentText.focus();
             AH.addClass(commentText, ['comment_text_editing', 'darkgrey_border', 'pt-xs', 'pb-xs', 'pl-xs', 'pr-xs']);
@@ -96,10 +101,10 @@
             }
         }); 
         /*comment delete*/
-        AH.find(document.body, 'click', '.comment_delete', function(_this) {
+        AH.listen(document.body, 'click', '.comment_delete', function(_this) {
             deleteComment(_this);
         });
-        AH.find(document.body, 'click', '.comment_btns [btntype=edit],.comment_btns [btntype=edit_cancel]', function(_this) {
+        AH.listen(document.body, 'click', '.comment_btns [btntype=edit],.comment_btns [btntype=edit_cancel]', function(_this) {
             editComment(_this);
         });
         AH.bind('#comment_modal', 'hide.bs.modal', function(event) {
@@ -205,8 +210,8 @@
         var timestamp       = t.closest('.comment_container').getAttribute('time-span');
         var id             = t.closest('.comment_container').getAttribute('id');
         var anno_id        = t.closest('.comment_container').getAttribute('anno_id');
-        AH.find(t.closest('.comment_container'), '.comment_text_editing').setAttribute('contentEditable', false);
-        AH.find(t.closest('.comment_container'), '.comment_text_editing').classList.remove(['comment_text_editing', 'darkgrey_border', 'pt-xs', 'pb-xs', 'pl-xs', 'pr-xs']);
+        AH.find(t.closest('.comment_container'), '.comment_text').setAttribute('contentEditable', false);
+        AH.find(t.closest('.comment_container'), '.comment_text').classList.remove(['darkgrey_border', 'pt-xs', 'pb-xs', 'pl-xs', 'pr-xs']);
         if (!AH.find(t.closest('.comment_footer'), '.reply_textbox')?.classList.contains('disable_reply')) {
             AH.find(t.closest('.comment_footer'), '.reply_textbox').value = '';
             AH.find(t.closest('.comment_footer'), '.reply_textbox').classList.remove('h');
@@ -227,8 +232,9 @@
                 timestamp:     timestamp,
                 id:           id,
                 anno_id:      anno_id,
-                tags: (typeof AI != "undefined" && AI.get('comments_type')) ? AI.get('comments_type') : -2,
+                tags: (typeof AH != "undefined" && AH.get('comments_type')) ? AH.get('comments_type') : -2,
             };
+            console.log('data', _data);
             AH.ajax({
                 url    : `${CREATEAPP_PATH}?func=edit_comment`,
                 data   : _data,
@@ -387,8 +393,7 @@
         userName = (user_nm_char.length == '0') ? `${user.first_name} ${user.last_name}` : userName;
         commentCguid = (commentCguid) ? commentCguid : questionGuid;
         var commentHtml = `<div 
-                            class="comment_container card_shadow_2 d-inline-block relative bg-white w-100 pl-3 pr-3 pb-3 pt-1 mt-3" c
-                            ontent-guid="${commentCguid}"
+                            class="comment_container card_shadow_2 d-inline-block relative bg-white w-100 pl-3 pr-3 pb-3 pt-1 mt-3" content-guid="${commentCguid}"
                         >
                             <div class="comment_header clearfix">
                                 <div class="comment_user line_height3 float-left d-inline-block">
@@ -427,6 +432,7 @@
             }).then((res)=> {
                 AH.activate(0);
                 AH.select('#comment_modal_body').innerHTML = res;
+                AH.initDropdown();
             });
         } else {
             AH.ajax({
@@ -436,6 +442,7 @@
             }).then((res)=> {
                 AH.activate(0);
                 AH.select('#comment_modal_body').innerHTML = res;
+                AH.initDropdown();
             });
         }
     };
@@ -449,6 +456,9 @@
 	}
     .commentTabs a{
         text-decoration: none;
+    }
+    :global(.mr) {
+        margin-right: 8px;  
     }
 </style>
 <button 
@@ -488,7 +498,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal Code -->
 <!---
 <div class="modal" data-cy="assign_modal" id="assign_comment_modal" tabindex="-1" role="dialog">
