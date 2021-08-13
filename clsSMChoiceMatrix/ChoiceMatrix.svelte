@@ -315,7 +315,7 @@
 		widthVal = document.querySelector('#customWidth').value;
 		// setting the width of the table
 	
-	document.getElementById('test_table').style.width = widthVal +'px';
+		document.getElementById('test_table').style.width = widthVal +'px';
 
 		// check for th timeout if exist clear the timeout to save memory
 		(lastAction) ? clearTimeout(lastAction) : "";
@@ -333,7 +333,7 @@
 				let timer = setTimeout(function() { reverseXml(); clearTimeout(timer); },100);  // Fixed
 				AH.alert("Width should not be greater than 1000px");
 			} 
-		},1500);
+		},1000);
 		// update the state
         state.maxWidth = widthVal;
 		// update the cdata

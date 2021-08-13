@@ -67,7 +67,7 @@
 		
 		// show the answer wether the answer is correct or not
 		if (editorState) {
-			showAns(ans.b);
+			showAns(ans.b ? "Correct" : "Incorrect");
 		}
     } 
 	$:{
