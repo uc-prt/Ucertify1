@@ -1,8 +1,8 @@
 <script>
-    import l from '../src/libs/editorLib/language';
+    import l from 'editorLib/language';
     import { beforeUpdate, onMount } from 'svelte';
     import { writable } from 'svelte/store';
-    import { AH } from '../helper/HelperAI.svelte';
+    import { AH } from '../../helper/HelperAI.svelte';
     export let spanId;
     export let divId;
     export let action;

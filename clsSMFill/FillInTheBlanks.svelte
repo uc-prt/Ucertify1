@@ -29,6 +29,7 @@
 	let replaceCharacters = {'&apos;': '#apos#'};
 	let message = "";
 	let state = {};
+	let dragSingle = false;
 	let hdd = writable({
 		snackback:false,
 		matchtype:"",
@@ -78,7 +79,7 @@
 
 	const unsubscribe = hdd.subscribe((items)=> {
 		state = items;
-	})
+	});
 
 	// this function loaded before the rendering and check that it has xml or not . If it has then calls the reverseXml function.
 	onMount(()=> {
@@ -764,7 +765,7 @@
 		key = key.split("|");
 		let ans = key[0].trim();
 		// checking for the drag single
-		let dragSingle = ((key[1].trim() == "ds")? true : false );
+		dragSingle = ((key[1].trim() == "ds")? true : false );
 		state.fillDragDrop = [];
 		let dragDrop = [];
 		// spliting the ans with ,
@@ -788,7 +789,6 @@
 		state.fillDragDrop = dragDrop;
 		state.fillInTheBlanksChoice = 3;
 		state.open = true;
-		AH.find("#responseDialog", "#drag_single").checked = dragSingle;
 	}
 
 	function editMultiline(key) {
@@ -939,7 +939,7 @@
 					let d = AH.find("#responseDialog", "[id^=dragDrop]", 'all');
 					let str = "";
 					// check dragSingle is checked or not
-					let dragSingle = AH.select("#responseDialog #drag_single").checked;
+					dragSingle = AH.select("#responseDialog #drag_single").checked;
 					// if dragSingle is checked then assign the dragType ds else d
 					let dragType = ((dragSingle == true) ? "ds" : "d");
 					let isValue = "yes";
@@ -1163,7 +1163,7 @@
 		contentEditable={true}
 	>
 	</div>
-	<Dialog width="700" bind:visible={state.open} style="background-color:#fff;">
+	<Dialog class="remove_right_margin" width="700" bind:visible={state.open} style="background-color:#fff;">
 		<h4 class="mt-0 font21">
 			<div class="d-flex justify-content-between">
 				<div>{l.fill_header}</div>
@@ -1178,7 +1178,7 @@
 				</div>
 			</div>
 		</h4>
-		<div id="responseDialog" style="height:320px;overflow-y:auto; padding-right: 18px;">
+		<div id="responseDialog" style="height:320px;overflow-y:auto; padding-right: 20px;">
 			{#if state.fillInTheBlanksChoice == 1}
 				<div>
 					<div class="d-flex justify-content-start height36">
@@ -1186,6 +1186,7 @@
 							checked={state.codetype}
 							id="codetype"
 							color="primary"
+							on:click={()=> {state.codetype = !state.codetype }}
 						>
 							<span>Code Type</span>
 						</Checkbox>
@@ -1299,6 +1300,7 @@
 								type="checkbox" 
 								name="dragDropCorrectAns"
 								id="drag_single" 
+								bind:checked={dragSingle}
 							/>
 						</div>
 						<label for="drag_single" class="font-weight-normal mb-0 form-check-label relative w-75" style="top: 11px; left:5px">{l.drag_single}</label>
