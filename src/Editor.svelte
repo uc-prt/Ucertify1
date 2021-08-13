@@ -252,6 +252,7 @@
 				withUrl: true,
 			}).then(function(res) {
 				document.querySelector('#comment_modal_body').innerHTML = res;
+				AH.initDropdown();
 				document.querySelector("#editor_comment_modal_btn").style.display = "block";
 				_commentModal.init?.();
 			});
