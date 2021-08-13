@@ -10,15 +10,16 @@
     });
 </script>
 
-<Dialog width={modal.width} beforeClose={beforeCloseFunc} bind:visible>
-    <div slot="title" style="text-align: left; {modal.header.style}">
+<Dialog width={modal.width} beforeClose={beforeCloseFunc} style="background-color:#fff;" bind:visible>
+    <h3 style="text-align: left; {modal.header.style}">
         {@html modal.header.body}
-    </div>
+    </h3>
     <div class="modalContent" style="overflow-y: auto; overflow-x: hidden; {modal.body.style}">{@html modal.body.body}</div>
     <div slot="actions" class="actions center" style="display: {modal.action ? 'block' : 'none'}">
         {#if modal.action}{@html modal.action.body} {/if}
     </div>
     <div slot="footer" class="svelteFooter">
+        <Button color="#ccc" unelevated={true} outlined={true} on:click={()=> visible = false}>Cancel</Button>
         {#each modal.footer.body as item, index}
             <Button 
                 on:click={item.onAction}
@@ -31,6 +32,6 @@
                 {item.label}
             </Button>
         {/each}
-        <Button color="#ccc" unelevated={true} outlined={true} on:click={()=> visible = false}>Cancel</Button>
+        
     </div>
 </Dialog>

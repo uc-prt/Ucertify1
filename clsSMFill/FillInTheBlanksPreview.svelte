@@ -10,7 +10,8 @@
 	import {ucFill} from './fillJSString';
 	//import ju from '../src/libs/jslib';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
+	//import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
+	import FillInTheBlanksToolbar from "./../src/libs/FillInTheBlanksToolbar.svelte";
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
