@@ -71,7 +71,6 @@
         /*comment edit*/
         AH.listen(document.body, 'click', '.comment_edit', function(_this) {
             AH.find('.comment_footer', '.reply_textbox').value = '';
-            console.log(AH.select('.comment_btns'));
             if (AH.select('.comment_btns').hasOwnProperty('remove')) {
                 AH.select('.comment_btns').remove();
             }
