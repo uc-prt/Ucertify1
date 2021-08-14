@@ -796,12 +796,13 @@
                             on:keyup={generateXml} 
                         />
                     </div>
-                    <div class="inline-block width150 relative bottom6 pull-left ml-lg">
+                    <div class="inline-block width150 relative bottom6 pull-left ml-lg" data-cy="goDark">
                         <span class="themeStyle form-check form-check-inline">
                             <Checkbox  
                                 checked={state.goDark} 
                                 on:click={changeTheme} 
                                 id="goDark"
+                                
                             >
                                 Dark Theme
                             </Checkbox>
