@@ -2937,7 +2937,7 @@
 			unelevated={true}
             outlined={true}
 			on:click={updateXml}
-			color="#ccc"
+			color="primary"
 		>
 			{l.done}
 		</Button>

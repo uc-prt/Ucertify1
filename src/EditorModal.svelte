@@ -10,10 +10,10 @@
     });
 </script>
 
-<Dialog width={modal.width} beforeClose={beforeCloseFunc} style="background-color:#fff;" bind:visible>
-    <h3 style="text-align: left; {modal.header.style}">
+<Dialog width={modal.width} beforeClose={beforeCloseFunc} style="background-color:#fff; border-radius: 5px;" bind:visible>
+    <h4 class="mt-1 font21 mb-4" style="text-align: left; {modal.header.style}">
         {@html modal.header.body}
-    </h3>
+    </h4>
     <div class="modalContent" style="overflow-y: auto; overflow-x: hidden; {modal.body.style}">{@html modal.body.body}</div>
     <div slot="actions" class="actions center" style="display: {modal.action ? 'block' : 'none'}">
         {#if modal.action}{@html modal.action.body} {/if}
