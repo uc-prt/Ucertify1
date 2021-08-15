@@ -8467,3 +8467,15 @@ strong {
 .remove_right_margin > div.content {  
   margin-right: 0;
 }
+
+[class*=" icomoon-"], [class^=icomoon-] {
+  font-family: icomoon !important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
