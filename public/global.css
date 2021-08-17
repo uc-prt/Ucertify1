@@ -8479,3 +8479,12 @@ strong {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.w-sm {
+  width: 50%;
+}
+.width8 {
+  width: 30%;
+}
+.hidden {
+  display: none !important;
+}
