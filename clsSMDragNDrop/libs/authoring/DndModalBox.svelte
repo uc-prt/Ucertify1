@@ -57,7 +57,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="drag-border_color">{l.border_color}</label>
-                                        <select class="form-control form-control-md" id="drag-border_color" name="border_color">
+                                        <select class="form-select form-control-md" id="drag-border_color" name="border_color">
                                             <option value="">{l.none}</option>
                                             <option value="black">{l.black}</option>
                                             <option value="gray">{l.gray}</option>
@@ -151,7 +151,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="drop-border">{l.border_color}</label>
-                                        <select class="form-control form-control-md" id="drop-border" name="border">
+                                        <select class="form-select form-control-md" id="drop-border" name="border">
                                             <option value="">{l.none}</option>
                                             <option value="black">{l.black}</option>
                                             <option value="gray">{l.gray}</option>
