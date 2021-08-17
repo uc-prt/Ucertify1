@@ -387,7 +387,6 @@
                 onMove: function () { },
                 onClick: function () { },
                 onPaint: function (e) {
-                    console.log("onPaint auth");
                     // storeing the X and Y values
                     xaxis.push(e.X);
                     yaxis.push(e.Y);
@@ -402,7 +401,6 @@
                         getCoordinate(xaxis, yaxis, count);
                     }
                     xaxis = []; yaxis = [];
-                    console.log(e);
                 }
             });
             let surfaceColor = surface.lineColor(window.color);
@@ -421,7 +419,7 @@
     
             let currentXMl = AH.parseHtml(xml);
             // if the type is imagehighlisght then draw ib the canvas by getting values from the xml
-            if (currentXMl.getAttribute('type') == 'imagehighlight') {
+            if ((currentXMl.children)[0].getAttribute('type') == 'imagehighlight') {
                 var ans = state.xml;
                 ans = ans.substring(ans.indexOf('{'), ans.lastIndexOf('}') + 1);
                 if (ans != '') {
@@ -430,7 +428,7 @@
                 setTimeout(function () {
                     // for drawing the path on the canvas by looping through the ans
                     authScript.drawOnCanvasAuth(AH.find('#mainContent', '#hptdraw canvas').getAttribute('id'), ans, surfaceColor);
-                }, 4000);
+                }, 2000);
             }
             window.surface = surface;
         }
