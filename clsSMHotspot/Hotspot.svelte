@@ -940,10 +940,10 @@
                 value={state.xml}
             ></textarea>
         </center>
-        <Dialog width="600" bind:visible={state.openImg}>
-            <div slot="title" style="text-align: left;">
+        <Dialog width="600" bind:visible={state.openImg} style={'background-color:#fff;'}>
+            <h4 style="text-align: left;">
                 <div style="">Image</div>
-            </div>
+            </h4>
             <div>
                 <div class="d-flex">
                     <input
