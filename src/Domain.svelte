@@ -428,10 +428,10 @@
     }
 </script>
 
-<Dialog bind:visible={state.open} width="700">
-    <div slot="title" style="text-align: left;">
+<Dialog bind:visible={state.open} width="700" style={'background-color:white;'}>
+    <h2 style="text-align: left;">
         <div style="">Content Settings</div>
-    </div>
+    </h2>
     <div class="overflow-hide">
         {#if fromProject}
             <ul 
