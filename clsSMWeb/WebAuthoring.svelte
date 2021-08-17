@@ -775,7 +775,8 @@
                         <button 
                             type="button" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#autograde_modal" 
+                            data-bs-target="#autograde_modal"
+                            data-cy="autograde_modal" 
                             class="btn btn-primary mr-2"
                         >{l.autograde}</button>
                     </div>
@@ -783,7 +784,8 @@
                         <button 
                             type="button" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#disable_modal" 
+                            data-bs-target="#disable_modal"
+                            data-cy="disable_modal" 
                             class="btn btn-primary mr-2"
                         >{l.disable}</button>
                     </div>
@@ -1034,7 +1036,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="html_disable">{l.html}:</label>
-                        <select class="form-control" id="html_disable" on:blur={generateXml} auto:focus="autofocus">
+                        <select class="form-control" id="html_disable" data-cy="html_disable" on:blur={generateXml} auto:focus="autofocus">
                             <option value="">{l.editable}</option>
                             <option value="0">{l.hidden}</option>
                             <option value="1">{l.disabled}</option>
@@ -1042,7 +1044,7 @@
                     </div>
                     <div class="form-group">
                         <label for="css_disable">{l.css}:</label>
-                        <select class="form-control" id="css_disable" on:blur={generateXml}>
+                        <select class="form-control" id="css_disable" data-cy="css_disable" on:blur={generateXml}>
                             <option value="">{l.editable}</option>
                             <option value="0">{l.hidden}</option>
                             <option value="1">{l.disabled}</option>
@@ -1050,14 +1052,14 @@
                     </div>
                     <div class="form-group">
                         <label for="js_disable">{l.js}:</label>
-                        <select class="form-control" id="js_disable" on:blur={generateXml}>
+                        <select class="form-control" id="js_disable" data-cy="js_disable" on:blur={generateXml}>
                             <option value="">{l.editable}</option>
                             <option value="0">{l.hidden}</option>
                             <option value="1">{l.disabled}</option>
                         </select>
                     </div>
                     <div class="float-right">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{l.done}</button>
+                        <button type="button" class="btn btn-primary" data-cy='close_modal' data-bs-dismiss="modal">{l.done}</button>
                     </div>
                 </div>
             </div>
