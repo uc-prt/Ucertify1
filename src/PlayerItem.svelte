@@ -72,7 +72,7 @@
                     <select 
                         id="type" 
                         name="type" 
-                        class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
+                        class="btn border mr p-2 ml-md mr-2 width60 clearfix pointer" 
                         value={playerState.type} 
                         on:blur={(e)=>{ setInputState('type', e.target.value)}}
                     >
@@ -86,7 +86,7 @@
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 width80 clearfix pointer" 
+                            class="btn border p-2 width82 clearfix pointer" 
                             value={playerState.sub_type} 
                             on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -665,7 +665,7 @@
                         value={playerState.snt} 
                         id="refid" 
                         name="refid" 
-                        class="btn border p-2 ml-md clearfix width82 pointer" 
+                        class="btn border p-2 ml-md clearfix width99 pointer" 
                         on:blur={(e)=>{setInputState('snt', e.target.value)}}
                     >
                         <option value='1441'>{l.snt_41}</option>

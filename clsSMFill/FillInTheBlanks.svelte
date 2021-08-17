@@ -1501,7 +1501,7 @@
 		</div>
 	</Dialog>
 	
-	<Dialog class="remove_right_margin" width="600" bind:visible={state.settingmenuopen} style="background-color:#fff; border-radius: 5px;"}>
+	<Dialog class="remove_right_margin" width="600" bind:visible={state.settingmenuopen} style="background-color:#fff; border-radius: 5px;">
 		<h4 class="mt-1 font21 mb-4">
 			<div class="d-flex justify-content-between">
 				<div>Settings</div>
