@@ -1539,18 +1539,15 @@
         if(!showHTML && !showJS) {
             AH.select("#firstEditorDiv",'removeAttr', 'display');
             AH.selectAll('#js_panel,#html_panel','hide');
-
             Split(['#top_content','#bottom_content'],{
                 sizes:[50,50]
             })
             AH.select("#accordion",'css',{display:'flex'});
-
             Split(['#css_panel'],{
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
-            
         }
     }
 
