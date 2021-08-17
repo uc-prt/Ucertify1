@@ -7,12 +7,10 @@
  *  Last Updated By : Pradeep Yadav
 -->
 <script> 
-    //import {Title, Content, Actions, InitialFocus} from '@smui/dialog';
     import { afterUpdate, onMount, beforeUpdate } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';
     import Loader from '../helper/Loader.svelte';
     import {writable} from 'svelte/store';
-    //import l from '../../lib/Lang';
     import l from '../src/libs/editorLib/language.js';
     import { AH,onUserAnsChange } from '../helper/HelperAI.svelte';
 
@@ -29,9 +27,6 @@
     let isPreview = "";
     // defines that editor is not initialized
     let rendered = 0;
-    // contains the xml
-    
-    
     let mode = "";
     let htmlEditor;   
     let cssEditor; 
@@ -98,11 +93,8 @@
             window.getHeight && window.getHeight();
             document.querySelector('#html_pane').addEventListener('click',function(_this) {
                 AI.select(_this).querySelector('a').classList.remove('active');
-                //document.getElementById('css_panel').style.display = 'none';
                 AH.select("#css_panel",'css',{display:'none'});
-                //document.getElementById('js_panel').style.display = 'none';
                 AH.select("#js_panel",'css',{display:'none'});
-                //document.getElementById('html_panel').style.display = 'block';
                 AH.select("#html_panel",'css',{display:'block'});
                 let container = document.querySelect('#html_panel');
                 container.querySelector('a').classList.add('active');
@@ -113,9 +105,7 @@
             document.querySelector('#html_pane').addEventListener('click',function(_this){
                 let contain = AI.select(_this);
                 contain.querySelect('a').classList.remove('active');
-                //document.getElementById('html_panel').style.display = 'none';
                 AH.select("#html_panel",'css',{display:'none'});
-                //document.getElementById('js_panel').style.display = 'none';
                 AH.select("#js_panel",'css',{display:none});
                 let container = document.getElementById('css_panel');
                 container.style.display = 'block';
@@ -184,10 +174,6 @@
             }
         });
 
-        /*    jQuery(document).off('click', '#answerCheck').on('click', '#answerCheck', function () {
-            // shows the output of the code written on the editors and sets the value of state 'remediationToggle' to true for identify that remediation mode is on
-            remediationMode();
-        });  // Replaced*/
         AI.listen(document,'click','#answerCheck',function(){
             remediationMode();
         })
@@ -233,14 +219,6 @@
             // in case when js editor is visible and either html or css or both editor visible
             if (showJS && (showHTML || showCSS)) {
                 // it is used to styled the splitter bar that exists on the left edge of the js editor
-                // splitter1 = jQuery('#top_content').height(394).split({
-                //     // Add a vertical splitter bar
-                //     orientation: 'vertical',
-                //     // Specify how many pixels where you can't move the splitter bar on the edge
-                //     limit: 160,
-                //     // Set the position of the splitter bar
-                //     position: '68%'
-                // });
                 let splitter1 = Split(['#top_content'],{
                 sizes: [50],
                 direction: 'vertical',
@@ -250,14 +228,6 @@
             // in case when html and css both editor is visible
             if (showHTML && showCSS) {
                 // it is used to styled the splitter bar that exists on the left edge of the css editor
-                // splitter2 = jQuery('#firstEditorDiv').height(394).split({
-                //     // Add a vertical splitter bar
-                //     orientation: 'vertical',
-                //     // Specify how many pixels where you can't move the splitter bar on the edge
-                //     limit: 80,
-                //     // Set the position of the splitter bar
-                //     position: '50%'
-                // });
                 let splitter2 = Split(['#firstEditorDiv'],{
                     sizes: [100],
                     direction: 'vertical',
@@ -270,14 +240,6 @@
             // in case when only one editor visible
             if ((showHTML + showCSS + showJS) == 1) {
                 // it is used to styled the splitter bar that exists on the left edge of the result editor in case when only one html, js or css editor is visible
-                // splitter3 = jQuery('#accordion').height(394).split({
-                //     // Add a vertical splitter bar
-                //     orientation: 'vertical',
-                //     // Specify how many pixels where you can't move the splitter bar on the edge
-                //     limit: 80,
-                //     // Set the position of the splitter bar
-                //     position: '60%'
-                // });
                 let Splitter3 = Split(['#accordion'],{
                 sizes: [100],
                 direction: 'vertical',
@@ -296,33 +258,25 @@
         }
         if (showJS && (showHTML || showCSS)) {
             // sets the width 50% of html/css editor if only one exist otherwise sets width 50% of parent element which contains both editor that have id 'firstEditorDiv' and float left
-           // jQuery("#firstEditorDiv")[0].style.cssText = "float:left;width:50%"; // Replaced
             document.getElementById("firstEditorDiv").style.cssText = 'float:left;width:50%';
             // sets the width 50% of js editor and float left
-            //jQuery("#jsEditorDiv")[0].style.cssText = "float:left;width:50%"; // Replaced
             document.getElementById("jsEditorDiv").style.cssText = 'float:left;width:50%';
             // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
-            //jQuery("#top_content")[0].style.cssText = "clear:both;overflow:auto"; // Replaced
             document.getElementById("top_content").style.cssText = "clear:both;overflow:auto"
         }
         if (showHTML && showCSS) {
             // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
-            //jQuery("#top_content")[0].style.cssText = "clear:both;overflow:auto"; // Replaced
-           document.querySelector("#top_content").style.cssText = 'clear:both;overflow:auto';
+            document.querySelector("#top_content").style.cssText = 'clear:both;overflow:auto';
             // sets html editor's width 50% and float left
-           // jQuery("#html_panel")[0].style.cssText = "float:left;width:50%"; // Replaced
             document.querySelector("#html_panel").style.cssText = "float:left;width:50%";
             // sets css editor's width 50% and float left
-           // jQuery("#css_panel")[0].style.cssText = "float:left;width:50%"; // Replaced
             document.querySelector("#css_panel").style.cssText = "float:left;width:50%";
         }
         if ((showHTML + showCSS + showJS) == 1) {
             // sets css property  width 50% and float left of parent element that contains html, css and js editor 
-            //jQuery("#top_content")[0].style.cssText = "float:left;width:60%";
             document.querySelector("#top_content").style.cssText = "float:left;width:60%";
             // sets css property  width 40% and float left of element that contains result editor 
             document.querySelector("#bottom_content").style.cssText = "float:left;width:40%";
-            //jQuery("#bottom_content")[0].style.cssText = "float:left;width:40%";
         }
     }
 
@@ -370,14 +324,12 @@
             return fullMatch;
         });
         // returns the html data if 'img', 'video' and 'audio' tag not exist
-       //console.log({'data':htmlData})
         return htmlData;
     }
 
     // returns the combined data of html, css and js after wrapping the css editor value in style tag and js editor value in script tag and hides the 'Loading...' containing after load
     function prepareSource() {
         try {
-            
             // contains the html editor value after updating the src value of img, video and audio tag
             let htmlData = "<div id='loader' style='position: fixed;width: 100%;height: 100vh;z-index: 9999;background-color:#fff;'>Loading...</div>" + newSource();
 
@@ -585,13 +537,11 @@
         let inNativeIsCorrect = null
         if (/Failed/gi.test(case_str)) {
             // uncheck the element have id 'answer' if 'Failed' string exist in result string
-            //jQuery("#answer").prop("checked", false);
             resNew.a = false;
             AI.select("#answer").checked = false;
             // sets the value 'false' of variable 'inNativeIsCorrect' to show incorrect answer in mobile
             inNativeIsCorrect = false;
         } else {
-            //jQuery("#answer").prop("checked", true);
             resNew.a = true;
             AI.select("#answer").checked = true;
             // sets the value 'true' of variable 'inNativeIsCorrect' to show correct answer in mobile
@@ -610,8 +560,6 @@
         // enters in this block if remediation mode is on
         if (state.remediationToggle) {
             // sets the table in element have id 'remediationModel' means in remediation dialog box
-            //jQuery("#remediationModel").html(reviewLayout); // Replaced
-            
             document.getElementById('remediationModel').innerHTML = reviewLayout;
         }
         onUserAnsChange({uXml:resNew.u,ans:resNew.a});
@@ -1402,22 +1350,9 @@
     // used for unrender the player tag
     function unRenderPlayer() {
         // makes player tag empty that exist inside element have id: authoringDiv
-       // jQuery('#authoringDiv player').empty(); // Replaced
         AI.empty('#authoringDiv player');
         // removes the class 'hidecontent' from player tag empty that exist inside element have id: authoringDiv
-       // jQuery('#authoringDiv').find('player').removeClass('hidecontent'); // Replaced
         AI.select('#authoringDiv').querySelector('player').classList.remove('hidecontent');
-
-
-
-    /*    jQuery('#editor img').each(function () {
-            if (!jQuery(self).attr('src').match(/\/\/s3.amazonaws.com\/jigyaasa_content_static/gm)) {
-                // sets the value of 'src' attribute of img tag that exist inside element have id 'editor' and its src not contains the string '//s3.amazonaws.com/jigyaasa_content_static'
-                jQuery(self).attr('src', jQuery(self).attr('src'));  // Replaced
-            }
-        });
-    */
-
         document.querySelector('#editor img').forEach(function(_this,i){
             if (!_this.getAttribute('src').match(/\/\/s3.amazonaws.com\/jigyaasa_content_static/gm)) {
                 _this.setAttribute('src',_this.getAttribute('src'));
@@ -1428,22 +1363,11 @@
     // used for render the player tag
     function renderPlayer() {
         // makes player tag empty that exist inside element have id: authoringDiv
-        //jQuery('#authoringDiv player').empty(); // Replaced
         AI.empty('#authoringDiv player');
         // used for set the data of player tag
-      //  tag_player(jQuery('#authoringDiv')); // Replaced
-          tag_player(AH.select('#authoringDiv'));
+        tag_player(AH.select('#authoringDiv'));
         // adds the class 'hidecontent' to player tag empty that exist inside element have id: authoringDiv
-       // jQuery('#authoringDiv').find('player').addClass('hidecontent'); // Replaced
         AI.select('#authoringDiv').querySelector('player').classList.add('hidecontent');
-
-    /*    jQuery('#editor img').each(function () {
-            if (!jQuery(self).attr('src').match(/\/\/s3.amazonaws.com\/jigyaasa_content_static/gm)) {
-                // sets the value of 'src' attribute of img tag by adding string '//s3.amazonaws.com/jigyaasa_content_static/' before its previous src that exist inside element have id 'editor' and its src not contains the string '//s3.amazonaws.com/jigyaasa_content_static'
-                jQuery(self).attr('src', '//s3.amazonaws.com/jigyaasa_content_static/' + jQuery(self).attr('src'));
-            }
-        }); Replaced
-    */
         document.querySelector('#editor img').forEach(function(_this,i){
             if(!_this.getAttribute('src').match(/\/\/s3.amazonaws.com\/jigyaasa_content_static/gm)) {
                 _this.getAttribute('src','//s3.amazonaws.com/jigyaasa_content_static/'+_this.getAttribute('src'));
@@ -1453,7 +1377,6 @@
 
     // shows the output of the code in 'Result' editor
     function runCode() {
-       // jQuery('html, body').animate({ scrollTop: jQuery('#result_div').offset().top }, 'slow'); // Replaced
         window.scroll({
             top: 500,
             behavior: 'smooth'  
@@ -1461,8 +1384,7 @@
         let date = new Date();
         date = date.getTime();
         let iframeId = "uC" + date;
-     //   jQuery('#result_div').html('<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>'); //Replaced
-          AH.select('#result_div').innerHTML = '<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>';
+        AH.select('#result_div').innerHTML = '<iframe class="result_frame w-100 border-0" style="height:347px" id="' + iframeId + '"></iframe>';
         // returns the combined data of html, css and js after wrapping the css editor value in style tag and js editor value in script tag and hides the 'Loading...' containing after load
         let source = prepareSource();
         let iframe = document.querySelector('#uC' + date);
@@ -1482,7 +1404,6 @@
         // makes blank the value of js editor
         jsEditor.setValue("");
         // makes blank value of user answer xml
-     //   jQuery("#special_module_user_xml").val(""); // Replaced
         AH.select('#special_module_user_xml').value ='';
         // makes blank the value of 'uaXML' of window object
         window.uxml = "";
@@ -1549,41 +1470,22 @@
         // used for mobile team
         if (window.inNative) {
             if (!showHTML) {
-            //    jQuery("#html_panel, #html_pane, #css_panel").hide(); // Replaced
-                // document.getElementById('html_panel').style.display = 'none';
-                // document.getElementById('html_pane').style.display = 'none';
-                // document.getElementById('css_panel').style.display = 'none';
                 AH.selectAll('#html_panel,#html_pane,#css_panel','hide');
         
             }
             if (!showCSS) {
-            //    jQuery("#css_panel,#css_pane,#js_panel").hide(); // Replaced
-                // document.getElementById('css_panel').style.display = 'none';
-                // document.getElementById('css_pane').style.display = 'none';
-                // document.getElementById('js_panel').style.display = 'none';
                 AH.selectAll('#css_panel,#css_pane,#js_panel','hide');
             }
             if (!showJS) {
-            //    jQuery("#js_panel,#js_pane,#css_panel").hide(); // Replaced
-                // document.getElementById('js_panel').style.display = 'none';
-                // document.getElementById('js_pane').style.display = 'none';
-                // document.getElementById('css_panel').style.display = 'none';
                 AH.selectAll('#js_panel,#js_pane,#css_panel','hide');
-
             }
             if (showHTML && showCSS && showJS) {
-            //    jQuery("#css_panel,#js_panel").hide(); // Replaced
-                // document.getElementById('css_panel').style.display = 'none';
-                // document.getElementById('js_panel').style.display = 'none';
                 AH.selectAll('#css_panel,#js_panel','hide');
-
             }
             return;
         }
         if (!showHTML) {
             // hides the html editor if the value of variable 'showHTML' is 0
-          //jQuery("#html_panel").hide(); // Replaced
-            //document.getElementById('html_panel').style.display = 'none';
             AH.select("#html_panel",'hide');
             Split(['#css_panel','#js_panel'],{
                 sizes:[50,50],
@@ -1591,8 +1493,6 @@
         }
         if (!showCSS) {
            //  hides the css editor if the value of variable 'showCSS' is 0
-            //jQuery("#css_panel").hide(); // Replaced
-            //document.getElementById('css_panel').style.display = 'none';
             AH.select("#css_panel","hide");
             Split(['#html_panel','#js_panel'],{
                 sizes:[50,50],
@@ -1600,8 +1500,6 @@
         }
         if (!showJS) {
            //  hides the js editor if the value of variable 'showJS' is 0
-            //jQuery("#js_panel").hide(); // Replaced
-            //document.getElementById('js_panel').style.display = 'none';
             AH.selectAll("#js_panel","hide");
             Split(['#css_panel','#html_panel'],{
                 sizes:[50,50],
@@ -1609,8 +1507,6 @@
         }
 
         if(!showCSS && !showJS ) {
-            
-            console.log('checking splitter');
             AH.selectAll("#css_panel,#js_panel",'hide');
 
             Split(['#top_content','#bottom_content'],{
@@ -1623,15 +1519,10 @@
             })
             AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
-            
-
         }
 
         if(!showCSS && !showHTML) {
-
-            
             AH.selectAll('#css_panel,#html_panel','hide');
-           
 
             Split(['#top_content','#bottom_content'],{
                 sizes:[50,50]
@@ -1648,18 +1539,15 @@
         if(!showHTML && !showJS) {
             AH.select("#firstEditorDiv",'removeAttr', 'display');
             AH.selectAll('#js_panel,#html_panel','hide');
-
             Split(['#top_content','#bottom_content'],{
                 sizes:[50,50]
             })
             AH.select("#accordion",'css',{display:'flex'});
-
             Split(['#css_panel'],{
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
             AH.select("#firstEditorDiv",'removeAttr','display');
-            
         }
     }
 
@@ -1686,15 +1574,9 @@
         // defines that user answer xml is changed
         ISSPECIALMODULEUSERXMLCHANGE = 1;
         // save the user answer xml
-        //jQuery("#special_module_user_xml").val(uXml); // Replaced
-        
         AH.select('#special_module_user_xml').value = uXml;
-        
-        
         // assign the user answer xml in variable 'userAnswers'
-        //let userAnswers = userAnswer = jQuery("#special_module_user_xml").val(); // Replaced
         let userAnswers;
-        
         userAnswers = userAnswer = AH.select("#special_module_user_xml").value;
         // used for mobile team
         if (window.inNative) {
@@ -1706,218 +1588,184 @@
         resultSaving = uXml;
     }
 </script>
-    
+<div>
+<div id="authoringArea" class="font14" >
+    {#if window.isIE || window.isIEEleven} 
+        <div class="alert alert-danger">
+            You are using Internet Explorer, ES6 functionality of javascript will not work!
+        </div>
+    {/if}
+    <button type="button" class="h h-imp" id="set-review" on:click={()=>{setReview()}}>set review</button>
+    <button type="button" class="h h-imp" id="unset-review" on:click={()=>{unsetReview()}}>unset review</button>
     <div>
-
-    <div id="authoringArea" class="font14" >
-        {#if window.isIE || window.isIEEleven} 
-            <div class="alert alert-danger">
-                You are using Internet Explorer, ES6 functionality of javascript will not work!
-            </div>
-        {/if}
-        <button type="button" class="h h-imp" id="set-review" on:click={()=>{setReview()}}>set review</button>
-        <button type="button" class="h h-imp" id="unset-review" on:click={()=>{unsetReview()}}>unset review</button>
-        <div>
-            
-                {#if window.inNative }
-                    
-                    <div class="container-fluid" id="mainContainer">
-                        <div class="row">
-                            <div id="web_toolbar" class="bg-gray height44 web_toolbar text-dark">
-                                <div class="mt-2 pt pl-3 float-left">
-                                    <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
-                                </div>
-                                <div class="float-right mt-2 mr-2">
-                                    <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-toggle="dropdown" id="dropdownMenuButton1"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block"></span></button>
-                                    <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
-                                        <li>
-                                            <label for="goDark" class="dropdown-item mb-0 pointer">
-                                                <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="position-absolute bg-transparent" />
-                                                <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="inline-block pull-right">x`
-                                    <button type="button" class="btn btn-primary runcode_btn ml" on:click={runCode}>{l.run}</button>
-                                </div>
-                            </div>
-                            <div style={'width: 100%;background: white;'} class="content_parent">
-                                <ul class="nav nav-pills nav-fill" role="tablist">
-                                    <li class="nav-item" id="html_pane">
-                                        <a class="nav-link active text-white" href="#html_panel" role="tab" data-toggle="tab">{l.html}</a>
-                                    </li>
-                                    <li class="nav-item" id="css_pane">
-                                        <a class="nav-link text-white" href="#css_panel" role="tab" data-toggle="tab">{l.css}</a>
-                                    </li>
-                                    <li class="nav-item" id="js_pane">
-                                        <a class="nav-link text-white" href="#js_panel" role="tab" data-toggle="tab">{l.js}</a>
-                                    </li>
-                                </ul>
-                                <div id="top_content" class="tab-content">
-                                    <div id="firstEditorDiv">
-                                        <div id="html_panel" class="m-0 p-0 rounded-0 tab-pane fade show active" role="tabpanel" >
-                                            <div id="html" class="card-body code_box content-div m-0 p-0" style={'height: 347px'}>
-                                                <textarea name="html" id="html_editor"></textarea>
-                                            </div>
-                                        </div>
-                                        <div id="css_panel" class="m-0 p-0 rounded-0 tab-pane fade show" role="tabpanel">
-                                            <div id="css" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
-                                                <textarea name="css" class="css_text" id="css_editor"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="jsEditorDiv">
-                                        <div id="js_panel" class="m-0 p-0 rounded-0 tab-pane fade show" role="tabpanel">
-                                            <div id="js" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
-                                                <textarea name="js" id="js_editor"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bottom_content">
-                                    <div class="card rounded-0 nm">
-                                        <div class="card-header rounded-0">
-                                            <span>{l.result}</span>
-                                        </div>
-                                        <div id="result_div" style={'min-height: 347px' } class="card-body content-div m-0 p-0 rounded-0">
-    
-                                        </div>
-                                    </div>
+    {#if window.inNative }
+        <div class="container-fluid" id="mainContainer">
+            <div class="row">
+                <div id="web_toolbar" class="bg-gray height44 web_toolbar text-dark">
+                    <div class="mt-2 pt pl-3 float-left">
+                        <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
+                    </div>
+                    <div class="float-right mt-2 mr-2">
+                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-toggle="dropdown" id="dropdownMenuButton1"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <label for="goDark" class="dropdown-item mb-0 pointer">
+                                    <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="position-absolute bg-transparent" />
+                                    <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="inline-block pull-right">x`
+                        <button type="button" class="btn btn-primary runcode_btn ml" on:click={runCode}>{l.run}</button>
+                    </div>
+                </div>
+                <div style={'width: 100%;background: white;'} class="content_parent">
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        <li class="nav-item" id="html_pane">
+                            <a class="nav-link active text-white" href="#html_panel" role="tab" data-toggle="tab">{l.html}</a>
+                        </li>
+                        <li class="nav-item" id="css_pane">
+                            <a class="nav-link text-white" href="#css_panel" role="tab" data-toggle="tab">{l.css}</a>
+                        </li>
+                        <li class="nav-item" id="js_pane">
+                            <a class="nav-link text-white" href="#js_panel" role="tab" data-toggle="tab">{l.js}</a>
+                        </li>
+                    </ul>
+                    <div id="top_content" class="tab-content">
+                        <div id="firstEditorDiv">
+                            <div id="html_panel" class="m-0 p-0 rounded-0 tab-pane fade show active" role="tabpanel" >
+                                <div id="html" class="card-body code_box content-div m-0 p-0" style={'height: 347px'}>
+                                    <textarea name="html" id="html_editor"></textarea>
                                 </div>
                             </div>
-    
+                            <div id="css_panel" class="m-0 p-0 rounded-0 tab-pane fade show" role="tabpanel">
+                                <div id="css" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
+                                    <textarea name="css" class="css_text" id="css_editor"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="jsEditorDiv">
+                            <div id="js_panel" class="m-0 p-0 rounded-0 tab-pane fade show" role="tabpanel">
+                                <div id="js" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
+                                    <textarea name="js" id="js_editor"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {:else}
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div id="web_toolbar" class="bg-light w-100 height44 web_toolbar text-dark d-flex justify-content-between">
-                                    <div class="mt-2 pt-1 pl-2 float-left">
-                                        <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <div class="inline-block pull-right">
-                                            <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
-                                        </div>
-                                    <div class="float-right mt-2">
-                                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
-                                        <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
-                                            <li>
-                                                <label for="goDark" class="dropdown-item mb-0 pointer">
-                                                    <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="transparent h" />
-                                                    <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
+                    <div id="bottom_content">
+                        <div class="card rounded-0 nm">
+                            <div class="card-header rounded-0">
+                                <span>{l.result}</span>
+                            </div>
+                            <div id="result_div" style={'min-height: 347px' } class="card-body content-div m-0 p-0 rounded-0">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {:else}
+        <div class="container-fluid">
+            <div class="row">
+                <div id="web_toolbar" class="bg-light w-100 height44 web_toolbar text-dark d-flex justify-content-between">
+                    <div class="mt-2 pt-1 pl-2 float-left">
+                        <span class="icomoon-coding-44px s3 align-middle mr-1"></span><span class="align-middle">{l.html_css_js}</span>
+                    </div>
+                    <div class="d-flex">
+                        <div class="inline-block pull-right">
+                            <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
+                        </div>
+                    <div class="float-right mt-2">
+                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <label for="goDark" class="dropdown-item mb-0 pointer">
+                                    <input type="checkbox" checked={state.goDark} on:click={changeTheme} id="goDark" class="transparent h" />
+                                    <span>{(state.goDark) ? l.normal_mode : l.dark_mode}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <div id="accordion" style={'width:100%; background:white; padding:0px;'}>
+                    <div id="top_content">
+                        <div id="firstEditorDiv" style='display:flex;'>
+                            <div id="html_panel" class="card m-0 p-0 rounded-0">
+                                <div class="card-header rounded-0">
+                                    <span>{l.html}</span>
                                 </div>
+                                <div id="html" class="card-body code_box content-div m-0 p-0" style={'height: 347px '}>
+                                    <textarea name="html" id="html_editor"></textarea>
                                 </div>
-                                <div id="accordion" style={'width:100%; background:white; padding:0px;'}>
-                                    <div id="top_content">
-                                        <div id="firstEditorDiv" style='display:flex;'>
-                                            <div id="html_panel" class="card m-0 p-0 rounded-0">
-                                                <div class="card-header rounded-0">
-                                                    <span>{l.html}</span>
-                                                </div>
-                                                <div id="html" class="card-body code_box content-div m-0 p-0" style={'height: 347px '}>
-                                                    <textarea name="html" id="html_editor"></textarea>
-                                                </div>
-                                            </div>
-                                            <div id="css_panel" class="card m-0 p-0 rounded-0">
-                                                <div class="card-header rounded-0">
-                                                    <span>{l.css}</span>
-                                                </div>
-                                                <div id="css" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
-                                                    <textarea name="css" id="css_editor"></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- <div id="jsEditorDiv"> -->
-                                                <div id="js_panel" class="card m-0 p-0 rounded-0">
-                                                    <div class="card-header rounded-0">
-                                                        <span>{l.js}</span>
-                                                    </div>
-                                                    <div id="js" class="card-body code_box content-div m-0 p-0" style={'height: 347px '}>
-                                                        <textarea name="js" id="js_editor"></textarea>
-                                                    </div>
-                                                </div>
-                                            <!-- </div> -->
-                                        </div>
-                                        <!-- <div id="jsEditorDiv">
-                                            <div id="js_panel" class="card m-0 p-0 rounded-0">
-                                                <div class="card-header rounded-0">
-                                                    <span>{l.js}</span>
-                                                </div>
-                                                <div id="js" class="card-body code_box content-div m-0 p-0" style={'height: 347px '}>
-                                                    <textarea name="js" id="js_editor"></textarea>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                    <div id="bottom_content" style={'overflow: hidden'}>
-                                        <div class="card rounded-0 nm">
-                                            <div class="card-header rounded-0">
-                                                <span>{l.result}</span>
-                                            </div>
-                                            <div id="result_div" style={'height: 347px' } class="card-body content-div m-0 p-0 rounded-0">
-        
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div id="css_panel" class="card m-0 p-0 rounded-0">
+                                <div class="card-header rounded-0">
+                                    <span>{l.css}</span>
+                                </div>
+                                <div id="css" class="card-body code_box content-div m-0 p-0" style={'height: 347px' }>
+                                    <textarea name="css" id="css_editor"></textarea>
+                                </div>
+                            </div>
+                            <div id="js_panel" class="card m-0 p-0 rounded-0">
+                                <div class="card-header rounded-0">
+                                    <span>{l.js}</span>
+                                </div>
+                                <div id="js" class="card-body code_box content-div m-0 p-0" style={'height: 347px '}>
+                                    <textarea name="js" id="js_editor"></textarea>
                                 </div>
                             </div>
                         </div>
-                    {/if}
-            
-        </div>
-        <!--   <Dialog
-            bind:visible={state.remediationToggle}
-                on:close={() => state.remediationToggle = false }
-            title={l.remediation} width="650">
-                <div slot="title">{l.remediation}</div>
-                <Content>
-                <div id="remediationModel">
-                            <center class="mt-xl">
-                                
-                                <h4>{l.calculate_answer}<br /> {l.please_wait}</h4>
-                            </center>
-                        </div>
-                </Content>
-                    <Actions>     
-                        <Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
-                            {l.cancel}
-                        </Button>
-                    </Actions>
-            </Dialog> -->
-            <Dialog		          
-	bind:visible={state.remediationToggle}
-	width="650"
-    on:close={() => state.remediationToggle = false}
->
-    
-    <div slot="title" style="text-align: left;">
-		<div style="">{l.remediation}</div>
-	</div>
-	<div>
-		<div id="remediationModel">
-			<center>
-				<Loader size={70} />
-				<h4>{l.calculate_answer}<br/> {l.please_wait}</h4>
-			</center>
-		</div>
-	</div>
-	<div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
-		<Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
-            {l.cancel}
-        </Button>
-	</div>
-</Dialog>
-        <input type="hidden" id="ansModeAnswer" value="" />
-    </div>
-    </div>
+                    </div>
+                    <div id="bottom_content" style={'overflow: hidden'}>
+                        <div class="card rounded-0 nm">
+                            <div class="card-header rounded-0">
+                                <span>{l.result}</span>
+                            </div>
+                            <div id="result_div" style={'height: 347px' } class="card-body content-div m-0 p-0 rounded-0">
 
-    <style>
-        :global(.height44)  {
-            height: 44px;
-        }
-    </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/if}
+    </div>
+    <Dialog		          
+        bind:visible={state.remediationToggle}
+        width="650"
+        on:close={() => state.remediationToggle = false}
+        style="background: #fff; border-radius: 5px;"
+    >
+        <h4 class="mt-1 font21 mb-4">
+            <div class="d-flex justify-content-between">
+                <div>{l.remediation}</div>
+            </div>
+        </h4>
+        <div style="overflow-y: auto;">
+            <div id="remediationModel">
+                <center>
+                    <Loader size={70} />
+                    <h4>{l.calculate_answer}<br/> {l.please_wait}</h4>
+                </center>
+            </div>
+        </div>
+        <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+            <Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
+                {l.cancel}
+            </Button>
+        </div>
+    </Dialog>
+    <input type="hidden" id="ansModeAnswer" value="" />
+</div>
+</div>
+
+<style>
+    :global(.height44)  {
+        height: 44px;
+    }
+</style>

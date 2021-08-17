@@ -230,9 +230,13 @@
             </div>
         </center>
     </div>
-    <Dialog width="400" bind:visible={state.openHelp}>
-        <div slot="title" >Icon List</div>
-        <div class="text-center">
+    <Dialog width="400" bind:visible={state.openHelp} style="background: #fff; border-radius: 5px;">
+        <h4 class="mt-1 font21 mb-4">
+            <div class="d-flex justify-content-between">
+                <div>Icon List</div>
+            </div>
+        </h4>
+        <div class="text-center" style="overflow-y:auto">
             <input type="text" id="tableSearch" placeholder="Search Icons" class="form-control" on:keyup = {(event)=>{searchTable(event.target.value,'.icons_table')}}/>
             <div class="alert alert-danger treeview_record my-2 h">{l.no_icons}</div>
             <div class="treemodule_table">
@@ -252,8 +256,8 @@
     </Dialog>
 </main>
 <style>
-    :global(.btnColor) {
-        background-color: #dee2e6!important;
-        box-shadow: 2px 2px 5px #000;
-    }
+:global(.btnColor) {
+    background-color: #dee2e6!important;
+    box-shadow: 2px 2px 5px #000;
+}
 </style>

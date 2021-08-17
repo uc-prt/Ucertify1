@@ -348,11 +348,15 @@
 <Dialog					
 	bind:visible={state.remediationToggle}
 	width={450}
+	style="background: #fff; border-radius: 5px;"
+	class="remove_right_margin"
 >
-	<div slot="title" style="text-align: left;">
-		<div style="">Review</div>
-	</div>
-	<div id="remediationModel">
+	<h4 class="mt-1 font21 mb-4">
+		<div class="d-flex justify-content-between">
+			<div>Review</div>
+		</div>
+	</h4>
+	<div id="remediationModel" style="overflow-y: auto; padding-right: 20px;">
 		<center class="mt-xl">
 			<Loader size={60} />
 			<h4>{l.calculate_answer}<br/> {l.please_wait}</h4>

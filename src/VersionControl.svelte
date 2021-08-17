@@ -167,7 +167,7 @@
 	}
 </script>
 
-<Dialog bind:visible={state.open} style="width: 75%; background-color:#fff;">
+<Dialog bind:visible={state.open} style="width: 75%; background-color:#fff; border-radius: 5px;">
     <h4 class="mt-0 font21 mb-5">
 		{l.version_control}
 	</h4>
