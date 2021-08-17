@@ -908,11 +908,13 @@
     }
 </script>
 
-<Dialog width="600" bind:visible={state.open}>
-    <div slot="title" style="text-align: left;">
-        <div style="">Player Info</div>
-    </div>
-    <div style="height: 330px; overflow-y: auto; overflow-x: hidden;">
+<Dialog width="600" bind:visible={state.open} style="background-color:#fff; border-radius: 5px;">
+    <h4 class="mt-1 font21 mb-4">
+        <div class="d-flex justify-content-between">
+            <div>Player Info</div>
+        </div>
+    </h4>
+    <div style="overflow-y: auto;">
         <div style="padding-right: 0px; padding-left: 0px; width: 100%" class="col-12 pull-left npl npr mt-md">
             <select 
                 id="#playerCat"
@@ -980,7 +982,7 @@
             outlined={true}
             color="#ccc"
             on:click={handleClose}
-            class="btn-light"
+            class="#ccc"
         >
             {l.cancel}
         </Button>
@@ -988,15 +990,18 @@
             id="xmlDone"
             unelevated={true}
             on:click={validateItemId}
+            color="primary"
         >
             {l.done}
         </Button>
     </div>
 </Dialog>
-<Dialog width="600" bind:visible={state.delNode}>
-    <div slot="title" style="text-align: left;">
-        <div style="">{l.save_header}</div>
-    </div>
+<Dialog width="600" bind:visible={state.delNode} style="background-color:#fff; border-radius: 5px;">
+    <h4 class="mt-1 font21 mb-4">
+        <div class="d-flex justify-content-between">
+            <div>{l.save_header}</div>
+        </div>
+    </h4>
     <div>{l.del_confirmation}</div>
     <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
         <Button
@@ -1004,7 +1009,7 @@
             variant="contained"
             disableRipple="true"
             on:click={setInputState.bind(this, 'delNode', false)}
-            color="accent"
+            color="#ccc"
         >
             {l.no_label}
         </Button>
@@ -1018,11 +1023,13 @@
         </Button>
     </div>
 </Dialog>
-<Dialog width="600" bind:visible={state.add_transcript}>
-    <div slot="title" style="text-align: left;">
-        <div style="">{l.add_transcript_msg}</div>
-    </div>
-    <div>
+<Dialog width="600" bind:visible={state.add_transcript} style="background-color:#fff; border-radius: 5px;">
+    <h4 class="mt-1 font21 mb-4">
+        <div class="d-flex justify-content-between">
+            <div>{l.add_transcript_msg}</div>
+        </div>
+    </h4>
+    <div style="overflow-y: auto;">
         <div class="add_transcript_dialog min_height_352">
             <div class="row">
                 <div class="col-12">
@@ -1058,7 +1065,7 @@
             variant="contained"
             disableRipple="true"
             on:click={addTranscript}
-            color="accent"
+            color="primary"
         >
             {l.add_vtt}
         </Button>
