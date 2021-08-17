@@ -230,13 +230,13 @@
             </div>
         </center>
     </div>
-    <Dialog width="400" bind:visible={state.openHelp} style="background: #fff; border-radius: 5px;">
+    <Dialog class="remove_right_margin" width="400" bind:visible={state.openHelp} style="background: #fff; border-radius: 5px;">
         <h4 class="mt-1 font21 mb-4">
             <div class="d-flex justify-content-between">
                 <div>Icon List</div>
             </div>
         </h4>
-        <div class="text-center" style="overflow-y:auto">
+        <div class="text-center" style="height:400px; overflow-y:auto; padding-right: 16px;">
             <input type="text" id="tableSearch" placeholder="Search Icons" class="form-control" on:keyup = {(event)=>{searchTable(event.target.value,'.icons_table')}}/>
             <div class="alert alert-danger treeview_record my-2 h">{l.no_icons}</div>
             <div class="treemodule_table">
