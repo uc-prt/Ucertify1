@@ -644,6 +644,15 @@
         </div>
     </div>
     <div slot="footer" class="svelteFooter">
+        <Button 
+            key = {"domainClose"} 
+            unelevated={true}
+            outlined={true}
+            on:click={handleClose} 
+            color="#ccc"
+        >
+            Close
+        </Button>
         <Button
             key = {"domainSave"}
             unelevated={true}
@@ -653,15 +662,6 @@
             color="primary"
         >
             Save
-        </Button>
-        <Button 
-            key = {"domainClose"} 
-            unelevated={true}
-            outlined={true}
-            on:click={handleClose} 
-            color="#ccc"
-        >
-            Close
         </Button>
     </div>
 </Dialog>
