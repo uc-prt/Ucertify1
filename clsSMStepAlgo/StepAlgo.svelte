@@ -13,19 +13,13 @@
     import { beforeUpdate,onMount } from 'svelte';
     import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
 
-     window.spanCounter = 0;
-    // window.currentId = "";
-    // window.currentInp = "";
+    window.spanCounter = 0;
     let state = {};
     let new_xml = {}
     var all_steps = [];
     export let stopAuthoringUpdate;
     export let xml;
-    export let editorState;
     export let getChildXml;
-
-    
-    
     let stateData = writable({
         xml                         : '',         
         fillInTheBlanksChoice       : 1,
@@ -48,26 +42,13 @@
         if(xml) {
             new_xml = XMLToJSON(xml);
             showItems(new_xml.smxml.step);
-            //jQuery('#sticky_checkbox_0').trigger('click');
             AH.select("#sticky_checkbox_0").click();
-            //setTimeout(function() {
-                //jQuery('#sticky_checkbox_0').trigger('click');
-                AH.select('#sticky_checkbox_0').click();
-            //}, 1000);
+            AH.select('#sticky_checkbox_0').click();
         }
         setTimeout(function() {
-            //jQuery('.save_button_steps').prop('disabled', 'disabled');
             AH.selectAll('.save_button_steps','attr',{disabled:'disabled'});
             initEditor();
         }, 500);
-
-        // jQuery(document).on("click touchstart", ".editFill", function() {
-		// 	if(jQuery(this).attr("type") == "t") {
-		// 		editTextbox(jQuery(this).attr("originalKey"));
-		// 	} else if(jQuery(this).attr("type") == "e") {
-		// 		editMathbox(jQuery(this).attr("originalKey"));
-		// 	}
-		// })
 
         AH.listen(document,'click','.editFill',function(curr,e) {
             if(curr.getAttribute("type") == "t") {
@@ -84,68 +65,42 @@
                 editMathbox(curr.getAttribute("originalKey"));
             }
         })
-
-
-
     })
 
     function editTextbox(key) {
-        //console.log('checking');
 		key = key.replace(/%{|}%/g, "");
 		key = key.split("|");
 		let ans = key[0].trim();
         
 		let ans_type = ((key[1])?key[1].trim():"");
-		
-            state.numeric = ((ans_type == "n")? true : false );
-            state.fillInTheBlanksChoice = 1;
-            state.open = true;
-        
-		//this.setState({fillInTheBlanksChoice:1});
-		//this.setState({open:true});
+        state.numeric = ((ans_type == "n")? true : false );
+        state.fillInTheBlanksChoice = 1;
+        state.open = true;
+
 		if(ans.indexOf("#style#") != -1) {
 			let customStyle  = ans.split("#style#")
-			//jQuery("#responseDialog #customStyleText").val(customStyle[1]);
-            AH.select("#responseDialog #customStyleText").value = customStyle[1];
-
-			//jQUery("#input1").val(customStyle[0]);
-            //AH.select("#input1").value = customStyle[0];
+			AH.select("#responseDialog #customStyleText").value = customStyle[1];
             state.input_ans = customStyle[0];
 		} else {
-			//jQuery("#input1").val(ans);
-            // setTimeout(()=>{
-            //     AH.select("#input1").value = ans;
-            // },100)
-            state.input_ans = ans;
+			state.input_ans = ans;
 		}	
     }
-
 
     function editMathbox(key) {
 		key = key.replace(/%{|}%/g, "");
 		key = key.split("|");
 		let ans = key[0].trim();
 		let ans_type = ((key[1])?key[1].trim():"");
-		// this.setState({
-        //     customStyle:((ans.indexOf("#style#") != -1)?true:false),
-        //     fillInTheBlanksChoice:2,
-        //     open:true
-        // });
         state.customStyle = ((ans.indexOf("#style#") != -1)?true:false);
         state.fillInTheBlanksChoice =2;
         state.open = true;
-		//this.setState({fillInTheBlanksChoice:2}); ## ALready commented
-		//this.setState({open:true}); ## ALready commented
-
+	
 		if(ans.indexOf("#style#") != -1) {
 			let customStyle  = ans.split("#style#")
-			//$("#responseDialog #customStyleText").val(customStyle[1]);
-            AH.select("#responseDialog").value = customStyle[1];
+			AH.select("#responseDialog").value = customStyle[1];
             AH.select('#customStyleText').value = customStyle[1];
-			//$("#input"+i).val(customStyle[0]);
-            AH.select("#input"+i).value = customStyle[0];
+			AH.select("#input"+i).value = customStyle[0];
 		} else {
-            //$("#input").val(ans);
             AH.select("#input").value = ans;
 		}	
 	}
@@ -209,7 +164,6 @@
             let answerKey = cdata.match(/%{[\s\S]*?}%/gm);
             let answerType = '';
             if(answerKey) {
-                //jQuery(answerKey).each(function(i){
                 answerKey.forEach(function(data,i){
                     let originalKey = answerKey[i];
                     let latexKey = "";
@@ -242,8 +196,6 @@
             all_steps[index].__cdata = cdata;
         });
 	}
-
-
 
     function goNext(id) {
         let ref = document.querySelector("#"+id);
@@ -279,15 +231,12 @@
         } else {
             new_xml.smxml.step[seq][val] = "0";
         }
-        //let data = jQuery('#'+fillid).html();
         let data = document.querySelector('#'+fillid).innerHTML;
         updateXML();
     }
 
 
     function handleDisable(i) {
-        console.log('handle click');
-        //jQuery('#save_step_'+i).removeAttr('disabled');
         AH.select('#save_step_'+i,'removeAttr','disabled');
     }
 
@@ -301,7 +250,6 @@
             new_xml.smxml.step[index]._viewonly = "1";
             new_xml.smxml.step[index]._attempt = "0";
         }
-        //let data = jQuery('#'+fillid).html();
         let data = document.querySelector('#'+fillid).innerHTML;
         updateXML();
     }
@@ -325,12 +273,9 @@
     }
 
     function handleSave(id, fillid) {
-        //let data = jQuery('#'+fillid).html();
         let data = document.querySelector('#'+fillid).innerHTML;
         data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
         all_steps[id].__cdata = data; 
-        //jQuery('#save_step_'+id).prop('disabled', 'disabled');
-        //document.querySelector('#save_step_'+id).disabled = true;
         AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
         updateXML();
     }
@@ -346,7 +291,6 @@
             let attempt = element._attempt;
             let sticky = element._sticky;
             let data = element.__cdata;
-            // data = self.reverseReplaceVariables(data);
             data = reverseHtmlSpecialChars(data);
             data = replaceSpaces(data);
             data  = data.replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ');
@@ -410,24 +354,12 @@
     }
 
     function initEditor() {
-        // jQuery(document).on("click", ".editMath", function(e){
-        //     window.currentId = jQuery(this).attr('id');
-        // });
-
         AH.listen(document,"click",".editMath",function(_this,e){
-            // window.currentId = _this.getAttribute('id');
             state.currentId = _this.getAttribute('id');
         })
 
-        // jQuery(document).on("click", ".materialOverlay", function(e){
-		// 	window.currentId = null;
-        //     window.currentInp = null;
-        // });
-
         AH.listen(document,'click','.materialOverlay',function(e){
-            //window.currentId = null;
             state.currentId  = null;
-            //window.currentInp = null;
             state.currentInp = null;
         })
 
@@ -478,8 +410,7 @@
 
     function handleClose() {
         if(state.fillInTheBlanksChoice == 2) {
-			//window.currentId = null;
-            state.currentInp = null;
+			state.currentInp = null;
 		}
         state.open = false; 
     }
@@ -489,15 +420,11 @@
     }
 
     function addEditable() {
-		//let txt = jQuery("#input");
         let txt = document.querySelector("#input");
-        //let caretPos = txt[0].selectionStart;
         let caretPos = txt.selectionStart;
-		//let textAreaTxt = txt.val();
-        let textAreaTxt = txt.value;
-         var txtToAdd = "\\MathQuillMathField";
+		let textAreaTxt = txt.value;
+        var txtToAdd = "\\MathQuillMathField";
         var txtToAdd  = "user Response";
-        //txt.val(textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos));
         txt.value = textAreaTxt.substring(0, caretPos) + txtToAdd + textAreaTxt.substring(caretPos);
 	}
 
@@ -508,10 +435,8 @@
     function storeAns() {
 		var validate = 0;
 		if(state.fillInTheBlanksChoice == 1) {
-			//let ans = jQuery("#input1").val();
-            let ans = document.querySelector("#input1").value;
-			//let numeric = jQuery("#responseDialog #numeric")[0].checked;
-            let numeric = document.querySelector("#responseDialog #numeric").checked;
+			let ans = document.querySelector("#input1").value;
+			let numeric = document.querySelector("#responseDialog #numeric").checked;
             if(numeric == true) {
 				ans += " |n";
 			}
@@ -523,17 +448,12 @@
 			}
         }
         if(state.fillInTheBlanksChoice == 2) {
-			//let e = jQuery("#input").val();
-            let e = document.querySelector("#input").value;
+			let e = document.querySelector("#input").value;
 			if(validate == 0) {
-				//document.querySelector("#"+window.currentId).setAttribute("latex",e);
-                document.querySelector("#"+state.currentId).setAttribute("latex",e);
-				//document.querySelector("#"+window.currentId).setAttribute("originalKey","%{"+e+"|e}%");
-                document.querySelector("#"+state.currentId).setAttribute("originalKey","%{"+e+"|e}%");
-				//window.currentId = null;
-                state.currentId = null;
-				//window.currentInp = null;
-                state.currentInp = null;
+				document.querySelector("#"+state.currentId).setAttribute("latex",e);
+				document.querySelector("#"+state.currentId).setAttribute("originalKey","%{"+e+"|e}%");
+				state.currentId = null;
+				state.currentInp = null;
 			} else {
 				validate("All fields are required");
 			}
@@ -545,18 +465,10 @@
     }
 
     function handleOpen() {
-        // this.setState({
-        //     open: true,
-        //     codetype: false,
-        //     numeric: false
-        // });
         state.open = true;
         state.codetype = false;
         state.numeric = false;
-        //this.setState({codetype: false}); #already commented on also react
-        //this.setState({numeric: false}); #already commented on also react
     }
-
 </script> 
 <main>
     <div class="mt-imp border">
@@ -564,13 +476,11 @@
             <div class="d-inline-block pt-1 float-start cr_step" style={'font-size:20px;position:relative;'}>{l.create_steps}</div>
             <div style={{}}>
                 <div class="modes_checkbox d-inline-block top-checkbox_gonext position-relative top2">
-                    
                     <Checkbox  
                         id="go_next" 
                         defaultChecked = {state.gonext ? true: false} 
                         on:click={(e)=>{goNext("go_next",e)}} 
-                    >{"Go Next"}</Checkbox>
-                        
+                    >{"Go Next"}</Checkbox>  
                 </div>
                 <div class="modes_checkbox d-inline-block m-l top-checkbox_fix position-relative top2">
                     <Checkbox  
@@ -581,9 +491,7 @@
                 </div>
             </div>
         </div>
-
         <div class="outer_steps mt-3 mx-3 clear-both">
-            <!-- {this.all_steps.map((item, index) => -->
             {#each all_steps as item,index}
                 <fieldset key={index} style={'border:1px solid grey'} class="new_steps seq_inbox fw shadow-sm mb-2">
                     <legend class="font18 mb ms-2 pl-1" style={'width:1em;float:none;'}>{index+1}</legend>
@@ -611,14 +519,12 @@
                                     color="primary"
                                 >
                                 <label for={"switchElement"+index}>{l.interactive}</label>
-                                
                             </span>
                         </span>
                     </div> 
                     <div class="d-inline-block plain_text ms-3" >
                         <div class="modes_checkbox d-inline-block ms-2">
                             <span class="check_box d-inline-block">
-                                <!-- {(item._mode == "1") ? -->
                                 {#if item._mode == "1"}
                                     <Checkbox data-seq={index} class="inner_inputs option_checkbox" on:click={(e)=>{handleChangeCheckbox(index, 'fillAuthor_'+index,e)}} type="checkbox" value="mode" name="mode_checkbox_" id={`mode_checkbox_${index}`} checked={true}
                                     />
@@ -626,16 +532,12 @@
                                     <Checkbox data-seq={index} class="inner_inputs option_checkbox" on:click={(e)=>{handleChangeCheckbox(index, 'fillAuthor_'+index,e)}} type="checkbox" value="mode" name="mode_checkbox_" id={`mode_checkbox_${index}`} checked={false}
                                     />
                                 {/if}
-
                             </span>
                             <label class="font-weight-normal me-1 position-relative top2 right35" for={`mode_checkbox_${index}`}>{l.no_validation}</label>
                         </div>
-                        <!-- {index == 0 ?  -->
                         {#if index == 0}
                             <div class="stick_checkbox d-inline-block">
                                 <span class="check_box d-inline-block">
-
-                                    <!-- {(item._sticky == "1") ? -->
                                     {#if item._sticky == "1"} 
                                         <Checkbox data-seq={index} checked={true} class="inner_inputs option_checkbox" on:click={handleChangeCheckbox.bind(this, index, 'fillAuthor_'+index)} type="checkbox" value="sticky" name="sticky_checkbox_" id={`sticky_checkbox_${index}`}/>
                                     {:else}
@@ -656,7 +558,6 @@
                     </div>
                     </div>
                 </fieldset>
-            <!-- )} -->
             {/each}
         </div>
         <div class="row mx-3 mt-3 pb-3">
@@ -667,102 +568,87 @@
                 <span class="font18">&#43; &nbsp;</span> Add Step
             </Button>
         </div>
-        <Dialog overlayClass="materialOverlay"  bind:visible={state.open} on:close={handleClose.bind(this)} disableEnforceFocus={true} width="650" class="row" style={'background-color: #fff;'}>
-                    <!-- <DialogTitle 
-                        classes={{
-                            root:"p-md editor_modal_title"
-                        }}
-                        > -->
-                    <div slot="title">
-                        <div class="mr-lg float-left" style={'padding-top:10px;padding-left:13px;font-size:18px;'}>{l.fill_header}</div>
-                        
-                        <div class="float-right mr-4">
-							<div class="btn-group mt-1 row ml-0">
-								<button type="button" class={"btn btn-light col-3" + ((state.fillInTheBlanksChoice == 1)? " active": "")} value={1} on:click={updateDialog.bind(this, 1)} >Text</button>
-								<button type="button" class={"btn btn-light col-9" + ((state.fillInTheBlanksChoice == 2)? " active": "")} value={2} on:click={updateDialog.bind(this, 2)} >Mathematical Equation</button>
-							</div>
-						</div>
+        <Dialog overlayClass="materialOverlay"  bind:visible={state.open} on:close={handleClose.bind(this)} disableEnforceFocus={true} width="650" class="row" style="background: #fff; border-radius: 5px;">
+            <div slot="title">
+                <div class="mr-lg float-left" style={'padding-top:10px;padding-left:13px;font-size:18px;'}>{l.fill_header}</div>
+                <div class="float-right mr-4">
+                    <div class="btn-group mt-1 row ml-0">
+                        <button type="button" class={"btn btn-light col-3" + ((state.fillInTheBlanksChoice == 1)? " active": "")} value={1} on:click={updateDialog.bind(this, 1)} >Text</button>
+                        <button type="button" class={"btn btn-light col-9" + ((state.fillInTheBlanksChoice == 2)? " active": "")} value={2} on:click={updateDialog.bind(this, 2)} >Mathematical Equation</button>
                     </div>
-                    <!-- </DialogTitle> -->
-                    <div>
-                        <div id="responseDialog">
-                            {#if state.fillInTheBlanksChoice == 1}
-                                <div>
-                                    <div class="d-flex mr-2">
-                                        <div class="width100">
-                                            <Checkbox  id = "numeric" checked = {state.numeric}>{"Numeric"}</Checkbox>
-                                            
-                                        </div>
-                                            <input
-                                                type="text"
-                                                id = "input1"
-                                                value = {state.input_ans}
-                                                class="form-control mr-4 ml-3"
-                                                style={'margin:5px'}
-                                                auto:focus = {true}
-                                                placeholder = {((AH.select("#input1").innerHTML != "")?l.fill_text_placeholder:"")}
-                                            />
-                                    </div>
-                                    <div class="text-danger font-weight-bold ml-2 mt-3">* Note:</div>
-                                    <div class="text-danger ml-2" style={'text-indent:15px'}>{l.fill_text_help1}</div>
-                                    <div class="text-danger ml-2" style={'text-indent:15px'}>2. Please do not include space.</div>
+                </div>
+            </div>
+            <!-- </DialogTitle> -->
+            <div>
+                <div id="responseDialog">
+                    {#if state.fillInTheBlanksChoice == 1}
+                        <div>
+                            <div class="d-flex mr-2">
+                                <div class="width100">
+                                    <Checkbox  id = "numeric" checked = {state.numeric}>{"Numeric"}</Checkbox>
                                 </div>
-                            {:else}
-                                <div>
-                                    <div class="d-flex">
-                                        <input
-                                            type="text"                                
-                                            id = {"input"}
-                                            class = "latexInp form-control"
-                                            style = {'margin:5px;width:71%;'}
-                                            auto:focus = {true}
-
-                                        />                            
-                                        <Button 
-                                            variant = "contained" 
-                                            color = "primary"
-                                            style = {'border:1px solid #4285f4;color:#4285f4;text-transform:none;'} 
-                                            on:click = {addEditable}
-                                            class="btn btn-outline-primary height30 bg-white shadow-sm mt-1 top1 ml-1"
-                                        >
-                                        Add Response
-                                        </Button>                           
-                                        <div class = "latexEditButton d-inline-block">
-                                            <Button 
-                                                id = {"latexEdit"}
-                                                variant = "contained" 
-                                                color = "primary"
-                                                style = {'margin:5px;display:none;'} 
-                                                on:click = {latexEdit}                                   
-                                            >
-                                            Edit
-                                            </Button>
-                                        </div>
-                                    </div>
-                                    <div class="text-danger font-weight-bold ml-1">* Note:</div>
-                                    <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help1}</div>
-                                    <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help2}</div>
-                                </div>
-                            {/if}    
+                                <input
+                                    type="text"
+                                    id = "input1"
+                                    value = {state.input_ans}
+                                    class="form-control mr-4 ml-3"
+                                    style={'margin:5px'}
+                                    auto:focus = {true}
+                                    placeholder = {((AH.select("#input1").innerHTML != "")?l.fill_text_placeholder:"")}
+                                />
+                            </div>
+                            <div class="text-danger font-weight-bold ml-2 mt-3">* Note:</div>
+                            <div class="text-danger ml-2" style={'text-indent:15px'}>{l.fill_text_help1}</div>
+                            <div class="text-danger ml-2" style={'text-indent:15px'}>2. Please do not include space.</div>
                         </div>
-
-
-                    </div>
-                    <div class="svelteFooter">
-                        <Button variant="contained" on:click={handleClose} class="colorStyle" >
-                            {l.cancel}
-                        </Button>,
-                        <Button variant="contained" on:click={storeAns}
-                            class="bg-primary text-white">{l.done}
-                        </Button>
-                    </div>
+                    {:else}
+                        <div>
+                            <div class="d-flex">
+                                <input
+                                    type="text"                                
+                                    id = {"input"}
+                                    class = "latexInp form-control"
+                                    style = {'margin:5px;width:71%;'}
+                                    auto:focus = {true}
+                                />                            
+                                <Button 
+                                    variant = "contained" 
+                                    color = "primary"
+                                    style = {'border:1px solid #4285f4;color:#4285f4;text-transform:none;'} 
+                                    on:click = {addEditable}
+                                    class="btn btn-outline-primary height30 bg-white shadow-sm mt-1 top1 ml-1"
+                                >
+                                Add Response
+                                </Button>                           
+                                <div class = "latexEditButton d-inline-block">
+                                    <Button 
+                                        id = {"latexEdit"}
+                                        variant = "contained" 
+                                        color = "primary"
+                                        style = {'margin:5px;display:none;'} 
+                                        on:click = {latexEdit}                                   
+                                    >
+                                    Edit
+                                    </Button>
+                                </div>
+                            </div>
+                            <div class="text-danger font-weight-bold ml-1">* Note:</div>
+                            <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help1}</div>
+                            <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help2}</div>
+                        </div>
+                    {/if}    
+                </div>
+            </div>
+            <div class="svelteFooter">
+                <Button variant="contained" on:click={handleClose} class="colorStyle" >
+                    {l.cancel}
+                </Button>,
+                <Button variant="contained" on:click={storeAns}
+                    class="bg-primary text-white">{l.done}
+                </Button>
+            </div>
         </Dialog>
 </main>
-
-
-    
-
-
 <style>
     .font18 {
         font-size: 16px;
@@ -796,11 +682,6 @@
         cursor: pointer;
         padding: 3px 2px 0;
     }
-                
-    /* .steps_edit:empty:before {
-        content: attr(data-text),
-        content-editable:false;
-    } */
 
     .fixed_ans {
         top: 10px;
@@ -830,20 +711,8 @@
 
     .width100 {width: 100px;}
 
-    /* .edit_steps {
-        margin-top: 11px!important;
-    }
-    .view_checkbox {
-        height: 75px;
-    }
-    .plain_text {
-        position: relative;
-        bottom: 20px;
-    } */
-
     :global([id^="fillmain"]) {
         overflow:hidden;
-        /*width:700px;  testing*/
         text-align:left;
     }
     :global([id^="fillmain"] pre) {
@@ -861,7 +730,7 @@
         margin-top: 10px;
         background-color: #ccc;
         padding: 15px;
-        min-height: 60px;/*100px;*/
+        min-height: 60px;
     }
     :global([id^="fillmain"] .footerstr .arrow-up) {
         position: absolute;

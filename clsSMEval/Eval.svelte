@@ -327,9 +327,6 @@
      */
     function handleLanguageModalOpen() {
         state.open = !state.open;
-        setTimeout(function() {
-            document.querySelector('.evalpro_dialog > div+div.content').style.margin = "16px 0";
-        }, 50);
     }
 
     /**
@@ -394,9 +391,6 @@
      */
     function handleDatabaseModalOpen() {
         state.database_modal_open = !state.database_modal_open;
-        setTimeout(function() {
-            document.querySelector('.evalpro_dialog > div+div.content').style.margin = "16px 0";
-        }, 50);
     }
     
     /**
@@ -1514,7 +1508,7 @@
                                     {#if !isPreview} 
                                         <select 
                                             id="raw_btn" 
-                                            class="form-control secure-icon d-inline-block mr pull-right font14" 
+                                            class="form-control secure-icon d-inline-block mr-2 pull-right font14" 
                                             name="raw_btn" 
                                             style="height: 34px; width: 90px;"
                                             on:change={showOutputData}
@@ -1547,11 +1541,14 @@
             </div>
         </div>
         {#if (state.lang_type=='sql' || state.lang_type=='mssql' || state.lang_type == "psql")}
-            <Dialog bind:visible={state.database_modal_open} width={225} aria-labelledby="simple-dialog-title" style="background-color:#fff;" class="dialog evalpro_dialog">
-                <div style="text-align: left;width: 225px; margin-left: 17px;">
-                    <div class="font20">Select Database <span class="position-relative" style="left: 20px; top: -12px; font-size: 20px; cursor: pointer;" on:click = {handleDatabaseModalOpen}>X</span></div>
-                </div>
-                <div style="position: relative; top: 14px;">
+            <Dialog class="remove_right_margin" bind:visible={state.database_modal_open} width={225} aria-labelledby="simple-dialog-title" style="background-color:#fff; border-radius: 5px;">
+                <h4 class="mt-0 font21">
+                    <div class="d-flex justify-content-between">
+                        <div>Select Database</div>
+                        <span class="position-relative" style="left: -16px; top: -10px; font-size: 20px; cursor: pointer;" on:click = {handleDatabaseModalOpen}>X</span>
+                    </div>
+                </h4>
+                <div style="height: 500px; overflow-y: auto; padding-right: 18px;">
                     {#each state.databases as database} 
                         <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleDatabaseItem.bind(this, database)} key={database} style="height: 50px; line-height: 45px; cursor: pointer; padding-left: 20px;">
                             {database}
@@ -1560,11 +1557,14 @@
                 </div>
             </Dialog>
         {/if}
-        <Dialog bind:visible={state.open} width={225} style="background-color:#fff;" class="dialog evalpro_dialog">
-            <div style="text-align: left; width: 225px;  margin-left: 17px">
-                <div class="font20">Select Language <span class="position-relative" style="left: 20px; top: -12px; font-size: 20px; cursor: pointer;" on:click = {handleLanguageModalOpen}>X</span></div>
-            </div>
-            <div style="position: relative; top: 14px;">
+        <Dialog class="remove_right_margin" bind:visible={state.open} width={225} style="background-color:#fff; border-radius: 5px;">
+            <h4 class="mt-0 font21">
+                <div class="d-flex justify-content-between">
+                    <div>Select Language</div>
+                    <span class="position-relative" style="left: -16px; top: -10px; font-size: 20px; cursor: pointer;" on:click = {handleLanguageModalOpen}>X</span>
+                </div>
+            </h4>
+            <div style="height: 500px; overflow-y: auto; padding-right: 18px;">
                 {#each lang_type as lang}
                     <div class="dropdown-item evalpro_dropdown" tabindex="0" on:click={handleLanguageSelection.bind(this, lang)} key={lang} style="height:60px; cursor: pointer; padding-left: 20px">
                         <div class="text-center d-inline-block" style="height: 50px; width: 50px; background: #ccc;border-radius: 50%;">

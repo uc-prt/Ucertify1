@@ -252,6 +252,7 @@
 				withUrl: true,
 			}).then(function(res) {
 				document.querySelector('#comment_modal_body').innerHTML = res;
+				AH.initDropdown();
 				document.querySelector("#editor_comment_modal_btn").style.display = "block";
 				_commentModal.init?.();
 			});
@@ -2814,7 +2815,7 @@
 	bind:visible={modalVisible}
 	updateEditorModule={updateModuleState}	
 />
-<Dialog bind:visible={state.saveDialog} width={575}>
+<Dialog bind:visible={state.saveDialog} width="575" style="background-color:#fff; border-radius: 5px;">
 	<center id="saveProcess" style="display: none; width: 100%; height: 170px; padding-top: 40px;">
 		<div>{l.save_process}</div>
 		<Loader size={50} />
@@ -2893,13 +2894,13 @@
 		{/each}	
 	</div>
 </Dialog>
-<Dialog bind:visible={state.activator}>
+<Dialog bind:visible={state.activator} style="background-color:#fff; border-radius: 5px;">
 	<div class='editor_modal_content overflow-hidden'>
 		<Loader size={50} msg={"Please wait editor is working."}/>
 	</div>
 </Dialog>
 <!-- SHow XML Dialog -->
-<Dialog width="700" bind:visible={state.xmlDialog} style="background-color:#fff;">
+<Dialog width="700" bind:visible={state.xmlDialog} style="background-color:#fff; border-radius: 5px;">
 	<h4 class="mt-0 font21">
 		<div class="d-flex justify-content-between">
 			<div>{l.xml}</div>
@@ -2936,7 +2937,7 @@
 			unelevated={true}
             outlined={true}
 			on:click={updateXml}
-			color="#ccc"
+			color="primary"
 		>
 			{l.done}
 		</Button>

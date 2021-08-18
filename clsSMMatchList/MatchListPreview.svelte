@@ -863,33 +863,32 @@
 	</div>
 	<Dialog 
 		bind:visible={state.dropDialog} 
-		style={'width:450px;height:254px;'} 
+		width="450"
+		height="254"
+		style="background: #fff; border-radius: 5px;"
 	>
-			<div style="font-weight:bold;" class="clearfix">
-				<div title="How to drop?" class="float-start">How to drop?</div>
-				<div class="float-end">
-					<Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>
-						<i class="mi mi-close"><span class="u-sr-only">close</span></i>
-					</Button>
-				</div>
+		<div style="font-weight:bold;" class="clearfix">
+			<div title="How to drop?" class="float-start">How to drop?</div>
+			<div class="float-end">
+				<Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>
+					<i class="mi mi-close"><span class="u-sr-only">close</span></i>
+				</Button>
 			</div>
-			<div>
-				<div class="row">
-					
-					<img 
-						alt="gif file" 
-						src={AH.select("#matchmain").getAttribute('path') + "match_drop_000BOG.gif"} 
-					/>
-					<br/>
-					<span class="mt-2">
-						<input type="checkbox" style="top:2px;" class="relative donotshowdialog" id="dropId" />
-						<label for="dropId">Do not show this dialog again</label>
-					</span>
+		</div>
+		<div>
+			<div class="row">
+				<img 
+					alt="gif file" 
+					src={AH.select("#matchmain").getAttribute('path') + "match_drop_000BOG.gif"} 
+				/>
+				<br/>
+				<span class="mt-2">
+					<input type="checkbox" style="top:2px;" class="relative donotshowdialog" id="dropId" />
+					<label for="dropId">Do not show this dialog again</label>
+				</span>
 
-				</div>
 			</div>
-				
-				
+		</div>		
 	</Dialog> 
 </main>
 

@@ -1,5 +1,5 @@
 <script>
-    import l from 'editorLib/language';
+    import l from './editorLib/language';
     import { beforeUpdate, onMount } from 'svelte';
     import { writable } from 'svelte/store';
     import { AH } from '../../helper/HelperAI.svelte';

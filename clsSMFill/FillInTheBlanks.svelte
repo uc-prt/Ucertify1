@@ -1163,7 +1163,7 @@
 		contentEditable={true}
 	>
 	</div>
-	<Dialog class="remove_right_margin" width="700" bind:visible={state.open} style="background-color:#fff;">
+	<Dialog class="remove_right_margin" width="700" bind:visible={state.open} style="background-color:#fff; border-radius: 5px;">
 		<h4 class="mt-0 font21">
 			<div class="d-flex justify-content-between">
 				<div>{l.fill_header}</div>
@@ -1500,11 +1500,13 @@
 			> {l.done} </Button>
 		</div>
 	</Dialog>
-
-	<Dialog width="600" bind:visible={state.settingmenuopen}>
-		<div slot="title" style="text-align: left;">
-			<span class="text-capitalize">Settings</span>
-		</div>
+	
+	<Dialog class="remove_right_margin" width="600" bind:visible={state.settingmenuopen} style="background-color:#fff; border-radius: 5px;">
+		<h4 class="mt-1 font21 mb-4">
+			<div class="d-flex justify-content-between">
+				<div>Settings</div>
+			</div>
+		</h4>
 		<div>
 			<Checkbox 
 				checked = {state.case_sensetive}
@@ -1542,7 +1544,6 @@
 			>OK</Button>
 		</div>
 	</Dialog>
-
 	<Snackbar bind:visible={state.snackback} bg="#f44336" bottom={true} timeout={4000} style="position:fixed; bottom:50px;z-index:99999">
 		{#if message}
 			{message}

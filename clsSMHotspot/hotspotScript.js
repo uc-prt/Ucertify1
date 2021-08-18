@@ -265,10 +265,10 @@ export default class hotspotScript {
             this.drawstr = "{\"" + (++count) + "\":{\"x\":[" + xaxis + "],\"y\":[" + yaxis + "]}}";
         } else {
             this.drawstr = JS.select('#special_module_parse').value;
-            this.drawstr = drawstr.substring(drawstr.indexOf('{'),drawstr.lastIndexOf('}')+1);
-            this.drawstr = drawstr.slice(0, -1);
+            this.drawstr = this.drawstr.substring(this.drawstr.indexOf('{'), this.drawstr.lastIndexOf('}')+1);
+            this.drawstr = this.drawstr.slice(0, -1);
             //for adding the next draw point
-           this.drawstr += ",\"" + (++count) + "\":{\"x\":[" + xaxis + "],\"y\":[" + yaxis + "]}}";
+            this.drawstr += ",\"" + (++count) + "\":{\"x\":[" + xaxis + "],\"y\":[" + yaxis + "]}}";
         }
         JS.selectAll(JS.select(hid).children, 'attr', {'userans': this.drawstr });
         // for user ans

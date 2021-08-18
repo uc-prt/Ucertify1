@@ -25516,3 +25516,42 @@ strong {
 .remove_right_margin > div.content {  
   margin-right: 0;
 }
+
+[class*=" icomoon-"], [class^=icomoon-] {
+  font-family: icomoon !important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.w-sm {
+  width: 50%;
+}
+.width8 {
+  width: 30%;
+}
+.width82 {
+  width: 82%;
+}
+.width85 {
+  width: 85%;
+}
+.width99 {
+  width: 99%;
+}
+.width70 {
+  width: 70%;
+}
+.width30 {
+  width: 30%;
+}
+.width60 {
+  width: 60%;
+}
+.hidden {
+  display: none !important;
+}
