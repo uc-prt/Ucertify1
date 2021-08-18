@@ -52,7 +52,7 @@
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl">
+            <div class="mt-xl check_player">
                 <Checkbox
                     bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
@@ -733,5 +733,11 @@
     .row {
         margin-right: 0 !important;
         margin-left: 0 !important;
+    }
+
+    .check_player {
+        position: relative;
+        right: 10px;
+        top:6px;
     }
 </style>
