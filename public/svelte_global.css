@@ -25555,3 +25555,19 @@ strong {
 .hidden {
   display: none !important;
 }
+.arrow-bullet {
+  word-break: break-word;
+  list-style-image: url('../images/blue-bullet.gif')!important;
+}
+.arrowlist-bullet>li {
+    padding: 2px;
+    vertical-align: 2px;
+    background: url('../images/arrow-list.png') no-repeat 0 5px;
+    padding-left: 23px;
+}
+.tick-bullet {
+  list-style-image: url('../images/tick-bullet.png')!important;
+}
+.darkblue-txt {
+  color: #337ab7;
+}
