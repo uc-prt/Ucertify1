@@ -193,6 +193,7 @@
                     class={`${data.group} col-lg-4 grid-item padNull`}
                     style="height: {actionData.embed ? '130px' : '175px'}"
                     id="allEditorItem"
+                    data-cy={'item'+ i}
                     on:click={()=> isAjax ? handleItemAjax(data) : handleItem(data)}
                     data-category={data.group}
                     data-type={data.type}

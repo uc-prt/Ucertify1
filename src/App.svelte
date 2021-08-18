@@ -273,6 +273,7 @@
 			<b>Please do login and load course first.</b>
 			<br/>
 			<Button
+				data-cy="library"
 				color={"primary"}
 				unelevated={true}
 				outlined={true}
