@@ -110,6 +110,7 @@
 			}
 		});
 		didMount();
+		AH.initDropdown();
 	})
 
 	beforeUpdate(()=> {
@@ -458,7 +459,8 @@
 		}
 	}
 
-	function renderCodeMirror() {	
+	function renderCodeMirror() {
+		console.trace("YES");	
 		if (showPre > 0) {
 			preEditor = CodeMirror.fromTextArea(document.getElementById("pre-editor"), {
 				lineNumbers: true,
@@ -590,7 +592,7 @@
 
 	function changeTheme() {
 		let check = document.querySelector("#goDark").checked;
-		state.goDark = check;
+		//state.goDark = check;
 		window.sessionStorage.goDark = check;
 		if(check) {
 			if (showPre > 0) {
@@ -1271,16 +1273,15 @@
 									name="submitcode"
 								>{l.run_code}</button>
 								<button class="btn border-0 px-0 ml-2" data-toggle="dropdown" >
-										<span class="icomoon-menu-2 s3 text-secondary pt-s d-block" aria-label="Three dots dropdown"></span>
+									<span class="icomoon-menu-2 s3 text-secondary pt-s d-block" aria-label="Three dots dropdown"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<label for="goDark" class="dropdown-item mb-0 pointer">
 											<input 
 												type="checkbox" 
-												defaultChecked={state.goDark} 
-												on:click={changeTheme} i
-												d="goDark" 
+												on:click={changeTheme}
+												id="goDark" 
 												class="position-absolute transparent"
 											/>
 											<span>Dark Mode</span>

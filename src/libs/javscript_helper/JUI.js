@@ -632,7 +632,6 @@ export default class JUI extends API{
                     currElem.classList.remove('show');
                 });
             }
-            
         });
     }
     // Js based ajax i.e $.ajax
