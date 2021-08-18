@@ -36,7 +36,6 @@ export default class DooScribPlugin {
 		this.ID = 'dooScribCanvas' + Math.floor((Math.random()*100) + 1);
 		this.drawingSurface = "";
 		if (options) this.Settings = {...this.defaultOptions, ...options};
-		console.log(this.Settings);
 		if (true === isNaN(this.Settings.height)) {
 			this.Settings.height = 100;
 		}

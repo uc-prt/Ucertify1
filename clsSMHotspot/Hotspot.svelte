@@ -387,7 +387,6 @@
                 onMove: function () { },
                 onClick: function () { },
                 onPaint: function (e) {
-                    console.log("onPaint auth");
                     // storeing the X and Y values
                     xaxis.push(e.X);
                     yaxis.push(e.Y);
@@ -402,7 +401,6 @@
                         getCoordinate(xaxis, yaxis, count);
                     }
                     xaxis = []; yaxis = [];
-                    console.log(e);
                 }
             });
             let surfaceColor = surface.lineColor(window.color);
@@ -421,7 +419,7 @@
     
             let currentXMl = AH.parseHtml(xml);
             // if the type is imagehighlisght then draw ib the canvas by getting values from the xml
-            if (currentXMl.getAttribute('type') == 'imagehighlight') {
+            if ((currentXMl.children)[0].getAttribute('type') == 'imagehighlight') {
                 var ans = state.xml;
                 ans = ans.substring(ans.indexOf('{'), ans.lastIndexOf('}') + 1);
                 if (ans != '') {
@@ -430,7 +428,7 @@
                 setTimeout(function () {
                     // for drawing the path on the canvas by looping through the ans
                     authScript.drawOnCanvasAuth(AH.find('#mainContent', '#hptdraw canvas').getAttribute('id'), ans, surfaceColor);
-                }, 4000);
+                }, 2000);
             }
             window.surface = surface;
         }
@@ -940,11 +938,13 @@
                 value={state.xml}
             ></textarea>
         </center>
-        <Dialog width="600" bind:visible={state.openImg} style={'background-color:#fff;'}>
-            <h4 style="text-align: left;">
-                <div style="">Image</div>
+        <Dialog class="remove_right_margin" width="600" bind:visible={state.openImg} style="background: #fff; border-radius: 5px;">
+            <h4 class="mt-1 font21 mb-4">
+                <div class="d-flex justify-content-between">
+                    <div>Image</div>
+                </div>
             </h4>
-            <div>
+            <div style="overflow-y: auto; padding-right: 20px;">
                 <div class="d-flex">
                     <input
                         type="text"
@@ -974,39 +974,41 @@
                     id="imgAlt"
                     placeholder="Alt text"
                     class={(state.valueMultiple == 4) ? " form-control mt-0" : "hidden form-control mt-0"}
-                    defaultValue={state.alt}
+                    bind:value={state.alt}
                     margin="normal"
                     style="width: -webkit-fill-available;"
                 />
-                <div class={(state.valueMultiple == 4) ? "d-inline-block pr-2 mt-2 w-sm" : "hidden"}>
-                    <span>
-                        <label for="hotBorder" class="my-1 text-dark">Border width</label>
-                    </span>
-                    <select id="hotBorder" class="form-control">
-                        <option value="0">None</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-                <div class={(state.valueMultiple == 4) ? "d-inline-block mt-2 w-sm" : "hidden"}>
-                    <span>
-                        <label for="hotBorderColor" class="my-1 text-dark">Border color</label>
-                    </span>
-                    <select id="hotBorderColor" class="form-control">
-                        <option value="white">None</option>
-                        <option value="black">Black</option>
-                        <option value="grey">Grey</option>
-                    </select>
+                <div class="d-flex">
+                    <div class={(state.valueMultiple == 4) ? "d-inline-block pr-2 mt-2 w-sm" : "hidden"}>
+                        <span>
+                            <label for="hotBorder" class="my-1 text-dark">Border width</label>
+                        </span>
+                        <select id="hotBorder" class="form-control" bind:value={state.hotBorder}>
+                            <option value="0">None</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class={(state.valueMultiple == 4) ? "d-inline-block mt-2 w-sm" : "hidden"}>
+                        <span>
+                            <label for="hotBorderColor" class="my-1 text-dark">Border color</label>
+                        </span>
+                        <select id="hotBorderColor" class="form-control" bind:value={state.hotBorderColor}>
+                            <option value="white">None</option>
+                            <option value="black">Black</option>
+                            <option value="grey">Grey</option>
+                        </select>
+                    </div>
                 </div>
                 <br />
-                <div class={(state.valueMultiple == 3) ? " " : "hidden"}>
+                <div class={(state.valueMultiple == 3) ? "" : "hidden"}>
                     <span>
                         <label for="setLineColor" class="mt-2 text-dark">Draw line color</label>
                     </span>
-                    <select id="setLineColor" class="form-control" value={state.lineColor} on:blur={changeLine.bind(this)} >
+                    <select id="setLineColor" class="form-control" bind:value={state.lineColor} on:blur={changeLine.bind(this)} >
                         <option>Please Select</option>
                         <option value="red">Red</option>
                         <option value="black">Black</option>
@@ -1017,26 +1019,28 @@
             <div slot="footer" class="svelteFooter" >
                 <Button
                     on:click={handleClose}
-                    style="text-transform: none"
-                    key={l.cancel}
-                >
-                    {l.cancel}
+                    unelevated={true}
+                    outlined={true}
+                    class="text-capitalize"
+                    color="#ccc"
+                > {l.cancel} 
                 </Button>
                 <Button
                     on:click={handleSubmit.bind(this, 'img')}
                     class="bg-primary text-white"
                     style="text-transform: none"
                     key={l.submit}
-                >
-                    {l.submit}
+                > {l.submit}
                 </Button>
             </div>
         </Dialog>
-        <Dialog width="600" bind:visible={state.openDrag}>
-            <div slot="title" style="text-align: left;">
-                <div style="">Hotspot</div>
-            </div>
-            <div>
+        <Dialog class="remove_right_margin" width="600" bind:visible={state.openDrag} style="background: #fff; border-radius: 5px;">
+            <h4 class="mt-1 font21 mb-4">
+                <div class="d-flex justify-content-between">
+                    <div>Hotspot</div>
+                </div>
+            </h4>
+            <div style="overflow-y: auto; padding-right: 20px;">
                 <div class="row">
                     <div class="col-6 pr-1">
                         <span>
@@ -1093,10 +1097,11 @@
             <div slot="footer" class="svelteFooter">
                 <Button
                     on:click={handleClose}
-                    style="text-transform: none"
-                    key={l.cancel + "1"}
-                >
-                    {l.cancel}
+                    unelevated={true}
+                    outlined={true}
+                    class="text-capitalize"
+                    color="#ccc"
+                > {l.cancel} 
                 </Button>
                 <Button
                     on:click={handleSubmit.bind(this, 'drag')}

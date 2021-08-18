@@ -750,10 +750,12 @@
           </div>
         </div>
     </Sidepanel>
-    <Dialog bind:visible={state.algoxmlDialog} width={700}>
-        <div slot="title" style="text-align: left;">
-            {l.algo_xml}
-        </div>
+    <Dialog bind:visible={state.algoxmlDialog} width={700} style="background: #fff; border-radius: 5px;">
+        <h4 class="mt-1 font21 mb-4">
+            <div class="d-flex justify-content-between">
+                <div>{l.algo_xml}</div>
+            </div>
+        </h4>
         <div style="borderBottom: 1px solid #00000000; overflow-y: auto; overflow-x: hidden;height:365px;">
             <textarea
                 id="algoxml_Dialog"
@@ -779,10 +781,12 @@
         </div>            
     </Dialog>
 
-    <Dialog bind:visible={state.analyzeValuesDialog} width={700}>
-        <div slot="title" style="text-align: left;">
-            {l.val_variations}
-        </div> 
+    <Dialog bind:visible={state.analyzeValuesDialog} width={700} style="background: #fff; border-radius: 5px;">
+        <h4 class="mt-1 font21 mb-4">
+            <div class="d-flex justify-content-between">
+                <div> {l.val_variations}</div>
+            </div>
+        </h4>
         <div style="borderBottom: 1px solid #00000000; overflow-y: auto; overflow-x: hidden;height:365px;">
             <div
                 id="analyzeValues_Dialog"
