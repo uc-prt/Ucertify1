@@ -54,6 +54,16 @@
         }
     })
 
+    // $("body").off('click','.embed').on("click", ".embed", function() {
+	// 		debugger
+	// 		$("#embed_code").val('<img src="'+ $(this).attr("data-image")+'"/>').select();
+	// 	});
+
+    AH.listen("body",'click','.embed',function(_this){
+        console.log(_this);
+        AH.select('#embed_code').value = _this.getAttribute('data-image');
+    })
+
     // for setting the default configuration
     function setConfiguration() {
         // set the configuration in local variable 
