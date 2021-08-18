@@ -25528,3 +25528,46 @@ strong {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.w-sm {
+  width: 50%;
+}
+.width8 {
+  width: 30%;
+}
+.width82 {
+  width: 82%;
+}
+.width85 {
+  width: 85%;
+}
+.width99 {
+  width: 99%;
+}
+.width70 {
+  width: 70%;
+}
+.width30 {
+  width: 30%;
+}
+.width60 {
+  width: 60%;
+}
+.hidden {
+  display: none !important;
+}
+.arrow-bullet {
+  word-break: break-word;
+  list-style-image: url('../images/blue-bullet.gif')!important;
+}
+.arrowlist-bullet>li {
+    padding: 2px;
+    vertical-align: 2px;
+    background: url('../images/arrow-list.png') no-repeat 0 5px;
+    padding-left: 23px;
+}
+.tick-bullet {
+  list-style-image: url('../images/tick-bullet.png')!important;
+}
+.darkblue-txt {
+  color: #337ab7;
+}
