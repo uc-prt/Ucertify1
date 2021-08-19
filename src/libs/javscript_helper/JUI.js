@@ -623,13 +623,15 @@ export default class JUI extends API{
     initDropdown() { // Hide the dropdown click outside, when dropdown is appended in dom using ajax call.
         let _this= this;
         _this.enableBsAll('[data-toggle="dropdown"]', 'Dropdown');
-        _this.bind('body', 'click', function() {
-            _this.selectAll('[data-toggle="dropdown"]').forEach(function(currElem) {
-                currElem.classList.remove('show');
-            });
-            _this.selectAll('.dropdown-menu').forEach(function(currElem) {
-                currElem.classList.remove('show');
-            });
+        _this.bind('body', 'click', function(event) {
+            if (!event.target.closest('[data-toggle="dropdown"]')) {
+                _this.selectAll('[data-toggle="dropdown"]').forEach(function(currElem) {
+                    currElem.classList.remove('show');
+                });
+                _this.selectAll('.dropdown-menu').forEach(function(currElem) {
+                    currElem.classList.remove('show');
+                });
+            }
         });
     }
     // Js based ajax i.e $.ajax
