@@ -56,7 +56,6 @@
 
 
     AH.listen("body",'click','.embed',function(_this){
-        console.log(_this);
         AH.select('#embed_code').value = _this.getAttribute('data-image');
     })
 
