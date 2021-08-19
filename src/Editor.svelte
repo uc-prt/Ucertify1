@@ -421,7 +421,6 @@
 			editorBuffer['ajaxTimer'] = setTimeout(function () {
 				AH.ajax({
 					url: baseUrl + 'editor/index.php', // point to server-side PHP script
-					withUrl: true,
 					data: {
 						ajax: "1",
 						content_guid: Object.keys(state.sntTags).toString(),

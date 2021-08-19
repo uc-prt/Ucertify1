@@ -1315,7 +1315,7 @@ export const editorConfig = {
         { title: "Table6", value: "uc-table sorttable table6" },
         { title: "Table7", value: "uc-table sorttable table7" },
         { title: "Table8", value: "uc-table sorttable table8" }
-      ],
+    ],
     getSnt: function(content, state, strForRender) {
         // parse fetched snt from php
         let sntMatch = (content) ? content.match(/<snt(.*?)<\/snt>|<snt(.*?)\/>/gmi) : "";
@@ -1331,8 +1331,8 @@ export const editorConfig = {
                     updateParent('sntTags', newArray);
                 }
             }
+            updateParent('strForRender', state.strForRender + strForRender);
         }
-        updateParent('strForRender', state.strForRender + strForRender);
     },
     setSnt: function(content_id, parsedContent, state, previewSnt) {
         // Update snt ids
