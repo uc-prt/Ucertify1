@@ -54,6 +54,11 @@
         }
     })
 
+
+    AH.listen("body",'click','.embed',function(_this){
+        AH.select('#embed_code').value = _this.getAttribute('data-image');
+    })
+
     // for setting the default configuration
     function setConfiguration() {
         // set the configuration in local variable 
@@ -1141,7 +1146,7 @@
                     <button 
                         type="button" 
                         class="close embed_modal" 
-                        data-bs-dismiss="#details_div" 
+                        data-bs-dismiss="modal" 
                         aria-hidden="true"
                     >
                         &times;

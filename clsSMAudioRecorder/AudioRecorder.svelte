@@ -425,7 +425,7 @@
                 <label for="language_select"><b>{l.select_lang}</b></label>
             </div>
             <select id="language_select" name="language" class="disability_apply form-select form-control-sm" on:change={handleChange} on:blur={handleChange} value={state.language} aria-label="Select the language for Recording">
-                <option value="en-US" aria-label="English United States">{l.english_us}</option>
+                <!-- <option value="en-US" aria-label="English United States">{l.english_us}</option>
                 <option value="de-DE" aria-label="German">{l.german_lang}</option>
                 <option value="fr-FR" aria-label="French">{l.french_lang}</option>
                 <option value="es-ES" aria-label="Spanish">{l.spanish_lang}</option>
@@ -433,8 +433,13 @@
                 <option value="ja-JP" aria-label="Japanese">{l.japanese_lang}</option>
                 <option value="ko-KR" aria-label="Korean">{l.korean_lang}</option>
                 <option value="it-IT" aria-label="Italian">{l.italiano}</option>
+                <option value="en-IN" aria-label="English UK">{l.english_in}</option> -->
+                <option value="en-US" aria-label="English United States">{l.english_us}</option>
+                <option value="hi-IN" aria-label="Hindi">{l.hindi_lang}</option>
+                <option value="sv-SE" aria-label="Swedish">{l.svenska}</option>
+                <option value="fi-FI" aria-label="Finnish">{l.suomi}</option>
+                <option value="it-IT" aria-label="Italian">{l.italiano}</option>
                 <option value="en-IN" aria-label="English UK">{l.english_in}</option>
-
             </select>
             <div class="form-check form-check-inline transcript_container mt-3">
                 <label for="showTranscript" class="custom_checkbox_new float-left mr-1">
