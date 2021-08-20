@@ -462,6 +462,7 @@
         state.totalCorrectAns = countCorrect;
         if (state.sort == 1) {
             // Sort the available Draggable element
+            console.log("YESS");
             multi_array_sort();
         } else {
             // asign the draggable elements after suffle it
