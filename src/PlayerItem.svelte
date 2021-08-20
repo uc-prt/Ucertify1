@@ -52,7 +52,7 @@
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl">
+            <div class="mt-xl alignRight position-relative">
                 <Checkbox
                     bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
@@ -66,7 +66,7 @@
     {:else if playerState.category == 'lab'}
         <div class="lab_tag" key="tag_lab">
             <p class="mt-4">{labType[playerState.type]}</p>
-            <div class="row">
+            <div class="row alignRight position-relative">
                 <div class="col-xs-12">
                     <label for="type" class="text-dark d-inline" >{l.type}</label>
                     <select 
@@ -109,7 +109,7 @@
                     {/if}
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row alignRight position-relative"> 
                 <div class="col-xs-12">
                     <Textfield
                         id={(playerState.type == 'simulation' && playerState.oldSimulation) ? "default" :"title"}
@@ -134,8 +134,8 @@
                     </div>
                 </div>
             {/if}
-            <div class="row">
-                <div class="col-xs-{(playerState.type == 'simulation') ? 9 : 12} mt-sm">
+            <div class="row alignRight position-relative">
+                <div class="col-xs-{(playerState.type == 'simulation') ? 9 : 12} mt-sm w-75">
                     {#if (playerState.type == 'insight' && playerState.sub_type == 'scorm')}
                         <Textfield
                             id="asset"
@@ -157,14 +157,12 @@
                         />
                     {/if}
                 </div>
-            </div>
-            {#if playerState.type == 'simulation'}
-                <div class="row">
-                    <div class="col-xs-3 pt-sm pr">
+                {#if playerState.type == 'simulation'}
+                    <div class="col-xs-3 pt-sm pr w-25">
                         <select 
                             id="embed" 
                             name="embed" 
-                            class="btn border p-2 w-100 clearfix mt-sm pointer" 
+                            class="btn border p-2 w-100 clearfix mt-3 pointer" 
                             value={playerState.embed} 
                             on:blur={(e)=>{setInputState('embed', e.target.value)}}
                         >
@@ -173,8 +171,7 @@
                             <option value="overlay">{l.overlay}</option>
                         </select>
                     </div>
-                </div>
-                <div class ="row">
+                <div class ="row position-relative alignRight">
                     <div class="col-xs-12 mt-sm">
                         {#if (playerState.embed == 'overlay' || playerState.embed == 'new_tab')}
                             <Textfield
@@ -195,8 +192,10 @@
                     </div>
                 </div>
             {/if}
+            </div>
+           
             {#if (playerState.type == 'insight' && playerState.sub_type == 'scorm')}
-                <div class="row">
+                <div class="row position-relative alignRight">
                     <div class="col-xs-6 mt-sm">
                         <Textfield
                             id="asset_m"
@@ -206,7 +205,7 @@
                         />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row position-relative alignRight">
                     <div class="col-xs-12 mt-sm">
                         <Textfield
                             id="group_guids"
@@ -216,7 +215,7 @@
                         />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row position-relative alignRight">
                     <div class="container col-xs-9 mt-sm pr" item>
                         <Textfield
                             id="img"
@@ -233,7 +232,7 @@
                         >{l.insert_img}</button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row position-relative alignRight">
                     <div class="col-xs-12 mt-sm">
                         <Textfield
                             id="alt"
@@ -245,7 +244,7 @@
                 </div>
             {/if}
             {#if playerState.type == 'lablink'}
-                <div class="mt-xl">
+                <div class="mt-xl position-relative alignRight">
                     <Checkbox
                         bind:checked={playerState.isplayer}
                         value={playerState.isplayer}
@@ -302,7 +301,7 @@
                     <div 
                         class="row {(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? 'transcript_container d-none' : 'transcript_container mt-sm'}"
                     >
-                        <div item class="col-xs-7">
+                        <div item class="col-xs-7 position-relative alignRight">
                             <Textfield
                                 id="group_guids"
                                 fullWidth="true"
@@ -433,7 +432,7 @@
                 <p class="mt-4">{l.weblink_info}</p>
             {/if}
             <div container class="row">
-                <div class="pt-2 col-xs-10">
+                <div class="pt-2 col-xs-10 alignRight position-relative">
                     <label for="type" class="text-dark d-inline">{l.type}</label>
                     <select 
                         id="type" 
@@ -446,6 +445,7 @@
                         <option value="exhibit">{l.exhibit_txt}</option>
                         <option value="pdf">{l.pdf_txt}</option>
                         <option value="weblink">{l.weblink_txt}</option>
+                        <option value="embed_content">{l.embed_content}</option>
                     </select>
                     {#if playerState.type == "exhibit"}
                         <select 
@@ -485,7 +485,7 @@
                     />
                 </div>
             {:else}
-                <div class="row">
+                <div class="row alignRight position-relative">
                     <div item class="mt-sm pr col-xs-5">
                         <Textfield 
                             fullWidth="true" 
@@ -556,11 +556,11 @@
                                 label={l.image_txt}
                             />
                         </div>
-                        <div class="pt-sm col-xs-3">
+                        <div class="pt-sm col-xs-3 mt-4">
                             <button type="button" class="btn btn-secondary clearfix mt-1 ml-xs w-100" on:click={()=>{insertImage('img')}}>{l.insert_img}</button>
                         </div>
                     </div>
-                    <div class="mt-sm">
+                    <div class="mt-sm mt-3">
                         <Textfield
                             id="alt"
                             label={l.img_alt}
@@ -606,8 +606,8 @@
                 </div>
             {/if}
             {#if (playerState.type == 'exhibit')}
-                <div class="row">
-                    <div class="mt-xl col-xs-2">
+                <div class="row alignRight position-relative">
+                    <div class="mt-xl col-xs-2 p-0">
                         <Checkbox
                             bind:checked={playerState.inline}
                             value={playerState.inline}
@@ -659,7 +659,7 @@
         <div class="snt_tag" key="tag_snt">
             <p class="mt-4">{l.snt_des}</p>
             <div class="row">
-                <div class="pt-2 col-xs-12">
+                <div class="pt-2 col-xs-12 alignRight position-relative">
                     <label for="refid" class="text-dark d-inline">{l.des_txt}</label>                
                     <select 
                         value={playerState.snt} 
@@ -733,5 +733,10 @@
     .row {
         margin-right: 0 !important;
         margin-left: 0 !important;
+    }
+
+
+    .alignRight {
+        right:10px;
     }
 </style>
