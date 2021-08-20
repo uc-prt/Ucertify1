@@ -39,7 +39,7 @@
 	export let ajaxData = "";
 	export let _user;
 	export let subtype;
-
+	let snt_detail_array = {};
 	let stageComment = "";
 	let editorHeaderRef; // refrence of editorHeader
 	let editCount = 1;
@@ -312,6 +312,7 @@
 				} else {
 					let contentText = (state.propsAjaxData?.content.replace(/\n/g,"<br>") || state.content);
 					contentText = (AH.isValid(contentText)) ? replaceUnwantedTags(contentText) : contentText;
+					contentText = editorConfig.replaceUnwantedEntity(contentText, 'only_self_close');
 					let tempContent = editorConfig.replaceUnwantedEntity(state.content, 'onlyEntity');
 					AH.select("#content").innerHTML = editorConfig.maintainAlignments(tempContent);
 					AH.select('#content_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(contentText));
@@ -415,28 +416,31 @@
 		editorConfig.getSnt(state.stem, state, state.strForRender);
 		editorConfig.getSnt(state.content, state, state.strForRender);
 		editorConfig.getSnt(state.remediation, state, state.strForRender);
-		if (Object.keys(state.sntTags).toString()) {
+		let snt_content_guid = Object.keys(state.sntTags).toString();
+		if (snt_content_guid && snt_detail_array[snt_content_guid] == undefined) {
 			state.activator = true;
 			editorBuffer['ajaxTimer'] = setTimeout(function () {
 				AH.ajax({
 					url: baseUrl + 'editor/index.php', // point to server-side PHP script
 					data: {
 						ajax: "1",
-						content_guid: Object.keys(state.sntTags).toString(),
+						content_guid: snt_content_guid,
 						str_content: state.strForRender,
 						func: 'react_get_snt',
 						action: 'react_get_snt'
 					}}).then((response)=> {
+						// If the new snt details comes from server then add the new details in array.
+						snt_detail_array = {};
+						snt_detail_array[snt_content_guid] = response;
 						state.activator = false;
-						editorConfig.setSnt('#content_show', response, state, previewSnt);
-						editorConfig.setSnt('#stem_show', response, state, previewSnt);
-						editorConfig.setSnt('#remediation_show', response, state, previewSnt);
-						editorConfig.setSnt('#remediationShow', response, state, previewSnt);
-						editorConfig.setSnt('#stemShow', response, state, previewSnt);
+						setSntDetails(response, state, previewSnt);
 						ajaxContentUpdate({ imgAltText: 1, container: ['#previewSection'] });
 					});
 				clearTimeout(editorBuffer['ajaxTimer']);
 			}, 500);
+		} else {
+			let response = snt_detail_array[snt_content_guid];
+			setSntDetails(response, state, previewSnt);
 		}
 		//self.handleMenuClose();
 		ucStepImplement();
@@ -445,6 +449,16 @@
 		}
 	}
 
+	/**
+	 * Function to set the snt detials into preview, stem and remediation, 
+	*/
+	function setSntDetails(response, state, previewSnt ) {
+		editorConfig.setSnt('#content_show', response, state, previewSnt);
+		editorConfig.setSnt('#stem_show', response, state, previewSnt);
+		editorConfig.setSnt('#remediation_show', response, state, previewSnt);
+		editorConfig.setSnt('#remediationShow', response, state, previewSnt);
+		editorConfig.setSnt('#stemShow', response, state, previewSnt);
+	}
 	/**
 	 * UcFeatures releated functions
 	 * Moved from Smeditor
