@@ -460,7 +460,6 @@
 	}
 
 	function renderCodeMirror() {
-		console.trace("YES");	
 		if (showPre > 0) {
 			preEditor = CodeMirror.fromTextArea(document.getElementById("pre-editor"), {
 				lineNumbers: true,
