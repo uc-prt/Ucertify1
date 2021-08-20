@@ -1248,6 +1248,9 @@ export const editorConfig = {
                 if (self_snt_close) {
                     content = content.replace(/<snt(.*?)\s*\/>/g, '<snt$1></snt>');
                 }
+                if (clean == 'only_self_close') {
+                    return (content);
+                }
 				if (clean) {
 					content = content.replace(/&#65279;/g, "");
 					if (clean == "revert") { 
