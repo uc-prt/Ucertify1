@@ -411,7 +411,6 @@
 		} catch (e) {
 			console.log({ Error: e, line: 2372 });
 		}
-
 		state.strForRender = "";
 		editorConfig.getSnt(state.stem, state, state.strForRender);
 		editorConfig.getSnt(state.content, state, state.strForRender);
@@ -421,7 +420,6 @@
 			editorBuffer['ajaxTimer'] = setTimeout(function () {
 				AH.ajax({
 					url: baseUrl + 'editor/index.php', // point to server-side PHP script
-					withUrl: true,
 					data: {
 						ajax: "1",
 						content_guid: Object.keys(state.sntTags).toString(),
