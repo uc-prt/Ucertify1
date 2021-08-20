@@ -1238,6 +1238,16 @@ export const editorConfig = {
         // valdiate mcq data
 		if (AH.isValid(content)) {
 			try {
+                //@Prabhat: This is to convert the self closing seq tag to explict closing tag.
+                // Examples: <seq refid="112" /> to <seq refid="112" ></seq> 
+                let self_seq_close = content.match(/<seq(.*?)\s*\/>/g);
+                if (self_seq_close) {
+                    content = content.replace(/<seq(.*?)\s*\/>/g, '<seq$1></seq>');
+                }
+                let self_snt_close = content.match(/<snt(.*?)\s*\/>/g);
+                if (self_snt_close) {
+                    content = content.replace(/<snt(.*?)\s*\/>/g, '<snt$1></snt>');
+                }
 				if (clean) {
 					content = content.replace(/&#65279;/g, "");
 					if (clean == "revert") { 
@@ -1252,11 +1262,7 @@ export const editorConfig = {
 					val = val[0].replace(/<br \/>/g, '').replace(/<br\/>/g, '').replace(/<br>/g, '').replace(/\n/g, '').replace(/> </g, '><');
 					content = content.replace(/<map(.|\n)*?<\/map>/g, val);
 				}
-                //@Prabhat: This is to conver the self closing seq tag to explict closing tag. 
-                let self_close = content.match(/<seq(.*?)\s*\/>/g);
-                if (self_close) {
-                    content = content.replace(/<seq(.*?)\s*\/>/g, '<seq$1></seq>');
-                }
+                
                 var matches = AH.find(content, ".ebook_item_text", 'all')[0].innerHTML;
 				if (AH.isValid(matches) && matches.startsWith("<div>") && matches.endsWith("</div>")) {
 					let pattern = matches;

@@ -411,7 +411,6 @@
 		} catch (e) {
 			console.log({ Error: e, line: 2372 });
 		}
-
 		state.strForRender = "";
 		editorConfig.getSnt(state.stem, state, state.strForRender);
 		editorConfig.getSnt(state.content, state, state.strForRender);
