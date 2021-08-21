@@ -37,6 +37,7 @@
 	export let isReview;
 	export let showAns;
 	export let editorState;
+	export let itemUrl;
 
 	// initializing the variable
 	let QXML = "";
@@ -463,7 +464,7 @@
 				<StepPreview modules={state.data[0].step} containerID={container_id} {checkImages} uxml={uxml}/>
 				<TabPreview modules={state.data[0].tab} containerID={container_id} {checkImages} uxml={uxml}/>
 				{#if state.data[0].hotspot}
-					<img class="targetImg" tabindex="0" alt="target_img" src={window.itemFolder +"images/target.png"} style="display: none" />
+					<img class="targetImg" tabindex="0" alt="target_img" src={baseUrlTheme +"svelte_items/images/target.png"} style="display: none" />
 				{/if}
 			{/if}
 		</div>
