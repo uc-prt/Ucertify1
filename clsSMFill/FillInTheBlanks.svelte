@@ -199,7 +199,7 @@
 			});
 		}
 		// added into the authoring section
-		AH.select("#fillAuthor").innerHTML = htmlSpecialChars(cdata);
+		AH.select("#fillAuthor").innerHTML = cdata;
 	}
 
 	// this function responsible for removing special character in the html
@@ -492,7 +492,7 @@
 	}
 
 	function createTables(_this, editor, tinyMCE) {
-		let table_html = _this.attr('data-html');
+		let table_html = _this.getAttribute('data-html');
 		let tab_html = ""; 
 		tab_html = table_html.replace("<div class='ebook_item_text'>", " ").replace("</div>"," ");
 		editor.focus();
@@ -709,9 +709,7 @@
 			AH.select("#input"+i).value = customStyle[0];
 		} else {
 			for (let i = 0; i <= anskey.length-1; i++) {
-				//$("#input"+i).attr('value',anskey[i])
 				latexEdit[i] = anskey[i];
-				//document.querySelector("#latexEdit"+i) && document.querySelector("#latexEdit"+i).setAttribute('latex', anskey[i]);
 				tempEqArr = {
 					value: anskey[i],
 					id: i
