@@ -73,7 +73,7 @@
 		AH.bind(ajax_eId, 'keyup', displayAns);
 		AH.bind(ajax_eId, 'change', displayAns);
 		AH.bind(ajax_eId, 'dragend', displayAns);
-
+		
 		AH.listen(document, "click", "span.mq-editable-field.mq-focused", oneditoFocused);
 		AH.listen(document, "change", "span.mq-editable-field.mq-focused", oneditoFocused);
 
