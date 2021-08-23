@@ -4,7 +4,7 @@
     import {AH} from '../helper/HelperAI.svelte';
     import { flip } from 'svelte/animate';
     import { onMount, tick } from 'svelte';
-    export let enableClose;
+    // export let enableClose;
     export let isAjax;
     export let onClose = false;
     export let openDrawer = false;
@@ -16,10 +16,9 @@
     export let ajaxData;
     let grid;
     let filters = [];
-
     onMount(async ()=> {
-       initIsotope();
-       AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
+        initIsotope();
+        AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
     })
 
     function initIsotope() {
@@ -170,21 +169,21 @@
     "
 >
     <div class="col-lg-12">
-        {#if (goback || enableClose)} 
-            <button
-                class="close"
-                on:click={()=> onCloseBtn(enableClose, onClose)}
-                style ="
-                    position: absolute;
-                    z-index: 999;
-                    right: 0;
-                    margin: 8px;
-                    font-weight: 400;
-                    font-size: 42px;
-                ">
-                <span aria-hidden="true">×</span>
-            </button> 
-        {/if}
+        {#if enableClose == '1'}
+        <button
+            class="close"
+            on:click={()=> onCloseBtn()}
+            style ="
+                position: absolute;
+                z-index: 999;
+                right: 0;
+                margin: 8px;
+                font-weight: 400;
+                font-size: 42px;
+            ">
+            <span aria-hidden="true">×</span>
+        </button>
+        {/if} 
         <div class="mainArea isotope grid" style = "overflow: auto; height: 379px;">
             {#each editorItems as data, i (data.id)} 
                 <div
