@@ -72,6 +72,7 @@
 		AH.bind(ajax_eId, 'click', displayAns);
 		AH.bind(ajax_eId, 'keyup', displayAns);
 		AH.bind(ajax_eId, 'change', displayAns);
+		AH.bind(ajax_eId, 'dragend', displayAns);
 
 		AH.listen(document, "click", "span.mq-editable-field.mq-focused", oneditoFocused);
 		AH.listen(document, "change", "span.mq-editable-field.mq-focused", oneditoFocused);
@@ -436,6 +437,7 @@
 
 	// for displaying the answer
 	function displayAns() {
+		console.trace("YESSS");
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
 		// To save the user answer
