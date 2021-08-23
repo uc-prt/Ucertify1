@@ -199,7 +199,6 @@
 			});
 		}
 		// added into the authoring section
-		console.log('cdata', cdata);
 		AH.select("#fillAuthor").innerHTML = cdata;
 	}
 
