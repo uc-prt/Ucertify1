@@ -199,7 +199,8 @@
 			});
 		}
 		// added into the authoring section
-		AH.select("#fillAuthor").innerHTML = htmlSpecialChars(cdata);
+		console.log('cdata', cdata);
+		AH.select("#fillAuthor").innerHTML = cdata;
 	}
 
 	// this function responsible for removing special character in the html
