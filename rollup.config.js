@@ -69,6 +69,12 @@ export default {
 				// You can optionally set 'customElement' to 'true' to compile
 				// your components to custom elements (aka web elements)
 				//customElement: false
+			},
+			onwarn: (warning, handler) => {
+				// e.g. don't warn on <marquee> elements, cos they're cool
+				if (warning.code === 'PLUGIN_WARNING') return;
+				// let Rollup handle all other warnings normally
+				handler(warning);
 			}
 		}),
 
