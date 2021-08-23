@@ -75,6 +75,7 @@
   "dependencies": {
     "autoprefixer": "^10.2.6",
     "bootstrap": "^5.0.0-beta3",
+    "es6-bundle": "^1.0.0",
     "highcharts": "^9.0.1",
     "hotkeys-js": "^3.8.1",
     "jquery": "^3.6.0",
