@@ -565,8 +565,8 @@
 					>
 						<div 
 							id="reset" 
-							style="height: 27px; width: 90px;"
-							class="reset btn btn-outline-primary btn-sm mt-sm2 mr-sm2 float-end">
+							style="height: 27px; width: 90px; top:2px;"
+							class="reset btn btn-outline-primary position-relative btn-sm mt-sm2 mr-sm2 float-end">
 							<span class="icomoon-new-24px-reset-1 s3" style="vertical-align: text-top"></span> 
 							<span class="position-relative bottom1">Reset</span>
 						</div>
