@@ -168,7 +168,20 @@
         padding-top: 14px;
     "
 >
-    <div class="col-lg-12">
+    <div class="col-lg-12 pr-1">
+        <div
+            class="badge badge-primary font-weight-normal pt-1 pull-right"
+            id="item_status"
+            style="
+                font-size: 12px;
+                letter-spacing: 1px;
+                width: 38px;
+                display: inline;
+                height: 18px;
+                font-family: 'PT Sans Caption', sans-serif;
+                margin-top: 4px;
+            "
+        >V2.0</div>
         {#if enableClose == '1'}
         <button
             class="close"
@@ -177,7 +190,7 @@
                 position: absolute;
                 z-index: 999;
                 right: 0;
-                margin: 8px;
+                margin: 12px;
                 font-weight: 400;
                 font-size: 42px;
             ">
