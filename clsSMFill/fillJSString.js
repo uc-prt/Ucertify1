@@ -405,6 +405,7 @@ export default class fillJS {
 				this.a = 0;
 				JS.find(pElem, "option", 'all').forEach((_this, i)=> {
 					_this.removeAttribute("selected");
+					_this.selected = false;
 					if (ansType=='c') {
 						if (_this.getAttribute("correctans") > 0) _this.selected = true;
 					} else if (ansType=='u') {
