@@ -254,7 +254,6 @@
                     min-height: 51px;
                     background-color: #4c4c4c;
                     color: #fff;
-                    display: {enableClose ? 'none' : ''}
                 "
                 on:click={openFullMenu}
             >
