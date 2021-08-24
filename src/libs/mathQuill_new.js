@@ -154,7 +154,7 @@
       C.Bare = Bare;
   
       // Set up the prototype of the new class.
-      var _super = SuperclassBare[prototype] = _superclass[prototype];
+      var _super = SuperclassBare[prototype] = _superclass != undefined ? _superclass[prototype]  : Object;
       var proto = Bare[prototype] = C[prototype] = C.p = new SuperclassBare;
   
       // other variables, as a minifier optimization
