@@ -35,7 +35,10 @@ ITEMPLAYER.download = function (player, asset, title, description, img) {
     let r = new RegExp('^(?:[a-z]+:)?//', 'i');
     let ASSET_URL = r.test(asset) ? asset : DOWNLOAD_ASSETS_URL + asset;
     let download_html = '<div class="row download_asset"><table class="border"><tbody><tr><td class="align-middle span1"><img src="' + DOWNLOAD_IMAGE_URL + img + '" class="img-polaroid"></td><td class="align-middle"><h3><strong>' + title + '</strong></h3><p id="descript" class="descript-downld">' + description + '</p></td><td class="align-middle span3"><a tabindex="' + tabindex.z + '" class="btn btn-primary btn-block" href="' + ASSET_URL + '" target="_blank">Download</a></td></tr></tbody></table></div>';
-    document.querySelector(player).innerHTML = download_html;
+    if (!(player instanceof HTMLElement)) {
+        player = document.querySelector(player);
+    }
+    player.innerHTML = download_html;
     document.querySelector('.descript-downld').style.display = 'block';
     document.querySelector('.descript-downld').style.margin = '0';
 }

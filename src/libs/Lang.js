@@ -387,6 +387,7 @@ export default {
     exhibit_txt: 'Exhibit',
     pdf_txt: 'PDF',
     weblink_txt: 'Web Link',
+    embed_content:'Embed Content',
     image_txt: 'Image',
     text: 'Text',
     select_img: 'Select an image',

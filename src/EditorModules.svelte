@@ -4,7 +4,7 @@
     import {AH} from '../helper/HelperAI.svelte';
     import { flip } from 'svelte/animate';
     import { onMount, tick } from 'svelte';
-    export let enableClose;
+    // export let enableClose;
     export let isAjax;
     export let onClose = false;
     export let openDrawer = false;
@@ -16,10 +16,9 @@
     export let ajaxData;
     let grid;
     let filters = [];
-
     onMount(async ()=> {
-       initIsotope();
-       AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
+        initIsotope();
+        AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
     })
 
     function initIsotope() {
@@ -169,22 +168,35 @@
         padding-top: 14px;
     "
 >
-    <div class="col-lg-12">
-        {#if (goback || enableClose)} 
-            <button
-                class="close"
-                on:click={()=> onCloseBtn(enableClose, onClose)}
-                style ="
-                    position: absolute;
-                    z-index: 999;
-                    right: 0;
-                    margin: 8px;
-                    font-weight: 400;
-                    font-size: 42px;
-                ">
-                <span aria-hidden="true">×</span>
-            </button> 
-        {/if}
+    <div class="col-lg-12 pr-1">
+        <div
+            class="badge badge-primary font-weight-normal pt-1 pull-right"
+            id="item_status"
+            style="
+                font-size: 12px;
+                letter-spacing: 1px;
+                width: 38px;
+                display: inline;
+                height: 18px;
+                font-family: 'PT Sans Caption', sans-serif;
+                margin-top: 4px;
+            "
+        >V2.0</div>
+        {#if enableClose == '1'}
+        <button
+            class="close"
+            on:click={()=> onCloseBtn()}
+            style ="
+                position: absolute;
+                z-index: 999;
+                right: 0;
+                margin: 12px;
+                font-weight: 400;
+                font-size: 42px;
+            ">
+            <span aria-hidden="true">×</span>
+        </button>
+        {/if} 
         <div class="mainArea isotope grid" style = "overflow: auto; height: 379px;">
             {#each editorItems as data, i (data.id)} 
                 <div
@@ -255,7 +267,6 @@
                     min-height: 51px;
                     background-color: #4c4c4c;
                     color: #fff;
-                    display: {enableClose ? 'none' : ''}
                 "
                 on:click={openFullMenu}
             >
