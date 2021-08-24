@@ -335,13 +335,13 @@ export const editorConfig = {
                 label: lang.web_pages,
                 view: (state.content_type == 'p') ? true : false,
             },
-            {
-                id: 'diagnosticMenu',
-                funcName: handleDiagnostic.bind(this, state),
-                label: lang.diagnostic,
-                extraProp: {disableEnforceFocus: true},
-                view: true,
-            },
+            // {
+            //     id: 'diagnosticMenu',
+            //     funcName: handleDiagnostic.bind(this, state),
+            //     label: lang.diagnostic,
+            //     extraProp: {disableEnforceFocus: true},
+            //     view: true,
+            // },
             {
                 id: 'analyze_ebookMenu',
                 funcName: clickanalyzeebook,
