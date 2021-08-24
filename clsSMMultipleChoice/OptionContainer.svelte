@@ -17,6 +17,7 @@
         window.open(futureUrl, '_blank');
     }
     
+
 </script>
 
 {#if previewMode}
@@ -87,7 +88,7 @@
                                 <div class="input-group">
                                     <label for="pUserans-{letters[i]}" access-key="{letters[i]}" class="d-flex">
                                         <div class="ansoptlabel form-control ansopt" value="{letters[i]}">
-                                            {letters[i]}
+                                            {@html letters[i]}
                                         </div>
                                         <div 
                                             tabIndex="0"
@@ -149,7 +150,7 @@
                                     on:blur={editOption.bind(this, i)} 
                                     class="ebook_item_text auth-editor pt-2"
                                 >
-                                    {items.answer}
+                                    {@html items.answer}
                                 </div>
                             </div>
                         </div>
