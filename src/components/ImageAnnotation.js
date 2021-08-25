@@ -115,7 +115,7 @@ export default class ImageAnnotation {
                                             <div class="form-group pl-0 row">
                                                 <label for="annotate_image_color" class="col-md-3 control-label col-form-label form-control-label text-left font-weight-normal mb-0">${l.marker_color}</label>
                                                 <div class="col-md-9">
-                                                    <select name="annotate_image_color" title="${l.marker_color}" id="annotate_image_color" class="form-control form-control-sm">
+                                                    <select name="annotate_image_color" title="${l.marker_color}" id="annotate_image_color" class="form-select form-select-sm">
                                                         <option value="0">${l.red_color}</option>
                                                         <option value="1">${l.blue_color}</option>
                                                     </select>
