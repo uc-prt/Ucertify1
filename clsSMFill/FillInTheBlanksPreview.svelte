@@ -437,6 +437,7 @@
 
 	// for displaying the answer
 	function displayAns() {
+		console.trace("YESSS");
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
 		// To save the user answer
