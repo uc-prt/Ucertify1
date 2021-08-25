@@ -3,9 +3,9 @@
  *   Author: Prabhat Kumar<prabhat.kumar@ucertify.com>
  *  Version: 1.0
  *  @package  : helper/AlgoParser.js
-  *  @detail   : responsible managing utility functions for algorithimic contents
+ *  @detail   : responsible managing utility functions for algorithimic contents
  */
- // all the function required is defined in algo_util.php
+// all the function required is defined in algo_util.php
 import AlgoUtil from './AlgoUtil';
 
 export default class clsAlgo extends AlgoUtil {
@@ -16,23 +16,24 @@ export default class clsAlgo extends AlgoUtil {
         this.group         = [];
         this.unique        = [];
     }
-    
+
     resolveContent( cdata ) {
+        var _this = this;
         // store all the varibale values in array format
-        var var_list = this.createVar( cdata.algo_qxml, cdata.user_answer_details );
+        var var_list = _this.createVar( cdata.algo_qxml, cdata.user_answer_details );
         // encode the extracted variable values encolosing in the algouserans tag
-        cdata['algouserans'] = this.createUserAns( var_list );
+        cdata['algouserans'] = _this.createUserAns( var_list );
         // replace all the string
-        cdata.question           = this.replaceStr( cdata.question, var_list );
-        cdata.explanation        = this.replaceStr( cdata.explanation, var_list );
-        cdata.special_module_xml = this.replaceStr( cdata.special_module_xml, var_list );
+        cdata.question           = _this.replaceStr( cdata.question, var_list );
+        cdata.explanation        = _this.replaceStr( cdata.explanation, var_list );
+        cdata.special_module_xml = _this.replaceStr( cdata.special_module_xml, var_list );
         if ( cdata.user_answer_details ) {
             cdata.user_answer_details = (cdata.user_answer_details).replace( '/<algouserans>.*/', '' );
         }
-
+        
         if ( (cdata.answers).length > 1 ) {
             (cdata.answers).forEach(function(v, k) {
-                cdata['answers'][ k ]['answer'] = this.replaceStr( cdata['answers'][ k ]['answer'], var_list );
+                cdata['answers'][ k ]['answer'] = _this.replaceStr( cdata['answers'][ k ]['answer'], var_list );
             });
         }
         // return final data
