@@ -3,9 +3,9 @@
  *   Author: Prabhat Kumar<prabhat.kumar@ucertify.com>
  *  Version: 1.0
  *  @package  : helper/AlgoParser.js
-  *  @detail   : responsible managing utility functions for algorithimic contents
+ *  @detail   : responsible managing utility functions for algorithimic contents
  */
- // all the function required is defined in algo_util.php
+// all the function required is defined in algo_util.php
 import AlgoUtil from './AlgoUtil';
 
 export default class clsAlgo extends AlgoUtil {
@@ -16,7 +16,7 @@ export default class clsAlgo extends AlgoUtil {
         this.group         = [];
         this.unique        = [];
     }
-    
+
     resolveContent( cdata ) {
         var _this = this;
         // store all the varibale values in array format

@@ -775,7 +775,7 @@
     >
         <ul class="nav nav-pills m-0">
             <li class="nav-item">
-                <a class="text-dark nav-link active" href="javascript:void(0);">
+                <a class="text-dark nav-link active" href={"javascript:void(0);"}>
                     <span class="icomoon-toc-sm align-middle mr-sm s3"></span>
                     Items
                 </a>
