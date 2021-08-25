@@ -48,7 +48,7 @@
                             <span>
                                 <label for="lineColor" class="text-dark">{l.draw_color}</label>
                             </span>
-                            <select id="lineColor" class="form-control form-select">
+                            <select id="lineColor" class="form-select">
                                 <option value={l.red}>{l.red}</option>
                                 <option value={l.green}>{l.green}</option>
                                 <option value="#00BCD4" selected="selected">{l.light_blue}</option>
@@ -61,7 +61,7 @@
                             <span>
                                 <label for="markPointColor" class="text-dark">{l.markPointColor}</label>
                             </span>
-                            <select id="markPointColor" class="form-control form-select">
+                            <select id="markPointColor" class="form-select">
                                 <option value="#00FF00" selected="selected">{l.lightGreen}</option>
                                 <option value="#000">{l.black}</option>
                                 <option value="#ff8c00">{l.orange}</option>
