@@ -88,7 +88,7 @@
                                 <div class="input-group">
                                     <label for="pUserans-{letters[i]}" access-key="{letters[i]}" class="d-flex">
                                         <div class="ansoptlabel form-control ansopt" value="{letters[i]}">
-                                            {@html letters[i]}
+                                            {letters[i]}
                                         </div>
                                         <div 
                                             tabIndex="0"
