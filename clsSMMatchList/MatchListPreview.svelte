@@ -121,6 +121,8 @@
             as: 'style'
         }
 		AH.createLink("https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css", config);
+		//AH.createLink(itemUrl+'css/matchList.min.css');
+		//AH.createLink(baseThemeURL + 'svelte_items/clsSMMatchList/css/matchList.min.css', config);
     }
 	
 	onMount(async()=> {
@@ -411,11 +413,14 @@
 			// self.forceUpdate(); it works only in react
 		} else {
 			// shuffle list 1
-			shuffleArray(list1);
+			list1 = shuffleArray(list1);
+			
 			// shuffle list 2
-			shuffleArray(list2);
+			list2 = shuffleArray(list2);
+			
 			// remove the user ans
 			ucMlid.removeUserAns();
+			
 			//forceUpdate();
 		}
 		ucMlid.showUserAns("#"+containerID);
