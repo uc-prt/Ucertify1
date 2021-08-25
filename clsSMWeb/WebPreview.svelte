@@ -1755,7 +1755,7 @@
             </div>
         </div>
         <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
-            <Button key="cancel_btn" class="cancel_btn_pop" style={'float:right;margin:10px;background-color:gray;'} variant="contained" on:click={() => state.remediationToggle = false }>
+            <Button key="cancel_btn"  style={'float:right;margin:10px;b;'} class="cancel_btn_pop" variant="contained" on:click={() => state.remediationToggle = false }>
                 {l.cancel}
             </Button>
         </div>
@@ -1767,5 +1767,8 @@
 <style>
     :global(.height44)  {
         height: 44px;
+    }
+    :global(.cancel_btn_pop) {
+        background-color: lightgray!important;
     }
 </style>
