@@ -17,6 +17,7 @@
         window.open(futureUrl, '_blank');
     }
     
+
 </script>
 
 {#if previewMode}
@@ -149,7 +150,7 @@
                                     on:blur={editOption.bind(this, i)} 
                                     class="ebook_item_text auth-editor pt-2"
                                 >
-                                    {items.answer}
+                                    {@html items.answer}
                                 </div>
                             </div>
                         </div>
