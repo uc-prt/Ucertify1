@@ -1508,7 +1508,7 @@
                                     {#if !isPreview} 
                                         <select 
                                             id="raw_btn" 
-                                            class="form-control secure-icon d-inline-block mr-2 pull-right font14" 
+                                            class="form-select secure-icon d-inline-block mr-2 pull-right font14" 
                                             name="raw_btn" 
                                             style="height: 34px; width: 90px;"
                                             on:change={showOutputData}
@@ -1620,7 +1620,7 @@
                                         on:change={setDefaultXML}
                                         on:blur={setDefaultXML}
                                         style="margin: 2px 24px"
-                                        classes="v-bottom"
+                                        class="v-bottom form-select"
                                         id="testcase_sensitive" 
                                     >                               
                                         <option value="0">{l.case_insensitive}</option>

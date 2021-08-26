@@ -251,7 +251,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="int-type">{l.type}</label>
-                                        <select class="form-control form-select-md" id="int-type" name="type">
+                                        <select class="form-select form-select-md" id="int-type" name="type">
                                             <option value="text" selected="selected">{l.text_box}</option>
                                             <option value="password">{l.password}</option>
                                         </select>
