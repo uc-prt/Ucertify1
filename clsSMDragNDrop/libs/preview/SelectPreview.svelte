@@ -7,126 +7,124 @@
  *  Last Updated By : Ayush Srivastava
 -->
 <script>
-    import { afterUpdate } from "svelte";
-    import { XMLToJSON } from "../../../helper/HelperAI.svelte";
+import { afterUpdate } from "svelte";
+import { XMLToJSON } from "../../../helper/HelperAI.svelte";
 
-    export let modules;
-    export let containerID = '';
-    export let uxml = '';
-    let user_ans = 0;
-    let select_data = [];
-    let select = modules;
+export let modules;
+export let containerID = '';
+export let uxml = '';
+let user_ans = 0;
+let select_data = [];
+let select = modules;
 
-    $: if (modules) {
-        if (Array.isArray(modules) == false) {
-            select = []
-            select[0] = modules;
-        } else {
-            select = modules;
-        }
-        select_data = [];
-        select.map( function (data) {
-            if(uxml != '') {
-                let uaXML = XMLToJSON(uxml);
-                if (uaXML && uaXML.smans) {
-                    if(uaXML.smans.div) {
-                        let uans = uaXML.smans.div;
-                        if(Array.isArray(uans) == false) {
-                            uans = []
-                            uans[0] = uaXML.smans.div;
-                        }
-                        for(let j in uans) {
-                            if(uans[j]._id == "dnd"+data._id) {
-                                data._userans = uans[j]._userAns;
-                            }
-                        }
-                    }
-                }
-            }
-
-            let option = [];
-            if (data.__text) {
-                data.__text.split("\n").map(function(option_data, index) {
-                    if (data._userans == ( index + 1 ) + ",") {
-                        user_ans = 1;
-                    } else {
-                        user_ans = 0;
-                    }
-                    if (option_data.trim().charAt(0) == "+") {
-                        option.push({
-                            key: index,
-                            correctans: 0,
-                            defaultans: 1,
-                            userans: (user_ans) ? user_ans : '',
-                            text: option_data.trim().slice(1),
-                            selected : 1,
-                        })
-                    } else if (option_data.trim().charAt(0) == "*") {
-                        option.push({
-                            key: index,
-                            correctans: 1,
-                            defaultans: 0,
-                            userans: (user_ans) ? user_ans : '',
-                            text: option_data.trim().slice(1),
-                        })
-                    } else {
-                        option.push({
-                            key: index,
-                            correctans: 0,
-                            defaultans: 0,
-                            userans: (user_ans) ? user_ans : '',
-                            text: option_data.trim(),
-                        })
-                    }
-                });
-            }
-            select_data = [
-                ...select_data , {
-                    id : "dnd" + data._id,
-                    top: data._top + "px",
-                    left: data._left + "px",
-                    height: data._height + "px" ,
-                    width: data._width + "px",
-                    userans: (data._userans) ? data._userans : "",
-                    select: option
-                }
-            ];
-        });
+$: if (modules) {
+    if (Array.isArray(modules) == false) {
+        select = []
+        select[0] = modules;
     } else {
-        select_data = [];
+        select = modules;
     }
-    $: console.log('select_data', select_data);
-    afterUpdate(()=> {
-        if (select_data.length > 0 && containerID != '') {
-            select.map(function (data) {
-                let eventArr = ["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"];
-                let container = document.querySelector('#'+ containerID);
-                eventArr.forEach(function(value, index) {
-                    if (!!container) {
-                        let new_container = container.querySelectorAll(".dnd" + data._id);
-                        if (!!new_container) {
-                            new_container.forEach(function(element) {
-                                element.removeAttribute(eventArr[index])
-                            });
+    select_data = [];
+    select.map( function (data) {
+        if(uxml != '') {
+            let uaXML = XMLToJSON(uxml);
+            if (uaXML && uaXML.smans) {
+                if(uaXML.smans.div) {
+                    let uans = uaXML.smans.div;
+                    if(Array.isArray(uans) == false) {
+                        uans = []
+                        uans[0] = uaXML.smans.div;
+                    }
+                    for(let j in uans) {
+                        if(uans[j]._id == "dnd"+data._id) {
+                            data._userans = uans[j]._userAns;
                         }
                     }
-                });
-                Object.keys(data).forEach(function(key) {
-                    let evt = key.replace("_","").trim();
-                    if (eventArr.includes(evt) && !!container) {
-                        let new_container = container.querySelectorAll(".dnd" + data._id);
-                        if (!!new_container) {
-                            new_container.forEach(function(element) {
-                                element.setAttribute(evt, data[key]);
-                            });
-                        }
-                    }
-                });
+                }
+            }
+        }
+
+        let option = [];
+        if (data.__text) {
+            data.__text.split("\n").map(function(option_data, index) {
+                if (data._userans == ( index + 1 ) + ",") {
+                    user_ans = 1;
+                } else {
+                    user_ans = 0;
+                }
+                if (option_data.trim().charAt(0) == "+") {
+                    option.push({
+                        key: index,
+                        correctans: 0,
+                        defaultans: 1,
+                        userans: (user_ans) ? user_ans : '',
+                        text: option_data.trim().slice(1),
+                        selected : 1,
+                    })
+                } else if (option_data.trim().charAt(0) == "*") {
+                    option.push({
+                        key: index,
+                        correctans: 1,
+                        defaultans: 0,
+                        userans: (user_ans) ? user_ans : '',
+                        text: option_data.trim().slice(1),
+                    })
+                } else {
+                    option.push({
+                        key: index,
+                        correctans: 0,
+                        defaultans: 0,
+                        userans: (user_ans) ? user_ans : '',
+                        text: option_data.trim(),
+                    })
+                }
             });
         }
-    })
+        select_data = [
+            ...select_data , {
+                id : "dnd" + data._id,
+                top: data._top + "px",
+                left: data._left + "px",
+                height: data._height + "px" ,
+                width: data._width + "px",
+                userans: (data._userans) ? data._userans : "",
+                select: option
+            }
+        ];
+    });
+} else {
+    select_data = [];
+}
+afterUpdate(()=> {
+    if (select_data.length > 0 && containerID != '') {
+        select.map(function (data) {
+            let eventArr = ["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"];
+            let container = document.querySelector('#'+ containerID);
+            eventArr.forEach(function(value, index) {
+                if (!!container) {
+                    let new_container = container.querySelectorAll(".dnd" + data._id);
+                    if (!!new_container) {
+                        new_container.forEach(function(element) {
+                            element.removeAttribute(eventArr[index])
+                        });
+                    }
+                }
+            });
+            Object.keys(data).forEach(function(key) {
+                let evt = key.replace("_","").trim();
+                if (eventArr.includes(evt) && !!container) {
+                    let new_container = container.querySelectorAll(".dnd" + data._id);
+                    if (!!new_container) {
+                        new_container.forEach(function(element) {
+                            element.setAttribute(evt, data[key]);
+                        });
+                    }
+                }
+            });
+        });
+    }
+})
 </script>
-
 <div>
     {#if select_data && select_data.length > 0}
         {#each select_data as data, index}
