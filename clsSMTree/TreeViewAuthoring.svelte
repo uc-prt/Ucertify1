@@ -15,6 +15,7 @@
     let allowSort = 1;
     let icons_html = IconsList;
     let state = {};
+    let sortVar = 0;
 
     const hdd = writable({
         xml: '',
@@ -67,7 +68,8 @@
     function updateXmlValue() {
         let xmlDom = AH.parseHtml(state.xml);
         let elem = AH.findChild(xmlDom, 'tree');
-        sort = (AH.select("#sort").checked) ? 1 : 0;
+        if(sortVar == 0)
+        sort = state.sort ? 1 : 0;
         
         if (!elem) {
             elem = AH.findChild(xmlDom, 'list');
@@ -143,6 +145,11 @@
             }
         }
     }
+    function sortFunc(_this) {
+        sortVar = 1;
+        state.sort = _this.currentTarget.checked;
+        sort = state.sort ? 1 : 0;
+    }
 </script>
     
 <main>
@@ -211,7 +218,7 @@
                             </div>
                         </div>
                         <div class="text-left">
-                            <Checkbox id="sort" bind:checked={state.sort} value="Sort Options" name="sort" title={"Sort Options"}><span>Sort Options</span></Checkbox>
+                            <Checkbox id="sort" value="Sort Options" name="sort" title={"Sort Options"} checked = {((state.sort == true) ? true : false)} on:click={(_this)=>{sortFunc(_this)}}><span>Sort Options</span></Checkbox>
                         </div>
                         <textarea id="tree" wrap="off" class="sm_input_textarea mb-0 resize_none" style="height:150px;"></textarea>
                         <textarea id="options" wrap="off" style="height:100px;" class="sm_input_textarea mt-2 resize_none mb-0" placeholder="Key|Option text|Icon (Put comma after each line)"></textarea>
