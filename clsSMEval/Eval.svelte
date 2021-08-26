@@ -230,7 +230,7 @@
                 }
                 AH.select(".replEditor", 'css', {
                     "minHeight": "125px",
-                    "height": "542px",
+                    "height": "551px",
                     "display": "block",
                 });
             } else { //Authoring Mode.
@@ -336,10 +336,10 @@
     function showHideInputBlock(lang) {
         if (lang == "sql" || lang == "psql" || lang == 'mssql') {
             AH.select(AH.parent("#input"),'hide');
-            AH.select("#output", 'css', {height: '549px'});
+            AH.select("#output", 'css', {height: '551px'});
         } else {
             AH.select(AH.parent("#input"), 'show');
-            AH.select("#output", 'css', {height: '401px'});
+            AH.select("#output", 'css', {height: '425px'});
         }
         
     }
