@@ -241,6 +241,47 @@
 		});
     }
 
+
+    function updateItemInfData(item) {
+        if (item) {
+            if (item.getAttribute('icon')) {
+                AI.removeClass(".item_icon_list .active", 'active');
+                AI.addClass(item, "active");
+            } else if (item.id == "cong_level") {
+                AI.set("cong_level", item.value);
+            } else {
+                item.setAttribute('contentEditable', true);
+            }
+            AI.select(".inf_update_btn").style.display = "inline-block";
+        } else {
+            AI.activate(2);
+            let queryData = { 
+                ajax: "1", 
+                action: 'update_editor_item_inf', 
+                content_guid: AI.get('current_guid'),
+                ref_id: AI.select(".item_ref_id").textContent,
+                isDraft: AI.get('draft'),
+                content_icon:  AI.get("current_item_icon"),
+                cong_level: AI.get("cong_level"),
+                course: editor.course,
+                anno_id: AI.select("#cong_level").getAttribute('annoid')
+            };
+            AI.ajax({
+                url: baseUrl + 'editor/index.php',
+                data: queryData
+            }).then((response)=> {
+                    AI.activate(0);
+                    console.log(response);
+                    if (response == 1) {
+                        AI.showmsg("Data updated successfully.");
+                    } else {
+                        AI.showmsg("Updation failed.");
+                    }
+            });
+        }
+    }
+
+
     function handleHelp(type) {
         let videoUrl = "";
         if (type == "editor") {
