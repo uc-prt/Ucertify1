@@ -1788,10 +1788,6 @@ export function mathMLRender(id_mathML, is_required) {
     if (id) {
         el = document.getElementById(id);
     }
-    console.log("id", id);
-    console.log("el", el);
-    console.log("document", document, document.getElementById('uc_items_template'), document.getElementById('sapper'));
-    
     if (typeof renderMathInElement == 'function') {
         try {
             renderMathInElement(el, DEFAULTMATHOPTIONS);
@@ -1799,11 +1795,12 @@ export function mathMLRender(id_mathML, is_required) {
             console.warn(e);
         }
     } else {
+        console.log("YESS");
         let css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">';
         AH.insert(document.body, css, 'afterend');
         AH.ajax({
             type: 'GET',
-            url: location.origin + '/client/themes/svelte_items/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',
+            url: itemUrl + '/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',
             async: false,
             dataType: 'script',
         }).then(function (script) {
