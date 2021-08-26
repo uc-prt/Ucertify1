@@ -983,7 +983,7 @@
                         <span>
                             <label for="hotBorder" class="my-1 text-dark">Border width</label>
                         </span>
-                        <select id="hotBorder" class="form-control" bind:value={state.hotBorder}>
+                        <select id="hotBorder" class="form-select" bind:value={state.hotBorder}>
                             <option value="0">None</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -996,7 +996,7 @@
                         <span>
                             <label for="hotBorderColor" class="my-1 text-dark">Border color</label>
                         </span>
-                        <select id="hotBorderColor" class="form-control" bind:value={state.hotBorderColor}>
+                        <select id="hotBorderColor" class="form-select" bind:value={state.hotBorderColor}>
                             <option value="white">None</option>
                             <option value="black">Black</option>
                             <option value="grey">Grey</option>
@@ -1008,7 +1008,7 @@
                     <span>
                         <label for="setLineColor" class="mt-2 text-dark">Draw line color</label>
                     </span>
-                    <select id="setLineColor" class="form-control" bind:value={state.lineColor} on:blur={changeLine.bind(this)} >
+                    <select id="setLineColor" class="form-select" bind:value={state.lineColor} on:blur={changeLine.bind(this)} >
                         <option>Please Select</option>
                         <option value="red">Red</option>
                         <option value="black">Black</option>
