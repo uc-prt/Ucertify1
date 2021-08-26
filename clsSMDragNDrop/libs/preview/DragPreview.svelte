@@ -103,6 +103,7 @@
                     border: {data.border};
                     background-color: {data.backgroundColor};
                     background-image: {data.backgroundImage};
+                    z-index: 1;
                 "
                 aria-disabled="false"
             >

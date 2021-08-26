@@ -125,7 +125,8 @@
                     top: {data.top};
                     left: {data.left};
                     height: {data.height};
-                    width: {data.width};                
+                    width: {data.width};  
+                    z-index: 1;              
                 "
             >
                 <textarea 

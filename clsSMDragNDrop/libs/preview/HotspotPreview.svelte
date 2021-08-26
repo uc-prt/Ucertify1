@@ -110,6 +110,7 @@
                         width: {data.width};
                         border: {data.border};
                         background-image: {data.backgroundImage}
+                        z-index: 1
                     "
                     data-userans={data.userans}
                 >
