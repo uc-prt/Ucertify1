@@ -57,7 +57,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="drag-border_color">{l.border_color}</label>
-                                        <select class="form-select form-control-md" id="drag-border_color" name="border_color">
+                                        <select class="form-select form-select-md" id="drag-border_color" name="border_color">
                                             <option value="">{l.none}</option>
                                             <option value="black">{l.black}</option>
                                             <option value="gray">{l.gray}</option>
@@ -151,7 +151,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="drop-border">{l.border_color}</label>
-                                        <select class="form-select form-control-md" id="drop-border" name="border">
+                                        <select class="form-select form-select-md" id="drop-border" name="border">
                                             <option value="">{l.none}</option>
                                             <option value="black">{l.black}</option>
                                             <option value="gray">{l.gray}</option>
@@ -251,7 +251,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="int-type">{l.type}</label>
-                                        <select class="form-control form-control-md" id="int-type" name="type">
+                                        <select class="form-select form-select-md" id="int-type" name="type">
                                             <option value="text" selected="selected">{l.text_box}</option>
                                             <option value="password">{l.password}</option>
                                         </select>
@@ -260,7 +260,7 @@
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="int-parser">{l.parser}</label>
-                                        <select class="form-control form-control-md" id="int-parser" name="parser">
+                                        <select class="form-select form-select-md" id="int-parser" name="parser">
                                             <option value="">{l.parser_of_txt}</option>
                                             <option value="sql">{l.sql}</option>
                                         </select>
@@ -288,7 +288,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label font-weight-normal mb-0" for="custom_class_input">{l.font_style}</label>
-                                <select class="form-control form-control-md" id="custom_class_input" name="custom_class"></select>
+                                <select class="form-select form-select-md" id="custom_class_input" name="custom_class"></select>
                             </div>
                             <div class="ev" type="int">
                                 <ModalEvent/>
@@ -349,7 +349,7 @@
                                 <div class="col-sm-12 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="mlt-parser">{l.parser}</label>
-                                        <select class="form-control form-control-md" id="mlt-parser" name="parser">
+                                        <select class="form-select form-select-md" id="mlt-parser" name="parser">
                                             <option value="">{l.parser_of_multiline}</option>
                                             <option value="sql">{l.sql}</option>
                                         </select>
@@ -371,7 +371,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label font-weight-normal mb-0" for="custom_class">{l.css_class}</label>
-                                <select class="form-control form-control-md" id="custom_class" name="custom_class"></select>
+                                <select class="form-select form-select-md" id="custom_class" name="custom_class"></select>
                             </div>
                             <div class="ev" type="mlt">
                                 <ModalEvent/>
@@ -832,7 +832,7 @@
                                 <div class="col-sm-4 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="lbl_border_size">{l.border_size}</label>
-                                        <select id="lbl_border_size" class="form-control form-control-md height_34" name="border_size">
+                                        <select id="lbl_border_size" class="form-select form-select-md height_34" name="border_size">
                                             <option value="0">{l.none}</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -845,7 +845,7 @@
                                 <div class="col-sm-4 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="lbl_border_color">Border Color</label>
-                                        <select id="lbl_border_color" class="form-control form-control-md height_34" name="border_color">
+                                        <select id="lbl_border_color" class="form-select form-select-md height_34" name="border_color">
                                             <option value="white">{l.none}</option>
                                             <option value="black">{l.black}</option>
                                             <option value="blue">{l.blue}</option>
@@ -857,7 +857,7 @@
                                 <div class="col-sm-4 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="lbl_background_color">{l.bg_color}</label>
-                                        <select id="lbl_background_color" class="form-control form-control-md height_34" name="background_color">
+                                        <select id="lbl_background_color" class="form-select form-select-md height_34" name="background_color">
                                             <option value="">{l.none}</option>
                                             <option value="#c5d0fa">{l.primary_color}</option>
                                             <option value="#ffa354">{l.warning_color}</option>
@@ -869,7 +869,7 @@
                                 <div class="col-sm-12 px-1">
                                     <div class="form-group">
                                         <label class="font-weight-normal mb-0" for="label_class">{l.font_style}</label>
-                                        <select class="form-control form-control-md" id="label_class" name="label_class">
+                                        <select class="form-select form-select-md" id="label_class" name="label_class">
                                         </select>
                                     </div>
                                 </div>

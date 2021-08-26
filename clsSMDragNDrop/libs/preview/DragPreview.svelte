@@ -75,10 +75,7 @@
 			return "";
 		}
 	}
-
-
-</script>
-		
+</script>	
 <div>
     {#if drag_value && drag_value.length > 0}
         {#each drag_value as data, index}
@@ -109,7 +106,7 @@
                 "
                 aria-disabled="false"
             >
-                <p>{#if data.value}{@html data.value}{/if}</p>	
+                {#if data.value}<p>{@html data.value}</p>{/if}	
             </div>
         {/each}
     {/if}
