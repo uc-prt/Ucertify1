@@ -95,7 +95,7 @@
     } else {
         select_data = [];
     }
-
+    $: console.log('select_data', select_data);
     afterUpdate(()=> {
         if (select_data.length > 0 && containerID != '') {
             select.map(function (data) {
@@ -158,7 +158,7 @@
                             {#if option.selected == 1} 
                                 <option selected="selected" key={option.key} data-correctans={option.correctans} data-defaultans={option.defaultans} data-userans={option.userans} value={option.key + 1}>{option.text}</option>
                             {:else}
-                                <option key={option.key} data-correctans={option.correctans} data-defaultans={option.defaultans} data-userans={option.userans} value={option.key}>{option.text}</option>
+                                <option key={option.key} data-correctans={option.correctans} data-defaultans={option.defaultans} data-userans={option.userans} value={option.key + 1}>{option.text}</option>
                             {/if}
                         {/each}
                     {:else}

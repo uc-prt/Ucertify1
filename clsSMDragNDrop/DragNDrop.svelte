@@ -319,7 +319,6 @@
         checkImageStatus(); 
         parseXMLAuthoring(newXml);
 		state.data = loadNestedModule(QXML.smxml);
-
         AH.selectAll('.unupdated_node', 'remove');
 	}
 

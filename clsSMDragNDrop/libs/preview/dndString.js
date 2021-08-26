@@ -1204,7 +1204,6 @@ DND.showansdrag = function(dndid, ansType, review) {
                         height = DND.offset(drag_element).top;
                     }
 
-
                     if (drag_element.classList.contains('dragable') > -1 && drag_element.style.backgroundColor == "transparent" && drag_element.style.backgroundImage == "none" && drag_element.innerText.trim() == "") {
                         AI.setCss(drag_element, {
                             backgroundColor: 'white',
@@ -1572,7 +1571,6 @@ DND.showchildansdrag = function(dndid, pElem, ansType, review) {
                     let options = AI.find(element, 'option', 'all');
                     let default_value = '0';
                     element.value = '';
-
                     for (let sub_index = 0; sub_index < options.length; sub_index++) {
                         if (ansType == 'c') {
                             if (Number(options[sub_index].getAttribute('data-correctans')) > 0) {
@@ -1594,7 +1592,6 @@ DND.showchildansdrag = function(dndid, pElem, ansType, review) {
                     if (total_correct == compare_index) {
                         is_correct = 1;
                     }
-
                     if (element.value.trim() == '' && AI.find(element, 'option')) {
                         element.value = default_value;
                     }
@@ -1686,7 +1683,7 @@ DND.showchildansdrag = function(dndid, pElem, ansType, review) {
 
 // function for marking correct incorrect
 DND.markUserAnswer = function(is_correct) {
-    let droped_value_indicator_html = ''
+    let droped_value_indicator_html = '';
     if (is_correct == 1) {
         if (window.inNative) {
             droped_value_indicator_html = '<span class="icomoon-checkmark-circles" style="color:green;">';
