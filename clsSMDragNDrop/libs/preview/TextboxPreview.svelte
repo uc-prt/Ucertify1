@@ -94,6 +94,7 @@
                         left: {data._left}px;
                         height:{data._height}px;
                         width: {data._width}px;
+                        z-index: 1;
                     "
                 >
                     <input

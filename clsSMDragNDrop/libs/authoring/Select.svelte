@@ -83,6 +83,7 @@
                     left: {data.left};
                     height: {data.height};
                     width: {data.width};
+                    z-index:1
                 "
             >
                 <select
