@@ -184,7 +184,7 @@ onMount(async ()=> {
 				xml = ajaxData.content_text.special_module_xml;
 				// Getting Default XML
 				if (!AH.isValid(xml)) {
-					if(ajaxData.content_subtype === "26" && xml === "") {
+					if(ajaxData.content_subtype === "26" && xml === "") { // If xml blank in case of multigrid then will execute if condition
 						xml = Items?.default.getDefaultXMl("editor_item_75.xml"); 
 						xml = formatXmlRef(xml, item);
 					} else {
