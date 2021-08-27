@@ -811,7 +811,6 @@
         style="
             font-size: 20px;
             height: 51px;
-            margin-top:41px;
         "
     >
         <ul class="nav nav-pills m-0">
