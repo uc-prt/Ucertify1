@@ -54,6 +54,7 @@
 					// assign the value '1' to variable 'isPreview' to load the 'WebPreview' conponent
 					isPreview = 1;
 					renderPlayer();
+					debugger;
 					// sets the content 'Preview' of header title that can be seen on the top of the 'Title' label
 					AH.select('#headerTitle', 'html', l.preview);
 					// shows the label 'Check Answer' in inline way
@@ -78,20 +79,23 @@
 					// hides the 'Title' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'titleShow' and text stored in variable 'titleData'
 					//jQuery('#title').empty().hide().after('<div id="tilteShow">' + titleData + '</div>');  // Replaced
 					AH.empty("#title");
-					AH.select("#title", 'hide');
+					AH.selectAll('#title','css',{position:'relative',top:'5px'})
+				//	AH.select("#title", "css", {display:'none'});
 					AH.select("#title", 'html', `<div id="tilteShow">${titleData}</div>`);
 
 					// hides the 'Stem' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'stemShow' and text returned by method 'get_ucsyntax' by passing the argument as value of variable 'stemData'
 					//	jQuery('#stem').empty().hide().after('<div id="stemShow">' + get_ucsyntax(stemData) + '</div>'); // Replaced
 
 					AH.empty("#stem");
-					AH.select("#stem", 'hide');
+					//AH.select("#stem", 'css',{display:'none'});
+					AH.selectAll('#stem','css',{position:'relative',top:'5px'})
 					AH.select("#stem", 'html', `<div id="stemShow">${get_ucsyntax(stemData)}</div>`);
 					
 					// hides the 'Remediation' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'remediationShow' and text returned by method 'get_ucsyntax' by passing the argument as value of variable 'remediationData'
 					//jQuery('#remediation').hide().empty().after('<div id="remediationShow">' + get_ucsyntax(remediationData) + '</div>'); Replaced
 					AH.empty("#remediation");
-					AH.select("#remediation", 'hide');
+					AH.selectAll('#remediation','css',{position:'relative',top:'5px'})
+					//AH.select("#remediation","css",{display:'none'});
 					AH.select('#remediation', 'html', `<div id="remediationShow">${get_ucsyntax(remediationData)}</div>`);
 
 
@@ -211,6 +215,55 @@
 			}
 		});
     }
+
+	function get_ucsyntax(content) {
+		if (content) {
+			content = content.replace(/\$/g, "&#36;");
+			let cnt_arr = content.match(/<uc:syntax([\s\S]*?)<\/uc:syntax>/gi);
+			if (cnt_arr) {
+				for (let i = 0; i < cnt_arr.length; i++) {
+					let str = "";
+					let classes = "";
+					let get_content = cnt_arr[i];
+					let uc_tag = get_content.match(/<uc:syntax(.*?)>/gi);
+					if (uc_tag[0].match(/console/gim)) {
+						classes = "prettyprint black linenums";
+						if (uc_tag[0].match(/nonum/gim)) {
+							classes += " hidelinenums";
+						}
+					} else if (uc_tag[0].match(/command/gim)) {
+						classes = "prettyprint cmd linenums";
+					} else if (uc_tag[0].match(/white/gim)) {
+						if (uc_tag[0].match(/nonum/gim)) {
+							classes = "prettyprint white";
+						} else {
+							classes = "prettyprint white linenums";
+						}
+					} else if (uc_tag[0].match(/nonum/gim)) {
+						classes = "prettyprint hidelinenums";
+					} else {
+						classes = "prettyprint linenums";
+					}
+					if (uc_tag[0].match(/hidelinenums/gim)) {
+						classes += " hidelinenums";
+					}
+					let number = get_content.match(/\snum="(.*?)"/gim);
+					if (number) {
+						number[0] = number[0].replace(/\snum=|"/gim, "");
+						classes += ":" + number[0];
+					}
+					get_content = get_content.replace(/<uc:syntax(.*?)>/gim, "");
+					get_content = get_content.replace(/<\/uc:syntax>/gim, "");
+					str += `<pre class="${classes}">${get_content}</pre>`;
+					let re = new RegExp(RegExp.quote(cnt_arr[i]), "gm");
+					// var re = new RegExp(cnt_arr[i],"gm");
+					content = content.replace(re, str);
+				}
+			}
+			return content;
+		}
+	}
+
 </script>
 <main>
 	<div id="webModule">
