@@ -16,10 +16,15 @@
         init();
     })
     function loadComments(type) {
+        const comment_tab_list = AH.selectAll('.comment_tab');
+        Array.prototype.forEach.call(comment_tab_list, function (curr) {
+            curr.classList.remove('active');
+        });
+        AH.select('[data-comment_type="'+ type + '"]').classList.add('active');
         anno_type_new = type;
-        let CurrGuid = AI.get('current_guid');
-        if (AI && CurrGuid) {
-            AI.set('comments_type', type);
+        let CurrGuid = AH.get('current_guid');
+        if (AH && CurrGuid) {
+            AH.set('comments_type', type);
             AH.activate(2);
             AH.ajax({
                 url : `${CREATEAPP_PATH}?func=get_comments&content_guid=${CurrGuid}&user_guid=${user_guid}&add_ui=1&annotation_type=${type}`,
@@ -43,7 +48,7 @@
                     withUrl: true,
                 }).then((res)=> {
                     AH.activate(0);
-                    AI.select('#comment_modal_body').innerHTML = res;
+                    AH.select('#comment_modal_body').innerHTML = res;
                     AH.initDropdown();
                     //$("[rel=tooltip]").tooltip();
                     AH.getBS('#comment_modal', 'Modal').show();
@@ -90,8 +95,8 @@
             AH.addClass(commentText, ['comment_text_editing', 'darkgrey_border', 'pt-xs', 'pb-xs', 'pl-xs', 'pr-xs']);
         });
         AH.listen(document.body, 'click', '.comment_container', function(_this) {
-            if (typeof AI != "undefined" && AI.get('current_guid')) {
-                let find_id = AI.get('current_guid') + "_" + _this.getAttribute('id');
+            if (typeof AH != "undefined" && AH.get('current_guid')) {
+                let find_id = AH.get('current_guid') + "_" + _this.getAttribute('id');
                 try {
                     document.getElementById(find_id).scrollIntoView({ block: 'end',  behavior: 'smooth' });
                 } catch(e) {
@@ -175,7 +180,6 @@
                 annotation_type: anno_type_new,
                 parent_anno_id: anno_id,
             }
-            //_data.push({name: 'tags', value: (typeof AI != "undefined" && AI.get('comments_type')) ? AI.get('comments_type') : -2});
             AH.activate(1,'.comment_modal_body');
             AH.ajax({
                 url    : `${CREATEAPP_PATH}?func=save_reply`,
@@ -259,7 +263,7 @@
             creator_guid: creatorGuid,
             timestamp: timestamp,
             id: id,
-            tags: (typeof AI != "undefined" && AI.get('comments_type')) ? AI.get('comments_type') : -2,
+            tags: (typeof AH != "undefined" && AH.get('comments_type')) ? AH.get('comments_type') : -2,
         };
         if (deleteAll) {
             _data = {
@@ -310,7 +314,6 @@
             creator_guid: creatorGuid,
             anno_id: anno_id,
             id: id,
-            //tags: (typeof AI != "undefined" && AI.get('comments_type')) ? AI.get('comments_type') : -2,
         }
         AH.activate(1,'.comment_modal_body');
         AH.ajax({
@@ -424,7 +427,6 @@
     }
     function addUI(contentGuid) {
         if (funcname != "view_full_asset") {
-            //var type = (typeof AI != "undefined") && AI.get('comments_type') ? AI.get('comments_type') : 3;
             AH.ajax({
                 url : `${CREATEAPP_PATH}?func=get_comments&content_guid=${contentGuid}&user_guid=${user_guid}&add_ui=1&annotation_type=${anno_type_new}`,
                 withUrl: true,
@@ -447,15 +449,12 @@
     };
 </script>
 <style>
-	.commentTabs > li > .active {
-		text-decoration: none;
-  		border: 1px solid #ccc;
-    	border-bottom: 1px solid #e9ecef;
-		border-radius: 3px;
-	}
-    .commentTabs a{
+	:global(.comment_tab.active) {
         text-decoration: none;
-    }
+        border: 1px solid #ccc;
+        border-bottom: 1px solid #e9ecef;
+        border-radius: 3px;
+	}
     :global(.mr) {
         margin-right: 8px;  
     }
@@ -475,8 +474,9 @@
         <div class="editor_comment_box modal-content" id="editor_comment_box">
             <div class="editor_comment_header">
                 <ul class="nav nav-tabs commentTabs" style="margin-left: 15px; padding: 10px 0;">
-                    <li><a data-bs-toggle="tab" href="#comment_load" class="active" on:click="{loadComments.bind(this, 3)}" style="padding: 10px 15px;">Comments</a></li>
-                    <li><a data-bs-toggle="tab" href="#techcheck_load" on:click="{loadComments.bind(this, 4)}" style="padding: 10px 15px;">Techcheck</a></li>
+                    <li><a data-bs-toggle="tab" href="#comment_load" class="active comment_tab" data-comment_type="3" on:click="{loadComments.bind(this, 3)}" style="padding: 12px 15px;">Comments</a></li>
+                    <li><a data-bs-toggle="tab" href="#techcheck_load" class="comment_tab" data-comment_type="4" on:click="{loadComments.bind(this, 4)}" style="padding: 12px 15px;">Techcheck</a></li>
+                    <li><a data-toggle="tab" href="#context_load" class="comment_tab font14" data-comment_type="1" on:click="{loadComments.bind(this, 1)}" style="padding: 12px 15px;">Context</a></li>
                 </ul>
                 <div class="tab-content comment_modal_button">
                     <div id="comment_load" class="tab-pane fade in active">
