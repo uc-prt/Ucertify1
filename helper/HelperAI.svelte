@@ -42,7 +42,58 @@
             globalThis.saveUserAnswerInSapper?.(result);
         }
     }
+    export function initCodeCopy() {
+        setTimeout(function(){
+            try {
+                AH.selectAll('pre.prettyprint').forEach((curr) => {
+                    var wrapper = AH.wrap(curr, '<div style="position:relative"></div>').parentNode;
+                    var child_wrapper = AH.templateHtml('<span class="copyto prettyprint_copy pointer" title="Copy">Copy <i class="icomoon-copy-4 align-middle"></i></span>');
+                    wrapper.prepend(child_wrapper);
+                });
+                
+                AH.listenAll('pre.prettyprint', 'mouseenter', function (e) {
+                    if (e.target.previousSibling.classList.contains('prettyprint_copy')) {
+                        e.target.previousSibling.style.opacity = 1;
+                    }
+                });
+                AH.listenAll('pre.prettyprint', 'mouseleave', function (e) {
+                    if (e.target.previousSibling.classList.contains('prettyprint_copy')) {
+                        e.target.previousSibling.style.opacity = 0;
+                    }
+                });
+                AH.listenAll('.prettyprint_copy', 'mouseenter', function (e) {
+                    e.target.style.cssText = 'opacity: 1; color: #222';
+                });
+                AH.listenAll('.prettyprint_copy', 'mouseleave', function (e) {
+                    e.target.style.cssText = 'opacity: 0; color: #bbb';
+                });
 
+                // Init to Copy the code/text when clicked on copy icon
+                if (typeof(ClipboardJS) == "function") {
+                    copyPrettyPrint();
+                } else {
+                    AH.ajax({
+                        type: "GET",
+                        url: itemUrl + "src/libs/clipboard.min.js",
+                        dataType: "script",
+                    }).then((data)=> {
+                        AH.addScript(data, "", {target: "body"});
+                        copyPrettyPrint();
+                    })
+                }
+            } catch(err) {
+                console.warn(err);
+            }
+        }, 2000);
+    }
+
+    function copyPrettyPrint() {
+        var a = new ClipboardJS('.prettyprint_copy', {
+            target: function (trigger) {
+                return trigger.nextElementSibling;
+            }
+        });
+    }
     export const AH = new JUI();
     export const SSD = new JStore();
 
