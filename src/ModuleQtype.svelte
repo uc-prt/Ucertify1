@@ -185,9 +185,9 @@
                     break;
                     case 26: 
                         resolve({
-                            "auth": (await import('../clsSMChooseMultiGrid/ChooseMultiGrid.svelte')).default,
-                            "preview": (await import('../clsSMChooseMultiGrid/ChooseMultiGridPreview.svelte')).default,
-                            "default": (await import('../clsSMChooseMultiGrid/defaultXML.svelte')),
+                            "auth": (await import('../clsSMChoose/ChooseMultiGrid.svelte')).default,
+                            "preview": (await import('../clsSMChoose/ChooseMultiGridPreview.svelte')).default,
+                            "default": (await import('../clsSMChoose/defaultXML.svelte')),
                             "UI": (await import('../clsSMChooseMultiGrid/ChooseMultiGridHelper.svelte')).itemHelper,
                         });
                     break;

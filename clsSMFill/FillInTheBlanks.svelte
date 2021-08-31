@@ -1432,10 +1432,10 @@
 									class="rounded btn btn-outline-primary top5 position-relative bg-white shadow-sm float-right p-0"
 									style="width: 120px; height:30px; text-transform: none; border: 1px solid #4285f4; color: #4285f4;"
 								>
-									+ Response
+									Add response
 								</Button>
 							</div>
-							<div class="col-sm-1 pt-2">
+							<div class="col-sm-1 pt-2 position-relative" style="right:15px;">
 								<div class="latexEditButton d-inline-block" tabIndex="0" style="height:28px;">
 									<span 
 										id= {"latexEdit"+i}
@@ -1449,7 +1449,7 @@
 									</span>
 								</div>
 							</div>
-							<div class="col-sm-1 pt-2">
+							<div class="col-sm-1 pt-2 position-relative" style="right:32px;">
 								<span 
 									on:click={removeMathEquation.bind(this,data.id)}  
 									class="icomoon-24px-delete-1 text-dark pointer position-relative s3 mathematical_delete"
