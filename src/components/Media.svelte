@@ -52,9 +52,15 @@
             window.AI.editorModal = setImage;
             window.setImage = setImage;
         }
+
+        var clipboard = new ClipboardJS('.section_copied');
+		clipboard.on('success', function(e) {
+			AH.showmsg('Image Source has been copied to the clipboard!');
+		});
+		clipboard.on('error', function(e) {
+			AH.showmsg('There is some issue!');
+		});
     })
-
-
     AH.listen("body",'click','.embed',function(_this){
         AH.select('#embed_code').value = _this.getAttribute('data-image');
     })
@@ -194,7 +200,6 @@
     /** Some common drag & drop events used for the media plugin */
     function bindUpEvents() {
         let obj = document.getElementById("dragandrophandler");
-        
         AH.listen(document, 'dragenter', '#dragandrophandler', function(_this, e) {
             e.stopPropagation();
             e.preventDefault();

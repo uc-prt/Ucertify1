@@ -23993,7 +23993,7 @@ pre.black.prettyprint.linenums.hidelinenums {
 .mce-i-icomoon-uC-feedback:before{content:"\eb49"}
 .mce-i-icomoon-uC-syntax:before{content:"\eb4a"}
 [class*=" mce-i-icomoon-"], [class^=mce-i-icomoon-] {
-  font-family: icomoon;
+  font-family: icomoon !important;
   speak: none;
   font-style: normal;
   font-weight: 400;

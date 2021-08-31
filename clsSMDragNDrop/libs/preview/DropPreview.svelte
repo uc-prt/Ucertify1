@@ -157,6 +157,7 @@
                     height: {data.height};
                     width: {data.width};
                     border: {data.border};
+                    z-index: 1 
                 "
             >
                 <p></p>

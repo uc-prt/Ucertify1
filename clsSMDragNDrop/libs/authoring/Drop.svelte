@@ -80,6 +80,7 @@
                     width: {data.width};
                     border: {data.border};
                     background-color: {data.bgcolor};
+                    z-index:1
                 "
             >
                 <p>{data.caption ? data.caption : ''}</p>
