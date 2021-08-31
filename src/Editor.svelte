@@ -1,5 +1,5 @@
 <script>
-import { onMount, tick,beforeUpdate } from 'svelte';
+import { onMount, tick } from 'svelte';
 import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
 import { writable } from 'svelte/store';
 import {AH, XMLToJSON } from '../helper/HelperAI.svelte';
@@ -182,9 +182,10 @@ onMount(async ()=> {
 			let xml = '', type = '';
 			if (state.viewConfig.isQuestion) {
 				xml = ajaxData.content_text.special_module_xml;
+				type = ajaxData.content_subtype;
 				// Getting Default XML
 				if (!AH.isValid(xml)) {
-					if(ajaxData.content_subtype === "26" && xml === "") { // If xml blank in case of multigrid then will execute if condition
+					if(type === "26" && xml === "") { // If xml blank in case of multigrid then will execute if condition
 						xml = Items?.default.getDefaultXMl("editor_item_75.xml"); 
 						xml = formatXmlRef(xml, item);
 					} else {
@@ -193,7 +194,7 @@ onMount(async ()=> {
 					}
 					
 				}
-				type = ajaxData.content_subtype;
+				
 				if (ajaxData.content_text.algo_qxml) {
 					state.algo_qxml = ajaxData.content_text.algo_qxml;
 				}
