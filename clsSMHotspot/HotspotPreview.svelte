@@ -359,7 +359,7 @@
 			// for autograding
 			window.ISSPECIALMODULEUSERXMLCHANGE = 1;
 			// puuting the value in the textarea for saving the user ans
-			AH.select("#special_module_user_xml", 'val', drawstr);
+			AH.select("#special_module_user_xml").value = drawstr;
 			userCorrect = drawstr;
 			xaxis=[]; yaxis=[];
 			// for getting the correctans
@@ -388,6 +388,8 @@
 			}
 			if (editorState) showAns(message);
 			userAnswers = AH.select('#special_module_user_xml').value;
+			var result = {'ans': flag, 'uXml': userAnswers};
+			onUserAnsChange(result);
 			// @uc-abk: When user drawed canvas within the correct area : flag will 1
 			(flag > 0) ? (AH.select("#answer").checked =  true) : (AH.select("#answer").checked = false);
 			if (window.inNative) window.postMessage(JSON.stringify({ inNativeIsCorrect, userAnswers }), "*");
