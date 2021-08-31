@@ -34,8 +34,8 @@
 			footer  : [],
 			width   : 300,
 		};
-    let isNew = window.frameElement ? AI.url(window.frameElement.src) : false;
-    let editorUrl = AI.url();
+    let isNew = window.frameElement ? AH.url(window.frameElement.src) : false;
+    let editorUrl = AH.url();
     let guid_group = [];
     let itemDetails = {};
     let currentGuid = "";
@@ -58,8 +58,8 @@
     })
 
     function closeEditor() {
-        if (!AI.get('save_item')) {
-            let saved = AH.isValid(AI.get('save_response')) ? AI.get('save_response') : false;
+        if (!AH.get('save_item')) {
+            let saved = AH.isValid(AH.get('save_response')) ? AH.get('save_response') : false;
             // Specific to Unity 
             let authFrame = document.getElementById("authoringFrame");
             if (authFrame && typeof authFrame.contentWindow.responsiveVoice !== 'undefined' && typeof authFrame.contentWindow.pauseVoice != 'undefined') {
@@ -71,17 +71,17 @@
             window.parent.close_frame_modal(saved);
             }
         } else {
-            AI.set("unSavedProjectData", true);
+            AH.set("unSavedProjectData", true);
             editorState.saveDialog = true;
         }
     }
 
     export function onItemListButton() {
-        if (!AI.get('listUpdate')) {
-            AI.activate(1);
+        if (!AH.get('listUpdate')) {
+            AH.activate(1);
             loadRouterGuids().then((res)=> {
                 listDrawer =  res;
-                AI.activate(0);
+                AH.activate(0);
             });
         } else {
             listDrawer = true;
@@ -91,7 +91,7 @@
     function loadRouterGuids() {
         return new Promise((resolve)=> {
             let group_guids = getQueryString('router_guid') ? getQueryString('router_guid') : getQueryString('content_guid');
-            AI.ajax({
+            AH.ajax({
                 url: baseUrl + 'editor/index.php',
                 data: { ajax: "1", action: 'get_router_guids', group_guids: group_guids },
             }).then((response)=> {
@@ -104,7 +104,7 @@
                     console.log(e);
                     editorRouter = [];
                 }
-                AI.set("listUpdate", true);
+                AH.set("listUpdate", true);
                 resolve(true);
             });
         })
@@ -119,10 +119,10 @@
     async function onListButton(event) {
         AH.getBS(event.target, 'Tooltip').hide?.();
         await tick();
-      if (!AI.get('save_item')) {
+      if (!AH.get('save_item')) {
         goBack();
       } else {
-        AI.set("unSavedBack", true);
+        AH.set("unSavedBack", true);
         editorState.saveDialog = true;
       }
     }
@@ -131,26 +131,26 @@
         if (!editorUrl.get('router_guid')) {
             return false;
         }
-        if (!AI.get('save_item')) {
+        if (!AH.get('save_item')) {
             navigate(action, data);
         } else {
-            AI.set("unsavedSata", true);
-            AI.set('router_action', action);
-            AI.set('router_data', data);
-            AI.set('moveAction', action ? "Next" : "Previous");
+            AH.set("unsavedSata", true);
+            AH.set('router_action', action);
+            AH.set('router_data', data);
+            AH.set('moveAction', action ? "Next" : "Previous");
             editorState.saveDialog = true;
         }
     }
 
     function navigate(action, data) {
         currentGuid = editorUrl.get('content_guid');
-        AI.set('moveAction', false);
+        AH.set('moveAction', false);
         if (action) {
             if (action == "click") {
                 editorSeq = guid_group.findIndex((item)=> item == data.content_guid);
             } else {
                 if ((editorSeq + 1) == guid_group.length) {
-                    AI.showmsg("Editor is on last item.");
+                    AH.showmsg("Editor is on last item.");
                     return ;
                 } else {
                     editorSeq = editorSeq + 1;
@@ -160,7 +160,7 @@
             if (editorSeq > 0) {
                 editorSeq =  editorSeq - 1;
             } else {
-                AI.showmsg("Editor is on first item.");
+                AH.showmsg("Editor is on first item.");
                 return;
             }
         }
@@ -171,12 +171,12 @@
             editorUrl.delete('version_date');
             editorUrl.delete('from_draft');
         }
-        AI.toggleDom(window.parent.document.querySelector('.load_data'), 'show');
+        AH.toggleDom(window.parent.document.querySelector('.load_data'), 'show');
         window.location = decodeURIComponent(editorUrl.toString());
     }
     function showContext() {
-        AI.activate(1);
-        AI.ajax({
+        AH.activate(1);
+        AH.ajax({
             url: baseUrl + 'editor/index.php',
             data: { ajax: "1", action: 'get_parent_context', cource_code: editor.course, content_guid: (parent2 || parent1), show_all: (parent2 ? 0 : 1) },
         }).then((response)=> {
@@ -196,16 +196,16 @@
                 },
                 width: 500,
             };
-            AI.activate(0);
+            AH.activate(0);
             handleModal(modal);
         });
     }
 
     function  showItemMeta() {
-        if (AI.get('current_item_icon')) {
-            AI.set("current_item_icon",  editorState.content_icon);
+        if (AH.get('current_item_icon')) {
+            AH.set("current_item_icon",  editorState.content_icon);
         }
-        AI.activate(2);
+        AH.activate(2);
         AH.ajax({
             url: baseUrl + 'editor/index.php',
             data: { 
@@ -236,7 +236,7 @@
                 },
                 width: 520,
             };
-            AI.activate(0);
+            AH.activate(0);
             handleModal(modal);
 		});
     }
@@ -245,37 +245,37 @@
     function updateItemInfData(item) {
         if (item) {
             if (item.getAttribute('icon')) {
-                AI.removeClass(".item_icon_list .active", 'active');
-                AI.addClass(item, "active");
+                AH.removeClass(".item_icon_list .active", 'active');
+                AH.addClass(item, "active");
             } else if (item.id == "cong_level") {
-                AI.set("cong_level", item.value);
+                AH.set("cong_level", item.value);
             } else {
                 item.setAttribute('contentEditable', true);
             }
-            AI.select(".inf_update_btn").style.display = "inline-block";
+            AH.select(".inf_update_btn").style.display = "inline-block";
         } else {
-            AI.activate(2);
+            AH.activate(2);
             let queryData = { 
                 ajax: "1", 
                 action: 'update_editor_item_inf', 
-                content_guid: AI.get('current_guid'),
-                ref_id: AI.select(".item_ref_id").textContent,
-                isDraft: AI.get('draft'),
-                content_icon:  AI.get("current_item_icon"),
-                cong_level: AI.get("cong_level"),
+                content_guid: AH.get('current_guid'),
+                ref_id: AH.select(".item_ref_id").textContent,
+                isDraft: AH.get('draft'),
+                content_icon:  AH.get("current_item_icon"),
+                cong_level: AH.get("cong_level"),
                 course: editor.course,
-                anno_id: AI.select("#cong_level").getAttribute('annoid')
+                anno_id: AH.select("#cong_level").getAttribute('annoid')
             };
-            AI.ajax({
+            AH.ajax({
                 url: baseUrl + 'editor/index.php',
                 data: queryData
             }).then((response)=> {
-                    AI.activate(0);
+                    AH.activate(0);
                     console.log(response);
                     if (response == 1) {
-                        AI.showmsg("Data updated successfully.");
+                        AH.showmsg("Data updated successfully.");
                     } else {
-                        AI.showmsg("Updation failed.");
+                        AH.showmsg("Updation failed.");
                     }
             });
         }
@@ -310,18 +310,18 @@
     }
 
     export function callPendingAction() {
-        if (from_myproject == 1 && AI.get('unSavedProjectData')) {
-            AI.set("unSavedProjectData", false);
+        if (from_myproject == 1 && AH.get('unSavedProjectData')) {
+            AH.set("unSavedProjectData", false);
             if (window.parent.close_frame_modal) {
                 window.parent.close_frame_modal();
             } else {
                 window.parent.editorClose();
             }
-        } else if (AI.get("unSavedBack")) {
-            AI.set("unSavedBack", false);
+        } else if (AH.get("unSavedBack")) {
+            AH.set("unSavedBack", false);
             goBack();
-        } else if (AI.get('moveAction') && editorUrl.get('router_guid'))  {
-            navigate(AI.get('router_action'), AI.get('router_data'));
+        } else if (AH.get('moveAction') && editorUrl.get('router_guid'))  {
+            navigate(AH.get('router_action'), AH.get('router_data'));
         }
     }
 
