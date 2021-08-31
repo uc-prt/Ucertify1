@@ -434,7 +434,7 @@
             <div>Content Settings</div>
         </div>
     </h4>
-    <div class="overflow-hide">
+    <div class="overflow-hide" style="height:328px;">
         {#if fromProject}
             <ul 
                 class="nav nav-pills"
