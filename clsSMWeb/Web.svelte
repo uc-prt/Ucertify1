@@ -78,20 +78,23 @@
 					// hides the 'Title' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'titleShow' and text stored in variable 'titleData'
 					//jQuery('#title').empty().hide().after('<div id="tilteShow">' + titleData + '</div>');  // Replaced
 					AH.empty("#title");
-					AH.select("#title", 'hide');
+					AH.selectAll('#title','css',{position:'relative',top:'5px'})
+				//	AH.select("#title", "css", {display:'none'});
 					AH.select("#title", 'html', `<div id="tilteShow">${titleData}</div>`);
 
 					// hides the 'Stem' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'stemShow' and text returned by method 'get_ucsyntax' by passing the argument as value of variable 'stemData'
 					//	jQuery('#stem').empty().hide().after('<div id="stemShow">' + get_ucsyntax(stemData) + '</div>'); // Replaced
 
 					AH.empty("#stem");
-					AH.select("#stem", 'hide');
+					//AH.select("#stem", 'css',{display:'none'});
+					AH.selectAll('#stem','css',{position:'relative',top:'5px'})
 					AH.select("#stem", 'html', `<div id="stemShow">${get_ucsyntax(stemData)}</div>`);
 					
 					// hides the 'Remediation' field of 'Authoring' area after making it empty and after it adds element 'div' with id 'remediationShow' and text returned by method 'get_ucsyntax' by passing the argument as value of variable 'remediationData'
 					//jQuery('#remediation').hide().empty().after('<div id="remediationShow">' + get_ucsyntax(remediationData) + '</div>'); Replaced
 					AH.empty("#remediation");
-					AH.select("#remediation", 'hide');
+					AH.selectAll('#remediation','css',{position:'relative',top:'5px'})
+					//AH.select("#remediation","css",{display:'none'});
 					AH.select('#remediation', 'html', `<div id="remediationShow">${get_ucsyntax(remediationData)}</div>`);
 
 
@@ -211,6 +214,7 @@
 			}
 		});
     }
+
 </script>
 <main>
 	<div id="webModule">
