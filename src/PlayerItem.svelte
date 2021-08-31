@@ -333,18 +333,25 @@
                             disabled={playerState.security || playerState.intervals}
                         />
                     </div>
-                    <div class="mt-xl">
-                        <Checkbox
-                            bind:checked={playerState.security}
-                            value={playerState.security}
-                            color="default"
-                            disabled={playerState.multiple || playerState.intervals}
-                        >
-                            <span class="mr-0 mb-0 height27">{l.security_info}</span>
-                        </Checkbox>
-                        <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl"} rel="tooltip" title={l.security_title}></span> 
+                    <div class="mt-xl position-relative alignRight">
+                        <div class={(playerState.security ? '' : 'd-flex ')}>
+                            <Checkbox
+                                bind:checked={playerState.security}
+                                value={playerState.security}
+                                color="default"
+                                disabled={playerState.multiple || playerState.intervals}
+                            >
+                                <span class="mr-0 mb-0 height27">{l.security_info}</span>
+                            </Checkbox>
+                            {#if playerState.security}
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
+                            {:else}
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
+                            {/if}
+                             
+                        </div>
                         {#if playerState.security}
-                            <div>
+                            <div class='position-relative alignLeft'>
                                 <Textfield
                                     id="security"
                                     label={l.security_txt}
@@ -354,7 +361,7 @@
                             </div>
                         {/if}
                     </div>
-                    <div class="mt-lg">
+                    <div class="mt-lg position-relative alignRight">
                         <Checkbox
                             bind:checked={playerState.multiple}
                             value={playerState.multiple}
@@ -367,7 +374,7 @@
                             <p class="mt-md mb-0">{l.multiple_info}</p>
                         {/if}
                     </div>
-                    <div class={playerState.multiple ? "mt-md" : "mt-lg"}>
+                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
                         <Checkbox
                             bind:checked={playerState.intervals}
                             value={playerState.intervals}
@@ -738,5 +745,16 @@
 
     .alignRight {
         right:10px;
+    }
+    .alignLeft {
+        left: 10px;
+    }
+    .icomoonInfo {
+        top:13px;
+        right:230px;
+    }
+    .icomoonInfoSec {
+        bottom: 31px;
+        left:315px;
     }
 </style>
