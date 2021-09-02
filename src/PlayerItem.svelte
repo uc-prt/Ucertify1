@@ -72,7 +72,7 @@
                     <select 
                         id="type" 
                         name="type" 
-                        class="btn border mr p-2 ml-md mr-2 width60 clearfix pointer" 
+                        class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                         value={playerState.type} 
                         on:blur={(e)=>{ setInputState('type', e.target.value)}}
                     >
@@ -86,7 +86,7 @@
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 width82 clearfix pointer" 
+                            class="btn border p-2 width80 clearfix pointer" 
                             value={playerState.sub_type} 
                             on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -135,7 +135,7 @@
                 </div>
             {/if}
             <div class="row alignRight position-relative">
-                <div class="col-xs-{(playerState.type == 'simulation') ? 9 : 12} mt-sm w-75">
+                <div class="col-xs-{(playerState.type == 'simulation') ? '9 mt-sm w-75' : '12'}" >
                     {#if (playerState.type == 'insight' && playerState.sub_type == 'scorm')}
                         <Textfield
                             id="asset"
@@ -172,7 +172,7 @@
                         </select>
                     </div>
                 <div class ="row position-relative alignRight">
-                    <div class="col-xs-12 mt-sm">
+                    <div class="col-xs-12 mt-sm pr-0">
                         {#if (playerState.embed == 'overlay' || playerState.embed == 'new_tab')}
                             <Textfield
                                 placeholder={l.enter_btn_name}
