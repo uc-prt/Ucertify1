@@ -241,6 +241,10 @@
 		});
     }
 
+    AH.listen(document,'change','#cong_level',function(_this) {
+        updateItemInfData(_this);
+    })
+
 
     function updateItemInfData(item) {
         if (item) {

@@ -52,7 +52,7 @@
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl alignRight position-relative">
+            <div class="mt-xl alignRight position-relative checkGrade">
                 <Checkbox
                     bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
@@ -72,7 +72,7 @@
                     <select 
                         id="type" 
                         name="type" 
-                        class="btn border mr p-2 ml-md mr-2 width60 clearfix pointer" 
+                        class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                         value={playerState.type} 
                         on:blur={(e)=>{ setInputState('type', e.target.value)}}
                     >
@@ -86,7 +86,7 @@
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 width82 clearfix pointer" 
+                            class="btn border p-2 width80 clearfix pointer" 
                             value={playerState.sub_type} 
                             on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -135,7 +135,7 @@
                 </div>
             {/if}
             <div class="row alignRight position-relative">
-                <div class="col-xs-{(playerState.type == 'simulation') ? 9 : 12} mt-sm w-75">
+                <div class="col-xs-{(playerState.type == 'simulation') ? '9 mt-sm w-75' : '12'}" >
                     {#if (playerState.type == 'insight' && playerState.sub_type == 'scorm')}
                         <Textfield
                             id="asset"
@@ -158,7 +158,7 @@
                     {/if}
                 </div>
                 {#if playerState.type == 'simulation'}
-                    <div class="col-xs-3 pt-sm pr w-25">
+                    <div class="col-xs-3 pt-sm pr w-25 position-relative simButton">
                         <select 
                             id="embed" 
                             name="embed" 
@@ -172,7 +172,7 @@
                         </select>
                     </div>
                 <div class ="row position-relative alignRight">
-                    <div class="col-xs-12 mt-sm">
+                    <div class="col-xs-12 mt-sm pr-0">
                         {#if (playerState.embed == 'overlay' || playerState.embed == 'new_tab')}
                             <Textfield
                                 placeholder={l.enter_btn_name}
@@ -333,18 +333,25 @@
                             disabled={playerState.security || playerState.intervals}
                         />
                     </div>
-                    <div class="mt-xl">
-                        <Checkbox
-                            bind:checked={playerState.security}
-                            value={playerState.security}
-                            color="default"
-                            disabled={playerState.multiple || playerState.intervals}
-                        >
-                            <span class="mr-0 mb-0 height27">{l.security_info}</span>
-                        </Checkbox>
-                        <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl"} rel="tooltip" title={l.security_title}></span> 
+                    <div class="mt-xl position-relative alignRight">
+                        <div class={(playerState.security ? '' : 'd-flex ')}>
+                            <Checkbox
+                                bind:checked={playerState.security}
+                                value={playerState.security}
+                                color="default"
+                                disabled={playerState.multiple || playerState.intervals}
+                            >
+                                <span class="mr-0 mb-0 height27">{l.security_info}</span>
+                            </Checkbox>
+                            {#if playerState.security}
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
+                            {:else}
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
+                            {/if}
+                             
+                        </div>
                         {#if playerState.security}
-                            <div>
+                            <div class='position-relative alignLeft'>
                                 <Textfield
                                     id="security"
                                     label={l.security_txt}
@@ -354,7 +361,7 @@
                             </div>
                         {/if}
                     </div>
-                    <div class="mt-lg">
+                    <div class="mt-lg position-relative alignRight">
                         <Checkbox
                             bind:checked={playerState.multiple}
                             value={playerState.multiple}
@@ -367,7 +374,7 @@
                             <p class="mt-md mb-0">{l.multiple_info}</p>
                         {/if}
                     </div>
-                    <div class={playerState.multiple ? "mt-md" : "mt-lg"}>
+                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
                         <Checkbox
                             bind:checked={playerState.intervals}
                             value={playerState.intervals}
@@ -739,4 +746,23 @@
     .alignRight {
         right:10px;
     }
+    .alignLeft {
+        left: 10px;
+    }
+    .icomoonInfo {
+        top:13px;
+        right:230px;
+    }
+    .icomoonInfoSec {
+        bottom: 31px;
+        left:315px;
+    }
+    .checkGrade:hover {
+        background-color: white;
+    }
+    .simButton {
+        right: 18px;
+        bottom: 5px; 
+    }
+    
 </style>

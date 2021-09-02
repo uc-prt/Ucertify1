@@ -62,9 +62,15 @@ export default class HotspotAuthScript {
 						break;
 					case "top":
 						_data.value = (+(_data.value)  + _this.offsetY) - (ui.clientHeight/2);
+						if(_data.value < 0) {
+							_data.value = 0;
+						}
 						break;
 					case "left":
 						_data.value = (+(_data.value) + _this.offsetX) - (ui.clientWidth/2);
+						if(_data.value < 0) {
+							_data.value = 0;
+						}
 						break;
 				}
 				_orginalArr[index] = _data;

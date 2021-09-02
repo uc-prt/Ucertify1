@@ -15,6 +15,8 @@
 
 	const HotJS = new hotspotScript();
 	let parseXml = "";
+	let answerStatus;
+	let ansDisable = 0;
 	let bgImgPath = '//s3.amazonaws.com/jigyaasa_content_static/';
 	let alt = "";
 	let moduleArr = {
@@ -71,8 +73,13 @@
 		if (isReview) {
 			//targetView = "block";
 			setReview();
+			if(editorState && ansDisable == 0) {
+				showAns(answerStatus ? "Correct" : "Incorrect");
+				ansDisable = 1;
+			}
 		} else {
 			//targetView = "none";
+			ansDisable = 0;
 			unsetReview();
 		}
 	}
@@ -235,6 +242,7 @@
 			ans_x = result.left;
 			ans_y = result.top;
 			ansStatus = result.ans;
+			answerStatus = ansStatus;
 			if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
 		}
 		onUserAnsChange(result);
@@ -514,7 +522,7 @@
 											width: 100%;
 											height: 100%;
 											border: ${(itemBorder) ? itemBorder + 'px solid' : ''};
-											borderColor: ${itemBorderColor};
+											border-color: ${itemBorderColor};
 										`}"
 									>
 										<img 
