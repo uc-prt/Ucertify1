@@ -261,7 +261,10 @@
     
         // for parsing the xml
         function parseXML(QXML) {
+            state.hotBorder = QXML.smxml.div._border;
+            state.hotBorderColor = QXML.smxml.div._bordercolor
             state.bgImg = QXML.smxml._bgimg;
+            
             bgImgHeight = QXML.smxml._height + 'px'; // Image Height
             state.alt = QXML.smxml._alt;
             bgImgWidth = QXML.smxml._width + 'px'; // Image Width

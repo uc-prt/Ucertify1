@@ -514,7 +514,7 @@
 											width: 100%;
 											height: 100%;
 											border: ${(itemBorder) ? itemBorder + 'px solid' : ''};
-											borderColor: ${itemBorderColor};
+											border-color: ${itemBorderColor};
 										`}"
 									>
 										<img 
