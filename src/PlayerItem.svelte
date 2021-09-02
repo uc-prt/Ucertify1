@@ -52,7 +52,7 @@
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl alignRight position-relative">
+            <div class="mt-xl alignRight position-relative checkGrade">
                 <Checkbox
                     bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
@@ -158,7 +158,7 @@
                     {/if}
                 </div>
                 {#if playerState.type == 'simulation'}
-                    <div class="col-xs-3 pt-sm pr w-25">
+                    <div class="col-xs-3 pt-sm pr w-25 position-relative simButton">
                         <select 
                             id="embed" 
                             name="embed" 
@@ -757,4 +757,12 @@
         bottom: 31px;
         left:315px;
     }
+    .checkGrade:hover {
+        background-color: white;
+    }
+    .simButton {
+        right: 18px;
+        bottom: 5px; 
+    }
+    
 </style>
