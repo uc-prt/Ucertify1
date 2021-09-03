@@ -32,7 +32,7 @@
 <div>
     {#if playerState.category == "knowledge_check"}
         <div class="knowledge_check_tag" key="tag_quiz">
-            <p class="mt-4 mb-sm">{l.knowledge_check}</p>
+            <p class="mt-2 mb-sm">{l.knowledge_check}</p>
             <div>
                 <Textfield
                     placeholder={l.enter_title}
@@ -65,7 +65,7 @@
         </div>
     {:else if playerState.category == 'lab'}
         <div class="lab_tag" key="tag_lab">
-            <p class="mt-4">{labType[playerState.type]}</p>
+            <p class="mt-2">{labType[playerState.type]}</p>
             <div class="row alignRight position-relative">
                 <div class="col-xs-12">
                     <label for="type" class="text-dark d-inline" >{l.type}</label>
@@ -259,9 +259,9 @@
     {:else if playerState.category == 'media'}
         <div class="media_tag" id={(playerState.type == 'video') ? "video_player_container" : 'audio_player_container'} key="tag_media">
             {#if playerState.type == 'audio'}
-                <p class="mt-4">{l.audio_des}</p>
+                <p class="mt-2">{l.audio_des}</p>
             {:else}
-                <p class="mt-4">{l.video_des}</p>
+                <p class="mt-2">{l.video_des}</p>
             {/if}
             <div class="pt-2">
                 <label for="type" class="text-dark d-inline">{l.type}</label>
@@ -427,16 +427,16 @@
     {:else if playerState.category == 'link'}
         <div class="link_tag" key="tag_link">
             {#if playerState.type == 'download'}
-                <p class="mt-4">{l.download_info}</p>
+                <p class="mt-2">{l.download_info}</p>
             {/if}
             {#if playerState.type == 'pdf'}
-                <p class="mt-4">{l.pdf_info}</p>
+                <p class="mt-2">{l.pdf_info}</p>
             {/if}
             {#if playerState.type == 'exhibit'}
-                <p class="mt-4">{l.exhibit_info}</p>
+                <p class="mt-2">{l.exhibit_info}</p>
             {/if}
             {#if playerState.type == 'weblink'}
-                <p class="mt-4">{l.weblink_info}</p>
+                <p class="mt-2">{l.weblink_info}</p>
             {/if}
             <div container class="row">
                 <div class="pt-2 col-xs-10 alignRight position-relative">
@@ -493,7 +493,7 @@
                 </div>
             {:else}
                 <div class="row alignRight position-relative">
-                    <div item class="mt-sm pr col-xs-5">
+                    <div item class={(playerState.type == 'exhibit') ? 'mt-sm pr col-xs-5 exhibitShow':'mt-sm pr col-xs-5'}>
                         <Textfield 
                             fullWidth="true" 
                             id="show_caption" 
@@ -501,7 +501,7 @@
                             placeholder={l.img_show} 
                         />
                     </div>
-                    <div class="mt-sm col-xs-5">
+                    <div class={(playerState.type == 'exhibit') ? 'mt-sm col-xs-5 exhibitShow': 'mt-sm col-xs-5'}>
                         <Textfield 
                             fullWidth="true" 
                             id="hide_caption" 
@@ -509,11 +509,11 @@
                             placeholder={l.img_hide}
                         />
                     </div>
-                    <div class="pt-sm col-xs-2">
+                    <div class={(playerState.type == 'exhibit') ? 'pt-sm col-xs-2 exhibiLink exhibitbtnlnk' : 'pt-sm col-xs-2'}>
                         <select 
                             id="layout" 
                             name="layout" 
-                            class="btn border p-2 w-100 clearfix mt-sm pointer" 
+                            class="btn border p-2 clearfix mt-sm pointer" 
                             value={playerState.layout} 
                             on:blur={(e)=>{setInputState('layout', e.target.value)}}
                         >
@@ -523,8 +523,8 @@
                     </div>
                 </div>
             {/if}
-            <div class="">
-                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? 9 : (playerState.type == 'exhibit' ? 10 : 12)}">
+            <div class={(playerState.type == 'exhibit') ? 'd-flex' : ''}>
+                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? 9 : (playerState.type == 'exhibit' ? '10 width8P' : '12')}">
                     <Textfield
                         id={(playerState.type == 'exhibit' && playerState.exhibitType == 'link') ? "layout" : "asset"}
                         fullWidth="true"
@@ -538,7 +538,7 @@
                     />
                 </div>
                 {#if (playerState.type == 'weblink' || playerState.type == 'exhibit') }
-                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3' : (playerState.type == 'exhibit' ? '2' : '0')}">
+                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
                         <select 
                             id="embed" 
                             name="embed" 
@@ -553,9 +553,9 @@
                 {/if}
             </div>
             {#if ((playerState.type == 'download' || (playerState.type == 'exhibit' && playerState.sub_type == 'image')) || (playerState.type == 'weblink' && playerState.embed != 'inline'))}
-                <div>
-                    <div container spacing={12}>
-                        <div item class="mt-sm pr col-xs-9">
+                
+                    <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : ''}>
+                        <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt'}>
                             <Textfield
                                 id="img"
                                 fullWidth="true"
@@ -563,11 +563,11 @@
                                 label={l.image_txt}
                             />
                         </div>
-                        <div class="pt-sm col-xs-3 mt-4">
+                        <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'pt-sm col-xs-3 mt-4 insertBtn' : 'pt-sm col-xs-3 mt-4 insertBtn'}>
                             <button type="button" class="btn btn-secondary clearfix mt-1 ml-xs w-100" on:click={()=>{insertImage('img')}}>{l.insert_img}</button>
                         </div>
                     </div>
-                    <div class="mt-sm mt-3">
+                    <div class="mt-sm">
                         <Textfield
                             id="alt"
                             label={l.img_alt}
@@ -575,7 +575,7 @@
                             fullWidth="true"
                         />
                     </div>
-                </div>
+                
             {/if}
             {#if playerState.type == 'weblink'}
                 <div>
@@ -613,7 +613,7 @@
                 </div>
             {/if}
             {#if (playerState.type == 'exhibit')}
-                <div class="row alignRight position-relative">
+                <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex alignRight position-relative' : 'row alignRight position-relative'}>
                     <div class="mt-xl col-xs-2 p-0">
                         <Checkbox
                             bind:checked={playerState.inline}
@@ -641,7 +641,7 @@
         </div>
     {:else if playerState.category == 'objects'}
         <div class="objects_tag" key="tag_objects">
-            <p class="mt-4">{l.player3d_des}</p>
+            <p class="mt-2">{l.player3d_des}</p>
             <div>
                 <Textfield
                     id="title"
@@ -664,7 +664,7 @@
         </div>
     {:else if playerState.category == 'snt'}
         <div class="snt_tag" key="tag_snt">
-            <p class="mt-4">{l.snt_des}</p>
+            <p class="mt-2">{l.snt_des}</p>
             <div class="row">
                 <div class="pt-2 col-xs-12 alignRight position-relative">
                     <label for="refid" class="text-dark d-inline">{l.des_txt}</label>                
@@ -687,7 +687,7 @@
         </div>
     {:else if playerState.category == 'seq'}
         <div class="seq_tag" key="tag_seq">
-            <p class="mt-4">{l.seq_des}</p>
+            <p class="mt-2">{l.seq_des}</p>
             <div>
             <Textfield
                 fullWidth="true"
@@ -701,7 +701,7 @@
         </div>
     {:else}
         <div class="knowledge_check_tag" key="tag_quiz">
-            <p class="mt-4 mb-sm">{l.knowledge_check}</p>
+            <p class="mt-2 mb-sm">{l.knowledge_check}</p>
             <div>
                 <Textfield
                     placeholder={l.enter_title}
@@ -764,5 +764,38 @@
         right: 18px;
         bottom: 5px; 
     }
+
+    .exhibitShow {
+        flex-grow: 0;
+        max-width: 41.66667%;
+        flex-basis: 41.66667%
+    }
     
+    .exhibiLink {
+        flex-grow: 0;
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+    }
+    .width8P {
+        width: 80%;
+    }
+    .exhibitbtnlnk {
+        right: 18px;
+        position: relative;
+        top: 10px;
+    }
+
+    .embedovrlyBtn {
+        position: relative;
+        top: 8px;
+        left: 3px;
+    }
+    .insertImageTxt {
+        width: 78%;
+        margin-right: 8px;
+    }
+    .insertBtn{
+        position: relative;
+        bottom: 18px;
+    }
 </style>

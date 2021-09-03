@@ -909,7 +909,7 @@
 </script>
 
 <Dialog width="600" bind:visible={state.open} style="background-color:#fff; border-radius: 5px;">
-    <h4 class="mt-1 font21 mb-4">
+    <h4 class="mt-1 font21">
         <div class="d-flex justify-content-between">
             <div>Player Info</div>
         </div>
@@ -997,7 +997,7 @@
     </div>
 </Dialog>
 <Dialog width="600" bind:visible={state.delNode} style="background-color:#fff; border-radius: 5px;">
-    <h4 class="mt-1 font21 mb-4">
+    <h4 class="mt-1 font21 mb-2">
         <div class="d-flex justify-content-between">
             <div>{l.save_header}</div>
         </div>
