@@ -257,7 +257,7 @@ var l = LANG = {
     fill_text_placeholder : "Write correct answer here",
     fill_text_help1 : "1. To include multiple correct answers, type the answers and separate them with a comma (,).",
     fill_text_help2 : "2. Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down.",
-    fill_text_help3 : "Use #cm for comma (e.g., 5,000 as 5#cm000).",
+    fill_text_help3 : "3. Use #cm for comma (e.g., 5,000 as 5#cm000, function(a,b) as function(a#cmb)).",
     fill_math_help1 : "1. To make math equation initially, Click f(x) and then insert the equation.",
     fill_math_help2 : "2. To add user Response, place cursor before{*} and Click Add Response.",
     fill_math_help3 : "3. To edit the existing equation, Click Edit.",
