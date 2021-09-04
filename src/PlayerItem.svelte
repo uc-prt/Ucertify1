@@ -74,7 +74,7 @@
                         name="type" 
                         class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                         value={playerState.type} 
-                        on:blur={(e)=>{ setInputState('type', e.target.value)}}
+                        on:change={(e)=>{setInputState('type', e.target.value)}}
                     >
                         <option value="playground">{l.playground}</option>
                         <option value="simulation">{l.simulation_txt}</option>
@@ -299,9 +299,9 @@
             {#if playerState.type == 'video'}
                 <div>
                     <div 
-                        class="row {(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? 'transcript_container d-none' : 'transcript_container mt-sm'}"
+                        class="{(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? 'transcript_container d-none' : 'd-flex transcript_container mt-sm'}"
                     >
-                        <div item class="col-xs-7 position-relative alignRight">
+                        <div item class="col-xs-7 position-relative textTranscript">
                             <Textfield
                                 id="group_guids"
                                 fullWidth="true"
@@ -797,5 +797,9 @@
     .insertBtn{
         position: relative;
         bottom: 18px;
+    }
+    .textTranscript {
+        width: 60%;
+        margin-right:33px;
     }
 </style>

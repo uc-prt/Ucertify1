@@ -988,11 +988,12 @@
         </Button>
         <Button
             id="xmlDone"
+            class="submitBtton"
             unelevated={true}
             on:click={validateItemId}
             color="primary"
         >
-            {l.done}
+            {l.submit}
         </Button>
     </div>
 </Dialog>
@@ -1079,3 +1080,8 @@
         </Button>
     </div>
 </Dialog>
+<style>
+    :global(.submitBtton) {
+        background-color: #616970!important;
+    }
+</style>
