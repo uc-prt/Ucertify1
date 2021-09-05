@@ -356,7 +356,7 @@
         intervalvalue = intervalvalue || '';
         captiontext = captiontext || '';
         let seq_num = parseInt(AH.selectAll('.stepplayertable tbody tr').length) + 1;
-        AH.insert('.stepplayertable tbody', `<tr data-id="${seq_num}"><td class="align-middle">${seq_num}</td><td><input type="number" min="0" step="1" class="intervaltext form-control form-control-sm width80 pr-sm" placeholder="Interval" value="${intervalvalue}" /></td><td><input type="text" class="captiontext w-100 form-control form-control-sm" placeholder="Caption" maxlength="200" value="${captiontext}" /></td><td><a href="#" class="deleteinterval" data-id="${seq_num}"><span rel="tooltip" data-original-title="Delete" class="icomoon icomoon-new-24px-delete-1 s3"></span></a></td></tr>`);
+        AH.insert('.stepplayertable tbody', `<tr data-id="${seq_num}"><td class="align-middle">${seq_num}</td><td><input type="number" min="0" step="1" class="intervaltext form-control form-control-sm width80 pr-sm" placeholder="Interval" value="${intervalvalue}" /></td><td><input type="text" class="captiontext w-100 form-control form-control-sm" placeholder="Caption" maxlength="200" value="${captiontext}" /></td><td><a href="#" class="deleteinterval" data-id="${seq_num}"><span rel="tooltip" data-original-title="Delete" class="icomoon icomoon-new-24px-delete-1 s3"></span></a></td></tr>`,'beforeend');
     }
 
     function handleClose() {
@@ -997,6 +997,7 @@
         </Button>
     </div>
 </Dialog>
+
 <Dialog width="600" bind:visible={state.delNode} style="background-color:#fff; border-radius: 5px;">
     <h4 class="mt-1 font21 mb-2">
         <div class="d-flex justify-content-between">
@@ -1084,4 +1085,13 @@
     :global(.submitBtton) {
         background-color: #616970!important;
     }
+
+    :global(.deleteinterval:hover) {
+        text-decoration: none;
+    }
+
+    :global(.deleteinterval) {
+        color: #b0281a;
+    }
+
 </style>

@@ -263,7 +263,7 @@
             {:else}
                 <p class="mt-2">{l.video_des}</p>
             {/if}
-            <div class="pt-2">
+            <div class="pt-1">
                 <label for="type" class="text-dark d-inline">{l.type}</label>
                 <select 
                     id="type" 
@@ -344,9 +344,9 @@
                                 <span class="mr-0 mb-0 height27">{l.security_info}</span>
                             </Checkbox>
                             {#if playerState.security}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
                             {:else}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
                             {/if}
                              
                         </div>
@@ -409,7 +409,7 @@
                                 {#if playerState.msg != ''}
                                     <p class="help-block text-danger mb-0 mt">{playerState.msg}</p>
                                 {/if}
-                                <button class="btn btn-secondary float-left mt-lg" on:click={()=>{createSteptable('add')}}>{l.add_interval}</button>
+                                <button class="btn mt-3 btn-secondary float-left mt-lg" on:click={()=>{createSteptable('add')}}>{l.add_interval}</button>
                                 <input type="hidden" id="intervals" name="intervals" value="" />
                                 <input type="hidden" id="stepcaptions" name="stepcaptions" value="" />
                             </div>
@@ -801,5 +801,10 @@
     .textTranscript {
         width: 60%;
         margin-right:33px;
+    }
+
+    .addIntervalMultInfo {
+        position: relative;
+
     }
 </style>
