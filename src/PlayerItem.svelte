@@ -615,13 +615,14 @@
             {#if (playerState.type == 'exhibit')}
                 <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex alignRight position-relative' : 'row alignRight position-relative'}>
                     <div class="mt-xl col-xs-2 p-0">
-                        <Checkbox
-                            bind:checked={playerState.inline}
-                            value={playerState.inline}
-                            color="default"
-                        >
-                            <span class="mr-0 mb-0 height27">{l.inline}</span>
-                        </Checkbox>
+                        <span class="position-relative alginLeft">
+                            <input type="checkbox" class="custom_checkbox_new"
+                                bind:checked={playerState.inline}
+                                value={playerState.inline}
+                                color="default"
+                            />
+                            <span class="mr-0 mb-0 height27 fontSize">{l.inline}</span>
+                        </span>
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                     {#if (playerState.sub_type == 'image' && playerState.embed == 'inline')}
@@ -806,5 +807,24 @@
     .addIntervalMultInfo {
         position: relative;
 
+    }
+
+    .custom_checkbox_new {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .fontSize {
+        position: relative;
+        bottom: 5px;
+        font-size: medium
+    }
+
+    .alginLeft {
+        left: 10px;
     }
 </style>

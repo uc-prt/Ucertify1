@@ -520,10 +520,10 @@
         let src;
         if (!edit_item_id) {
             let guid = AH.select('#showPlayerList #asset').value;
-            src  = baseUrl+"editor/?action=edit&content_guid="+guid+"&in_frame=1&from_ebook=1&react_content=1&course_code="+editor.course;       
+            src  = baseUrl+"editor/v2/?action=edit&content_guid="+guid+"&in_frame=1&from_ebook=1&react_content=1&course_code="+editor.course;       
             if (guid.indexOf(',') !== -1) {
                     AH.selectAll(".table_list_guid, #listProcess, .list_content", 'hide');
-                    let guidList = "<table class='table table-striped'><thead><tr><th>Item ID</th><th class='check-mail'>Action</th></tr></thead>";
+                    let guidList = "<table class='table table-striped'><thead><tr><th style='background-color:#E3E3E3;'>Item ID</th><th class='check-mail' style='background-color:#E3E3E3;'>Action</th></tr></thead>";
                     guid = guid.split(',');
                     for (let i in guid) {
                         guidList += "<tr><td>"+guid[i]+"</td><td><button type='button' guid='"+guid[i]+"' class='edit_item_id btn btn-secondary pull-right'>Edit</button></td></tr>";
@@ -534,7 +534,7 @@
                 openEditorFrame(src);
             }
         } else {
-            src  = baseUrl+"editor/?action=edit&from_myproject=1&content_guid="+edit_item_id+"&in_frame=1&react_content=1&from_coverage=1&course_code="+editor.course;
+            src  = baseUrl+"editor/v2/?action=edit&from_myproject=1&content_guid="+edit_item_id+"&in_frame=1&react_content=1&from_coverage=1&course_code="+editor.course;
             openEditorFrame(src, "quiz_new");
         }
     }
@@ -946,7 +946,7 @@
         </div>
         <div class={(state.islistContent) ? "col-md-12 mt-lg pt-sm pl-0 pr-0 float-left" : "h"} id="guid_list">
             <div>
-                <button type="button" class={state.editBtnVisibility ? "btn btn-secondary mr-2 clearfix pull-left" : "h"} on:click={()=>{editContent(false)}}>{l.edit_txt}</button>
+                <button type="button" class={state.editBtnVisibility ? "btn btn-secondary mr-2 clearfix pull-left mb-2" : "h"} on:click={()=>{editContent(false)}}>{l.edit_txt}</button>
                 {#if ((state.from_coverage == 1 || getQueryString("is_flashcard") == 1) && in_frame)}
                     <span>
                         <button type="button" class="btn btn-secondary clearfix pull-left listContent" on:click={listContent}>{l.list_content}</button>
