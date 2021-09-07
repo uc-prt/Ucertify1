@@ -268,7 +268,7 @@
 </script>
 
 <main class="p-0">
-	{#if window.editor.course == null}
+	<!-- {#if window.editor.course == null}
 		<center style="position:relative;top:{window.innerHeight*(.4)}px;">
 			<b>Please do login and load course first.</b>
 			<br/>
@@ -282,7 +282,8 @@
 				Library
 			</Button>
 		</center>
-	{:else if state.loaditem != 'Default'}
+	{:else  -->
+	{if state.loaditem != 'Default'}
 		{#if state.loaditem == "Blank"} 
 			<center style="position:relative;top:{window.innerHeight*(.4)}px;">Checking Module...</center>
 		{:else}
