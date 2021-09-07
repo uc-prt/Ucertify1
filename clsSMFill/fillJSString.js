@@ -440,8 +440,6 @@ export default class fillJS {
 						}
 						pElem.value = __ans;
 					}
-					console.log('fillid', fillid);
-					console.log('pElem', pElem);
 					is_correct = this.fillTestText(fillid, pElem);
 				}
 			}
@@ -474,7 +472,6 @@ export default class fillJS {
 	}
 
 	fillTestText(fillid, pElem) {
-		//debugger;
 		var is_correct = -1, 
 		anskey = pElem.getAttribute("anskey").trim(), 
 		userans = pElem.value ? pElem.value.trim() : "",
@@ -488,11 +485,11 @@ export default class fillJS {
 				userans = pElem.value.trim().replace(/,/g,"#cm");
 			} 
 			// @uc-abk added for one Custoumer Bug "answer,anotherAnswer" getting incorrect.
-			let userans_temp = userans.match(/[a-zA-Z]{1,1},[a-zA-Z]{1,1}/g);
+			let temp = userans.match(/[a-zA-Z]{1,1},[a-zA-Z]{1,1}/g);
 			if (userans.match(/[a-zA-Z]{1,1},[a-zA-Z]{1,1}/g)) {
-				userans_temp = userans_temp.toString().replace(/,/g, "#cm");
+				temp = temp.toString().replace(/,/g, "#cm");
 			}
-			userans = userans.replace(/[a-zA-Z]{1,1},[a-zA-Z]{1,1}/g, userans_temp);
+			userans = userans.replace(/[a-zA-Z]{1,1},[a-zA-Z]{1,1}/g, temp);
 		}
 		if (codetype == 1) {
 			var regex_code = [/\s+/g,/\;$/,/"/g];
@@ -560,7 +557,6 @@ export default class fillJS {
 	}
 
 	markUserAnswer(is_correct) {
-		console.trace('is_correct', is_correct);
 		const droped_value_indicator_html = '<span class="'+((is_correct == 1) ? "icomoon-new-24px-checkmark-circle-1 font-weight-bold" : "icomoon-new-24px-cancel-circle-1 font-weight-bold")+'" style="color:'+((is_correct == 1) ? "green" : "red" )+';">';
 		let correct_incorrect_mark = '<span class="correct_incorrect_icon_fill" style="background:white;border-radius:15px 12px 12px;"> '  + droped_value_indicator_html + '</span></span>';
 		if (JS.find(ajax_eId, '.prettyprint', 'all').length > 0) {
