@@ -854,7 +854,7 @@
                         return 1;
                     }
 
-                    if (state.lang_type == 'sql' || state.lang_type == 'mssql' || state.lang_type == 'psql' || state.lang_type == 'c++') {
+                    if (state.lang_type == 'sql' || state.lang_type == 'mssql' || state.lang_type == 'psql' || state.lang_type == 'c++' || state.is_pre_tag == 1) {
                         let oup = res.output;
                         AH.select('#output', 'html', '<pre>' + oup + '</pre>');
                     } else {
