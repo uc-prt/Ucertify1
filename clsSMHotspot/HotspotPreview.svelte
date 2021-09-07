@@ -507,7 +507,7 @@
 		<div id="previewArea" class="relative">
 			<!-- if the type is text click or text select -->
 			{#if moduleArr[item_type] == "4"}
-				<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto'>
+				<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto uc-table'>
 					<tbody>
 						<tr>
 							<td class="border">
