@@ -283,7 +283,7 @@
 			</Button>
 		</center>
 	{:else  -->
-	{if state.loaditem != 'Default'}
+	{#if state.loaditem != 'Default'}
 		{#if state.loaditem == "Blank"} 
 			<center style="position:relative;top:{window.innerHeight*(.4)}px;">Checking Module...</center>
 		{:else}
