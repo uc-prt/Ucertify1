@@ -118,9 +118,7 @@
             state.case_insensitive = caseSensitive[0].split("=")[1].replace(/["']/g, "");
             state.partial_match = partialMatch[0].split("=")[1].replace(/["']/g, "");
         }
-        // let defaultXml = xml.match(/<SMXML[\s\S]*?<\/SMXML>/gim);
         langArr = xml.match(/<SMXML[\s\S]*?<\/SMXML>/gim);
-        
         if (langArr.length == 1) {
             language = langArr.toString().match(/language="(.*?)"/gim);
             language = language.toString().replace(/language=|"/gi, '');

@@ -544,7 +544,6 @@ export default class fillJS {
 				is_correct = 1;
 			}
 		}
-		
 		return is_correct;
 	}
 
