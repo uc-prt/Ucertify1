@@ -534,15 +534,7 @@ export default class fillJS {
 			if (haskey.split(',').length == valid && valid_is == 0) userans = anskey;
 		}
 		if (JS.select(fillid).getAttribute('multi') != 0) {
-			// if (anskey.substr(0, 1) != ",") {
-			// 	anskey = ","+anskey;
-			// }
-			// if (anskey.substr(-1, 1) != ",") {
-			// 	anskey += ",";
-			// }
-			
 			userans = userans.replace(/,/gm, "#cm");
-			//userans = ","+userans+",";
 			if (userans != "" && this.checkInArray(anskey.split(","),userans.split(',')) ) {
 				is_correct = 1;
 				userans = userans.replace(/#cm/gm, ",");
@@ -552,7 +544,6 @@ export default class fillJS {
 				is_correct = 1;
 			}
 		}
-		
 		return is_correct;
 	}
 

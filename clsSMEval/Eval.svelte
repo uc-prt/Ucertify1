@@ -118,9 +118,7 @@
             state.case_insensitive = caseSensitive[0].split("=")[1].replace(/["']/g, "");
             state.partial_match = partialMatch[0].split("=")[1].replace(/["']/g, "");
         }
-        // let defaultXml = xml.match(/<SMXML[\s\S]*?<\/SMXML>/gim);
         langArr = xml.match(/<SMXML[\s\S]*?<\/SMXML>/gim);
-        
         if (langArr.length == 1) {
             language = langArr.toString().match(/language="(.*?)"/gim);
             language = language.toString().replace(/language=|"/gi, '');
@@ -854,7 +852,7 @@
                         return 1;
                     }
 
-                    if (state.lang_type == 'sql' || state.lang_type == 'mssql' || state.lang_type == 'psql' || state.lang_type == 'c++') {
+                    if (state.lang_type == 'sql' || state.lang_type == 'mssql' || state.lang_type == 'psql' || state.lang_type == 'c++' || state.is_pre_tag == 1) {
                         let oup = res.output;
                         AH.select('#output', 'html', '<pre>' + oup + '</pre>');
                     } else {
