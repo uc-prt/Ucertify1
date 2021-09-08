@@ -626,7 +626,7 @@
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                     {#if (playerState.sub_type == 'image' && playerState.embed == 'inline')}
-                        <div class="mt-xl col-xs-4">
+                        <div class="mt-xl col-xs-4 position-relative borderCheck">
                             <Checkbox
                                 bind:checked={playerState.bordered}
                                 value={playerState.bordered}
@@ -826,5 +826,10 @@
 
     .alginLeft {
         left: 10px;
+    }
+
+    .borderCheck {
+        left: 12px;
+        bottom: 9px;
     }
 </style>
