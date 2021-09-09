@@ -2996,6 +2996,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 		selectedTest={(testObj) => state.testObj = testObj} 
 		guid={state.guid} 
 		smdata={state} 
+		caseid_val={state.caseid_val}
 		updateModule = {updateModuleState}
 	/> 
 {/if}
