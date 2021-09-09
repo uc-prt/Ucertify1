@@ -603,7 +603,7 @@ function searchText(_this) {
 	$allListElements.forEach(function(li) {
 		let listItemText = li.textContent.toUpperCase(); 
 		let searchText = _this.value.toUpperCase();
-		if (listItemText.indexOf(searchText)) {
+		if (listItemText.indexOf(searchText) != -1) {
 			li.style.display = "block";
 		} else {
 			li.style.display = "none";
