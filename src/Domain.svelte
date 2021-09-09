@@ -16,6 +16,7 @@
     export let selectedObjective;
     export let selectedCoverage;
     export let editorState;
+    export let caseid_val;
 
     let items = []; // array to store domains
     let action = "";
@@ -56,6 +57,7 @@
     })
 
     onMount(async ()=> {
+        state.caseid_val = caseid_val;
         init();
         if (AH.get('domainData')) {
             domainData= AH.get('domainData')[editorState.guid];
