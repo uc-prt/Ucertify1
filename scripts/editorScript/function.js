@@ -541,7 +541,7 @@ var EXAMMAPPING = "";
 function checkedExamObjective(_this) {
 	if (EXAMMAPPING != "" && EXAMMAPPING != "null") {
 		let guid = EXAMMAPPING;
-		AI.selectAll('input[name="exam_obj[]"]').forEach((elm)=> elm.setAttribute('checked',''));
+		AI.selectAll('input[name="exam_obj[]"]').forEach((elm)=> elm.checked=false);
 		AI.select('input[name="exam_obj[]"]').parentElement.style.background = '#fff';
 		let content_guid = getURLParameter('content_guid');
 		for (let k in guid) {
@@ -650,10 +650,9 @@ function assignObjective(_this) {
 }
 
 function selectObjRadio(_this) {
-	if (_this.getAttribute("checked") == '') {	
+	if (_this.checked == false ) {	
 		_this.parentElement && (_this.parentElement.style.background = '#fff');
-		 AI.selectAll("#assign_exam_obj", 'removeAttr', "disabled");
-		_this.removeAttribute("checked");
+		AI.selectAll("#assign_exam_obj", 'removeAttr', "disabled");
 	} else {
 		AI.select("#assign_exam_obj").disabled =  true;
 		_this.parentElement && (_this.parentElement.style.background = '#e3e3eb');
