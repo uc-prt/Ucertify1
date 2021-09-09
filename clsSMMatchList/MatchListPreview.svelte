@@ -20,6 +20,7 @@
 	import './css/matchList.min.css';
 	import { Button, Dialog } from 'svelte-mui/src';
 	
+	export let user_guid;
 	export let showAns;
 	export let cmed;
 	export let xml;
@@ -868,8 +869,8 @@
 	</div>
 	<Dialog 
 		bind:visible={state.dropDialog} 
-		width="450"
-		height="254"
+		width="450px"
+		height="271px"
 		style="background: #fff; border-radius: 5px;"
 	>
 		<div style="font-weight:bold;" class="clearfix">
