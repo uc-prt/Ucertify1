@@ -668,7 +668,7 @@
             <p class="mt-2">{l.snt_des}</p>
             <div class="row">
                 <div class="pt-2 col-xs-12 alignRight position-relative">
-                    <label for="refid" class="text-dark d-inline">{l.des_txt}</label>                
+                    <label for="refid" class="text-dark d-inline">{l.des_txt}</label>
                     <select 
                         value={playerState.snt} 
                         id="refid" 
@@ -676,12 +676,12 @@
                         class="btn border p-2 ml-md clearfix width99 pointer" 
                         on:blur={(e)=>{setInputState('snt', e.target.value)}}
                     >
-                        <option value='1441'>{l.snt_41}</option>
-                        <option value='1440'>{l.snt_40}</option>                            
-                        <option value='1439'>{l.snt_39}</option>                            
-                        <option value='1438'>{l.snt_38}</option>                            
-                        <option value='1437'>{l.snt_37}</option>                            
-                        <option value='1436'>{l.snt_36}</option>                                                        
+                        <option value='00cRX'>{l.snt_41}</option>
+                        <option value='00cRV'>{l.snt_40}</option>                            
+                        <option value='00cRn'>{l.snt_39}</option>                            
+                        <option value='00cRC'>{l.snt_38}</option>                            
+                        <option value='00cRb'>{l.snt_37}</option>                            
+                        <option value='00cRB'>{l.snt_36}</option>                                                        
                     </select>
                 </div>
             </div>

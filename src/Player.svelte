@@ -37,7 +37,7 @@
             sqlLab: false,
             layout: 'button',
             from_coverage: false,
-            snt: '1441',
+            snt: '00cRX',
             seq: '',
             weblinkEmbed: false,
             spanstyle: '',
