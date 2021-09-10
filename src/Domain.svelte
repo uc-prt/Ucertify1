@@ -153,7 +153,6 @@
     })
 
     function setDomainData() {
-        console.log(domainData);
         if (domainData && url.get('router_guid')) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
