@@ -83,10 +83,15 @@
         itemsCoverage.push({value: 0, key: "0", label: "Select Section"});
         courses.push({value: 0, key: "0", label: "Select Course"});
         if (!error['domains']) {
-            for (let i in window.domains) {
-                items.push({value: i, key: i, label: window.domains[i].f + " " + window.domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ")});
+            let is_draft = '';
+            for (let i in domains) {
+                if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
+                    is_draft = ' (Unpublished)';
+                }
+                items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
             }
         }
+        console.log('items', items);
         if (!error['my_coursess']) {
             for (let i in my_courses) {
                 courses.push({value: my_courses[i]["course_code"], key: i, label: my_courses[i]["course_name"] + " "});
@@ -304,7 +309,7 @@
         state.courses = course;
         setCourse(course);
         try {
-            AI.activate(1);
+            AH.activate(1);
             AH.ajax({
                 url: baseUrl + "editor/index.php",
                 withUrl: true,
@@ -324,7 +329,7 @@
                     state.objectives = chapters[1]; 
                     state.coverage = chapters[2]; 
                     state.value = items;
-                    AI.activate(0);
+                    AH.activate(0);
                 } catch (e) {
                     console.log("Coverage no found");
                 }
@@ -355,14 +360,14 @@
                 state.coverage_guid = 0;
             }
         } catch (e) { console.log(e);}
-        AI.set('save_item', true);
+        AH.set('save_item', true);
     }
 
     // Handle coverage data change
     function handleCoverageChange(event) {
         let value = event.target.value;
         state.coverage_guid = value;
-        AI.set('save_item', true);
+        AH.set('save_item', true);
     }
 
     // Handle case Id change from domain dialog
@@ -399,7 +404,7 @@
         //set state of editor
         editorState.exam_objective_mapping_save = 1;
         setTimeout(function() {
-            AI.activate(1);
+            AH.activate(1);
             if (from_coverage) {
                 // for add new content
                 saveDomain(1);
