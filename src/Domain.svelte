@@ -91,7 +91,6 @@
                 items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
             }
         }
-        console.log('items', items);
         if (!error['my_coursess']) {
             for (let i in my_courses) {
                 courses.push({value: my_courses[i]["course_code"], key: i, label: my_courses[i]["course_name"] + " "});
