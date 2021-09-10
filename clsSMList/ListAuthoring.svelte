@@ -107,6 +107,10 @@
                     state.selected_length = 0;
             }
         })
+
+        AH.listen(document,'click','#okDialog',function() {
+            state.EditorModalBox = false;
+        })
     })
 
     afterUpdate(()=>{
@@ -385,12 +389,13 @@
                 //         resolve(json_received_string.content_guid);
                 //     }
                 // });
-
+                
                 AH.ajax({
                     type: "post",
                     url: baseUrl + 'editor/index.php',
+                    longData: true,
                     data: {
-                        str_content: question_obj, // data in the form of object for update the guid
+                        str_content: JSON.stringify(question_obj), // data in the form of object for update the guid
                         func: "update_guid_from_api", // defines the condiditon in which it can be access on server side
                         content_guid: current_guid // sends the guid that has to be update
                     },
@@ -403,10 +408,10 @@
                         let json_received_string = JSON.parse(response);
                         if (json_received_string.content_guid && (close_activator == true)) {
                             // close the activator
-                            AH.activate(0);
+                            //AH.activate(0);
                             // shows the warning message
                             
-                            AI && AH.showmsg(l.child_updated, 4000);
+                            AH && AH.showmsg(l.child_updated);
                         }
                         resolve(json_received_string.content_guid);
                     
@@ -909,7 +914,7 @@
 						<input type="button" variant="contained" on:click={() => {state.EditorModalBox = false}} class="btn btn-light colorgray" value="No" />
 
 						<Button variant="contained" on:click={()=>{handleUpdate(row_no)}}
-							class="bg-primary text-white"> OK </Button>
+							class="bg-primary text-white" id="okDialog"> OK </Button>
 					</div>
 			
 					

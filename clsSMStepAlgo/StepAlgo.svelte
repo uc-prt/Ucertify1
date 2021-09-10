@@ -110,6 +110,7 @@
             state.xml = xml;
             if (stopAuthoringUpdate === true) return;
             new_xml = XMLToJSON(state.xml);
+            
             showItems(new_xml.smxml.step);
         }
     })
@@ -159,6 +160,9 @@
     }
 
     function parseXmlAuthoring(steps) {
+        //let go_next_xml = new_xml;
+        state.fixed = new_xml.smxml._fixed;
+        state.gonext = new_xml.smxml._gonext;
         steps.map(function(item, index) {
             let cdata = item.__cdata;
             let answerKey = cdata.match(/%{[\s\S]*?}%/gm);
@@ -212,10 +216,12 @@
     function fixedAnswer(id) {
         let ref = document.querySelector("#"+id);
         if(ref.checked) {
-            state.variable_button = true;
+            //state.variable_button = true;
+            state.fixed = true;
             new_xml.smxml._fixed = "1";
         } else {
-            state.variable_button = false;
+            //state.variable_button = false;
+            state.fixed = false;
             new_xml.smxml._fixed = "0";
         }
         updateXML();
@@ -478,14 +484,14 @@
                 <div class="modes_checkbox d-inline-block top-checkbox_gonext position-relative top2">
                     <Checkbox  
                         id="go_next" 
-                        defaultChecked = {state.gonext ? true: false} 
+                        checked = {state.gonext == 1 ? true: false} 
                         on:click={(e)=>{goNext("go_next",e)}} 
                     >{"Go Next"}</Checkbox>  
                 </div>
                 <div class="modes_checkbox d-inline-block m-l top-checkbox_fix position-relative top2">
                     <Checkbox  
                         id="fixedans_checkbox" 
-                        defaultChecked = {state.variable_button ? true: false} 
+                        checked = {state.fixed == 1 ? true: false} 
                         on:click={(e)=>{fixedAnswer("fixedans_checkbox",e)}} 
                     >{"Fix Answer"} </Checkbox>
                 </div>

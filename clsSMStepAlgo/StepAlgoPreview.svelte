@@ -79,9 +79,7 @@
 	// }
 
 	beforeUpdate(()=>{
-		if(state.isMathquill) {
-			loadLibs();
-		}
+		
 		if (uxml) {
 			let answer = XMLToJSON(uxml);
 			if (answer.smans) {

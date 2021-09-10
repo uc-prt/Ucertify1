@@ -778,10 +778,9 @@
                 if (is_valid) {
                     AI.activate(2);
                     AH.ajax({
-                        url: baseUrl+'editor/index.php',
+                        url: baseUrl+'editor/index.php?func=get_item_details',
                         data: {
                             item_id: asset,
-                            func: 'get_item_details'
                         },                        
                     }).then((response)=> {
                         if (response != 1) {

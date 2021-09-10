@@ -830,7 +830,7 @@
                 {#each openGudids as guidSeq}
                     <Menuitem
                         id={"seq_" + guidSeq}
-                        class="shortList"
+                        class="shortList border-bottom"
                         on:click={loadSelectedItem.bind(this, editorRouter[guidSeq])}
                         style="cursor: pointer; font-size: 15px; background:  {(guidSeq == currentGuid) ? '#e9ecef': 'none'}"
                     >
@@ -841,6 +841,7 @@
                             ></span>
                             {editorRouter[guidSeq].snippet}
                         </span>
+                        
                     </Menuitem>
                 {/each}
             {/if}

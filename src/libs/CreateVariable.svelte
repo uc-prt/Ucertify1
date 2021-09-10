@@ -676,7 +676,7 @@
                                     style="width: 33px; display: inline-block; border-radius: 50%; font-size: 17px; border: 2px solid white; height: 33px" 
                                     on:click={deleteConfirm.bind(this, index)}
                                 >
-                                    <a href="#" style="font-size: 16px; margin-left: 6.3px" class="btn-md icomoon-new-24px-delete-1"></a>
+                                    <a href="#" style="font-size: 16px; margin-left: 6.3px" class="btn-md icomoon-new-24px-delete-1 deleteIcon"></a>
                                 </div>
                                 <hr />
                             </div>
@@ -801,6 +801,9 @@
         transition: color 1s;
         color: #00bcd4;
         font-size: 14.2px;
+    }
+    :global(.deleteIcon:hover) {
+        text-decoration: none;
     }
     @media screen and (max-width: 800px) {
         .validate {
