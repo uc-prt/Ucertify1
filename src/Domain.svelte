@@ -57,7 +57,6 @@
     })
 
     onMount(async ()=> {
-        state.caseid_val = caseid_val;
         init();
         if (AH.get('domainData')) {
             domainData= AH.get('domainData')[editorState.guid];
@@ -171,6 +170,7 @@
     }
 
     beforeUpdate(async ()=> {
+        state.caseid_val = caseid_val;
         if (domainToggle != state.open) {
             state.open = domainToggle;
             if (state.test.t == -3 || state.test.t == -14 || state.test.t == -13 || state.test.t == -1) {
