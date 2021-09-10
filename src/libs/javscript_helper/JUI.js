@@ -685,15 +685,20 @@ export default class JUI extends API{
 
     jsonFormEncode(formData, prop, jsonArray) {
         try {
-            for (let i = 0; i < jsonArray.length; i++) {
-                for (let key in jsonArray[i]) {
-                    formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
+            if (Array.isArray(jsonArray)) {
+                for (let i = 0; i < jsonArray.length; i++) {
+                    for (let key in jsonArray[i]) {
+                        formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
+                    }
+                }
+            } else {
+                for (var key in jsonArray) {
+                    formData.append(`${prop}[${key}]`, jsonArray[key])
                 }
             }
         } catch(error) {
-            console.warn("Please provide valid JSON Object in ajax data.");
+            console.warn("Please provide valid JSON Object in ajax data."+ error);
         }
-
         return formData;
     }
 

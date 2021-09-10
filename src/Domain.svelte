@@ -16,6 +16,7 @@
     export let selectedObjective;
     export let selectedCoverage;
     export let editorState;
+    export let caseid_val;
 
     let items = []; // array to store domains
     let action = "";
@@ -30,26 +31,26 @@
     let url = AH.url();
     //State creation
     let hdd = writable({
-      open: false,
-      value: 0,
-      domainArray: [],
-      guid: "",
-      coverage_guid: 0,
-      itemsCoverage: [],
-      courses: 0,
-      showCoverage: true,
-      mapping: false,
-      disExercise: false,
-      testSetList: [],
-      caseid_val: "",
-      test: {
-        q: false,
-        p: false,
-        f: false,
-        l: false,
-        u: false,
-        t: 0
-      }
+        open: false,
+        value: 0,
+        domainArray: [],
+        guid: "",
+        coverage_guid: 0,
+        itemsCoverage: [],
+        courses: 0,
+        showCoverage: true,
+        mapping: false,
+        disExercise: false,
+        testSetList: [],
+        caseid_val: "",
+        test: {
+            q: false,
+            p: false,
+            f: false,
+            l: false,
+            u: false,
+            t: 0
+        }
     });
     const unsubscribe = hdd.subscribe((item)=> {
         state = item;
@@ -152,7 +153,6 @@
     })
 
     function setDomainData() {
-        console.log(domainData);
         if (domainData && url.get('router_guid')) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
@@ -169,6 +169,7 @@
     }
 
     beforeUpdate(async ()=> {
+        state.caseid_val = caseid_val;
         if (domainToggle != state.open) {
             state.open = domainToggle;
             if (state.test.t == -3 || state.test.t == -14 || state.test.t == -13 || state.test.t == -1) {
@@ -486,7 +487,7 @@
                         </label>
                         <select
                             id="course_select"
-                            value={state.courses}
+                            bind:value={state.courses}
                             on:blur={handleCourseChange}
                             style="margin: 2px 24px; width: 50%"
                             disabled={url.get("todo_table") == 1 ? true : false}
@@ -507,7 +508,7 @@
                         Lesson
                     </label>
                     <select
-                        value={state.value}
+                        bind:value={state.value}
                         id="select_domain"
                         on:blur={handleChange}
                         style="margin: 2px 24px; width: 70%;"
@@ -530,7 +531,7 @@
                             Section{" "}
                         </label>
                         <select
-                            value={state.coverage_guid}
+                            bind:value={state.coverage_guid}
                             on:blur={handleCoverageChange}
                             style="margin: 2px 24px; width: 70%;"
                             class="domain_select"
@@ -558,7 +559,7 @@
                                         Test{" "}
                                     </label>
                                     <select
-                                        value={state.test.t}
+                                        bind:value={state.test.t}
                                         style="width: 73%;"
                                         on:blur={handleTestChange}
                                         class="domain_select"
@@ -633,7 +634,7 @@
                         id="caseid"
                         type="text"
                         on:input={handleCaseID}
-                        defaultValue={state.caseid_val}
+                        bind:value={state.caseid_val}
                         placeholder="Enter Case ID"
                         style = "margin-left: 10px; height: 40px; width: 50%;"
                         class='mt-3 domain_select'
