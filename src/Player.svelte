@@ -880,7 +880,14 @@
             } else {
                 AH.activate(2);
                 let url = AH.select('.media_tag #asset').getAttribute('data-value');
-                AH.ajax({url: baseUrl+'utils/vtt_parser.php', data: {func:'check_media', ajax:1, video_url:url} }).then((response)=> {
+                AH.ajax({
+                    url: baseUrl+'utils/vtt_parser.php', 
+                    data: {
+                            func:'check_media', 
+                            ajax:1, 
+                            video_url:url
+                        }
+                }).then((response)=> {
                     if (response.msg == 'Media already exist!') {
                         AI.showmsg(l.vtt_exists);
                         AH.select('.edit_transcript').disabled =  (response.vtt != 1);
@@ -1060,23 +1067,25 @@
             </div>
         </div>
     </div>
-    <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    <div slot="footer"  class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+        <Button
+            variant="contained"
+            disableRipple="true"
+            on:click={handleTranscriptDialog}
+            color="primary"
+            class="BtnOutline"
+        >
+            {l.cancel}
+        </Button>
         <Button
             id="xmlDone"
             variant="contained"
             disableRipple="true"
             on:click={addTranscript}
             color="primary"
+            class="BtnDark"
         >
             {l.add_vtt}
-        </Button>
-        <Button
-            variant="contained"
-            disableRipple="true"
-            on:click={handleTranscriptDialog}
-            color="primary"
-        >
-            {l.cancel}
         </Button>
     </div>
 </Dialog>
@@ -1091,6 +1100,17 @@
 
     :global(.deleteinterval) {
         color: #b0281a;
+    }
+
+    :global(.BtnDark) {
+        color: #fff!important;
+        background-color: #343a40!important;
+        border-color: #343a40!important;
+    }
+
+    :global(.BtnOutline) {
+        color: #343a40!important;
+        border-color:2px outline #343a40!important;
     }
 
 </style>
