@@ -494,7 +494,8 @@
         } else {
             source.setAttribute('src','http://s3.amazonaws.com/jigyaasa_content_stream/' + url);
         }
-        AH.select(video).innerHTML = source;
+        //AH.select(video).innerHTML = source;
+        video.append(source);
         AH.select('#media_duration').setAttribute('value','');
         updateVideoDuration(get_duration)
     }
@@ -1037,7 +1038,7 @@
             <div>{l.add_transcript_msg}</div>
         </div>
     </h4>
-    <div style="overflow-y: auto;">
+    <div style="">
         <div class="add_transcript_dialog min_height_352">
             <div class="row">
                 <div class="col-12">
@@ -1067,7 +1068,7 @@
             </div>
         </div>
     </div>
-    <div slot="footer"  class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    <div slot="footer" class="footer bttmBtn" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
         <Button
             variant="contained"
             disableRipple="true"
@@ -1106,11 +1107,23 @@
         color: #fff!important;
         background-color: #343a40!important;
         border-color: #343a40!important;
+        position: relative;
+        left: 6px;
     }
 
     :global(.BtnOutline) {
         color: #343a40!important;
-        border-color:2px outline #343a40!important;
+        border: 1px solid #343a40!important;
     }
+
+    :global(.bttmBtn) {
+        display: inline-block;
+        float: right;
+        position: relative;
+        right: 24px;
+        bottom: 10px;
+    }
+
+   
 
 </style>
