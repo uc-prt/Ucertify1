@@ -190,7 +190,8 @@
 
                         if (player_type == "video") {
                             if (new_key == 'group_guids' && editorState.playerArr[key].trim().length == 5) {
-                                AH.setAttr('.edit_transcript', {'guid': editorState.playerArr[key], 'disabled': false});;
+                                AH.setAttr('.edit_transcript', {'guid': editorState.playerArr[key]});
+                                AH.select('.edit_transcript').disabled = false;
                             } else if (new_key == "asset") {
                                 var asset_value = editorState.playerArr[key].trim();
                                 AH.select(input_id + ' #' + new_key).setAttribute('data-value', asset_value)
@@ -473,7 +474,7 @@
 
     function openTranscript(media_guid) {
         var anchor_tag = document.createElement('a');
-        anchor_tag.href = baseUrl + 'editor/?action=edit&content_guid=' +  media_guid + '&no_header=1&react_content=1&no_domain=1&video_player=1';
+        anchor_tag.href = baseUrl + 'editor/v2/?action=edit&content_guid=' +  media_guid + '&no_header=1&react_content=1&no_domain=1&video_player=1';
         anchor_tag.target = '_blank';
         anchor_tag.click();
     }

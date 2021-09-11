@@ -333,7 +333,7 @@
                             disabled={playerState.security || playerState.intervals}
                         />
                     </div>
-                    <div class="mt-xl position-relative alignRight">
+                    <div class="mt-xl position-relative alignRight" style={(playerState.multiple || playerState.intervals) ? 'opacity:0.5;' : ''}>
                         <div class={(playerState.security ? '' : 'd-flex ')}>
                             <Checkbox
                                 bind:checked={playerState.security}
@@ -346,7 +346,7 @@
                             {#if playerState.security}
                                 <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
                             {:else}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"   title={l.security_title}></span>
                             {/if}
                              
                         </div>
@@ -361,7 +361,7 @@
                             </div>
                         {/if}
                     </div>
-                    <div class="mt-lg position-relative alignRight">
+                    <div class="mt-lg position-relative alignRight" style={(playerState.security || playerState.intervals) ? 'opacity:0.5;' : ''}>
                         <Checkbox
                             bind:checked={playerState.multiple}
                             value={playerState.multiple}
@@ -374,7 +374,7 @@
                             <p class="mt-md mb-0">{l.multiple_info}</p>
                         {/if}
                     </div>
-                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
+                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"} style={(playerState.security || playerState.multiple) ? 'opacity:0.5;' : ''}>
                         <Checkbox
                             bind:checked={playerState.intervals}
                             value={playerState.intervals}
