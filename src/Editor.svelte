@@ -2239,18 +2239,19 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 // Stage update for current guid
 function updateStage() {
 	if (AH.isValid(stageComment) && state.guid) {
-		let _data = [];
-		_data.push({name: 'user_guid_r',  value: user_guid});
-		_data.push({name: 'content_guid', value: state.guid});
-		_data.push({name: 'text',         value: stageComment});
-		_data.push({name: 'annotation_type', value: 3});
-		_data.push({name: 'tags', value: -2});
+		let _data = { 
+				'user_guid_r' : user_guid, 
+				'content_guid': state.guid, 
+				'text':stageComment,  
+				'annotation_type': 3, 
+				'tags': -2
+			}
 		AH.ajax({
-			url    : baseUrl + "educator/project/project.php?func=new_comment",
+			url    : baseUrl + "educator/project/index.php?func=new_comment",
 			method : "POST",
 			data   : _data,
 		}).then((data)=> {
-				//comment update
+		    //comment update
 		});
 	}
 	switch (AH.get('saveType')) {
