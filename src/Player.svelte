@@ -927,7 +927,7 @@
             <select 
                 id="#playerCat"
                 bind:value={state.category} 
-                on:blur={handlePlayer} 
+                on:change={handlePlayer}
                 style="margin-left: 0px;" 
                 class='v-bottom btn dialogSelectBorder p-2'
             >
