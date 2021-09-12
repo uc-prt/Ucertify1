@@ -340,6 +340,7 @@
     function handleChange(event) {
         let value = event.target.value;
         state.value = value;
+        console.log('state.value', state.value);
         try {
             if (objectives || state.objectives) {
                 if (state.objectives) {
@@ -431,6 +432,7 @@
             console.log(e);
         }
     }
+    $: console.log('state.value2', state.value);
 </script>
 
 <Dialog bind:visible={state.open} width="700" style="background: #fff; border-radius: 5px;">
@@ -557,21 +559,20 @@
                                 <div>
                                     <label
                                         class="coverage_label"
-                                        for="domain_select"
+                                        for="test_select"
                                         style="width: 14%;"
                                     >
                                         Test{" "}
                                     </label>
                                     <select
-                                        bind:value={state.test.t}
                                         style="width: 73%;"
                                         on:blur={handleTestChange}
                                         class="domain_select"
-                                        id="domain_select"
+                                        id="test_select"
                                         disabled={smdata.item == 36 ? true : false}
                                     >
                                         {#each state.testSetList as data}
-                                            <option value={data.value} key={data.key}>
+                                            <option value={data.value} key={data.key} selected={state.test.t == data.value ? 'selected' : ''}>
                                                 {data.label}
                                             </option>
                                         {/each}
