@@ -584,7 +584,7 @@
                             <div class="col-md-12 preAssessment mt-3">
                                 <Checkbox
                                     id="preAssessment"
-                                    bind:checked={state.test.p}
+                                    checked={state.test.p}
                                     on:click={updateTestValue.bind(this, "p")}
                                     color = "primary"
                                     disabled={smdata.item == 36 ? true : false}
