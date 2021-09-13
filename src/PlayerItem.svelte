@@ -51,7 +51,7 @@ onMount(()=> {
                     is_multiple="1"
                 />
             </div>
-            <div class="pl-0 ml-0 mt-4">
+            <div class="mt-4">
                 <input
                     type="checkbox"
                     bind:checked={playerState.nofeedback}
@@ -247,12 +247,18 @@ onMount(()=> {
                 </div>
             {/if}
             {#if playerState.type == 'lablink'}
-                <div class="mt-xl position-relative alignRight">
-                    <Checkbox
-                        checked={playerState.isplayer}
+                <div class="mt-4">
+                    <input
+                        type="checkbox"
+                        bind:checked={playerState.isplayer}
                         value={playerState.isplayer}
                         color="default"
-                    ><span class="mr-0 mb-0 height27">{l.learn_mode}</span></Checkbox>
+                        class="custom_checkbox_new"
+                        id="isplayer_checkbox"
+                    />
+                    <label for="isplayer_checkbox" class="position-relative top_minus4">
+                        {l.learn_mode}
+                    </label>
                 </div>
             {/if}
             {#if playerState.isplayer}
@@ -336,16 +342,20 @@ onMount(()=> {
                             disabled={playerState.security || playerState.intervals}
                         />
                     </div>
-                    <div class="mt-xl position-relative alignRight" style={(playerState.multiple || playerState.intervals) ? 'opacity:0.5;' : ''}>
-                        <div class={(playerState.security ? '' : 'd-flex ')}>
-                            <Checkbox
-                                checked={playerState.security}
+                    <div class="mt-4">
+                        <div class={(playerState.security ? 'mt-4' : 'mt-4 d-flex ')}>
+                            <input
+                                type="checkbox"
+                                bind:checked={playerState.security}
                                 value={playerState.security}
                                 color="default"
+                                class="custom_checkbox_new"
+                                id="security_checkbox"
                                 disabled={playerState.multiple || playerState.intervals}
-                            >
-                                <span class="mr-0 mb-0 height27">{l.security_info}</span>
-                            </Checkbox>
+                            />
+                            <label for="security_checkbox" class="position-relative top_minus4">
+                                {l.security_info}
+                            </label>
                             {#if playerState.security}
                                 <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
                             {:else}
@@ -363,28 +373,36 @@ onMount(()=> {
                             </div>
                         {/if}
                     </div>
-                    <div class="mt-lg position-relative alignRight" style={(playerState.security || playerState.intervals) ? 'opacity:0.5;' : ''}>
-                        <Checkbox
-                            checked={playerState.multiple}
+                    <div class="mt-4">
+                        <input
+                            type="checkbox"
+                            bind:checked={playerState.multiple}
                             value={playerState.multiple}
                             color="default"
+                            class="custom_checkbox_new"
+                            id="multiple_checkbox"
                             disabled={playerState.security || playerState.intervals}
-                        >
-                            <span class="mr-0 mb-0 height27">{l.multiple_video}</span>
-                        </Checkbox>
+                        />
+                        <label for="multiple_checkbox" class="position-relative top_minus4">
+                            {l.multiple_video}
+                        </label>
                         {#if playerState.multiple}
                             <p class="mt-md mb-0">{l.multiple_info}</p>
                         {/if}
                     </div>
-                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"} style={(playerState.security || playerState.multiple) ? 'opacity:0.5;' : ''}>
-                        <Checkbox
-                            checked={playerState.intervals}
+                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
+                        <input
+                            type="checkbox"
+                            bind:checked={playerState.intervals}
                             value={playerState.intervals}
                             color="default"
+                            class="custom_checkbox_new"
+                            id="intervals_checkbox"
                             disabled={playerState.security || playerState.multiple}
-                        >
-                            <span class="mr-0 mb-0 height27">{l.add_interval}</span>
-                        </Checkbox>
+                        />
+                        <label for="intervals_checkbox" class="position-relative top_minus4">
+                            {l.add_interval}
+                        </label>
                     </div>
                     <div>
                         {#if playerState.intervals}
@@ -493,18 +511,16 @@ onMount(()=> {
                         label={l.item_id}
                         value={playerState.snt}
                     />
-                    <div class="mt-xl col-xs-2 p-0">
-                        <span class="position-relative alginLeft">
-                            <input 
-                                type="checkbox" 
-                                class="custom_checkbox_new"
-                                id="asset_checkbox"
-                                bind:checked={playerState.inline}
-                                value={playerState.inline}
-                                color="default"
-                            />
-                            <label class="mr-0 mb-0 height27 fontSize" for="asset_checkbox">{l.inline}</label>
-                        </span>
+                    <div class="mt-4">
+                        <input 
+                            type="checkbox" 
+                            class="custom_checkbox_new"
+                            id="asset_checkbox"
+                            bind:checked={playerState.inline}
+                            value={playerState.inline}
+                            color="default"
+                        />
+                        <label for="asset_checkbox" class="position-relative top_minus4">{l.inline}</label>
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                 </div>
@@ -640,29 +656,31 @@ onMount(()=> {
             {/if}
             {#if (playerState.type == 'exhibit')}
                 <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex alignRight position-relative' : 'row alignRight position-relative'}>
-                    <div class="mt-xl col-xs-2 p-0">
-                        <span class="position-relative alginLeft">
-                            <input 
-                                type="checkbox" 
-                                class="custom_checkbox_new"
-                                id="exhibit_inline_checkbox"
-                                bind:checked={playerState.inline}
-                                value={playerState.inline}
-                                color="default"
-                            />
-                            <label class="mr-0 mb-0 height27 fontSize" for="exhibit_inline_checkbox">{l.inline}</label>
-                        </span>
+                    <div class="mt-4">
+                        <input 
+                            type="checkbox" 
+                            class="custom_checkbox_new"
+                            id="exhibit_inline_checkbox"
+                            bind:checked={playerState.inline}
+                            value={playerState.inline}
+                            color="default"
+                        />
+                        <label for="exhibit_inline_checkbox" class="position-relative top_minus4">{l.inline}</label>
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                     {#if (playerState.sub_type == 'image' && playerState.embed == 'inline')}
-                        <div class="mt-xl col-xs-4 position-relative borderCheck">
-                            <Checkbox
-                                checked={playerState.bordered}
+                        <div class="mt-4">
+                            <input
+                                type="checkbox"
+                                bind:checked={playerState.bordered}
                                 value={playerState.bordered}
                                 color="default"
-                            >
-                                <span class="mr-0 mb-0 height27">{l.border_txt}</span>
-                            </Checkbox>
+                                class="custom_checkbox_new"
+                                id="bordered_checkbox"
+                            />
+                            <label for="bordered_checkbox" class="position-relative top_minus4">
+                                {l.border_txt}
+                            </label>
                             <input type="hidden" id="bordered" name="bordered" value={playerState.bordered ? 1 : ''} />
                         </div>
                     {/if}
@@ -752,7 +770,7 @@ onMount(()=> {
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl">
+            <div class="mt-4">
                 <input
                     type="checkbox"
                     bind:checked={playerState.nofeedback}
