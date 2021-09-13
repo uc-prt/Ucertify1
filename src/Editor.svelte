@@ -350,7 +350,8 @@ function setBasicData(title, stem, remediation, skip = false) {
 		state.stem = stem;
 		state.remediation = remediation;
 	}
-	AH.select("#title, #title_show").innerHTML = title;
+	AH.select("#title").innerHTML = title;
+	AH.select("#title_show").innerHTML = title;
 	stem = editorConfig.replaceUnwantedEntity(stem, 'cleanHiddenEnity');
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
@@ -2623,7 +2624,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	>
         <ul class="nav nav-tabs editorTabs" id="edi_tabs">
             <li><a data-bs-toggle="tab" href="#authoringDiv" class="active">{"Authoring"}</a></li>
-            <li><a data-bs-toggle="tab" href={state.viewConfig.isFullMode ? "fullMode_custom_columnize" : "#custom_columnize"}>{"Preview"}</a></li>
+            <li><a data-bs-toggle="tab" href={state.viewConfig.isFullMode ? "#fullMode_custom_columnize" : "#custom_columnize"}>{"Preview"}</a></li>
         </ul>
         <div class="tab-content editorTabContent">
             <div

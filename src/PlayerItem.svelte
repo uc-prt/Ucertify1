@@ -54,7 +54,7 @@
             </div>
             <div class="mt-xl alignRight position-relative checkGrade">
                 <Checkbox
-                    bind:checked={playerState.nofeedback}
+                    checked={playerState.nofeedback}
                     value={playerState.nofeedback}
                     color="default"
                 >
@@ -73,7 +73,7 @@
                         id="type" 
                         name="type" 
                         class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
-                        value={playerState.type} 
+                        bind:value={playerState.type} 
                         on:change={(e)=>{setInputState('type', e.target.value)}}
                     >
                         <option value="playground">{l.playground}</option>
@@ -87,8 +87,8 @@
                             id="sub_type" 
                             name="sub_type" 
                             class="btn border p-2 width80 clearfix pointer" 
-                            value={playerState.sub_type} 
-                            on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
+                            bind:value={playerState.sub_type} 
+                            on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
                             <option value="java">{l.java_txt}</option>
                             <option value="linus">{l.linux_txt}</option>
@@ -100,8 +100,8 @@
                             id="sub_type" 
                             name="sub_type" 
                             class="btn border p-2 clearfix pointer" 
-                            value={playerState.sub_type} 
-                            on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
+                            bind:value={playerState.sub_type} 
+                            on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
                             <option value="insight">{l.lab3d}</option>
                             <option value="scorm">{l.scorm_txt}</option>
@@ -163,8 +163,8 @@
                             id="embed" 
                             name="embed" 
                             class="btn border p-2 w-100 clearfix mt-3 pointer" 
-                            value={playerState.embed} 
-                            on:blur={(e)=>{setInputState('embed', e.target.value)}}
+                            bind:value={playerState.embed} 
+                            on:change={(e)=>{setInputState('embed', e.target.value)}}
                         >
                             <option value="inline">{l.embed}</option>
                             <option value="new_tab">{l.new_tab}</option>
@@ -246,7 +246,7 @@
             {#if playerState.type == 'lablink'}
                 <div class="mt-xl position-relative alignRight">
                     <Checkbox
-                        bind:checked={playerState.isplayer}
+                        checked={playerState.isplayer}
                         value={playerState.isplayer}
                         color="default"
                     ><span class="mr-0 mb-0 height27">{l.learn_mode}</span></Checkbox>
@@ -269,8 +269,8 @@
                     id="type" 
                     name="type" 
                     class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
-                    value={playerState.type} 
-                    on:blur={(e)=>{setInputState('type', e.target.value)}}
+                    bind:value={playerState.type} 
+                    on:change={(e)=>{setInputState('type', e.target.value)}}
                 >
                     <option value="audio">{l.audio_txt}</option>
                     <option value="video">{l.video_txt}</option>
@@ -336,7 +336,7 @@
                     <div class="mt-xl position-relative alignRight">
                         <div class={(playerState.security ? '' : 'd-flex ')}>
                             <Checkbox
-                                bind:checked={playerState.security}
+                                checked={playerState.security}
                                 value={playerState.security}
                                 color="default"
                                 disabled={playerState.multiple || playerState.intervals}
@@ -363,7 +363,7 @@
                     </div>
                     <div class="mt-lg position-relative alignRight">
                         <Checkbox
-                            bind:checked={playerState.multiple}
+                            checked={playerState.multiple}
                             value={playerState.multiple}
                             color="default"
                             disabled={playerState.security || playerState.intervals}
@@ -376,7 +376,7 @@
                     </div>
                     <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
                         <Checkbox
-                            bind:checked={playerState.intervals}
+                            checked={playerState.intervals}
                             value={playerState.intervals}
                             color="default"
                             disabled={playerState.security || playerState.multiple}
@@ -445,8 +445,8 @@
                         id="type" 
                         name="type" 
                         class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
-                        value={playerState.type} 
-                        on:blur={(e)=>{setInputState('type', e.target.value)}}
+                        bind:value={playerState.type} 
+                        on:change={(e)=>{setInputState('type', e.target.value)}}
                     >
                         <option value="download">{l.download_txt}</option>
                         <option value="exhibit">{l.exhibit_txt}</option>
@@ -459,8 +459,8 @@
                             id="sub_type" 
                             name="sub_type" 
                             class="btn border p-2 width90 clearfix pointer" 
-                            value={playerState.sub_type} 
-                            on:blur={(e)=>{setInputState('sub_type', e.target.value)}}
+                            bind:value={playerState.sub_type} 
+                            on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
                             <option value="item">{l.item}</option>
                             <option value="image">{l.image_txt}</option>
@@ -482,6 +482,31 @@
                     {/if}
                 </div>
             </div>
+            {#if playerState.type == 'embed_content'}
+                <div>
+                    <Textfield
+                        id="asset"
+                        fullWidth="true"
+                        placeholder={l.enter_item}
+                        label={l.item_id}
+                        value={playerState.snt}
+                    />
+                    <div class="mt-xl col-xs-2 p-0">
+                        <span class="position-relative alginLeft">
+                            <input 
+                                type="checkbox" 
+                                class="custom_checkbox_new"
+                                id="asset_checkbox"
+                                bind:checked={playerState.inline}
+                                value={playerState.inline}
+                                color="default"
+                            />
+                            <label class="mr-0 mb-0 height27 fontSize" for="asset_checkbox">{l.inline}</label>
+                        </span>
+                        <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
+                    </div>
+                </div>
+            {:else}
             {#if playerState.type != 'exhibit'}
                 <div>
                     <Textfield
@@ -489,6 +514,7 @@
                         placeholder={l.enter_title}
                         fullWidth="true"
                         label={l.title}
+                        sval="title"
                     />
                 </div>
             {:else}
@@ -514,8 +540,8 @@
                             id="layout" 
                             name="layout" 
                             class="btn border p-2 clearfix mt-sm pointer" 
-                            value={playerState.layout} 
-                            on:blur={(e)=>{setInputState('layout', e.target.value)}}
+                            bind:value={playerState.layout} 
+                            on:change={(e)=>{setInputState('layout', e.target.value)}}
                         >
                             <option value="button">{l.btn_txt}</option>
                             <option value="link">{l.link_txt}</option>
@@ -543,8 +569,8 @@
                             id="embed" 
                             name="embed" 
                             class="btn border p-2 w-100 clearfix mt-sm pointer" 
-                            value={playerState.embed} 
-                            on:blur={(e)=>{setInputState('embed', e.target.value)}}
+                            bind:value={playerState.embed} 
+                            on:change={(e)=>{setInputState('embed', e.target.value)}}
                         >
                             <option value="inline">{l.embed}</option>
                             <option value="new_tab">{playerState.type != 'exhibit' ? l.new_tab : l.overlay}</option>
@@ -553,29 +579,27 @@
                 {/if}
             </div>
             {#if ((playerState.type == 'download' || (playerState.type == 'exhibit' && playerState.sub_type == 'image')) || (playerState.type == 'weblink' && playerState.embed != 'inline'))}
-                
-                    <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : ''}>
-                        <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt'}>
-                            <Textfield
-                                id="img"
-                                fullWidth="true"
-                                placeholder={(playerState.type == 'download') ? l.enter_icon_url : l.enter_img_url}
-                                label={l.image_txt}
-                            />
-                        </div>
-                        <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'pt-sm col-xs-3 mt-4 insertBtn' : 'pt-sm col-xs-3 mt-4 insertBtn'}>
-                            <button type="button" class="btn btn-secondary clearfix mt-1 ml-xs w-100" on:click={()=>{insertImage('img')}}>{l.insert_img}</button>
-                        </div>
-                    </div>
-                    <div class="mt-sm">
+                <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : ''}>
+                    <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt'}>
                         <Textfield
-                            id="alt"
-                            label={l.img_alt}
-                            placeholder={l.img_desc}
+                            id="img"
                             fullWidth="true"
+                            placeholder={(playerState.type == 'download') ? l.enter_icon_url : l.enter_img_url}
+                            label={l.image_txt}
                         />
                     </div>
-                
+                    <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'pt-sm col-xs-3 mt-4 insertBtn' : 'pt-sm col-xs-3 mt-4 insertBtn'}>
+                        <button type="button" class="btn btn-secondary clearfix mt-1 ml-xs w-100" on:click={()=>{insertImage('img')}}>{l.insert_img}</button>
+                    </div>
+                </div>
+                <div class="mt-sm">
+                    <Textfield
+                        id="alt"
+                        label={l.img_alt}
+                        placeholder={l.img_desc}
+                        fullWidth="true"
+                    />
+                </div>
             {/if}
             {#if playerState.type == 'weblink'}
                 <div>
@@ -616,19 +640,22 @@
                 <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex alignRight position-relative' : 'row alignRight position-relative'}>
                     <div class="mt-xl col-xs-2 p-0">
                         <span class="position-relative alginLeft">
-                            <input type="checkbox" class="custom_checkbox_new"
+                            <input 
+                                type="checkbox" 
+                                class="custom_checkbox_new"
+                                id="exhibit_inline_checkbox"
                                 bind:checked={playerState.inline}
                                 value={playerState.inline}
                                 color="default"
                             />
-                            <span class="mr-0 mb-0 height27 fontSize">{l.inline}</span>
+                            <label class="mr-0 mb-0 height27 fontSize" for="exhibit_inline_checkbox">{l.inline}</label>
                         </span>
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                     {#if (playerState.sub_type == 'image' && playerState.embed == 'inline')}
                         <div class="mt-xl col-xs-4 position-relative borderCheck">
                             <Checkbox
-                                bind:checked={playerState.bordered}
+                                checked={playerState.bordered}
                                 value={playerState.bordered}
                                 color="default"
                             >
@@ -637,7 +664,8 @@
                             <input type="hidden" id="bordered" name="bordered" value={playerState.bordered ? 1 : ''} />
                         </div>
                     {/if}
-                 </div>
+                </div>
+            {/if}
             {/if}
         </div>
     {:else if playerState.category == 'objects'}
@@ -670,11 +698,11 @@
                 <div class="pt-2 col-xs-12 alignRight position-relative">
                     <label for="refid" class="text-dark d-inline">{l.des_txt}</label>                
                     <select 
-                        value={playerState.snt} 
+                        bind:value={playerState.snt} 
                         id="refid" 
                         name="refid" 
                         class="btn border p-2 ml-md clearfix width99 pointer" 
-                        on:blur={(e)=>{setInputState('snt', e.target.value)}}
+                        on:change={(e)=>{setInputState('snt', e.target.value)}}
                     >
                         <option value='1441'>{l.snt_41}</option>
                         <option value='1440'>{l.snt_40}</option>                            
@@ -724,7 +752,7 @@
             </div>
             <div class="mt-xl">
                 <Checkbox
-                    bind:checked={playerState.nofeedback}
+                    checked={playerState.nofeedback}
                     value={playerState.nofeedback}
                     color="default"
                 >
