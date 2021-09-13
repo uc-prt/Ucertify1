@@ -658,14 +658,14 @@ onMount(()=> {
                 <div class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex alignRight position-relative' : 'row alignRight position-relative'}>
                     <div class="mt-4">
                         <input 
-                        type="checkbox" 
-                        class="custom_checkbox_new"
-                        id="exhibit_inline_checkbox"
-                        bind:checked={playerState.inline}
-                        value={playerState.inline}
-                        color="default"
-                    />
-                    <label for="exhibit_inline_checkbox" class="position-relative top_minus4">{l.inline}</label>
+                            type="checkbox" 
+                            class="custom_checkbox_new"
+                            id="exhibit_inline_checkbox"
+                            bind:checked={playerState.inline}
+                            value={playerState.inline}
+                            color="default"
+                        />
+                        <label for="exhibit_inline_checkbox" class="position-relative top_minus4">{l.inline}</label>
                         <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
                     </div>
                     {#if (playerState.sub_type == 'image' && playerState.embed == 'inline')}
