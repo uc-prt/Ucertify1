@@ -23555,7 +23555,7 @@ player.hidecontent iframe.quiz_player,player.hidecontent #msoffice_frame {
 }
 snt:after {
     content: 'snt refid="' attr(refid) '"';
-    background-color: #d9edf7;
+    outline : 2px solid #ace ;
 }
 #remediation_show seq:after {
     content: attr(no);
