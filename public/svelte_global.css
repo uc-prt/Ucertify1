@@ -25574,6 +25574,9 @@ strong {
 .width60 {
   width: 60%;
 }
+.top_minus4 {
+  top: -4px;
+}
 .hidden {
   display: none !important;
 }
