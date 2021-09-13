@@ -916,13 +916,13 @@
     }
 </script>
 
-<Dialog width="600" bind:visible={state.open} style="background-color:#fff; border-radius: 5px;">
+<Dialog width="600" class="remove_right_margin" bind:visible={state.open} style="background-color:#fff; border-radius: 5px;">
     <h4 class="mt-1 font21">
         <div class="d-flex justify-content-between">
             <div>Player Info</div>
         </div>
     </h4>
-    <div style="overflow-y: auto;">
+    <div style="max-height: 400px; overflow-y: auto; padding-right: 18px;">
         <div style="padding-right: 0px; padding-left: 0px; width: 100%" class="col-12 pull-left npl npr mt-md">
             <select 
                 id="#playerCat"

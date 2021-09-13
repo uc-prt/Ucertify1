@@ -1,34 +1,33 @@
 <script>
-    import { onMount } from 'svelte';
-    import { Checkbox, Textfield } from 'svelte-mui/src';
-    import { AH } from '../helper/HelperAI.svelte';
-    export let playerState;
-    export let setInputState;
-    export let setVideoAsset;
-    export let handleTranscriptDialog
-    export let insertImage;
-    export let createSteptable;
-    export let correctLabelStyle;
-    export let l;
-    let labType = {
-        'playground': l.coding,
-        'simulation': l.simulation,
-        'terminal': l.terminal,
-        'lablink': l.lablink,
-        'insight': l.insight,
+import { onMount } from 'svelte';
+import { Checkbox, Textfield } from 'svelte-mui/src';
+import { AH } from '../helper/HelperAI.svelte';
+export let playerState;
+export let setInputState;
+export let setVideoAsset;
+export let handleTranscriptDialog
+export let insertImage;
+export let createSteptable;
+export let correctLabelStyle;
+export let l;
+let labType = {
+    'playground': l.coding,
+    'simulation': l.simulation,
+    'terminal': l.terminal,
+    'lablink': l.lablink,
+    'insight': l.insight,
 
-    }
-    onMount(()=> {
-        let changeTimer = setTimeout(function() {
-            if (tinyMCE.activeEditor.selection.getContent()) {
-                AH.selectAll("#showPlayerList input[id='show_caption'], #showPlayerList input[id='title']", 'value', tinyMCE.activeEditor.selection.getContent());
-                correctLabelStyle();
-            }
-            clearTimeout(changeTimer);
-        }, 500);
-    })
+}
+onMount(()=> {
+    let changeTimer = setTimeout(function() {
+        if (tinyMCE.activeEditor.selection.getContent()) {
+            AH.selectAll("#showPlayerList input[id='show_caption'], #showPlayerList input[id='title']", 'value', tinyMCE.activeEditor.selection.getContent());
+            correctLabelStyle();
+        }
+        clearTimeout(changeTimer);
+    }, 500);
+})
 </script>
-
 <div>
     {#if playerState.category == "knowledge_check"}
         <div class="knowledge_check_tag" key="tag_quiz">
@@ -52,14 +51,18 @@
                     is_multiple="1"
                 />
             </div>
-            <div class="mt-xl alignRight position-relative checkGrade">
-                <Checkbox
-                    checked={playerState.nofeedback}
+            <div class="pl-0 ml-0 mt-4">
+                <input
+                    type="checkbox"
+                    bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
                     color="default"
-                >
-                    <span>{l.graded}</span>
-                </Checkbox>
+                    class="custom_checkbox_new"
+                    id="graded_checkbox"
+                />
+                <label for="graded_checkbox" class="position-relative top_minus4">
+                    {l.graded}
+                </label>
             </div>
             <input type="hidden" id="nofeedback" name="nofeedback" value={playerState.nofeedback ? 0 : 1} />
         </div>
@@ -348,7 +351,6 @@
                             {:else}
                                 <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"   title={l.security_title}></span>
                             {/if}
-                             
                         </div>
                         {#if playerState.security}
                             <div class='position-relative alignLeft'>
@@ -701,7 +703,7 @@
                         bind:value={playerState.snt} 
                         id="refid" 
                         name="refid" 
-                        class="btn border p-2 ml-md clearfix width99 pointer" 
+                        class="border p-2 ml-md clearfix width99 pointer" 
                         on:change={(e)=>{setInputState('snt', e.target.value)}}
                     >
                         <option value='00cRX'>{l.snt_41}</option>
@@ -751,113 +753,107 @@
                 />
             </div>
             <div class="mt-xl">
-                <Checkbox
-                    checked={playerState.nofeedback}
+                <input
+                    type="checkbox"
+                    bind:checked={playerState.nofeedback}
                     value={playerState.nofeedback}
                     color="default"
-                >
-                    <span>{l.graded}</span>
-                </Checkbox>
+                    class="custom_checkbox_new"
+                    id="graded_checkbox"
+                />
+                <label for="graded_checkbox" class="position-relative top_minus4">
+                    {l.graded}
+                </label>
             </div>
             <input type="hidden" id="nofeedback" name="nofeedback" value={playerState.nofeedback ? 0 : 1} />
         </div>
     {/if}
-
-</div>
-
+    </div>
 <style>
-    .row {
-        margin-right: 0 !important;
-        margin-left: 0 !important;
-    }
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+.alignRight {
+    right:10px;
+}
+.alignLeft {
+    left: 10px;
+}
+.icomoonInfo {
+    top:13px;
+    right:230px;
+}
+.icomoonInfoSec {
+    bottom: 31px;
+    left:315px;
+}
+.checkGrade:hover {
+    background-color: white;
+}
+.simButton {
+    right: 18px;
+    bottom: 5px; 
+}
+.exhibitShow {
+    flex-grow: 0;
+    max-width: 41.66667%;
+    flex-basis: 41.66667%
+}
+.exhibiLink {
+    flex-grow: 0;
+    max-width: 16.66667%;
+    flex-basis: 16.66667%;
+}
+.width8P {
+    width: 80%;
+}
+.exhibitbtnlnk {
+    right: 18px;
+    position: relative;
+    top: 10px;
+}
+.embedovrlyBtn {
+    position: relative;
+    top: 8px;
+    left: 3px;
+}
+.insertImageTxt {
+    width: 78%;
+    margin-right: 8px;
+}
+.insertBtn{
+    position: relative;
+    bottom: 18px;
+}
+.textTranscript {
+    width: 60%;
+    margin-right:33px;
+}
+.addIntervalMultInfo {
+    position: relative;
+}
+.custom_checkbox_new {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 18px;
+}
 
+.fontSize {
+    position: relative;
+    bottom: 5px;
+    font-size: medium
+}
 
-    .alignRight {
-        right:10px;
-    }
-    .alignLeft {
-        left: 10px;
-    }
-    .icomoonInfo {
-        top:13px;
-        right:230px;
-    }
-    .icomoonInfoSec {
-        bottom: 31px;
-        left:315px;
-    }
-    .checkGrade:hover {
-        background-color: white;
-    }
-    .simButton {
-        right: 18px;
-        bottom: 5px; 
-    }
+.alginLeft {
+    left: 10px;
+}
 
-    .exhibitShow {
-        flex-grow: 0;
-        max-width: 41.66667%;
-        flex-basis: 41.66667%
-    }
-    
-    .exhibiLink {
-        flex-grow: 0;
-        max-width: 16.66667%;
-        flex-basis: 16.66667%;
-    }
-    .width8P {
-        width: 80%;
-    }
-    .exhibitbtnlnk {
-        right: 18px;
-        position: relative;
-        top: 10px;
-    }
-
-    .embedovrlyBtn {
-        position: relative;
-        top: 8px;
-        left: 3px;
-    }
-    .insertImageTxt {
-        width: 78%;
-        margin-right: 8px;
-    }
-    .insertBtn{
-        position: relative;
-        bottom: 18px;
-    }
-    .textTranscript {
-        width: 60%;
-        margin-right:33px;
-    }
-
-    .addIntervalMultInfo {
-        position: relative;
-
-    }
-
-    .custom_checkbox_new {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        margin-bottom: 0;
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    .fontSize {
-        position: relative;
-        bottom: 5px;
-        font-size: medium
-    }
-
-    .alginLeft {
-        left: 10px;
-    }
-
-    .borderCheck {
-        left: 12px;
-        bottom: 9px;
-    }
+.borderCheck {
+    left: 12px;
+    bottom: 9px;
+}
 </style>
