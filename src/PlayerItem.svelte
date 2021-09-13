@@ -567,8 +567,8 @@ onMount(()=> {
                     </div>
                 </div>
             {/if}
-            <div class={(playerState.type == 'exhibit') ? 'd-flex' : ''}>
-                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? 9 : (playerState.type == 'exhibit' ? '10 width8P' : '12')}">
+            <div class={(playerState.type == 'exhibit') ? 'd-flex' : ((playerState.type == 'weblink') ? 'd-flex' : '')}>
+                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? '9 w-75' : (playerState.type == 'exhibit' ? '10 width8P' : '12')}">
                     <Textfield
                         id={(playerState.type == 'exhibit' && playerState.exhibitType == 'link') ? "layout" : "asset"}
                         fullWidth="true"
@@ -582,7 +582,7 @@ onMount(()=> {
                     />
                 </div>
                 {#if (playerState.type == 'weblink' || playerState.type == 'exhibit') }
-                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
+                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3 textWidth' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
                         <select 
                             id="embed" 
                             name="embed" 
@@ -597,8 +597,8 @@ onMount(()=> {
                 {/if}
             </div>
             {#if ((playerState.type == 'download' || (playerState.type == 'exhibit' && playerState.sub_type == 'image')) || (playerState.type == 'weblink' && playerState.embed != 'inline'))}
-                <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : ''}>
-                    <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt'}>
+                <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : 'd-flex'}>
+                    <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt w-75'}>
                         <Textfield
                             id="img"
                             fullWidth="true"
@@ -836,6 +836,7 @@ onMount(()=> {
 .insertBtn{
     position: relative;
     bottom: 18px;
+    width: 129px;
 }
 .textTranscript {
     width: 60%;
@@ -866,5 +867,9 @@ onMount(()=> {
 .borderCheck {
     left: 12px;
     bottom: 9px;
+}
+
+.textWidth {
+    width: 140px;
 }
 </style>

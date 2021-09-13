@@ -303,6 +303,7 @@
         AH.listen(document.body, 'keyup','.vtt_textarea', function() {
             validateVTT();
         });
+
     }
 
     function getJsonAttrValue(data, input_id) {
