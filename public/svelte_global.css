@@ -24324,6 +24324,10 @@ table {
   bottom: 15px;
   width: 10%;
 }
+
+.p {
+  padding: 5px;
+}
 /* -------End react_style.css--------- /*  
 
 /* Gloabal.css fro editor */

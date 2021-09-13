@@ -16,6 +16,7 @@
     export let selectedObjective;
     export let selectedCoverage;
     export let editorState;
+    export let caseid_val;
 
     let items = []; // array to store domains
     let action = "";
@@ -30,26 +31,26 @@
     let url = AH.url();
     //State creation
     let hdd = writable({
-      open: false,
-      value: 0,
-      domainArray: [],
-      guid: "",
-      coverage_guid: 0,
-      itemsCoverage: [],
-      courses: 0,
-      showCoverage: true,
-      mapping: false,
-      disExercise: false,
-      testSetList: [],
-      caseid_val: "",
-      test: {
-        q: false,
-        p: false,
-        f: false,
-        l: false,
-        u: false,
-        t: 0
-      }
+        open: false,
+        value: 0,
+        domainArray: [],
+        guid: "",
+        coverage_guid: 0,
+        itemsCoverage: [],
+        courses: 0,
+        showCoverage: true,
+        mapping: false,
+        disExercise: false,
+        testSetList: [],
+        caseid_val: "",
+        test: {
+            q: false,
+            p: false,
+            f: false,
+            l: false,
+            u: false,
+            t: 0
+        }
     });
     const unsubscribe = hdd.subscribe((item)=> {
         state = item;
@@ -82,8 +83,12 @@
         itemsCoverage.push({value: 0, key: "0", label: "Select Section"});
         courses.push({value: 0, key: "0", label: "Select Course"});
         if (!error['domains']) {
-            for (let i in window.domains) {
-                items.push({value: i, key: i, label: window.domains[i].f + " " + window.domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ")});
+            let is_draft = '';
+            for (let i in domains) {
+                if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
+                    is_draft = ' (Unpublished)';
+                }
+                items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
             }
         }
         if (!error['my_coursess']) {
@@ -152,7 +157,6 @@
     })
 
     function setDomainData() {
-        console.log(domainData);
         if (domainData && url.get('router_guid')) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
@@ -169,6 +173,7 @@
     }
 
     beforeUpdate(async ()=> {
+        state.caseid_val = caseid_val;
         if (domainToggle != state.open) {
             state.open = domainToggle;
             if (state.test.t == -3 || state.test.t == -14 || state.test.t == -13 || state.test.t == -1) {
@@ -303,7 +308,7 @@
         state.courses = course;
         setCourse(course);
         try {
-            AI.activate(1);
+            AH.activate(1);
             AH.ajax({
                 url: baseUrl + "editor/index.php",
                 withUrl: true,
@@ -323,7 +328,7 @@
                     state.objectives = chapters[1]; 
                     state.coverage = chapters[2]; 
                     state.value = items;
-                    AI.activate(0);
+                    AH.activate(0);
                 } catch (e) {
                     console.log("Coverage no found");
                 }
@@ -335,6 +340,7 @@
     function handleChange(event) {
         let value = event.target.value;
         state.value = value;
+        console.log('state.value', state.value);
         try {
             if (objectives || state.objectives) {
                 if (state.objectives) {
@@ -354,14 +360,14 @@
                 state.coverage_guid = 0;
             }
         } catch (e) { console.log(e);}
-        AI.set('save_item', true);
+        AH.set('save_item', true);
     }
 
     // Handle coverage data change
     function handleCoverageChange(event) {
         let value = event.target.value;
         state.coverage_guid = value;
-        AI.set('save_item', true);
+        AH.set('save_item', true);
     }
 
     // Handle case Id change from domain dialog
@@ -398,7 +404,7 @@
         //set state of editor
         editorState.exam_objective_mapping_save = 1;
         setTimeout(function() {
-            AI.activate(1);
+            AH.activate(1);
             if (from_coverage) {
                 // for add new content
                 saveDomain(1);
@@ -426,6 +432,7 @@
             console.log(e);
         }
     }
+    $: console.log('state.value2', state.value);
 </script>
 
 <Dialog bind:visible={state.open} width="700" style="background: #fff; border-radius: 5px;">
@@ -486,7 +493,7 @@
                         </label>
                         <select
                             id="course_select"
-                            value={state.courses}
+                            bind:value={state.courses}
                             on:blur={handleCourseChange}
                             style="margin: 2px 24px; width: 50%"
                             disabled={url.get("todo_table") == 1 ? true : false}
@@ -507,7 +514,7 @@
                         Lesson
                     </label>
                     <select
-                        value={state.value}
+                        bind:value={state.value}
                         id="select_domain"
                         on:blur={handleChange}
                         style="margin: 2px 24px; width: 70%;"
@@ -530,7 +537,7 @@
                             Section{" "}
                         </label>
                         <select
-                            value={state.coverage_guid}
+                            bind:value={state.coverage_guid}
                             on:blur={handleCoverageChange}
                             style="margin: 2px 24px; width: 70%;"
                             class="domain_select"
@@ -552,21 +559,20 @@
                                 <div>
                                     <label
                                         class="coverage_label"
-                                        for="domain_select"
+                                        for="test_select"
                                         style="width: 14%;"
                                     >
                                         Test{" "}
                                     </label>
                                     <select
-                                        value={state.test.t}
                                         style="width: 73%;"
                                         on:blur={handleTestChange}
                                         class="domain_select"
-                                        id="domain_select"
+                                        id="test_select"
                                         disabled={smdata.item == 36 ? true : false}
                                     >
                                         {#each state.testSetList as data}
-                                            <option value={data.value} key={data.key}>
+                                            <option value={data.value} key={data.key} selected={state.test.t == data.value ? 'selected' : ''}>
                                                 {data.label}
                                             </option>
                                         {/each}
@@ -578,7 +584,7 @@
                             <div class="col-md-12 preAssessment mt-3">
                                 <Checkbox
                                     id="preAssessment"
-                                    bind:checked={state.test.p}
+                                    checked={state.test.p}
                                     on:click={updateTestValue.bind(this, "p")}
                                     color = "primary"
                                     disabled={smdata.item == 36 ? true : false}
@@ -633,7 +639,7 @@
                         id="caseid"
                         type="text"
                         on:input={handleCaseID}
-                        defaultValue={state.caseid_val}
+                        bind:value={state.caseid_val}
                         placeholder="Enter Case ID"
                         style = "margin-left: 10px; height: 40px; width: 50%;"
                         class='mt-3 domain_select'

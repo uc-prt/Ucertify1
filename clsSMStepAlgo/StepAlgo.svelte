@@ -119,8 +119,6 @@
         steps = replaceVariables(steps);
         all_steps = steps;
         setToggle(all_steps);
-        let MYQXML = new_xml;
-        console.log({'XML =>': new_xml});
         parseXmlAuthoring(steps);
     }
 
