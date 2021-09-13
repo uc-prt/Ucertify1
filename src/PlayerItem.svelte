@@ -359,7 +359,7 @@ onMount(()=> {
                             {#if playerState.security}
                                 <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
                             {:else}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"  title={l.security_title}></span>
+                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"   title={l.security_title}></span>
                             {/if}
                         </div>
                         {#if playerState.security}
@@ -716,7 +716,7 @@ onMount(()=> {
             <p class="mt-2">{l.snt_des}</p>
             <div class="row">
                 <div class="pt-2 col-xs-12 alignRight position-relative">
-                    <label for="refid" class="text-dark d-inline">{l.des_txt}</label>                
+                    <label for="refid" class="text-dark d-inline">{l.des_txt}</label>
                     <select 
                         bind:value={playerState.snt} 
                         id="refid" 
@@ -724,12 +724,12 @@ onMount(()=> {
                         class="border p-2 ml-md clearfix width99 pointer" 
                         on:change={(e)=>{setInputState('snt', e.target.value)}}
                     >
-                        <option value='1441'>{l.snt_41}</option>
-                        <option value='1440'>{l.snt_40}</option>                            
-                        <option value='1439'>{l.snt_39}</option>                            
-                        <option value='1438'>{l.snt_38}</option>                            
-                        <option value='1437'>{l.snt_37}</option>                            
-                        <option value='1436'>{l.snt_36}</option>                                                        
+                        <option value='00cRX'>{l.snt_41}</option>
+                        <option value='00cRV'>{l.snt_40}</option>                            
+                        <option value='00cRn'>{l.snt_39}</option>                            
+                        <option value='00cRC'>{l.snt_38}</option>                            
+                        <option value='00cRb'>{l.snt_37}</option>                            
+                        <option value='00cRB'>{l.snt_36}</option>                                                        
                     </select>
                 </div>
             </div>

@@ -37,7 +37,7 @@
             sqlLab: false,
             layout: 'button',
             from_coverage: false,
-            snt: '1441',
+            snt: '00cRX',
             seq: '',
             weblinkEmbed: false,
             spanstyle: '',
@@ -190,7 +190,8 @@
 
                         if (player_type == "video") {
                             if (new_key == 'group_guids' && editorState.playerArr[key].trim().length == 5) {
-                                AH.setAttr('.edit_transcript', {'guid': editorState.playerArr[key], 'disabled': false});;
+                                AH.setAttr('.edit_transcript', {'guid': editorState.playerArr[key]});
+                                AH.select('.edit_transcript').disabled = false;
                             } else if (new_key == "asset") {
                                 var asset_value = editorState.playerArr[key].trim();
                                 AH.select(input_id + ' #' + new_key).setAttribute('data-value', asset_value)
@@ -473,7 +474,7 @@
 
     function openTranscript(media_guid) {
         var anchor_tag = document.createElement('a');
-        anchor_tag.href = baseUrl + 'editor/?action=edit&content_guid=' +  media_guid + '&no_header=1&react_content=1&no_domain=1&video_player=1';
+        anchor_tag.href = baseUrl + 'editor/v2/?action=edit&content_guid=' +  media_guid + '&no_header=1&react_content=1&no_domain=1&video_player=1';
         anchor_tag.target = '_blank';
         anchor_tag.click();
     }
@@ -494,7 +495,8 @@
         } else {
             source.setAttribute('src','http://s3.amazonaws.com/jigyaasa_content_stream/' + url);
         }
-        AH.select(video).innerHTML = source;
+        //AH.select(video).innerHTML = source;
+        video.append(source);
         AH.select('#media_duration').setAttribute('value','');
         updateVideoDuration(get_duration)
     }
@@ -880,7 +882,14 @@
             } else {
                 AH.activate(2);
                 let url = AH.select('.media_tag #asset').getAttribute('data-value');
-                AH.ajax({url: baseUrl+'utils/vtt_parser.php', data: {func:'check_media', ajax:1, video_url:url} }).then((response)=> {
+                AH.ajax({
+                    url: baseUrl+'utils/vtt_parser.php', 
+                    data: {
+                            func:'check_media', 
+                            ajax:1, 
+                            video_url:url
+                        }
+                }).then((response)=> {
                     if (response.msg == 'Media already exist!') {
                         AI.showmsg(l.vtt_exists);
                         AH.select('.edit_transcript').disabled =  (response.vtt != 1);
@@ -918,7 +927,7 @@
             <select 
                 id="#playerCat"
                 bind:value={state.category} 
-                on:blur={handlePlayer} 
+                on:change={handlePlayer}
                 style="margin-left: 0px;" 
                 class='v-bottom btn dialogSelectBorder p-2'
             >
@@ -1030,7 +1039,7 @@
             <div>{l.add_transcript_msg}</div>
         </div>
     </h4>
-    <div style="overflow-y: auto;">
+    <div style="">
         <div class="add_transcript_dialog min_height_352">
             <div class="row">
                 <div class="col-12">
@@ -1060,23 +1069,25 @@
             </div>
         </div>
     </div>
-    <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    <div slot="footer" class="footer bttmBtn" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+        <Button
+            variant="contained"
+            disableRipple="true"
+            on:click={handleTranscriptDialog}
+            color="primary"
+            class="BtnOutline"
+        >
+            {l.cancel}
+        </Button>
         <Button
             id="xmlDone"
             variant="contained"
             disableRipple="true"
             on:click={addTranscript}
             color="primary"
+            class="BtnDark"
         >
             {l.add_vtt}
-        </Button>
-        <Button
-            variant="contained"
-            disableRipple="true"
-            on:click={handleTranscriptDialog}
-            color="primary"
-        >
-            {l.cancel}
         </Button>
     </div>
 </Dialog>
@@ -1092,5 +1103,28 @@
     :global(.deleteinterval) {
         color: #b0281a;
     }
+
+    :global(.BtnDark) {
+        color: #fff!important;
+        background-color: #343a40!important;
+        border-color: #343a40!important;
+        position: relative;
+        left: 6px;
+    }
+
+    :global(.BtnOutline) {
+        color: #343a40!important;
+        border: 1px solid #343a40!important;
+    }
+
+    :global(.bttmBtn) {
+        display: inline-block;
+        float: right;
+        position: relative;
+        right: 24px;
+        bottom: 10px;
+    }
+
+   
 
 </style>
