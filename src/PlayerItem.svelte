@@ -1,6 +1,6 @@
 <script>
 import { onMount } from 'svelte';
-import { Checkbox, Textfield } from 'svelte-mui/src';
+import { Textfield } from 'svelte-mui/src';
 import { AH } from '../helper/HelperAI.svelte';
 export let playerState;
 export let setInputState;
@@ -343,7 +343,7 @@ onMount(()=> {
                         />
                     </div>
                     <div class="mt-4">
-                        <div class={(playerState.security ? 'mt-4' : 'mt-4 d-flex ')}>
+                        <div class={(playerState.security ? 'mt-2' : 'mt-2 d-flex ')}>
                             <input
                                 type="checkbox"
                                 bind:checked={playerState.security}
@@ -353,14 +353,14 @@ onMount(()=> {
                                 id="security_checkbox"
                                 disabled={playerState.multiple || playerState.intervals}
                             />
-                            <label for="security_checkbox" class="position-relative top_minus4">
+                            <label for="security_checkbox" class="position-relative top_minus4 {(playerState.multiple || playerState.intervals) ? 'text-muted' : ''}">
                                 {l.security_info}
+                                {#if playerState.security}
+                                    <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"  title={l.security_title}></span>
+                                {:else}
+                                    <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative" : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"   title={l.security_title}></span>
+                                {/if}
                             </label>
-                            {#if playerState.security}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative icomoonInfoSec"} rel="tooltip"  title={l.security_title}></span>
-                            {:else}
-                                <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative icomoonInfo" : "icomoon-info s2 align-middle pl position-relative icomoonInfo"} rel="tooltip"   title={l.security_title}></span>
-                            {/if}
                         </div>
                         {#if playerState.security}
                             <div class='position-relative alignLeft'>
@@ -373,7 +373,7 @@ onMount(()=> {
                             </div>
                         {/if}
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-2">
                         <input
                             type="checkbox"
                             bind:checked={playerState.multiple}
@@ -383,14 +383,14 @@ onMount(()=> {
                             id="multiple_checkbox"
                             disabled={playerState.security || playerState.intervals}
                         />
-                        <label for="multiple_checkbox" class="position-relative top_minus4">
+                        <label for="multiple_checkbox" class="position-relative top_minus4 {(playerState.security || playerState.intervals) ? 'text-muted' : ''}">
                             {l.multiple_video}
                         </label>
                         {#if playerState.multiple}
                             <p class="mt-md mb-0">{l.multiple_info}</p>
                         {/if}
                     </div>
-                    <div class={playerState.multiple ? "mt-md" : "mt-lg position-relative alignRight"}>
+                    <div class={playerState.multiple ? "mt-md" : "mt-2"}>
                         <input
                             type="checkbox"
                             bind:checked={playerState.intervals}
@@ -400,7 +400,7 @@ onMount(()=> {
                             id="intervals_checkbox"
                             disabled={playerState.security || playerState.multiple}
                         />
-                        <label for="intervals_checkbox" class="position-relative top_minus4">
+                        <label for="intervals_checkbox" class="position-relative top_minus4 {(playerState.security || playerState.multiple) ? 'text-muted' : ''}">
                             {l.add_interval}
                         </label>
                     </div>
@@ -798,14 +798,7 @@ onMount(()=> {
 .alignLeft {
     left: 10px;
 }
-.icomoonInfo {
-    top:13px;
-    right:230px;
-}
-.icomoonInfoSec {
-    bottom: 31px;
-    left:315px;
-}
+
 .checkGrade:hover {
     background-color: white;
 }
