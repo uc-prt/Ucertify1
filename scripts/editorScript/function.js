@@ -512,16 +512,16 @@ function getEditable(data) {
 function showWeblinkIframeEditor(obj) {
 	AI.select(".load_data", 'hide');
 	let iframeContent = obj.contentDocument || obj.contentWindow.document;
-	obj.setAttribute(height, "100%");
-	obj.setAttribute(width, "100%");
+	obj.setAttribute('height', "100%");
+	obj.setAttribute('width', "100%");
 	let _height = document.body.clientHeight;
-	iframeContent.querySelector(".editor_close").getAttribute("onclick", "window.parent.editorClose()");
+	typeof iframeContent.querySelector(".editor_close")!='object'?iframeContent.querySelector(".editor_close").getAttribute("onclick", "window.parent.editorClose()"):'';
 	AI.setCss(iframeContent.querySelector("#authoringSection"), { maxHeight: _height - 140, minHeight: _height / 2 });
 	AI.setCss(iframeContent.querySelector("#previewSection"), { minHeight: _height / 2, maxHeight: _height - 113 });
 }
 
 function editorClose() {
-	AI.event("#editor_close_btn", 'click');
+	AI.trigger("#editor_close_btn", 'click');
 	AI.select(".modal-backdrop.in").remove();
 	AI.select("html").style.overflow = "auto";
 }
