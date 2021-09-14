@@ -582,6 +582,9 @@
             state.content_subtype = content_subtype;
         }
     }
+    /**
+     * Function to list the content list.
+    */
     function listContent() {
         AH.selectAll(".list_content, #not_found, .table_list_guid", 'hide');
         AH.toggleDom("#list_process" ,'show');
