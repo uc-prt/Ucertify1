@@ -1,13 +1,8 @@
 <script>
     export let visible = false;
     export let modal;
-    export let updateEditorModule;
     export let beforeCloseFunc = null;
     import { Dialog, Button } from 'svelte-mui';
-    import { beforeUpdate , tick } from 'svelte';
-    beforeUpdate(async()=> {
-
-    });
 </script>
 
 <Dialog width={modal.width} beforeClose={beforeCloseFunc} style="background-color:#fff; border-radius: 5px;" bind:visible>
