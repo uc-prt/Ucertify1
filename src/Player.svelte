@@ -588,7 +588,7 @@
         let listTimer = setTimeout(function() {
             if (state.content_type != '' || state.content_subtype != '') {
                 AH.ajax({
-                    url: baseUrl+'educator/project/project.php?func=get_content_list&ajax=1',
+                    url: baseUrl+'educator/project/index.php?func=get_content_list&ajax=1',
                     data: {
                         course_code: editor.course,
                         content_type: state.content_type.split(','),
