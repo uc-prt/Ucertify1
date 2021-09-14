@@ -650,7 +650,6 @@
     function openEditorFrame(src, type) {
         type = type || 0;
         let data = '<div style="height:101%"><div class="load_data"><img class="absolute" style="top:0;bottom:0;left:0;right:0;margin:auto;" src="'+themeUrl+'foundation/css/images/loading.gif"/></div><iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" id="editorFrame" class="editor_frame" type="'+type+'" frameborder = "0" src = "'+src+'" height = "0" width = "0" onload=showWeblinkIframeEditor(this)></iframe></div>';
-        console.log('data', data);
         AH.select("#frame_container").innerHTML = data;
         if (AH.select('#go_back_window') == 'object') {
             AH.select('#go_back_window').closest('#bottombar').style.display = "none";
