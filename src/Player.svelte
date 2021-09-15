@@ -588,6 +588,7 @@
     function listContent() {
         AH.selectAll(".list_content, #not_found, .table_list_guid", 'hide');
         AH.toggleDom("#list_process" ,'show');
+        AH.select('#list_process', 'removeClass', ['h']);
         let listTimer = setTimeout(function() {
             if (state.content_type != '' || state.content_subtype != '') {
                 AH.ajax({
@@ -598,6 +599,7 @@
                         content_subtype: (state.content_subtype != '') ? state.content_subtype.split(',') : ''
                     },                         
                 }).then((response)=> {
+                    AH.select('#list_process', 'addClass', ['h']);
                     AH.toggleDom("#list_process", 'hide');
                     AH.toggleDom(".list_content", 'show');
                     if (response == "") {
@@ -967,7 +969,7 @@
                         <div class="mb-xl col-md-5 col-sm-4 col-5 pull-right p-0 list_content h">
                             <input class="form-control search search_width" id="search" name="search" type="text" placeholder={l.search_item_txt} on:keyup={searchTable} />
                         </div>
-                        <div class="list_content h">
+                        <div class="list_content" style="display:none;">
                             <table id="list_content_tbl" class="table table_list table_search table-striped table-hover">
                                 <thead class="always_show">
                                     <tr>
@@ -982,10 +984,10 @@
                 {/if}
             </div>
             <div class="table_list_guid"></div>
-            <div class="alert alert-danger h mt-xl" id="not_found">{l.no_record}</div>
-            <center id="list_process" class="mt-xl pt-1 h">
+            <div class="alert alert-danger mt-5" id="not_found" style="display:none;">{l.no_record}</div>
+            <center id="list_process" class="mt-5 pt-1" style="display:none;">
                 <Loader size={60} thickness={2} />
-                <h4>Please Wait</h4>
+                <h4>Please, be patient. We are working things up for you. </h4>
             </center>
         </div>
     </div>
