@@ -2831,6 +2831,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	</div>
 </main>
 {#if state.playerState}
+{console.log("editor state.playerState : ",state)}
 	<Player
 		bind:editorState={state}
 		playerBookmark={state.playerBookmark}

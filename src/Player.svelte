@@ -28,6 +28,7 @@
             nofeedback: true,
             embed: 'inline',
             isplayer: false,
+            isPlayerCheck: false,
             security: false,
             multiple: false,
             intervals: false,
@@ -70,6 +71,9 @@
     });
 
     beforeUpdate(async()=> {
+        console.log('beforeUpdate');
+        console.log('first :',state.prevValue);
+        console.log('second :',editorState.playerArr)
         console.warn("Before update", {pre:state.prevValue, player:editorState.playerArr});
         onUpdate(editorState.playerArr);
     })
@@ -184,6 +188,7 @@
                         } else if (player_type == 'seq') {
                             state.seq = editorState.playerArr[key];
                         }
+
                         if (document.querySelectorAll(input_id + ' #' + new_key).length > 0) {
                             AH.select(input_id + ' #' + new_key).value = editorState.playerArr[key].trim();
                         }
@@ -275,6 +280,7 @@
             }
         });
         AH.listen(document.body, 'click', '#table_list tr', function (_this) {
+            debugger;
             let item_id = AH.select('#showPlayerList #asset').value.trim();
             AH.find(_this, 'td', 'all')[0].classList.toggle('tick');
             AH.selectAll("#table_list tr td.tick").forEach(function(elm) {
@@ -522,6 +528,7 @@
     function editContent(edit_item_id) {
         let src;
         if (!edit_item_id) {
+            debugger;
             let guid = AH.select('#showPlayerList #asset').value;
             src  = baseUrl+"editor/v2/?action=edit&content_guid="+guid+"&in_frame=1&from_ebook=1&react_content=1&course_code="+editor.course;       
             if (guid.indexOf(',') !== -1) {
@@ -679,6 +686,7 @@
                 let captionstr = caption_array.join("###");
                 AH.select('.media_tag #stepcaptions').value = captionstr;
             } else if (!state.security) {
+                debugger;
                 let transcript = AH.select('.media_tag #group_guids').value.trim();
                 setVideoAsset((transcript != '') ? 'guid' : 'asset', AH.select('.media_tag #asset').value);
                 AH.select('.media_tag #sub_type').value = state.sub_type;
@@ -751,15 +759,18 @@
     function createPlayerVersionTwo(player, option_attr, style_attr) {
         if (option_attr != '') {
             player += " option='{"+option_attr+"}'";
+            state.isPlayerCheck = true;
         }
         if (style_attr != '') {
             player += " styles='{"+style_attr+"}'";
+            state.isPlayerCheck = false;
         }
 
         return player;
     }
     function validateItemId() {
         let msg = '';
+        debugger;
         let input_id = document.querySelector('#showPlayerList #asset'); 
         let asset = (input_id && input_id.getAttribute('is_multiple')) ? input_id.value.trim() : ''; 
         let is_valid = true;
@@ -784,11 +795,16 @@
                         url: baseUrl+'editor/index.php?func=get_item_details',
                         data: {
                             item_id: asset,
+                            player: state.type,
                         },                        
-                    }).then((response)=> {
+                    }).then((response)=> {  
                         if (response != 1) {
                             asset = asset.split(',') ;
-                            let obj = JSON.parse(response), item_id = '', invalid_id = '', content_type = state.content_type, content_subtype = '';
+                            let obj = JSON.parse(response); 
+                            let item_id = '';
+                            let invalid_id = '';
+                            let content_type = state.content_type; 
+                            let content_subtype = '';
                             for (let i in obj) {
                                 content_subtype = (state.content_subtype != '') ? state.content_subtype : obj[i].content_subtype;
                                 if (content_type.indexOf(obj[i].content_type) === -1 || content_subtype.indexOf(obj[i].content_subtype) === -1) {
@@ -834,6 +850,7 @@
         }, 100);   
     }
     function validateVideoIterval() {
+        debugger;
         let video_url = AH.select('.media_tag #asset').value;
         AH.empty('.get_video_duration');
         if (video_url != '') {
@@ -875,6 +892,7 @@
     }
 
     function handleTranscriptDialog() {
+        debugger;
         if (!state.add_transcript) {
             if (window.editor.course == null) {
                 AH.alert(l.load_course);
@@ -930,7 +948,7 @@
                 bind:value={state.category} 
                 on:change={handlePlayer}
                 style="margin-left: 0px;" 
-                class='v-bottom btn dialogSelectBorder p-2'
+                class='text-left v-bottom btn dialogSelectBorder p-2'
             >
                 <option value='knowledge_check'>{l.know_check_txt}</option>
                 <option value='lab'>{l.lab_txt}</option>
@@ -943,6 +961,7 @@
             <div id="showPlayerList">
                 <PlayerItem
                     bind:playerState={state}
+                    isPlayerCheck={state.isPlayerCheck}
                     setInputState={setInputState}
                     setVideoAsset={setVideoAsset}
                     handleTranscriptDialog={handleTranscriptDialog}
