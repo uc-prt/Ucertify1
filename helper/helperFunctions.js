@@ -909,15 +909,31 @@ export function tag_player(obj) {
                 } else if (sub_type == 'item' && asset != '') {
                     var old_player_id = player_id, old_assest = asset;
                     AH.ajax({
-                        url: baseUrl + 'index_data.php',
-                        data: { 'func': 'get_exhibit', 'guid': asset, 'ajax': 1 },
+                        url: baseUrl + 'index_data.php?func=get_exhibit',
+                        data: { 
+                            'guid': asset, 
+                            'ajax': 1 
+                        },
                     }).then((data) => {
-                        _this.innerHTML = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`;
+                        console.log('checking...........response');
+                        //_this.innerHTML = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`;
+                        // console.log('_this.innerHTML :',_this.innerHTML)
+                        setTimeout(function(){
+                            console.warn('checking...')
+                        },500)
+                        let pdfDoc = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`
+                        _this.innerHTML = pdfDoc;
+                        console.log('This value ',_this);
+                        
+
+                        //console.log('_this.innerHTML :',_this.innerHTML)
                         if (AH.find('.exhibit_' + old_assest + '_' + old_player_id, 'player', 'all').length != 0 && embed == 'inline') {
                             tag_player(document.querySelector(`.exhibit_${old_assest}_${old_player_id}`));
                         }
                         player_id++;
-                    });
+                    }).catch(function() {
+                        console.log("error");
+                    });;
                 } else if (sub_type == 'text') {
                     text = '';
                     var span_tag = '';
@@ -1525,6 +1541,7 @@ export function tag_player(obj) {
                 break;
             default:
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
+                console.log("iframe_src =>",iframe_src);
                 AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'afterend');
                 player_id++;
                 break;
@@ -1748,7 +1765,7 @@ function getPlayerAttrVal(self, item) {
         if (option_attr[item] != undefined) {
             data = option_attr[item];
         } else if (style_attr[item] != undefined) {
-            item_val = style_attr[item];
+            let item_val = style_attr[item];
             data = (!isNaN(item_val) && item_val.indexOf('px') == -1 && item_val.indexOf('%') == -1) ? item_val + 'px' : item_val;
         }
     }
