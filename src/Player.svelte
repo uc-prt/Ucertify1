@@ -62,7 +62,7 @@
     onMount(async()=> {
         console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
-            AH.addScript("", itemUrl + 'libs/editorLab/webparser.js');
+            AH.addScript("", itemUrl + 'src/libs/editorLib/webparser.js');
         }
         prevState = state;
         state.prevValue = editorState.playerArr;
