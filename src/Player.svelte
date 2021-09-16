@@ -58,7 +58,7 @@
     const unsubscribe = hdd.subscribe((items) => {
         state = items;
     })
-    
+
     onMount(async()=> {
         console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
