@@ -458,6 +458,16 @@
     :global(.mr) {
         margin-right: 8px;  
     }
+
+    :global(a) {
+        color: #b0281a;
+        text-decoration: none!important;
+    }
+
+    :global(a:hover) {
+        color: #0d5bdd;
+        text-decoration: none!important;
+    }
 </style>
 <button 
     type="button" 
