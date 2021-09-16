@@ -159,7 +159,7 @@ var l = LANG = {
     unbortab: "Unbordered Table",
     borbacktab: "Bordered Background Table",
     hrowsbor: "Highlighted Rows Bordered",
-    strptab: "Stripped Table",
+    strptab: "Striped Table",
     tabhovdes: "Table Hover Design",
     mulstrp: "Multiple Stripes",
     separate: "Separate",

@@ -24245,9 +24245,9 @@ div[type="timeline/slideshow"] > section:last-child {
 
 
 /* table CSS for Item Only */
-table thead th * {
+/* table thead th * {
   color: #212327!important;
-}
+} */
 
 table > thead > tr > th {
 	background-color: #e3e3e3;
