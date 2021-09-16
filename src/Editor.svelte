@@ -1,5 +1,5 @@
 <script>
-import { onMount, tick } from 'svelte';
+import { onMount, tick, afterUpdate } from 'svelte';
 import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
 import { writable } from 'svelte/store';
 import {AH, XMLToJSON } from '../helper/HelperAI.svelte';
@@ -234,6 +234,11 @@ onMount(async ()=> {
 	AH.set('getEditor', getState);
 });
 
+afterUpdate(() => {
+	if (state.guid) {
+		initComments(state.guid, _user.user_guid);
+	}
+});
 // get State
 function getState(name) {
 	if (name) return state[name];
@@ -3029,7 +3034,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	bind:editorState={state}
 	bind:this={createVariableCallback}
 />
-{#if content_guid && window.from_myproject == 1}
+{#if state.guid && window.from_myproject == 1}
 	<CommentModal 
 		bind:this={_commentModal}
 		user_guid={_user.user_guid}
