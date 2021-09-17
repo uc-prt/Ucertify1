@@ -107,7 +107,7 @@
                             </div>
                             <div class="printer">
                                 <div class="answer" style="min-height: 21px;">
-                                    {@html mcqItem.answer}
+                                    {@html get_ucsyntax(mcqItem.answer)}
                                 </div>
                             </div>
                         </label>
