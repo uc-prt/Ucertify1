@@ -397,8 +397,8 @@
         }
     }
 
-</script>
-<div id="main" class="pb-2 border float-none mx-auto my-0" style ="min-width: '300px', min-height: '1px'">
+		</script>
+		<div id="mainDiv" class="pb-2 border float-none mx-auto my-0" style ="min-width: '300px', min-height: '1px'">
 	<div class="choose_head_content bg-white text-left border-bottom px-2 pt-2 pb-2 mt-1" style ="overflow-x: 'hidden'">				
 		<div class="form-group row mx-0 mb-1">
 			<label for="headingCorrect" class="mt-2 width80 float-start font15">Title</label>
