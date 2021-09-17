@@ -239,7 +239,9 @@ function getParent(tag) {
 	return tag_parent;
 }
 
-//@TODO:? @abhishek does it match exactly with our PHP function?
+/**
+ * This function is used for resolve the uc:syntax. 
+ */
 function get_ucsyntax(content) {
 	if (content) {
 		content = content.replace(/\$/g, "&#36;");
