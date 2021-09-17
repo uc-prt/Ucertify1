@@ -155,7 +155,6 @@
             event.target.value = 4;
             return false;
         }
-        console.log('check');
 
         let val = event.target.value;
         if (!(val > 0 && val <= 10)) {
@@ -171,7 +170,9 @@
                 return false;
             } else if (event.target.value > 6) {
                 AH.alert(l.type_one_to_seven);
-                event.target.value = "";
+                event.target.value = 4;
+                state.colNum = 4;
+                updateXml();
                 return false;
             }
             state.colNum = event.target.value;
@@ -182,8 +183,10 @@
             return false;
             } else if (event.target.value > 10) {
                 AH.alert(l.type_one_to_ten);
-                event.target.value = '';
-            return false;
+                event.target.value = 4;
+                state.rowNum = 4;  
+                updateXml();  
+                return false;
             }
             state.rowNum = event.target.value;
         }
@@ -652,13 +655,13 @@
                         <div class="col-sm-6">
                             <div class="font-weight-bold">{l.row_count}</div>
                             <div>
-                                <input type="number" min="1" max="10"  value={state.rowNum} name="col_range" id="col_range" class="form-control  inline-block" data-label="Number of rows" on:change={changeRowCol} />
+                                <input type="number" min="1" max="9"  value={state.rowNum} name="col_range" id="col_range" class="form-control  inline-block" data-label="Number of rows" on:keyup={changeRowCol} on:change={changeRowCol} />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="font-weight-bold">{l.col_count}</div>
                             <div>
-                                <input type="number" min="1" max="6"  value={state.colNum} name="col_nmbr" id="col_range" class="form-control  inline-block" data-label="Number of rows" on:change={changeRowCol} />
+                                <input type="number" min="1" max="6"  value={state.colNum} name="col_nmbr" id="col_range" class="form-control  inline-block" data-label="Number of rows" on:keyup={changeRowCol} on:change={changeRowCol} />
                             </div>
                         </div>
                     

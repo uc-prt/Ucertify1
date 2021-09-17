@@ -3,6 +3,7 @@ import { onMount } from 'svelte';
 import { Textfield } from 'svelte-mui/src';
 import { AH } from '../helper/HelperAI.svelte';
 export let playerState;
+export let isPlayerCheck;
 export let setInputState;
 export let setVideoAsset;
 export let handleTranscriptDialog
@@ -75,7 +76,7 @@ onMount(()=> {
                     <select 
                         id="type" 
                         name="type" 
-                        class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
+                        class="text-left btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                         bind:value={playerState.type} 
                         on:change={(e)=>{setInputState('type', e.target.value)}}
                     >
@@ -89,7 +90,7 @@ onMount(()=> {
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 width80 clearfix pointer" 
+                            class="text-left btn border p-2 width80 clearfix pointer" 
                             bind:value={playerState.sub_type} 
                             on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -102,7 +103,7 @@ onMount(()=> {
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 clearfix pointer" 
+                            class="text-left btn border p-2 clearfix pointer" 
                             bind:value={playerState.sub_type} 
                             on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -165,7 +166,7 @@ onMount(()=> {
                         <select 
                             id="embed" 
                             name="embed" 
-                            class="btn border p-2 w-100 clearfix mt-3 pointer" 
+                            class="text-left btn border p-2 w-100 clearfix mt-3 pointer" 
                             bind:value={playerState.embed} 
                             on:change={(e)=>{setInputState('embed', e.target.value)}}
                         >
@@ -250,8 +251,8 @@ onMount(()=> {
                 <div class="mt-4">
                     <input
                         type="checkbox"
-                        bind:checked={playerState.isplayer}
-                        value={playerState.isplayer}
+                        bind:checked={isPlayerCheck}
+                        value={isPlayerCheck}
                         color="default"
                         class="custom_checkbox_new"
                         id="isplayer_checkbox"
@@ -277,7 +278,7 @@ onMount(()=> {
                 <select 
                     id="type" 
                     name="type" 
-                    class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
+                    class="text-left btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                     bind:value={playerState.type} 
                     on:change={(e)=>{setInputState('type', e.target.value)}}
                 >
@@ -464,7 +465,7 @@ onMount(()=> {
                     <select 
                         id="type" 
                         name="type" 
-                        class="btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
+                        class="text-left btn border mr p-2 ml-md mr-2 w-60 clearfix pointer" 
                         bind:value={playerState.type} 
                         on:change={(e)=>{setInputState('type', e.target.value)}}
                     >
@@ -478,7 +479,7 @@ onMount(()=> {
                         <select 
                             id="sub_type" 
                             name="sub_type" 
-                            class="btn border p-2 width90 clearfix pointer" 
+                            class="text-left btn border p-2 width90 clearfix pointer" 
                             bind:value={playerState.sub_type} 
                             on:change={(e)=>{setInputState('sub_type', e.target.value)}}
                         >
@@ -488,7 +489,7 @@ onMount(()=> {
                         </select>
                     {/if}
                     {#if playerState.type == "download"}
-                        <select id="icon" name="icon" class="btn border p-2 clearfix pointer">
+                        <select id="icon" name="icon" class="text-left btn border p-2 clearfix pointer">
                             <option value="">{l.select_img}</option>
                             <option value="ciw-integration/download-icon.png">{l.download_txt}</option>
                             <option value="microsoft-office-access-icon-1_0008h7.png">{l.ms_access}</option>
@@ -557,7 +558,7 @@ onMount(()=> {
                         <select 
                             id="layout" 
                             name="layout" 
-                            class="btn border p-2 clearfix mt-sm pointer" 
+                            class="text-left btn border p-2 clearfix mt-sm pointer" 
                             bind:value={playerState.layout} 
                             on:change={(e)=>{setInputState('layout', e.target.value)}}
                         >
@@ -567,8 +568,8 @@ onMount(()=> {
                     </div>
                 </div>
             {/if}
-            <div class={(playerState.type == 'exhibit') ? 'd-flex' : ''}>
-                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? 9 : (playerState.type == 'exhibit' ? '10 width8P' : '12')}">
+            <div class={(playerState.type == 'exhibit') ? 'd-flex' : ((playerState.type == 'weblink') ? 'd-flex' : '')}>
+                <div class="mt-sm pr col-xs-{playerState.type == 'weblink' ? '9 w-75' : (playerState.type == 'exhibit' ? '10 width8P' : '12')}">
                     <Textfield
                         id={(playerState.type == 'exhibit' && playerState.exhibitType == 'link') ? "layout" : "asset"}
                         fullWidth="true"
@@ -582,11 +583,11 @@ onMount(()=> {
                     />
                 </div>
                 {#if (playerState.type == 'weblink' || playerState.type == 'exhibit') }
-                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
+                    <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3 textWidth' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
                         <select 
                             id="embed" 
                             name="embed" 
-                            class="btn border p-2 w-100 clearfix mt-sm pointer" 
+                            class="text-left btn border p-2 w-100 clearfix mt-sm pointer" 
                             bind:value={playerState.embed} 
                             on:change={(e)=>{setInputState('embed', e.target.value)}}
                         >
@@ -597,8 +598,8 @@ onMount(()=> {
                 {/if}
             </div>
             {#if ((playerState.type == 'download' || (playerState.type == 'exhibit' && playerState.sub_type == 'image')) || (playerState.type == 'weblink' && playerState.embed != 'inline'))}
-                <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : ''}>
-                    <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt'}>
+                <div container spacing={12} class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'd-flex' : (playerState.type == 'download') ? 'd-flex' : 'd-flex'}>
+                    <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt w-75'}>
                         <Textfield
                             id="img"
                             fullWidth="true"
@@ -721,7 +722,7 @@ onMount(()=> {
                         bind:value={playerState.snt} 
                         id="refid" 
                         name="refid" 
-                        class="border p-2 ml-md clearfix width99 pointer" 
+                        class="text-left border p-2 ml-md clearfix width99 pointer" 
                         on:change={(e)=>{setInputState('snt', e.target.value)}}
                     >
                         <option value='00cRX'>{l.snt_41}</option>
@@ -836,6 +837,7 @@ onMount(()=> {
 .insertBtn{
     position: relative;
     bottom: 18px;
+    width: 129px;
 }
 .textTranscript {
     width: 60%;
@@ -866,5 +868,9 @@ onMount(()=> {
 .borderCheck {
     left: 12px;
     bottom: 9px;
+}
+
+.textWidth {
+    width: 140px;
 }
 </style>

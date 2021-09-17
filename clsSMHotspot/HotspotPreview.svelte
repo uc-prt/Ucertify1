@@ -628,8 +628,8 @@
 		display : none;
 		position: absolute;
 		z-index: 10;
-		width: 26px;
-		height:26px;
+		width: 17px;
+		height:15px;
 		border-radius: 50%;
 		background: #fff;
 		color: #1c3ad4;
