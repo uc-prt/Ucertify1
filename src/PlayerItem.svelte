@@ -3,7 +3,6 @@ import { onMount } from 'svelte';
 import { Textfield } from 'svelte-mui/src';
 import { AH } from '../helper/HelperAI.svelte';
 export let playerState;
-debugger;
 export let isPlayerCheck;
 export let setInputState;
 export let setVideoAsset;
@@ -250,7 +249,6 @@ onMount(()=> {
             {/if}
             {#if playerState.type == 'lablink'}
                 <div class="mt-4">
-                    {console.log('checking.....',isPlayerCheck)}
                     <input
                         type="checkbox"
                         bind:checked={isPlayerCheck}

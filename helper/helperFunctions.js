@@ -915,18 +915,12 @@ export function tag_player(obj) {
                             'ajax': 1 
                         },
                     }).then((data) => {
-                        console.log('checking...........response');
-                        //_this.innerHTML = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`;
-                        // console.log('_this.innerHTML :',_this.innerHTML)
+                        console.warn('response...');
                         setTimeout(function(){
                             console.warn('checking...')
                         },500)
                         let pdfDoc = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`
                         _this.innerHTML = pdfDoc;
-                        console.log('This value ',_this);
-                        
-
-                        //console.log('_this.innerHTML :',_this.innerHTML)
                         if (AH.find('.exhibit_' + old_assest + '_' + old_player_id, 'player', 'all').length != 0 && embed == 'inline') {
                             tag_player(document.querySelector(`.exhibit_${old_assest}_${old_player_id}`));
                         }
@@ -1541,7 +1535,7 @@ export function tag_player(obj) {
                 break;
             default:
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
-                console.log("iframe_src =>",iframe_src);
+                console.warn("iframe_src =>",iframe_src);
                 AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'afterend');
                 player_id++;
                 break;

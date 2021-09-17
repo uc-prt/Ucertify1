@@ -71,9 +71,6 @@
     });
 
     beforeUpdate(async()=> {
-        console.log('beforeUpdate');
-        console.log('first :',state.prevValue);
-        console.log('second :',editorState.playerArr)
         console.warn("Before update", {pre:state.prevValue, player:editorState.playerArr});
         onUpdate(editorState.playerArr);
     })
@@ -280,7 +277,6 @@
             }
         });
         AH.listen(document.body, 'click', '#table_list tr', function (_this) {
-            debugger;
             let item_id = AH.select('#showPlayerList #asset').value.trim();
             AH.find(_this, 'td', 'all')[0].classList.toggle('tick');
             AH.selectAll("#table_list tr td.tick").forEach(function(elm) {
@@ -528,7 +524,6 @@
     function editContent(edit_item_id) {
         let src;
         if (!edit_item_id) {
-            debugger;
             let guid = AH.select('#showPlayerList #asset').value;
             src  = baseUrl+"editor/v2/?action=edit&content_guid="+guid+"&in_frame=1&from_ebook=1&react_content=1&course_code="+editor.course;       
             if (guid.indexOf(',') !== -1) {
@@ -686,7 +681,6 @@
                 let captionstr = caption_array.join("###");
                 AH.select('.media_tag #stepcaptions').value = captionstr;
             } else if (!state.security) {
-                debugger;
                 let transcript = AH.select('.media_tag #group_guids').value.trim();
                 setVideoAsset((transcript != '') ? 'guid' : 'asset', AH.select('.media_tag #asset').value);
                 AH.select('.media_tag #sub_type').value = state.sub_type;
@@ -770,7 +764,6 @@
     }
     function validateItemId() {
         let msg = '';
-        debugger;
         let input_id = document.querySelector('#showPlayerList #asset'); 
         let asset = (input_id && input_id.getAttribute('is_multiple')) ? input_id.value.trim() : ''; 
         let is_valid = true;
@@ -850,7 +843,6 @@
         }, 100);   
     }
     function validateVideoIterval() {
-        debugger;
         let video_url = AH.select('.media_tag #asset').value;
         AH.empty('.get_video_duration');
         if (video_url != '') {
@@ -892,7 +884,6 @@
     }
 
     function handleTranscriptDialog() {
-        debugger;
         if (!state.add_transcript) {
             if (window.editor.course == null) {
                 AH.alert(l.load_course);
