@@ -48,14 +48,14 @@
                             "auth": (await import('../clsSMChoiceMatrix/ChoiceMatrix.svelte')).default,
                             "preview": (await import('../clsSMChoiceMatrix/ChoiceMatrixPreview.svelte')).default,
                             "default": (await import('../clsSMChoiceMatrix/defaultXML.svelte')),
-                            "UI": (await import('../clsSMChoiceMatrix/choiceMatrixHelper.svelte')),
+                            "UI": (await import('../clsSMChoiceMatrix/choiceMatrixHelper.svelte')).itemHelper,
                         });
                     case 22: 
                         resolve({ 
                             "auth": (await import('../clsSMWeb/Web.svelte')).default,
                             "preview": (await import('../clsSMWeb/Web.svelte')).default,
                             "default": (await import('../clsSMWeb/defaultXML.svelte')),
-                            "UI": (await import('../clsSMWeb/WebHelper.svelte')),
+                            "UI": (await import('../clsSMWeb/WebHelper.svelte')).itemHelper,
                         });
                         
                     break;
