@@ -59,7 +59,7 @@
     const unsubscribe = hdd.subscribe((items) => {
         state = items;
     })
-    
+
     onMount(async()=> {
         console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
@@ -585,19 +585,24 @@
             state.content_subtype = content_subtype;
         }
     }
+    /**
+     * Function to list the content list.
+    */
     function listContent() {
         AH.selectAll(".list_content, #not_found, .table_list_guid", 'hide');
         AH.toggleDom("#list_process" ,'show');
+        AH.select('#list_process', 'removeClass', ['h']);
         let listTimer = setTimeout(function() {
             if (state.content_type != '' || state.content_subtype != '') {
                 AH.ajax({
-                    url: baseUrl+'educator/project/project.php?func=get_content_list&ajax=1',
+                    url: baseUrl+'educator/project/index.php?func=get_content_list&ajax=1',
                     data: {
                         course_code: editor.course,
                         content_type: state.content_type.split(','),
                         content_subtype: (state.content_subtype != '') ? state.content_subtype.split(',') : ''
                     },                         
                 }).then((response)=> {
+                    AH.select('#list_process', 'addClass', ['h']);
                     AH.toggleDom("#list_process", 'hide');
                     AH.toggleDom(".list_content", 'show');
                     if (response == "") {
@@ -654,11 +659,13 @@
         type = type || 0;
         let data = '<div style="height:101%"><div class="load_data"><img class="absolute" style="top:0;bottom:0;left:0;right:0;margin:auto;" src="'+themeUrl+'foundation/css/images/loading.gif"/></div><iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" id="editorFrame" class="editor_frame" type="'+type+'" frameborder = "0" src = "'+src+'" height = "0" width = "0" onload=showWeblinkIframeEditor(this)></iframe></div>';
         AH.select("#frame_container").innerHTML = data;
-        AH.select('#go_back_window').closest('#bottombar').style.display = "none";
+        if (AH.select('#go_back_window') == 'object') {
+            AH.select('#go_back_window').closest('#bottombar').style.display = "none";
+        }
         AH.select("#modal_editor").classList.add("no_margin_top");
         AH.find('#modal_editor', '.modal-dialog').style.width = '100%';
         AH.setCss(AH.find('#modal_editor', '.modal-content'), {'height': window.innerHeight-47, 'margin':'auto','max-width':window.innerWidth});
-        AH.getBS('#modal_editor', 'modal', {'backdrop':'static'}).show();
+        AH.getBS('#modal_editor', 'Modal', {'backdrop':'static'}).show();
     }
     function changeDeleteValues() {
         AH.select('.stepplayertable tr[data-id='+state.rowID+']').remove();
@@ -973,7 +980,7 @@
                         <div class="mb-xl col-md-5 col-sm-4 col-5 pull-right p-0 list_content h">
                             <input class="form-control search search_width" id="search" name="search" type="text" placeholder={l.search_item_txt} on:keyup={searchTable} />
                         </div>
-                        <div class="list_content h">
+                        <div class="list_content" style="display:none;">
                             <table id="list_content_tbl" class="table table_list table_search table-striped table-hover">
                                 <thead class="always_show">
                                     <tr>
@@ -988,10 +995,10 @@
                 {/if}
             </div>
             <div class="table_list_guid"></div>
-            <div class="alert alert-danger h mt-xl" id="not_found">{l.no_record}</div>
-            <center id="list_process" class="mt-xl pt-1 h">
+            <div class="alert alert-danger mt-5" id="not_found" style="display:none;">{l.no_record}</div>
+            <center id="list_process" class="mt-5 pt-1" style="display:none;">
                 <Loader size={60} thickness={2} />
-                <h4>Please Wait</h4>
+                <h4>Please, be patient. We are working things up for you. </h4>
             </center>
         </div>
     </div>
