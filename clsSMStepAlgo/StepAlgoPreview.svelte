@@ -114,6 +114,7 @@
 			
 			let l = (data.value.split('').length * 10) + 45 +'px';
 			data.style.width = l;
+			e.target.previousSibling.style.width = l;
 		})
 
 		//window.J = ju;
@@ -663,6 +664,7 @@
 			element_div = "s"+steps_counter;
 			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none"  style="width:38px;'+csStyle+'" />';
 			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="" class="corr_div h-imp">'+data[0]+'</span>'+textbox+'</span>';
+			console.log('checking...',answerColor);
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans)
 			special_module.smans = smans;
@@ -1204,6 +1206,7 @@
 		vertical-align: middle;
 		cursor: default;
 	}
+
 
 	:global([id^="fillmain"]) {
         overflow:hidden;
