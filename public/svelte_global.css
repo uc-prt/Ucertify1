@@ -24242,7 +24242,15 @@ div[type="timeline/slideshow"] > section:last-child {
     border-top: 1px solid #e9ecef;
     margin-top: 12px;
 }
-
+.blue_border {
+  border-color: #5f96bf!important;
+}
+.bg-lighter-blue {
+  background-color: #e8f3ff!important;
+}
+.white_space_imp {
+  white-space: normal!important;
+}
 
 /* table CSS for Item Only */
 /* table thead th * {

@@ -27,6 +27,7 @@ import Media from "./components/Media.svelte";
 import l from './libs/editorLib/language';
 import ImageAnnotation from './components/ImageAnnotation';
 import EditorPopoverModal from './components/EditorPopoverModal.svelte';
+import PeGlossaryContentLink from './components/PeGlossaryContentLink.svelte';
 // Taking Props
 export let actionData;
 export let advanceXml;
@@ -3057,3 +3058,4 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 <svelte:window on:keyup={handleKeyup} on:keydown={handleKeydown} />
 <InteractiveItem bind:this={_interactiveItem}/>
 <EditorPopoverModal />
+<PeGlossaryContentLink />
