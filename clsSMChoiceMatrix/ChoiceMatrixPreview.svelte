@@ -170,22 +170,6 @@
                     });
                     previewUserAns();
                 },100)
-                   
-
-
-                
-                // let datauser;
-                    // rawUaXML.ans.map(function(data,i) {
-                    //     let test_area_len = document.getElementsByClassName('test_area');
-                    //     for(let j = 0; j < test_area_len.length; j++ ) {
-                    //         let test_area_find = AH.find(test_area_len[j], "#"+data.userAns);
-                    //         if(test_area_find) test_area_find.setAttribute("data-userans",data.userAns)
-                            
-                    //     } 
-                    // })
-
-                    
-
 
                     // for showing the userans , that is the answer which is marked by the user
                     
@@ -195,10 +179,7 @@
             }
         } else {
             // if is not user ans then unchecked all the radio btn
-            /*    jQuery(".test_radio").each(function () {
-                    jQuery(this)[0].checked = false;
-                    jQuery(this).attr('data-userans',"");
-                })  */
+           
                 let test_radio_len = document.getElementsByClassName('test_radio');
                 for(let i = 0; i < test_radio_len.length; i++) {
                     test_radio_len[i].checked = false;
@@ -223,20 +204,11 @@
 
 
         // setting the data-userans on which user is clicked
-        //jQuery(mainId+" .test_area").find("#" + id + "").attr("data-userans", id);// Replaced
         AH.selectAll(mainId+" .test_area" + " #" + id + "",'attr',{"data-userans":id});
        
         let userans = { "type": "34", "ans": [] };
 
         /////////// updating the user ans /////////////////////////
-        /* jQuery(mainId+" .test_radio").each(function () {
-            if (jQuery(this)[0].checked == true) {
-                userans.ans.push({
-                    id: jQuery(this).attr("data-termid"),
-                    userAns: jQuery(this).attr("id")
-                });
-            }
-        });*/
         
         let test_radio = document.getElementsByClassName('test_radio');
         for(let i = 0; i<test_radio.length; i++ ) {
@@ -251,7 +223,6 @@
         // for autograding
         
         // updaing the value in the textarea 
-        //jQuery("#special_module_user_xml").val(JSON.stringify(userans)); // Replaced;
 
         
         //AH('special_module_user_xml').value = JSON.stringify(userans);
@@ -350,7 +321,6 @@
     /////// This function setReview mode ////////////// 
     function modeOn() {
         isReview = true;	
-        //jQuery(mainId+" .test_radio").attr('disabled', true); // Replaced
         let test_radio = AH.selectAll(mainId + " .test_radio");
         for (let i = 0; i < test_radio.length; i++) {
             test_radio[i].disabled = true;
@@ -367,7 +337,6 @@
         }
     
         hideCorIncorIcon();  
-        //jQuery(".dbg-success input:checked").siblings(".label_choice").attr("title",""); // Replaced
 
         // AH.select(".dbg-success input","checked").forEach((_elm)=>{
         //     AH.siblings(_elm,".label_choice").forEach((_e)=>{
@@ -375,8 +344,6 @@
         //     })
         // }); Fix
         
-        
-        //jQuery(".dbg-danger input:checked").siblings(".label_choice").attr("title", ""); // Replaced
 
         // AH.select(".dbg-danger input:checked").forEach((_elm)=>{
         //     AH.siblings(_elm,".label_choice").forEach((_e)=>{
@@ -434,8 +401,6 @@
     /////// Hiding correct or incorrect answer ////////////////
     function hideCorIncorIcon() {
         
-        //jQuery(".fa-check"); // Replaced
-            //jQuery(".fa-close").hide(); // Replaced
         let hide_icon_length =  document.getElementsByClassName('fa-check');
         let hide_icon_length1 = document.getElementsByClassName('fa-close');
         for (let i=0; i<hide_icon_length.length; i++) {
