@@ -1,11 +1,18 @@
 <script>
+    /**
+	 *  File Name   : PeGlossaryContentLink.svelte
+	 *  Description : To show the span link
+	 *	Author      : Prabhat Kumar
+	 *  Version     : 1.0
+	 *  Package     : svelte_items
+	 *  Created     : 17 Sep 2021
+	*/
     import { onMount } from "svelte";
     import { AH } from "../../helper/HelperAI.svelte";
-
-
-
     onMount(()=> {
-        AH.listen(document.body, 'click', 'span.link', function(_this) {
+        var requestedGuid = "";
+        var isInPreview = false;
+        AH.listen('body', 'click', 'span.link', function(_this) {
             if (_this.parentElement.classList.contains("tinymce-editor") || _this.closest(".tinymce-editor")) {  //@Remove click from editor Authoring
 				return false;
 			}
@@ -13,11 +20,11 @@
 				AH.showmsg("Please save the content before preview", 4, 1);
 				return false;
 			}
-            guid = (typeof _this.getAttribute("guid") != "undefined") ? _this.getAttribute("guid") : "",
-            style = (typeof _this.getAttribute("embed") != "undefined") ? _this.getAttribute("embed") : "";	
-            url = "";
+            var guid = (typeof _this.getAttribute("guid") != "undefined") ? _this.getAttribute("guid") : "";
+            var style = (typeof _this.getAttribute("embed") != "undefined") ? _this.getAttribute("embed") : "";	
+            var url = "";
             if(guid != "") {
-                isInPreview = startsWith(guid, 'new-');
+                isInPreview = guid.startsWith('new-');
                 url += `${baseUrl}preview.php?content_guid=${guid}&change_links_target=1`;
             }
             if(url != "") {
@@ -26,7 +33,48 @@
                         window.open(url+"&action=new", "_blank");
                         break;
                     case "inline":
-                        //"Nothing here"
+                        if (AH.nextElm(_this).classList.contains('span-inline')) {
+                            AH.slideToggle(AH.nextElm(_this));
+                            if (AH.select(_this).hasAttribute('toggle_link')) {
+                                var txt = AH.select(_this)?.getAttribute('toggle_link');
+                                AH.select(_this).setAttribute('toggle_link', AH.select(_this).textContent);
+                                AH.select(_this).textContent = txt;
+                            }
+                        } else {
+                            if ( requestedGuid != guid ) {
+                                requestedGuid = guid;
+                                AH.activate(1);
+                                var no_space = '';
+                                if (AH.select(".prettyprint.linenums").length > 0) {	
+                                    AH.select('.prettyprint.linenums', 'addClass', ['handel_prettyprint']);
+                                    AH.select('.prettyprint.linenums', 'removeClass', ['linenums']);
+                                } else {
+                                    no_space = 'white_space_imp py-2';
+                                }
+                                AH.ajax({
+                                    type: "POST",
+                                    url: url,
+                                }).then((data)=> {
+                                    requestedGuid = "";
+                                    if(data) {
+                                        data = data.replace(/sec_button/g,"");
+                                    }
+                                    AH.insert(_this, '<div linkedGuid= "'+guid+'"class="span-inline span-inline well bg-lighter-blue blue_border mt-2 py-0 mt-2 py-0 '+ no_space +'" style="display:none;"><span class="close mt-2 font28 pointer">&times;</span><div class="d-flex section_'+guid+'">'+data+'</div></div>', 'afterend');
+                                    AH.addClass(AH.find('.section_' + guid, '#preview-content-in-span'), 'overflow');
+                                    if ( no_space != '' ) {
+                                        AH.addClass(AH.find('.section_' + guid, '#preview-content-in-span'), 'pt-3');
+                                    }
+
+                                    if (typeof ajaxContentUpdate != 'undefined') {
+                                        let data = AH.nextAll(_this);
+                                        AH.findAll(data,'.uc-figure',{action:'addClass',actionData:'spanlink_container'})
+                                        ajaxContentUpdate({ imgAltText: 1, container: ['.spanlink_container'] });
+                                    }
+                                    AH.slideDown(AH.nextElm(_this), '500');
+                                    AH.activate(0);
+                                });
+                            }
+                        }
                         break;
                     case "factlink":
                             var _tId = "factbodydiv"+guid;
@@ -120,7 +168,7 @@
             }
         });
         AH.listen(document.body, "click", '.span-inline .close', function(_this) {
-            _this.parentElement.slideUp();
+            AH.slideUp(_this.parentElement, 500);
         });
         AH.listen(document.body, 'click', '.weblink-fullscreen, .exhibit-fullscreen', function (_this) {
             var object = _this.parentElement.parentElement;
