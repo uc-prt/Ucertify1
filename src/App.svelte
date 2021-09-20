@@ -79,6 +79,7 @@
 					apiData = apiData[editorUrl.get('content_guid')];
 					searchQuery['content'] = JSON.stringify(apiData);
 					ajaxRes = await AI.ajax({url: server, data: searchQuery });
+					console.log('ajaxRes : ',ajaxRes);
 					onDataGet();
 				});
 			} else {
@@ -111,6 +112,7 @@
 
 	// To get data of guid and set params for edit.
 	function onDataGet() {
+		console.trace();
 		if (AH.isValid(ajaxRes)) {
 			ajaxRes = JSON.parse(ajaxRes);
 			Object.keys(ajaxRes).forEach((key)=>{

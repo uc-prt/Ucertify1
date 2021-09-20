@@ -1039,7 +1039,8 @@ export function tag_player(obj) {
                     var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
                     AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
                     var v_p_url = 'url("' + preview_image + '")';
-                    _this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
+                    //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
+                    AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
                 } else {
                     if (is_full_url && asset.indexOf('vimeo') == -1 && sub_type != 'youtube') {
                         var _asset = (sub_type == 'hostedvideo') ? asset : asset + '?vq=hd1080';
@@ -1536,6 +1537,19 @@ export function tag_player(obj) {
                 break;
         }
     });
+}
+
+function getTestFrameworkDetail(checkViewAttr) {
+    debugger;
+    var detail = -1;
+    if (AH.select('#uc-item-test-template').length === 1) {
+        var tempTestView = AH.select('#uc-item-test-template').getAttribute('temp_test_view');
+        if (!checkViewAttr && tempTestView && tempTestView != '') {
+            return tempTestView;
+        }
+        return AH.select('#uc-item-test-template').nodeName && AH.select('#uc-item-test-template').getAttribute('view');
+    }
+    return detail;
 }
 
 function initAccordion() {
