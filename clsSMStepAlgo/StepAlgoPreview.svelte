@@ -114,6 +114,7 @@
 			
 			let l = (data.value.split('').length * 10) + 45 +'px';
 			data.style.width = l;
+			e.target.previousSibling.style.width = l;
 		})
 
 		//window.J = ju;
@@ -650,7 +651,7 @@
 			element_id = "s"+index+"_t"+i;
 			element_div = "s"+index;
 			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_st" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" />';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="text" class="corr_div">'+data[0]+'</span>'+textbox+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="text" class="corr_div" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" >'+data[0]+'</span>'+textbox+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
 		} else {	
@@ -1204,6 +1205,7 @@
 		vertical-align: middle;
 		cursor: default;
 	}
+
 
 	:global([id^="fillmain"]) {
         overflow:hidden;
