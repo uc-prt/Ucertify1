@@ -59,7 +59,7 @@
 					// shows the label 'Check Answer' in inline way
 					AH.select('#answerCheck', 'css', {visibility: "visible", display: "inline-block"});
 					// used for show the tooltip
-					AH.enableBsAll('[data-toggle="tooltip"]', 'Tooltip');
+					AH.enableBsAll('[data-bs-toggle="tooltip"]', 'Tooltip');
 
 					// contains the 'Title' field value of 'Authoring' area // Replaced
 					let titleData = AH.select('#title').innerHTML;
