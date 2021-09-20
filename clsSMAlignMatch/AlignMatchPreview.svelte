@@ -466,7 +466,11 @@
                     itemValue = AH.find(value, 'img').getAttribute('src');
                 } else {
                     // contains text of div element exist inside the element defined in variable 'value'
-                    itemValue = AH.find(value, 'div').textContent;
+                        
+                    itemValue = '';
+                    if(AH.find(value, 'div') != null) { 
+                        itemValue = AH.find(value, 'div').textContent;
+                    }
                 }
                 /**userXML generation start*/
                 // contains all the items available
@@ -604,7 +608,7 @@
                     AH.selectAll('.categorycontainer', 'addClass', "wrong_ans");
                 }, 100)
                 // shows the warning message
-                AH.alert("Please match all the items correctly.", 4);
+                AH.showmsg("Please match all the items correctly.",3000);
             }
             // allow to start the game
             beginGame();
