@@ -466,12 +466,11 @@
                     itemValue = AH.find(value, 'img').getAttribute('src');
                 } else {
                     // contains text of div element exist inside the element defined in variable 'value'
-                    if(AH.find(value, 'div') == null) {
-                        itemValue = '';
-                    } else {
+                        
+                    itemValue = '';
+                    if(AH.find(value, 'div') != null) { 
                         itemValue = AH.find(value, 'div').textContent;
                     }
-                    
                 }
                 /**userXML generation start*/
                 // contains all the items available
