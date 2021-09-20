@@ -887,6 +887,7 @@ const l = {
     itemtype_15 : "To perform the given task, you have to select an item from one side and place it in front of its correct item on the other side. The shortcut keys to perform this task are Press the Alt+down arrow key to activate. Press the arrow key to navigate through all the items. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove any navigated item, then selected that item and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
     itemtype_13 : "Here, this type of question contains the terminal. You have to write command to perform this task.",
     itemtype_22 : "Here, this type of question contains the cisco terminal. You have to write command to perform this task.",
+    es6_warining: "You are using Internet Explorer, ES6 functionality of javascript will not work!",
 };
 //window.LANG = l;
 export default l;
