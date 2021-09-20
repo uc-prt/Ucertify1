@@ -25441,6 +25441,7 @@ input:checked + .uc_syntax_slider:before {
 }
 .tooltip {
   pointer-events: none !important;
+  z-index: 2090 !important;
 }
 .overlay, .side-panel {
   z-index: 9999 !important;
