@@ -422,7 +422,8 @@ export function initEbookInteractivity() {
 
 export function tag_player(obj) {
     if (typeof (obj) != 'undefined') {
-        obj = obj.querySelectorAll('player');
+        //obj = obj.querySelectorAll('player');
+        obj = AH.find(obj,'player','all');
     } else {
         obj = document.querySelectorAll('player');
     }
