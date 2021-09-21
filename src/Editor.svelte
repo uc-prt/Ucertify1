@@ -236,7 +236,7 @@ onMount(async ()=> {
 });
 
 afterUpdate(() => {
-	if (state.guid) {
+	if ( typeof state != 'undefined' && 'guid' in state && state.guid) {
 		initComments(state.guid, _user.user_guid);
 	}
 });
