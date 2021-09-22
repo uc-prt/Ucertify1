@@ -40,6 +40,7 @@ export default class HotspotAuthScript {
 	updateElem(type, _this, key, ui,xml) {
 		let attributes = JS.serializeArray(JS.find('#authoring-modal','.h', 'visible'), 'input');
 		let bgimg = "", attr = [], wd, hd, tp, lt, where, st;
+		let hp_image = JS.select('#im').getBoundingClientRect();
 		if (typeof(ui) !== "undefined") {
 			attributes = JSON.parse(JS.select('#'+key).dataset['attributes']);
 			if(!attributes) {
@@ -52,7 +53,10 @@ export default class HotspotAuthScript {
 				attributeArr[5] = {name:'height', value: parseInt(JS.select('#'+key).style.height.split('px')[0]) };
 				attributes = attributeArr;
 			}
+			console.log('_this', _this);
+			console.log(ui.css)
 			attributes.forEach((_data, index, _orginalArr)=> {
+				console.log('_data.name', _data.name);
 				switch(_data.name) {
 					case "width":
 						_data.value = ui.clientWidth;
@@ -65,11 +69,17 @@ export default class HotspotAuthScript {
 						if(_data.value < 0) {
 							_data.value = 0;
 						}
+						if ((_data.value + ui.clientHeight) > hp_image.height) {
+							_data.value = hp_image.height - ui.clientHeight;
+						}
 						break;
 					case "left":
 						_data.value = (+(_data.value) + _this.offsetX) - (ui.clientWidth/2);
 						if(_data.value < 0) {
 							_data.value = 0;
+						}
+						if ((_data.value + ui.clientWidth) > hp_image.width) {
+							_data.value = hp_image.width - ui.clientWidth;;
 						}
 						break;
 				}
