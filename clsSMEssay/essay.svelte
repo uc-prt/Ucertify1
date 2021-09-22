@@ -203,6 +203,10 @@
     </div>
 </main>
 <style>
+
+    :global(a:hover) {
+        text-decoration: none;
+    }
     .hero-unit {
         border: 1px solid #ccc;
         width: 84%;
