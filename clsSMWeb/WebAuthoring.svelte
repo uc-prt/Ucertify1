@@ -169,9 +169,7 @@
      // called once throught the program execution just after render method
     onMount(()=> {
 
-            AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip', {container: 'body'});
-            
-
+            AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
             AH.bind(".modal", 'show.bs.modal', ()=> {
                 setTimeout(function () {
                     if (AH.select('#disable_modal','visible').length > 0) {
@@ -213,8 +211,6 @@
                 }
             })
 
-            // used for show the tooltip
-            //AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip');
             AH.select('#preview', 'hide');
            // setTimeout(function () {
                 if (typeof (CodeMirror) == "function") {
