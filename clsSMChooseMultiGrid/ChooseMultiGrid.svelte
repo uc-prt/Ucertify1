@@ -34,6 +34,22 @@
 	onMount(() => {
 		state.xml = xml;
 		loadModule(xml); 
+
+		AH.listen(document,'click','.columnContainer',function(e) {
+			var elem_id = e.getAttribute('id');
+			setTimeout(function () {
+				if(AH.find('#' + elem_id,'img','all').length > 0) {
+					let im = AH.find('#' + elem_id,'img').getAttribute('src');
+					im = im.replace(/\/\/s3.amazonaws.com\/jigyaasa_content_static\//, '');
+					AH.select('#MatchlistImg').value = im;
+					AH.select('#MatchlistAlt').value = AH.find('#' + elem_id,'img').getAttribute('alt');
+				} else {
+					AH.select('#MatchlistImg').value = '';
+					AH.select('#MatchlistAlt').value = '';
+				}
+			},300);
+		})
+		
 	});
 	$: {
 		count = 0;
@@ -195,6 +211,7 @@
 
 	//to open upload image dialog
 	function openImageDialog(class_name) {
+		console.log('check');
 		state.openImageDialog = true;
 		state.imageClass = class_name;
 		let timer;
