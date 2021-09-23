@@ -150,6 +150,9 @@ let _editorBuffer = {};
 const unsubscribe = hdd.subscribe((items) => {
 	state = items;
 })
+
+const ucStepContolPanel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
+
 onMount(async ()=> {
 	AH.activate(2);
 	ucEditor.setConfig(editorConfig); // Setting config for tinymce
@@ -963,11 +966,28 @@ function initEditorListeners() {
 		let cloned_this_section = _this_section.cloneNode(true);
 		AH.find(cloned_this_section, '.controls_button', {action: 'remove'});
 		AH.insertAfter(cloned_this_section, _this_section);
+
+		AH.bind(cloned_this_section,'mouseenter', event=> {
+			const _this = event.target;
+			let control_panel = ucStepContolPanel;
+			if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
+				AH.insert(_this.closest('.uc_step'), control_panel, 'afterbegin');
+			}
+		});
+		
+		AH.bind(cloned_this_section, 'mouseleave', event=> {
+			//element that has gained focus while enterting the edit buttons group
+			const _this = event.target;
+			if (!_this.closest('.uc_step').querySelector('.controls_panel_button')) {
+				return;
+			}
+			AH.selectAll('.controls_panel_button', 'remove');
+		});
 	});
 
 	AH.listen(document, 'click', '.panel-controls__remove', (_this)=> {
 		let parent_tinymce_id = AH.parent(_this, ".tinymce-editor");
-		if (_this.closest('.drop_list').querySelectorAll('.uc_step').length != 1) {
+		if (_this.closest('.uc_step_explanation').querySelectorAll('.uc_step').length != 1) {
 			_this.closest('.uc_step').remove();
 			setContent(parent_tinymce_id.getAttribute("id"));
 		}
@@ -981,7 +1001,7 @@ function refreshEvents() {
 	}
 	AH.listenAll('#authoringSection .uc_step', 'mouseenter', event=> {
 		const _this = event.target;
-		let control_panel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
+		let control_panel = ucStepContolPanel;
 		if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
 			AH.insert(_this.closest('.uc_step'), control_panel, 'afterbegin');
 		}
