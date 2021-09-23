@@ -490,7 +490,6 @@ function ucStepImplement() {
 					AH.insert(elm, "<br/>", 'beforebegin');
 				}
 			});
-			console.log(_this);
 			let btnCaption = (_this.getAttribute('data-btnnme') != undefined && _this.getAttribute('data-btnnme') != "") ? _this.getAttribute('data-btnnme') : 'Next';
 			let btnhtml = '<button type="button" onclick="showUcExpStep(this)" class="exp_next_btn btn btn-sm btn-outline-primary bg-white imgcenter text-primary" style="width: 15%; font-size: 15px; margin-top: 15px;">' + btnCaption + '</button>';
 			AH.find(_this, '.exp_next_btn', {action: 'remove'});
