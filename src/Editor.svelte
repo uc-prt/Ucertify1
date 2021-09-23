@@ -958,23 +958,6 @@ function initEditorListeners() {
 		}
 	});
 
-	AH.listen(document, 'mouseover', '#authoringSection .uc_step', (_this)=> {
-		let control_panel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
-		if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
-			AH.insert(_this.closest('.uc_step'), control_panel, 'beforeend');
-		}
-	});
-
-	AH.listen(document, 'mouseout', '#authoringSection .uc_step', (_this, event)=> {
-		let e = event.relatedTarget || event.toElement;
-		//element that has gained focus while enterting the edit buttons group
-		if (_this.closest('.uc_step').querySelector('.controls_panel_button')) {
-			return;
-		}
-		AH.selectAll('.controls_panel_button', 'remove');
-		AH.toggleDom('.tooltip', 'hide');
-	});
-
 	AH.listen(document, 'click', '.panel-controls__duplicate', (_this)=> {
 		let _this_section = _this.closest('.uc_step');
 		let cloned_this_section = _this_section.cloneNode(true);
@@ -996,6 +979,23 @@ function refreshEvents() {
 	if (uc_image_annotate) {
 		uc_image_annotate.bindMulti();
 	}
+	AH.listenAll('#authoringSection .uc_step', 'mouseenter', event=> {
+		const _this = event.target;
+		let control_panel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
+		if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
+			AH.insert(_this.closest('.uc_step'), control_panel, 'afterbegin');
+		}
+	});
+
+	AH.listenAll('#authoringSection .uc_step', 'mouseleave', event=> {
+		//element that has gained focus while enterting the edit buttons group
+		const _this = event.target;
+		if (!_this.closest('.uc_step').querySelector('.controls_panel_button')) {
+			return;
+		}
+		AH.selectAll('.controls_panel_button', 'remove');
+	});
+
 	AH.bind('#show_guid','mouseenter', (event)=> {
 		AH.setCss(event.target, {cursor: 'pointer'});
 		event.target.setAttribute("data-bs-original-title", "Tap to copy");
