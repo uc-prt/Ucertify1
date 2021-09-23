@@ -997,7 +997,11 @@ function initEditorListeners() {
 			setContent(parent_tinymce_id.getAttribute("id"));
 		}
 	});
-	
+	AH.listen(document, 'click', '#authoringLoadComponent', () => {
+		if (!AH.get('save_item')) {
+			AH.set('save_item', (editor.save == 1) ? true : false);
+		}
+	});
 }
 
 function refreshEvents() {
