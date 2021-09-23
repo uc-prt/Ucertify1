@@ -863,6 +863,8 @@ export default class JUI extends API{
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
         if (selected && selected.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'removeClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'removeClass', actionData: name})
         }
         return selected || {};
     }
@@ -871,6 +873,8 @@ export default class JUI extends API{
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
         if (selected && selected.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'addClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'addClass', actionData: name})
         }
         return selected || {};
     }
