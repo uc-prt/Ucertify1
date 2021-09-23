@@ -997,6 +997,7 @@ function initEditorListeners() {
 			setContent(parent_tinymce_id.getAttribute("id"));
 		}
 	});
+	
 	AH.bind('#authoringLoadComponent', 'click', () => {
 		if (!AH.get('save_item')) {
 			AH.set('save_item', (editor.save == 1) ? true : false);
