@@ -62,7 +62,7 @@
             domainData= AH.get('domainData')[editorState.guid];
             setDomainData();
         } else if (fromProject && url.get('router_guid')) {
-            AJ.ajax({
+            AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
                     ajax: "1",
