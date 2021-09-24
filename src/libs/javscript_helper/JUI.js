@@ -861,7 +861,7 @@ export default class JUI extends API{
     // remove node classes
     removeClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (Array.isArray(selected) && selected.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'removeClass', actionData: name}));
         } else if (typeof selected == 'object') {
             this.jsAction(selected, {action: 'removeClass', actionData: name})
@@ -871,7 +871,7 @@ export default class JUI extends API{
     // add class for node
     addClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (Array.isArray(selected) && selected.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'addClass', actionData: name}));
         } else if (typeof selected == 'object') {
             this.jsAction(selected, {action: 'addClass', actionData: name})
@@ -1108,7 +1108,6 @@ export default class JUI extends API{
                             ajaxData.content_text.answers[index].answer =  item.answer.replace(/\n/g, "");
                         });
                     } catch(e) {
-                        console.log(e);
                         let tempAjaxData = {
                             answers: [
                                 {
@@ -1429,6 +1428,7 @@ export default class JUI extends API{
     
     // handle inline actions of js
     jsAction(selected, data) {
+        console.log(selected);
         switch(data.action) {
             case 'show': selected.style.display = data.actionData || "";
             break;
