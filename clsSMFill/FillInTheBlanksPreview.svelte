@@ -971,7 +971,7 @@
 		padding:3px;
 		font-size: 14px;
 	}
-	:global(#fillmain .drag-resize.ui-draggable)  {
+	:global(#fillmain .drag-resize.dragable)  {
 		cursor:move;
 	}
 	:global(#fillmain .drop-hover)  {
