@@ -368,6 +368,7 @@ DND.readyThis = function(dndid) {
     };
 
     draggable.onDrop = function(source, target) {
+        console.log('checking...');
         let copied = source.cloneNode(true);
         target.style.backgroundColor = copied.getAttribute('data-bgcolor');
         target.setAttribute('draging', 2);
@@ -405,7 +406,7 @@ DND.readyThis = function(dndid) {
             backgroundColor: source.style.backgroundColor,
             backgroundImage: bgimage
         });
-        AI.find(target, 'p').innerText = AI.find(copied, 'p').innerText.trim();
+        AI.find(target, 'p').innerText = AI.select(copied).innerText.trim();
 
         setTimeout(function() {
             DND.checkAns(dndid);
