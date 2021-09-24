@@ -309,7 +309,6 @@ function handleModal(modalData) {
 
 // action which called after first paint 
 function didMount(node, action) {
-	debugger;
 	if (editorBuffer['didMount']) clearTimeout(editorBuffer['didMount']);
 	editorBuffer['didMount'] = setTimeout(()=> {
 		let urlVars = AH.getUrlVars();
