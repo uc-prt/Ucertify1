@@ -1801,7 +1801,6 @@ export function mathMLRender(id_mathML, is_required) {
             console.warn(e);
         }
     } else {
-        console.log("YESS");
         let css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">';
         AH.insert(document.body, css, 'afterend');
         AH.ajax({
