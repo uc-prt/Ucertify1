@@ -6,7 +6,7 @@
 	import Loader from '../helper/Loader.svelte';
 	import Editor from './Editor.svelte';
 	import EditorModules from './EditorModules.svelte';
-	import l from './libs/Lang';
+	import l from './libs/editorLib/language.js';
 	import Button from 'svelte-mui/src/Button.svelte';
 	export let ajaxData;
 	export let subtype;

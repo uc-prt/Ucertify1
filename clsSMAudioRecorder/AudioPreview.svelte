@@ -10,7 +10,7 @@
     import { onMount, afterUpdate } from "svelte";
     import { XMLToJSON, AH, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
-    import l from '../src/libs/editorLib/language';
+    import l from '../src/libs/editorLib/language.js';
     import "./css/AudioStyle.min.css";
     export let xml;
     export let uxml;

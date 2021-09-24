@@ -1,5 +1,5 @@
 <script>
-    //import l from '../lib/Lang';
+    //import l from '../src/libs/editorLib/language.js';
     import { onMount, onDestroy, beforeUpdate, tick} from 'svelte';
     import {ucTree} from './treeviewHelper';
     import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';

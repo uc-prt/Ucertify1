@@ -10,7 +10,7 @@
 
 // importing JUI
 import JUI from '../../src/libs/javscript_helper/JUI';
-import l from '../../src/libs/Lang';
+import l from '../../src/libs/editorLib/language.js';
 const JS = new JUI();
 let CHART_AUTH = {};
 CHART_AUTH.isValid = true;

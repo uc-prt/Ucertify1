@@ -861,16 +861,20 @@ export default class JUI extends API{
     // remove node classes
     removeClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (selected && selected?.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'removeClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'removeClass', actionData: name})
         }
         return selected || {};
     }
     // add class for node
     addClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (selected && selected?.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'addClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'addClass', actionData: name})
         }
         return selected || {};
     }
@@ -1104,7 +1108,6 @@ export default class JUI extends API{
                             ajaxData.content_text.answers[index].answer =  item.answer.replace(/\n/g, "");
                         });
                     } catch(e) {
-                        console.log(e);
                         let tempAjaxData = {
                             answers: [
                                 {
@@ -1425,39 +1428,41 @@ export default class JUI extends API{
     
     // handle inline actions of js
     jsAction(selected, data) {
-        switch(data.action) {
-            case 'show': selected.style.display = data.actionData || "";
-            break;
-            case 'hide': selected.style.display = "none";
-            break;
-            case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
-            break;
-            case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
-            break;
-            case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
-            break;
-            case 'toggleClass': selected.classList.toggle(data.actionData);
-            break;
-            case 'html' : selected.innerHTML = data.actionData;
-            break;
-            case 'value': selected.value = data.actionData;
-            break;
-            case 'text': selected.textContent = data.actionData;
-            break;
-            case 'checked':  selected.checked = data.actionData;
-            break;
-            case 'remove': selected.remove();
-            break;
-            case 'removeAttr': selected.removeAttribute(data.actionData);
-            break;
-            case 'css' : this.setCss(selected, data.actionData);
-            break;
-            case 'attr': this.setAttr(selected, data.actionData);
-            break;
-            case 'data': this.setData(selected, data.actionData);
-            break;
-            case 'getData': this.getData(selected, data.actionData);
-            break;
+        if (selected instanceof HTMLElement) {
+            switch(data.action) {
+                case 'show': selected.style.display = data.actionData || "";
+                break;
+                case 'hide': selected.style.display = "none";
+                break;
+                case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
+                break;
+                case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
+                break;
+                case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
+                break;
+                case 'toggleClass': selected.classList.toggle(data.actionData);
+                break;
+                case 'html' : selected.innerHTML = data.actionData;
+                break;
+                case 'value': selected.value = data.actionData;
+                break;
+                case 'text': selected.textContent = data.actionData;
+                break;
+                case 'checked':  selected.checked = data.actionData;
+                break;
+                case 'remove': selected.remove();
+                break;
+                case 'removeAttr': selected.removeAttribute(data.actionData);
+                break;
+                case 'css' : this.setCss(selected, data.actionData);
+                break;
+                case 'attr': this.setAttr(selected, data.actionData);
+                break;
+                case 'data': this.setData(selected, data.actionData);
+                break;
+                case 'getData': this.getData(selected, data.actionData);
+                break;
+            }
         }
     }
     

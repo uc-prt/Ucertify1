@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import CHART_AUTH from './lib/chartAuthoringScript';
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import ChartModalBox from "./lib/ChartModalBox.svelte";
     export let xml;
     export let editorState;

@@ -470,7 +470,7 @@
                         {#each cm.cdata.term as data,i} 
                             <tr key = {i}>
                                 <td
-                                    class = {data.id}
+                                    class = "{data.id} position-relative"
                                     tabindex = {0}
                                     style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}!important;font-size:14pt;vertical-align:middle;font-family:{state.font}"
                                 >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
@@ -480,7 +480,7 @@
                                     key = {j}
                                     id = {'tb' + (i) + (j)}
                                     
-                                    class = {"text-center test_area " + ((data2.id == data.correct) ? "dbg-success" : "dbg-danger")} 
+                                    class = "{"text-center test_area " + ((data2.id == data.correct) ? "dbg-success" : "dbg-danger")}  position-relative" 
                                     style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}"
                                 >
                                     <i
@@ -537,17 +537,17 @@
     }
 
     :global(.fa-close) {
-        margin-left: -26px; 
+        margin-left: 20px; 
         font-size: 18px; 
-        position: relative;
-        bottom: 10px;
+        position: absolute;
+        top: 10px;
     }
 
     :global(.fa-check) {
-        margin-left: -26px; 
+        margin-left: 20px; 
         font-size: 18px; 
-        position: relative;
-        bottom: 10px;
+        position: absolute;
+        top: 10px;
     }
     :global(.fa-close), .fa-check,.middle_align {
         vertical-align: middle!important;
