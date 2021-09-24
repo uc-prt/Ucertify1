@@ -458,7 +458,7 @@
                                 data-optid={i}
                                 data-ischecked={value.ischecked}
                                 class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
-                                style="width: {box_width};overflow:auto;"
+                                style="width: {box_width};"
                             >
                                 {#if value.value.charAt(0) == "!"}
                                     {#if value.value.charAt(1) == "*"}
@@ -493,8 +493,8 @@
                             data-optid={i}
                             data-ischecked={value.ischecked}
                             on:keydown={hotkeysAda}
-                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : 'd-flex'} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} align-items-center justify-content-center position-relative ui-draggable m-0"
-                            style="width: {box_width};overflow:auto;"
+                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : ''} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} position-relative ui-draggable m-0 overflow-auto"
+                            style="width: {box_width};"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
                                 {#if value.iscorrect == true}
