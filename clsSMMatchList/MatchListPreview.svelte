@@ -12,7 +12,7 @@
 	
 	import {Draggable} from "../src/libs/javscript_helper/JUI.js";
 	//import smVal from '../lib/ValidateItems';
-	import l from '../src/libs/Lang';	
+	import l from '../src/libs/editorLib/language.js';	
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import ucMlid from './matchlistJSString';

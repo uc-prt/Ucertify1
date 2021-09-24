@@ -5,7 +5,7 @@
     import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
     import PlayerItem from './PlayerItem.svelte';
-    import l from './libs/Lang';
+    import l from './libs/editorLib/language.js';
     export let playerBookmark;
     export let editorState;
     export let value;
