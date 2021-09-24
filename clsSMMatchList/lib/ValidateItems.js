@@ -5,7 +5,7 @@
  *  Last update : 29 May 2020
  *  Last updated by: Dharmendra Mishra
  */
-import l from "../../src/libs/Lang.js";
+import l from "../../src/libs/editorLib/language.js";
 
 export const smVal = {
     err: {

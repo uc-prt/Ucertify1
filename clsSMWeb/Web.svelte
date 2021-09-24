@@ -7,7 +7,7 @@
 	 */
     import WebPreview from './WebPreview.svelte';
     import WebAuthoring from './WebAuthoring.svelte';
-    import l from './libs/Lang.js';
+    import l from '../src/libs/editorLib/language.js';
     import { beforeUpdate, onMount, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import { AH } from '../helper/HelperAI.svelte';
