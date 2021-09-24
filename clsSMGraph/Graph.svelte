@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH } from '../helper/HelperAI.svelte';
     import GRAPH_AUTH from './lib/mathAuthString'
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import MathModal from "./lib/MathModal.svelte";
     export let xml;
     export let editorState;

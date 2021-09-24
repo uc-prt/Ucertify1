@@ -5,7 +5,7 @@
  *  Last update : 29 May 2020
  *  Last updated by: Dharmendra Mishra
  */
-import l from "./Lang.js";
+import l from "./language.js";
 // importing JUI
 import JUI from '../javscript_helper/JUI';
 const AH = new JUI();

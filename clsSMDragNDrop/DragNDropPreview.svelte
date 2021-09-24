@@ -27,7 +27,7 @@ import MenulistPreview from './libs/preview/MenulistPreview.svelte';
 import ButtonPreview from './libs/preview/ButtonPreview.svelte';
 import StepPreview from './libs/preview/StepPreview.svelte';
 import TabPreview from './libs/preview/TabPreview.svelte';
-import l from '../src/libs/Lang';
+import l from '../src/libs/editorLib/language.js';
 import './css/dragndrop.min.css';
 
 // exporting the variables

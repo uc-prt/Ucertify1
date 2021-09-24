@@ -31,7 +31,7 @@
     import swal from 'sweetalert';
     import Draggable from './libs/plugins/Draggable';
     import Resizable from './libs/plugins/Resizable';
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
 
     import '../src/libs/codemirror.min.css';
     export let xml;
