@@ -8,7 +8,7 @@
 -->
 <script>
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import { writable } from "svelte/store";
     import ItemHelper from '../helper/ItemHelper.svelte';
 	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';

@@ -74,7 +74,6 @@ define("tinymce/AddOnManager", [
 						return;
 					}
 				}
-
 				ScriptLoader.ScriptLoader.add(this.urls[name] + '/langs/' + language + '.js');
 			}
 		},
