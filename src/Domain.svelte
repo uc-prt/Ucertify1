@@ -62,18 +62,20 @@
             domainData= AH.get('domainData')[editorState.guid];
             setDomainData();
         } else if (fromProject && url.get('router_guid')) {
+            var router_guid = url.get('router_guid').split(',');
+            router_guid = Object.assign({}, [...router_guid]);
             AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
                     ajax: "1",
                     course_code: editor.course,
                     action: "get_domain",
-                    guids: url.get('router_guid').split(','), 
+                    guids: router_guid, 
                     keys: 'e,d'
                 },
             }).then((response)=> {
                 response =JSON.parse(response);
-                domainData = response[self.props.guid]
+                domainData = response[guid]
                 AH.set('domainData', domainData);
                 setDomainData();
             });
