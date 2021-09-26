@@ -346,7 +346,7 @@ export const editorConfig = {
                 id: 'analyze_ebookMenu',
                 funcName: clickanalyzeebook,
                 label: lang.analyze_ebook,
-                view: (state.oldStemData != '') ? false : false, // not showing currently
+                view: (state.oldStemData != '') ? true : false, // not showing currently
             },
             {
                 id: 'vttParserMenu',
