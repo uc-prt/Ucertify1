@@ -79,7 +79,6 @@
 					apiData = apiData[editorUrl.get('content_guid')];
 					searchQuery['content'] = JSON.stringify(apiData);
 					ajaxRes = await AI.ajax({url: server, data: searchQuery });
-					console.log('ajaxRes : ',ajaxRes);
 					onDataGet();
 				});
 			} else {

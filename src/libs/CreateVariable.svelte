@@ -278,7 +278,6 @@
     }
 
     function saveVariables(valid) {
-        console.log('checking...');
         let algo = "<algostatic>";
         let algo_str = '';
         let next_line = '';

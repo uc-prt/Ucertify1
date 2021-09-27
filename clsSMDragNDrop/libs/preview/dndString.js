@@ -368,7 +368,6 @@ DND.readyThis = function(dndid) {
     };
 
     draggable.onDrop = function(source, target) {
-        console.log('checking...');
         let copied = source.cloneNode(true);
         target.style.backgroundColor = copied.getAttribute('data-bgcolor');
         target.setAttribute('draging', 2);

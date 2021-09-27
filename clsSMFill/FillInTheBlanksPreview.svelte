@@ -872,8 +872,6 @@
 	
 		<div class="string" id="previewArea"></div>
 			{#if state.showToolbar} 
-				{console.log('checking [fillId] = ',ucFill.fillMath[fillId])}
-				{console.log('fillMath[fillId] ',ucFill.fillMath)}
 				<FillInTheBlanksToolbar  
 					spanId={state.spanId} 
 					divId={state.divId} 

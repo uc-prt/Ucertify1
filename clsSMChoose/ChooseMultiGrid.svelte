@@ -213,7 +213,6 @@
 
 	//to open upload image dialog
 	function openImageDialog(e,class_name) {
-		console.log('checking....... image');
 		state.openImageDialog = true;
 		state.imageClass = class_name;
 		let timer;
