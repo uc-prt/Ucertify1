@@ -3,7 +3,6 @@
 	import { Button, Dialog, Checkbox } from 'svelte-mui/src';
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';
-    import Loader from '../helper/Loader.svelte';
     export let guid;
     export let selectedDomain;
     export let selectedTest;
@@ -44,7 +43,6 @@
         disExercise: false,
         testSetList: [],
         caseid_val: "",
-        domain_load : false,
         test: {
             q: false,
             p: false,
@@ -65,9 +63,9 @@
             domainData= AH.get('domainData')[editorState.guid];
             setDomainData();
         } else if (fromProject && url.get('router_guid')) {
-            state.domain_load = true;
             var router_guid = url.get('router_guid').split(',');
             router_guid = Object.assign({}, [...router_guid]);
+            console.log('router_guid', router_guid);
             AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
@@ -82,7 +80,6 @@
                 domainData = response[guid]
                 AH.set('domainData', domainData);
                 setDomainData();
-                state.domain_load = false;
             });
         }
         // Default Data for domain
@@ -677,9 +674,4 @@
             Save
         </Button>
     </div>
-</Dialog>
-<Dialog bind:visible={state.domain_load} style="background-color:#fff; border-radius: 5px;">
-	<div class='editor_modal_content overflow-hidden'>
-		<Loader size={50} msg={"Please wait domain is loading..."}/>
-	</div>
 </Dialog>
