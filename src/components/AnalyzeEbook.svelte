@@ -20,6 +20,7 @@
 	export let changeAnalyzeMenuProp;
 
     $: analyzeEbookContent = true;
+    $: convertToHTML = false;
     let analyzedItems = {};
     let analyzedItemsCount = 0;
     let showActivator = true;
@@ -168,10 +169,14 @@
                                     </label></td>
                                     <td>"{item[1]}"</td>
                                     <td class="text-break text-wrap">
-                                        <span class="part-text-{i}">{item[2].slice(0, 100)} {#if item[2].length>100}...{/if}</span>
-                                        <span class="whole-text-{i} d-none">{item[2]}</span>
-                                        <span class="text-danger show-more-btn-{i}" role="button" tabindex="0" on:click={() => showMore(i)}>Show more ></span>
-                                        <span class="text-danger show-less-btn-{i} d-none" role="button" on:click={() => showLess(i)}>Show less</span>
+                                        {#if convertToHTML}
+                                            {@html item[2]}
+                                        {:else}
+                                            <span class="part-text-{i}">{item[2].slice(0, 100)} {#if item[2].length>100}...{/if}</span>
+                                            <span class="whole-text-{i} d-none">{item[2]}</span>
+                                            <span class="text-danger show-more-btn-{i}" role="button" tabindex="0" on:click={() => showMore(i)}>Show more ></span>
+                                            <span class="text-danger show-less-btn-{i} d-none" role="button" on:click={() => showLess(i)}>Show less</span>
+                                        {/if}
                                     </td>
                                 </tr>
                             {/each}
@@ -185,6 +190,7 @@
                 unelevated={true}
                 outlined={true}
                 variant="contained"
+                on:click={() => convertToHTML = !convertToHTML}
                 color="#ccc"
             >
                 {l.convert}
