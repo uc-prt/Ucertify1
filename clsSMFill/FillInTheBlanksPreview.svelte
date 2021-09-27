@@ -453,7 +453,7 @@
 
 	function oneditoFocused(x, event) {
 		let isFillId = true;
-		let fillId;
+		//let fillId;
 		while (isFillId) {
 			x = x.parentElement;
 			if(x.getAttribute('id')) {

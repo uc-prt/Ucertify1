@@ -282,8 +282,8 @@
         let algo_str = '';
         let next_line = '';
         document.querySelectorAll('.new_variable').forEach(function(_this, i) {
-            let var_name = _this.querySelector('#var_name_'+i).innerHTML;
-            let var_value = _this.querySelector('#var_value_'+i).innerHTML;
+            let var_name = _this.querySelector('#var_name_'+i).innerText;
+            let var_value = _this.querySelector('#var_value_'+i).innerText;
             var_value = var_value.replace(/&nbsp;/g,"");
             var_value = var_value.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
             createValuesObject(arr_val,var_name,var_value);
@@ -343,6 +343,7 @@
         });
         return condition_check;
     }
+
 
     function checkValidFunc(algo_str) {
         let var_list = '';

@@ -118,6 +118,7 @@
             state.cellWidth = MYXML.smxml._cellWidth;
             state.cellHeight = MYXML.smxml._cellHeight;
             state.cellLocked = MYXML.smxml._lockedCell;
+            state.lockedCellValue = MYXML.smxml._lockedCellValue;
             if(state.cellLocked == 'true') {
                 AH.select('#lock_author_cell').checked = true;
             } else {
