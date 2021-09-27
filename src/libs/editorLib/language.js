@@ -1235,7 +1235,7 @@ const l = {
     enter_result_title: 'Enter result title',
     result_title: 'Result title',
     result_btn_info: 'If you want to write the result title of your choice, write another title, otherwise skip this step.',
-    one_option_correct: 'Only one option can be select or correct.',
+    one_option_correct: 'Only one option can be selected or marked as correct.',
     one_option_require: 'Please set one option as correct answer.',
     delete_textbox: 'Do you want to delete the text box?',
     delete_msg: 'Click the plotted points to delete them.',
