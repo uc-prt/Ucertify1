@@ -28,6 +28,8 @@ import l from './libs/editorLib/language';
 import ImageAnnotation from './components/ImageAnnotation';
 import EditorPopoverModal from './components/EditorPopoverModal.svelte';
 import PeGlossaryContentLink from './components/PeGlossaryContentLink.svelte';
+import AnalyzeEbook from './components/AnalyzeEbook.svelte';
+
 // Taking Props
 export let actionData;
 export let advanceXml;
@@ -3079,6 +3081,17 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 		image_annotation: 1,
 	}}
 />
+
+{#if state?.AnalyzeEbookMenu}
+<AnalyzeEbook 
+	analyzeEbookMenu = {state.AnalyzeEbookMenu} 
+	oldStemData={state.oldStemData} 
+	controls={editorConfig.controls} 
+	addItemButton={editorConfig.add_item_button}
+	changeAnalyzeMenuProp = {() => state.AnalyzeEbookMenu = false}	
+/>
+{/if}
+
 <svelte:window on:keyup={handleKeyup} on:keydown={handleKeydown} />
 <InteractiveItem bind:this={_interactiveItem}/>
 <EditorPopoverModal />
