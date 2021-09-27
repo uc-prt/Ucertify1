@@ -111,7 +111,6 @@
 
 	// To get data of guid and set params for edit.
 	function onDataGet() {
-		console.trace();
 		if (AH.isValid(ajaxRes)) {
 			ajaxRes = JSON.parse(ajaxRes);
 			Object.keys(ajaxRes).forEach((key)=>{
