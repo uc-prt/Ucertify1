@@ -65,7 +65,7 @@
         } else if (fromProject && url.get('router_guid')) {
             var router_guid = url.get('router_guid').split(',');
             router_guid = Object.assign({}, [...router_guid]);
-            console.log('router_guid', router_guid);
+            AH.activate(1);
             AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
@@ -80,6 +80,7 @@
                 domainData = response[guid]
                 AH.set('domainData', domainData);
                 setDomainData();
+                AH.activate(0);
             });
         }
         // Default Data for domain
