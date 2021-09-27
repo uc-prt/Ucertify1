@@ -2,6 +2,7 @@
 import { onMount, tick, afterUpdate } from 'svelte';
 import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
 import { writable } from 'svelte/store';
+//import {page} from '$app/stores';
 import {AH, XMLToJSON } from '../helper/HelperAI.svelte';
 import {editorConfig} from './EditorConfig.svelte';
 import {ucEditor} from './ucEditor.svelte';
@@ -58,6 +59,7 @@ let modal = {
 		footer  : [],
 		width   : 300,
 	};
+	
 let editorBuffer = {}; // Buffer storage for editor
 let typeChangePosition = "";  // Current content change position
 let Items = {}; // Instance of item comonenets
@@ -354,6 +356,47 @@ function didMount(node, action) {
 		window.uc_image_annotate = new ImageAnnotation();
 	}
 }
+
+function showPreviewOnly() {
+		//self.fullScreen();
+		//$("#editor").hide();
+		AH.select('#editor','css',{display:'none'});
+		setTimeout(function () {
+			//self.setState({ verticalView: true }, function () {
+				state.verticalView = true;
+				//$("#editor").show();
+				AH.select('#editor','css',{display:'block'});
+				//$('[href="#authoringDiv"]').addClass('disabled');
+				AH.select('[href="#authoringDiv"]','addClass','disabled');
+				let checkView = (Items[state.item] && Items[state.item].UI.verticalView);
+				if (!checkView) {
+					//$("#authoringDiv").hide();
+					AH.select("#authoringDiv",'css',{display:'none'});
+					//$('[href="#custom_columnize"]').tab('show');
+					AH.select('[href="#custom_columnize"]').tab('show');
+				} 
+				//$("#player_render_top, #back_editor_button").hide();
+				AH.select("#player_render_top",'css',{dispaly: 'none'});
+				AH.select("#back_editor_button",'css',{display: 'none'});
+				//$('#preview_editor_new').css('pointer-events', 'none');
+				AH.select('#preview_editor_new','css',{pointerEvents:'none'});
+				//$(document).ready(function () {
+					//$("#authoring_boxe, #device_btn").hide();
+					AH.select("#authoring_boxe, #device_btn",'css',{display: 'none'});
+					ajaxContentUpdate({ imgAltText: 1, container: ['#previewSection'] });
+					if (checkView) {
+						setTimeout(function () {
+							//$('main[data-remove="true"]').hide();
+							AH.select('main[data-remove="true"]','css',{display: none});
+							externalToggle();
+							//$("#remedToggle").addClass("h-imp");
+							AH.select("#remedToggle",'addClass','h-imp')
+						}, 500);
+					}
+				//});
+			//});
+		}, 200);
+	}
 
 // Set initially content for editor
 function setBasicData(title, stem, remediation, skip = false) {

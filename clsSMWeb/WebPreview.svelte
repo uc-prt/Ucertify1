@@ -1592,7 +1592,7 @@
 <div id="authoringArea" class="font14" >
     {#if window.isIE || window.isIEEleven} 
         <div class="alert alert-danger">
-            You are using Internet Explorer, ES6 functionality of javascript will not work!
+            {l.es6_warining}
         </div>
     {/if}
     <button type="button" class="h h-imp" id="set-review" on:click={()=>{setReview()}}>set review</button>
