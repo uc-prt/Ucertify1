@@ -355,7 +355,7 @@
             // used for switch on next question in prepengine if current question is attempted
             ISSPECIALMODULEUSERXMLCHANGE = 1;
             let result;
-            if (corr_ans_count > 0 ) {
+            if (corr_ans_count > 0 || corr_ans_count == undefined) {
                 result = 'Incorrect';
             } else {
                 result = 'Correct';
