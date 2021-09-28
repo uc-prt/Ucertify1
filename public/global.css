@@ -8560,3 +8560,15 @@ strong {
   -moz-box-shadow: 2px 3px 5px #939393;
   -ms-box-shadow: 2px 3px 5px #939393;
 }
+
+#authoringLoadComponent blockquote{  
+  color: #999;
+  background-color: transparent;
+  border-style: solid;
+  border-color: #b1b1b1;
+  padding: 0 0 0 7px;
+  border-left-width: 5px !important;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 0
+}
