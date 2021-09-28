@@ -284,19 +284,61 @@
                       {
                         text: l.para,
                         onclick: function () {
-                          editor.execCommand("mceToggleFormat", false, "p");
+                          editor.focus();
+                            var bookmark = tinymce.activeEditor.selection.getBookmark(
+                              2,
+                              true
+                            );
+                            var selected = "";
+                            if (editor.selection.getContent() == "") {
+                              selected += " ";
+                            } else {
+                              selected += editor.selection.getContent();
+                            } 
+                            editor.insertContent(
+                              '<p>' + selected + "</p>"
+                            );
+                            tinymce.activeEditor.selection.moveToBookmark(bookmark);
                         }
                       },
                       {
                         text: l.div,
                         onclick: function () {
-                          editor.execCommand("mceToggleFormat", false, "div");
+                          editor.focus();
+                            var bookmark = tinymce.activeEditor.selection.getBookmark(
+                              2,
+                              true
+                            );
+                            var selected = "";
+                            if (editor.selection.getContent() == "") {
+                              selected += " ";
+                            } else {
+                              selected += editor.selection.getContent();
+                            } 
+                            editor.insertContent(
+                              '<div>' + selected + "</div>"
+                            );
+                            tinymce.activeEditor.selection.moveToBookmark(bookmark);
                         }
                       },
                       {
                         text: l.block,
                         onclick: function () {
-                          editor.execCommand("mceToggleFormat", false, "blockquote");
+                            editor.focus();
+                            var bookmark = tinymce.activeEditor.selection.getBookmark(
+                              2,
+                              true
+                            );
+                            var selected = "";
+                            if (editor.selection.getContent() == "") {
+                              selected += " ";
+                            } else {
+                              selected += editor.selection.getContent();
+                            } 
+                            editor.insertContent(
+                              '<blockquote>' + selected + "</blockquote>"
+                            );
+                            tinymce.activeEditor.selection.moveToBookmark(bookmark);
                         }
                       },
                       {

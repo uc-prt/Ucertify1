@@ -2859,13 +2859,13 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 										<div
 											id="stem_show"
 											class="base"
-											style="padding: 10px 0 10px 0; white-space: pre-line; word-wrap: break-word; font-size: 17px"
+											style="padding: 10px 0 10px 0; white-space: pre-line; word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 									{#if state.viewConfig.content}
 										<div 
 											id="content_show" 
-											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 17px"
+											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 									{#if state.viewConfig.itemModule}
@@ -2891,7 +2891,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 										<div 
 											id="remediation_show" 
 											class="mt-4" 
-											style="word-wrap: break-word; font-size: 17px"
+											style="word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 								</div>
