@@ -254,6 +254,7 @@ const l = {
     short_text : "Short Text",
     fill_multiline_title : "Fill in the blanks (with multiline)",
     fill_math_title : "Fill in the blanks (with mathematical equations)",
+    math_eq         : 'Mathematical Equation',
     fill_text_placeholder : "Write correct answer here",
     fill_text_help1 : "1. To include multiple correct answers, type the answers and separate them with a comma (,).",
     fill_text_help2 : "2. Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down.",
