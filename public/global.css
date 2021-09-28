@@ -8561,7 +8561,9 @@ strong {
   -ms-box-shadow: 2px 3px 5px #939393;
 }
 
-.sun-editor-editable blockquote {
+.sun-editor-editable blockquote,
+.mce-content-body blockquote
+{
   display: block;
   font-family: inherit;
   font-size: inherit;
