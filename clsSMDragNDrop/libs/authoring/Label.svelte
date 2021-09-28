@@ -75,7 +75,7 @@
                 tabindex="1"
                 style={data.style}
             >
-                <p>{data.parahtml ? data.parahtml : ''}</p>
+                <p class='leftPadding'>{data.parahtml ? data.parahtml : ''}</p>
                 <div 
                     class="btn-group tools h" 
                     data-t="label"

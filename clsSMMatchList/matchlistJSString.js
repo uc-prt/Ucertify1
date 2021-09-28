@@ -1241,9 +1241,10 @@ ucMlid.bindLab = function() {
     
     ucMlid.labBinded = true;
     //jQuery(ucMlid.ajax_eId).find('#lines,.correct,.lines,.correct_incorrect_icon').remove();
-    AH.find(ucMlid.ajax_eId,'#lines,.correct,.lines,.correct_incorrect_icon',{
-        action:'remove'
-    })
+    // AH.find(ucMlid.ajax_eId,'#lines,.correct,.lines,.correct_incorrect_icon',{
+    //     action:'remove'
+    // })
+    AH.remove(ucMlid.ajax_eId+' #lines,.correct,.lines,.correct_incorrect_icon');
     // let ucMlidAjax = AH.select(ucMlid.ajax_eId);
     // AH.find(ucMlidAjax,'#lines,.correct,.lines,.correct_incorrect_icon').remove; // Replaced
 }

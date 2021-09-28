@@ -8561,6 +8561,9 @@ strong {
   -ms-box-shadow: 2px 3px 5px #939393;
 }
 
+.leftPadding {
+  padding-left: 7px;
+}
 .sun-editor-editable blockquote,
 .mce-content-body blockquote
 {
