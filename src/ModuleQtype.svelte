@@ -48,14 +48,14 @@
                             "auth": (await import('../clsSMChoiceMatrix/ChoiceMatrix.svelte')).default,
                             "preview": (await import('../clsSMChoiceMatrix/ChoiceMatrixPreview.svelte')).default,
                             "default": (await import('../clsSMChoiceMatrix/defaultXML.svelte')),
-                            "UI": (await import('../clsSMChoiceMatrix/choiceMatrixHelper.svelte')).itemHelper,
+                            "UI": (await import('../clsSMChoiceMatrix/choiceMatrixHelper.svelte')),
                         });
                     case 22: 
                         resolve({ 
                             "auth": (await import('../clsSMWeb/Web.svelte')).default,
                             "preview": (await import('../clsSMWeb/Web.svelte')).default,
                             "default": (await import('../clsSMWeb/defaultXML.svelte')),
-                            "UI": (await import('../clsSMWeb/WebHelper.svelte')).itemHelper,
+                            "UI": (await import('../clsSMWeb/WebHelper.svelte')),
                         });
                         
                     break;
@@ -176,11 +176,12 @@
                             });
                     break;
                     case 6: 
+                        let xml = state.ajaxData.special_module_xml && XMLToJSON(state.ajaxData.special_module_xml);
                         resolve({
-                            "auth": (await import('../clsSMChoose/ChooseNReorder.svelte')).default,
-                            "preview": (await import('../clsSMChoose/ChooseNReorderPreview.svelte')).default,
+                            "auth": ((xml && xml.smxml.list._row) && (xml && xml.smxml.list._col)) ? (await import('../clsSMChoose/ChooseMultiGrid.svelte')).default : (await import('../clsSMChoose/ChooseNReorder.svelte')).default,
+                            "preview": ((xml && xml.smxml.list._row) && (xml && xml.smxml.list._col)) ? (await import('../clsSMChoose/ChooseMultiGridPreview.svelte')).default : (await import('../clsSMChoose/ChooseNReorderPreview.svelte')).default,
                             "default": (await import('../clsSMChoose/defaultXML.svelte')),
-                            "UI": (await import('../clsSMChoose/chooseHelper.svelte')).itemHelper,
+                            "UI": ((xml && xml.smxml.list._row) && (xml && xml.smxml.list._col)) ?  (await import('../clsSMChooseMultiGrid/ChooseMultiGridHelper.svelte')).itemHelper : (await import('../clsSMChoose/chooseHelper.svelte')).itemHelper,
                         });
                     break;
                     case 26: 
