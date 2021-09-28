@@ -262,6 +262,8 @@ const l = {
     fill_math_help1 : "1. To make math equation initially, Click f(x) and then insert the equation.",
     fill_math_help2 : "2. To add user Response, place cursor before{*} and Click Add Response.",
     fill_math_help3 : "3. To edit the existing equation, Click Edit.",
+    star_note : '* Note:',
+    do_not_include_space : '2. Please do not include space.',
     //fill_text_help3 : "Now, go back to Settings and select Multi from the drop-down.",
     fill_dropdown_placeholder : "Write Option here",
     fill_dropdown_help1 : "1. To choose correct answer, select any one radio button from the given options.",
