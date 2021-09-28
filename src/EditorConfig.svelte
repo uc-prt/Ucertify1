@@ -1308,10 +1308,11 @@ export const editorConfig = {
         //`insertdatetime media table ${ isContext ? 'contextmenu' : ""} paste visualblocks playertag playericon changeInModule res equationeditor`,
         return([
             "placeholder",
-            "lists link image", //charmap print preview anchor   (was part of this line)
+            "lists link image", //print preview anchor   (was part of this line)
             "searchreplace code", // fullscreen
             `table ${ isContext ? 'contextmenu' : ""} paste playertag changeInModule res equationeditor`,
-            "addnewsection"
+            "addnewsection",
+            "charmap "
         ]);
     },
     editorTable_class_list:  [
