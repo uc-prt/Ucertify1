@@ -344,7 +344,7 @@ export const editorConfig = {
             // },
             {
                 id: 'analyze_ebookMenu',
-                funcName: clickanalyzeebook,
+                funcName: ()=> updateParent('AnalyzeEbookMenu', true, ''),
                 label: lang.analyze_ebook,
                 view: (state.oldStemData != '') ? true : false, // not showing currently
             },

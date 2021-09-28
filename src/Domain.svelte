@@ -58,12 +58,14 @@
 
     onMount(async ()=> {
         init();
+        
         if (AH.get('domainData')) {
             domainData= AH.get('domainData')[editorState.guid];
             setDomainData();
         } else if (fromProject && url.get('router_guid')) {
             var router_guid = url.get('router_guid').split(',');
             router_guid = Object.assign({}, [...router_guid]);
+            AH.activate(1);
             AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
@@ -78,6 +80,7 @@
                 domainData = response[guid]
                 AH.set('domainData', domainData);
                 setDomainData();
+                AH.activate(0);
             });
         }
         // Default Data for domain
@@ -434,7 +437,7 @@
             console.log(e);
         }
     }
-    $: console.log('state.value2', state.value);
+    $: console.log('state.value', state.value);
 </script>
 
 <Dialog bind:visible={state.open} width="700" style="background: #fff; border-radius: 5px;">
@@ -496,7 +499,7 @@
                         <select
                             id="course_select"
                             bind:value={state.courses}
-                            on:blur={handleCourseChange}
+                            on:change={handleCourseChange}
                             style="margin: 2px 24px; width: 50%"
                             disabled={url.get("todo_table") == 1 ? true : false}
                         >
@@ -516,15 +519,15 @@
                         Lesson
                     </label>
                     <select
-                        bind:value={state.value}
                         id="select_domain"
-                        on:blur={handleChange}
+                        on:change={handleChange}
                         style="margin: 2px 24px; width: 70%;"
                         class="domain_select"
+                        test={state.value}
                         disabled={url.get("todo_table") == 1 ? true : false}
                     >
                         {#each items as data}
-                            <option value={data.value} key={data.key}>
+                            <option value={data.value} key={data.key} selected={data.value == state.value ? 'selected' : ""}>
                                 {data.label}
                             </option>
                         {/each}
@@ -539,15 +542,15 @@
                             Section{" "}
                         </label>
                         <select
-                            bind:value={state.coverage_guid}
-                            on:blur={handleCoverageChange}
+                            on:change={handleCoverageChange}
                             style="margin: 2px 24px; width: 70%;"
                             class="domain_select"
                             id="domain_select"
+                            test={state.coverage_guid}
                             disabled={url.get("todo_table") == 1 ? true : false}
                         >
                             {#each state.itemsCoverage as data}
-                                <option value={data.value} key={data.key}>
+                                <option value={data.value} key={data.key} selected={data.value == state.coverage_guid ? 'selected' : ""}>
                                     {data.label}
                                 </option>
                             {/each}
@@ -568,7 +571,7 @@
                                     </label>
                                     <select
                                         style="width: 73%;"
-                                        on:blur={handleTestChange}
+                                        on:change={handleTestChange}
                                         class="domain_select"
                                         id="test_select"
                                         disabled={smdata.item == 36 ? true : false}
@@ -673,7 +676,3 @@
         </Button>
     </div>
 </Dialog>
-
-<style>
-    
-</style>
