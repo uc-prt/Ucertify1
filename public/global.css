@@ -8551,7 +8551,6 @@ strong {
 .darkblue-txt {
   color: #337ab7;
 }
-
 .img-bordered {
   border: 4px solid #fff;
   outline: 1px solid #ddd;
@@ -8561,6 +8560,6 @@ strong {
   -ms-box-shadow: 2px 3px 5px #939393;
 }
 
-.leftPadding {
+.pl_7 {
   padding-left: 7px;
 }
