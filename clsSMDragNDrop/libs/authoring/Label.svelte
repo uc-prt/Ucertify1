@@ -75,7 +75,7 @@
                 tabindex="1"
                 style={data.style}
             >
-                <p class='pStyle'>{data.parahtml ? data.parahtml : ''}</p>
+                <p class='leftPadding'>{data.parahtml ? data.parahtml : ''}</p>
                 <div 
                     class="btn-group tools h" 
                     data-t="label"
@@ -92,8 +92,3 @@
         {/each}
     </div>
 {/if}
-<style>
-    .pStyle {
-        padding-left: 7px;
-    }
-</style>
