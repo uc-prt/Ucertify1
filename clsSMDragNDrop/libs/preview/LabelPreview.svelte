@@ -131,7 +131,7 @@
                 tabindex="1"
                 style={data.style}
             >
-                <p class='leftPadding' style={data.paraStyle}>{data.parahtml}</p>
+                <p class='pl_7' style={data.paraStyle}>{data.parahtml}</p>
             </div>
         {/each}
     {/if}

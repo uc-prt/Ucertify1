@@ -25600,7 +25600,6 @@ strong {
 .darkblue-txt {
   color: #337ab7;
 }
-
 .img-bordered {
   border: 4px solid #fff;
   outline: 1px solid #ddd;
@@ -25610,6 +25609,29 @@ strong {
   -ms-box-shadow: 2px 3px 5px #939393;
 }
 
-.leftPadding {
+.pl_7 {
   padding-left: 7px;
+}
+.sun-editor-editable blockquote,
+.mce-content-body blockquote
+{
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  color: #999;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding: 0 5px 0 20px;
+  border: solid #b1b1b1;
+  border-width: 0 0 0 5px;
+}
+
+.sun-editor-editable p{
+  margin-bottom: 0;
+}
+
+#suneditor_essay_editorAuth{
+  padding: 8px;
 }
