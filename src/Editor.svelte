@@ -754,11 +754,13 @@ function interactiveEvents() {
 				let data_elm_type = currentTarget.getAttribute("data-elm_type");
 				data_html = data_html.querySelector(_this_selector).cloneNode(true);
 				AH.find(typeChangePosition, _this_selector, {action: 'attr', actionData: {"class": _this_value}});
-				if (data_elm_type == 2) {
-					AH.insert(typeChangePosition.querySelector('.' + _this_value), data_html.outerHTML, 'afterend');
-					AH.find(typeChangePosition, '.' + _this_value, {action: 'remove'});
-				} else {
-					AH.find(typeChangePosition, _this_selector, {action: 'html', actionData: data_html.outerHTML});
+				if(data_elm_type && data_elm_type != "undefined"){
+					if (data_elm_type == 2) {
+						AH.insert(typeChangePosition.querySelector('.' + _this_value), data_html.outerHTML, 'afterend');
+						AH.find(typeChangePosition, '.' + _this_value, {action: 'remove'});
+					} else {
+						AH.find(typeChangePosition, _this_selector, {action: 'html', actionData: data_html.outerHTML});
+					}
 				}
 			}
 		}
