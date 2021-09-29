@@ -1648,17 +1648,17 @@ function keepAnalyzeData(content) {
 function initAddFeature(title, stem, remediation, content) {
 	let sectionList = editorConfig.initAddFeatureSelector(stem, remediation, content);
 	let filter = content ? "#content" : "#stem,#remediation";
-	console.warn(filter, "initAddFeature called");
+	//console.warn(filter, "initAddFeature called");
 	//Future code for automatic init
 	for (let key in sectionList) {
-		console.warn({[key]:filter.includes(key)});
+		//console.warn({[key]:filter.includes(key)});
 		if (filter.includes(key)) {
 			let container = `#authoringSection ${key}`;
-			let innerSelector = document.querySelector(container).querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
+			let innerSelector = document.querySelector(container)?.querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
 			let sectionData = sectionList[key];
 			let findSection = `${innerSelector} .ebook_item_text`;
-			if (document.querySelector(container).querySelector(findSection) || editorConfig.shouldWrap(container)) {
-				console.warn("Warapping");
+			if (AH.find(container,findSection,'all').length == 0 || editorConfig.shouldWrap(container)) {
+				//console.warn("Warapping");
 				content ? keepAnalyzeData(content) : "";
 				if (sectionData.data) {
 					let wrapped =  editorConfig.getSection(sectionData.data, sectionData.inline, key);
@@ -1666,15 +1666,15 @@ function initAddFeature(title, stem, remediation, content) {
 					state[sectionData.holder] = wrapped;
 					if (sectionData.copyInto) state[sectionData.copyInto] = sectionData.data;
 					//self.setState(sectionData.store);
-					document.querySelector(key).innerHTML = wrapped;
+					AH.select(key).innerHTML = wrapped;
 				} else {
-					document.querySelector(key).innerHTML = setInitialButton(sectionData.holder);
+					AH.select(key).innerHTML = setInitialButton(sectionData.holder);
 				}
 			} else {
 				content ? keepAnalyzeData(sectionData.data) : "";
 			}
-			if (document.querySelector(container).querySelectorAll(innerSelector).length > 0) {
-				console.warn("Adding Controls");
+			if (AH.find(container,innerSelector,).length > 0) {
+				//console.warn("Adding Controls");
 				document.querySelector(container).querySelectorAll(innerSelector).forEach(function (_this, index) {
 					AH.insert(_this, editorConfig.controls(_this.getAttribute('sub_type')), 'beforebegin');
 					if (index == 0 && sectionData.inline && !_this.classList.contains(sectionData.inline)) {
