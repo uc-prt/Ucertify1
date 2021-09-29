@@ -889,7 +889,7 @@ export const editorConfig = {
             },
             "interactive_tags_8":{
                 "default_image":"//s3.amazonaws.com/jigyaasa_content_static/column_4_000obJ.png",
-                "label":"For dividing into columns with a divider line in between",
+                "label":"For dividing into columns with a divider line",
                 "html":"<div data-section='${stemClass}' type='ebook-item' sub_type='${itemType}'><div class='queue'><div class='prop-lg-6 divider'><div class='ebook_item_text'>PLACE YOUR TEXT/IMAGE HERE</div></div><div class='prop-lg-6'><div class='ebook_item_text'>PLACE YOUR TEXT/IMAGE HERE</div></div></div></div>"
             },
             "division_11":{
