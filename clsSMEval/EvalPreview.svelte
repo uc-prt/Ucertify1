@@ -8,7 +8,6 @@
 	 *  Package     : svelte_items
 	 *  Created     : 11 March 2021
 	*/
-	import { user } from "../../../store";
 	import { onMount, beforeUpdate } from 'svelte';
 	import { Button, Dialog } from 'svelte-mui/src';
 	import { writable } from 'svelte/store';
@@ -26,7 +25,7 @@
 	export let content_guid;
 	export let sample_input = '';
     let evalpro_url =  'https://www.jigyaasa.info/layout/themes/bootstrap4/svelte_items/evalPro/index.php';
-    let user_guid = '';
+    let user_guid = '05kmr'; // I will change it later
 	let tempGuid;
 	let client = {};
 	let markerFlag = false;
@@ -79,9 +78,6 @@
 
 	const unsubs = hdd.subscribe((items)=> {
 		state = items;
-	})
-	const userunsubs = user.subscribe((user) => {
-		user_guid = user.user_guid;
 	})
 
 	onMount(()=> {
@@ -1384,7 +1380,7 @@
 	</Dialog>
 </div>
 
-<style lang="text/css" global>
+<style type="text/css" global>
 
 	body {
 		overflow: hidden!important;
