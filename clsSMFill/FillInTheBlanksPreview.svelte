@@ -443,6 +443,7 @@
 		let ans = ucFill.checkAns(ajax_eId);
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
+		console.log('answer', answer);
 		onUserAnsChange(answer);
 		if(editorState) { showAns(ans); }
 	}
