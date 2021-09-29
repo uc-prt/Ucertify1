@@ -3839,7 +3839,7 @@ var app = (function () {
         one_option_require: 'Please set one option as correct answer.',
         delete_textbox: 'Do you want to delete the text box?',
         delete_msg: 'Click the plotted points to delete them.',
-        last_delete_msg: '"Click the last plotted point of the item to delete the item!',
+        last_delete_msg: 'Click the last plotted point of the item to delete the item!',
         fill_field: 'Please fill out this field.',
         value_gt_zero: 'Value must be greater than 0.',
         enter_number: 'Please enter only number.',
