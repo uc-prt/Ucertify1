@@ -642,7 +642,16 @@
         // reload the module after removing user answer that was performed previously
         loadModule(xml);
         // shows the first item of each row
-        AH.select('.categoryitemcontainer .categoryiteminnercontainer .elementContainer .element:first-child').style.display = '';
+        const elementContainerAll = AH.selectAll('.categoryitemcontainer .categoryiteminnercontainer .elementContainer');
+        if(elementContainerAll && elementContainerAll.length){
+            elementContainerAll.forEach(eleContainer => {
+                const eleContainerChild = AH.findChild(eleContainer, '.element')
+                if(eleContainerChild && eleContainer.length){
+                    eleContainerChild.forEach(ele => ele.style.display='none');
+                    eleContainerChild[0].style.display = '';
+                }
+            })
+        }
         // disabled the reset button
         AH.select('#reset_btn').disabled = true;
     }
