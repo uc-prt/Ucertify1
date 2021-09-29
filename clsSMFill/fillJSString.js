@@ -703,7 +703,10 @@ export default class fillJS {
 					userans = userans.replace(/[^a-zA-Z0-9]/gi, "");
 				}
 				//Multiple in textBox
-				if (JS.select(fillid).getAttribute('multi') != 0) {
+				console.log(this.result);
+				console.log('userans', userans);
+				console.log('test', JS.select(fillid).getAttribute('multi'));
+				if (JS.select(fillid).getAttribute('multi') != 0 || anskey.includes("#cm")) {
 					//if (anskey.substr(0, 1) != ",") {anskey = ","+anskey;}
 					//if (anskey.substr(-1, 1) != ",") {anskey += ",";}
 					userans = userans.replace(/,/g,"#cm");
