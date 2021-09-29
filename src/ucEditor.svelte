@@ -1,5 +1,5 @@
 <script context="module">
-  import AH from '../helper/HelperAI.svelte';
+  import {AH} from '../helper/HelperAI.svelte';
   import l from '../src/libs/editorLib/language';
   let editorConfig = false;
   export const ucEditor = {
@@ -85,7 +85,7 @@
                   let selectNode = tinyMCE.activeEditor.selection.getNode();
                   if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == selectNode.innerHTML) {
                     if (selectNode.classList.contains("ebook_item_text")) {
-                      swal(l.align_content_message);
+                      AH.alert(l.align_content_message);
                     } else {
                       editor.execCommand("mceToggleFormat", false, "alignleft");
                     }
@@ -104,13 +104,13 @@
                 onclick: function () {
                   let selectedNode = tinyMCE.activeEditor.selection.getNode();
                   if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == tinyMCE.activeEditor.selection.getNode().innerHTML) {
-                    if (selectedNode.hasClass("ebook_item_text")) {
-                      swal("Please select content first.");
+                    if (selectedNode?.classList?.value.includes("ebook_item_text")) {
+                      AH.alert("Please select content first.");
                     } else {
                       editor.execCommand("mceToggleFormat", false, "aligncenter");
                     }
                   } else {
-                    //swal(l.align_content_message);
+                    //AH.alert(l.align_content_message);
                     if (tinyMCE.activeEditor.selection.getNode().nodeName == "IMG" && AH.parent(selectedNode, '.uc-figure')) {
                       AH.parent(selectedNode, '.uc-figure').style.textAlign = 'center';
                     } else {
@@ -126,7 +126,7 @@
                   let selectedNode = tinyMCE.activeEditor.selection.getNode();
                   if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == tinyMCE.activeEditor.selection.getNode().innerHTML) {
                     if (selectedNode.classList.contains("ebook_item_text")) {
-                      swal("Please select content first.");
+                      AH.alert("Please select content first.");
                     } else {
                       editor.execCommand("mceToggleFormat", false, "alignright");
                     }
@@ -403,12 +403,12 @@
                           let currNode = tinyMCE.activeEditor.selection.getNode();
                           if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == currNode.innerHTML) {
                             if (currNode.classList.contains("ebook_item_text")) {
-                              swal(l.align_content_message);
+                              AH.alert(l.align_content_message);
                             } else {
                               editor.execCommand("mceToggleFormat", false, "alignleft");
                             }
                           } else {
-                            swal(l.align_content_message);
+                            AH.alert(l.align_content_message);
                           }
                         }
                       },
@@ -419,7 +419,7 @@
                           let currNode = tinyMCE.activeEditor.selection.getNode();
                           if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == currNode.innerHTML) {
                             if (currNode.classList.contains("ebook_item_text")) {
-                              swal(l.align_content_message);
+                              AH.alert(l.align_content_message);
                             } else {
                               editor.execCommand(
                                 "mceToggleFormat",
@@ -428,7 +428,7 @@
                               );
                             }
                           } else {
-                            swal(l.align_content_message);
+                            AH.alert(l.align_content_message);
                           }
                         }
                       },
@@ -439,12 +439,12 @@
                           let currNode = tinyMCE.activeEditor.selection.getNode();
                           if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == currNode.innerHTML) {
                             if (currNode.classList.contains("ebook_item_text")) {
-                              swal(l.align_content_message);
+                              AH.alert(l.align_content_message);
                             } else {
                               editor.execCommand("mceToggleFormat", false, "alignright");
                             }
                           } else {
-                            swal(l.align_content_message);
+                            AH.alert(l.align_content_message);
                           }
                         }
                       },
@@ -455,7 +455,7 @@
                           let currNode = tinyMCE.activeEditor.selection.getNode();
                           if (tinyMCE.activeEditor.selection.getSel().anchorNode.parentElement.innerHTML == currNode.innerHTML) {
                             if (currNode.classList.contains("ebook_item_text")) {
-                              swal(l.align_content_message);
+                              AH.alert(l.align_content_message);
                             } else {
                               editor.execCommand(
                                 "mceToggleFormat",
@@ -464,7 +464,7 @@
                               );
                             }
                           } else {
-                            swal(l.align_content_message);
+                            AH.alert(l.align_content_message);
                           }
                         }
                       }
