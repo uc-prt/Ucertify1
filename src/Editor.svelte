@@ -566,7 +566,7 @@ function ucStepImplement() {
 				step_caption = _this.getAttribute("step_caption");
 			}
 			let msg = "<b>" + head_caption + ": </b> <span class='li_count'>" + _this.querySelectorAll('li').length + "</span> " + step_caption + "(s) are available."
-			let _btn = '<button type="button" style="margin-top:-4px" onclick="showHints(this)" class="hint_show btn btn-primary float-right">Show</button>';
+			let _btn = '<button type="button" style="margin-top:-8px" onclick="showHints(this)" class="hint_show btn btn-primary float-right">Show</button>';
 			let pre_block = "<section id='uc_hint_" + i + "' class='mt uc_hint_section white-bg alert text_lightBlack m-b-md alert-info'>" + _btn + msg + "</section>";
 			_this.innerHTML = pre_block + _this.innerHTML;
 			_this.classList.add("list2");
