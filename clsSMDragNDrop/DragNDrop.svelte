@@ -708,7 +708,7 @@
             } else {
                 switch ((event.keyCode).toString()) {
                     case "27":
-                        AH.removeClass('.dragable-container .ui-draggable').removeClass('elemActive');
+                        AH.removeClass('.dragable-container .ui-draggable', 'elemActive');
                         break;
                     case "46":
                         setPS(0, 0, 0, 0, true);
@@ -725,7 +725,7 @@
     }
 </script>
 
-<div class="input_border dragable-container overflow-visible p">
+<div class="input_border dragable-container overflow-auto p">
     <div id="steps" class="h" >
 		<input id="baseAuth" type="radio" on:click={() => DND_AUTH.setStepAuth('baseAuth')} defaultValue="1" defaultChecked name="rbsAuth" class="baseradio dndradio" /> 
 		{l.base_steps}
