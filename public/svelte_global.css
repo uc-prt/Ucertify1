@@ -25635,3 +25635,9 @@ strong {
 #suneditor_essay_editorAuth{
   padding: 8px;
 }
+table{
+  border: 1px solid #dee2e6!important
+}
+table th {
+  font-weight: 500 !important;
+}
