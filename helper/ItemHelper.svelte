@@ -18,8 +18,8 @@
     }
 </script>
 <center>
-<button tabindex="0" type="button" class="h h-imp" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
-<button tabindex="0" type="button" class="h h-imp" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
+<button tabindex="0" type="button" class="h h-imp svelte_items" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
+<button tabindex="0" type="button" class="h h-imp svelte_items" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
 {#if reviewMode}
     <div class="smControlerBtn btn-group mb-3" role="group" aria-label="Answer buttons">
         <button tabindex="0" type="button" mode="c" class="btn btn-light correct-ans" on:click="{handleSmClick}">Correct Answer</button>
