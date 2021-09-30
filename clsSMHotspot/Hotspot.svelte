@@ -828,6 +828,45 @@
             getChildXml(xmlDom.xml ? xmlDom.xml : (new XMLSerializer()).serializeToString(xmlDom[0]));
         }
     }
+
+    let m_posX;
+    let m_posY;
+    $:m_posX;
+    $:m_posY;
+    let resize_elW;
+    let resize_elH;
+    function resizeX(e){
+        let parent = resize_elW.parentNode;
+        let dx = m_posX - e.x;
+        m_posX = e.x;
+        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
+    }
+    function resizeY(e){
+        let parent = resize_elH.parentNode;
+        
+        let dy = m_posY - e.y;
+        m_posY = e.y;
+        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+    }
+
+    function resizeHandleW(e){
+        m_posX = e.x;
+        document.removeEventListener("mousemove", resizeY, false);
+        document.addEventListener("mousemove", resizeX, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+        }, false);
+    }
+    function resizeHandleH(e){
+        m_posY = e.y;
+        document.removeEventListener("mousemove", resizeX, false);
+        document.addEventListener("mousemove", resizeY, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+        }, false);
+    }
 </script>
 <div>
     <center class="mt" id="mainContent">
@@ -932,6 +971,8 @@
                         <i class="icomoon-24px-edit-1"></i>
                     </button>
                 </div>
+                <div id="resizeX" bind:this={resize_elW} on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
+                <div id="resizeY" bind:this={resize_elH} on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
             </div>
         </div>
         <textarea 
@@ -1123,3 +1164,24 @@
         </span>
     </Snackbar>
 </div>
+
+<style>
+    #resizeX {
+        background-color: #ccc;
+        position: absolute;
+        right: 0;
+        width: 3px;
+        opacity: 0;
+        height: 100%;
+        cursor: w-resize;
+    }
+    #resizeY {
+        background-color: #ccc;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        opacity: 0;
+        cursor: s-resize;
+    }
+    </style>
