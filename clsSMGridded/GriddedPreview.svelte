@@ -65,8 +65,8 @@
 
     $:{
         if (isReview) {
+            debugger;
                 setReview(); 
-               // this.checkAns();
         } else {
                 
                 unsetReview();
@@ -125,7 +125,7 @@
                 
             }
 		} catch (error) {
-                onError = error;
+                let onError = error;
                 console.log({'error':error.message,'function name':'parseXMLPreview','File name':'GriddedPreview.js'});
         }
     }
@@ -159,7 +159,7 @@
     })
 
     function handleClick(event) {
-        console.log('handleClick');
+        
         //////////////changing color according to user/////////
         let cell_class = event.target.getAttribute('name');
             let column_index = document.getElementsByName(cell_class);
@@ -276,7 +276,8 @@
 
     function setUserAnsCombo (event)  {
         let countRes;
-
+        let resNew;	
+        let ansBool;
        //////// This code set the answer///////////
         let attr = (event.detail.target).attributes.getNamedItem('data-tag').value;
         if ((event.detail.target).innerHTML === '') {
@@ -328,19 +329,28 @@
             if(editorState) {
                 showAns(countRes);
             }
+
+            ansBool = (countRes == "Correct") ? true : false;
             
-            AH.select("#special_module_user_xml").value = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+            // AH.select("#special_module_user_xml").value = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+            userXML = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+
+            resNew = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
+
+
             if (bool != ' ' && c == user.length) {
                 AH.select("#answer",'attr',{"checked":bool});
             } else {
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
+
+            uxml = userXML
+            onUserAnsChange({uXml:resNew,ans:ansBool});
         
         
     }
 
     function rowValidation(event) {  
-        console.log('checking....');
         let a = state.rowNum - 1;
         if (event.target.value.length > 1) {
             AH.alert('Double digit not accepted');
@@ -358,8 +368,7 @@
         setUserAns(event);
     }
 
-    function highLight(event) {   
-        
+    function highLight(event) {    
         let cell_class = event.target.getAttribute('name');
         let column_index = document.getElementsByName(cell_class);
         for (let i = 1; i < column_index.length; i++) {
@@ -637,10 +646,6 @@
 			showAnswer("yans", "showIcon");
 		}
     }
-
-    AH.listen(document,'load','.checkpoint',function(e,_this){
-        highLight(_this)
-    })
     
 
 </script>
@@ -655,13 +660,13 @@
                 />
             </center>
             <table border="1" id="tab2" style={'border-collapse:collapse;text-align:center'} >
-                <tr style="display:flex;">
+                <tr style="display:flex;padding:0">
                     {#each ColsPre as val,i}
                         {#if val.decpoint == true}
                             <input type="text" style={'width:50px;text-align:center;'}  value="." disabled="true" class="tdFont" />
                         {:else}
                             
-                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?"":myAns[i]} class="tdFont checkpoint">
+                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?" ":myAns[i]} class="tdFont">
                             
                                 <span  class={state.iconVisible+' relative'}>
                                     <span id={val.spanid} class="answer_icon">
