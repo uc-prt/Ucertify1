@@ -835,6 +835,7 @@
     $:m_posY;
     let resize_elW;
     let resize_elH;
+    let resize_elWH;
     function resizeX(e){
         let parent = resize_elW.parentNode;
         let dx = m_posX - e.x;
@@ -843,9 +844,17 @@
     }
     function resizeY(e){
         let parent = resize_elH.parentNode;
-        
         let dy = m_posY - e.y;
         m_posY = e.y;
+        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+    }
+    function resizeXY(e){
+        let parent = resize_elH.parentNode;
+        let dx = m_posX - e.x;
+        let dy = m_posY - e.y;
+        m_posX = e.x;
+        m_posY = e.y;
+        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
         parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
     }
 
@@ -856,6 +865,7 @@
         document.addEventListener("mouseup", function(){
             document.removeEventListener("mousemove", resizeX, false);
             document.removeEventListener("mousemove", resizeY, false);
+            document.removeEventListener("mousemove", resizeXY, false);
         }, false);
     }
     function resizeHandleH(e){
@@ -865,6 +875,18 @@
         document.addEventListener("mouseup", function(){
             document.removeEventListener("mousemove", resizeX, false);
             document.removeEventListener("mousemove", resizeY, false);
+        }, false);
+    }
+    function resizeHandleWH(e){
+        m_posX = e.x;
+        m_posY = e.y;
+        document.removeEventListener("mousemove", resizeX, false);
+        document.removeEventListener("mousemove", resizeY, false);
+        document.addEventListener("mousemove", resizeXY, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+            document.removeEventListener("mousemove", resizeXY, false);
         }, false);
     }
 </script>
@@ -973,6 +995,7 @@
                 </div>
                 <div id="resizeX" bind:this={resize_elW} on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
                 <div id="resizeY" bind:this={resize_elH} on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
+                <div id="resizeXY" bind:this={resize_elWH} on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
             </div>
         </div>
         <textarea 
@@ -1167,7 +1190,6 @@
 
 <style>
     #resizeX {
-        background-color: #ccc;
         position: absolute;
         right: 0;
         width: 3px;
@@ -1176,12 +1198,20 @@
         cursor: w-resize;
     }
     #resizeY {
-        background-color: #ccc;
         position: absolute;
         bottom: 0;
         width: 100%;
         height: 3px;
         opacity: 0;
         cursor: s-resize;
+    }
+    #resizeXY {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3px;
+        height: 3px;
+        opacity: 0;
+        cursor: se-resize;
     }
     </style>
