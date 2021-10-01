@@ -29,6 +29,7 @@ let DEFAULTMATHOPTIONS = {
         '\\mbox': '',
         '$': '\\$'
     },
+    ignoredTags: ["script", "noscript", "style", "textarea", "code", "option"],
 };
 
 ITEMPLAYER.download = function (player, asset, title, description, img) {

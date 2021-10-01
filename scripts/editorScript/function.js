@@ -17,7 +17,6 @@ function showUcExpStep(currStep) {
 }
 
 function activateMathMl(content, isALgo, mathMLRender) { 
-	console.log(content.match(/\\begin/gm));
 	if (!isALgo && typeof mathMLRender == "function" && content.match(/\\begin/gm)) {
 		mathMLRender("previewSection", true);
 	}
