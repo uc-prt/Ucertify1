@@ -21,7 +21,7 @@
 
 	export let xml;
 	export let uxml;
-	export let ansStatus;
+	//export let ansStatus; unused variable
 	export let isReview;
 	export let content_guid;
 	export let sample_input = '';
