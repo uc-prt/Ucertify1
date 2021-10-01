@@ -48,7 +48,7 @@ function loadBackup(state, updateModule, setBasicData) {
 function replaceUnwantedTags(content, type) {
 	try {
 		// eslint-disable-next-line no-regex-spaces
-		content = content.replace(/&#160;/g, ' ').replace(/   /g, '&#160; &#160;').replace(/  /g, '&#160;&#160;').replace(/> /g, ">&#160;");
+		content = content.replace(/&nbsp;/g, ' ').replace(/&#160;/g, ' ').replace(/   /g, ' &#160; ').replace(/  /g, '&#160; ');
 		// content = content.replace(/&#160;/g, ' ').replace(/  /g, '&#160; ');
 		content = content.replace(/\$/g, '&#36;');
 		// @uc-abk Displaying same preview as eBook.
