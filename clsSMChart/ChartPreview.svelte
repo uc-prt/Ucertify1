@@ -11,7 +11,7 @@
 	import { writable } from "svelte/store";
 	import { XMLToJSON, AH, onUserAnsChange } from '../helper/HelperAI.svelte';
     import CHART from './lib/chart'
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import Highcharts from 'highcharts';
     import ItemHelper from "../helper/ItemHelper.svelte";
     export let xml;

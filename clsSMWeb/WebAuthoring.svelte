@@ -169,9 +169,7 @@
      // called once throught the program execution just after render method
     onMount(()=> {
 
-            //AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip', {container: 'body'});
-            
-
+            AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
             AH.bind(".modal", 'show.bs.modal', ()=> {
                 setTimeout(function () {
                     if (AH.select('#disable_modal','visible').length > 0) {
@@ -213,8 +211,6 @@
                 }
             })
 
-            // used for show the tooltip
-            //AH.enableBsAll("[data-toggle='tooltip']", 'Tooltip');
             AH.select('#preview', 'hide');
            // setTimeout(function () {
                 if (typeof (CodeMirror) == "function") {
@@ -742,25 +738,7 @@
         // sets the theme of html, css and js editors according to the checked status of 'Dark Theme' checkbox
         changeTheme();
     }
-    function removeHtmlEntity(valueOfItem) {
-            var txt = document.createElement('textarea');
-            txt.innerHTML = valueOfItem;
-            valueOfItem = txt.value;
-            return valueOfItem;
-        }
 
-    // tippy('#input1', {
-    //     content: "custom function name|input1,input2,..inputN|Output",
-    //     placement: 'left'
-    // });
-    // tippy('#input2', {
-    //     content: removeHtmlEntity("1. attr_match?HTML?tag name&{1}?occurance.(for tag match;2. attr_match?HTML?tag name&#123;string that has to be check inside tag's innerHTML&#123;2&#125;?occurance.(for string match inside perticular tag) &#013;3. attr_match?HTML?tag name&#123;attribute&#123;3&#125;?occurance.(for attribute match of perticular tag) &#013;4. attr_match?HTML?tag name&#123;attribute&#123;value&#123;4&#125;?occurance.(for match attribute with value of particular tag) &#013;5. str_match?HTML?string to be match in hole html part&#123;2&#125;?occurence.(for string match in hole HTML document)&#013;6. str_match?CSS?media query's string&#123;selector&#123;property?occurence.(for string match in hole css document only for media query) &#013;7. style_match?CSS?selector?property&#123;value.(match property with value for CSS of perticular CSS selector) &#013;8. str_match?JS?string to be match in hole JS part?occurance.(for string match in hole js part) &#013;Note: occurance => &#013; (i) For HTML it should be 'min+number' or 'max+number' such as 'min1' or 'max1' and so on. &#013;(ii) For CSS it should be number such as 1 or 2 or .... &#013;(iii) For JS it should be 'min+number', 'max+number' or 'only number' according to condition for match. &#013;(iv) Here &#123;1&#125;  is flag for check tag, &#123;2&#125; is flag for check string but with attr_match it checks string inside given tag's innerHTML but with str_match it checks in hole document, flag &#123;3&#125; is for check attribute, flag &#123;4&#125; is for check attribute with value For match in HTML document."),
-    //     placement: 'left'
-    // });
-    // tippy('#input3', {
-    //     content: "Write your own script",
-    //     placement: 'left'
-    // });
 
 
 </script>
@@ -916,9 +894,9 @@
                                     
                                     <span 
                                         class="icomoon-help float-right s4"  
-                                        data-toggle="tooltip" 
+                                        data-bs-toggle="tooltip" 
                                         title="custom function name|input1,input2,..inputN|Output" 
-                                        data-placement="top"
+                                        data-bs-placement="left"
                                     ></span>
                                 </h4>
                             </div>
@@ -948,9 +926,9 @@
                                     </a>
                                         <span 
                                         class="icomoon-help float-right s4" 
-                                        data-toggle="tooltip" 
+                                        data-bs-toggle="tooltip" 
                                         title="1. attr_match?HTML?tag name&#123;1&#125;?occurance.(for tag match)&#013;2. attr_match?HTML?tag name&#123;string that has to be check inside tag's innerHTML&#123;2&#125;?occurance.(for string match inside perticular tag) &#013;3. attr_match?HTML?tag name&#123;attribute&#123;3&#125;?occurance.(for attribute match of perticular tag) &#013;4. attr_match?HTML?tag name&#123;attribute&#123;value&#123;4&#125;?occurance.(for match attribute with value of particular tag) &#013;5. str_match?HTML?string to be match in hole html part&#123;2&#125;?occurence.(for string match in hole HTML document)&#013;6. str_match?CSS?media query's string&#123;selector&#123;property?occurence.(for string match in hole css document only for media query) &#013;7. style_match?CSS?selector?property&#123;value.(match property with value for CSS of perticular CSS selector) &#013;8. str_match?JS?string to be match in hole JS part?occurance.(for string match in hole js part) &#013;Note: occurance => &#013; (i) For HTML it should be 'min+number' or 'max+number' such as 'min1' or 'max1' and so on. &#013;(ii) For CSS it should be number such as 1 or 2 or .... &#013;(iii) For JS it should be 'min+number', 'max+number' or 'only number' according to condition for match. &#013;(iv) Here &#123;1&#125;  is flag for check tag, &#123;2&#125; is flag for check string but with attr_match it checks string inside given tag's innerHTML but with str_match it checks in hole document, flag &#123;3&#125; is for check attribute, flag &#123;4&#125; is for check attribute with value For match in HTML document."
-                                        data-placement="left"
+                                        data-bs-placement="left"
                                     ></span> 
                                     <!-- <span 
                                         class="icomoon-help float-right s4" 
@@ -984,9 +962,9 @@
                                     </a>
                                     <span 
                                         class="icomoon-help float-right s4" 
-                                        data-toggle="tooltip" 
+                                        data-bs-toggle="tooltip" 
                                         title="Write your own script" 
-                                        data-placement="top"
+                                        data-bs-placement="left"
                                     ></span>
                                     <!-- <span 
                                         class="icomoon-help float-right s4" 

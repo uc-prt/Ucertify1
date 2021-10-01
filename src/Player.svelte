@@ -5,7 +5,7 @@
     import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
     import PlayerItem from './PlayerItem.svelte';
-    import l from './libs/Lang';
+    import l from './libs/editorLib/language.js';
     export let playerBookmark;
     export let editorState;
     export let value;
@@ -28,6 +28,7 @@
             nofeedback: true,
             embed: 'inline',
             isplayer: false,
+            isPlayerCheck: false,
             security: false,
             multiple: false,
             intervals: false,
@@ -58,11 +59,11 @@
     const unsubscribe = hdd.subscribe((items) => {
         state = items;
     })
-    
+
     onMount(async()=> {
         console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
-            AH.addScript("", itemUrl + 'src/libs/editorLib/webparser.js');
+            AH.addScript("", baseUrlTheme + 'svelte_items/src/libs/editorLib/webparser.js');
         }
         prevState = state;
         state.prevValue = editorState.playerArr;
@@ -184,6 +185,7 @@
                         } else if (player_type == 'seq') {
                             state.seq = editorState.playerArr[key];
                         }
+
                         if (document.querySelectorAll(input_id + ' #' + new_key).length > 0) {
                             AH.select(input_id + ' #' + new_key).value = editorState.playerArr[key].trim();
                         }
@@ -303,6 +305,7 @@
         AH.listen(document.body, 'keyup','.vtt_textarea', function() {
             validateVTT();
         });
+
     }
 
     function getJsonAttrValue(data, input_id) {
@@ -757,9 +760,11 @@
     function createPlayerVersionTwo(player, option_attr, style_attr) {
         if (option_attr != '') {
             player += " option='{"+option_attr+"}'";
+            state.isPlayerCheck = true;
         }
         if (style_attr != '') {
             player += " styles='{"+style_attr+"}'";
+            state.isPlayerCheck = false;
         }
 
         return player;
@@ -790,11 +795,16 @@
                         url: baseUrl+'editor/index.php?func=get_item_details',
                         data: {
                             item_id: asset,
+                            player: state.type,
                         },                        
-                    }).then((response)=> {
+                    }).then((response)=> {  
                         if (response != 1) {
                             asset = asset.split(',') ;
-                            let obj = JSON.parse(response), item_id = '', invalid_id = '', content_type = state.content_type, content_subtype = '';
+                            let obj = JSON.parse(response); 
+                            let item_id = '';
+                            let invalid_id = '';
+                            let content_type = state.content_type; 
+                            let content_subtype = '';
                             for (let i in obj) {
                                 content_subtype = (state.content_subtype != '') ? state.content_subtype : obj[i].content_subtype;
                                 if (content_type.indexOf(obj[i].content_type) === -1 || content_subtype.indexOf(obj[i].content_subtype) === -1) {
@@ -936,7 +946,7 @@
                 bind:value={state.category} 
                 on:change={handlePlayer}
                 style="margin-left: 0px;" 
-                class='v-bottom btn dialogSelectBorder p-2'
+                class='text-left v-bottom btn dialogSelectBorder p-2'
             >
                 <option value='knowledge_check'>{l.know_check_txt}</option>
                 <option value='lab'>{l.lab_txt}</option>
@@ -949,6 +959,7 @@
             <div id="showPlayerList">
                 <PlayerItem
                     bind:playerState={state}
+                    isPlayerCheck={state.isPlayerCheck}
                     setInputState={setInputState}
                     setVideoAsset={setVideoAsset}
                     handleTranscriptDialog={handleTranscriptDialog}

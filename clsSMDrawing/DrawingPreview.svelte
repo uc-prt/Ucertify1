@@ -9,7 +9,7 @@
 <script>
     import { afterUpdate, onMount } from "svelte";
 	import { AH , onUserAnsChange, XMLToJSON} from '../helper/HelperAI.svelte';
-    import l from '../src/libs/Lang';
+    import l from '../src/libs/editorLib/language.js';
     import swal from 'sweetalert';
 	import { writable } from "svelte/store";
     import '../src/libs/drawing.css';

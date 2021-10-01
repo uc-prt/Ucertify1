@@ -8,8 +8,7 @@ function addScript(jsString) {
 
 //@TODO:? @abhishek we have similar function in prepengine footer too, why we can centalize funcion and define and use form one single file
 function showUcExpStep(currStep) {
-	//let that = currStep.closest(".uc_step_explanation");
-	let that = AI.prevElm(currStep, '.uc_step_explanation');
+	let that = currStep.closest(".uc_step_explanation");
 	AI.select(AI.find(that, '.uc_step', 'hidden')[0], 'show', 'block');
 	let len = AI.find(that, '.uc_step', 'hidden').length;
 	if (len === 0) {
@@ -239,7 +238,9 @@ function getParent(tag) {
 	return tag_parent;
 }
 
-//@TODO:? @abhishek does it match exactly with our PHP function?
+/**
+ * This function is used for resolve the uc:syntax. 
+ */
 function get_ucsyntax(content) {
 	if (content) {
 		content = content.replace(/\$/g, "&#36;");

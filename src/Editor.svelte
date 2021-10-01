@@ -1,7 +1,8 @@
 <script>
-import { onMount, tick } from 'svelte';
+import { onMount, tick, afterUpdate } from 'svelte';
 import { Button, Dialog, Checkbox, Snackbar } from 'svelte-mui/src';
 import { writable } from 'svelte/store';
+//import {page} from '$app/stores';
 import {AH, XMLToJSON } from '../helper/HelperAI.svelte';
 import {editorConfig} from './EditorConfig.svelte';
 import {ucEditor} from './ucEditor.svelte';
@@ -27,6 +28,9 @@ import Media from "./components/Media.svelte";
 import l from './libs/editorLib/language';
 import ImageAnnotation from './components/ImageAnnotation';
 import EditorPopoverModal from './components/EditorPopoverModal.svelte';
+import PeGlossaryContentLink from './components/PeGlossaryContentLink.svelte';
+import AnalyzeEbook from './components/AnalyzeEbook.svelte';
+
 // Taking Props
 export let actionData;
 export let advanceXml;
@@ -55,6 +59,7 @@ let modal = {
 		footer  : [],
 		width   : 300,
 	};
+	
 let editorBuffer = {}; // Buffer storage for editor
 let typeChangePosition = "";  // Current content change position
 let Items = {}; // Instance of item comonenets
@@ -150,6 +155,9 @@ let _editorBuffer = {};
 const unsubscribe = hdd.subscribe((items) => {
 	state = items;
 })
+
+const ucStepContolPanel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
+
 onMount(async ()=> {
 	AH.activate(2);
 	ucEditor.setConfig(editorConfig); // Setting config for tinymce
@@ -234,6 +242,11 @@ onMount(async ()=> {
 	AH.set('getEditor', getState);
 });
 
+afterUpdate(() => {
+	if ( typeof state != 'undefined' && 'guid' in state && state.guid) {
+		initComments(state.guid, _user.user_guid);
+	}
+});
 // get State
 function getState(name) {
 	if (name) return state[name];
@@ -343,6 +356,47 @@ function didMount(node, action) {
 		window.uc_image_annotate = new ImageAnnotation();
 	}
 }
+
+function showPreviewOnly() {
+		//self.fullScreen();
+		//$("#editor").hide();
+		AH.select('#editor','css',{display:'none'});
+		setTimeout(function () {
+			//self.setState({ verticalView: true }, function () {
+				state.verticalView = true;
+				//$("#editor").show();
+				AH.select('#editor','css',{display:'block'});
+				//$('[href="#authoringDiv"]').addClass('disabled');
+				AH.select('[href="#authoringDiv"]','addClass','disabled');
+				let checkView = (Items[state.item] && Items[state.item].UI.verticalView);
+				if (!checkView) {
+					//$("#authoringDiv").hide();
+					AH.select("#authoringDiv",'css',{display:'none'});
+					//$('[href="#custom_columnize"]').tab('show');
+					AH.select('[href="#custom_columnize"]').tab('show');
+				} 
+				//$("#player_render_top, #back_editor_button").hide();
+				AH.select("#player_render_top",'css',{dispaly: 'none'});
+				AH.select("#back_editor_button",'css',{display: 'none'});
+				//$('#preview_editor_new').css('pointer-events', 'none');
+				AH.select('#preview_editor_new','css',{pointerEvents:'none'});
+				//$(document).ready(function () {
+					//$("#authoring_boxe, #device_btn").hide();
+					AH.select("#authoring_boxe, #device_btn",'css',{display: 'none'});
+					ajaxContentUpdate({ imgAltText: 1, container: ['#previewSection'] });
+					if (checkView) {
+						setTimeout(function () {
+							//$('main[data-remove="true"]').hide();
+							AH.select('main[data-remove="true"]','css',{display: none});
+							externalToggle();
+							//$("#remedToggle").addClass("h-imp");
+							AH.select("#remedToggle",'addClass','h-imp')
+						}, 500);
+					}
+				//});
+			//});
+		}, 200);
+	}
 
 // Set initially content for editor
 function setBasicData(title, stem, remediation, skip = false) {
@@ -487,12 +541,11 @@ function ucStepImplement() {
 					AH.insert(elm, "<br/>", 'beforebegin');
 				}
 			});
-
 			let btnCaption = (_this.getAttribute('data-btnnme') != undefined && _this.getAttribute('data-btnnme') != "") ? _this.getAttribute('data-btnnme') : 'Next';
 			let btnhtml = '<button type="button" onclick="showUcExpStep(this)" class="exp_next_btn btn btn-sm btn-outline-primary bg-white imgcenter text-primary" style="width: 15%; font-size: 15px; margin-top: 15px;">' + btnCaption + '</button>';
 			AH.find(_this, '.exp_next_btn', {action: 'remove'});
 			AH.find(_this, '.addnext_caption', {action: 'remove'});
-			AH.insert(_this, btnhtml, 'afterend');
+			AH.insert(_this, btnhtml, 'beforeend');
 		} else {
 			// for hint 
 			let head_caption = "Hint";
@@ -958,44 +1011,66 @@ function initEditorListeners() {
 		}
 	});
 
-	AH.listen(document, 'mouseover', '#authoringSection .uc_step', (_this)=> {
-		let control_panel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
-		if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
-			AH.insert(_this.closest('.uc_step'), control_panel, 'beforeend');
-		}
-	});
-
-	AH.listen(document, 'mouseout', '#authoringSection .uc_step', (_this, event)=> {
-		let e = event.relatedTarget || event.toElement;
-		//element that has gained focus while enterting the edit buttons group
-		if (_this.closest('.uc_step').querySelector('.controls_panel_button')) {
-			return;
-		}
-		AH.selectAll('.controls_panel_button', 'remove');
-		AH.toggleDom('.tooltip', 'hide');
-	});
-
 	AH.listen(document, 'click', '.panel-controls__duplicate', (_this)=> {
 		let _this_section = _this.closest('.uc_step');
 		let cloned_this_section = _this_section.cloneNode(true);
 		AH.find(cloned_this_section, '.controls_button', {action: 'remove'});
 		AH.insertAfter(cloned_this_section, _this_section);
+
+		AH.bind(cloned_this_section,'mouseenter', event=> {
+			const _this = event.target;
+			let control_panel = ucStepContolPanel;
+			if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
+				AH.insert(_this.closest('.uc_step'), control_panel, 'afterbegin');
+			}
+		});
+		
+		AH.bind(cloned_this_section, 'mouseleave', event=> {
+			//element that has gained focus while enterting the edit buttons group
+			const _this = event.target;
+			if (!_this.closest('.uc_step').querySelector('.controls_panel_button')) {
+				return;
+			}
+			AH.selectAll('.controls_panel_button', 'remove');
+		});
 	});
 
 	AH.listen(document, 'click', '.panel-controls__remove', (_this)=> {
 		let parent_tinymce_id = AH.parent(_this, ".tinymce-editor");
-		if (_this.closest('.drop_list').querySelectorAll('.uc_step').length != 1) {
+		if (_this.closest('.uc_step_explanation').querySelectorAll('.uc_step').length != 1) {
 			_this.closest('.uc_step').remove();
 			setContent(parent_tinymce_id.getAttribute("id"));
 		}
 	});
 	
+	AH.bind('#authoringLoadComponent', 'click', () => {
+		if (!AH.get('save_item')) {
+			AH.set('save_item', (editor.save == 1) ? true : false);
+		}
+	});
 }
 
 function refreshEvents() {
 	if (uc_image_annotate) {
 		uc_image_annotate.bindMulti();
 	}
+	AH.listenAll('#authoringSection .uc_step', 'mouseenter', event=> {
+		const _this = event.target;
+		let control_panel = ucStepContolPanel;
+		if (AH.find(_this, '.controls_panel_button', 'all').length == 0) {
+			AH.insert(_this.closest('.uc_step'), control_panel, 'afterbegin');
+		}
+	});
+
+	AH.listenAll('#authoringSection .uc_step', 'mouseleave', event=> {
+		//element that has gained focus while enterting the edit buttons group
+		const _this = event.target;
+		if (!_this.closest('.uc_step').querySelector('.controls_panel_button')) {
+			return;
+		}
+		AH.selectAll('.controls_panel_button', 'remove');
+	});
+
 	AH.bind('#show_guid','mouseenter', (event)=> {
 		AH.setCss(event.target, {cursor: 'pointer'});
 		event.target.setAttribute("data-bs-original-title", "Tap to copy");
@@ -2784,13 +2859,13 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 										<div
 											id="stem_show"
 											class="base"
-											style="padding: 10px 0 10px 0; white-space: pre-line; word-wrap: break-word; font-size: 17px"
+											style="padding: 10px 0 10px 0; white-space: pre-line; word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 									{#if state.viewConfig.content}
 										<div 
 											id="content_show" 
-											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 17px"
+											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 									{#if state.viewConfig.itemModule}
@@ -2816,7 +2891,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 										<div 
 											id="remediation_show" 
 											class="mt-4" 
-											style="word-wrap: break-word; font-size: 17px"
+											style="word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
 								</div>
@@ -3029,7 +3104,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	bind:editorState={state}
 	bind:this={createVariableCallback}
 />
-{#if content_guid && window.from_myproject == 1}
+{#if state.guid && window.from_myproject == 1}
 	<CommentModal 
 		bind:this={_commentModal}
 		user_guid={_user.user_guid}
@@ -3049,6 +3124,18 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 		image_annotation: 1,
 	}}
 />
+
+{#if state?.AnalyzeEbookMenu}
+<AnalyzeEbook 
+	analyzeEbookMenu = {state.AnalyzeEbookMenu} 
+	oldStemData={state.oldStemData} 
+	controls={editorConfig.controls} 
+	addItemButton={editorConfig.add_item_button}
+	changeAnalyzeMenuProp = {() => state.AnalyzeEbookMenu = false}	
+/>
+{/if}
+
 <svelte:window on:keyup={handleKeyup} on:keydown={handleKeydown} />
 <InteractiveItem bind:this={_interactiveItem}/>
 <EditorPopoverModal />
+<PeGlossaryContentLink />

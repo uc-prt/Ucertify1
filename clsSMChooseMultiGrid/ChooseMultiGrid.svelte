@@ -34,6 +34,22 @@
 	onMount(() => {
 		state.xml = xml;
 		loadModule(xml); 
+
+		AH.listen(document,'click','.columnContainer',function(e) {
+			var elem_id = e.getAttribute('id');
+			setTimeout(function () {
+				if(AH.find('#' + elem_id,'img','all').length > 0) {
+					let im = AH.find('#' + elem_id,'img').getAttribute('src');
+					im = im.replace(/\/\/s3.amazonaws.com\/jigyaasa_content_static\//, '');
+					AH.select('#MatchlistImg').value = im;
+					AH.select('#MatchlistAlt').value = AH.find('#' + elem_id,'img').getAttribute('alt');
+				} else {
+					AH.select('#MatchlistImg').value = '';
+					AH.select('#MatchlistAlt').value = '';
+				}
+			},300);
+		})
+		
 	});
 	$: {
 		count = 0;
@@ -398,7 +414,7 @@
     }
 
 </script>
-<div id="main" class="pb-2 border float-none mx-auto my-0" style ="min-width: '300px', min-height: '1px'">
+<div id="mainDiv" class="pb-2 border float-none mx-auto my-0" style ="min-width: '300px', min-height: '1px';">
 	<div class="choose_head_content bg-white text-left border-bottom px-2 pt-2 pb-2 mt-1" style ="overflow-x: 'hidden'">				
 		<div class="form-group row mx-0 mb-1">
 			<label for="headingCorrect" class="mt-2 width80 float-start font15">Title</label>

@@ -861,16 +861,20 @@ export default class JUI extends API{
     // remove node classes
     removeClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (selected && selected?.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'removeClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'removeClass', actionData: name})
         }
         return selected || {};
     }
     // add class for node
     addClass(selector, name) {
         let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
-        if (selected && selected.length > 0) {
+        if (selected && selected?.length > 0) {
             Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'addClass', actionData: name}));
+        } else if (typeof selected == 'object') {
+            this.jsAction(selected, {action: 'addClass', actionData: name})
         }
         return selected || {};
     }
@@ -1104,7 +1108,6 @@ export default class JUI extends API{
                             ajaxData.content_text.answers[index].answer =  item.answer.replace(/\n/g, "");
                         });
                     } catch(e) {
-                        console.log(e);
                         let tempAjaxData = {
                             answers: [
                                 {
@@ -1425,39 +1428,103 @@ export default class JUI extends API{
     
     // handle inline actions of js
     jsAction(selected, data) {
-        switch(data.action) {
-            case 'show': selected.style.display = data.actionData || "";
-            break;
-            case 'hide': selected.style.display = "none";
-            break;
-            case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
-            break;
-            case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
-            break;
-            case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
-            break;
-            case 'toggleClass': selected.classList.toggle(data.actionData);
-            break;
-            case 'html' : selected.innerHTML = data.actionData;
-            break;
-            case 'value': selected.value = data.actionData;
-            break;
-            case 'text': selected.textContent = data.actionData;
-            break;
-            case 'checked':  selected.checked = data.actionData;
-            break;
-            case 'remove': selected.remove();
-            break;
-            case 'removeAttr': selected.removeAttribute(data.actionData);
-            break;
-            case 'css' : this.setCss(selected, data.actionData);
-            break;
-            case 'attr': this.setAttr(selected, data.actionData);
-            break;
-            case 'data': this.setData(selected, data.actionData);
-            break;
-            case 'getData': this.getData(selected, data.actionData);
-            break;
+        if (selected instanceof HTMLElement) {
+            switch(data.action) {
+                case 'show': selected.style.display = data.actionData || "";
+                break;
+                case 'hide': selected.style.display = "none";
+                break;
+                case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
+                break;
+                case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
+                break;
+                case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
+                break;
+                case 'toggleClass': selected.classList.toggle(data.actionData);
+                break;
+                case 'html' : selected.innerHTML = data.actionData;
+                break;
+                case 'value': selected.value = data.actionData;
+                break;
+                case 'text': selected.textContent = data.actionData;
+                break;
+                case 'checked':  selected.checked = data.actionData;
+                break;
+                case 'remove': selected.remove();
+                break;
+                case 'removeAttr': selected.removeAttribute(data.actionData);
+                break;
+                case 'css' : this.setCss(selected, data.actionData);
+                break;
+                case 'attr': this.setAttr(selected, data.actionData);
+                break;
+                case 'data': this.setData(selected, data.actionData);
+                break;
+                case 'getData': this.getData(selected, data.actionData);
+                break;
+            }
+        }
+    }
+    
+    slideUp (target, duration = 500) {
+        target.style.transitionProperty = 'height, margin, padding';
+        target.style.transitionDuration = duration + 'ms';
+        target.style.boxSizing = 'border-box';
+        target.style.height = target.offsetHeight + 'px';
+        target.offsetHeight;
+        target.style.overflow = 'hidden';
+        target.style.height = 0;
+        target.style.paddingTop = 0;
+        target.style.paddingBottom = 0;
+        target.style.marginTop = 0;
+        target.style.marginBottom = 0;
+        window.setTimeout( () => {
+            target.style.display = 'none';
+            target.style.removeProperty('height');
+            target.style.removeProperty('padding-top');
+            target.style.removeProperty('padding-bottom');
+            target.style.removeProperty('margin-top');
+            target.style.removeProperty('margin-bottom');
+            target.style.removeProperty('overflow');
+            target.style.removeProperty('transition-duration');
+            target.style.removeProperty('transition-property');
+        }, duration);
+    }
+
+    slideDown (target, duration = 500) {
+        target.style.removeProperty('display');
+        let display = window.getComputedStyle(target).display;
+        if (display === 'none') display = 'block';
+        target.style.display = display;
+        let height = target.offsetHeight;
+        target.style.overflow = 'hidden';
+        target.style.height = 0;
+        target.style.paddingTop = 0;
+        target.style.paddingBottom = 0;
+        target.style.marginTop = 0;
+        target.style.marginBottom = 0;
+        target.offsetHeight;
+        target.style.boxSizing = 'border-box';
+        target.style.transitionProperty = "height, margin, padding";
+        target.style.transitionDuration = duration + 'ms';
+        target.style.height = height + 'px';
+        target.style.removeProperty('padding-top');
+        target.style.removeProperty('padding-bottom');
+        target.style.removeProperty('margin-top');
+        target.style.removeProperty('margin-bottom');
+        window.setTimeout( () => {
+            target.style.removeProperty('height');
+            target.style.removeProperty('overflow');
+            target.style.removeProperty('transition-duration');
+            target.style.removeProperty('transition-property');
+        }, duration);
+    }
+
+    slideToggle (target, duration = 500) {
+        if (window.getComputedStyle(target).display === 'none') {
+            return this.slideDown(target, duration);
+        } else {
+            return this.slideUp(target, duration);
         }
     }
 } 
@@ -1618,7 +1685,6 @@ export class Draggable extends JUI {
             return false;
         }
     }
-
 }
 
 export const JS = new JUI();

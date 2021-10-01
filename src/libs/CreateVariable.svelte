@@ -282,8 +282,8 @@
         let algo_str = '';
         let next_line = '';
         document.querySelectorAll('.new_variable').forEach(function(_this, i) {
-            let var_name = _this.querySelector('#var_name_'+i).innerHTML;
-            let var_value = _this.querySelector('#var_value_'+i).innerHTML;
+            let var_name = _this.querySelector('#var_name_'+i).innerText;
+            let var_value = _this.querySelector('#var_value_'+i).innerText;
             var_value = var_value.replace(/&nbsp;/g,"");
             var_value = var_value.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
             createValuesObject(arr_val,var_name,var_value);
@@ -343,6 +343,7 @@
         });
         return condition_check;
     }
+
 
     function checkValidFunc(algo_str) {
         let var_list = '';
@@ -630,7 +631,7 @@
         {l.algo_xml}
     </button>
     <Sidepanel right bind:visible={state.toggleVariableDrawer} width="300px">
-        <div tabIndex="0" role="button" style="margin-top:40px;">
+        <div tabIndex="0" role="button" style="margin-top:14px;">
             <div class="" style="padding: 5px 10px; width: inherit; height: 100%">
                 <div class="inline-block relative" style="font-size: 20px; top: 8px">{l.create_variable}</div> 
                     <span 
@@ -656,7 +657,7 @@
                         {#if item}
                             <div key={index} class="new_variable seq_inbox d-flex">
                                 <div 
-                                    class="inline-block section_table form-control func_name" 
+                                    class="inline-block section_table form-control func_name cursorPonter" 
                                     id="var_name_{index}" 
                                     contentEditable={true} 
                                     style="margin: 8px 4px; border: 1px solid grey"
@@ -664,7 +665,7 @@
                                     {item.split('=')[0].trim()}
                                 </div>
                                 <div 
-                                    class="inline-block bundle_width form-control func_values" 
+                                    class="inline-block bundle_width form-control func_values cursorPonter" 
                                     id="var_value_{index}" 
                                     contentEditable={true} 
                                     style="margin: 8px 4px; border: 1px solid grey; word-break: break-all; height: 37px;overflow:auto;"
@@ -804,6 +805,14 @@
     }
     :global(.deleteIcon:hover) {
         text-decoration: none;
+    }
+
+    :global(.deleteIcon) {
+        color: #b0281a;
+    }
+
+    :global(.cursorPonter) {
+        cursor: auto;
     }
     @media screen and (max-width: 800px) {
         .validate {

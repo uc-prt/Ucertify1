@@ -405,7 +405,7 @@ DND.readyThis = function(dndid) {
             backgroundColor: source.style.backgroundColor,
             backgroundImage: bgimage
         });
-        AI.find(target, 'p').innerText = AI.find(copied, 'p').innerText.trim();
+        AI.find(target, 'p').innerText = AI.select(copied).innerText.trim();
 
         setTimeout(function() {
             DND.checkAns(dndid);

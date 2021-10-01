@@ -344,9 +344,9 @@ export const editorConfig = {
             // },
             {
                 id: 'analyze_ebookMenu',
-                funcName: clickanalyzeebook,
+                funcName: ()=> updateParent('AnalyzeEbookMenu', true, ''),
                 label: lang.analyze_ebook,
-                view: (state.oldStemData != '') ? false : false, // not showing currently
+                view: (state.oldStemData != '') ? true : false, // not showing currently
             },
             {
                 id: 'vttParserMenu',
@@ -1308,10 +1308,11 @@ export const editorConfig = {
         //`insertdatetime media table ${ isContext ? 'contextmenu' : ""} paste visualblocks playertag playericon changeInModule res equationeditor`,
         return([
             "placeholder",
-            "lists link image", //charmap print preview anchor   (was part of this line)
+            "lists link image", //print preview anchor   (was part of this line)
             "searchreplace code", // fullscreen
             `table ${ isContext ? 'contextmenu' : ""} paste playertag changeInModule res equationeditor`,
-            "addnewsection"
+            "addnewsection",
+            "charmap "
         ]);
     },
     editorTable_class_list:  [

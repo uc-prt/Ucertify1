@@ -453,7 +453,7 @@
 
 	function oneditoFocused(x, event) {
 		let isFillId = true;
-		let fillId;
+		//let fillId;
 		while (isFillId) {
 			x = x.parentElement;
 			if(x.getAttribute('id')) {
@@ -978,7 +978,7 @@
 		padding:3px;
 		font-size: 14px;
 	}
-	:global(#fillmain .drag-resize.ui-draggable)  {
+	:global(#fillmain .drag-resize.dragable)  {
 		cursor:move;
 	}
 	:global(#fillmain .drop-hover)  {

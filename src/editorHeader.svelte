@@ -143,28 +143,29 @@
     }
 
     function navigate(action, data) {
+        let currentSelected = editorSeq;
         currentGuid = editorUrl.get('content_guid');
         AH.set('moveAction', false);
         if (action) {
             if (action == "click") {
-                editorSeq = guid_group.findIndex((item)=> item == data.content_guid);
+                currentSelected = guid_group.findIndex((item)=> item == data.content_guid);
             } else {
-                if ((editorSeq + 1) == guid_group.length) {
+                if ((currentSelected + 1) == guid_group.length) {
                     AH.showmsg("Editor is on last item.");
                     return ;
                 } else {
-                    editorSeq = editorSeq + 1;
+                    currentSelected = currentSelected + 1;
                 }
             }
         } else {
-            if (editorSeq > 0) {
-                editorSeq =  editorSeq - 1;
+            if (currentSelected > 0) {
+                currentSelected =  currentSelected - 1;
             } else {
                 AH.showmsg("Editor is on first item.");
                 return;
             }
         }
-        currentGuid = guid_group[editorSeq];
+        currentGuid = guid_group[currentSelected];
         editorUrl.set('content_guid', currentGuid);
         if (editorUrl.get('get-diff') == 1) {
             editorUrl.delete('get-diff');

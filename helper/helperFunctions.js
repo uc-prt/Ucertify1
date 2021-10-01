@@ -422,7 +422,8 @@ export function initEbookInteractivity() {
 
 export function tag_player(obj) {
     if (typeof (obj) != 'undefined') {
-        obj = obj.querySelectorAll('player');
+        //obj = obj.querySelectorAll('player');
+        obj = AH.find(obj,'player','all');
     } else {
         obj = document.querySelectorAll('player');
     }
@@ -909,15 +910,21 @@ export function tag_player(obj) {
                 } else if (sub_type == 'item' && asset != '') {
                     var old_player_id = player_id, old_assest = asset;
                     AH.ajax({
-                        url: baseUrl + 'index_data.php',
-                        data: { 'func': 'get_exhibit', 'guid': asset, 'ajax': 1 },
+                        url: baseUrl + 'index_data.php?func=get_exhibit',
+                        data: { 
+                            'guid': asset, 
+                            'ajax': 1 
+                        },
                     }).then((data) => {
-                        _this.innerHTML = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`;
+                        let pdfDoc = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`
+                        _this.innerHTML = pdfDoc;
                         if (AH.find('.exhibit_' + old_assest + '_' + old_player_id, 'player', 'all').length != 0 && embed == 'inline') {
                             tag_player(document.querySelector(`.exhibit_${old_assest}_${old_player_id}`));
                         }
                         player_id++;
-                    });
+                    }).catch(function() {
+                        console.log("error");
+                    });;
                 } else if (sub_type == 'text') {
                     text = '';
                     var span_tag = '';
@@ -1033,7 +1040,8 @@ export function tag_player(obj) {
                     var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
                     AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
                     var v_p_url = 'url("' + preview_image + '")';
-                    _this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
+                    //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
+                    AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
                 } else {
                     if (is_full_url && asset.indexOf('vimeo') == -1 && sub_type != 'youtube') {
                         var _asset = (sub_type == 'hostedvideo') ? asset : asset + '?vq=hd1080';
@@ -1532,6 +1540,19 @@ export function tag_player(obj) {
     });
 }
 
+function getTestFrameworkDetail(checkViewAttr) {
+    debugger;
+    var detail = -1;
+    if (AH.select('#uc-item-test-template').length === 1) {
+        var tempTestView = AH.select('#uc-item-test-template').getAttribute('temp_test_view');
+        if (!checkViewAttr && tempTestView && tempTestView != '') {
+            return tempTestView;
+        }
+        return AH.select('#uc-item-test-template').nodeName && AH.select('#uc-item-test-template').getAttribute('view');
+    }
+    return detail;
+}
+
 function initAccordion() {
     if (AI.selectAll('.drop_list section[nd="1"]').length < 1) {
         return true;
@@ -1748,7 +1769,7 @@ function getPlayerAttrVal(self, item) {
         if (option_attr[item] != undefined) {
             data = option_attr[item];
         } else if (style_attr[item] != undefined) {
-            item_val = style_attr[item];
+            let item_val = style_attr[item];
             data = (!isNaN(item_val) && item_val.indexOf('px') == -1 && item_val.indexOf('%') == -1) ? item_val + 'px' : item_val;
         }
     }
@@ -1795,7 +1816,6 @@ export function mathMLRender(id_mathML, is_required) {
             console.warn(e);
         }
     } else {
-        console.log("YESS");
         let css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">';
         AH.insert(document.body, css, 'afterend');
         AH.ajax({
