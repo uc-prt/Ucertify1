@@ -39,6 +39,8 @@
 	let optionrem = 0;	
 	let flagxml = false;
     let state = {};
+	let txtWidth = [];
+	let globWith = '';
 
     export let xml;
     export let stopPreviewUpdate;
@@ -115,6 +117,7 @@
 			let l = (data.value.split('').length * 10) + 45 +'px';
 			data.style.width = l;
 			e.target.previousSibling.style.width = l;
+			globWith = l;
 		})
 
 		//window.J = ju;
@@ -631,13 +634,13 @@
 			corr_ans = customStyle[0];
 			csStyle = customStyle[1];
 		}
-		let txtWidth  = [];
+		txtWidth  = [];
 		let anslen = corr_ans.split(",");
 		// jQuery(anslen).each(function(j){
 		// 	txtWidth[j] = ((anslen[j].length)*10+30)
 		// });
 		anslen.forEach(function(data,j){
-			txtWidth[j] = ((anslen[j].length)*10+30)
+			txtWidth[j] = ((anslen[j].length)*8*anslen.length)
 		})
 		if(index != undefined) {
 			textBox(data, txtWidth, csStyle, original_data, user_xml, corr_ans, i, index, org_cdata);
@@ -752,6 +755,7 @@
 	}
 
 	function inputHover(option, elem) {
+		
 		if (step_xml.smxml.step[steps]._mode != 1) { 
 			if (option == 'correct') {
 				//jQuery('#'+elem).removeClass('false-hover');
@@ -765,12 +769,19 @@
 				AH.select('#'+elem,'addClass','false-hover');
 			}
 			if (optionrem>1) {
+				let len = Math.max(...txtWidth);
+				if(len < 45) {
+					len = '45px';
+				}
 				//jQuery('#'+elem).prev().removeClass('h-imp');
+				AH.select(AH.select('#'+elem).previousElementSibling,'css',{width:len + 'px'});
+				AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:len + 'px'});
 				AH.select(AH.select('#'+elem).previousElementSibling,'removeClass','h-imp');
 			}
 			if(step_xml.smxml._fixed != 1) {
 				var timer = setTimeout(function() {
 					//jQuery('#'+elem).prev().addClass('h-imp');
+					AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
 					AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
 				 	clearTimeout(timer);
 				},2000);
