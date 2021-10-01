@@ -1836,7 +1836,6 @@ export function mathMLRender(id_mathML, is_required) {
 }
 
 export function ajaxContentUpdate(config) {
-    console.log("coming here", config);
     let funclist = Object.keys(contentUpdateFuncs);
     let func_len = funclist.length;
     for (let i = 0; i < func_len; i++) {
