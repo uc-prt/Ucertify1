@@ -382,13 +382,6 @@
                     element.setAttribute('draggable', false);
                 })
             }
-            [] .forEach.call (document.querySelectorAll('#dndmain, #dndmain .drag-resize, #dndmain .only-dragable'), (el) => {
-                if (el.querySelector('.resizer') == null || (el.id == 'dndmain' && document.querySelector('#dndmain > .resizer') == null)) { 
-                    let resizer = document.createElement('div');
-                    resizer.className ='resizer icomoon-resize';
-                    el.appendChild (resizer);
-                }
-            });
         }
 
         try {
@@ -723,6 +716,73 @@
         AH.select('#sample_image').remove();
         image_loaded = 1;
     }
+
+    // for handling the resize property of the base
+    let baseWidth;
+    $:baseWidth;
+    let baseHeight;
+    $:baseHeight;
+    $:state.store.imgHeight = baseHeight;
+    $:state.store.imgWidth = baseWidth;
+    let m_posX;
+    let m_posY;
+    $:m_posX;
+    $:m_posY;
+    let resize_elW;
+    let resize_elH;
+    let resize_elWH;
+    function resizeX(e){
+        let parent = resize_elW.parentNode;
+        let dx = m_posX - e.x;
+        m_posX = e.x;
+        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
+    }
+    function resizeY(e){
+        let parent = resize_elH.parentNode;
+        let dy = m_posY - e.y;
+        m_posY = e.y;
+        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+    }
+    function resizeXY(e){
+        let parent = resize_elH.parentNode;
+        let dx = m_posX - e.x;
+        let dy = m_posY - e.y;
+        m_posX = e.x;
+        m_posY = e.y;
+        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
+        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+    }
+    function resizeHandleW(e){
+        m_posX = e.x;
+        document.removeEventListener("mousemove", resizeY, false);
+        document.addEventListener("mousemove", resizeX, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+            document.removeEventListener("mousemove", resizeXY, false);
+        }, false);
+    }
+    function resizeHandleH(e){
+        m_posY = e.y;
+        document.removeEventListener("mousemove", resizeX, false);
+        document.addEventListener("mousemove", resizeY, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+        }, false);
+    }
+    function resizeHandleWH(e){
+        m_posX = e.x;
+        m_posY = e.y;
+        document.removeEventListener("mousemove", resizeX, false);
+        document.removeEventListener("mousemove", resizeY, false);
+        document.addEventListener("mousemove", resizeXY, false);
+        document.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", resizeX, false);
+            document.removeEventListener("mousemove", resizeY, false);
+            document.removeEventListener("mousemove", resizeXY, false);
+        }, false);
+    }
 </script>
 
 <div class="input_border dragable-container overflow-auto p">
@@ -754,8 +814,9 @@
         <div 
             id="dndmain" 
             path="https://s3.amazonaws.com/jigyaasa_content_static/"
-            class="ui-resizable"
             style='height: 400px;width:100%;'
+            bind:clientWidth={baseWidth}
+            bind:clientHeight={baseHeight}
         >
             <div class="btn-group tools mr-1" data-t="base">
                 <button title="{l.edit_base}" type="button" on:click={(event) => { DND_AUTH.elemModal('base', event.currentTarget, 'dndmain', state.store.bgImage, state.store)}} class="btn btn-light px-1 pt-sm1 pb-sm1 image-dialog"><i class="icomoon-24px-edit-1"></i></button>
@@ -786,6 +847,10 @@
                     <Tab index={0} modules={state.data[0].tab} elemModal = {DND_AUTH.elemModal} deleteElem = {DND_AUTH.deleteElem} {checkImageStatus} />
                 </div>
             {/if}
+
+            <div id="resizeX" bind:this={resize_elW} on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
+            <div id="resizeY" bind:this={resize_elH} on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
+            <div id="resizeXY" bind:this={resize_elWH} on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
         </div>
     </center>
     <input type='hidden' id='special_module_xml' name='special_module_xml' />
@@ -799,3 +864,32 @@
 </div>
 
 <svelte:window on:keydown={handleKeyDown} />
+
+<style>
+    #resizeX {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 3px;
+        opacity: 1;
+        height: 100%;
+        cursor: w-resize;
+    }
+    #resizeY {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        opacity: 1;
+        cursor: s-resize;
+    }
+    #resizeXY {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3px;
+        height: 3px;
+        opacity: 1;
+        cursor: se-resize;
+    }
+    </style>
