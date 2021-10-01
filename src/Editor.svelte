@@ -2939,7 +2939,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	updateEditorModule={updateModuleState}	
 />
 <Dialog bind:visible={state.saveDialog} width="575" style="background-color:#fff; border-radius: 5px;">
-	<center id="saveProcess" style="display: none; width: 100%; height: 170px; padding-top: 40px;">
+	<center id="saveProcess" style="display: none; width: 100%; height: 120px; padding-top: 40px;">
 		<div>{l.save_process}</div>
 		<Loader size={50} />
 	</center>
