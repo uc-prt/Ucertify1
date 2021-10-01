@@ -957,7 +957,14 @@
 	:global(td .fillelement) {
 		top: 0px !important;
 	}
-	:global(#fillmain input[type="text"]), select {	
+	/* :global(#fillmain input[type="text"]), select {	
+		height:99%!important;
+		resize: none;
+		font-size:12px;
+		color: #000;
+		max-width: 800px;
+	} */
+	:global(#fillmain input[type="text"]) {	
 		height:99%!important;
 		resize: none;
 		font-size:12px;
