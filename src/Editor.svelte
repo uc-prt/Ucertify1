@@ -1392,7 +1392,15 @@ function initializeAlgo() {
 function externalToggle() {
 	setTimeout(function () {
 		renderPlayer();
-		AH.toggleDom(".controls_button, .full_mode_hide", state.toggleMode === false ? 'show' : 'hide');
+		const fullModeHide = AH.find('body', '.controls_button, .full_mode_hide', 'all');
+		if(fullModeHide && fullModeHide.length>0){
+			fullModeHide.forEach(ele => {
+				const nextEle = ele.nextElementSibling;
+				if(nextEle.querySelectorAll("player").length == 0 && nextEle.textContent.trim() == "Edit" || nextEle.textContent.trim() == ""){
+					ele.style.visibility = 'visible'
+				}
+			});
+		}
 	}, 500);
 	if ((state.item == '32') && document.getElementById("authoringFrame").getAttribute('data-authoring') == '1') {
 		try {
@@ -1492,7 +1500,6 @@ function setupEditor(urlVars) {
 				if (placeHolder && wrapper.querySelectorAll("player").length == 0 && (wrapper.textContent == "" || wrapper.textContent == "Edit")) {
 					AH.setCss(placeHolder, {visibility: 'visible'});
 				}
-				
 			});
 			editor.on('focus', function() {
 				let childDom = editor.getElement();
@@ -1514,7 +1521,6 @@ function setupEditor(urlVars) {
 				if (!childDom) return;
 				let placeHolder = childDom.previousElementSibling;
 				if (childDom.querySelectorAll("player").length == 0 && childDom.textContent.trim() == "Edit" || childDom.textContent.trim() == "") {
-					console.warn("Placeholder should add on blur");
 					placeHolder.style.visibility = 'visible';
 				}
 			});
@@ -2722,8 +2728,10 @@ $: if (state.editorView == 'preview' && state.previewXml) {
                     <div id="columnize">
                         {#if state.viewConfig.title}
                             {@html addPlaceHolder(state.viewConfig.title.label)}
-                            <div class="editor_placeholder full_mode_hide">{state.viewConfig.title.placeHolder}</div>
-                            <div
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.title.placeHolder}</div>
+                            {/if}
+							<div
                                 class={editorClass()}
                                 contentEditable={true}
                                 id="title"
@@ -2735,8 +2743,10 @@ $: if (state.editorView == 'preview' && state.previewXml) {
                         {/if}
                         {#if state.viewConfig.stem}
                             {@html addPlaceHolder(state.viewConfig.stem.label)}
-                            <div class="editor_placeholder full_mode_hide">{state.viewConfig.stem.placeHolder}</div>
-                            <div
+							{#if state.editorView == 'authoring'}						
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.stem.placeHolder}</div>
+                            {/if}
+							<div
 								class={editorClass()}
                                 id="stem"
                                 readOnly="readonly"
@@ -2753,7 +2763,9 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 						{/if}
 						{#if state.viewConfig.content}
 							{@html addPlaceHolder(state.viewConfig.content.label)}
-							<div class="editor_placeholder full_mode_hide">{state.viewConfig.content.placeHolder}</div>
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.content.placeHolder}</div>
+							{/if}
 							<div
 								class="tinymce-editor auth-editor"
 								id="content"
@@ -2799,7 +2811,9 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 						{/if}
 						{#if state.viewConfig.remediation}
 							{@html addPlaceHolder(state.viewConfig.remediation.label, "br")}
-							<div class="editor_placeholder full_mode_hide">{state.viewConfig.remediation.placeHolder}</div>
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.remediation.placeHolder}</div>
+							{/if}
 							<div
 								class={editorClass()}
 								id="remediation"
@@ -2925,7 +2939,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	updateEditorModule={updateModuleState}	
 />
 <Dialog bind:visible={state.saveDialog} width="575" style="background-color:#fff; border-radius: 5px;">
-	<center id="saveProcess" style="display: none; width: 100%; height: 170px; padding-top: 40px;">
+	<center id="saveProcess" style="display: none; width: 100%; height: 120px; padding-top: 40px;">
 		<div>{l.save_process}</div>
 		<Loader size={50} />
 	</center>

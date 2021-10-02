@@ -53,10 +53,7 @@ export default class HotspotAuthScript {
 				attributeArr[5] = {name:'height', value: parseInt(JS.select('#'+key).style.height.split('px')[0]) };
 				attributes = attributeArr;
 			}
-			console.log('_this', _this);
-			console.log(ui.css)
 			attributes.forEach((_data, index, _orginalArr)=> {
-				console.log('_data.name', _data.name);
 				switch(_data.name) {
 					case "width":
 						_data.value = ui.clientWidth;
@@ -85,7 +82,6 @@ export default class HotspotAuthScript {
 				}
 				_orginalArr[index] = _data;
 			});
-			console.log("after", attributes,_this);
 		}
 		attributes.forEach((value, index)=> {
 			if( value.name == "width")  wd = value.value;

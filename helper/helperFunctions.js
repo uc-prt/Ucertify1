@@ -29,6 +29,7 @@ let DEFAULTMATHOPTIONS = {
         '\\mbox': '',
         '$': '\\$'
     },
+    ignoredTags: ["script", "noscript", "style", "textarea", "code", "option"],
 };
 
 ITEMPLAYER.download = function (player, asset, title, description, img) {
@@ -1835,7 +1836,6 @@ export function mathMLRender(id_mathML, is_required) {
 }
 
 export function ajaxContentUpdate(config) {
-    console.log("coming here", config);
     let funclist = Object.keys(contentUpdateFuncs);
     let func_len = funclist.length;
     for (let i = 0; i < func_len; i++) {

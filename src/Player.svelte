@@ -695,7 +695,7 @@
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
-            if (_this.getAttribute('id') != undefined && _this.value.trim() != '' && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'icon' && !_this.disabled) {
+            if (_this.getAttribute('id') != undefined && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'icon' && !_this.disabled) {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {
                     option_attr += (option_attr != '') ? ',"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"' : '"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"';
                 } else if (style.indexOf(_this.getAttribute('id')) > -1) {
