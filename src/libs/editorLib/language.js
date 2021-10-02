@@ -1356,6 +1356,7 @@ const l = {
     itemtype_13 : "Here, this type of question contains the terminal. You have to write command to perform this task.",
     itemtype_22 : "Here, this type of question contains the cisco terminal. You have to write command to perform this task.",
     es6_warining: "You are using Internet Explorer, ES6 functionality of javascript will not work!",
+    embed_content: "Embed Content"
 };
 //window.LANG = l;
 export default l;
