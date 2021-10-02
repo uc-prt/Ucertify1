@@ -1386,11 +1386,11 @@
 
 <style lang="text/css" global>
 
-	body {
+	/* body {
 		overflow: hidden!important;
-		position: fixed;
+		position: fixed; // unused css
 		width: 100%;
-	}
+	} */
 	:global(.split_container .left_pane) {
 		padding: 0!important;
 	}
