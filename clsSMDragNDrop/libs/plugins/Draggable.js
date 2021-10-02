@@ -96,9 +96,10 @@ export default class Draggable {
 
                     if (this.onDragStart) {
                         let clone_node = this.onDragStart(event, this.prenode);
+                        clone_node.style.zIndex= 100;
                         this.node = clone_node;
                         this.lastPosition = this.checkPosition(event, this.prenode)
-                        clone_node.style.top = this.lastPosition[1] - this.prenode.offsetHeight / 2 + 'px';
+                        clone_node.style.top = this.lastPosition[1] + this.prenode.offsetHeight / 2 + 'px';
                         clone_node.style.left = this.lastPosition[0]  - this.prenode.offsetWidth / 2 + 'px';
                         document.querySelector(this.container).appendChild(clone_node);
                         this.isStart = true;
@@ -114,9 +115,9 @@ export default class Draggable {
                 if (this.isStart && this.node) {
                     this.isMoving = true;
                     this.lastPosition = this.checkPosition(event, this.node)
-                    this.node.style.top = this.lastPosition[1] - this.node.offsetHeight / 2 + 'px';
+                    this.node.style.top = this.lastPosition[1] + this.node.offsetHeight / 2 + 'px';
                     this.node.style.left = this.lastPosition[0]  - this.node.offsetWidth / 2 + 'px';
-                    this.onDrag && this.onDrag(event, {node: this.node, top: (this.lastPosition[1] - this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )})
+                    this.onDrag && this.onDrag(event, {node: this.node, top: (this.lastPosition[1] + this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )})
                 }
             });
 
