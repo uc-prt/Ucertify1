@@ -44,7 +44,7 @@
 		state.module = type;
 		editorState.activator = true;
 		await tick();
-		didMount();
+		callOnStateChange();
 	});
 
 	// called immediately before the component is destroyed
@@ -110,7 +110,7 @@
 	}
 
 	// calls whenever there is change in state or prop
-	beforeUpdate(async()=> {
+	const callOnStateChange = async()=> {
 		// checking for the remediation / test mode
 		if (editorState.toggleMode != state.toggleMode) {
 			if (editorState.toggleMode == true) { //Test Mode
@@ -141,7 +141,7 @@
 			}
 			state.toggleMode = editorState.toggleMode;
 		}
-	});
+	};
 
 	// encode the string whuch is passed as parameter and return the encoded string
 	function php_urlencode(str) {
@@ -261,6 +261,7 @@
 		});
 	}
 	function renderPlayer() {
+		console.trace('called');
 		AH.empty('#authoringDiv player');
 		tag_player(AH.select('#authoringDiv'));
 		AH.find('#authoringDiv', 'player', {action: 'addClass', actionData: 'hidecontent'});
