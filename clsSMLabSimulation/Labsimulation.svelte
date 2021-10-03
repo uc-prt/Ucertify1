@@ -195,7 +195,7 @@
 		var testHtml = getTestForm(qxml, '<smans></smans>', state.module);
 		// append in the authoring area
 		AH.insert('#authoringArea', testHtml, 'beforeend');
-		AH.selectAll('#tilteShow, #stemShow, #remediationShow', 'remove');
+		// AH.selectAll('#tilteShow, #stemShow, #remediationShow', 'remove');
 
 		// for getting the titleData, stemData , remediation data
 		let titleData = AH.select('#title').innerHTML, 
