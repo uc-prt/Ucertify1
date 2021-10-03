@@ -44,6 +44,7 @@
 		state.module = type;
 		editorState.activator = true;
 		await tick();
+		didMount();
 		callOnStateChange();
 	});
 
