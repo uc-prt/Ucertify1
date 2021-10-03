@@ -1428,7 +1428,7 @@ export default class JUI extends API{
     
     // handle inline actions of js
     jsAction(selected, data) {
-        if (selected instanceof HTMLElement) {
+        if (selected instanceof HTMLElement || selected instanceof Node) {
             switch(data.action) {
                 case 'show': selected.style.display = data.actionData || "";
                 break;
