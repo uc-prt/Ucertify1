@@ -58,8 +58,9 @@
 	$: (isReview) ? setReview() : unsetReview();
 
 	onMount(async()=> {
-
-		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+		if (in_editor) {
+			AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+		}
 		AH.addScript("", window.itemUrl + "src/libs/mathQuill_new.js");
 
 		ucFill.setUpdate(updateModule.bind(this));
@@ -196,6 +197,7 @@
 	// this function responsible for parsing the xml 
 	function parseXmlAuthoring(MYXML, uaXML=false) {
 		// fetching the cdata
+		console.log(MYXML);
 		cdata = MYXML.smxml.text.__cdata;
 		dragData = "";
 		CheckDuplicate = [];
@@ -437,11 +439,11 @@
 
 	// for displaying the answer
 	function displayAns() {
-		console.trace("YESSS");
 		// check the ans and create user ans
 		let ans = ucFill.checkAns(ajax_eId);
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
+		console.log('answer', answer);
 		onUserAnsChange(answer);
 		if(editorState) { showAns(ans); }
 	}

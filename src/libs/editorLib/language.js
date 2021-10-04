@@ -254,6 +254,7 @@ const l = {
     short_text : "Short Text",
     fill_multiline_title : "Fill in the blanks (with multiline)",
     fill_math_title : "Fill in the blanks (with mathematical equations)",
+    math_eq         : 'Mathematical Equation',
     fill_text_placeholder : "Write correct answer here",
     fill_text_help1 : "1. To include multiple correct answers, type the answers and separate them with a comma (,).",
     fill_text_help2 : "2. Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down.",
@@ -261,6 +262,8 @@ const l = {
     fill_math_help1 : "1. To make math equation initially, Click f(x) and then insert the equation.",
     fill_math_help2 : "2. To add user Response, place cursor before{*} and Click Add Response.",
     fill_math_help3 : "3. To edit the existing equation, Click Edit.",
+    star_note : '* Note:',
+    do_not_include_space : '2. Please do not include space.',
     //fill_text_help3 : "Now, go back to Settings and select Multi from the drop-down.",
     fill_dropdown_placeholder : "Write Option here",
     fill_dropdown_help1 : "1. To choose correct answer, select any one radio button from the given options.",
@@ -1235,11 +1238,11 @@ const l = {
     enter_result_title: 'Enter result title',
     result_title: 'Result title',
     result_btn_info: 'If you want to write the result title of your choice, write another title, otherwise skip this step.',
-    one_option_correct: 'Only one option can be select or correct.',
+    one_option_correct: 'Only one option can be selected or marked as correct.',
     one_option_require: 'Please set one option as correct answer.',
     delete_textbox: 'Do you want to delete the text box?',
     delete_msg: 'Click the plotted points to delete them.',
-    last_delete_msg: '"Click the last plotted point of the item to delete the item!',
+    last_delete_msg: 'Click the last plotted point of the item to delete the item!',
     fill_field: 'Please fill out this field.',
     value_gt_zero: 'Value must be greater than 0.',
     enter_number: 'Please enter only number.',
@@ -1353,6 +1356,7 @@ const l = {
     itemtype_13 : "Here, this type of question contains the terminal. You have to write command to perform this task.",
     itemtype_22 : "Here, this type of question contains the cisco terminal. You have to write command to perform this task.",
     es6_warining: "You are using Internet Explorer, ES6 functionality of javascript will not work!",
+    embed_content: "Embed Content"
 };
 //window.LANG = l;
 export default l;

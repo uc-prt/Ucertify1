@@ -1384,7 +1384,7 @@
 	</Dialog>
 </div>
 
-<style lang="text/css" global>
+<style type="text/css" global>
 
 	body {
 		overflow: hidden!important;

@@ -28,6 +28,7 @@
         remediationToggle           : false,
         snackback                   : false,
         input_ans                   : '',
+        math_input_box              : '',
         spanCounter                 : 0,
         currentId                   : '',
         currentInp                  : ''
@@ -101,7 +102,7 @@
             AH.select('#customStyleText').value = customStyle[1];
 			AH.select("#input"+i).value = customStyle[0];
 		} else {
-            AH.select("#input").value = ans;
+            state.math_input_box = ans;
 		}	
 	}
     
@@ -574,76 +575,77 @@
                 <span class="font18">&#43; &nbsp;</span> Add Step
             </Button>
         </div>
-        <Dialog overlayClass="materialOverlay"  bind:visible={state.open} on:close={handleClose.bind(this)} disableEnforceFocus={true} width="650" class="row" style="background: #fff; border-radius: 5px;">
-            <div slot="title">
-                <div class="mr-lg float-left" style={'padding-top:10px;padding-left:13px;font-size:18px;'}>{l.fill_header}</div>
-                <div class="float-right mr-4">
-                    <div class="btn-group mt-1 row ml-0">
-                        <button type="button" class={"btn btn-light col-3" + ((state.fillInTheBlanksChoice == 1)? " active": "")} value={1} on:click={updateDialog.bind(this, 1)} >Text</button>
-                        <button type="button" class={"btn btn-light col-9" + ((state.fillInTheBlanksChoice == 2)? " active": "")} value={2} on:click={updateDialog.bind(this, 2)} >Mathematical Equation</button>
+        <Dialog class="remove_right_margin" width="560" overlayClass="materialOverlay"  bind:visible={state.open} on:close={handleClose.bind(this)} disableEnforceFocus={true} style="background-color:#fff; border-radius: 5px;">
+            <h4 class="mt-0 font21">
+                <div class="d-flex justify-content-between">
+                    <div>{l.fill_header}</div>
+                </div>
+                <div class="left10 position-relative">
+                    <div class="btn-group mt-2 col-md-12 pl-1">
+                        <button type="button" class={"btn btn-light col-md-3" + ((state.fillInTheBlanksChoice == 1)? " active": "")} value={1} on:click={updateDialog.bind(this, 1)} >{l.text}</button>
+                        <button type="button" class={"btn btn-light col-md-5" + ((state.fillInTheBlanksChoice == 2)? " active": "")} value={2} on:click={updateDialog.bind(this, 2)} >{l.math_eq}</button>
                     </div>
                 </div>
-            </div>
+            </h4>
             <!-- </DialogTitle> -->
-            <div>
-                <div id="responseDialog">
-                    {#if state.fillInTheBlanksChoice == 1}
-                        <div>
-                            <div class="d-flex mr-2">
-                                <div class="width100">
-                                    <Checkbox  id = "numeric" checked = {state.numeric}>{"Numeric"}</Checkbox>
-                                </div>
-                                <input
-                                    type="text"
-                                    id = "input1"
-                                    value = {state.input_ans}
-                                    class="form-control mr-4 ml-3"
-                                    style={'margin:5px'}
-                                    auto:focus = {true}
-                                    placeholder = {((AH.select("#input1").innerHTML != "")?l.fill_text_placeholder:"")}
-                                />
+            <div id="responseDialog" style="height:150px;overflow-y:auto; padding-right: 20px;">
+                {#if state.fillInTheBlanksChoice == 1}
+                    <div>
+                        <div class="d-flex mr-2">
+                            <div class="width100">
+                                <Checkbox  id = "numeric" checked = {state.numeric}>{"Numeric"}</Checkbox>
                             </div>
-                            <div class="text-danger font-weight-bold ml-2 mt-3">* Note:</div>
-                            <div class="text-danger ml-2" style={'text-indent:15px'}>{l.fill_text_help1}</div>
-                            <div class="text-danger ml-2" style={'text-indent:15px'}>2. Please do not include space.</div>
+                            <input
+                                type="text"
+                                id = "input1"
+                                bind:value = {state.input_ans}
+                                class="form-control mr-4 ml-3"
+                                style={'margin:5px'}
+                                auto:focus = {true}
+                                placeholder = {((AH.select("#input1").innerHTML != "")?l.fill_text_placeholder:"")}
+                            />
                         </div>
-                    {:else}
-                        <div>
-                            <div class="d-flex">
-                                <input
-                                    type="text"                                
-                                    id = {"input"}
-                                    class = "latexInp form-control"
-                                    style = {'margin:5px;width:71%;'}
-                                    auto:focus = {true}
-                                />                            
+                        <div class="text-danger font-weight-bold ml-2 mt-3">{l.star_note}</div>
+                        <div class="text-danger ml-2" style={'text-indent:15px'}>{l.fill_text_help1}</div>
+                        <div class="text-danger ml-2" style={'text-indent:15px'}>{l.do_not_include_space}</div>
+                    </div>
+                {:else}
+                    <div>
+                        <div class="d-flex">
+                            <input
+                                type="text"                                
+                                id = 'input'
+                                class = "latexInp form-control"
+                                style = {'margin:5px;width:71%;'}
+                                auto:focus = {true}
+                                bind:value={state.math_input_box}
+                            />                            
+                            <Button 
+                                variant = "contained" 
+                                color = "primary"
+                                style = {'border:1px solid #4285f4;color:#4285f4;text-transform:none;'} 
+                                on:click = {addEditable}
+                                class="btn btn-outline-primary height30 bg-white shadow-sm mt-1 top1 ml-1"
+                            >
+                            {l.add_response}
+                            </Button>                           
+                            <div class = "latexEditButton d-inline-block">
                                 <Button 
+                                    id = {"latexEdit"}
                                     variant = "contained" 
                                     color = "primary"
-                                    style = {'border:1px solid #4285f4;color:#4285f4;text-transform:none;'} 
-                                    on:click = {addEditable}
-                                    class="btn btn-outline-primary height30 bg-white shadow-sm mt-1 top1 ml-1"
+                                    style = {'margin:5px;display:none;'} 
+                                    on:click = {latexEdit}                                   
                                 >
-                                Add Response
-                                </Button>                           
-                                <div class = "latexEditButton d-inline-block">
-                                    <Button 
-                                        id = {"latexEdit"}
-                                        variant = "contained" 
-                                        color = "primary"
-                                        style = {'margin:5px;display:none;'} 
-                                        on:click = {latexEdit}                                   
-                                    >
-                                    Edit
-                                    </Button>
-                                </div>
+                                {l.edit_txt}
+                                </Button>
                             </div>
-                            <div class="text-danger font-weight-bold ml-1">* Note:</div>
-                            <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help1}</div>
-                            <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help2}</div>
                         </div>
-                    {/if}    
-                </div>
+                        <div class="text-danger font-weight-bold ml-2 mt-3">{l.star_note}</div>
+                        <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help1}</div>
+                        <div class="text-danger ml-1" style={'text-indent: 15px;'}>{l.fill_math_help2}</div>
+                    </div>
+                {/if}    
             </div>
             <div class="svelteFooter">
                 <Button variant="contained" on:click={handleClose} class="colorStyle" >

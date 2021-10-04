@@ -74,7 +74,7 @@ export default class EssayNewReact extends JUI {
             let form_data = new FormData();
             form_data.append('Filedata', _f);
             let file_ext = _f.name.split('.');
-            let tpl = this.parseHtml('<li class="working"><span class="download" disabled="disabled"><a target="_blank" onclick="setTimeout(function(){activate(0)},500);" href="' + path + _f.name + '" title="Download File"  class="essay_dwl_file icomoon-file-download"></a></span><span class="filename"></span><span class="fileSize"></span><span class="abort">abort</span><div id="progressbar"><div class="bar" style={{width: "0"}}></div></div></li>');
+            let tpl = this.parseHtml('<li class="working"><span class="download" disabled="disabled"><a target="_blank" onclick="setTimeout(function(){activate(0)},500);" href="' + path + _f.name + '" title="Download File"  class="essay_dwl_file icomoon-file-download"></a></span><span class="filename mx-1"></span><span class="fileSize"></span><span class="abort">abort</span><div id="progressbar"><div class="bar" style={{width: "0"}}></div></div></li>');
             this.find(tpl, '.filename', {action: 'text', actionData: _f.name});
             this.insert(this.find(tpl, '.fileSize'), `<i>${this.formatFileSize(_f.size)}</i>`, 'beforeend');
             if (this.find(this.eid, '.essay_upload_status li', 'all').length >= this.select(this.eid).getAttribute('data-limit')) {

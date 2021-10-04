@@ -122,8 +122,9 @@
 
 		//window.J = ju;
 		AH.set('stepAlgo', this);
-
-		AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+		if (in_editor) {
+			AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
+		}
 		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 
 		if(window.inNative) {
