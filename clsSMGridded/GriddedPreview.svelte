@@ -65,7 +65,6 @@
 
     $:{
         if (isReview) {
-            debugger;
                 setReview(); 
         } else {
                 
