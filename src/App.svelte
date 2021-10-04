@@ -127,6 +127,9 @@
 					last_name: response.last_name,
 					user_guid: response.user_guid,
 				}
+				if ((window.origin).includes('https://') && (location.host != "localhost")) {
+					response.siteurl = (response.siteurl).replace('http://', 'https://');
+				}
 				baseUrl = response.siteurl;
 				window.editor.baseUrlTheme = response.siteurl + "layout/themes/bootstrap4/";
 
