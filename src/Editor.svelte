@@ -71,6 +71,7 @@ let cursorPosition = ""; // Cursor's current position
 let _interactiveItem = ""; // hold all intractive layouts
 let _commentModal; // refrence of commentModal
 let state = {};
+let preview_edit;
 let hdd = writable({
 	title                   : "",
 	stem                    : "",
@@ -160,6 +161,12 @@ const unsubscribe = hdd.subscribe((items) => {
 })
 
 const ucStepContolPanel = '<main data-remove="true" contenteditable="false" class="controls_panel_button" style="height:1px;outline:none;float:right;margin-top:8px"><div class="panel-controls" style="opacity:1;position:relative;"><div class="panel-controls__container"><div class="panel-controls__bar"><div style="border-radius: 2.3rem;border: 1px solid rgba(49,53,55,.2);background:#FFF8DC;padding:6px 0" class="panel-controls__tools"><div><a class="panel-controls__duplicate" data-bs-toggle="tooltip" title="Copy"><i class="icomoon-copy-2"></i></a></div><div><a class="panel-controls__remove" data-bs-toggle="tooltip" title="Remove"><i class="icomoon-24px-delete-1"></i></a></div></div></div></div></div></main>';
+
+$: {
+	var url_string = window.location;
+	var url = new URL(url_string);
+	preview_edit = (url.searchParams.get("item") == 'listItem') ? url.searchParams.get("preview_only") : '';
+}
 
 onMount(async ()=> {
 	AH.activate(2);
@@ -376,7 +383,7 @@ function showPreviewOnly() {
 					//$("#authoringDiv").hide();
 					AH.select("#authoringDiv",'css',{display:'none'});
 					//$('[href="#custom_columnize"]').tab('show');
-					AH.select('[href="#custom_columnize"]').tab('show');
+					AH.select('[href="#custom_columnize"]').click();
 				} 
 				//$("#player_render_top, #back_editor_button").hide();
 				AH.select("#player_render_top",'css',{dispaly: 'none'});
@@ -1652,17 +1659,17 @@ function keepAnalyzeData(content) {
 function initAddFeature(title, stem, remediation, content) {
 	let sectionList = editorConfig.initAddFeatureSelector(stem, remediation, content);
 	let filter = content ? "#content" : "#stem,#remediation";
-	console.warn(filter, "initAddFeature called");
+	//console.warn(filter, "initAddFeature called");
 	//Future code for automatic init
 	for (let key in sectionList) {
-		console.warn({[key]:filter.includes(key)});
+		//console.warn({[key]:filter.includes(key)});
 		if (filter.includes(key)) {
 			let container = `#authoringSection ${key}`;
-			let innerSelector = document.querySelector(container).querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
+			let innerSelector = document.querySelector(container)?.querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
 			let sectionData = sectionList[key];
 			let findSection = `${innerSelector} .ebook_item_text`;
-			if (document.querySelector(container).querySelector(findSection) || editorConfig.shouldWrap(container)) {
-				console.warn("Warapping");
+			if (AH.find(container,findSection,'all').length == 0 || editorConfig.shouldWrap(container)) {
+				//console.warn("Warapping");
 				content ? keepAnalyzeData(content) : "";
 				if (sectionData.data) {
 					let wrapped =  editorConfig.getSection(sectionData.data, sectionData.inline, key);
@@ -1670,15 +1677,15 @@ function initAddFeature(title, stem, remediation, content) {
 					state[sectionData.holder] = wrapped;
 					if (sectionData.copyInto) state[sectionData.copyInto] = sectionData.data;
 					//self.setState(sectionData.store);
-					document.querySelector(key).innerHTML = wrapped;
+					AH.select(key).innerHTML = wrapped;
 				} else {
-					document.querySelector(key).innerHTML = setInitialButton(sectionData.holder);
+					AH.select(key).innerHTML = setInitialButton(sectionData.holder);
 				}
 			} else {
 				content ? keepAnalyzeData(sectionData.data) : "";
 			}
-			if (document.querySelector(container).querySelectorAll(innerSelector).length > 0) {
-				console.warn("Adding Controls");
+			if (AH.find(container,innerSelector,).length > 0) {
+				//console.warn("Adding Controls");
 				document.querySelector(container).querySelectorAll(innerSelector).forEach(function (_this, index) {
 					AH.insert(_this, editorConfig.controls(_this.getAttribute('sub_type')), 'beforebegin');
 					if (index == 0 && sectionData.inline && !_this.classList.contains(sectionData.inline)) {
@@ -2192,6 +2199,7 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 				console.warn("Saving is paused -");
 				return;
 			} 
+			console.log('baseUrl', baseUrl);
 			AH.ajax({
 				url: baseUrl + 'editor/index.php', // point to server-side PHP script
 				datatype: 'json',

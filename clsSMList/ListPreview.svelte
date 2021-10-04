@@ -1,7 +1,7 @@
 <script>
     import l from '../src/libs/editorLib/language.js';
     import {writable} from 'svelte/store';
-    import { onMount,beforeUpdate,afterUpdate } from "svelte";
+    import { beforeUpdate } from "svelte";
     import {XMLToJSON} from "../helper/HelperAI.svelte";
     
 
@@ -12,7 +12,6 @@
         data_cdata_prev         :''
     })
 
-    var table_data = null;
 
     const unsubscribe = stateData.subscribe((items)=>{
         state = items;
