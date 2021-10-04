@@ -566,7 +566,7 @@ function ucStepImplement() {
 				step_caption = _this.getAttribute("step_caption");
 			}
 			let msg = "<b>" + head_caption + ": </b> <span class='li_count'>" + _this.querySelectorAll('li').length + "</span> " + step_caption + "(s) are available."
-			let _btn = '<button type="button" style="margin-top:-4px" onclick="showHints(this)" class="hint_show btn btn-primary float-right">Show</button>';
+			let _btn = '<button type="button" style="margin-top:-8px" onclick="showHints(this)" class="hint_show btn btn-primary float-right">Show</button>';
 			let pre_block = "<section id='uc_hint_" + i + "' class='mt uc_hint_section white-bg alert text_lightBlack m-b-md alert-info'>" + _btn + msg + "</section>";
 			_this.innerHTML = pre_block + _this.innerHTML;
 			_this.classList.add("list2");
@@ -754,11 +754,13 @@ function interactiveEvents() {
 				let data_elm_type = currentTarget.getAttribute("data-elm_type");
 				data_html = data_html.querySelector(_this_selector).cloneNode(true);
 				AH.find(typeChangePosition, _this_selector, {action: 'attr', actionData: {"class": _this_value}});
-				if (data_elm_type == 2) {
-					AH.insert(typeChangePosition.querySelector('.' + _this_value), data_html.outerHTML, 'afterend');
-					AH.find(typeChangePosition, '.' + _this_value, {action: 'remove'});
-				} else {
-					AH.find(typeChangePosition, _this_selector, {action: 'html', actionData: data_html.outerHTML});
+				if(data_elm_type && data_elm_type != "undefined"){
+					if (data_elm_type == 2) {
+						AH.insert(typeChangePosition.querySelector('.' + _this_value), data_html.outerHTML, 'afterend');
+						AH.find(typeChangePosition, '.' + _this_value, {action: 'remove'});
+					} else {
+						AH.find(typeChangePosition, _this_selector, {action: 'html', actionData: data_html.outerHTML});
+					}
 				}
 			}
 		}
@@ -1390,7 +1392,15 @@ function initializeAlgo() {
 function externalToggle() {
 	setTimeout(function () {
 		renderPlayer();
-		AH.toggleDom(".controls_button, .full_mode_hide", state.toggleMode === false ? 'show' : 'hide');
+		const fullModeHide = AH.find('body', '.controls_button, .full_mode_hide', 'all');
+		if(fullModeHide && fullModeHide.length>0){
+			fullModeHide.forEach(ele => {
+				const nextEle = ele.nextElementSibling;
+				if(nextEle.querySelectorAll("player").length == 0 && nextEle.textContent.trim() == "Edit" || nextEle.textContent.trim() == ""){
+					ele.style.visibility = 'visible'
+				}
+			});
+		}
 	}, 500);
 	if ((state.item == '32') && document.getElementById("authoringFrame").getAttribute('data-authoring') == '1') {
 		try {
@@ -1490,7 +1500,6 @@ function setupEditor(urlVars) {
 				if (placeHolder && wrapper.querySelectorAll("player").length == 0 && (wrapper.textContent == "" || wrapper.textContent == "Edit")) {
 					AH.setCss(placeHolder, {visibility: 'visible'});
 				}
-				
 			});
 			editor.on('focus', function() {
 				let childDom = editor.getElement();
@@ -1512,7 +1521,6 @@ function setupEditor(urlVars) {
 				if (!childDom) return;
 				let placeHolder = childDom.previousElementSibling;
 				if (childDom.querySelectorAll("player").length == 0 && childDom.textContent.trim() == "Edit" || childDom.textContent.trim() == "") {
-					console.warn("Placeholder should add on blur");
 					placeHolder.style.visibility = 'visible';
 				}
 			});
@@ -2720,8 +2728,10 @@ $: if (state.editorView == 'preview' && state.previewXml) {
                     <div id="columnize">
                         {#if state.viewConfig.title}
                             {@html addPlaceHolder(state.viewConfig.title.label)}
-                            <div class="editor_placeholder full_mode_hide">{state.viewConfig.title.placeHolder}</div>
-                            <div
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.title.placeHolder}</div>
+                            {/if}
+							<div
                                 class={editorClass()}
                                 contentEditable={true}
                                 id="title"
@@ -2733,8 +2743,10 @@ $: if (state.editorView == 'preview' && state.previewXml) {
                         {/if}
                         {#if state.viewConfig.stem}
                             {@html addPlaceHolder(state.viewConfig.stem.label)}
-                            <div class="editor_placeholder full_mode_hide">{state.viewConfig.stem.placeHolder}</div>
-                            <div
+							{#if state.editorView == 'authoring'}						
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.stem.placeHolder}</div>
+                            {/if}
+							<div
 								class={editorClass()}
                                 id="stem"
                                 readOnly="readonly"
@@ -2751,7 +2763,9 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 						{/if}
 						{#if state.viewConfig.content}
 							{@html addPlaceHolder(state.viewConfig.content.label)}
-							<div class="editor_placeholder full_mode_hide">{state.viewConfig.content.placeHolder}</div>
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.content.placeHolder}</div>
+							{/if}
 							<div
 								class="tinymce-editor auth-editor"
 								id="content"
@@ -2797,7 +2811,9 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 						{/if}
 						{#if state.viewConfig.remediation}
 							{@html addPlaceHolder(state.viewConfig.remediation.label, "br")}
-							<div class="editor_placeholder full_mode_hide">{state.viewConfig.remediation.placeHolder}</div>
+							{#if state.editorView == 'authoring'}
+								<div class="editor_placeholder full_mode_hide">{state.viewConfig.remediation.placeHolder}</div>
+							{/if}
 							<div
 								class={editorClass()}
 								id="remediation"
@@ -2923,7 +2939,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 	updateEditorModule={updateModuleState}	
 />
 <Dialog bind:visible={state.saveDialog} width="575" style="background-color:#fff; border-radius: 5px;">
-	<center id="saveProcess" style="display: none; width: 100%; height: 170px; padding-top: 40px;">
+	<center id="saveProcess" style="display: none; width: 100%; height: 120px; padding-top: 40px;">
 		<div>{l.save_process}</div>
 		<Loader size={50} />
 	</center>

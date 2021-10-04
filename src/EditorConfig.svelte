@@ -442,7 +442,7 @@ export const editorConfig = {
             config:{
                 "hide":true,
                 "editing_type" : "1",
-                "editing_type_1":"interactive_tags_1|arrowlist-bullet|#interactive_list,interactive_tags_2|arrow-bullet|#interactive_list,interactive_tags_3|arrow-bullet arrow-bullet-list|#interactive_list,interactive_tags_4|circle-bullet darkblue-txt|#interactive_list,interactive_tags_5|whitecircle-list la|#interactive_list,interactive_tags_6|circle-bullet|#interactive_list,list_1|list1|#interactive_list,list_2|list2|#interactive_list,list_3|list3|#interactive_list,list_4|list4|#interactive_list,list_5|list5|#interactive_list,list_6|list6|#interactive_list",
+                "editing_type_1":"interactive_tags_1|arrowlist-bullet|#interactive_list,interactive_tags_2|arrow-bullet|#interactive_list,interactive_tags_3|arrow-bullet arrow-bullet-list|#interactive_list,interactive_tags_4|circle-bullet darkblue-txt|#interactive_list,interactive_tags_5|whitecircle-list la|#interactive_list,interactive_tags_6|circle-list|#interactive_list,list_1|list1|#interactive_list,list_2|list2|#interactive_list,list_3|list3|#interactive_list,list_4|list4|#interactive_list,list_5|list5|#interactive_list,list_6|list6|#interactive_list",
             }
         },
         "table":{
@@ -889,7 +889,7 @@ export const editorConfig = {
             },
             "interactive_tags_8":{
                 "default_image":"//s3.amazonaws.com/jigyaasa_content_static/column_4_000obJ.png",
-                "label":"For dividing into columns with a divider line in between",
+                "label":"For dividing into columns with a divider line",
                 "html":"<div data-section='${stemClass}' type='ebook-item' sub_type='${itemType}'><div class='queue'><div class='prop-lg-6 divider'><div class='ebook_item_text'>PLACE YOUR TEXT/IMAGE HERE</div></div><div class='prop-lg-6'><div class='ebook_item_text'>PLACE YOUR TEXT/IMAGE HERE</div></div></div></div>"
             },
             "division_11":{

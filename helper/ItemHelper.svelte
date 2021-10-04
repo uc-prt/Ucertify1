@@ -18,12 +18,12 @@
     }
 </script>
 <center>
-<button tabindex="0" type="button" class="h h-imp" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
-<button tabindex="0" type="button" class="h h-imp" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
+<button tabindex="0" type="button" class="h h-imp svelte_items_test" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
+<button tabindex="0" type="button" class="h h-imp svelte_items_test" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
 {#if reviewMode}
     <div class="smControlerBtn btn-group mb-3" role="group" aria-label="Answer buttons">
-        <button tabindex="0" type="button" mode="c" class="btn btn-light correct-ans" on:click="{handleSmClick}">Correct Answer</button>
-        <button tabindex="0" type="button" mode="u" class="btn btn-light your-ans active" on:click="{handleSmClick}">Your Answer</button>
+        <button tabindex="0" type="button" mode="c" class="btn btn-light correct-ans svelte_items_test" on:click="{handleSmClick}">Correct Answer</button>
+        <button tabindex="0" type="button" mode="u" class="btn btn-light your-ans active svelte_items_test" on:click="{handleSmClick}">Your Answer</button>
     </div>
 {/if}
 </center>

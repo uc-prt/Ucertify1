@@ -557,9 +557,9 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
 
             break;
         case "base": {
-                AI.select('#authoring-modal .modal-title').innerText = l.base;
-                AI.selectAll('#authoring-modal .base', 'all');
-                if (state.imgWidth) {
+            AI.select('#authoring-modal .modal-title').innerText = l.base;
+            AI.selectAll('#authoring-modal .base', 'all');
+            if (state.imgWidth) {
                     AI.select('#authoring-modal #base-width').value = state.imgWidth;
                 }
 
@@ -645,7 +645,9 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
                         modal_element.checked = true;
                     }
                 } else {
-                    modal_element.value = DND_AUTH.setValue( attributes[index]['value'] );
+                    if(!modal_element.value){
+                        modal_element.value = DND_AUTH.setValue( attributes[index]['value'] );
+                    }
                 }
             }
         }
