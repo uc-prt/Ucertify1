@@ -127,8 +127,8 @@
 					last_name: response.last_name,
 					user_guid: response.user_guid,
 				}
-				baseUrl = response.siteurl;
-				window.editor.baseUrlTheme = response.siteurl + "layout/themes/bootstrap4/";
+				// baseUrl = response.siteurl;
+				// window.editor.baseUrlTheme = response.siteurl + "layout/themes/bootstrap4/";
 
 				/* Grouping of All Editor Item */
 				newGroupList = [];

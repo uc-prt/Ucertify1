@@ -66,7 +66,6 @@
             var router_guid = url.get('router_guid').split(',');
             router_guid = Object.assign({}, [...router_guid]);
             AH.activate(1);
-            console.log('baseUrl3', baseUrl);
             AH.ajax({
             url: baseUrl + "editor/index.php",
             data: {
@@ -136,7 +135,6 @@
         }
         state.testSetList = testSetList;
         state.itemsCoverage = itemsCoverage; 
-        console.log('baseUrl', baseUrl);
         // Get Item mapping
         AH.ajax({
             url: baseUrl + "editor/index.php",
@@ -314,8 +312,6 @@
         let course = event.target.value;
         state.courses = course;
         setCourse(course);
-        
-        console.log('baseUrl2', baseUrl);
         try {
             AH.activate(1);
             AH.ajax({
