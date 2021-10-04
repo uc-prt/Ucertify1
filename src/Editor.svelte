@@ -1434,6 +1434,7 @@ function editorPaneShow(event) {
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 		state.editorView = 'preview';
+		AH.selectAll('.mce-panel', 'hide', {action: 'hiden'});
 	}
 }
 
