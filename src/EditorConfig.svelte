@@ -1253,11 +1253,8 @@ export const editorConfig = {
                 }
 				if (clean) {
 					content = content.replace(/&#65279;/g, "");
-					if (clean == "revert") { 
-						content = content.replace(/&#160;/g, ' ');
-					} else {
-						content = content.replace(/> /g, '>&#160;');
-					}
+                    content = content.replace(/&#160;/g, ' ');
+                    content = content.replace(/&nbsp;/g, ' ');
 					if (clean == "onlyEntity") return content;
 				}
 				let val = content.match(/<map(.|\n)*?<\/map>/g);
