@@ -19,12 +19,11 @@
 
 
     export let xml;
-   // export let guid;
     export let getChildXml;
     export let editorState;
 
     
-    //alert(editorState.xml);
+    
     //////////////// Described states////////////
 
     let stateData = writable({
@@ -73,28 +72,15 @@
             AH.selectAll('table.table input[type=checkbox]:enabled,.sticky-col input[type=checkbox]:enabled,.sticky-intersect input[type=checkbox]:enabled','checked',chk);
             AH.select(_this,'attr',chk);
         })
+
         // used to show the tooltip
-        // jQuery('#authoring_container').tooltip({
-        //     selector: '[data-toggle="tooltip"]'
-        // });
-        // jQuery(document).on('change', '.checkall', function() {
-        //     jQuery('.select_editable_guid').prop('checked', jQuery(this).prop('checked'));
+        AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
+        
         // });
         AH.listen(document,'change','.checkall',((_this)=>{
             AH.selectAll('.select_editable_guid',{checked:_this.getAttribute("checked")});
         }))
-        // jQuery(document).on('change', '.checkall, .select_editable_guid', function() {
-        //     var selected_length = jQuery('.select_editable_guid:checked').length;
-        //     if (selected_length > 0) {
-                
-        //         state.handle_disable_show = false;
-        //         state.selected_length = selected_length;
-                
-        //     } else {
-        //             state.handle_disable_show = true;
-        //             state.selected_length = 0;
-        //     }
-        // });
+        
         AH.listen(document,'change','.checkall, .select_editable_guid',function() {
             let selected_length = AH.select('.select_editable_guid','checked').length;
             if (selected_length > 0) {
@@ -236,43 +222,11 @@
                     question_obj.answers.push({ "is_correct": "0", "answer": state.data_cdata[random_rows[index_no1]].c2, "id": "0" + (index_no1 + 2) });
                 }
                 // sets the title for guid
-                //question_obj.title = $('#title').html() + ': ' + state.data_cdata[current_row_val].c1;
                 question_obj.title = document.querySelector('#title').innerHTML + ': ' + state.data_cdata[current_row_val].c1;
                 // sets the question data for guid
                 question_obj.question = state.data_cdata[current_row_val].c1;
+                
                 // request for get the guid
-                // AH.ajax({
-                //     //ajax: "1",
-                    
-                //     url: baseUrl + 'editor/index.php', // denotes file where ajax request will be handle by server
-                //    // cache: false, // does not stores request data in cache memory
-                //     data: {
-                //         str_content: question_obj, // object data which needs to be used for create the new guid
-                //         func: "get_guid_from_api", // condition in which block ajax request will be received and response will be send from server
-                //         //snippet: $('#title').html() + ': ' + self.state.data_cdata[current_row_val].c1
-                //         snippet: document.querySelector('#title').innerHTML + ': ' + state.data_cdata[current_row_val].c1
-                //     },
-                //     type: "post", // used for security purpose
-                //     success: function (response) {
-                //         // contains the response in object form
-                //         var json_received_string = JSON.parse(response);
-                //         if (json_received_string && json_received_string.content_guid) {
-                //             // stores the generated guid in current_guid key of respective row
-                //             temp_array[current_row_val].cg = json_received_string.content_guid;
-                //             for (var index_no1 = 0; index_no1 < 3; index_no1 += 1) {
-                //                 // stores the generated guid in all rows "used_in_guids" key with the help of which current guid is generated
-                //                 temp_array[random_rows[index_no1]].ag.push(json_received_string.content_guid);
-                //                 // stores the row no which are used for create the generated guid
-                //                 temp_array[current_row_val].rn.push(random_rows[index_no1]);
-                //             }
-                //             if (current_row_val == (state.data_cdata.length - 1)) {
-                //                 // updates the xml with created guids
-                //                 updateXML(JSON.stringify({ "list": temp_array }));
-                //             }
-                //         }
-                //         resolve(json_received_string.content_guid);
-                //     }
-                // });
                 updateXML(state.xml.smxml._disabled_generate);
                 AH.ajax({
                     type: "post",
@@ -364,32 +318,6 @@
                     question_obj.answers.push({ "is_correct": "0", "answer": state.data_cdata[row_no_array[index_no1]].c2, "id": "0" + (index_no1 + 2) });
                 }
                 // ajax resquest for update the guid
-                // AH.ajax({
-                //     ajax: "1",
-                    
-                //     url: baseUrl + 'editor/index.php', // defines where ajax request will be send
-                //     cache: false, // does not stores data in cache memory
-                //     data: {
-                //         str_content: question_obj, // data in the form of object for update the guid
-                //         func: "update_guid_from_api", // defines the condiditon in which it can be access on server side
-                //         content_guid: current_guid // sends the guid that has to be update
-                //     },
-                //     type: "post", // send the data with for security
-                //     success: function (response) {
-                //         // contains the response in object form
-                //         var json_received_string = JSON.parse(response);
-                //         if (json_received_string.content_guid && (close_activator == true)) {
-                //             // close the activator
-                //             console.log('ajaxRequestForDataUpdate');
-                //             AH.activate(0);
-                //             // shows the warning message
-                            
-                //             AI && AI.showmsg(l.child_updated, 4000);
-                //         }
-                //         resolve(json_received_string.content_guid);
-                //     }
-                // });
-                
                 AH.ajax({
                     type: "post",
                     url: baseUrl + 'editor/index.php',
@@ -554,16 +482,12 @@
     function showAllChild() {
         // array for contain the child guid of selected row
         let routerGuid = [];
-        // jQuery('.select_editable_guid:checked').each(function() {
-        //     // pushes the child guid
-        //     routerGuid.push(jQuery(this).attr('target-guid'));
-        // });
         AH.select('.select_editable_guid','checked').forEach((_this)=>{
             routerGuid.push(_this.getAttribute('target-guid'));
         })
         // url for show the selected child guids
        
-        let futureUrl = baseUrl + 'editor/v2/?action=edit&content_guid=' + routerGuid[0] + '&no_header=1&react_content=1&no_domain=1&router_guid=' + routerGuid.join(",");
+        let futureUrl = baseUrl + 'editor/v2/?action=edit&content_guid=' + routerGuid[0] + '&no_header=1&react_content=1&preview_only=1&item=listItem&no_domain=1&router_guid=' + routerGuid.join(",");
         // opens the url in new tab
         window.open(futureUrl, '_blank');
     }
@@ -707,36 +631,7 @@
     function updateParentGuid() {
         // @eslint issue, it's global method
         AH.activate(2);
-        // AH.ajax({
-        //     //ajax: "1",
-        //     // @eslint issue, it's global variable
-        //     url: baseUrl + 'editor/index.php', // defines where ajax request will be send
-        //     //cache: false, // does not stores data in cache memory
-        //     data: {
-        //         // @eslint issue, it's global method
-        //         str_content: JSONToXML(state.xml), // data in the form of object for update the guid
-        //         func: "update_guid_from_api", // defines the condiditon in which it can be access on server side
-        //         content_guid: state.data_cdata[1].pg, // sends the guid that has to be update
-        //         update_parent: 1
-        //     },
-        //     //type: "post", // send the data with for security
-        //     success: function (response) {
-        //         // contains the response in object form
-        //         var json_received_string = JSON.parse(response);
-        //         if (!json_received_string.content_guid) {
-        //             // shows warning message
-        //             // @eslint issue, it's global variable
-        //             AI && AI.showmsg(l.check_net_and_save, 4000);
-        //         }
-        //         // @eslint issue, it's global method
-        //         console.log("updateParentGuid 2");
-        //         AH.activate(0);
-        //         // hides the progress bar
-        //         //jQuery('#warning_label_container').addClass('h');
-        //         document.querySelector("#warning_label_container").classList.add("h");
-        //     }
-        // });
-
+        
         AH.ajax({
             type: "post",
             url: baseUrl + 'editor/index.php',
@@ -760,28 +655,11 @@
             // @eslint issue, it's global method
             AH.activate(0);
             // hides the progress bar
-            //jQuery('#warning_label_container').addClass('h');
-            //document.querySelector("#warning_label_container").classList.add("h");
             AH.select("#warning_label_container","addClass","h")
         })
     }
 
 
-    
-    // $:{
-    //     if (state.data_cdata && state.data_cdata[1].cg) {
-    //         handle_disable = true;
-    //     }
-    //     handle_generate = state.xml && ((state.xml.smxml._disabled_generate == 1) ? true: false);
-    //     alert(state.xml.smxml);
-    //     if (state.data_cdata) {
-    //         progress_data = Math.ceil((state.counter * 100) / (state.data_cdata.length - 1)) + '%';
-    //     }
-    //     if(state.data_cdata) {
-    //         child_generated = (state.data_cdata[1].cg) ? false: true
-    //     }
-    // }
-    
 
      // used for hide and show the warning dialog box
     function editorModalUpdate(args) {
@@ -848,9 +726,9 @@
                                                 <td id={"col_" + index + "_" + 0} contentEditable="true" on:blur={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c1}</td>
                                                 <td id={"col_" + index + "_" + 1} contentEditable="true" on:blur={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c2}</td>
                                                 <td class="width65 text-center align-middle">
-                                                    <span class="d-inline-block ml-2" data-bs-toggle="tooltip" data-bs-placement="top" title={((object_data.cg) ? l.deletion_not_allowed: l.del_row)}>
-                                                        <button class={"btn" + ((object_data.cg) ? ' pointer_event_none': '')} name={"delete_elm" + index} id={"delete_elm" + index} on:click={()=>{handleDelete(index)}} disabled={((object_data.cg) ? true: false)}>
-                                                            <span class="icomoon icomoon-24px-delete-1 s4"></span>
+                                                    <span class="d-inline-block ml-2">
+                                                        <button class={"btn" + ((object_data.cg) ? ' pointer_event_none': '')}  name={"delete_elm" + index} id={"delete_elm" + index} on:click={()=>{handleDelete(index)}} disabled={((object_data.cg) ? true: false)}>
+                                                            <span class="icomoon icomoon-24px-delete-1 s4" data-bs-toggle="tooltip" data-bs-placement="top" title={((object_data.cg ) ? l.deletion_not_allowed: l.del_row)}></span>
                                                         </button>
                                                     </span>
                                                 </td>
