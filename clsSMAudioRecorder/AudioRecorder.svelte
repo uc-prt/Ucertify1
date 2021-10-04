@@ -442,19 +442,16 @@
                 <option value="en-IN" aria-label="English UK">{l.english_in}</option>
             </select>
             <div class="form-check form-check-inline transcript_container mt-3">
-                <label for="showTranscript" class="custom_checkbox_new float-left mr-1">
-                    <input 
-                        type="checkbox" 
-                        on:click={handleCheck}
-                        on:keyup={adaKeyupCheckbox}
-                        name="showTranscript" 
-                        id="showTranscript"
-                        tabindex="0"
-                        class="form-check-input"
-                        checked={state.showTranscript}
-                    >
-                    <div class="check_mark_custom pt-sm1"></div>
-                </label>
+                <input 
+                    type="checkbox" 
+                    on:click={handleCheck}
+                    on:keyup={adaKeyupCheckbox}
+                    name="showTranscript" 
+                    id="showTranscript"
+                    tabindex="0"
+                    class="form-check-input"
+                    checked={state.showTranscript}
+                >
                 <label for="showTranscript" class="form-check-label">{l.show_transcript}</label>
             </div>
         </div>
