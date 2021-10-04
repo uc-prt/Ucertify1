@@ -1447,7 +1447,7 @@
                         <button type="button" tabindex="0" data-title="compass" title={l.compass} name="compass" id="authoring_compass" class="btn btn-light auth_toolbar geometryTool tooltip_btn authoring_btn"><i class="icomoon-compass1"></i></button>
                     </div>
                     <div tabindex="0" class="btn-group mr-2" role="group" aria-label={l.removing_tools}>
-                        <button type="button" tabindex="0" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn tooltip_btn"><i class="icomoon-delete-sm"></i></button>
+                        <button type="button" tabindex="0" data-title="eraser" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn tooltip_btn"><i class="icomoon-delete-sm"></i></button>
                         <button type="button" title={l.clear_screen} tabindex="0"  name="clearScreen" id="authoring_clearScreen" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-close-2"></i></button>
                         <button type="button" tabindex="0" title={l.redo} name="redo" id="authoring_redo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-redo-2"></i></button>
                         <button type="button" tabindex="0" title={l.undo} name="undo" id="authoring_undo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-undo-2"></i></button>
