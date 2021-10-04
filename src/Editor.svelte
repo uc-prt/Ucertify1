@@ -343,8 +343,12 @@ function didMount(node, action) {
 				AH.select('#content_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(contentText));
 				AH.select("#title").innerHTML = editorConfig.replaceUnwantedEntity(state.title, 'onlyEntity');
 				AH.select("#title_show").innerHTML = editorConfig.replaceUnwantedEntity(state.title, 'onlyEntity');
-				AH.select("#info, #info_show").innerHTML = state.info;
-				AH.isValid(state.vtt) ? (AH.select("#vtt, #vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;")) : tempContent;
+				AH.select("#info").innerHTML = state.info;
+				AH.select("#info_show").innerHTML = state.info;
+				if(AH.isValid(state.vtt)){
+					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
+					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
+				}
 				initAddFeature(false, false, false, tempContent || " ");
 			}
 		}
