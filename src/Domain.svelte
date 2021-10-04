@@ -314,6 +314,7 @@
         let course = event.target.value;
         state.courses = course;
         setCourse(course);
+        
         console.log('baseUrl2', baseUrl);
         try {
             AH.activate(1);
