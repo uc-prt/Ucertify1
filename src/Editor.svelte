@@ -44,6 +44,9 @@ export let is_algo;
 export let ajaxData = "";
 export let _user;
 export let subtype;
+if ((window.origin).includes('https://') && (location.host != "localhost")) {
+	window.baseUrl = (window.baseUrl).replace('http://', 'https://');
+}
 let snt_detail_array = {};
 let stageComment = "";
 let editorHeaderRef; // refrence of editorHeader
