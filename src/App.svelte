@@ -127,8 +127,11 @@
 					last_name: response.last_name,
 					user_guid: response.user_guid,
 				}
-				// baseUrl = response.siteurl;
-				// window.editor.baseUrlTheme = response.siteurl + "layout/themes/bootstrap4/";
+				if ((window.origin).includes('https://') && (location.host != "localhost")) {
+					response.siteurl = (response.siteurl).replace('http://', 'https://');
+				}
+				baseUrl = response.siteurl;
+				window.editor.baseUrlTheme = response.siteurl + "layout/themes/bootstrap4/";
 
 				/* Grouping of All Editor Item */
 				newGroupList = [];
