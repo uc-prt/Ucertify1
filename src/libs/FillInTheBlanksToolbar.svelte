@@ -1016,45 +1016,45 @@
         padding-top: 2px;
     }
 
-    .mathfield_container {
+    /* .mathfield_container {
         display: inline-flex;
-        width: 100%;
-    }
+        width: 100%; not in used
+    } */  
 
-    .output_padder {
-        padding: 20px 0 10px;
-    }
+    /* .output_padder {
+        padding: 20px 0 10px; not in use
+    } */
 
-    .basic_container {
+    /* .basic_container {
         padding-bottom: 20px;
-        z-index: 0;
-    }
+        z-index: 0; Not in used
+    } */
 
-    .border_line {
-        border-top: 1px solid #eee;
-    }
+    /* .border_line {
+        border-top: 1px solid #eee;  // remove unused css
+    } */
 
     .remove_border {
         border: none;
     }
 
-    .toolbar_column {
-        width: 200px;
-    }
+    /* .toolbar_column {
+        width: 200px; unused css
+    } */
 
-    .button_container {
-        margin-top: 20px;
-    }
+    /* .button_container {
+        margin-top: 20px; unused css
+    } */
 
-    .code_output {
-        padding-bottom: 20px;
-    }
+    /* .code_output {
+        padding-bottom: 20px; // unused css
+    } */
 
-    .box {
+    /* .box {
         height: 10px;
         width: 10px;
-        border: 1px solid;
-    }
+        border: 1px solid; // unused css
+    } */
 
     .xvariable {
         width: 20px; 
@@ -1110,12 +1110,12 @@
         background: url(../images/toolbar_images.png) -32px -507px; 
     }
 
-    .block-equal {
+    /* .block-equal {
         width: 18px; 
         margin: auto;
         height: 38px;
-        background: url(../images/toolbar_images.png) -34px -436px; 
-    }
+        background: url(../images/toolbar_images.png) -34px -436px;  unued css
+    } */
 
     .x-power-y {
         width: 21px; 
@@ -1124,36 +1124,36 @@
         background: url(../images/toolbar_images.png) -1px -899px; 
     }
 
-    .nine-matrix { 
+    /* .nine-matrix { 
         background: url(../images/toolbar_images.png) -1px -0px; 
         width: 52px; 
         height: 37px;
-        margin: auto; 
-    }
-    .horizontal-matrix { 
+        margin: auto;  // unused css
+    } */
+    /* .horizontal-matrix { 
         background: url(../images/toolbar_images.png) -1px -38px; 
         width: 47px; 
         height: 40px;
         margin: auto;
-    }
+    } */
     .long-division { 
         background: url(../images/toolbar_images.png) -1px -79px; 
         width: 45px; 
         height: 32px;
         margin: auto;
     }
-    .vertical-matrix { 
+    /* .vertical-matrix { 
         background: url(../images/toolbar_images.png) -1px -112px; 
         width: 45px; 
         margin: auto;
-        height: 40px; 
-    }
-    .four-matrix { 
+        height: 40px;  unused css
+    } */
+    /* .four-matrix { 
         background: url(../images/toolbar_images.png) -1px -153px; 
         margin: auto;
         width: 38px; 
-        height: 29px; 
-    }
+        height: 29px;  unused css
+    } */
     .square-root-two { 
         background: url(../images/toolbar_images.png) -1px -183px; 
         width: 38px; 
@@ -1184,23 +1184,23 @@
         height: 36px; 
         margin: auto;
     }
-    .single-matrix { 
+    /* .single-matrix { 
         background: url(../images/toolbar_images.png) -1px -381px; 
         width: 34px; 
-        height: 26px; 
+        height: 26px;  // unused css
         margin: auto;
-    }
+    } */
     .curly-brackets { background: url(../images/toolbar_images.png) -1px -408px; 
         width: 33px; 
         margin: auto;
         height: 27px; 
     }
-    .matrix-form { 
+    /* .matrix-form { 
         background: url(../images/toolbar_images.png) -1px -436px; 
         width: 32px; 
         height: 24px; 
         margin: auto;
-    }
+    } */
     .xsquare { 
         background: url(../images/toolbar_images.png) -1px -461px; 
         width: 31px; 
@@ -1297,31 +1297,31 @@
         height: 36px; 
         margin: auto;
     }
-    .info-img { 
+    /* .info-img { 
         background: url(../images/toolbar_images.png) -1px -875px; 
         margin: auto;
-        width: 23px; 
+        width: 23px;  // unused css
         height: 23px; 
-    }
+    } */
     .not-greater { 
         background: url(../images/toolbar_images.png) -30px -686px; 
         width: 22px; 
         margin: auto;
         height: 27px; 
     }
-    .topbar-doublearrow { 
+    /* .topbar-doublearrow { 
         background: url(../images/toolbar_images.png) -25px -879px; 
         width: 22px;
-        margin: auto;
+        margin: auto; // unused css
         height: 42px; 
-    }
+    } */
 
-    .x-div { 
+    /* .x-div { 
         background: url(../images/toolbar_images.png) -31px -623px; 
         width: 21px; 
-        height: 44px; 
+        height: 44px; // unused css
         margin: auto;
-    }
+    } */
 
     .rborder_remover {
         border-right: 0;
@@ -1343,21 +1343,21 @@
         border-bottom: 1px solid #91653E;
     }
 
-    .increase_size {
+    /* .increase_size {
         width: 133px;
-    }
+    } */
 
-    .toolbar_sizing {
-        width: 601px;
-    }
+    /* .toolbar_sizing {
+        width: 601px; // unused css
+    } */
 
-    .color_changer {
-        background-color: #FCD4BA;
-    }
+    /* .color_changer {
+        background-color: #FCD4BA; // unused css
+    } */
 
-    .input_padder {
+    /* .input_padder {
         padding-left: 20px;
-    }
+    } */
 
     @media (max-width: 556px) {
         .first_btn,

@@ -21,7 +21,7 @@
 
 	export let xml;
 	export let uxml;
-	export let ansStatus;
+	//export let ansStatus; unused variable
 	export let isReview;
 	export let content_guid;
 	export let sample_input = '';
@@ -1386,11 +1386,11 @@
 
 <style type="text/css" global>
 
-	body {
+	/* body {
 		overflow: hidden!important;
-		position: fixed;
+		position: fixed; // unused css
 		width: 100%;
-	}
+	} */
 	:global(.split_container .left_pane) {
 		padding: 0!important;
 	}
