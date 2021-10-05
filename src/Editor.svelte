@@ -1449,7 +1449,6 @@ function editorPaneShow(event) {
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 		state.editorView = 'preview';
-		AH.selectAll('.mce-panel', 'hide', {action: 'hide'});
 	}
 }
 
@@ -1731,7 +1730,8 @@ function setInlineEditor(where) {
 function updateEbookContent() {
 	if (in_frame && new_title != '') {
 		state.title = new_title;
-		document.querySelector("#title, #title_show").innerHTML = new_title;
+		document.querySelector("#title").innerHTML = new_title;
+		document.querySelector("#title_show").innerHTML = new_title;
 	}
 	if (ebook_flashTitle != '' || ebook_flashContent != '') {
 		//setTimeout(function () {
