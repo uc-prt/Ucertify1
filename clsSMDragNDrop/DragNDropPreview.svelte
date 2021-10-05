@@ -118,7 +118,7 @@ onMount( async function() {
 	AH.bind('body', 'contextmenu', function(event) {
 		event.preventDefault()
 	});
-	
+	console.log('dragNDrop');
 })
 
 // call everytime when updating will happen
@@ -410,12 +410,12 @@ function changeLoadState() {
 		<div class="btn-group mb-xl clearfix review h mb-3" id="sm_controller">
 			<button 
 				type="button" 
-				class="btn btn-light correct-ans" 
+				class="btn btn-light correct-ans svelte_items_testing" 
 				id="reviewCorrectAns" 
 			>{l.correct_answer}</button>
 			<button 
 				type="button" 
-				class="btn active your-ans btn-light" 
+				class="btn active your-ans btn-light svelte_items_testing" 
 				id="reviewUserAns" 
 				style="margin-left:-4px;"
 			>
@@ -427,6 +427,7 @@ function changeLoadState() {
 			zoom=""
 			totalcorrectans = {totalcorrectans}
 			class="container_div"
+			data-item="svelte_items_testing"
 		>
 			{#if bgImg}
 				<img on:error={(e)=>{e.target.onerror = null; e.target.src="https://s3.amazonaws.com/jigyaasa_content_static/" + bgImg}} height={imgHeight+"px"} width={imgWidth+"px"} src={window.inNative ? "____s3.amazonaws.com__jigyaasa_content_static__"+bgImg.replace(/\//g,'__') : "https://s3.amazonaws.com/jigyaasa_content_static/"+bgImg} class={borderclass} alt={alt ? alt : l.sample_img} on:load={() => {checkImages(1)}}/>
