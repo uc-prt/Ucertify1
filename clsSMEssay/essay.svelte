@@ -99,13 +99,14 @@
     }
 
     // it checks the no .of files for upload. 
-    function maxLengthCheck(e, maxLength) {
-        state.files_number = e.value;
+    function maxLengthCheck(e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             AH.select("#err_txt").innerHTML = "Digits Only";
             AH.selectAll("#err_txt", 'show');
             return false;
         }
+        state.files_number = e.value;
+        updateXML(100);
     }
 
     // it updates the xml;
@@ -192,7 +193,7 @@
                             step="1" 
                             min="1" 
                             max="10" 
-                            on:change={maxLengthCheck.bind(this, 2)} 
+                            on:change={maxLengthCheck} 
                             required="required"
                         />
                         <small class="font11">{l.you_can_upload}</small>
