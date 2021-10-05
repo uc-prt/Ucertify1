@@ -532,6 +532,7 @@
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
+                                value={option?.preview || ""}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
                                 disabled={playerState.security || playerState.intervals}
