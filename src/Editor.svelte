@@ -998,7 +998,7 @@ function initEditorListeners() {
 				return false; 
 			}
 			if (_this.parentElement.getAttribute('id') != 'authoringArea') {
-				state.playebrArr = [];
+				state.playeArr = {};
 				let bookmark = tinyMCE.activeEditor.selection.getBookmark(2, true);
 				Array.prototype.forEach.call(_this.attributes, (playerAttr)=> {
 					if (playerAttr && playerAttr.specified) {
