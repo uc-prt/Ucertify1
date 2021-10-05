@@ -25645,3 +25645,34 @@ table th {
   cursor: no-drop;
   background-color: #f2f2f2 !important;
 }
+
+.tickBullet {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.tickBullet > li:before {
+  content: "\e373"; /* FontAwesome Unicode */
+  font-family: icomoon;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
+
+
+.arrowlistBullet {
+  list-style-type: none;
+  margin-bottom: 0;
+}
+  
+.arrowlistBullet > li:before {
+  content: "\e412"; /* FontAwesome Unicode */
+  font-family: icomoon;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
