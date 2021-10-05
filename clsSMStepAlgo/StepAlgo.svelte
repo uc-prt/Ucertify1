@@ -11,7 +11,7 @@
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
     import l from '../src/libs/editorLib/language.js';
     import { beforeUpdate,onMount } from 'svelte';
-    import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
+    import {AH,XMLToJSON} from "../helper/HelperAI.svelte";
 
     window.spanCounter = 0;
     let state = {};
@@ -154,7 +154,7 @@
     }
 
     function setToggle(steps) {
-        let toogle = '';
+        //let toogle = ''; // 
         steps.map(function(item, index) {
             if(item._viewonly == 1) {
                 all_steps[index].toggle = 1;
