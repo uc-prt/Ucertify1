@@ -567,7 +567,7 @@
 				<center key="imageHeight_3">
 					<div 
 						style="
-							height: 32px; 
+							height: 34px; 
 							width: {window.inNative ? window.innerWidth : state.imgwidth}; 
 							background: #d9e7fd; 
 							border-top: 2px solid #96bbf6;
