@@ -3,6 +3,7 @@ import { onMount } from 'svelte';
 import { Textfield } from 'svelte-mui/src';
 import { AH } from '../helper/HelperAI.svelte';
 export let playerState;
+export let oldValue;
 export let isPlayerCheck;
 export let setInputState;
 export let setVideoAsset;
@@ -11,14 +12,39 @@ export let insertImage;
 export let createSteptable;
 export let correctLabelStyle;
 export let l;
+
+const mapping = {'stepplayer' : 'video', 'wguvideo' : 'video', 'external' : 'simulation', 'label' : 'title', 'imgwidth' : 'width', 'imgheight' : 'height', 'imgsrc' : 'img', 'imgalt' : 'alt', 'image_url' : 'img', 'alt_txt' : 'alt', 'toggle_link' : 'hide_caption', 'lab' : 'insight', 'image' : 'img', 'scorm_caption_id': 'group_guids'};
+const transcript_hide = ['youtube', 'lynda'];
+const guid = ['guid', 'guids', 'labguid', 'help', 'asset'];
+
 let labType = {
     'playground': l.coding,
     'simulation': l.simulation,
     'terminal': l.terminal,
     'lablink': l.lablink,
     'insight': l.insight,
-
 }
+let option = {};
+$: option = JSON.parse(playerState?.prevValue?.option || "{}");
+function getJsonAttrValue(data, input_id) {
+        if (data != '') {
+            let tempValue = '';
+            data = JSON.parse(data);
+            for (var key in data) {
+                if (playerState[key] != undefined && key != 'intervals') {
+                    tempValue = data[key];
+                    if (key == 'nofeedback') {
+                        tempValue = (data[key] == 0) ? true : false;
+                    }
+                    playerState[key] = (tempValue == 1 || tempValue == 0) ? Boolean(tempValue) : tempValue;
+                }
+                if (AH.selectAll(input_id + ' #' + key).length > 0) {
+                    AH.select(input_id + ' #' + key).value = data[key];
+                }
+            }   
+        }
+    }
+
 onMount(()=> {
     let changeTimer = setTimeout(function() {
         if (tinyMCE.activeEditor.selection.getContent()) {
@@ -27,7 +53,162 @@ onMount(()=> {
         }
         clearTimeout(changeTimer);
     }, 500);
-})
+
+        let input_id, tag_name, player_category = '', player_type = '', new_key = '', json_value = '';
+    if (AH.isValid(oldValue.obj)) {
+        tag_name = oldValue.obj.outerHTML.match(/\w+/gim)[0];
+    }
+    //Manage player type for both new and old player tag
+    player_type = (AI.isValid(mapping[oldValue.type])) ? mapping[oldValue.type] : oldValue.type;
+    if (player_type == 'toggleoutput' || tag_name == 'span') {
+        player_type = 'exhibit';
+    }
+    //Manage player category for both new and old player tag
+    if (oldValue.category && oldValue.category != '') {
+        player_category = oldValue.category;
+    } else if (AI.isValid(category[player_type])) {
+        player_category = category[player_type];
+    }
+    //Get type for snt and seq tag
+    if (player_type == '' || player_type == undefined) {
+        player_category = player_type = tag_name;
+    }
+    if(player_type){
+        playerState.type = player_type
+    }
+    if(player_category){
+        playerState.category = player_category
+    }
+    playerState.editBtnVisibility = (oldValue.asset) ? true : false;
+    playerState.oldPlayground = (oldValue.playground && player_type == 'playground' && !AI.isValid(oldValue.asset)) ? true : false;
+    playerState.oldSimulation = (oldValue.config && player_type == 'simulation'  && !AI.isValid(oldValue.asset)) ? true : false;
+    playerState.open = true;
+    playerState.showData = true;
+    if (transcript_hide.indexOf(oldValue.sub_type) == -1) {
+        AH.setAttr('.edit_transcript', {'disabled': true, 'guid':''});
+    }
+
+    for (let key in oldValue) {
+        if (key != 'type' && key != 'obj' && key != 'bookmark' && key != 'category' && oldValue[key] != '') {
+            if (key == 'security' || key == 'token') {
+                playerState.security = true;
+            }
+            if (key == 'is_multiple' && oldValue[key] == 1) {
+                playerState.multiple = true;
+            }
+            if (!playerState.intervals && (key == 'stepcaptions' || key == 'intervals')) {
+                playerState.intervals = true;
+            }
+            if ((key == 'sub_type' || key == 'imgsrc') && player_type == 'weblink') {
+                playerState.embed = (oldValue[key] == 'embed' && !AI.isValid(oldValue.imgsrc)) ? 'inline' : 'new_tab';
+            } else if (key == 'sub_type') {
+                playerState.sub_type = oldValue[key];
+            }
+            if (playerState.sub_type != 'scorm' && AI.isValid(oldValue.asset_m)) {
+                playerState.sub_type = 'scorm';
+            }
+            if (key == 'is_sql') {
+                playerState.embed = 'overlay';
+            }
+            if (key == 'border_check') {
+                playerState.bordered = true;
+            }
+            if (oldValue.img && player_type == 'weblink' && playerState.embed != 'new_tab') {
+                playerState.embed = 'new_tab';
+            }
+            if (guid.indexOf(key) > -1) {
+                new_key = 'asset';
+            } else if (tag_name == 'span' && key == 'playground') {
+                new_key = "show_caption";
+            } else if (mapping[key] != undefined) {
+                new_key = mapping[key];
+            } else {
+                new_key = key;
+            }
+            //Manage Old exhibit, toggleout, span tag and convert into new exhibit
+            if (player_type == 'exhibit' && oldValue.category == undefined) {
+                if (AI.isValid(oldValue.asset) || (AI.isValid(oldValue.guid) && oldValue['guid'].trim().length == 5)) {
+                    playerState.sub_type = 'item';
+                    playerState.embed = 'overlay'; 
+                    playerState.layout = (tag_name == 'span' || oldValue.layout == 'link') ? 'link' : 'button';
+                    
+                } else if (AI.isValid(oldValue.img) || (AI.isValid(oldValue.layout) && oldValue.layout == 'link')) {
+                    playerState.sub_type = 'image'; 
+                    playerState.embed = 'overlay';
+                    playerState.layout = (oldValue.layout) ? 'link' : 'button';
+                    
+                } else if (AI.isValid(oldValue.image_url) || AI.isValid(oldValue.toggle_link)) {
+                    playerState.sub_type = (tag_name == 'span') ? 'text' : 'image';
+                    playerState.embed = 'inline';
+                    playerState.layout = 'button';
+                    
+                    if (tag_name == 'span') {
+                        AH.selectAll('.span_text_data', 'removeClass', 'span_text_data');
+                        AH.selectAll(oldValue.obj, 'addClass', 'span_text_data');
+                        AH.select('.link_tag #text').value = AH.select('.span_text_data').nextElementSibling.textContent;
+                        if (key == 'guid') {
+                            new_key = 'false';
+                        }
+                    }
+                }
+                if (key == 'title') {
+                    new_key = 'show_caption';
+                }
+            }
+            if (player_type == 'snt') {
+                playerState.snt = oldValue[key];
+            } else if (player_type == 'seq') {
+                playerState.seq = oldValue[key];
+            }
+
+            if (document.querySelectorAll(input_id + ' #' + new_key).length > 0) {
+                AH.select(input_id + ' #' + new_key).value = oldValue[key].trim();
+            }
+
+            if (player_type == "video") {
+                if (new_key == 'group_guids' && oldValue[key].trim().length == 5) {
+                    AH.setAttr('.edit_transcript', {'guid': oldValue[key]});
+                    AH.select('.edit_transcript').disabled = false;
+                } else if (new_key == "asset") {
+                    var asset_value = oldValue[key].trim();
+                    AH.select(input_id + ' #' + new_key).setAttribute('data-value', asset_value)
+                    AH.select(input_id + ' #' + new_key).value = (oldValue.sub_type == 'youtube') ? ('https://www.youtube.com/watch?v=' + asset_value) : asset_value;
+                }
+            }
+
+            if (player_type == 'download' && key == 'img') {
+                AH.select(input_id + ' #icon').value = oldValue[key];
+            }
+            //Convert player version 1 attributes into player version 2
+            if (oldValue.category == undefined && option.indexOf(key) > -1) {
+                json_value += (json_value != '') ? `,"${key}":"${oldValue[key].trim()}"` : `{"${key}":"${oldValue[key].trim()}"`;
+            }
+            if (key == 'token' || key == 'wid') {
+                json_value = json_value.replace('}', '').replace('wid', 'wID') + '}';
+                AH.select(input_id + ' #security').value = json_value;
+            } else if (key == 'option' || key == 'styles' || json_value != '') {
+                if (json_value != '') {
+                    json_value = json_value.replace('}', '') + '}';
+                } else {
+                    json_value = oldValue[key];
+                }
+                getJsonAttrValue(json_value, input_id);
+                json_value = '';
+            }
+        }
+    }
+    if (oldValue.stepcaptions) {
+        createSteptable('create');
+    }
+    if (oldValue.playground && !AI.isValid(oldValue.asset)) {
+        let playground_val = (oldValue.playground).replace(/#nl#/g, "\n").replace(/\#t\#/g, "\t").replace(/\#s\#/g, "  ").replace(/\#lt\#/g, "<").replace(/\#gt\#/g, ">");
+        if (playground_val.indexOf('<playcode style="display: none;">') > -1) {
+            playground_val = playground_val.split('<playcode style="display: none;">')[1].replace('</playcode></player>', '');
+        }
+        AH.select('#xml_data').value = playground_val.trim();
+    }
+    correctLabelStyle();    
+});
 </script>
 <div>
     {#if playerState.category == "knowledge_check"}
@@ -38,6 +219,7 @@ onMount(()=> {
                     placeholder={l.enter_title}
                     fullWidth="true"
                     id="title"
+                    value={playerState?.prevValue?.title || ""}
                     label={l.title}
                 />
             </div>
@@ -46,6 +228,7 @@ onMount(()=> {
                     fullWidth="true"
                     placeholder={l.multi_item_id}
                     id="asset"
+                    value={playerState?.prevValue?.asset || ""}
                     label={l.item_id}
                     error={(playerState.msg != '') ? playerState.msg : false}
                     helperText={playerState.msg}
@@ -73,6 +256,7 @@ onMount(()=> {
             <div class="row alignRight position-relative">
                 <div class="col-xs-12">
                     <label for="type" class="text-dark d-inline" >{l.type}</label>
+                    <!-- svelte-ignore a11y-no-onchange -->
                     <select 
                         id="type" 
                         name="type" 
@@ -87,6 +271,7 @@ onMount(()=> {
                         <option value="insight">{l.lab3d}</option>
                     </select>
                     {#if playerState.type == "terminal"}
+                        <!-- svelte-ignore a11y-no-onchange -->
                         <select 
                             id="sub_type" 
                             name="sub_type" 
@@ -100,6 +285,7 @@ onMount(()=> {
                         </select>
                     {/if}
                     {#if playerState.type == "insight"}
+                        <!-- svelte-ignore a11y-no-onchange -->
                         <select 
                             id="sub_type" 
                             name="sub_type" 
@@ -118,6 +304,7 @@ onMount(()=> {
                     <Textfield
                         id={(playerState.type == 'simulation' && playerState.oldSimulation) ? "default" :"title"}
                         fullWidth="1"
+                        value={playerState?.prevValue?.title || ""}
                         label={(playerState.type == 'simulation' && playerState.oldSimulation) ? l.default : l.title}
                         placeholder={(playerState.type == 'simulation' && playerState.oldSimulation) ? l.default_val : l.enter_title}
                     />
@@ -143,6 +330,7 @@ onMount(()=> {
                     {#if (playerState.type == 'insight' && playerState.sub_type == 'scorm')}
                         <Textfield
                             id="asset"
+                            value={playerState?.prevValue?.asset || ""}
                             fullWidth="true"
                             placeholder={l.scorm_url}
                             label={l.url_txt}
@@ -151,6 +339,7 @@ onMount(()=> {
                         <Textfield
                             id={(playerState.type == 'simulation' && playerState.oldSimulation) ? "config" : "asset"}
                             fullWidth="true"
+                            value={playerState?.prevValue?.asset || ""}
                             label={(playerState.type == 'simulation' && playerState.oldSimulation) ? l.simulator_name : l.item_id}
                             placeholder={(playerState.type == 'simulation' && playerState.oldSimulation) ? l.simulator_place : l.enter_item}
                             error={(playerState.msg != '') ? playerState.msg : false}
@@ -163,6 +352,7 @@ onMount(()=> {
                 </div>
                 {#if playerState.type == 'simulation'}
                     <div class="col-xs-3 pt-sm pr w-25 position-relative simButton">
+                        <!-- svelte-ignore a11y-no-onchange -->
                         <select 
                             id="embed" 
                             name="embed" 
@@ -182,6 +372,7 @@ onMount(()=> {
                                 placeholder={l.enter_btn_name}
                                 fullWidth="true"
                                 id="button_name"
+                                value="{option?.button_name || ""}"
                                 label={l.btn_name}
                             />
                         {/if}
@@ -251,8 +442,8 @@ onMount(()=> {
                 <div class="mt-4">
                     <input
                         type="checkbox"
-                        bind:checked={isPlayerCheck}
-                        value={isPlayerCheck}
+                        bind:checked={playerState.isplayer}
+                        value={playerState.isplayer}
                         color="default"
                         class="custom_checkbox_new"
                         id="isplayer_checkbox"
@@ -275,6 +466,7 @@ onMount(()=> {
             {/if}
             <div class="pt-1">
                 <label for="type" class="text-dark d-inline">{l.type}</label>
+                <!-- svelte-ignore a11y-no-onchange -->
                 <select 
                     id="type" 
                     name="type" 
@@ -292,6 +484,7 @@ onMount(()=> {
                     fullWidth="true"
                     placeholder={l.enter_title}
                     label={l.title}
+                    value={playerState?.prevValue?.title || ""}
                     disabled={(playerState.security && playerState.type == 'video') ? true : false}
                 />
             </div>
@@ -300,6 +493,7 @@ onMount(()=> {
                     id="asset"
                     fullWidth="true"
                     class={playerState.type == 'video' ? "video_asset" : "audio_asset"} 
+                    value={playerState?.prevValue?.asset || ""}
                     placeholder={l.media_url}
                     label={l.url_txt}
                     on:change={playerState.type == 'video' ? (e)=>{setVideoAsset('asset', e.target.value)} : null}
@@ -369,6 +563,7 @@ onMount(()=> {
                                     id="security"
                                     label={l.security_txt}
                                     fullWidth="true"
+                                    value="{playerState?.prevValue?.security || ""}"
                                     placeholder={l.security_place}
                                 />
                             </div>
@@ -532,6 +727,7 @@ onMount(()=> {
                         id="title"
                         placeholder={l.enter_title}
                         fullWidth="true"
+                        value={playerState?.prevValue?.title || ""}
                         label={l.title}
                         sval="title"
                     />
@@ -697,6 +893,7 @@ onMount(()=> {
                     id="title"
                     fullWidth="true"
                     label={l.title}
+                    value={playerState?.prevValue?.title || ""}
                     placeholder={l.enter_title}
                 />
             </div>
@@ -704,6 +901,7 @@ onMount(()=> {
                 <Textfield
                     fullWidth="true"
                     id="asset"
+                    value={playerState?.prevValue?.asset || ""}
                     placeholder={l.multi_item_id}
                     label={l.item_id}
                     error={(playerState.msg != '') ? playerState.msg : false}
@@ -757,6 +955,7 @@ onMount(()=> {
                     placeholder={l.enter_title}
                     fullWidth="true"
                     id="title"
+                    value="{playerState?.prevValue?.title || ""}"
                     label={l.title}
                 />
             </div>
@@ -765,6 +964,7 @@ onMount(()=> {
                     fullWidth="true"
                     placeholder={l.multi_item_id}
                     id="asset"
+                    value={playerState?.prevValue?.asset || ""}
                     label={l.item_id}
                     error={(playerState.msg != '') ? playerState.msg : false}
                     helperText={playerState.msg}

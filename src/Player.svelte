@@ -70,175 +70,6 @@
         didMount();
     });
 
-    beforeUpdate(async()=> {
-        console.warn("Before update", {pre:state.prevValue, player:editorState.playerArr});
-        onUpdate(editorState.playerArr);
-    })
-
-    function onUpdate(oldValue) {
-        console.warn({l:"onUpdate", oldValue});
-        //It will only when dialog will be opened
-        if (oldValue && !state.showData) {
-            let input_id, tag_name, player_category = '', player_type = '', new_key = '', json_value = '';
-            if (AI.isValid(oldValue.obj)) {
-                tag_name = oldValue.obj.outerHTML.match(/\w+/gim)[0]
-            }
-            //Manage player type for both new and old player tag
-            player_type = (AI.isValid(mapping[oldValue.type])) ? mapping[oldValue.type] : oldValue.type;
-            if (player_type == 'toggleoutput' || tag_name == 'span') {
-                player_type = 'exhibit';
-            }
-            //Manage player category for both new and old player tag
-            if (oldValue.category && oldValue.category != '') {
-                player_category = oldValue.category;
-            } else if (AI.isValid(category[player_type])) {
-                player_category = category[player_type];
-            }
-            //Get type for snt and seq tag
-            if (player_type == '' || player_type == undefined) {
-                player_category = player_type = tag_name;
-            }
-            state.msg = '';
-            player_type && (state.type = player_type);
-            player_category && (state.category = player_category);
-            state.editBtnVisibility = (oldValue.asset) ? true : false;
-            state.oldPlayground = (oldValue.playground && player_type == 'playground' && !AI.isValid(oldValue.asset)) ? true : false;
-            state.oldSimulation = (oldValue.config && player_type == 'simulation'  && !AI.isValid(oldValue.asset)) ? true : false;
-            state.open = true;
-            state.showData = true;
-            
-            input_id = '.' + player_category + '_tag';
-            let updateTimer = setTimeout(()=> {
-                if (transcript_hide.indexOf(editorState.playerArr.sub_type) == -1) {
-                    AH.setAttr('.edit_transcript', {'disabled': true, 'guid':''});
-                }
-
-                for (let key in editorState.playerArr) {
-                    if (key != 'type' && key != 'obj' && key != 'bookmark' && key != 'category' && editorState.playerArr[key] != '') {
-                        if (key == 'security' || key == 'token') {
-                            state.security = true;
-                        }
-                        if (key == 'is_multiple' && editorState.playerArr[key] == 1) {
-                            state.multiple = true;
-                        }
-                        if (!state.intervals && (key == 'stepcaptions' || key == 'intervals')) {
-                            state.intervals = true;
-                        }
-                        if ((key == 'sub_type' || key == 'imgsrc') && player_type == 'weblink') {
-                            state.embed = (editorState.playerArr[key] == 'embed' && !AI.isValid(editorState.playerArr.imgsrc)) ? 'inline' : 'new_tab';
-                        } else if (key == 'sub_type') {
-                            state.sub_type = editorState.playerArr[key];
-                        }
-                        if (state.sub_type != 'scorm' && AI.isValid(editorState.playerArr.asset_m)) {
-                            state.sub_type = 'scorm';
-                        }
-                        if (key == 'is_sql') {
-                            state.embed = 'overlay';
-                        }
-                        if (key == 'border_check') {
-                            state.bordered = true;
-                        }
-                        if (editorState.playerArr.img && player_type == 'weblink' && state.embed != 'new_tab') {
-                            state.embed = 'new_tab';
-                        }
-                        if (guid.indexOf(key) > -1) {
-                            new_key = 'asset';
-                        } else if (tag_name == 'span' && key == 'playground') {
-                            new_key = "show_caption";
-                        } else if (mapping[key] != undefined) {
-                            new_key = mapping[key];
-                        } else {
-                            new_key = key;
-                        }
-                        //Manage Old exhibit, toggleout, span tag and convert into new exhibit
-                        if (player_type == 'exhibit' && editorState.playerArr.category == undefined) {
-                            if (AI.isValid(editorState.playerArr.asset) || (AI.isValid(editorState.playerArr.guid) && editorState.playerArr['guid'].trim().length == 5)) {
-                                state.sub_type = 'item';
-                                state.embed = 'overlay'; 
-                                state.layout = (tag_name == 'span' || editorState.playerArr.layout == 'link') ? 'link' : 'button';
-                                
-                            } else if (AI.isValid(editorState.playerArr.img) || (AI.isValid(editorState.playerArr.layout) && editorState.playerArr.layout == 'link')) {
-                                state.sub_type = 'image'; 
-                                state.embed = 'overlay';
-                                state.layout = (editorState.playerArr.layout) ? 'link' : 'button';
-                                
-                            } else if (AI.isValid(editorState.playerArr.image_url) || AI.isValid(editorState.playerArr.toggle_link)) {
-                                state.sub_type = (tag_name == 'span') ? 'text' : 'image';
-                                state.embed = 'inline';
-                                state.layout = 'button';
-                                
-                                if (tag_name == 'span') {
-                                    AH.selectAll('.span_text_data', 'removeClass', 'span_text_data');
-                                    AH.selectAll(oldValue.obj, 'addClass', 'span_text_data');
-                                    AH.select('.link_tag #text').value = AH.select('.span_text_data').nextElementSibling.textContent;
-                                    if (key == 'guid') {
-                                        new_key = 'false';
-                                    }
-                                }
-                            }
-                            if (key == 'title') {
-                                new_key = 'show_caption';
-                            }
-                        }
-                        if (player_type == 'snt') {
-                            state.snt = editorState.playerArr[key];
-                        } else if (player_type == 'seq') {
-                            state.seq = editorState.playerArr[key];
-                        }
-
-                        if (document.querySelectorAll(input_id + ' #' + new_key).length > 0) {
-                            AH.select(input_id + ' #' + new_key).value = editorState.playerArr[key].trim();
-                        }
-
-                        if (player_type == "video") {
-                            if (new_key == 'group_guids' && editorState.playerArr[key].trim().length == 5) {
-                                AH.setAttr('.edit_transcript', {'guid': editorState.playerArr[key]});
-                                AH.select('.edit_transcript').disabled = false;
-                            } else if (new_key == "asset") {
-                                var asset_value = editorState.playerArr[key].trim();
-                                AH.select(input_id + ' #' + new_key).setAttribute('data-value', asset_value)
-                                AH.select(input_id + ' #' + new_key).value = (editorState.playerArr.sub_type == 'youtube') ? ('https://www.youtube.com/watch?v=' + asset_value) : asset_value;
-                            }
-                        }
-
-                        if (player_type == 'download' && key == 'img') {
-                            AH.select(input_id + ' #icon').value = editorState.playerArr[key];
-                        }
-                        //Convert player version 1 attributes into player version 2
-                        if (editorState.playerArr.category == undefined && option.indexOf(key) > -1) {
-                            json_value += (json_value != '') ? `,"${key}":"${editorState.playerArr[key].trim()}"` : `{"${key}":"${editorState.playerArr[key].trim()}"`;
-                        }
-                        if (key == 'token' || key == 'wid') {
-                            json_value = json_value.replace('}', '').replace('wid', 'wID') + '}';
-                            AH.select(input_id + ' #security').value = json_value;
-                        } else if (key == 'option' || key == 'styles' || json_value != '') {
-                            if (json_value != '') {
-                                json_value = json_value.replace('}', '') + '}';
-                            } else {
-                                json_value = editorState.playerArr[key];
-                            }
-                            getJsonAttrValue(json_value, input_id);
-                            json_value = '';
-                        }
-                    }
-                }
-                if (editorState.playerArr.stepcaptions) {
-                    createSteptable('create');
-                }
-                if (editorState.playerArr.playground && !AI.isValid(editorState.playerArr.asset)) {
-                    let playground_val = (editorState.playerArr.playground).replace(/#nl#/g, "\n").replace(/\#t\#/g, "\t").replace(/\#s\#/g, "  ").replace(/\#lt\#/g, "<").replace(/\#gt\#/g, ">");
-                    if (playground_val.indexOf('<playcode style="display: none;">') > -1) {
-                        playground_val = playground_val.split('<playcode style="display: none;">')[1].replace('</playcode></player>', '');
-                    }
-                    AH.select('#xml_data').value = playground_val.trim();
-                }
-                correctLabelStyle();
-                clearTimeout(updateTimer);
-            }, 100);
-        } else if (!state.open) {
-            state.open = true;
-        }
-    }
 
     afterUpdate(async ()=> {
         AH.enableBsAll("[rel=tooltip]", 'Tooltip'); // Enable tooltip for all selected dom.
@@ -306,25 +137,6 @@
             validateVTT();
         });
 
-    }
-
-    function getJsonAttrValue(data, input_id) {
-        if (data != '') {
-            let tempValue = '';
-            data = JSON.parse(data);
-            for (var key in data) {
-                if (state[key] != undefined && key != 'intervals') {
-                    tempValue = data[key];
-                    if (key == 'nofeedback') {
-                        tempValue = (data[key] == 0) ? true : false;
-                    }
-                    state[key] = (tempValue == 1 || tempValue == 0) ? Boolean(tempValue) : tempValue;
-                }
-                if (AH.selectAll(input_id + ' #' + key).length > 0) {
-                    AH.select(input_id + ' #' + key).value = data[key];
-                }
-            }   
-        }
     }
 
     function  correctLabelStyle(input_id) {
@@ -959,6 +771,7 @@
             <div id="showPlayerList">
                 <PlayerItem
                     bind:playerState={state}
+                    bind:oldValue={editorState.playerArr}
                     isPlayerCheck={state.isPlayerCheck}
                     setInputState={setInputState}
                     setVideoAsset={setVideoAsset}
