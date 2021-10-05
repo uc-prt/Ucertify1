@@ -66,20 +66,7 @@
             //},0);
         })
 
-        // AH.listen(document,'keyup','.steps_edit',function(_element,_e){
-        //     debugger;
-        //     console.log('checking......');
-        //     console.log(_e);
-        //     let id = parseInt(_e.target.getAttribute('data-seq'));
-        //     let data = _e.target.innerHTML
-        //     data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
-        //     all_steps[id].__cdata = data; 
-        //     //AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
-        //     updateXML();
-            
-        //     _element.focus();
-            
-        // })
+        
 
         AH.listen(document,'click','.editFill',function(curr,e) {
             if(curr.getAttribute("type") == "t") {
