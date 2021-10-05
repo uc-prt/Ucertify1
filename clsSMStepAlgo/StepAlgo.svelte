@@ -51,6 +51,36 @@
             initEditor();
         }, 500);
 
+
+        AH.listen(document,'mouseup','.steps_edit',function(_element,_e){
+            //setTimeout(function(){
+                console.log('check...');
+                let id = parseInt(_e.target.getAttribute('data-seq'));
+                let data = _e.target.innerHTML
+                data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
+                all_steps[id].__cdata = data; 
+                //AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
+                updateXML();
+                AH.select('#'+_element.id).click();
+                _e.target.click();
+            //},0);
+        })
+
+        // AH.listen(document,'keyup','.steps_edit',function(_element,_e){
+        //     debugger;
+        //     console.log('checking......');
+        //     console.log(_e);
+        //     let id = parseInt(_e.target.getAttribute('data-seq'));
+        //     let data = _e.target.innerHTML
+        //     data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
+        //     all_steps[id].__cdata = data; 
+        //     //AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
+        //     updateXML();
+            
+        //     _element.focus();
+            
+        // })
+
         AH.listen(document,'click','.editFill',function(curr,e) {
             if(curr.getAttribute("type") == "t") {
                 editTextbox(curr.getAttribute("originalKey"));
@@ -246,6 +276,7 @@
     function handleDisable(i) {
         AH.select('#save_step_'+i,'removeAttr','disabled');
     }
+    
 
     function handleRadio(index, fillid, event) {
         if(all_steps[index].toggle == 1) {
@@ -290,6 +321,7 @@
     function updateXML() {
         let fixans = new_xml.smxml._fixed;
         let gonext = new_xml.smxml._gonext;
+        let cdata ;
         let xml = '<smxml type="37" fixed="'+fixans+'" gonext="'+gonext+'">';
         all_steps.map(function(element, i) {
             let seq = i+1;
@@ -312,7 +344,7 @@
                     }
                 }
             }
-            let cdata = data;
+            cdata = data;
             xml = xml + "<step seq='"+seq+"'" + ((attempt != undefined)? " attempt ='"+attempt+"'" : ' ') + ((viewonly != undefined)? " viewonly ='"+viewonly+"'" : ' ') + ((mode != undefined)? " mode ='"+mode+"'" : ' ') + ((sticky != undefined)? " sticky ='"+sticky+"'" : ' ') +"><!--[CDATA["+cdata+"]]--></step>";
         });
         xml = xml + "</smxml>";
@@ -650,7 +682,7 @@
             <div class="svelteFooter">
                 <Button variant="contained" on:click={handleClose} class="colorStyle" >
                     {l.cancel}
-                </Button>,
+                </Button>
                 <Button variant="contained" on:click={storeAns}
                     class="bg-primary text-white">{l.done}
                 </Button>
