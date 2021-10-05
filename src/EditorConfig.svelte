@@ -1041,7 +1041,8 @@ export const editorConfig = {
     },
     shouldWrap: function(container) {
         // check content is properly wrapped or not
-        let nodes = document.querySelector(container).childNodes;
+        //let nodes = document.querySelector(container).childNodes;
+        let nodes = AH.select(container).childNodes
         let result = false;
         for (let item of nodes) {  
             if (item.nodeType == 3 || (!item.getAttribute('data-section') && !item.className.includes('sec_button') && !item.className.includes('sec_button_new'))) {
@@ -1253,11 +1254,8 @@ export const editorConfig = {
                 }
 				if (clean) {
 					content = content.replace(/&#65279;/g, "");
-					if (clean == "revert") { 
-						content = content.replace(/&#160;/g, ' ');
-					} else {
-						content = content.replace(/> /g, '>&#160;');
-					}
+                    content = content.replace(/&#160;/g, ' ');
+                    content = content.replace(/&nbsp;/g, ' ');
 					if (clean == "onlyEntity") return content;
 				}
 				let val = content.match(/<map(.|\n)*?<\/map>/g);

@@ -654,7 +654,7 @@ export function tag_player(obj) {
                     case 'java':
                     case 'php':
                         forSm = false;
-                        url = baseUrl + 'sim/?module=terminal_lib&type=' + terminalType;
+                        let url = baseUrl + 'sim/?module=terminal_lib&type=' + terminalType;
                         if (ques_type == 'new') {
                             url += '&new=1';
                         }
@@ -948,6 +948,7 @@ export function tag_player(obj) {
                 var theme = _this.getAttribute('theme') ? _this.getAttribute('theme') : 0;
                 var title = (title != '') ? title : 'Try it yourself';
                 self = _this;
+                let web_count = 0;
                 web_count += 1;
                 if (asset != '') {
                     AH.ajax({
