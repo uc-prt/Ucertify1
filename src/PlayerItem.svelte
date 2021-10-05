@@ -171,7 +171,7 @@
                         AH.select('.edit_transcript').disabled = false;
                     } else if (new_key == "asset") {
                         var asset_value = oldValue[key].trim();
-                        AH.select(input_id + ' #' + new_key).setAttribute('data-value', asset_value)
+                        AH.setAttr(input_id + ' #' + new_key, {'data-value': asset_value})
                         AH.select(input_id + ' #' + new_key).value = (oldValue.sub_type == 'youtube') ? ('https://www.youtube.com/watch?v=' + asset_value) : asset_value;
                     }
                 }
