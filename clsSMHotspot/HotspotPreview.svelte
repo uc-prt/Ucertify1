@@ -374,7 +374,6 @@
 			AH.select("#special_module_user_xml").value = drawstr;
 			userCorrect = drawstr;
 			xaxis=[]; yaxis=[];
-			debugger;
 			// for getting the correctans
 			let pts  = AH.find(hid, 'canvas').getAttribute('correctans');
 			// for getting the user ans
