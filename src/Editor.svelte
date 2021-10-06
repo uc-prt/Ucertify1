@@ -426,6 +426,8 @@ function setBasicData(title, stem, remediation, skip = false) {
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
 	remediation = editorConfig.replaceUnwantedEntity(remediation, 'cleanHiddenEnity');
+	// This is code written here because in snt tag initAddFeature function call creating issue. So resovled value we need to pass. 
+	state.remediation = remediation;
 	AH.select("#remediation").innerHTML = remediation;
 	AH.select("#remediation_show").innerHTML = editorConfig.maintainAlignments(get_ucsyntax(remediation));
 }
@@ -1656,6 +1658,7 @@ function keepAnalyzeData(content) {
 
 // check whole content to add controls and missed wrapper
 function initAddFeature(title, stem, remediation, content) {
+	debugger;
 	let sectionList = editorConfig.initAddFeatureSelector(stem, remediation, content);
 	let filter = content ? "#content" : "#stem,#remediation";
 	//console.warn(filter, "initAddFeature called");

@@ -779,7 +779,6 @@
                     insertImage={insertImage}
                     createSteptable={createSteptable}
                     correctLabelStyle={correctLabelStyle}
-                    category
                     l={l}
                     {category}
                     {option}
