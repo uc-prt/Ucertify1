@@ -308,6 +308,6 @@
         margin-bottom: 15px;
     }
     .essay-container {
-        width: 89%;
+        width: 76%;
     }
 </style>
