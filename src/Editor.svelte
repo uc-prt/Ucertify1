@@ -556,7 +556,7 @@ function ucStepImplement() {
 					AH.insert(elm, "<br/>", 'beforebegin');
 				}
 			});
-			let btnCaption = (_this.getAttribute('data-btnnme') != undefined && _this.getAttribute('data-btnnme') != "") ? _this.getAttribute('data-btnnme') : 'Next';
+			let btnCaption = AH.find(_this, '.addnext_caption', '')?.textContent || 'Next';
 			let btnhtml = '<button type="button" onclick="showUcExpStep(this)" class="exp_next_btn btn btn-sm btn-outline-primary bg-white imgcenter text-primary" style="width: 15%; font-size: 15px; margin-top: 15px;">' + btnCaption + '</button>';
 			AH.find(_this, '.exp_next_btn', {action: 'remove'});
 			AH.find(_this, '.addnext_caption', {action: 'remove'});
@@ -756,12 +756,6 @@ function interactiveEvents() {
 		} else {
 			if (_this_value == "CUSTOM") {
 				let customDOM = editorConfig.getSectionDef(interactive_item[0][_this_selector][_this_id]['html'], _sub_type);
-				//customDOM = AH.clone(customDOM);
-				// typeChangePosition.find(".ebook_item_text").each(function (i) {
-				// 	if (currentTarget.getAttribute("data-update") != "true") {
-				// 		//jQuery(customDOM).find(".ebook_item_text")[i].innerHTML = currentTarget.html();
-				// 	}
-				// });
 				AH.insert(typeChangePosition, customDOM, 'afterend');
 				typeChangePosition.remove();
 			} else {
