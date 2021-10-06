@@ -4,7 +4,6 @@
     import { AH } from '../helper/HelperAI.svelte';
     export let playerState;
     export let oldValue;
-    export let isPlayerCheck;
     export let setInputState;
     export let setVideoAsset;
     export let handleTranscriptDialog
@@ -12,7 +11,7 @@
     export let createSteptable;
     export let correctLabelStyle;
     export let l;
-    
+    export let category = {};
     const mapping = {'stepplayer' : 'video', 'wguvideo' : 'video', 'external' : 'simulation', 'label' : 'title', 'imgwidth' : 'width', 'imgheight' : 'height', 'imgsrc' : 'img', 'imgalt' : 'alt', 'image_url' : 'img', 'alt_txt' : 'alt', 'toggle_link' : 'hide_caption', 'lab' : 'insight', 'image' : 'img', 'scorm_caption_id': 'group_guids'};
     const transcript_hide = ['youtube', 'lynda'];
     const guid = ['guid', 'guids', 'labguid', 'help', 'asset'];

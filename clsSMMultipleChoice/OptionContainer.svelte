@@ -17,7 +17,7 @@
         window.open(futureUrl, '_blank');
     }
     
-
+console.log('MCQ');
 </script>
 
 {#if previewMode}

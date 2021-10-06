@@ -779,6 +779,7 @@
                     insertImage={insertImage}
                     createSteptable={createSteptable}
                     correctLabelStyle={correctLabelStyle}
+                    category
                     l={l}
                 />
             </div>

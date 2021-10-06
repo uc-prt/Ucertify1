@@ -42,7 +42,7 @@
     }
 </script>
 <main>
-    <div id="preview_container" class="container w-100 px-3 py-3">
+    <div id="preview_container" class="container w-100 px-3 py-3 svelte_items_testing">
         <div class="container">
             <div class="row">
                 <div class="col-12">
