@@ -4,7 +4,6 @@
     import { AH } from '../helper/HelperAI.svelte';
     export let playerState;
     export let oldValue;
-    export let isPlayerCheck;
     export let setInputState;
     export let setVideoAsset;
     export let handleTranscriptDialog
