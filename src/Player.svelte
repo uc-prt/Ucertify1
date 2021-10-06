@@ -780,6 +780,11 @@
                     createSteptable={createSteptable}
                     correctLabelStyle={correctLabelStyle}
                     l={l}
+                    {category}
+                    {option}
+                    {mapping}
+                    {transcript_hide}
+                    {guid}
                 />
             </div>
         </div>

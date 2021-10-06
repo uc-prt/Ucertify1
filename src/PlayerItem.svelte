@@ -12,10 +12,12 @@
     export let createSteptable;
     export let correctLabelStyle;
     export let l;
+    export let mapping;
+    export let transcript_hide;
+    export let guid;
+    export let category;
+    export let option;
     
-    const mapping = {'stepplayer' : 'video', 'wguvideo' : 'video', 'external' : 'simulation', 'label' : 'title', 'imgwidth' : 'width', 'imgheight' : 'height', 'imgsrc' : 'img', 'imgalt' : 'alt', 'image_url' : 'img', 'alt_txt' : 'alt', 'toggle_link' : 'hide_caption', 'lab' : 'insight', 'image' : 'img', 'scorm_caption_id': 'group_guids'};
-    const transcript_hide = ['youtube', 'lynda'];
-    const guid = ['guid', 'guids', 'labguid', 'help', 'asset'];
     
     let labType = {
         'playground': l.coding,
@@ -24,8 +26,8 @@
         'lablink': l.lablink,
         'insight': l.insight,
     }
-    let option = {};
-    $: option = JSON.parse(playerState?.prevValue?.option || "{}");
+    let prevValueOption = {};
+    $: prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
     function getJsonAttrValue(data, input_id) {
             if (data != '') {
                 let tempValue = '';
@@ -372,7 +374,7 @@
                                     placeholder={l.enter_btn_name}
                                     fullWidth="true"
                                     id="button_name"
-                                    value="{option?.button_name || ""}"
+                                    value="{prevValueOption?.button_name || ""}"
                                     label={l.btn_name}
                                 />
                             {/if}
@@ -532,7 +534,7 @@
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
-                                value={option?.preview || ""}
+                                value={prevValueOption?.preview || ""}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
                                 disabled={playerState.security || playerState.intervals}

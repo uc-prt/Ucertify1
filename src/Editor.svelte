@@ -1730,8 +1730,7 @@ function setInlineEditor(where) {
 function updateEbookContent() {
 	if (in_frame && new_title != '') {
 		state.title = new_title;
-		document.querySelector("#title").innerHTML = new_title;
-		document.querySelector("#title_show").innerHTML = new_title;
+		AH.select('#title, #title_show', 'html', {action: 'html', actionData: new_title});
 	}
 	if (ebook_flashTitle != '' || ebook_flashContent != '') {
 		//setTimeout(function () {
