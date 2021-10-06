@@ -2,14 +2,14 @@
     import {writable} from 'svelte/store';
     import { Button, Dialog, Checkbox } from 'svelte-mui/src';
     import l from '../src/libs/editorLib/language.js';
-    import { beforeUpdate,onMount } from 'svelte';
-    import {AH,XMLToJSON,JSONToXML} from "../helper/HelperAI.svelte";
+    import { onMount } from 'svelte';
+    import {AH} from "../helper/HelperAI.svelte";
 
     var that;
     var ALGO = ALGO || {mathtype:""};
     let arr_val = {};
 
-    ver modal_array = [];
+    var modal_array = [];
     var analyze_array = [{'var1':1}];
     var store = '';
 
@@ -38,23 +38,16 @@
         setTimeout(()=> {
             onref(that);
             if (algo_qxml) {
-                //jQuery("#algo_qxml").val(algo_qxml)
                 AH.select("#algo_qxml").value = algo_qxml;
             }
         },1000);        
         algoFunction();
         getText();
-        // jQuery(document).on('click', '.algo_function', function() {
-        //     pasteFunc(jQuery(this));
-        // });
 
         AH.listen(document,'click','.algo_function',(_this)=>{
             pasteFunc(_this);
         })
 
-        // jQuery(document).on('focus', '.func_values', function() {
-        //     store = jQuery(this).attr('id');
-        // });
 
         AH.listen(document,'focus','.func_values',(_this)=>{
             store = _this.getAttribute('id');
@@ -64,7 +57,6 @@
     function pasteFunc(_this) {
         let val = _this.text();
         state.toggleHelpingDrawer = false;
-        //jQuery('#'+store).text(val);
         AH.select('#'+store).innerText = val;
     }
 
@@ -240,16 +232,6 @@
         
         state.toggleHelpingDrawer = true;
         
-        // jQuery(document).find('[contenteditable]').on('paste', function(e) { 
-        //     e.preventDefault(); var text = ''; 
-        //     if (e.clipboardData || e.originalEvent.clipboardData) { 
-        //         text = (e.originalEvent || e).clipboardData.getData('text/plain'); 
-        //     } else if (window.clipboardData) {
-        //         text = window.clipboardData.getData('Text'); 
-        //     } if (document.queryCommandSupported('insertText')) { 
-        //         document.execCommand('insertText', false, text); 
-        //     } else { document.execCommand('paste', false, text); 
-        // } });
 
         AH.listen(document,'paste',AH.find(document,'[contenteditable]'),function(curr,e){
             e.preventDefault(); var text = ''; 
@@ -287,11 +269,8 @@
         let algo = "<algostatic>";
         let algo_str = '';
         let next_line = '';
-        //jQuery('.new_variable').each(function(i) {
         AH.selectAll('.new_variable').forEach(function(_this,i) {    
-            //let var_name = jQuery(this).find('#var_name_'+i).html();
             let var_name = AH.find(_this,'#var_name_'+i).innerHTML;
-            //let var_value = jQuery(this).find('#var_value_'+i).html();
             let var_value = AH.find(_this,'#var_value_'+i).innerHTML;
             var_value = var_value.replace(/&nbsp;/g,"");
             var_value = var_value.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
@@ -312,7 +291,6 @@
         if(checkValidFunc(algo_str)) {
             state.algoQXML = algo;
             updateAlgoState({algo_qxml: algo}); // consfusion
-            //jQuery("#algo_qxml").val(algo);
             AH.select("#algo_qxml").value = algo;
             console.log('-->',algo);
             closePane("changeAlgoState");
@@ -602,8 +580,9 @@
     }
 
     function  addVariable() {
-        single_variables.push("var=0");
-        forceUpdate();
+        let tempVar = editorState.single_variables;
+        tempVar.push("var=0");
+        editorState.single_variables = tempVar;
 	}
 
     function deleteVar(index) {
@@ -636,7 +615,7 @@
     }
 
     function saveAlgo() {
-        let dialogXml = $("#algoxml_Dialog").val();
+        let dialogXml = AH.select('#algoxml_Dialog').value;
         dialogXml = dialogXml.replace(/<algostatic>/g,"").replace(/<\/algostatic>/g,"");
         dialogXml = dialogXml.trim();
         single_variables.splice(0,that.props.single_variables.length);
@@ -650,11 +629,8 @@
             return;
         }
         if(checkValidFunc(dialogXml)) {
-            //state.algoQXML = jQuery("#algoxml_Dialog").val();
             state.algoQXML = AH.select("#algoxml_Dialog").value;
-            //jQuery("#algo_qxml").val(jQuery("#algoxml_Dialog").val());
             AH.select("#algo_qxml").value = AH.select("#algoxml_Dialog").value;
-            //updateAlgoState({algo_qxml: $("#algoxml_Dialog").val()});
             updateAlgoState({algo_qxml: AH.select("#algoxml_Dialog").value});
             state.algoxmlDialog  = false;
         }
