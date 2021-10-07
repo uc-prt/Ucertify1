@@ -2701,12 +2701,12 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 const insertBlockPanel = (idStr) => {
 	const blockPanel = editorConfig.controls('text');
 	const eleList = AH.find(idStr,'.ebook_item_text', 'all');
-	console.log(eleList);
 	if(eleList?.length > 0 ){
 		eleList.forEach(ele => AH.insert(ele, blockPanel, 'beforebegin'));
 	}
 };
 afterUpdate(() => {
+	AH.selectAll(".controls_button", 'remove', {action: 'remove'});
 	insertBlockPanel("#stem");
 	insertBlockPanel("#remediation");
 	insertBlockPanel("#content");
