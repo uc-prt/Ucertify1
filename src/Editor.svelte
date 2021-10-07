@@ -2699,7 +2699,7 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 
 const insertBlockPanel = (idStr) => {
 	const blockPanel = editorConfig.controls('text');
-	const eleList = AH.find(idStr,'[data-section="sec_button_new"], [data-section="sec_button"]', 'all');
+	const eleList = AH.find(idStr,'[data-section^="sec_button"]', 'all');
 	if(eleList?.length > 0 ){
 		eleList.forEach(ele => AH.insert(ele, blockPanel, 'beforebegin'));
 	}
