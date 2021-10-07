@@ -1669,7 +1669,7 @@ function initAddFeature(title, stem, remediation, content) {
 			let innerSelector = document.querySelector(container)?.querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
 			let sectionData = sectionList[key];
 			let findSection = `${innerSelector} .ebook_item_text`;
-			if (AH.find(container,findSection,'all').length == 0 || editorConfig.shouldWrap(container)) {
+			if (AH.find(container,findSection,'all')?.length == 0 || editorConfig.shouldWrap(container)) {
 				//console.warn("Warapping");
 				content ? keepAnalyzeData(content) : "";
 				if (sectionData.data) {
