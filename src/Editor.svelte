@@ -1658,7 +1658,6 @@ function keepAnalyzeData(content) {
 
 // check whole content to add controls and missed wrapper
 function initAddFeature(title, stem, remediation, content) {
-	debugger;
 	let sectionList = editorConfig.initAddFeatureSelector(stem, remediation, content);
 	let filter = content ? "#content" : "#stem,#remediation";
 	//console.warn(filter, "initAddFeature called");
@@ -1686,7 +1685,7 @@ function initAddFeature(title, stem, remediation, content) {
 			} else {
 				content ? keepAnalyzeData(sectionData.data) : "";
 			}
-			if (AH.find(container,innerSelector,).length > 0) {
+			if (AH.find(container,innerSelector, 'all').length > 0) {
 				//console.warn("Adding Controls");
 				document.querySelector(container).querySelectorAll(innerSelector).forEach(function (_this, index) {
 					AH.insert(_this, editorConfig.controls(_this.getAttribute('sub_type')), 'beforebegin');
@@ -2697,6 +2696,20 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 } else if (state.authXml) {
 	state.xml = state.authXml;
 }
+
+const insertBlockPanel = (idStr) => {
+	const blockPanel = editorConfig.controls('text');
+	const eleList = AH.find(idStr,'[data-section="sec_button_new"], [data-section="sec_button"]', 'all');
+	if(eleList?.length > 0 ){
+		eleList.forEach(ele => AH.insert(ele, blockPanel, 'beforebegin'));
+	}
+};
+afterUpdate(() => {
+	AH.selectAll(".controls_button", 'remove', {action: 'remove'});
+	insertBlockPanel("#stem");
+	insertBlockPanel("#remediation");
+	insertBlockPanel("#content");
+});
 </script>
 <main role="main" tabindex="0">
 	<EditorHeader
