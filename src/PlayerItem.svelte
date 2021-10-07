@@ -215,7 +215,6 @@
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         correctLabelStyle();    
     });
-    $:console.log(playerState);
     </script>
     <div>
         {#if playerState.category == "knowledge_check"}
