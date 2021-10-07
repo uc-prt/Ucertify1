@@ -2698,10 +2698,8 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 }
 
 const insertBlockPanel = (idStr) => {
-	// const blockPanel = editorConfig.controls('text');
 	const eleList = AH.find(idStr,'[data-section^="sec_button"]', 'all');
 	if(eleList?.length > 0 ){
-		// eleList.forEach(ele => AH.insert(ele, blockPanel, 'beforebegin'));
 		eleList.forEach(ele => AH.insert(ele, editorConfig.controls(ele.getAttribute('sub_type')), 'beforebegin'));
 	}
 };
