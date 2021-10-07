@@ -672,7 +672,7 @@ export function tag_player(obj) {
                             }
                             terminal_url = 'open_test(\'' + terminal_url + '\')';
                             terminal_url = 'onclick="' + terminal_url + '"';
-                            AH.remove(".btn-primary.startlab");
+                            AH.find(_this?.parentElement, ".btn-primary.startlab", {action: 'remove'});
                             AH.insert(_this, '<a tabindex="' + tabindex.z + '" class="btn btn-primary startlab focus_lab" ' + terminal_url + ' target="_blank">' + title + '</a>', 'beforebegin');
                         } else {
                             _this.load(url + '&full_page=1');
