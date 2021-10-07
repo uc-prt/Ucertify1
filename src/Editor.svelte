@@ -2694,6 +2694,20 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 } else if (state.authXml) {
 	state.xml = state.authXml;
 }
+
+const insertBlockPanel = (idStr) => {
+	const blockPanel = editorConfig.controls('text');
+	const eleList = AH.find(idStr,'.ebook_item_text', 'all');
+	console.log(eleList);
+	if(eleList?.length > 0 ){
+		eleList.forEach(ele => AH.insert(ele, blockPanel, 'beforebegin'));
+	}
+};
+afterUpdate(() => {
+	insertBlockPanel("#stem");
+	insertBlockPanel("#remediation");
+	insertBlockPanel("#content");
+});
 </script>
 <main role="main" tabindex="0">
 	<EditorHeader
