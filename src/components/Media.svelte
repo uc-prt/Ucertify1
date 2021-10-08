@@ -62,7 +62,7 @@
 		});
     })
     AH.listen("body",'click','.embed',function(_this){
-        AH.select('#embed_code').value = _this.getAttribute('data-image');
+        AH.select('#embed_code').value = '<img src="'+_this.getAttribute('data-image')+'"/>';
     })
 
     // for setting the default configuration
