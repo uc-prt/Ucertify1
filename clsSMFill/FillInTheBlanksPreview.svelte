@@ -570,7 +570,7 @@
 			defaultans = 1;
 		}
 
-		AH.selectAll('#elem'+i, 'hide');
+		AH.selectAll('#elem'+i,'css',{display:'none'});
 
 		let matheq = `<span id="elem${i}" class="auto_height edit_step fillmathelement mathquill" userAnsSeq="${randomKey}" userans="${userans}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1"></span>`;
 		let tag = `<div id="main_div" class="text-center filter auto_height fillelement mathitem inline-block"><div class="disable_div fh fwidth absolute h"></div><div class="remed_disable fh fwidth absolute h"></div><span  id="m${i}" style="display:none;" class="auto_height h corr_div fillmathelement mathquill" userAnsSeq="${randomKey}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1">${anskey}</span>${matheq}</div>`;
@@ -831,8 +831,8 @@
 	// for showing correct answer.
 	function correctAnswer() {
 		ucFill.showdragans(ajax_eId, 'c', 1);
-		AH.selectAll('.corr_div', 'show');
-		AH.selectAll('.remed_disable', 'show');
+		AH.selectAll('.corr_div','css',{display:'block'});
+		AH.selectAll('.remed_disable','css',{display:'block'});
 		autoresize(1);
 	}
 
