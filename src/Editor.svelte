@@ -426,6 +426,8 @@ function setBasicData(title, stem, remediation, skip = false) {
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
 	remediation = editorConfig.replaceUnwantedEntity(remediation, 'cleanHiddenEnity');
+	// This is code written here because in snt tag initAddFeature function call creating issue. So resovled value we need to pass. 
+	state.remediation = remediation;
 	AH.select("#remediation").innerHTML = remediation;
 	AH.select("#remediation_show").innerHTML = editorConfig.maintainAlignments(get_ucsyntax(remediation));
 }
@@ -556,7 +558,7 @@ function ucStepImplement() {
 					AH.insert(elm, "<br/>", 'beforebegin');
 				}
 			});
-			let btnCaption = (_this.getAttribute('data-btnnme') != undefined && _this.getAttribute('data-btnnme') != "") ? _this.getAttribute('data-btnnme') : 'Next';
+			let btnCaption = AH.find(_this, '.addnext_caption', '')?.textContent || 'Next';
 			let btnhtml = '<button type="button" onclick="showUcExpStep(this)" class="exp_next_btn btn btn-sm btn-outline-primary bg-white imgcenter text-primary" style="width: 15%; font-size: 15px; margin-top: 15px;">' + btnCaption + '</button>';
 			AH.find(_this, '.exp_next_btn', {action: 'remove'});
 			AH.find(_this, '.addnext_caption', {action: 'remove'});
@@ -756,12 +758,6 @@ function interactiveEvents() {
 		} else {
 			if (_this_value == "CUSTOM") {
 				let customDOM = editorConfig.getSectionDef(interactive_item[0][_this_selector][_this_id]['html'], _sub_type);
-				//customDOM = AH.clone(customDOM);
-				// typeChangePosition.find(".ebook_item_text").each(function (i) {
-				// 	if (currentTarget.getAttribute("data-update") != "true") {
-				// 		//jQuery(customDOM).find(".ebook_item_text")[i].innerHTML = currentTarget.html();
-				// 	}
-				// });
 				AH.insert(typeChangePosition, customDOM, 'afterend');
 				typeChangePosition.remove();
 			} else {
@@ -998,7 +994,7 @@ function initEditorListeners() {
 				return false; 
 			}
 			if (_this.parentElement.getAttribute('id') != 'authoringArea') {
-				state.playerArr = {};
+				state.playeArr = {};
 				let bookmark = tinyMCE.activeEditor.selection.getBookmark(2, true);
 				Array.prototype.forEach.call(_this.attributes, (playerAttr)=> {
 					if (playerAttr && playerAttr.specified) {
@@ -1450,7 +1446,6 @@ function editorPaneShow(event) {
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 		AH.selectAll('.mce-panel', 'hide', {action: 'hiden'})
 		state.editorView = 'preview';
-		AH.selectAll('.mce-panel', 'hide', {action: 'hide'});
 	}
 }
 
@@ -1675,7 +1670,7 @@ function initAddFeature(title, stem, remediation, content) {
 			let innerSelector = document.querySelector(container)?.querySelector(editorConfig.eBookItemTypeOld) ? editorConfig.eBookItemTypeOld : editorConfig.eBookItemType;
 			let sectionData = sectionList[key];
 			let findSection = `${innerSelector} .ebook_item_text`;
-			if (AH.find(container,findSection,'all').length == 0 || editorConfig.shouldWrap(container)) {
+			if (AH.find(container,findSection,'all')?.length == 0 || editorConfig.shouldWrap(container)) {
 				//console.warn("Warapping");
 				content ? keepAnalyzeData(content) : "";
 				if (sectionData.data) {
@@ -1691,7 +1686,7 @@ function initAddFeature(title, stem, remediation, content) {
 			} else {
 				content ? keepAnalyzeData(sectionData.data) : "";
 			}
-			if (AH.find(container,innerSelector,).length > 0) {
+			if (AH.find(container,innerSelector, 'all').length > 0) {
 				//console.warn("Adding Controls");
 				document.querySelector(container).querySelectorAll(innerSelector).forEach(function (_this, index) {
 					AH.insert(_this, editorConfig.controls(_this.getAttribute('sub_type')), 'beforebegin');
@@ -1732,7 +1727,7 @@ function setInlineEditor(where) {
 function updateEbookContent() {
 	if (in_frame && new_title != '') {
 		state.title = new_title;
-		document.querySelector("#title, #title_show").innerHTML = new_title;
+		AH.select('#title, #title_show', 'html', {action: 'html', actionData: new_title});
 	}
 	if (ebook_flashTitle != '' || ebook_flashContent != '') {
 		//setTimeout(function () {
@@ -2702,6 +2697,19 @@ $: if (state.editorView == 'preview' && state.previewXml) {
 } else if (state.authXml) {
 	state.xml = state.authXml;
 }
+
+const insertBlockPanel = (idStr) => {
+	const eleList = AH.find(idStr,'[data-section^="sec_button"]', 'all');
+	if(eleList?.length > 0 ){
+		eleList.forEach(ele => AH.insert(ele, editorConfig.controls(ele.getAttribute('sub_type')), 'beforebegin'));
+	}
+};
+afterUpdate(() => {
+	AH.selectAll(".controls_button", 'remove', {action: 'remove'});
+	insertBlockPanel("#stem");
+	insertBlockPanel("#remediation");
+	insertBlockPanel("#content");
+});
 </script>
 <main role="main" tabindex="0">
 	<EditorHeader

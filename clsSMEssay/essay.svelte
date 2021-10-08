@@ -13,15 +13,15 @@
     let essayAuthEditor;
     let timer = null;
     let state = {
-        files_number : 1,
+        files_number : 0,
         cdata : true,
+        file_ext: ""
     };
     
     onMount(()=> {
         initEdit();
         let listenrTarget = AH.find('#SM_essay', 'a,button,input,select');
         AH.listenAll(listenrTarget, "blur", (e)=> { 
-            console.log(e.target);
             updateXML(500); 
         });
         // AH.listenAll(listenrTarget, "keyup", ()=> { updateXML(500); });
@@ -43,7 +43,6 @@
         if (AH.find(parsedXmlNode, 'default') && AH.find(parsedXmlNode, 'default').getAttribute('type') == 1) {
             AH.selectAll('.upload-area', 'removeClass', 'h');
             AH.select('#uploadChk').checked = true;
-            console.log(AH.find(parsedXmlNode, 'default').getAttribute('fileTypeExts'));
             AH.select(`#choose_ext option[value="${AH.find(parsedXmlNode, 'default').getAttribute('fileTypeExts')}"]`, 'attr',{selected: 'selected'});
             AH.select('#files_number').value = AH.find(parsedXmlNode, 'default').getAttribute('limit');
         }
@@ -99,13 +98,13 @@
     }
 
     // it checks the no .of files for upload. 
-    function maxLengthCheck(e, maxLength) {
-        state.files_number = e.value;
+    function maxLengthCheck(e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             AH.select("#err_txt").innerHTML = "Digits Only";
             AH.selectAll("#err_txt", 'show');
             return false;
         }
+        updateXML(100);
     }
 
     // it updates the xml;
@@ -116,32 +115,31 @@
         timer = setTimeout(function() {
             let val = content || essayAuthEditor.getContents();
             let xmlDom = AH.parseHtml(xml);
-            let chooseExtOpt = AH.selectAll("#choose_ext option", "selected")[0];
             let defaultDom = xmlDom.querySelector('default');
             if (AH.select("#uploadChk").checked) {
+                isUpload = true;
                 if (defaultDom) {
                     AH.setAttr(defaultDom, {
                         'type': 1,
-                        'fileTypeExts': (chooseExtOpt ? chooseExtOpt.value : ""),
-                        'limit': AH.select('#files_number').value
+                        'fileTypeExts': state.file_ext || defaultDom.getAttribute('filetypeexts') || "*.txt,*.doc,*.docx,*.pdf,*.jpg,*.png,*.gif,*.bmp,*.jpeg",
+                        'limit': state.files_number || defaultDom.getAttribute('limit') || 1
                     });
+                    state.files_number = state.files_number || defaultDom.getAttribute('limit');
+                    state.file_ext = state.file_ext || defaultDom.getAttribute('filetypeexts');
                 } else {
-                    let defHtml = AH.parseHtml(`<default type="1" fileTypeExts="${chooseExtOpt ? chooseExtOpt.value : ''}" limit="${AH.select('#files_number').value}"></default>`);
+                    let defHtml = AH.parseHtml(`<default type="1" fileTypeExts="${state.file_ext || "*.txt,*.doc,*.docx,*.pdf,*.jpg,*.png,*.gif,*.bmp,*.jpeg"}" limit="${state.files_number || 1}"></default>`);
                     xmlDom.appendChild(defHtml);
                 }
             } else if (defaultDom) {
                 defaultDom.setAttribute('type', 0)
                 defaultDom.removeAttribute(...['fileTypeExts', 'limit']);
             }
-
             if (defaultDom) {
                 defaultDom.innerHTML = `<!--[CDATA[${val}]]-->`;
             } else {
                 let defHtml = AH.parseHtml(`<default type="0"><!--[CDATA[${val}]]--></default>`);
                 xmlDom.appendChild(defHtml);
-                //xmlDom.querySelector('default').innerHTML = '';
             }
-            //console.log(xmlDom);
             author_xml = formatXml(xmlDom.outerHTML);
             getChildXml(author_xml);
         }, time);
@@ -168,7 +166,7 @@
                         <label for="choose_ext" class="mb-0 pt-sm1 font14">{l.file_extension_text} </label>
                     </div>
                     <div class="col-sm-8">
-                        <select name="choose_ext" id="choose_ext" class="form-control form-control-md" on:blur="{()=> updateXML(500)}">
+                        <select name="choose_ext" id="choose_ext" class="form-control form-control-md" bind:value={state.file_ext} on:blur="{()=> updateXML(100)}">
                             <option value="*.txt,*.doc,*.docx,*.pdf,*.jpg,*.png,*.gif,*.bmp,*.jpeg" selected="selected">All(*.*)</option>
                             <option value="*.txt">*.txt</option>
                             <option value="*.pdf">*.pdf</option>
@@ -188,11 +186,11 @@
                             class="form-control form-control-md float-left filenumber" 
                             name="files_number" 
                             id="files_number" 
-                            value={state.files_number} 
+                            bind:value={state.files_number} 
                             step="1" 
                             min="1" 
                             max="10" 
-                            on:change={maxLengthCheck.bind(this, 2)} 
+                            on:change={maxLengthCheck} 
                             required="required"
                         />
                         <small class="font11">{l.you_can_upload}</small>

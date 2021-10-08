@@ -2270,7 +2270,7 @@
             </div>
         </div>
     </div>
-    <div class="drawing_module_container">
+    <div class="drawing_module_container svelte_items_testing">
         <button type="button" class="h h-imp" id="set-review"></button>
         <button type="button" class="h h-imp" id="unset-review"></button>
         <center class="preview_drawing_container">

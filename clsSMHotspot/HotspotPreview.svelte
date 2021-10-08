@@ -245,6 +245,7 @@
 			answerStatus = ansStatus;
 			if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
 		}
+		
 		onUserAnsChange(result);
 	}
 	function onModalTouch(event) {
@@ -280,8 +281,9 @@
 		// if the module is imagehighlight then it hide the correct answer ans show user ans on the module using the function drawOnCanvas
 		if (moduleArr[item_type] == "3") {
 			AH.find('#previewArea', 'canvas', {action: 'remove'});
-			imageDraw('#previewArea', 0);
+			//imageDraw('#previewArea', 0);
 			var timer = setTimeout(function() {
+				imageDraw('#previewArea', 0);
 				let el = AH.find('#previewArea', 'canvas');
 				// getting the value of the user ans
 				let getAns = AH.select('#special_module_parse').value,
@@ -396,6 +398,10 @@
 			}
 			if (editorState) showAns(message);
 			userAnswers = AH.select('#special_module_user_xml').value;
+
+			flag = (flag > 0) ? true : false;
+			answerStatus = flag;
+
 			var result = {'ans': flag, 'uXml': userAnswers};
 			onUserAnsChange(result);
 			// @uc-abk: When user drawed canvas within the correct area : flag will 1
@@ -567,7 +573,7 @@
 				<center key="imageHeight_3">
 					<div 
 						style="
-							height: 32px; 
+							height: 34px; 
 							width: {window.inNative ? window.innerWidth : state.imgwidth}; 
 							background: #d9e7fd; 
 							border-top: 2px solid #96bbf6;

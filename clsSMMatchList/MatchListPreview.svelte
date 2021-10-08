@@ -723,7 +723,7 @@
 </script>
 
 <main>
-    <div id="previewSection" class="px-2">
+    <div id="previewSection" class="px-2 svelte_items_testing">
 		<center>
 			{#if editorState}
 				<div 

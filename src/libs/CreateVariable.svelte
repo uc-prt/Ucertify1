@@ -588,7 +588,7 @@
             tempAlgoVar.splice(index, 1);
             editorState.single_variables = tempAlgoVar;
         } else {
-            AH.showmsg("Minimum one variable is required.");
+            AH.alert("Minimum one variable is required.");
         }        
         state.opened = false;
     }
@@ -743,7 +743,7 @@
         <div slot="title" style="text-align: left;">
             {l.val_variations}
         </div> 
-        <div style="borderBottom: 1px solid #00000000; overflow-y: auto; overflow-x: hidden;height:358px;">
+        <div style="borderBottom: 1px solid #00000000; overflow-y: auto; overflow-x: hidden;height:338px;">
             <div
                 id="analyzeValues_Dialog"
                 style="

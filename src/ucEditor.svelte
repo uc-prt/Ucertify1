@@ -898,13 +898,13 @@
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
                           if (tag_parent.length > 0) {
-                            tag_parent.setAttribute("class", "arrowlist-bullet");
+                            tag_parent.setAttribute("class", "arrowlistBullet");
                             tag_parent.setAttribute("nested", "arrow-bullet,circle-bullet darkblue-txt");
                           } else {
                             var selected =
                               editor.selection.getContent() == "" ? " " : editor.selection.getContent();
                             selected = selected.split("<br />");
-                            editor.selection.setContent('<ul nested="arrow-bullet,circle-bullet darkblue-txt" class="arrowlist-bullet">');
+                            editor.selection.setContent('<ul nested="arrow-bullet,circle-bullet darkblue-txt" class="arrowlistBullet">');
                             selected.map(function (data) {
                               editor.selection.setContent("<li>" + data + "</li>");
                             });
@@ -1015,11 +1015,11 @@
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
                           if (tag_parent.length > 0) {
-                            tag_parent.setAttribute("class", "tick-bullet");
+                            tag_parent.setAttribute("class", "tickBullet");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
                             selected = selected.split("<br />");
-                            editor.selection.setContent('<ul class="tick-bullet">');
+                            editor.selection.setContent('<ul class="tickBullet">');
                             selected.map(function (data) {
                               editor.selection.setContent("<li>" + data + "</li>");
                             });
