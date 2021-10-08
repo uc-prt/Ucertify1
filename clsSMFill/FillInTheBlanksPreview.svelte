@@ -830,8 +830,6 @@
 
 	// for showing correct answer.
 	function correctAnswer() {
-
-		console.log('checking');
 		ucFill.showdragans(ajax_eId, 'c', 1);
 		AH.selectAll('.corr_div','css',{display:'block'});
 		AH.selectAll('.remed_disable','css',{display:'block'});
