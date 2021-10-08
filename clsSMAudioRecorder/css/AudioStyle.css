@@ -53,7 +53,6 @@ select:disabled {
     border: 1px solid #d4cfcf;
 }
 .custom_checkbox_new .check_mark_custom:after {
-    content: '\2713';
     color: #fff;
     transform: rotate(10deg);
     margin-top: -3px;
