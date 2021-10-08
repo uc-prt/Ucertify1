@@ -281,7 +281,6 @@
 		// if the module is imagehighlight then it hide the correct answer ans show user ans on the module using the function drawOnCanvas
 		if (moduleArr[item_type] == "3") {
 			AH.find('#previewArea', 'canvas', {action: 'remove'});
-			console.warn('preview');
 			//imageDraw('#previewArea', 0);
 			var timer = setTimeout(function() {
 				imageDraw('#previewArea', 0);
@@ -306,7 +305,6 @@
 	// for image draw
 	function imageDraw(hid,review) {
 		let imgObj =  AH.find(hid, '#hptmain0');
-		console.warn('check');
 		hid = imgObj;
 		// let imgWidth  = imgObj.clientWidth;
 		// let imgHeight = imgObj.clientHeight;
