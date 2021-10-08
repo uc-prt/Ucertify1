@@ -64,7 +64,6 @@ export default class ImageAnnotation {
 
     // initialte the image annotation library
     init () {
-        console.log('Image Annotate plugin added!');
         this.state = this.currentState();
         this.bindUpEvent();
     }
@@ -327,7 +326,7 @@ export default class ImageAnnotation {
                 }
             } else {
                 if ((marker_index == 0 && from_copied == 1) || (marker_index != 0 && JS.find(selector, '.an_div.' + this.marker_icon[marker_index], 'all').length == 0)) {
-                    JS.insert(JS.find(selector, '.' + this.state.list_container, 'all')[0], `<div class="an_divp" d-m="${marker_index}">${marker_index == 0 ? `<div class="an_div" num="${number}">${number}</div>` : `<div class="an_div ${marker_icon[marker_index]}"></div>`}<div a_c='1'><b>Heading</b>: Sample Text</div></div>`, 'beforeend');
+                    JS.insert(JS.find(selector, '.' + this.state.list_container, 'all')[0], `<div class="an_divp" d-m="${marker_index}">${marker_index == 0 ? `<div class="an_div" num="${number}">${number}</div>` : `<div class="an_div ${this.marker_icon[marker_index]}"></div>`}<div a_c='1'><b>Heading</b>: Sample Text</div></div>`, 'beforeend');
                 }
             }
 
@@ -522,7 +521,6 @@ export default class ImageAnnotation {
 
         // called on closing the media modal and if previosly annotation information is visible then to show it again
         JS.listen("body", "hidden.bs.modal", '#modal-media-upload', ()=> {
-            console.log("modal hide");
             if (this.modal_modal_open == 1) {
                 this.modal_modal_open = 0;
                 JS.getBS('#annotate_image_details', 'Modal').show();
@@ -614,7 +612,6 @@ export default class ImageAnnotation {
          */
         JS.listenAll(this.state.auth_parent_selector, 'mouseenter', (event)=> {
             let _this = event.target;
-            console.log(_this);
             JS.find(_this.closest(this.state.uc_annotation_container).parentElement, this.state.description_selector).focus();
             JS.selectAll('div[sub_type="image-annotation"] .an_c, #authoringDiv div[sub_type="image-annotation"] .an_c *', 'removeAttr', 'data-mce-style');
             this.state.curdata = this.getData(_this);
@@ -815,5 +812,4 @@ export default class ImageAnnotation {
 //     window.uc_image_annotate = uc_image_annotate;
 //     uc_image_annotate.init();
 // } else {
-//     console.log('Image Annotate already added!');
 // }

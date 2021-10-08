@@ -8627,3 +8627,13 @@ table th {
   margin-left: -1.3em; /* same as padding-left set on li */
   width: 1.3em; /* same as padding-left set on li */
 }
+
+.list1, .list2, .list3, .list4, .arrowlist-bullet {
+  padding-left: 12px !important;
+}
+.list6{
+  margin-left: 8px;
+}
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-link-preview {
+  max-height: 100% !important;
+}

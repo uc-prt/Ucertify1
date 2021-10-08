@@ -27,6 +27,9 @@
     }
     let prevValueOption = {};
     $: prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
+
+    let securityCheckbox = false;
+
     function getJsonAttrValue(data, input_id) {
             if (data != '') {
                 let tempValue = '';
@@ -46,7 +49,7 @@
             }
         }
     
-    onMount(()=> {
+    onMount(async ()=> {
         let changeTimer = setTimeout(function() {
             if (tinyMCE.activeEditor.selection.getContent()) {
                 AH.selectAll("#showPlayerList input[id='show_caption'], #showPlayerList input[id='title']", 'value', tinyMCE.activeEditor.selection.getContent());
@@ -54,8 +57,9 @@
             }
             clearTimeout(changeTimer);
         }, 500);
-    
-            let input_id, tag_name, player_category = '', player_type = '', new_key = '', json_value = '';
+        
+        const val = await playerState; // to wait till playerState is loaded
+        let input_id, tag_name, player_category = '', player_type = '', new_key = '', json_value = '';
         if (AH.isValid(oldValue.obj)) {
             tag_name = oldValue.obj.outerHTML.match(/\w+/gim)[0];
         }
@@ -208,6 +212,7 @@
             }
             AH.select('#xml_data').value = playground_val.trim();
         }
+        securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         correctLabelStyle();    
     });
     </script>
@@ -543,8 +548,15 @@
                             <div class={(playerState.security ? 'mt-2' : 'mt-2 d-flex ')}>
                                 <input
                                     type="checkbox"
-                                    bind:checked={playerState.security}
-                                    value={playerState.security}
+                                    bind:checked={securityCheckbox}
+                                    on:change={e => {
+                                        if(securityCheckbox){
+                                            playerState.prevValue.security_checkbox = 'on';
+                                        }else{
+                                            playerState.prevValue.security_checkbox = 'off';
+                                            playerState.prevValue.security = '';
+                                        }
+                                    }}
                                     color="default"
                                     class="custom_checkbox_new"
                                     id="security_checkbox"
@@ -559,7 +571,7 @@
                                     {/if}
                                 </label>
                             </div>
-                            {#if playerState.security}
+                            {#if securityCheckbox}
                                 <div class='position-relative alignLeft'>
                                     <Textfield
                                         id="security"

@@ -526,6 +526,10 @@
                             }
                         }
                         player += ` ${_this.getAttribute('id')}="${exhibit_txt}"`;
+                    } else if (_this.getAttribute('id') == 'security_checkbox') {
+                        if(state.prevValue?.security_checkbox == "on" && state.prevValue.security){
+                            player +=` ${_this.getAttribute('id')}="on"`;
+                        }
                     } else {
                         player +=` ${_this.getAttribute('id')}="${_this.value.trim()}"`;
                     }
