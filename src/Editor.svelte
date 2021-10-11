@@ -816,8 +816,7 @@ function ucTimelineEditor(ucEditor) {
 	});
 
 	AH.listen(document, 'click', '.copyData', function (_this) {
-		//let element = _this.closest('section:not(.listing_section), li[data-parent="parent_element"], .dot[data-parent="parent_element"]').cloneNode(true);
-		let element = AH.closest(_this, 'section:not(.listing_section), [data-parent="parent_element"]');
+		let element = _this.closest('[data-parent="parent_element"]');
 		AH.find(element, '.ebook_item_text', {action: 'attr', actionData: {id: ''} });
 		if (AH.find(_this.parentElement, ".verticle_timeline2", 'all').length > 0) {
 			AH.find(element, ".timeline_controls", {action: 'remove'});
