@@ -1324,7 +1324,7 @@ export default class JUI extends API{
                                     ${data}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-light m-auto text-dark" data-bs-dismiss="modal">OK</button>
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
