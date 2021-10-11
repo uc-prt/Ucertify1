@@ -545,7 +545,7 @@
                             />
                         </div>
                         <div class="mt-4">
-                            <div class={(playerState.security ? 'mt-2' : 'mt-2 d-flex ')}>
+                            <div class='mt-2'>
                                 <input
                                     type="checkbox"
                                     bind:checked={securityCheckbox}
