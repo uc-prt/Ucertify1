@@ -952,13 +952,9 @@ function ucTimelineEditor(ucEditor) {
 // Bind events for content
 function initEditorListeners() {
 	AH.listen('body', 'shown.bs.tab', '.specialPaste a[data-bs-toggle="tab"]', switchSpecialPaste.bind(this));
-	AH.bind('#show_guid', 'click', (event)=> {
-		let range = document.createRange();
-		range.selectNode(document.getElementById("show_guid"));
-		window.getSelection().removeAllRanges();    // clear current selection
-		window.getSelection().addRange(range);      // to select text
-		document.execCommand("copy");
-		window.getSelection().removeAllRanges();
+	AH.bind('#show_guid', 'click', async (event)=> {
+		const text = document.getElementById("show_guid").textContent;
+		await navigator.clipboard.writeText(text);
 		event.target.setAttribute("data-bs-original-title", "ID Copied");
 		AH.getBS(event.target, 'Tooltip', {container: 'body' }).show();
 	});

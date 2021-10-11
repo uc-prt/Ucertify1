@@ -5196,6 +5196,7 @@ box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset
 -webkit-box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset 60px 0 0 #333,inset 61px 0 0 #333!important;
 -moz-box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset 60px 0 0 #333,inset 61px 0 0 #333!important;
 }
+pre.prettyprint ol{ padding-left: 2.5rem !important;}
 pre.prettyprint ol.linenums li{padding-left: 7px!important;}
 .prettyprint .com {color: #5a5a5a;}
 .prettyprint {
