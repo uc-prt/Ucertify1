@@ -102,6 +102,7 @@ ucMlid.chkDoNotShow = function(user_guid) {
 ucMlid.showUserAns = function(mlid) {
     let top1 = 0;
     match_lines = []
+    if(AH.select(mlid).nodeName != undefined)
     ucMlid.multimatch = AH.select(mlid).getAttribute("multimatch"); // Replaced
     //const draggable_ele = ucMlid.multimatch == 2 ? ".list4" : ".list1";
     ucMlid.showAns(mlid);
@@ -270,9 +271,14 @@ ucMlid.bindKeyup = function(mlid) {
     let count = 0;
     //var count_prev = 0; @eslint issues solved
     let copied_id = "";
+    let is_multimatch;
     //var ks_activated = false; @eslint issues solved
     //const is_multimatch = jQuery(mlid).attr("multimatch");
-     const is_multimatch = AH.select(mlid).getAttribute("multimatch"); // Replaced
+    //console.log('checking condition : ',AH.select(mlid).getAttribute("multimatch"));
+    if(AH.select(mlid).nodeName != undefined)
+    is_multimatch = AH.select(mlid).getAttribute("multimatch");
+   
+      // Replaced
 
     if (is_multimatch != "2") {
         activateClass("list1");
@@ -288,7 +294,7 @@ ucMlid.bindKeyup = function(mlid) {
         }
     }) // @eslint issues solved
 
-    document.querySelector(mlid).addEventListener("keydown", ()=> {
+    document.querySelector(mlid) && document.querySelector(mlid).addEventListener("keydown", ()=> {
         if (typeof hotkeys == "function") {
             hotkeys.setScope('matchlist');
         }
@@ -718,7 +724,8 @@ ucMlid.pollFunc = function(fn, timeout, interval) {
 
 
 ucMlid.showAns = function(mlid) {
-    ucMlid.multimatch = document.querySelector(mlid).getAttribute("multimatch");
+    if(AH.select(mlid).nodeName != undefined)
+    ucMlid.multimatch = AH.select(mlid).getAttribute("multimatch");
     //var answer_ele = ".list1"; @eslint issues solved
     if (ucMlid.multimatch < 2) {
         var str = '<svg id="lines">';
