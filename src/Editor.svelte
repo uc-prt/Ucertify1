@@ -829,6 +829,7 @@ function ucTimelineEditor(ucEditor) {
 		}
 		setTimeout(()=> {
 			ucEditor.initEditor(false, "#authoringSection .ebook_item_text");
+			refreshEvents();
 		}, 300);
 	});
 
