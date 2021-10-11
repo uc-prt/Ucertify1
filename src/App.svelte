@@ -7,7 +7,6 @@
 	import Editor from './Editor.svelte';
 	import EditorModules from './EditorModules.svelte';
 	import l from './libs/editorLib/language.js';
-	import Button from 'svelte-mui/src/Button.svelte';
 	export let ajaxData;
 	export let subtype;
 	let allItem = [];
@@ -50,7 +49,7 @@
 	beforeUpdate(()=> {
 		if (!window.AI) window.AI = AH;
 	})
-
+	$: console.log('YESS');
 	onMount(async () => {
 		let appPass = SSD.get('apiAccessToken') ? {status: 'Success', access_token: SSD.get('apiAccessToken')} : await AH.validateApp(false);
 		if (appPass.status == 'Success') {
@@ -186,6 +185,7 @@
 				});
 				/* END */
 				if (editorUrl.get('content_subtype') && editorUrl.get('content_type')) {
+					state.content_guid = '';
 					state.type =  editorUrl.get('content_type');
 					state.content_icon = editorUrl.get('content_icon');
 					editorItems.forEach((n)=> {
@@ -201,6 +201,8 @@
 			if (ajaxRes['domains'] && editorUrl.get('from_myproject') == "1") {
 				window.is_domain = Object.keys(ajaxRes['domains']).length > 0 ? 1 : 0;
 			}
+			console.log('yess');
+			console.log(editorUrl.get('content_guid'));
 			//if (ajaxRes['user']) state._user = ajaxRes['user'];
 			if (editorUrl.get('content_guid')) {
 				content_for_newEditor = ajaxRes['content_for_newEditor'] ? JSON.parse(ajaxRes['content_for_newEditor']) : "";
@@ -325,7 +327,7 @@
 			width={700}
 			on:close={()=> state.drawerBox = false}
 		>
-			<div slot="header">Pradeep</div>
+			<div slot="header">ucertify</div>
 			<div slot="content">
 				<EditorModules 
 					editorItems = {editorItems}
