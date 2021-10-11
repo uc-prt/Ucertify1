@@ -1890,15 +1890,17 @@ function setContent(type, isRefresh) {
 			let typeSelector = document.querySelector(`#${type}_show`);
 			if (typeSelector) typeSelector.innerHTML = previewSnt(get_ucsyntax(content));
 			let previewSec = document.getElementById("previewSection");
+			editorConfig.mathMl('reset');
+			editorConfig.mathMl('set');
 			//@saquib added this line due to multiple rendering of prettyprint
 			AH.removeClass(previewSec.querySelectorAll(".prettyprintReplica"), ["prettyprint","linenums"]);
-			(content.match(/<uc:syntax/gm)) ? prettyPrint() : '';
+			if (content.match(/<uc:syntax/gm)) {
+				prettyPrint();
+			};
 			AH.addClass(AH.find(previewSec, ".prettyprint", 'all'), "prettyprintReplica");
 			AH.addClass(AH.find(previewSec, ".prettyprintReplica", "all"), ["prettyprint","linenums"]);
 			state[type] = ucEditor.getContent(type, 'raw'); 
 			state.player_render =  true; 
-			editorConfig.mathMl('reset');
-			editorConfig.mathMl('set');
 		}
 		if (isRefresh) {
 			(editorBuffer['isRefresh']) && clearTimeout(editorBuffer['isRefresh']);

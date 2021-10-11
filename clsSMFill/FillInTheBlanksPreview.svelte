@@ -89,7 +89,9 @@
 	beforeUpdate(() => {
 		// for checking that there is change in the xml
 		if (xml != state.xml) {
-			if (editorState && editorState.stopPreviewUpdate == true) return false;
+			if (editorState && editorState.stopPreviewUpdate == true) {
+				return false;
+			}			
 			// for loading the module on the basis of the updated the xml
 			loadModule();
 			// for adding the tabindex
@@ -197,7 +199,6 @@
 	// this function responsible for parsing the xml 
 	function parseXmlAuthoring(MYXML, uaXML=false) {
 		// fetching the cdata
-		console.log(MYXML);
 		cdata = MYXML.smxml.text.__cdata;
 		dragData = "";
 		CheckDuplicate = [];
@@ -300,6 +301,7 @@
 						// creating textbox with user ans in preview area
 						createMathDiv(originalKey,i,uaXMLNew);
 					} else {
+						
 						// creating textbox in preview area
 						createMathDiv(originalKey,i);
 					}
@@ -443,7 +445,6 @@
 		let ans = ucFill.checkAns(ajax_eId);
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
-		console.log('answer', answer);
 		onUserAnsChange(answer);
 		if(editorState) { showAns(ans); }
 	}
@@ -570,10 +571,16 @@
 			defaultans = 1;
 		}
 
-		AH.selectAll('#elem'+i,'css',{display:'none'});
+		AH.select('#elem'+i,'css',{display:'none'});
 
 		let matheq = `<span id="elem${i}" class="auto_height edit_step fillmathelement mathquill" userAnsSeq="${randomKey}" userans="${userans}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1"></span>`;
-		let tag = `<div id="main_div" class="text-center filter auto_height fillelement mathitem inline-block"><div class="disable_div fh fwidth absolute h"></div><div class="remed_disable fh fwidth absolute h"></div><span  id="m${i}" style="display:none;" class="auto_height h corr_div fillmathelement mathquill" userAnsSeq="${randomKey}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1">${anskey}</span>${matheq}</div>`;
+
+		let tag = `<div id="main_div" class="text-center filter auto_height fillelement mathitem inline-block"><div class="disable_div fh fwidth absolute h"></div><div class="remed_disable fh fwidth absolute h"></div>
+			<span  id="m${i}" style="display:none;" class="auto_height h corr_div fillmathelement mathquill" userAnsSeq="${randomKey}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1">
+				${anskey}
+			</span>
+			${matheq}
+		</div>`;
 
 		// rplacing the cdata
 		cdata = cdata.replace(originalData, tag);
@@ -592,9 +599,10 @@
 					// adding the userans in the mathItemid
 					if(defaultans == 1) {
 						var latex = _this.getAttribute('userans');
-						AH.selectAll('#'+mathItemId, 'text', latex); 
+						if(latex != undefined)
+						AH.select('#'+mathItemId, 'text', latex); 
 					} else {
-						AH.selectAll('#'+mathItemId, 'text', _this.getAttribute('userans'));
+						AH.select('#'+mathItemId, 'text', _this.getAttribute('userans'));
 					}
 					/**
 					 * According to Api doc

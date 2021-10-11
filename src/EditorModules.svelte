@@ -48,6 +48,7 @@
 		actionData.content_icon = data.content_icon;
 		actionData.type = data.type;
 		actionData.loaditem = data.subtype;
+        actionData.content_guid = '';
 		actionData.itemXML = data.xml;
 		actionData.inline_item = data.inline_item;
         actionData.is_algo = data.is_algo;
@@ -71,6 +72,7 @@
 		actionData.type = data.type;
 		actionData.loaditem = data.subtype;
 		actionData.itemXML = data.xml;
+        actionData.content_guid = '';
 		actionData.inline_item = data.inline_item;
         actionData.is_algo = data.is_algo;
         actionData.editorKey += 1;

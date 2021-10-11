@@ -525,7 +525,7 @@
                 </div>
             {:else}
                 <div id="chart_header_container" style="width: {state.width}px;">
-                    <div class="float-end pt-1 pr-1">
+                    <div class="float-right pt-1 pr-1">
                         <div class="float-start d-flex">
                             <span tabindex="0" title={l.add} data-bs-toggle="tooltip" aria-label={l.add} data-original-title={l.add} id="add_prev"  class="setdata btn-light btn w-auto h-auto p-1 bg-white border " on:click={() => CHART.updatePointPreview('addPoint', 'answerID0')}>
                                 <span class="icomoon-plus s2"></span>
