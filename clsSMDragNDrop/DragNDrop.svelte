@@ -376,7 +376,7 @@
             }
         }
 
-        if ( document.querySelectorAll('#dndmain, #dndmain .drag-resize, #dndmain .only-dragable').length > 0) {
+        if ( document.querySelectorAll('#dndmain .drag-resize, #dndmain .only-dragable').length > 0) {
             if ( AH.selectAll('#dndmain img:not([draggable])').length > 0) {
                 AH.selectAll('#dndmain img:not([draggable])').forEach((element) => {
                     element.setAttribute('draggable', false);
@@ -453,7 +453,7 @@
             }
         }
 
-        let resizable = new Resizable('#dndmain', '#dndmain, #dndmain .drag-resize, #dndmain .only-dragable');
+        let resizable = new Resizable('#dndmain .drag-resize, #dndmain .only-dragable');
 
         resizable.onStart = function() {
             auth_store.update( (item) => {
@@ -850,7 +850,7 @@
 
             <div id="resizeX" bind:this={resize_elW} on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
             <div id="resizeY" bind:this={resize_elH} on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
-            <div id="resizeXY" bind:this={resize_elWH} on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
+            <div id="resizeXY" class="icomoon-resize" bind:this={resize_elWH} on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
         </div>
     </center>
     <input type='hidden' id='special_module_xml' name='special_module_xml' />
@@ -887,9 +887,11 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 3px;
-        height: 3px;
         opacity: 1;
         cursor: se-resize;
+
+    }
+    #resizeXY::before{
+        content: '\e354'
     }
     </style>
