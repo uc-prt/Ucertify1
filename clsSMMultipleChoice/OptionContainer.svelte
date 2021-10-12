@@ -1,5 +1,6 @@
 <script>
     import l from '../src/libs/editorLib/language';
+    import {AH} from '../helper/HelperAI.svelte';
     export let letters;
     export let data;
     export let editOption;
@@ -12,7 +13,7 @@
     // used for open the parent guid of this guid which created this guid using List Item module when clicked on 'Yes' button of alert label
 	function showParentGuid() {
         // url for open the parent guid
-        let futureUrl = baseUrl + 'editor/?action=edit&content_guid=' + AI.get('get_parent_guid') + '&no_header=1&react_content=1&no_domain=1';
+        let futureUrl = baseUrl + 'editor/?action=edit&content_guid=' + AH.get('get_parent_guid') + '&no_header=1&react_content=1&no_domain=1';
         // opens the url in new tab with parent guid
         window.open(futureUrl, '_blank');
     }
@@ -21,7 +22,7 @@ console.log('MCQ');
 </script>
 
 {#if previewMode}
-	{#if (preview_edit == 1) && AI.get('get_parent_guid')}
+	{#if (preview_edit == 1) && AH.get('get_parent_guid')}
         <div>
             <section id="warning_label_container" class="w-100">
                 <div tabIndex="0" class="alert alert-primary mb-lg " id="open_test_session" role="alert">

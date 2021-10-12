@@ -19,7 +19,7 @@ function TagView(el, option = {}) {
     const defaultPlaceholder = ''
     const separator = el.dataset.separator || option.separator || defaultSeparator
     const duplicate = el.dataset.duplicate || option.duplicate || defaultDuplicate
-    const transform = eval(el.dataset.transform) || option.transform || defaultTransform
+    const transform = (0,eval)(el.dataset.transform) || option.transform || defaultTransform
     const placeholder = el.dataset.placeholder || option.placeholder || defaultPlaceholder
   
     const templateTag = value => `<span class="${classTag}">${value}<span class="${classRemove}"></span></span>`
