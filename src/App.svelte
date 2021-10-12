@@ -6,6 +6,7 @@
 	import Loader from '../helper/Loader.svelte';
 	import Editor from './Editor.svelte';
 	import EditorModules from './EditorModules.svelte';
+	import GetLocalStoragedata from './components/LocalStorage.svelte';
 	import l from './libs/editorLib/language.js';
 	export let ajaxData;
 	export let subtype;
@@ -48,8 +49,8 @@
 
 	beforeUpdate(()=> {
 		if (!window.AI) window.AI = AH;
-	})
-	$: console.log('YESS');
+	});
+
 	onMount(async () => {
 		let appPass = SSD.get('apiAccessToken') ? {status: 'Success', access_token: SSD.get('apiAccessToken')} : await AH.validateApp(false);
 		if (appPass.status == 'Success') {
@@ -288,6 +289,9 @@
 			</Button>
 		</center>
 	{:else  -->
+	{#if state.allItemTemp}
+		<GetLocalStoragedata allItemTemp={state.allItemTemp} />
+	{/if}
 	{#if state.loaditem != 'Default'}
 		{#if state.loaditem == "Blank"} 
 			<center style="position:relative;top:{window.innerHeight*(.4)}px;">Checking Module...</center>

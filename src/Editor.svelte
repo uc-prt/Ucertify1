@@ -17,6 +17,7 @@ import Loader from '../helper/Loader.svelte';
 import CreateVariable from './libs/CreateVariable.svelte';
 import InteractiveItem from './components/InteractiveItem.svelte';
 import CommentModal from './components/CommentModal.svelte';
+
 import {
 	tag_player, 
 	initEbookInteractivity, 
@@ -2436,7 +2437,7 @@ function localStorageData(data, type) {
 	if (type == 'save') {
 		let d = new Date();
 		data['datetime'] = d.toString().replace(/GMT.*/g, "");
-		if (localdata == null) {
+		if (localdata == null || localdata == undefined) {
 			localdata = {};
 			localdata[userGuid] = {};
 		}
