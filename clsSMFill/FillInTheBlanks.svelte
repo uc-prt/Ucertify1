@@ -1229,7 +1229,7 @@
 					<div class="text-danger font-weight-bold">* Note:</div>
 					<div class="text-danger" style="padding-left:15px">{l.fill_help1_help2}</div>
 					<!-- <div class="text-danger" style="padding-left:15px">{l.fill_text_help2}</div> -->
-					<div class="text-danger" style="padding-left:15px">{l.fill_text_help3}</div>
+					<div class="text-danger" style="padding-left:15px">{l.fill_text_help2}</div>
 				</div>
 			{/if}
 			{#if state.fillInTheBlanksChoice == 2}
