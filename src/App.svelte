@@ -290,7 +290,7 @@
 		</center>
 	{:else  -->
 	{#if state.allItemTemp}
-		<GetLocalStoragedata allItemTemp={state.allItemTemp} />
+		<!-- <GetLocalStoragedata allItemTemp={state.allItemTemp} /> -->
 	{/if}
 	{#if state.loaditem != 'Default'}
 		{#if state.loaditem == "Blank"} 
