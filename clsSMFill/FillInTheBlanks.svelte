@@ -1093,7 +1093,7 @@
 	// open the latex dialog
 	function latexEdit(i) {
 		if (!window.currentId) {
-			AH.showmsg("Equation didn't created yet.")
+			AH.showmsg("Equation not created yet.")
 			return;
 		}
 		state.open = true;//false
