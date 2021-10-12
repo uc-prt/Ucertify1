@@ -40,6 +40,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
+	export let in_editor;
 	
 	let hdd = writable({
 			matchtype : "0",
