@@ -263,6 +263,7 @@ const l = {
     fill_math_help2 : "2. To add user Response, place cursor before{*} and Click Add Response.",
     fill_math_help3 : "3. To edit the existing equation, Click Edit.",
     fill_help1_help2: "1. To include multiple correct answers, type the answers and separate them with a comma (,). Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down",
+    fill_text_help2 : "2. Use #cm for comma (e.g., 5,000 as 5#cm000, function(a,b) as function(a#cmb)).",
     star_note : '* Note:',
     do_not_include_space : '2. Please do not include space.',
     //fill_text_help3 : "Now, go back to Settings and select Multi from the drop-down.",
