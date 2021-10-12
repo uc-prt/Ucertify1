@@ -49,8 +49,8 @@
 
 	beforeUpdate(()=> {
 		if (!window.AI) window.AI = AH;
-	});
-
+	})
+	
 	onMount(async () => {
 		let appPass = SSD.get('apiAccessToken') ? {status: 'Success', access_token: SSD.get('apiAccessToken')} : await AH.validateApp(false);
 		if (appPass.status == 'Success') {
@@ -202,8 +202,8 @@
 			if (ajaxRes['domains'] && editorUrl.get('from_myproject') == "1") {
 				window.is_domain = Object.keys(ajaxRes['domains']).length > 0 ? 1 : 0;
 			}
-			console.log('yess');
-			console.log(editorUrl.get('content_guid'));
+			
+			
 			//if (ajaxRes['user']) state._user = ajaxRes['user'];
 			if (editorUrl.get('content_guid')) {
 				content_for_newEditor = ajaxRes['content_for_newEditor'] ? JSON.parse(ajaxRes['content_for_newEditor']) : "";
