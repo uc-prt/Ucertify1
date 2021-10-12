@@ -546,7 +546,7 @@
 					}		
 					if (ALGO.mathtype == 2) {
 						if (iscartesian == true) {
-							let testing = eval(expression);
+							let testing = (0,eval)(expression);
 							let	str = "";
 							for (let k=0; k<testing.length; k++) {
 								testing[k] = "("+testing[k]+") ";
@@ -555,14 +555,14 @@
 							var_list[xml_arr[0].trim()] = str;
 						}					
 						if (!iscartesian) {
-							var_list[xml_arr[0].trim()] = eval(expression).toString();					
+							var_list[xml_arr[0].trim()] = (0,eval)(expression).toString();					
 						}						
 						if (var_list[xml_arr[0].trim()] == "") {
 							var_list[xml_arr[0].trim()] = "None of these"
 						}				
 					} 
 					if (ALGO.mathtype == "") {
-						var_list[xml_arr[0].trim()] = eval(expression.trim());
+						var_list[xml_arr[0].trim()] = (0,eval)(expression.trim());
 					}
 				}				
 			}	
