@@ -40,7 +40,6 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
-	export let in_editor;
 	
 	let hdd = writable({
 			matchtype : "0",
@@ -496,7 +495,8 @@
 			AH.setCss(AH.find(ajax_eId, ".smnotes"), {
 				'width': tableWidth + "px",
 				'margin': "auto",
-				'padding-top': "5px"
+				'padding-top': "21px",
+				'padding-left': '70px'
 			});
 		}
 	}
@@ -881,7 +881,7 @@
 			style='font-family:"Open Sans",sans-serif; font-size: 16px'
 		>
 	
-		<div class="string" id="previewArea"></div>
+		<div class="string d-flex align-items-center justify-content-center" id="previewArea"></div>
 			{#if state.showToolbar} 
 				<FillInTheBlanksToolbar  
 					spanId={state.spanId} 
