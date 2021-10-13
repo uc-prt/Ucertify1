@@ -215,7 +215,6 @@
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         correctLabelStyle();    
     });
-    $:console.log(playerState);
     </script>
     <div>
         {#if playerState.category == "knowledge_check"}
@@ -454,7 +453,7 @@
                         <input
                             type="checkbox"
                             bind:checked={playerState.isplayer}
-                            value={playerState.isplayer}
+                            on:change={() => playerState.isplayer?"":playerState.prevValue.option = ""}
                             color="default"
                             class="custom_checkbox_new"
                             id="isplayer_checkbox"
