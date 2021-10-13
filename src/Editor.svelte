@@ -17,6 +17,7 @@ import Loader from '../helper/Loader.svelte';
 import CreateVariable from './libs/CreateVariable.svelte';
 import InteractiveItem from './components/InteractiveItem.svelte';
 import CommentModal from './components/CommentModal.svelte';
+
 import {
 	tag_player, 
 	initEbookInteractivity, 
@@ -816,8 +817,7 @@ function ucTimelineEditor(ucEditor) {
 	});
 
 	AH.listen(document, 'click', '.copyData', function (_this) {
-		//let element = _this.closest('section:not(.listing_section), li[data-parent="parent_element"], .dot[data-parent="parent_element"]').cloneNode(true);
-		let element = AH.closest(_this, 'section:not(.listing_section), [data-parent="parent_element"]');
+		let element = _this.closest('[data-parent="parent_element"]');
 		AH.find(element, '.ebook_item_text', {action: 'attr', actionData: {id: ''} });
 		if (AH.find(_this.parentElement, ".verticle_timeline2", 'all').length > 0) {
 			AH.find(element, ".timeline_controls", {action: 'remove'});
@@ -830,6 +830,7 @@ function ucTimelineEditor(ucEditor) {
 		}
 		setTimeout(()=> {
 			ucEditor.initEditor(false, "#authoringSection .ebook_item_text");
+			refreshEvents();
 		}, 300);
 	});
 
@@ -2436,7 +2437,7 @@ function localStorageData(data, type) {
 	if (type == 'save') {
 		let d = new Date();
 		data['datetime'] = d.toString().replace(/GMT.*/g, "");
-		if (localdata == null) {
+		if (localdata == null || localdata == undefined) {
 			localdata = {};
 			localdata[userGuid] = {};
 		}

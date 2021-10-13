@@ -1365,7 +1365,7 @@ GRAPH_AUTH.getEquation  = function (mid, prevX, prevY, pointX, pointY) {
         case "parabola": {
                 if (eq[0].indexOf('y^2') == -1) {
                     // it will applied when region bounded on x-axis
-                    a = Math.round(eval((pointY - prevY) / (Math.pow((pointX - prevX), 2))) * 10) / 10;
+                    a = Math.round((0,eval)((pointY - prevY) / (Math.pow((pointX - prevX), 2))) * 10) / 10;
                     // equation of the parabola
                     equation = "y=a*(x-h)^2+k";
                     // puts the value of a, h, k in equation of parabola and changes the operators according to math operators theory as (- * - = +) and (+ * - = -)
@@ -1377,7 +1377,7 @@ GRAPH_AUTH.getEquation  = function (mid, prevX, prevY, pointX, pointY) {
             // defines the line equation
             equation = "(y-y1)=m*(x-x1)";
             // tangent found by using formula m = (y2 - y1)/(x2 - x1)
-            let m = Math.round(eval((pointY - prevY) / (pointX - prevX)) * 10) / 10;
+            let m = Math.round((0,eval)((pointY - prevY) / (pointX - prevX)) * 10) / 10;
             // puts the value of x1, y1, m in equation
             eqn = equation.replace('m', m).replace('y1', prevY).replace('x1', prevX);
             /* applied operator according to math operators as in math (- * - = +), (+ * + = +), (- * + = -) and (+ * - = -) */

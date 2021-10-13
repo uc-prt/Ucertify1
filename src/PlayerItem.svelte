@@ -215,6 +215,7 @@
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         correctLabelStyle();    
     });
+    $:console.log(playerState);
     </script>
     <div>
         {#if playerState.category == "knowledge_check"}
@@ -401,6 +402,7 @@
                             <Textfield
                                 id="asset_m"
                                 label={l.mobile_url}
+                                value={playerState.prevValue.asset_m}
                                 fullWidth="true"
                                 placeholder={l.mobile_url_place}
                             />
@@ -411,6 +413,7 @@
                             <Textfield
                                 id="group_guids"
                                 label={l.transcript_id}
+                                value={playerState.prevValue.scorm_caption_id}
                                 fullWidth="true"
                                 placeholder={l.scorm_place}
                             />
@@ -421,6 +424,7 @@
                             <Textfield
                                 id="img"
                                 fullWidth="true"
+                                value={playerState.prevValue.image}
                                 placeholder={(playerState.type == 'download') ? l.enter_icon_url : l.enter_img_url}
                                 label={l.image_txt}
                             />
@@ -438,6 +442,7 @@
                             <Textfield
                                 id="alt"
                                 label={l.img_alt}
+                                value={playerState.prevValue.alt}
                                 placeholder={l.img_desc}
                                 fullWidth="true"
                             />
@@ -545,7 +550,7 @@
                             />
                         </div>
                         <div class="mt-4">
-                            <div class={(playerState.security ? 'mt-2' : 'mt-2 d-flex ')}>
+                            <div class='mt-2'>
                                 <input
                                     type="checkbox"
                                     bind:checked={securityCheckbox}
@@ -698,7 +703,7 @@
                             </select>
                         {/if}
                         {#if playerState.type == "download"}
-                            <select id="icon" name="icon" class="text-left btn border p-2 clearfix pointer">
+                            <select id="icon" bind:value={playerState.prevValue.img} name="icon" class="text-left btn border p-2 clearfix pointer">
                                 <option value="">{l.select_img}</option>
                                 <option value="ciw-integration/download-icon.png">{l.download_txt}</option>
                                 <option value="microsoft-office-access-icon-1_0008h7.png">{l.ms_access}</option>
@@ -785,7 +790,7 @@
                             fullWidth="true"
                             placeholder={(playerState.type == 'exhibit') ? l.enter_item : l.enter_url}
                             label={(playerState.type == 'exhibit') ? l.item_id : l.url_txt}
-                            bind:value={playerState.exhibitType}
+                            value={(playerState.type == 'exhibit' && playerState.exhibitType == 'link') ? playerState.exhibitType : playerState.prevValue.asset}
                             disabled={(playerState.type == 'exhibit' && playerState.sub_type != 'item') ? true : false}
                             error={(playerState.msg != '') ? playerState.msg : false}
                             helperText={playerState.msg}
@@ -812,6 +817,7 @@
                         <div item class={(playerState.type == 'exhibit' && playerState.sub_type == 'image') ? 'mt-sm pr col-xs-9 insertImageTxt' : 'mt-sm pr col-xs-9 insertImageTxt w-75'}>
                             <Textfield
                                 id="img"
+                                value={playerState.prevValue.img || ""}
                                 fullWidth="true"
                                 placeholder={(playerState.type == 'download') ? l.enter_icon_url : l.enter_img_url}
                                 label={l.image_txt}
@@ -824,6 +830,7 @@
                     <div class="mt-sm">
                         <Textfield
                             id="alt"
+                            bind:value={playerState.prevValue.alt}
                             label={l.img_alt}
                             placeholder={l.img_desc}
                             fullWidth="true"

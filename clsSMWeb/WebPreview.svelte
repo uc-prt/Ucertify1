@@ -638,7 +638,7 @@
                 eval_str = js_data + '\n' + test_func + '(' + test_inp + ');';
             }
             // evalute the string hold in variable 'eval_str' and contains its output
-            let actual_outp = eval(eval_str);
+            let actual_outp = (0,eval)(eval_str);
             // returns true/false if evaluated value mathches with function return value defined in testcase
             if (actual_outp == test_oup) {
                 return true;
@@ -1283,6 +1283,7 @@
 
     // used for check the result status of 'External Script' defined in 'Autograde' dialog box
     function externalCheck(get_cases) {
+        debugger;
         try {
             // contains RegExp pattern for match the string 'var flagONN'
             let re = /var flagONN/gm;
@@ -1295,10 +1296,10 @@
             let result;
             if (!re.test(get_cases)) {
                 // contains the value return by the script defined in js editor and in 'External Script' field of 'Autograde' dialog box
-                result = eval(js_data + '\n' + get_cases);
+                result = (0,eval)(js_data + '\n' + get_cases);
             } else {
                 // contains the value return by the script defined in 'External Script' field of 'Autograde
-                result = eval(get_cases);
+                result = (0,eval)(get_cases);
             }
             // returns the value stored in variable 'result'
             return result;

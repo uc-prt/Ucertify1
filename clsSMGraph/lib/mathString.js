@@ -646,14 +646,14 @@ GRAPH.getEquationPreview = function (elem, pointx, pointy, prevx, prevy) {
 
                 if (!eq[0].includes('x')) {
                     // find the value of 'a' after calculation
-                    a = Math.round(eval((pointy - prevy) / (Math.pow((pointx - prevx), 2))) * 10) / 10;
+                    a = Math.round((0,eval)((pointy - prevy) / (Math.pow((pointx - prevx), 2))) * 10) / 10;
                     // equation of parabola if region covering the y-axis
                     equation = "a*(x-h)^2+k";
                 } else {
                     // equation of parabola if region covering the x-axis
                     equation = "a*(y-h)^2+k";
                     // find the value of 'a' after calculation	
-                    a = eval(pointx - prevy) / (Math.pow((pointy - prevx), 2));
+                    a = (0,eval)(pointx - prevy) / (Math.pow((pointy - prevx), 2));
                 }
                 // equation of parabola after substituting the value of 'a', 'h', 'k' in it's general equation
                 let eqn = equation.replace('a', a).replace('h', prevx).replace('k', prevy);
@@ -673,8 +673,8 @@ GRAPH.getEquationPreview = function (elem, pointx, pointy, prevx, prevy) {
                 // assign the value 1 to 'a' if the value of 'eq[1].charAt(0)' represents javascript number otherwise returns the value of 'eq[1].charAt(0)' 
                 a = (!(!isNaN(parseFloat(eq[1].charAt(0))) && isFinite(eq[1].charAt(0)))) ? 1 : eq[1].charAt(0);
                 // assign the value of is_correct variable to true or false after calculating the given condition
-                is_correct = (Math.round(eval(str.replace('x', pointx)) * 100 / 100) == pointy &&
-                    Math.round(eval(str.replace('x', prevx)) * 100 / 100) == prevy &&
+                is_correct = (Math.round((0,eval)(str.replace('x', pointx)) * 100 / 100) == pointy &&
+                    Math.round((0,eval)(str.replace('x', prevx)) * 100 / 100) == prevy &&
                     a == Math.abs(prevy)) ? true : false;
                 // returns the true of false value
                 return is_correct;
@@ -682,7 +682,7 @@ GRAPH.getEquationPreview = function (elem, pointx, pointy, prevx, prevy) {
         case "line":
             {
                 // assign the value of is_correct variable to true or false after calculating the given condition
-                is_correct = (Math.round(eval(eq[1].replace('x', pointx))) == Math.round(eval(eq[0].replace('y', pointy))) && Math.round(eval(eq[1].replace('x', prevx))) == Math.round(eval(eq[0].replace('y', prevy)))) ? true : false;
+                is_correct = (Math.round((0,eval)(eq[1].replace('x', pointx))) == Math.round((0,eval)(eq[0].replace('y', pointy))) && Math.round((0,eval)(eq[1].replace('x', prevx))) == Math.round((0,eval)(eq[0].replace('y', prevy)))) ? true : false;
                 //returns the variable is_correct
                 return is_correct;
             }

@@ -24,7 +24,6 @@
     export let analyzeVariable;
     export let toggleRemediation;
     export let l;
-    $: console.log('editorState', editorState.guid);
     let deviceIframeContainer = ["background:url(" + editor.baseUrlTheme + "svelte_items/images/mobile.svg);width:370px;height:707px;margin:0 auto;padding: 105px 5px;", "background:url(" + editor.baseUrlTheme + "svelte_items/images/tab.svg);width:871px;height:1242px;margin:0 auto;padding: 105px 5px;"];
 	let deviceIframeProperty = ["overflow: auto;height: 500px;background: #fff;padding:0 10px;margin-left:2px;", "overflow: auto;height: 1045px;background: #fff;padding:0 10px;margin-left:2px;"];
     let openGudids;

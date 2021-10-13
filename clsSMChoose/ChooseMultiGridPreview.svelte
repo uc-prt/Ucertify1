@@ -457,7 +457,7 @@
                                 key={'p'+i}
                                 data-optid={i}
                                 data-ischecked={value.ischecked}
-                                class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
+                                class="matchlist_item {isReview? 'drag-none': ''} {value.ischecked == true ? 'bg-primary text-white' : ''} position-relative ui-draggable m-0 overflow-auto"
                                 style="width: {box_width};"
                             >
                                 {#if value.value.charAt(0) == "!"}
@@ -493,7 +493,7 @@
                             data-optid={i}
                             data-ischecked={value.ischecked}
                             on:keydown={hotkeysAda}
-                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : ''} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} position-relative ui-draggable m-0 overflow-auto"
+                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : ''} {isReview ? 'isreviewbgcolor drag-none' : ''} {value.ischecked == true ? 'bg-primary text-white' : ''} position-relative ui-draggable m-0 overflow-auto"
                             style="width: {box_width};"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
@@ -543,3 +543,12 @@
         </div>
     </div>
     
+    <style>
+        .drag-none{
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag:none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
