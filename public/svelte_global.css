@@ -25679,3 +25679,11 @@ table th {
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-link-preview {
   max-height: 100% !important;
 }
+
+i.mce-ico.mce-i-mytextwithicon::before {
+    content: "\e017";
+}
+.mce-i-plus:before {
+  font-size: 11px;
+  display: flex;
+}
