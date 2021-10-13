@@ -5908,14 +5908,6 @@ display: inline;
 margin-bottom: 0;
 }
 
-.division1 span, 
-.division2 span, 
-.division3 span, 
-.division4 span, 
-.division5 span, 
-.division6 span {
-display: table-row;
-}
 .tasks-dialog .ui-icon-extlink,
 .tasks-dialog .ui-icon-minus {
 transform: scale(1.4) !important;
