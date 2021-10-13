@@ -1596,7 +1596,7 @@ function setupEditor(urlVars) {
 	activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 	AH.selectAll("#stem, #content, #remediation").forEach((_elm)=> {
 		AH.watchDom(_elm, (changes)=> {
-			console.warn(changes);
+			//console.warn(changes);
 			if (_editorBuffer['watchDom']) clearTimeout(_editorBuffer['watchDom']);
 			_editorBuffer['watchDom'] = setTimeout(refreshEvents, 500);
 		});

@@ -441,15 +441,15 @@
             event.target.value = '';
             return false;
         } else if (state.plus_minus == 0 &&  event.target.value == "+" || event.target.value == "-") {
-            AH.alert('Plz select plus and minus option');
+            AH.alert(l.plus_minus_option);
             event.target.value = "";
             return false;
         } else if (state.slash_val == 0 &&  event.target.value == "/") {
-            AH.alert('Plz select slash option');
+            AH.alert(l.slash_option);
             event.target.value = "";
             return false;
         } else if (state.decimal_val == 0 &&  event.target.value == ".") {
-            AH.alert('Plz select decimal option');
+            AH.alert(l.decimal_option);
             event.target.value = "";
             return false;
         }
