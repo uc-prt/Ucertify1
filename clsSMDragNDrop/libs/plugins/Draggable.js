@@ -200,6 +200,9 @@ export default class Draggable {
 
     bindDraggable(drag) {
         AI.listen('body', 'mousedown', drag, (current, event) => {
+            if(event.which == 3){
+                return;
+            }
             if (this.changeContainment) {
                 this.container = this.changeContainment(current);
             }
