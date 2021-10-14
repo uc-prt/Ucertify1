@@ -456,7 +456,7 @@
 								target: e.target.id,
 								active: tinyMCE.activeEditor.id
 							});
-							AH.showmsg("Please click the table first then manipulate.");
+							// AH.alert("Please click the table first then manipulate.");
 						}
 					},500);
 				});
