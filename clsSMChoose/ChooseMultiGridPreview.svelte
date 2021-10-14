@@ -553,4 +553,7 @@
             -webkit-user-select: none;
             -ms-user-select: none;
         }
+        li[data-ischecked="true"]{
+            pointer-events: none;
+        }
     </style>
