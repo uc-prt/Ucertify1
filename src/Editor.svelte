@@ -1480,7 +1480,7 @@ function setupEditor(urlVars) {
 		
 		tinyMCE.PluginManager.add('addnewsection', function (editorPlugin) {
 			editorPlugin.addMenuItem('addnew', {
-				icon: 'mytextwithicon',
+				icon: 'plus',
 				text: 'Add New',
 				context: "tools",
 				onClick: function () {
