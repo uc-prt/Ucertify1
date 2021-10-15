@@ -986,7 +986,7 @@ function initEditorListeners() {
 
 	AH.listen('body', 'click', '#authoringDiv player,#authoringDiv snt,#authoringDiv seq,#authoringDiv .link', function(_this) {
 		try {
-			player_parent = AH.parent(_this, ".auth-editor").getAttribute("id");
+			player_parent = AH.parent(_this, ".auth-editor")?.getAttribute("id");
 			if (_this.classList.contains('hidecontent') || _this.closest("#stemShow, #remediationShow")) { 
 				return false; 
 			}
