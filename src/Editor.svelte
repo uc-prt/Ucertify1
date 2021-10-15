@@ -1426,9 +1426,7 @@ function externalToggle() {
 
 // Manage tab switching of editor
 function editorPaneShow(event) {
-	if (true) {
-		externalToggle();
-	}
+	externalToggle();
 	if (event.target.getAttribute('href') == "#authoringDiv") {
 		state.remediationToggle = false;
 		AH.toggleDom("#device_btn", 'hide');
@@ -1441,7 +1439,6 @@ function editorPaneShow(event) {
 		}
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
-		AH.selectAll('.mce-panel', 'hide', {action: 'hiden'})
 		state.editorView = 'preview';
 	}
 }

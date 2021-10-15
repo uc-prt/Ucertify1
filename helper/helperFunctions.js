@@ -1041,18 +1041,18 @@ export function tag_player(obj) {
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
                     var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
-                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
+                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'beforeend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
                     AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
                 } else {
                     if (is_full_url && asset.indexOf('vimeo') == -1 && sub_type != 'youtube') {
                         var _asset = (sub_type == 'hostedvideo') ? asset : asset + '?vq=hd1080';
-                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="' + _asset + '" frameborder="0" title="' + player_title + '" allowfullscreen></iframe></center>', 'afterend');
+                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="' + _asset + '" frameborder="0" title="' + player_title + '" allowfullscreen></iframe></center>', 'beforeend');
                     } else if (domain == 'youtube' || sub_type == 'youtube') {
-                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="https://www.youtube.com/embed/' + asset + '?vq=hd1080' + '" frameborder="0" title="' + player_title + '" allowfullscreen></iframe></center>', 'afterend');
+                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="https://www.youtube.com/embed/' + asset + '?vq=hd1080' + '" frameborder="0" title="' + player_title + '" allowfullscreen></iframe></center>', 'beforeend');
                     } else if (domain == 'lynda' || sub_type == 'lynda') {
-                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="//www.lynda.com/player/embed/' + asset + '?fs=3&ps=paused&utm_medium=referral&utm_source=embed+video&utm_campaign=ldc-website&utm_content=vid-' + asset + '" mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" frameborder="0" title="' + player_title + '"></iframe></center>', 'afterend');
+                        AH.insert(_this, video_title_tag + '<center><iframe tabindex="' + tabindex.z + '" style="' + options + '" class="video_frame" src="//www.lynda.com/player/embed/' + asset + '?fs=3&ps=paused&utm_medium=referral&utm_source=embed+video&utm_campaign=ldc-website&utm_content=vid-' + asset + '" mozallowfullscreen="true" webkitallowfullscreen="true" allowfullscreen="true" frameborder="0" title="' + player_title + '"></iframe></center>', 'beforeend');
                     } else if (extension != '') {
                         _full_url = '';
                         if (!preview_image || preview_image == '') {
@@ -1074,7 +1074,7 @@ export function tag_player(obj) {
                         if (AH.selectAll('#video_player_' + player_id).length > 0) {
                             new_player_id = player_id + Math.floor(Math.random() * 90 + 10);
                         }
-                        AH.insert(_this, video_title_tag + '<center><div tabindex="' + tabindex.z + '" title="Video" class="video_preview" id="video_player_' + new_player_id + '" embed=1 style="position:relative;display:inline-block;min-width:500px;max-width:800px" asset="' + _full_url + asset + '"' + '><img title="' + video_alt + '" src="' + preview_image + '"/><span class="play-video-icon" style="position:absolute;cursor:pointer;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;" ></span></div></center>', 'afterend');
+                        AH.insert(_this, video_title_tag + '<center><div tabindex="' + tabindex.z + '" title="Video" class="video_preview" id="video_player_' + new_player_id + '" embed=1 style="position:relative;display:inline-block;min-width:500px;max-width:800px" asset="' + _full_url + asset + '"' + '><img title="' + video_alt + '" src="' + preview_image + '"/><span class="play-video-icon" style="position:absolute;cursor:pointer;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;" ></span></div></center>', 'beforeend');
                     }
                 }
                 AH.find(_this, `[titleid="${player_id}"]`, { action: 'html', actionData: title })
@@ -1544,7 +1544,6 @@ export function tag_player(obj) {
 }
 
 function getTestFrameworkDetail(checkViewAttr) {
-    debugger;
     var detail = -1;
     if (AH.select('#uc-item-test-template').length === 1) {
         var tempTestView = AH.select('#uc-item-test-template').getAttribute('temp_test_view');
