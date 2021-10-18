@@ -17,6 +17,7 @@ import Loader from '../helper/Loader.svelte';
 import CreateVariable from './libs/CreateVariable.svelte';
 import InteractiveItem from './components/InteractiveItem.svelte';
 import CommentModal from './components/CommentModal.svelte';
+import BigScreen from './components/BigScreen.js';
 
 import {
 	tag_player, 
@@ -251,6 +252,9 @@ onMount(async ()=> {
 	// For debugging
 	AH.set("setEditor", updateModuleState);
 	AH.set('getEditor', getState);
+	if(window?.document){
+		BigScreen(window, document, false);
+	}
 });
 
 afterUpdate(() => {
