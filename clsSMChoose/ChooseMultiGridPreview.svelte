@@ -497,15 +497,17 @@
                             style="width: {box_width};"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-                                {#if value.iscorrect == true}
-                                    <span
-                                        class="icomoon-new-24px-checkmark-circle-1 s4 text-success position-absolute userans_status"
-                                    />
-                                {:else}
-                                    <span
-                                        class="icomoon-new-24px-cancel-circle-1 s4 text-danger position-absolute userans_status"
-                                    />
-                                {/if}
+                                <div class="text-end pe-1">
+                                    {#if value.iscorrect == true}
+                                        <i
+                                            class="icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status"
+                                        />
+                                    {:else}
+                                        <i
+                                            class="icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status"
+                                        />
+                                    {/if}
+                                </div>
                             {/if}
                             {#if value.value.charAt(0) == "!"}
                                 {#if value.value.charAt(1) == "*"}
@@ -550,5 +552,8 @@
             -webkit-user-drag:none;
             -webkit-user-select: none;
             -ms-user-select: none;
+        }
+        li[data-ischecked="true"]{
+            pointer-events: none;
         }
     </style>

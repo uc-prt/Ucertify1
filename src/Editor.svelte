@@ -986,7 +986,7 @@ function initEditorListeners() {
 
 	AH.listen('body', 'click', '#authoringDiv player,#authoringDiv snt,#authoringDiv seq,#authoringDiv .link', function(_this) {
 		try {
-			player_parent = AH.parent(_this, ".auth-editor").getAttribute("id");
+			player_parent = AH.parent(_this, ".auth-editor")?.getAttribute("id");
 			if (_this.classList.contains('hidecontent') || _this.closest("#stemShow, #remediationShow")) { 
 				return false; 
 			}
@@ -1426,9 +1426,7 @@ function externalToggle() {
 
 // Manage tab switching of editor
 function editorPaneShow(event) {
-	if (true) {
-		externalToggle();
-	}
+	externalToggle();
 	if (event.target.getAttribute('href') == "#authoringDiv") {
 		state.remediationToggle = false;
 		AH.toggleDom("#device_btn", 'hide');
@@ -1441,7 +1439,6 @@ function editorPaneShow(event) {
 		}
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
-		AH.selectAll('.mce-panel', 'hide', {action: 'hiden'})
 		state.editorView = 'preview';
 	}
 }
@@ -1480,7 +1477,7 @@ function setupEditor(urlVars) {
 		
 		tinyMCE.PluginManager.add('addnewsection', function (editorPlugin) {
 			editorPlugin.addMenuItem('addnew', {
-				icon: 'mytextwithicon',
+				icon: 'plus',
 				text: 'Add New',
 				context: "tools",
 				onClick: function () {
