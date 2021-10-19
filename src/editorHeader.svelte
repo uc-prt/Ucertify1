@@ -276,7 +276,6 @@
                 data: queryData
             }).then((response)=> {
                     AH.activate(0);
-                    console.log(response);
                     if (response == 1) {
                         AH.showmsg("Data updated successfully.");
                     } else {
