@@ -721,3 +721,94 @@ function formatXml(xml, cdata_format) {
     }
     return formatted;
 }
+
+function functionForFullscreen() {
+	var frame_element = document.getElementById("authoringFrame");
+	if (BigScreen.enabled) {
+		BigScreen.toggle(frame_element);
+	}
+	BigScreen.onenter = function () {
+		document.querySelector('#authoringFrame')
+      .contentDocument
+      .querySelector('#fullScreenButton').innerText = 'Back To Editor';
+    
+		const iconEle = document.querySelector('#authoringFrame')
+      .contentDocument
+      .querySelector('#smartFullscr i');
+    if(iconEle){
+    iconEle
+      .classList
+      .remove('icomoon-expand');
+    iconEle
+      .classList
+			.add("icomoon-contract");
+    }
+    
+		const myEducatorItems = document.querySelectorAll(".educator_my_items");
+    
+    myEducatorItems.length > 0? myEducatorItems.forEach(ele => ele.setAttribute('style', 'position: relative; z-index: -1;')): "";
+    
+    
+		const titlebars = document.querySelectorAll("#titlebar");
+		titlebars.length > 0
+			? titlebars.forEach(ele => ele.setAttribute('style', 'display: none;')): "";
+    
+    const bottomBars = document.querySelectorAll("#bottombar"); 
+		bottomBars.length > 0
+			? bottomBars.forEach(ele => ele.setAttribute('style', 'display: none')): "";
+	};
+	BigScreen.onexit = function () {
+    document.querySelector('#authoringFrame')
+      .contentDocument
+      .querySelector('#fullScreenButton')
+	  .innerText = 'FullScreen';
+    
+		const iconEle = document.querySelector('#authoringFrame')
+      .contentDocument
+      .querySelector('#smartFullscr i');
+    
+    if(iconEle){
+      iconEle
+        .classList
+        .add('icomoon-expand');
+      iconEle
+        .classList
+        .remove("icomoon-contract");
+    }
+    
+		const myEducatorItems = document.querySelectorAll(".educator_my_items");
+    
+    myEducatorItems.length > 0? myEducatorItems.forEach(ele => ele.setAttribute('style', 'z-index: initial;')): "";
+    
+    
+		const titlebars = document.querySelectorAll("#titlebar");
+		titlebars.length > 0
+			? titlebars.forEach(ele => ele.setAttribute('style', 'display: block;')): "";
+    
+    const bottomBars = document.querySelectorAll("#bottombar"); 
+		bottomBars.length > 0
+			? bottomBars.forEach(ele => ele.setAttribute('style', 'display: block')): "";
+	};
+}
+function scrollToTop (duration) {
+    // cancel if already on top
+    if (document.scrollingElement.scrollTop === 0) return;
+
+    const totalScrollDistance = document.scrollingElement.scrollTop;
+    let scrollY = totalScrollDistance, oldTimestamp = null;
+
+    function step (newTimestamp) {
+        if (oldTimestamp !== null) {
+            // if duration is 0 scrollY will be -Infinity
+            scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / duration;
+            if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
+            document.scrollingElement.scrollTop = scrollY;
+        }
+        oldTimestamp = newTimestamp;
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+function scrollnow(px) {
+	scrollToTop;
+}

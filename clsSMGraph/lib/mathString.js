@@ -908,32 +908,38 @@ GRAPH.checkChildAnswer = function (mid, pElem) {
                     GRAPH.result = false;
                     break;
                 } else {
-                    index_no = 0;
+                    let index_no = 0;
                     let index_no1 = 0;
                     let count_data = 0;
                     let not_match = 0;
                     while (index_no < ansKey.length) {
                         count_data = 0;
-                        while (index_no1 < userKey.length) {
+                        index_no1 = 0;
+                        while (index_no1 < userKey.length && userKey.length == ansKey.length) {
                             let left1, left2, right1, right2;
+                            const x2minusx1 = parseFloat(ansKey[index_no+1].split(',')[0]) - parseFloat(ansKey[index_no].split(',')[0]);
+                            const y2minusy1 = parseFloat(ansKey[index_no+1].split(',')[1]) - parseFloat(ansKey[index_no].split(',')[1]);
                             /* left1 is the left hand side value and right1 is the right hand side value after putting the values of user answer in standard line equation '(y-y1)(x2-x1) = (y2-y1)(x-x1)', where y and x are the values of first point's x and y value of line created at the time of question creation and x1, y1, x2, y2 are the points draw by user to create the line graph  */
-                            left1 = (((userKey[index_no1].split(',')[1]) - (ansKey[index_no].split(',')[1])) * ((ansKey[index_no + 1].split(',')[0]) - (ansKey[index_no].split(',')[0])));
-                            right1 = (((userKey[index_no1].split(',')[0]) - (ansKey[index_no].split(',')[0])) * ((ansKey[index_no + 1].split(',')[1]) - (ansKey[index_no].split(',')[1])));
+                            left1 = (parseFloat(userKey[index_no1].split(',')[1]) - parseFloat(ansKey[index_no].split(',')[1]))*x2minusx1;
+                            right1 = y2minusy1*(parseFloat(userKey[index_no1].split(',')[0]) - parseFloat(ansKey[index_no].split(',')[0]));
                             /* left2 is the left hand side value and right2 is the right hand side value after putting the values of user answer in standard line equation '(y-y1)(x2-x1) = (y2-y1)(x-x1)', where y and x are the values of second point's x and y value of line created at the time of question creation and x1, y1, x2, y2 are the points draw by user to create the line graph  */
-                            left2 = (((userKey[index_no1 + 1].split(',')[1]) - (ansKey[index_no].split(',')[1])) * ((ansKey[index_no + 1].split(',')[0]) - (ansKey[index_no].split(',')[0])));
-                            right2 = (((userKey[index_no1 + 1].split(',')[0]) - (ansKey[index_no].split(',')[0])) * ((ansKey[index_no + 1].split(',')[1]) - (ansKey[index_no].split(',')[1])));
+                            left2 = (parseFloat(userKey[index_no1+1].split(',')[1]) - parseFloat(ansKey[index_no].split(',')[1]))*x2minusx1;
+                            right2 = y2minusy1*(parseFloat(userKey[index_no1+1].split(',')[0]) - parseFloat(ansKey[index_no].split(',')[0]));
+
                             if ((parseFloat(left1) == parseFloat(right1)) && (parseFloat(left2) == parseFloat(right2))) {
                                 // assign the value to this variable will help to return the value of variable GRAPH.result
                                 count_data += 1;
+                                not_match = 0;
+                                break;
                             } else {
                                 GRAPH.result = false;
                                 not_match = 1;
-                                break;
                             }
                             // increase the value 2 more in there previous value
                             index_no1 += 2;
                         }
                         if (not_match == 1) {
+                            count_data = 0;
                             break;
                         }
                         // increase the value 2 more in there previous value
@@ -1139,7 +1145,7 @@ GRAPH.showchildansdrag = function (mid, pElem, ansType, review) {
                                     prevPoint = point.board.prevPoint;
                                 } else {
                                     /* calls GRAPH.drawelem for value of is_false after setting the stroke and color of the point */
-                                    is_false = GRAPH.drawelem(elem, GRAPH.sinfo, is_false);
+                                    is_false = GRAPH.drawelem(elem, GRAPH.result, is_false);
                                 }
                                 break;
                             }

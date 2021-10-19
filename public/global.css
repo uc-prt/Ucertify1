@@ -622,8 +622,7 @@ dl.drop_list4,
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-}
-.list5, 
+} 
 .list6,
 .list5_new, 
 .list6_new {
@@ -5908,14 +5907,6 @@ display: inline;
 margin-bottom: 0;
 }
 
-.division1 span, 
-.division2 span, 
-.division3 span, 
-.division4 span, 
-.division5 span, 
-.division6 span {
-display: table-row;
-}
 .tasks-dialog .ui-icon-extlink,
 .tasks-dialog .ui-icon-minus {
 transform: scale(1.4) !important;
@@ -8637,4 +8628,12 @@ table th {
 }
 .sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-link-preview {
   max-height: 100% !important;
+}
+
+i.mce-ico.mce-i-mytextwithicon::before {
+    content: "\e017";
+}
+.mce-i-plus:before {
+  font-size: 11px;
+  display: flex;
 }

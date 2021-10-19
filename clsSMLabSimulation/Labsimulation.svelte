@@ -128,11 +128,11 @@
 				// for getting the authoring form
 				windowHtml = getAuthoringForm(state.qxml, state.module);
 				AH.insert('#authoringArea', windowHtml, 'beforeend');
-				AH.selectAll('#tilteShow,#stemShow,#remediationShow', 'remove');
+				AH.selectAll('#titleShow,#stemShow,#remediationShow', 'remove', {action: 'remove'});
 				AH.select('#title', 'html', state.titleData);
 				AH.select('#stem', 'html', state.stemData);
 				AH.select('#remediation', 'html', state.remediationData);
-				AH.selectAll('#title,#stem,#remediation,#externalInputs', 'show');
+				AH.selectAll('#title,#stem,#remediation', 'show');
 				unRenderPlayer();
 				setTimeout(function() {
 					// submit the authoring form details
@@ -186,7 +186,6 @@
 		//@Pradeep: calling havey process
 		// getting the qxml
 		qxml = await getQxml(fromRemed);
-		console.log("qxml Fetched");
 		// for rendering the player
 		renderPlayer();
 		AH.select('#headerTitle', 'html', l.preview);
@@ -196,20 +195,23 @@
 		var testHtml = getTestForm(qxml, '<smans></smans>', state.module);
 		// append in the authoring area
 		AH.insert('#authoringArea', testHtml, 'beforeend');
-		// AH.selectAll('#tilteShow, #stemShow, #remediationShow', 'remove');
+		// AH.selectAll('#titleShow, #stemShow, #remediationShow', 'remove');
 
 		// for getting the titleData, stemData , remediation data
 		let titleData = AH.select('#title').innerHTML, 
 		stemData = AH.select('#stem').innerHTML, 
 		remediationData = AH.select('#remediation').innerHTML;
-		AH.insert(AH.select(AH.empty('#title'), 'hide'), '<div id="tilteShow">' + titleData + '</div>', 'afterend');
-		AH.insert(AH.select(AH.empty('#stem'), 'hide'), '<div id="stemShow">' + stemData + '</div>', 'afterend');
-		AH.insert(AH.select(AH.empty('#remediation'),'hide'), '<div id="remediationShow">' + remediationData + '</div>', 'afterend');
+		AH.selectAll("#titleShow, #stemShow, #remediationShow", 'remove', {action: 'remove'});
+
+		const titleEle = AH.select('#title', 'hide', {action: 'hide'});
+		const stemEle = AH.select('#stem', 'hide', {action: 'hide'});
+		const remediationEle = AH.select('#remediation', 'hide', {action: 'hide'});
+
+		AH.insert(titleEle, '<div id="titleShow">' + titleData + '</div>', 'afterend');
+		AH.insert(stemEle, '<div id="stemShow">' + stemData + '</div>', 'afterend');
+		AH.insert(remediationEle, '<div id="remediationShow">' + remediationData + '</div>', 'afterend');
 		AH.select('#externalInputs', 'hide');
-		state.qxml = qxml;
-		state.titleData = titleData;
-		state.stemData = stemData;
-		state.remediationData = remediationData;
+		state = {...state, qxml, titleData, stemData, remediationData};
 		setTimeout(function() {
 			// for submitting the form
 			AH.selectAll("#stemShow .ebook_item_text, #remediationShow .ebook_item_text", 'attr', {contenteditable: false});
@@ -262,7 +264,6 @@
 		});
 	}
 	function renderPlayer() {
-		console.trace('called');
 		AH.empty('#authoringDiv player');
 		tag_player(AH.select('#authoringDiv'));
 		AH.find('#authoringDiv', 'player', {action: 'addClass', actionData: 'hidecontent'});
@@ -317,6 +318,14 @@
 				AH.select('form[target="authoringFrame"]').submit();
 				editorState.activator = true;
 			}, 100);
+		}
+	}
+
+	$:{
+		if(editorState.editorView == 'authoring'){
+			callOnStateChange();
+		} else {
+			callOnStateChange();
 		}
 	}
 </script>

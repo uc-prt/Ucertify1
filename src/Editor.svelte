@@ -17,6 +17,7 @@ import Loader from '../helper/Loader.svelte';
 import CreateVariable from './libs/CreateVariable.svelte';
 import InteractiveItem from './components/InteractiveItem.svelte';
 import CommentModal from './components/CommentModal.svelte';
+import BigScreen from './components/BigScreen.js';
 
 import {
 	tag_player, 
@@ -251,6 +252,9 @@ onMount(async ()=> {
 	// For debugging
 	AH.set("setEditor", updateModuleState);
 	AH.set('getEditor', getState);
+	if(window?.document){
+		BigScreen(window, document, false);
+	}
 });
 
 afterUpdate(() => {
@@ -986,7 +990,7 @@ function initEditorListeners() {
 
 	AH.listen('body', 'click', '#authoringDiv player,#authoringDiv snt,#authoringDiv seq,#authoringDiv .link', function(_this) {
 		try {
-			player_parent = AH.parent(_this, ".auth-editor").getAttribute("id");
+			player_parent = AH.parent(_this, ".auth-editor")?.getAttribute("id");
 			if (_this.classList.contains('hidecontent') || _this.closest("#stemShow, #remediationShow")) { 
 				return false; 
 			}
@@ -1426,9 +1430,7 @@ function externalToggle() {
 
 // Manage tab switching of editor
 function editorPaneShow(event) {
-	if (true) {
-		externalToggle();
-	}
+	externalToggle();
 	if (event.target.getAttribute('href') == "#authoringDiv") {
 		state.remediationToggle = false;
 		AH.toggleDom("#device_btn", 'hide');
@@ -1441,7 +1443,6 @@ function editorPaneShow(event) {
 		}
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
-		AH.selectAll('.mce-panel', 'hide', {action: 'hiden'})
 		state.editorView = 'preview';
 	}
 }
@@ -1480,7 +1481,7 @@ function setupEditor(urlVars) {
 		
 		tinyMCE.PluginManager.add('addnewsection', function (editorPlugin) {
 			editorPlugin.addMenuItem('addnew', {
-				icon: 'mytextwithicon',
+				icon: 'plus',
 				text: 'Add New',
 				context: "tools",
 				onClick: function () {

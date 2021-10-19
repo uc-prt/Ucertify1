@@ -594,8 +594,8 @@ export default class hotspotScript {
     // for binding the lab
     bindLab() {
         this.labBinded = true;
-        JS.find(this.elemId, '.hotArea0.hotArea', 'css', {display: 'none'});
-        JS.find(this.elemId, '.hotSpotImg', 'css', {pointerEvents: 'auto'});
+        JS.find(this.elemId, '.hotArea0.hotArea', {action: 'css', actionData: {display: 'none'} });
+        JS.find(this.elemId, '.hotSpotImg', {action: 'css', actionData: {pointerEvents: 'auto'} });
     }
 
     /* ajax based code */
