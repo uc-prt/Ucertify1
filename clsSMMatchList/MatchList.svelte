@@ -171,7 +171,6 @@
 		cdata = QXML.smxml.matchlist.__cdata;
 
 		// checking for if is_algo is defined in xml or not
-		console.log(QXML.smxml);
 		if (QXML.smxml.matchlist._is_algo) {
 			// if is_algo is true then put the value in isalgo as true else false
 			state.isalgo = (QXML.smxml.matchlist._is_algo == "true" ? true : false);
