@@ -56,13 +56,16 @@
             //setTimeout(function(){
                 console.log('check...');
                 let id = parseInt(_e.target.getAttribute('data-seq'));
-                let data = _e.target.innerHTML
-                data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
-                all_steps[id].__cdata = data; 
-                //AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
-                updateXML();
-                AH.select('#'+_element.id).click();
-                _e.target.click();
+                if(!Number.isNaN(id)) {
+                    let data = _e.target.innerHTML
+                    data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
+                    all_steps[id].__cdata = data; 
+                    //AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
+                    updateXML();
+                    AH.select('#'+_element.id).click();
+                    _e.target.click();
+                }
+                
             //},0);
         })
 
