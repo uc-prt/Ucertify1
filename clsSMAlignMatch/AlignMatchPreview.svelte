@@ -566,9 +566,7 @@
                         AH.find(container, '.element', 'all').forEach(function (val) {
                             // removes the visible element have class 'element' inside the category defined at index equals to the value of variable 'key'
                             if(getComputedStyle(val, null).display == 'table-cell') {
-                                if (i != 0) {
-                                    state.correct_match[val.getAttribute('seq_no')] = true;
-                                }
+                                state.correct_match[val.getAttribute('seq_no')] = true;
                             }
                         });
                         setTimeout(function() {
