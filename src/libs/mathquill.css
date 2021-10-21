@@ -98,7 +98,11 @@
   display: inline-block;
   vertical-align: bottom;
   background-image: none;
-  height: 99%;
+  
+  height: 49px;
+  position: relative!important;
+  width: 127px;
+  
 }
 .mq-math-mode .mq-non-leaf,
 .mq-math-mode .mq-scaled:not(.mq-sqrt-prefix) {
