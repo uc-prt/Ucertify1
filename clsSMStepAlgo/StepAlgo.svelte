@@ -54,7 +54,6 @@
 
         AH.listen(document,'mouseup','.steps_edit',function(_element,_e){
             //setTimeout(function(){
-                console.log('check...');
                 let id = parseInt(_e.target.getAttribute('data-seq'));
                 if(!Number.isNaN(id)) {
                     let data = _e.target.innerHTML

@@ -1076,7 +1076,6 @@
                 <span>
                     <label for="setLineColor" class="mt-2 text-dark">Draw line color</label>
                 </span>
-                {console.log("color",state.lineColor)}
                 <select id="setLineColor" class="form-select" bind:value={state.lineColor} on:blur={changeLine.bind(this)} >
                     <option>Please Select</option>
                     <option value="red">Red</option>
