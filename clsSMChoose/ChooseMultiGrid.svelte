@@ -30,28 +30,12 @@
 	export let xml;
 	export let getChildXml;
 	let cols, counter, counter1, count, table_row;
+	let MatchlistImg;
+	let MatchlistAlt;
 
 	onMount(() => {
 		state.xml = xml;
 		loadModule(xml); 
-
-		AH.listen(document,'click','.columnContainer',function(e) {
-			var elem_id = e.getAttribute('id');
-			setTimeout(function () {
-				if(AH.find('#' + elem_id,'img','all').length > 0) {
-					let im = AH.find('#' + elem_id,'img').getAttribute('src');
-					im = im.replace(/\/\/s3.amazonaws.com\/jigyaasa_content_static\//, '');
-					AH.select('#MatchlistImg').value = im;
-					AH.select('#MatchlistAlt').value = AH.find('#' + elem_id,'img').getAttribute('alt');
-				} else {
-					AH.select('#MatchlistImg').value = '';
-					AH.select('#MatchlistAlt').value = '';
-				}
-			},300);
-		})
-
-
-
 	});
 	$: {
 		count = 0;
@@ -215,15 +199,19 @@
 	function openImageDialog(e,class_name) {
 		state.openImageDialog = true;
 		state.imageClass = class_name;
-		let timer;
-		if (state.imgVal || state.altVal) {
-			(timer) ? clearTimeout(timer) : null;
-			timer = setTimeout(function() {
-				clearTimeout(timer);
-				AH.select('#MatchlistImg').value = state.imgVal;
-				AH.select('#MatchlistAlt').value = state.altVal;
-			}, 200);
+		const parent = e.target.parentElement.parentElement.parentElement;
+		const childImg = AH.find(parent, 'img');
+		if(childImg){
+			const breakPath = childImg.getAttribute('src').split('/');
+			state.imgVal = breakPath[breakPath.length - 1];
+			state.altVal = childImg.getAttribute('alt');
 		}
+		else{
+			state.imgVal = '';
+			state.altVal = '';
+		}
+		MatchlistImg.value = state.imgVal;
+		MatchlistAlt.value = state.altVal;
 		AH.getBS(AI.select('#addImageModal'), 'Modal').show();
 	}
 
@@ -584,13 +572,13 @@
 						<div class="col-md-6 px-1">
 							<div class="form-group">
 								<label class="control-label font-weight-normal mb-0" for="MatchlistImg">Background Image</label>
-								<input type="text" class="form-control form-control-md" id="MatchlistImg" placeholder="Image url" />
+								<input type="text" class="form-control form-control-md" bind:this={MatchlistImg} id="MatchlistImg" value='' placeholder="Image url" />
 							</div>
 						</div>
 						<div class="col-md-6 px-1">
 							<div class="form-group">
 								<label class="control-label font-weight-normal mb-0" for="MatchlistAlt">Background Alt</label>
-								<input type="text" class="form-control form-control-md" id="MatchlistAlt" placeholder="Background alt text" />
+								<input type="text" class="form-control form-control-md" bind:this={MatchlistAlt} id="MatchlistAlt" value='' placeholder="Background alt text" />
 							</div>
 						</div>
 						<div class="col-md-6 px-1">

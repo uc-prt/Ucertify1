@@ -717,34 +717,43 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="mt-2 d-flex">
-                          
-                                    <Checkbox
-                                        checked={state.drag_mode}
-                                        on:click = {(e)=>{changeSetting("2",e)}}
-                                        id="isDragDrop"
-                                        color="primary"
-                          	            style="position:relative;right:10px;"> 
-										  Drag & Drop</Checkbox>
-										  
-                                    <Checkbox
-                                        
-                                        on:click = {(e)=>{changeSetting("3",e)}}
-                                        id="isSwap"
-                                        color="primary"
-                                    >Swap List</Checkbox>
-                              
+                        <div class="mt-2 form-check form-check-inline">
+								<input
+									type="checkbox"
+									checked={state.drag_mode}
+									on:click = {(e)=>changeSetting("2",e)}
+									id="isDragDrop"
+									color="primary"
+									class="form-check-input mb-1"
+								/>
+								<label for="isplayer_checkbox"  on:click = {(e)=>changeSetting("2",e)}  class="form-check-label">
+									Drag & Drop
+								</label>
+
+								<input
+									type="checkbox"
+									on:click = {(e)=>changeSetting("3",e)}
+									id="isSwap"
+									color="primary"
+									class="form-check-input mb-1 ms-2"
+								/>
+								<label for="isplayer_checkbox"  on:click = {(e)=>changeSetting("3",e)}  class="form-check-label">
+									Swap List
+								</label>
                         </div>
-                        <div class="mt-2">
-                         
-                                    <Checkbox 
-                                        defaultChecked = {(state.isalgo == true ? true : false)}
-                                        on:click = {changeisalgo} 
-                                        name = {"isalgo"} 
-                                        id = {"isalgo"}
-                                        color="primary"
-                                    >Algorithmic </Checkbox>
-                               
+                        <div class="mt-2 form-check form-check-inline">
+								<input
+									type="checkbox"
+									checked={state.isalgo}
+									on:click={changeisalgo}
+									name = "isalgo" 
+									id = "isalgo"
+									color="primary"
+									class="form-check-input mb-1"
+								/>
+								<label for="isplayer_checkbox"  on:click = {changeisalgo}  class="form-check-label">
+									Algorithmic
+								</label>
                         </div>
                     </div>
                 </div>
@@ -867,7 +876,6 @@
                         {/if}
                         
                 {/each}
-                
             </div>
             <div class="text-left ml-2 pb-3">
                 <button 
@@ -915,68 +923,68 @@
 
 
 
-				<div class="modal" id="addImageModal">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title">Add Image</h4>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true" >&times;</button>
-							</div>
-							<div class="modal-body">
-								<div class="imageDialog">
-									<div class="row mx-0">
-										<div class="col-md-6 px-1">
-											<div class="form-group">
-												<label class="control-label font-weight-normal mb-0" for="MatchlistImg">Background Image</label>
-												<input type="text" class="form-control form-control-md" id="MatchlistImg" placeholder="Image url" />
-											</div>
-										</div>
-										<div class="col-md-6 px-1">
-											<div class="form-group">
-												<label class="control-label font-weight-normal mb-0" for="MatchlistAlt">Background Alt</label>
-												<input type="text" class="form-control form-control-md" id="MatchlistAlt" placeholder="Background alt text" />
-											</div>
-										</div>
-										<div class="col-md-6 px-1">
-											<button type="button" class="btn btn-md btn-outline-primary" id="upload_img" name="upload_img" on:click="{openMediaDialog}">Upload image</button>
-											<div class="upload_status"></div>
-										</div>
-									</div>
+	<div class="modal" id="addImageModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add Image</h4>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true" >&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="imageDialog">
+						<div class="row mx-0">
+							<div class="col-md-6 px-1">
+								<div class="form-group">
+									<label class="control-label font-weight-normal mb-0" for="MatchlistImg">Background Image</label>
+									<input type="text" class="form-control form-control-md" id="MatchlistImg" placeholder="Image url" />
 								</div>
 							</div>
-							<div class="modal-footer mt-0">
-								<button type="button" on:click={closeImageDialog} class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-								<button type="button" id="cdata" on:click={insertImage} class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+							<div class="col-md-6 px-1">
+								<div class="form-group">
+									<label class="control-label font-weight-normal mb-0" for="MatchlistAlt">Background Alt</label>
+									<input type="text" class="form-control form-control-md" id="MatchlistAlt" placeholder="Background alt text" />
+								</div>
+							</div>
+							<div class="col-md-6 px-1">
+								<button type="button" class="btn btn-md btn-outline-primary" id="upload_img" name="upload_img" on:click="{openMediaDialog}">Upload image</button>
+								<div class="upload_status"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="modal-footer mt-0">
+					<button type="button" on:click={closeImageDialog} class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" id="cdata" on:click={insertImage} class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-				
-				
-				<Dialog
-					bind:visible={state.openDeleteDialog}
-					style={'width:500px;'}
-				>
-					<div style="font-weight:bold;">{l.save_header}</div>
-					<div>
-						<div class="row">
-						<span class="col-md-12" style={'margin-top:40px;margin-bottom:40px;'}>{l.del_confirmation}</span>
-						</div>
-					</div>
-				
+	
+	
+	<Dialog
+		bind:visible={state.openDeleteDialog}
+		style={'width:500px;'}
+	>
+		<div style="font-weight:bold;">{l.save_header}</div>
+		<div>
+			<div class="row">
+			<span class="col-md-12" style={'margin-top:40px;margin-bottom:40px;'}>{l.del_confirmation}</span>
+			</div>
+		</div>
+	
 
-					<div slot="footer" class="svelteFooter">
-						
-						<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
-
-						<Button variant="contained" on:click={removeRow}
-							class="bg-primary text-white"> Yes </Button>
-					</div>
+		<div slot="footer" class="svelteFooter">
 			
-					
-					
-				</Dialog>
+			<input type="button" variant="contained" on:click={() => {state.openDeleteDialog = false;}} class="btn btn-light colorgray" value="No" />
+
+			<Button variant="contained" on:click={removeRow}
+				class="bg-primary text-white"> Yes </Button>
+		</div>
+
+		
+		
+	</Dialog>
 </main>
 <style>
 

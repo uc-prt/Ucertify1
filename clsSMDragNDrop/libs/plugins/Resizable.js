@@ -51,24 +51,13 @@ export default class Resizable {
     }   
     
     getPosition (e, node) {
-        let element_boundry = node.getBoundingClientRect();
-        let containment_boundry = document.querySelector(this.container).getBoundingClientRect()
-        let left = e.clientX, top = e.clientY;
-        if (top > containment_boundry.bottom) {
-            top = containment_boundry.bottom;
-        }
-        
-        if (left > containment_boundry.right) {
-            left = containment_boundry.right;
-        }
-
-        let x = left - element_boundry.left
-        let y = top - element_boundry.top;
-
+        let rect = node.getBoundingClientRect();
+        const x = e.x - rect.x;
+        const y = e.y - rect.y;
         if (this.setLimit) {
             return this.setLimit(x,y)
         }
-        return {x:x, y:y};
+        return {x, y};
     }
 
 }
