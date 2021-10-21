@@ -1802,11 +1802,11 @@ function replaceLTGT(str) {
     return str;
 }
 function removeNanoSpell(){
-	const eleList = AH.selectAll('.nanospell-typo');
+	const eleList = AH.selectAll('.nanospell-typo, [data-mce-bogus="1"]');
 	if(eleList.length>0){
 		eleList.forEach(ele => {
 			ele.outerHTML = ele.textContent;
-		})
+		});
 	}
 };
 
