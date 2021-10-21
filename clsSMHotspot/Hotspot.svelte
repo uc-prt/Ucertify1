@@ -291,6 +291,7 @@
     // for parsing the xml in case of Draw highlight
     function parseXmlForDraw(QXML) {
         state.bgImg = QXML.smxml._bgimg;
+        state.lineColor = QXML.smxml.div._linecolor;
         let image = new Image();
         image.onload = function () {
             bgImgHeight = (QXML.smxml._height > this.height) ? QXML.smxml._height + 'px' : this.height + 'px';
@@ -406,7 +407,7 @@
                 xaxis = []; yaxis = [];
             }
         });
-        let surfaceColor = surface.lineColor(window.color);
+        let surfaceColor = surface.lineColor(state.lineColor);
         AH.siblings(AH.find('#mainContent', '#hptdraw')).find((elm)=> {
             let res = AH.find(elm, 'div').getAttribute('id');
             AH.bind('#' + res, 'click', function (event) {
