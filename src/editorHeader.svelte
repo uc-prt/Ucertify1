@@ -119,12 +119,19 @@
     async function onListButton(event) {
         AH.getBS(event.target, 'Tooltip').hide?.();
         await tick();
-      if (!AH.get('save_item')) {
-        goBack();
-      } else {
-        AH.set("unSavedBack", true);
-        editorState.saveDialog = true;
-      }
+        const savedData = editorState?.ajaxData?.content_text || {};
+        let isDataChanged = false;
+        for(const key of Object.keys(savedData)){
+            if(savedData[key] != editorState[key]){
+                isDataChanged = true;
+            }
+        }
+        if (isDataChanged) {
+            AH.set("unSavedBack", true);
+            editorState.saveDialog = true;
+        } else {
+            goBack();
+        }
     }
 
     export function checkNavigation(action, data) {
@@ -276,7 +283,6 @@
                 data: queryData
             }).then((response)=> {
                     AH.activate(0);
-                    console.log(response);
                     if (response == 1) {
                         AH.showmsg("Data updated successfully.");
                     } else {

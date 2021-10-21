@@ -330,6 +330,7 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
     let parent = AI.select('.parent').getAttribute("data-parent")
     let htmlparent = parent == "dndmain" ? "#dndmain" : parent;
     let pos = [];
+    let length = [];
     let labkey = key;
     let hptkey = key;
     if (typeof(key) == "undefined") {
@@ -341,10 +342,12 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
         }
     }
     try {
-        if (AI.select('.context').getAttribute) {
-            let o = DND_AUTH.offset(AI.select(htmlparent));
-            pos[0] = parseInt(AI.select('.context').getAttribute('clienty')) - o.top;
-            pos[1] = parseInt(AI.select('.context').getAttribute('clientx')) - o.left;
+        const selectedElement = _this.closest('.drag-resize')
+        if (selectedElement) {
+            pos[0] = selectedElement.style.top.slice(0, selectedElement.style.top.length-2) || 0;
+            pos[1] = selectedElement.style.left.slice(0, selectedElement.style.left.length-2) || 0;
+            length[0] = selectedElement.offsetWidth;
+            length[1] = selectedElement.offsetHeight;
         }
     } catch (e) {
         console.warn("Top not found");
@@ -367,6 +370,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.selectAll('#authoring-modal .drag', 'show', 'block')
             AI.select('#authoring-modal #drag-top').value = pos[0];
             AI.select('#authoring-modal #drag-left').value = pos[1];
+            AI.select('#authoring-modal #drag-height').value = length[1];
+            AI.select('#authoring-modal #drag-width').value = length[0];
             AI.select('#authoring-modal #drag-id').value = labkey;
             DND_AUTH.visible_class = '.drag';
             break;

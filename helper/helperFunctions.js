@@ -1801,8 +1801,18 @@ function replaceLTGT(str) {
     str = str.replace(/&gt;/g, '>');
     return str;
 }
+function removeNanoSpell(){
+	const eleList = AH.selectAll('.nanospell-typo');
+	if(eleList.length>0){
+		eleList.forEach(ele => {
+			ele.outerHTML = ele.textContent;
+		})
+	}
+};
+
 export function mathMLRender(id_mathML, is_required) {
     console.log("Math rendering..");
+    removeNanoSpell();
     if (!is_required) {
         return false;
     }
