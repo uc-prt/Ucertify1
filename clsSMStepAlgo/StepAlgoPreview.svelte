@@ -917,6 +917,8 @@
 		state.display = -1;
 		//jQuery('.fillintheblank').addClass('default-hover');
 		AH.selectAll('.fillintheblank','addClass','default-hover');
+		
+		AI.selectAll('.edit_st ','css',{display:'none'})
 		showCorrect();
 		state.main_steps = true;
 		state.correct_answer = false;
@@ -1065,6 +1067,7 @@
 						//let latex = jQuery(this).attr('userans');
 						let latex = _this.getAttribute('userans');
 						//jQuery('#'+math_itemid).text(latex);
+						if(latex != null)
 						AH.select('#'+math_itemid).innerText = latex
 					} else {
 						//jQuery('#'+math_itemid).text(jQuery(this).attr('userans'));

@@ -968,9 +968,10 @@
      *
      */
     function MQ(el) {
+      //let a = (el).children('.mq-root-block');
       if (!el || !el.nodeType) return null; // check that `el` is a HTML element, using the
         // same technique as jQuery: https://github.com/jquery/jquery/blob/679536ee4b7a92ae64a5f58d90e9cc38c001e807/src/core/init.js#L92
-      var blockId = $(el).children('.mq-root-block').attr(mqBlockId);
+      var blockId = $(el).children() && $(el).children('.mq-root-block').attr(mqBlockId);
       var ctrlr = blockId && Node.byId[blockId].controller;
       return ctrlr ? APIClasses[ctrlr.KIND_OF_MQ](ctrlr) : null;
     };
