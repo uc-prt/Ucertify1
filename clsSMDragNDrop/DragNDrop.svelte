@@ -453,7 +453,7 @@
             }
         }
 
-        let resizable = new Resizable('#dndmain .drag-resize, #dndmain .only-dragable');
+        let resizable = new Resizable('#dndmain, #dndmain .drag-resize, #dndmain .only-dragable');
 
         resizable.onStart = function() {
             auth_store.update( (item) => {
@@ -473,24 +473,7 @@
 
             return {x:x, y:y};
         }
-
-        resizable.onStop =  function(e, ui) {
-            let pr = AH.select('.parent').getAttribute("data-parent");
-            if (ui.id == "dndmain") {
-                AH.select('.parent').setAttribute("data-parent", "dndmain");
-            }
-            let type = (ui.classList.contains('hs_item')) ? "hotspot_click"  :  AH.findChild(ui, '.tools').getAttribute('data-t');
-            DND_AUTH.updateElem(type, ui, ui.getAttribute('id'), ui);
-            AH.select('.parent').setAttribute("data-parent", pr);
-            updateXML();
-            let update_timer = setTimeout(function() {
-                auth_store.update( (item) => {
-                    item.resize = false;
-                    return item;
-                });
-                clearTimeout(update_timer);
-            }, 100);
-        }
+        resizable.onStop =  callOnResizeStop;
     }
 
     // function for parsing the xml 
@@ -717,8 +700,29 @@
         image_loaded = 1;
     }
 
+    function callOnResizeStop (e, ui, updateResize = true) {
+        if(updateResize){
+            let pr = AH.select('.parent').getAttribute("data-parent");
+            if (ui.id == "dndmain") {
+                AH.select('.parent').setAttribute("data-parent", "dndmain");
+            }
+            let type = (ui.classList.contains('hs_item')) ? "hotspot_click"  :  AH.findChild(ui, '.tools').getAttribute('data-t');
+            DND_AUTH.updateElem(type, ui, ui.getAttribute('id'), ui);
+            AH.select('.parent').setAttribute("data-parent", pr);
+            updateXML();
+            let update_timer = setTimeout(function() {
+                auth_store.update( (item) => {
+                    item.resize = false;
+                    return item;
+                });
+                clearTimeout(update_timer);
+            }, 100);
+        }
+    }
+
     // for handling the resize property of the base
     let baseWidth;
+    let isresizerClicked = false;
     $:baseWidth;
     let baseHeight;
     $:baseHeight;
@@ -728,59 +732,63 @@
     let m_posY;
     $:m_posX;
     $:m_posY;
-    let resize_elW;
-    let resize_elH;
-    let resize_elWH;
+    let dndMain;
     function resizeX(e){
-        let parent = resize_elW.parentNode;
         let dx = m_posX - e.x;
         m_posX = e.x;
-        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
+        dndMain.style.width = (parseInt(getComputedStyle(dndMain, '').width) - dx) + "px";
     }
     function resizeY(e){
-        let parent = resize_elH.parentNode;
         let dy = m_posY - e.y;
         m_posY = e.y;
-        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+        dndMain.style.height = (parseInt(getComputedStyle(dndMain, '').height) - dy) + "px";
     }
     function resizeXY(e){
-        let parent = resize_elH.parentNode;
         let dx = m_posX - e.x;
         let dy = m_posY - e.y;
         m_posX = e.x;
         m_posY = e.y;
-        parent.style.width = (parseInt(getComputedStyle(parent, '').width) - dx) + "px";
-        parent.style.height = (parseInt(getComputedStyle(parent, '').height) - dy) + "px";
+        dndMain.style.width = (parseInt(getComputedStyle(dndMain, '').width) - dx) + "px";
+        dndMain.style.height = (parseInt(getComputedStyle(dndMain, '').height) - dy) + "px";
     }
     function resizeHandleW(e){
         m_posX = e.x;
+        isresizerClicked = true;
         document.removeEventListener("mousemove", resizeY, false);
         document.addEventListener("mousemove", resizeX, false);
-        document.addEventListener("mouseup", function(){
-            document.removeEventListener("mousemove", resizeX, false);
-            document.removeEventListener("mousemove", resizeY, false);
-            document.removeEventListener("mousemove", resizeXY, false);
+        document.addEventListener("mouseup", function(e){
+                document.removeEventListener("mousemove", resizeX, false);
+                document.removeEventListener("mousemove", resizeY, false);
+                document.removeEventListener("mousemove", resizeXY, false);
+                callOnResizeStop(e, dndMain, isresizerClicked);
+                isresizerClicked = false;
         }, false);
     }
     function resizeHandleH(e){
         m_posY = e.y;
+        isresizerClicked = true;
         document.removeEventListener("mousemove", resizeX, false);
         document.addEventListener("mousemove", resizeY, false);
-        document.addEventListener("mouseup", function(){
+        document.addEventListener("mouseup", function(e){
             document.removeEventListener("mousemove", resizeX, false);
             document.removeEventListener("mousemove", resizeY, false);
+            callOnResizeStop(e, dndMain, isresizerClicked);
+            isresizerClicked = false;
         }, false);
     }
     function resizeHandleWH(e){
         m_posX = e.x;
         m_posY = e.y;
+        isresizerClicked = true;
         document.removeEventListener("mousemove", resizeX, false);
         document.removeEventListener("mousemove", resizeY, false);
         document.addEventListener("mousemove", resizeXY, false);
-        document.addEventListener("mouseup", function(){
+        document.addEventListener("mouseup", function(e){
             document.removeEventListener("mousemove", resizeX, false);
             document.removeEventListener("mousemove", resizeY, false);
             document.removeEventListener("mousemove", resizeXY, false);
+            callOnResizeStop(e, dndMain, isresizerClicked);
+            isresizerClicked = false;
         }, false);
     }
 </script>
@@ -815,6 +823,7 @@
             id="dndmain" 
             path="https://s3.amazonaws.com/jigyaasa_content_static/"
             style='height: 400px;width:100%;'
+            bind:this={dndMain}
             bind:clientWidth={baseWidth}
             bind:clientHeight={baseHeight}
         >
@@ -848,9 +857,13 @@
                 </div>
             {/if}
 
-            <div id="resizeX" bind:this={resize_elW} on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
-            <div id="resizeY" bind:this={resize_elH} on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
-            <div id="resizeXY" class="icomoon-resize" bind:this={resize_elWH} on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
+            <div id="resizeX" 
+                on:mousedown|preventDefault|stopPropagation={resizeHandleW}></div>
+            <div id="resizeY" 
+                on:mousedown|preventDefault|stopPropagation={resizeHandleH}></div>
+            <div id="resizeXY" 
+                class="icomoon-resize" 
+                on:mousedown|preventDefault|stopPropagation={resizeHandleWH}></div>
         </div>
     </center>
     <input type='hidden' id='special_module_xml' name='special_module_xml' />
