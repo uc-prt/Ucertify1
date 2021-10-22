@@ -25689,3 +25689,7 @@ i.mce-ico.mce-i-mytextwithicon::before {
   font-size: 11px;
   display: flex;
 }
+
+.sun-editor a{
+  cursor: pointer;
+}
