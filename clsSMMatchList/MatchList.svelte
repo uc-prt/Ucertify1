@@ -821,7 +821,7 @@
                                             </div>
                                         </div>
                                         <div class="width1 float-right">
-                                            <a id={data.id} on:click={()=>{removeCData(data.value1,data.value2,data.id)}}>
+                                            <a on:click={()=>{removeCData(data.value1,data.value2,data.id)}}>
                                                 <span aria-hidden="true" class="delete_match_node_auth icomoon icomoon-new-24px-delete-1 s3 py-1" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="right" title="Delete"></span>
                                             </a>
                                         </div>
@@ -867,7 +867,7 @@
                                         </div>
                                     </div>
                                     <div class="width1 float-right">
-                                        <a id={data.id} on:click={()=>{removeCData(data.value1,data.value2,data.id)}}>
+                                        <a  on:click={()=>{removeCData(data.value1,data.value2,data.id)}}>
                                             <span aria-hidden="true" class="icomoon icomoon-new-24px-delete-1 s3 delete_match_node py-1" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="right" title="Delete"></span>
                                         </a>
                                     </div>

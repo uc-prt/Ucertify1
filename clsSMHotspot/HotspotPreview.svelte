@@ -337,6 +337,8 @@
 				drawstr = ''; count = 0;
 				userCorrect =  "";
 				AH.selectAll(AH.select(hid).children, 'attr', {userans: ''});
+				answerStatus = false;
+
 			});
 		}
 		window.surface = surface;
