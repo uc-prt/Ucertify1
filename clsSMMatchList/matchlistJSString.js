@@ -152,7 +152,7 @@ ucMlid.showUserAns = function(mlid) {
     window.mlid = mlid;
 
     function drop1(event,ui) {
-        
+        console.log('checking.....');
         //console.log('drop1', ui);
         ucMlid.is_valid_drop = true;
         let _this = event.target;
@@ -1010,7 +1010,10 @@ ucMlid.showAllAns = function(mlid) {
                         const left = AH.find(mlid,'#' + userAns[i]).offsetLeft;
                         str += '<path fill="none" d="M' + (parseInt(right) ) + ',' + (parseInt(top1) + 5) + 'C' + (parseInt(right) + 93) + ',' + (parseInt(top1) + 5) + ',' + (parseInt(right) + 93) + ',' + top2 + ',' + (parseInt(left) - 10) + ',' + top2 + '" marker-end="url(#triangle)" class="line"></path>';
                         //---- adding ans feedback in title ----
-                        matchedTitle = ucMlid.getTitle(AH.select('#' + userAns[i]), matchedTitle, i, true, _this.textContent);
+                        setTimeout(function() {
+                            matchedTitle = ucMlid.getTitle(AH.select('#' + userAns[i]), matchedTitle, i, true, _this.textContent);
+                        },200)
+                        
                     }
                 }
                 _this.setAttribute('aria-label',matchedTitle);
