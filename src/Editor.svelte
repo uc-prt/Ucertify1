@@ -2914,7 +2914,7 @@ afterUpdate(() => {
 										<div id="xml_show" class="overflow" role="application" tabindex="0" aria-label="application. {l['itemtype_' + subtype]}">
 											<svelte:component 
 												this={Items.preview} 
-												editorState={state}
+												bind:editorState={state}
 												xml = {state.xml}
 												setInlineEditor={setInlineEditor}
 												isReview = {state.remediationToggle}
