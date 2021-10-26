@@ -81,12 +81,12 @@
 	// }
 
 	beforeUpdate(()=>{
-		
+		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 		if (uxml) {
 			let answer = XMLToJSON(uxml);
-			if (answer.smans) {
-				if (answer.smans.div) {
-					if (answer.smans.div._userAns) {
+			if (answer?.smans) {
+				if (answer?.smans.div) {
+					if (answer?.smans.div._userAns) {
 						parseSteps(uxml);
 					}
 				}
@@ -125,7 +125,7 @@
 		if (in_editor) {
 			AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 		}
-		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
+		//AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
 
 		if(window.inNative) {
 			window.getHeight && window.getHeight();
@@ -326,9 +326,9 @@
 		}
 		if (uxml) {
 			let answer = XMLToJSON(uxml);
-			if (answer.smans) {
-				if (answer.smans.div) {
-					if (answer.smans.div._userAns) {
+			if (answer?.smans) {
+				if (answer?.smans.div) {
+					if (answer?.smans.div._userAns) {
 						var timer = setTimeout(function() {
 							parseUserAns(uxml);
 							clearTimeout(timer);
@@ -1181,7 +1181,7 @@
 
 	:global(.false-hover) {
 		outline: 0;
-		border: 2px solid #e45252!important;
+		border: 1px solid #e45252!important;
 	}
 
 	:global(.default-hover) {
@@ -1211,7 +1211,7 @@
 
 	:global(.corr_div) {
 		position: absolute!important;
-		width: 60px;
+		width: 38px;
 		line-height: 30px;
 		background-color: #21a81d;
 		color: #ffffff;

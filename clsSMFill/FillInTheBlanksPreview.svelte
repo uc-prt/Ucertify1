@@ -496,7 +496,7 @@
 				'width': tableWidth + "px",
 				'margin': "auto",
 				'padding-top': "21px",
-				'padding-left': '70px'
+				'padding-left': '65px',
 			});
 		}
 	}
