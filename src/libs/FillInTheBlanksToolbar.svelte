@@ -11,7 +11,6 @@
     let state = {};
     let type;
     $: type = "1";
-    $:console.log(type);
     let hdd = writable({
         spanId: 0,
         divId: 'elem0'
@@ -61,31 +60,6 @@
 
         AH.selectAll('#'+divId+' .mq-editable-field')[spanId].dispatchEvent(customKeyDownEvent);
         AH.trigger("#fillmain", 'change');
-    }
-
-    function componentDidMount() {
-        window.addEventListener('click', (e)=> {  
-            let mathToolbar = document.getElementById('toolbar_container_one'); 
-            if (mathToolbar && !mathToolbar.contains(e.target)) {
-                //console.log(mathToolbar.contains(e.target));
-                closeToolbar();
-            }
-        });
-        AH.selectAll('.select_changer', 'hide');
-        AH.selectAll('#select_butns_2', 'show');
-        AH.bind('#selectbox', "change", (event)=> {
-            let _this = event.target;
-            AH.selectAll('.select_changer', 'hide');
-            AH.selectAll('#select_butns_'+_this.value, 'show');
-
-            if ( _this.value =="4") {
-                AH.setCss(".toolbar_container_one", {'width': '481px'});
-            } else if (_this.value =="12" || _this.value =="13") {
-                AH.setCss(".toolbar_container_one", {'width': '561px'});
-            } else {
-                AH.setCss(".toolbar_container_one", {'width': '641px'});
-            }
-        });     
     }
 
     function closeToolbar() {

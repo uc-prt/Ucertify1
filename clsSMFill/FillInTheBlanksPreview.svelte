@@ -10,7 +10,6 @@
 	import {ucFill} from './fillJSString';
 	//import ju from '../src/libs/jslib';
 	import ItemHelper from '../helper/ItemHelper.svelte';
-	//import FillInTheBlanksToolbar from './FillInTheBlanksToolbar.svelte';
 	import FillInTheBlanksToolbar from "./../src/libs/FillInTheBlanksToolbar.svelte";
 	import { writable } from 'svelte/store';
 	import { beforeUpdate, onMount } from 'svelte';
@@ -863,6 +862,7 @@
 </script>
 <div class={xml ? "mx-4 pl-2 pl-md-0": ""}>
 	<center>
+		
 		<ItemHelper 
 			bind:this={smControllerCallback}
 			on:setReview = {setReview}
@@ -870,6 +870,7 @@
 			handleReviewClick={handleReview}
 			reviewMode={isReview}
 		/>
+		
 		<div 
 			id={containerID}
 			class="fillmain {isReview ? 'pe-none' : null}"
@@ -882,14 +883,6 @@
 		>
 	
 		<div class="string d-flex align-items-center justify-content-center" id="previewArea"></div>
-			{#if state.showToolbar} 
-				<FillInTheBlanksToolbar  
-					spanId={state.spanId} 
-					divId={state.divId} 
-					action={ucFill.fillMath[fillId]} 
-					show={toggleToolbar}
-				/>
-			{/if}
 			<div style="color: #b94a48; margin-top: 5px" class="smnotes">
 				{#if state.matchtype == "0"}
 					*Exact matching is required.
@@ -901,6 +894,14 @@
 				<div class="arrow-up"></div>
 				<center class="dragArea"></center>
 			</div>
+			{#if state.showToolbar} 
+				<FillInTheBlanksToolbar  
+					spanId={state.spanId} 
+					divId={state.divId} 
+					action={ucFill.fillMath[fillId]} 
+					show={toggleToolbar}
+				/>
+			{/if}
 		</div>
 	</center>
 </div>
