@@ -1441,6 +1441,7 @@ function editorPaneShow(event) {
 		if (currentRefreshFunc) {
 			currentRefreshFunc();
 		}
+		prettyPrint();
 		// Render equation
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 		state.editorView = 'preview';
@@ -2202,7 +2203,6 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 				console.warn("Saving is paused -");
 				return;
 			} 
-			console.log('baseUrl', baseUrl);
 			AH.ajax({
 				url: baseUrl + 'editor/index.php', // point to server-side PHP script
 				datatype: 'json',
@@ -2312,7 +2312,6 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 				is_new == 1 ? AH.activate(0) : "";
 				//self.editorModalUpdate(false);
 			}).catch((error)=> {
-				console.log(error);
 				if (window.in_full_preview == 1) {
 					state.saveDialog = false;
 					window.parent.showErrorMessage("Failed to save", window.frameElement);

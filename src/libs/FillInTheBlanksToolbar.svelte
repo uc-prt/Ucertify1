@@ -7,7 +7,11 @@
     export let divId;
     export let action;
     export let show;
+    
     let state = {};
+    let type;
+    $: type = "1";
+    $:console.log(type);
     let hdd = writable({
         spanId: 0,
         divId: 'elem0'
@@ -102,7 +106,7 @@
     </div>
     <div class="toolbar_types_area">
         <div class="select_area">
-            <select name="basic_select" id="selectbox" class="option_selectbox">
+            <select name="basic_select" id="selectbox" bind:value={type} class="option_selectbox">
                 <option value="1">{l.Allsymbols}</option>
                 <option value="2" selected="selected">{l.Basic}</option>
                 <option value="3">{l.xvariables}</option>
@@ -159,244 +163,247 @@
                     <button type="button" class="fifth_btn bborder_remover hovr_btn" on:click={input.bind(this,"=")}>=</button>
             </div>
         </div>
-        <div class="button_designs select_changer height_modifier" id="select_butns_1">
-            <div class="column_five dec_widther blue_container columns_design">
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"x")}>
-                    <div class="xvariable"></div>
+        {#if type == "1"}
+            <div class="button_designs select_changer height_modifier" id="select_butns_1">
+                <div class="column_five dec_widther blue_container columns_design">
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"x")}>
+                        <div class="xvariable"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"b")}>b</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther bborder_adder blue_container" on:click={latexInput.bind(this,"\\text{abc}")}>abc</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this, "$")}>$</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\div")}>&#247;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&ge;")}>&ge;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\perp")}>&perp;</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\nless")}>
+                        <div class="not-lesser"></div>
+                    </div>
+                    <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left[\\right)")}>
+                        <div class="rec-brackets"></div>
+                    </div>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"x")}>
+                        <div class="xvariable"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
+                        <div class="xfraction"></div>
+                    </div>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\lt")}>&lt;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\pi")}>&pi;</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"y")}>
+                        <div class="yvariable"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
+                        <div class="x-times-fraction"></div>
+                    </div>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
+                    <div class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\infin")}>
+                        <div class="infinity"></div>
+                    </div>
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{2}")}>
+                        <div class="xsquare"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{}")}>
+                        <div class="xpower"></div>
+                    </div>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"±")}>&plusmn;</button>
+                    <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left(\\right)")}>
+                        <div class="brackets"></div>
+                    </div>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\sqrt")}>
+                        <div class="square-root"></div>
+                    </div>
+                    <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\sqrt[]{}")}>
+                        <div class="square-root-two"></div>
+                    </div>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"|")}>
+                        <div class="modulus"></div>
+                    </div>
+                    <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left[\\right]")}>
+                        <div class="square-brackets"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"a")}>a</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\vert")}>|</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\lceil")}>&lceil;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\wedge")}>&and;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\forall")}>&forall;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mi}")}>mi</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{gal}")}>gal</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"f")}>f</button>
+                    <div class="first_btn bborder_remover dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\int_{ }^{ }")}>
+                        <div class="integrtion"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&Delta;</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_btn" on:click={latexInput.bind(this,"\\sum_{ }^{ }")}>
+                        <div class="sigma"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\rightleftharpoons")}>&#8652;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\prime")}>'</button>
+                        <button type="button" class="scnd_btn dec_widther bborder_remover blue_container" on:click={latexInput.bind(this,"\\text{&micro;g}")}>&micro;g</button>
                 </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"b")}>b</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther bborder_adder blue_container" on:click={latexInput.bind(this,"\\text{abc}")}>abc</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this, "$")}>$</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\div")}>&#247;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&ge;")}>&ge;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\perp")}>&perp;</button>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\nless")}>
-                    <div class="not-lesser"></div>
+                <div class="column_six dec_widther blue_container columns_design">
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"y")}>
+                        <div class="yvariable"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
+                        <div class="x-times-fraction"></div>
+                    </div>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\degree")}>&deg;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\pi")}>&pi;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"&ne;")}>&ne;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\lt")}>&lt;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&le;")}>&le;</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\ngtr")}>
+                        <div class="not-greater"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"&asymp;")}>&asymp;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&ge;")}>&ge;</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\nless")}>
+                        <div class="not-lesser"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\perp")}>&perp;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\angle")}>&ang;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\triangle")}>&Delta;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\degree")}>&deg;</button>
+                    <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\\overline{ }")}>
+                        <div class="bar-block"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\parallel")}>&#8741;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\measuredangle")}>m&ang;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container bborder_adder" on:click={input.bind(this,"\circledot")}>&#8857;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&prime;")}>&prime;</button>
+                    <div class="fourth_btn dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\\overrightarrow{ }")}>
+                        <div class="topbar-arrow"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\nparallel")}>&#8742;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\sim")}>&sim;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\parallelogram")}>&#9649;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&prime;")}>&Prime;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\ldots")}>&#8943;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container blue_container padder_less" on:click={latexInput.bind(this,"\\ddots")}>&#8945;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\cong")}>&cong;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\vdots")}>&#8942;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&pi;")}>&pi;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\square")}>&#9633;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\propto")}>&prop;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\rfloor")}>&rfloor;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\equiv")}>&equiv;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\exists")}>&exist;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mg}")}>mg</button>
+                        <button type="button" class="scnd_btn dec_widther bborder_remover blue_container" on:click={latexInput.bind(this,"\\text{cm}")}>cm</button>
                 </div>
-                <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left[\\right)")}>
-                    <div class="rec-brackets"></div>
+                <div class="column_seven dec_widther blue_container columns_design">
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{2}")}>
+                        <div class="xsquare"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_remover" on:click={latexInput.bind(this,"\\^{}")}>
+                        <div class="xpower"></div>
+                    </div>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"±")}>&plusmn;</button>
+                    <div class="fourth_btn dec_widther blue_container padder_less" on:click={input.bind(this,":")}>
+                        <div class="colon"></div>
+                    </div>
+                    <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\infin")}>
+                        <div class="infinity"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\subset")}>&sub;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\in")}>&#8714;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\cup")}>&cup;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,",")}>,</button>
+                    <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\left(\\right)")}>
+                        <div class="brackets"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\supset")}>&sup;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\notin")}>&notin;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\cap")}>&cap;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,":")}>:</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\left\\{\\right\\}")}>
+                        <div class="curly-brackets"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\subseteq")}>&sube;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\ni")}>&#8717;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\varnothing")}>&empty;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"!")}>!</button>
+                    <div class="fourth_btn dec_widther padder_less blue_container" on:click={latexInput.bind(this,"\\left[\\right)")}>
+                        <div class="rec-brackets"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\sec^{-1}")}>sec<sup>-1</sup></button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\csc^{-1}")}>csc<sup>-1</sup></button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cot^{-1}")}>cot<sup>-1</sup></button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\sin")}>sin</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\cos")}>cos</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\tan")}>tan</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\sec^{-1}")}>sec<sup>-1</sup></button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\csc^{-1}")}>csc<sup>-1</sup></button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cot^{-1}")}>cot<sup>-1</sup></button>	
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"b")}>b</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cdot")}>.</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{lb}")}>lb</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{ft}")}>ft</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{pt}")}>pt</button>
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\^{}")}>
+                        <div class="h-sup"></div>
+                    </div>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\rightarrow")}>&rarr;</button>
+                    <div class="thrd_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\xrightarrow[]\\{}")}>
+                        <div class="x-power-y"></div>
+                    </div>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{g}\ \\text{mol}^{-1}")}>g mol<sup>-1</sup></button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\partial")}>&part;</button>
                 </div>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"x")}>
-                    <div class="xvariable"></div>
+                <div class="column_eight dec_widther columns_design blue_container">
+                    <div class="first_btn bborder_remover dec_widther blue_container padder_field" on:click={input.bind(this,"\\sqrt")}>
+                        <div class="square-root"></div>
+                    </div>
+                    <div class="scnd_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\_{}")}>
+                        <div class="xsubscript"></div>
+                    </div>
+                    <div class="thrd_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"$")}>
+                        <div class="dollar"></div>
+                    </div>
+                    <div class="fourth_btn dec_widther blue_container padder_field" on:click={latexInput.bind(this,"\\left(\\right)")}>
+                        <div class="brackets"></div>
+                    </div>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\sec")}>sec</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\csc")}>csc</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\cot")}>cot</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\sin^{-1}")}>sin<sup>-1</sup></button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cos^{-1}")}>cos<sup>-1</sup></button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\tan^{-1}")}>tan<sup>-1</sup></button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\alpha")}>&alpha;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\theta")}>&theta;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\Theta")}>&Theta;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\tau")}>&zeta;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\gamma")}>&gamma;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\sigma")}>&sigma;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\Sigma")}>&Sigma;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\varepsilon")}>&epsilon;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&delta;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&Delta;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\lambda")}>&lambda;</button>
+                        <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\beta")}>&beta;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\pi")}>&pi;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Pi")}>&Pi;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\phi")}>&empty;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\lfloor")}>&lfloor;</button>
+                        <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\uparrow")}>&uarr;</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\neg")}>&not;</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{oz}")}>oz</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{in}")}>in</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{fl oz}")}>fl oz</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{g}")}>g</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{m}")}>m</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{L}")}>L</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{s}")}>s</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{kg}")}>kg</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{km}")}>km</button>
+                        <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mL}")}>mL</button>
+                        <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{ms}")}>ms</button>
                 </div>
-                <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
-                    <div class="xfraction"></div>
-                </div>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\lt")}>&lt;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\pi")}>&pi;</button>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"y")}>
-                    <div class="yvariable"></div>
-                </div>
-                <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
-                    <div class="x-times-fraction"></div>
-                </div>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
-                <div class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\infin")}>
-                    <div class="infinity"></div>
-                </div>
-                <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{2}")}>
-                    <div class="xsquare"></div>
-                </div>
-                <div class="scnd_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{}")}>
-                    <div class="xpower"></div>
-                </div>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"±")}>&plusmn;</button>
-                <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left(\\right)")}>
-                    <div class="brackets"></div>
-                </div>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\sqrt")}>
-                    <div class="square-root"></div>
-                </div>
-                <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\sqrt[]{}")}>
-                    <div class="square-root-two"></div>
-                </div>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"|")}>
-                    <div class="modulus"></div>
-                </div>
-                <div class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\left[\\right]")}>
-                    <div class="square-brackets"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"a")}>a</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\vert")}>|</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\lceil")}>&lceil;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\wedge")}>&and;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\forall")}>&forall;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mi}")}>mi</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{gal}")}>gal</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"f")}>f</button>
-                <div class="first_btn bborder_remover dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\int_{ }^{ }")}>
-                    <div class="integrtion"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&Delta;</button>
-                <div class="first_btn bborder_remover dec_widther blue_container padder_btn" on:click={latexInput.bind(this,"\\sum_{ }^{ }")}>
-                    <div class="sigma"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\rightleftharpoons")}>&#8652;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\prime")}>'</button>
-                    <button type="button" class="scnd_btn dec_widther bborder_remover blue_container" on:click={latexInput.bind(this,"\\text{&micro;g}")}>&micro;g</button>
             </div>
-            <div class="column_six dec_widther blue_container columns_design">
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"y")}>
-                    <div class="yvariable"></div>
-                </div>
-                <div class="scnd_btn dec_widther blue_container padder_btn" on:click={input.bind(this,"/")}>
-                    <div class="x-times-fraction"></div>
-                </div>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\degree")}>&deg;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\pi")}>&pi;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"&ne;")}>&ne;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\lt")}>&lt;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&le;")}>&le;</button>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\ngtr")}>
-                    <div class="not-greater"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"&asymp;")}>&asymp;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\gt")}>></button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&ge;")}>&ge;</button>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\nless")}>
-                    <div class="not-lesser"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\perp")}>&perp;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\angle")}>&ang;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\triangle")}>&Delta;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\degree")}>&deg;</button>
-                <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\\overline{ }")}>
-                    <div class="bar-block"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\parallel")}>&#8741;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\measuredangle")}>m&ang;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container bborder_adder" on:click={input.bind(this,"\circledot")}>&#8857;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&prime;")}>&prime;</button>
-                <div class="fourth_btn dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\\overrightarrow{ }")}>
-                    <div class="topbar-arrow"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\nparallel")}>&#8742;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\sim")}>&sim;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\parallelogram")}>&#9649;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"&prime;")}>&Prime;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther padder_remover blue_container" on:click={latexInput.bind(this,"\\ldots")}>&#8943;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container blue_container padder_less" on:click={latexInput.bind(this,"\\ddots")}>&#8945;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\cong")}>&cong;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\vdots")}>&#8942;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"&pi;")}>&pi;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\square")}>&#9633;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\propto")}>&prop;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\rfloor")}>&rfloor;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\equiv")}>&equiv;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\exists")}>&exist;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mg}")}>mg</button>
-                    <button type="button" class="scnd_btn dec_widther bborder_remover blue_container" on:click={latexInput.bind(this,"\\text{cm}")}>cm</button>
-            </div>
-            <div class="column_seven dec_widther blue_container columns_design">
-                <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\^{2}")}>
-                    <div class="xsquare"></div>
-                </div>
-                <div class="scnd_btn dec_widther blue_container padder_remover" on:click={latexInput.bind(this,"\\^{}")}>
-                    <div class="xpower"></div>
-                </div>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"±")}>&plusmn;</button>
-                <div class="fourth_btn dec_widther blue_container padder_less" on:click={input.bind(this,":")}>
-                    <div class="colon"></div>
-                </div>
-                <div class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\infin")}>
-                    <div class="infinity"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\subset")}>&sub;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\in")}>&#8714;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\cup")}>&cup;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,",")}>,</button>
-                <div class="fourth_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\left(\\right)")}>
-                    <div class="brackets"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\supset")}>&sup;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\notin")}>&notin;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\cap")}>&cap;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,":")}>:</button>
-                <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\left\\{\\right\\}")}>
-                    <div class="curly-brackets"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\subseteq")}>&sube;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\ni")}>&#8717;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\varnothing")}>&empty;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"!")}>!</button>
-                <div class="fourth_btn dec_widther padder_less blue_container" on:click={latexInput.bind(this,"\\left[\\right)")}>
-                    <div class="rec-brackets"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\sec^{-1}")}>sec<sup>-1</sup></button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\csc^{-1}")}>csc<sup>-1</sup></button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cot^{-1}")}>cot<sup>-1</sup></button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\sin")}>sin</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\cos")}>cos</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\tan")}>tan</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\sec^{-1}")}>sec<sup>-1</sup></button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\csc^{-1}")}>csc<sup>-1</sup></button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cot^{-1}")}>cot<sup>-1</sup></button>	
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"b")}>b</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cdot")}>.</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{lb}")}>lb</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{ft}")}>ft</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{pt}")}>pt</button>
-                <div class="first_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\^{}")}>
-                    <div class="h-sup"></div>
-                </div>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\rightarrow")}>&rarr;</button>
-                <div class="thrd_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\xrightarrow[]\\{}")}>
-                    <div class="x-power-y"></div>
-                </div>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{g}\ \\text{mol}^{-1}")}>g mol<sup>-1</sup></button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\partial")}>&part;</button>
-            </div>
-            <div class="column_eight dec_widther columns_design blue_container">
-                <div class="first_btn bborder_remover dec_widther blue_container padder_field" on:click={input.bind(this,"\\sqrt")}>
-                    <div class="square-root"></div>
-                </div>
-                <div class="scnd_btn dec_widther blue_container padder_less" on:click={latexInput.bind(this,"\\_{}")}>
-                    <div class="xsubscript"></div>
-                </div>
-                <div class="thrd_btn bborder_remover dec_widther blue_container padder_less" on:click={latexInput.bind(this,"$")}>
-                    <div class="dollar"></div>
-                </div>
-                <div class="fourth_btn dec_widther blue_container padder_field" on:click={latexInput.bind(this,"\\left(\\right)")}>
-                    <div class="brackets"></div>
-                </div>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\sec")}>sec</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\csc")}>csc</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\cot")}>cot</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\sin^{-1}")}>sin<sup>-1</sup></button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\cos^{-1}")}>cos<sup>-1</sup></button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\tan^{-1}")}>tan<sup>-1</sup></button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\alpha")}>&alpha;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\theta")}>&theta;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\Theta")}>&Theta;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\tau")}>&zeta;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\gamma")}>&gamma;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\sigma")}>&sigma;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\Sigma")}>&Sigma;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\varepsilon")}>&epsilon;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&delta;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Delta")}>&Delta;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\lambda")}>&lambda;</button>
-                    <button type="button" class="fourth_btn dec_widther blue_container" on:click={input.bind(this,"\\beta")}>&beta;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\pi")}>&pi;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\Pi")}>&Pi;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\phi")}>&empty;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\lfloor")}>&lfloor;</button>
-                    <button type="button" class="thrd_btn bborder_remover dec_widther blue_container" on:click={input.bind(this,"\\uparrow")}>&uarr;</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={input.bind(this,"\\neg")}>&not;</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{oz}")}>oz</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{in}")}>in</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{fl oz}")}>fl oz</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{g}")}>g</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{m}")}>m</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{L}")}>L</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{s}")}>s</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{kg}")}>kg</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{km}")}>km</button>
-                    <button type="button" class="scnd_btn dec_widther blue_container" on:click={latexInput.bind(this,"\\text{mL}")}>mL</button>
-                    <button type="button" class="first_btn bborder_remover dec_widther blue_container" on:click={latexInput.bind(this,"\\text{ms}")}>ms</button>
-            </div>
-        </div>
+        {/if}
+        {#if type == "2"}
         <div class="button_designs select_changer" id="select_butns_2">
             <div class="column_five blue_container columns_design">
                 <div class="first_btn bborder_remover blue_container" on:click={latexInput.bind(this,"x")}>
@@ -453,6 +460,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "3"}
         <div class="btn-group button_designs select_changer" id="select_butns_3">
             <div class="column_five blue_container columns_design">
                 <div class="blue_container first_btn bborder_remover" on:click={input.bind(this,"x")}>
@@ -507,6 +516,8 @@
                 <div class="fifth_btn bborder_remover blank_color"></div>
             </div>
         </div>
+        {/if}
+        {#if type == "4"}
         <div class="btn-group button_designs select_changer" id="select_butns_4">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={input.bind(this,"&ne;")}>&ne;</button>
@@ -528,6 +539,8 @@
             </div>
             <div class="remove_border"></div>
         </div>
+        {/if}
+        {#if type == "5"}
         <div class="btn-group button_designs select_changer" id="select_butns_5">
             <div class="column_five blue_container columns_design">
                 <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\perp")}>&perp;</button>
@@ -562,6 +575,8 @@
                 <button type="button" class="fifth_btn bborder_remover blue_container" on:click={input.bind(this,"\\square")}>&#9633;</button>
             </div>
         </div>
+        {/if}
+        {#if type == "6"}
         <div class="button_designs select_changer" id="select_butns_6">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\subset")}>&sub;</button>
@@ -600,6 +615,8 @@
                 </div>
             </div>
         </div>
+        {/if}
+        {#if type == "7"}
         <div class="button_designs select_changer" id="select_butns_7">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\sin")}>sin</button>
@@ -630,6 +647,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "8"}
         <div class="button_designs select_changer" id="select_butns_8">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\alpha")}>&alpha;</button>
@@ -660,6 +679,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "9"}
         <div class="button_designs select_changer" id="select_butns_9">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={input.bind(this,"a")}>a</button>
@@ -692,6 +713,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "10"}
         <div class="button_designs select_changer" id="select_butns_10">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\lfloor")}>&lfloor;</button>
@@ -722,6 +745,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "11"}
         <div class="btn-group button_designs select_changer" id="select_butns_11">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\text{g}")}>g</button>
@@ -752,6 +777,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "12"}
         <div class="button_designs select_changer" id="select_butns_12">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="blue_container first_btn bborder_remover" on:click={latexInput.bind(this,"\\text{oz}")}>oz</button>
@@ -775,6 +802,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "13"}
         <div class="button_designs select_changer" id="select_butns_13">
             <div class="column_five blue_container columns_design">
                 <div class="blue_container first_btn bborder_remover bborder_adder padder_less" on:click={latexInput.bind(this,"\\left(\\right)")}>
@@ -804,6 +833,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "14"}
         <div class="button_designs select_changer" id="select_butns_14">
             <div class="column_five blue_container columns_design">
                     <button type="button" class="first_btn blue_container bborder_remover" on:click={latexInput.bind(this,"d")}>d</button>
@@ -842,6 +873,8 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
+        {#if type == "15"}
         <div class="button_designs select_changer" id="select_butns_15">
             <div class="column_five blue_container columns_design">
                 <div class="blue_container first_btn bborder_remover padder_less" on:click={latexInput.bind(this,"\^{}")}>
@@ -884,6 +917,7 @@
                     <button type="button" class="fifth_btn bborder_remover blank_color"></button>
             </div>
         </div>
+        {/if}
     </div>
 </div>	
 <style>

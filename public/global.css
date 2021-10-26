@@ -5192,14 +5192,13 @@ pointer-events: none;
 user-select: none;
 }
 /*Ebook css start here*/
-#main-page ol.linenums, #no-main ol.linenums{margin-left:12px; line-height: 25px;}
+#main-page ol.linenums, #no-main ol.linenums{ line-height: 25px;}
 #main-page pre.black.prettyprint[class*=" linenums:"] {
 box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset 60px 0 0 #333,inset 61px 0 0 #333!important;
 -webkit-box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset 60px 0 0 #333,inset 61px 0 0 #333!important;
 -moz-box-shadow: 0 3px 9px 2px rgba(0,0,0,0.16), 0 9px 10px 0 rgba(0,0,0,0.12), inset 60px 0 0 #333,inset 61px 0 0 #333!important;
 }
 pre.prettyprint ol{ padding-left: 2.5rem !important;}
-pre.prettyprint ol.linenums li{padding-left: 7px!important;}
 .prettyprint .com {color: #5a5a5a;}
 .prettyprint {
 word-wrap: break-word;
@@ -5224,7 +5223,7 @@ box-shadow:none!important;
 ol.linenums {
   margin: 0;
   line-height: 25px;
-  margin-left: 14px !important;
+  margin-left: 8px !important;
 }
 .ui-dialog .prettyprint {
 white-space: pre;
@@ -6423,7 +6422,6 @@ textarea{
 ol.linenums {
     margin: 0;
     line-height: 25px;
-    margin-left: 12px;
 }
 player:after {
     content: attr(type)" Player";
@@ -7510,7 +7508,7 @@ section[nd="1"] {
 }
 
 /*prettify.min.css*/
-.com{color:#93a1a1}.lit{color:#195f91}.clo,.opn,.pun{color:#93a1a1}.fun{color:#dc322f}.atv,.str{color:#D14}.kwd,.prettyprint .tag{color:#1e347b}.atn,.dec,.typ,.var{color:teal}.pln{color:#48484c}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8;border-bottom:1px #a9a9a9;border-right:1px #a9a9a9;border-top:1px #a9a9a9;border-left:6px solid #bf5149!important;box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12)}pre.black.prettyprint.linenums,.prettyprint.black,.prettyprint.cmd,.prettyprint.linenums,.prettyprint.white{border-left:6px solid#bf5149!important;border-bottom:1px #a9a9a9;border-right:1px #a9a9a9;border-top:1px #a9a9a9}.prettyprint.black,.prettyprint.cmd,.prettyprint.white{box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12)}pre.black.prettyprint.linenums{white-space:pre;box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important;-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important;-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important}ol.linenums{margin:0 0 0 33px}ol.linenums li{padding-left:12px;color:#bebec5;line-height:20px;text-shadow:0 1px 0 #fff}pre.black .str{color:#65b042}pre.black .kwd{color:#e28964}pre.black .com{color:#aeaeae;font-style:italic}pre.black .typ{color:#89bdff}pre.black .lit{color:#3387cc}pre.black .pln,pre.black .pun{color:#fff}pre.black .tag{color:#89bdff}pre.black .atn{color:#bdb76b}pre.black .atv{color:#65b042}pre.black .dec{color:#3387cc}pre.prettyprint.black{background-color:#000}pre.prettyprint.black ol.linenums li{padding-left:32px;color:#bebec5;line-height:20px;text-shadow:0 1px 0 #333}pre.cmd.str{color:#080}pre.cmd.kwd{color:#008}pre.cmd.com{color:#800}pre.cmd.typ{color:#606}pre.cmd.lit{color:#066}pre.cmd .clo,pre.cmd.opn,pre.cmd.pun{color:#660}pre.cmd.tag{color:#008}pre.cmd.atn{color:#606}pre.cmd.atv{color:#080}.var,pre.cmd.dec{color:#606}pre.cmd.fun{color:red}pre.cmd.prettyprint{background-color:#fcfcff;border:1px solid #bf5149}pre.cmd li.L1,pre.cmd li.L3,pre.cmd li.L5,pre.cmd li.L7,pre.cmd li.L9{background:#eee}
+.com{color:#93a1a1}.lit{color:#195f91}.clo,.opn,.pun{color:#93a1a1}.fun{color:#dc322f}.atv,.str{color:#D14}.kwd,.prettyprint .tag{color:#1e347b}.atn,.dec,.typ,.var{color:teal}.pln{color:#48484c}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8;border-bottom:1px #a9a9a9;border-right:1px #a9a9a9;border-top:1px #a9a9a9;border-left:6px solid #bf5149!important;box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12)}pre.black.prettyprint.linenums,.prettyprint.black,.prettyprint.cmd,.prettyprint.linenums,.prettyprint.white{border-left:6px solid#bf5149!important;border-bottom:1px #a9a9a9;border-right:1px #a9a9a9;border-top:1px #a9a9a9}.prettyprint.black,.prettyprint.cmd,.prettyprint.white{box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12);-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12)}pre.black.prettyprint.linenums{white-space:pre;box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important;-webkit-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important;-moz-box-shadow:0 4px 7px 0 rgba(0,0,0,.16),0 2px 4px 0 rgba(0,0,0,.12),inset 60px 0 0 #333,inset 61px 0 0 #333!important}ol.linenums{margin:0 0 0 33px}ol.linenums li{padding-left:12px;color:#bebec5;line-height:20px;text-shadow:0 1px 0 #fff}pre.black .str{color:#65b042}pre.black .kwd{color:#e28964}pre.black .com{color:#aeaeae;font-style:italic}pre.black .typ{color:#89bdff}pre.black .lit{color:#3387cc}pre.black .pln,pre.black .pun{color:#fff}pre.black .tag{color:#89bdff}pre.black .atn{color:#bdb76b}pre.black .atv{color:#65b042}pre.black .dec{color:#3387cc}pre.prettyprint.black{background-color:#000}pre.prettyprint.black ol.linenums li{color:#bebec5;line-height:20px;text-shadow:0 1px 0 #333}pre.cmd.str{color:#080}pre.cmd.kwd{color:#008}pre.cmd.com{color:#800}pre.cmd.typ{color:#606}pre.cmd.lit{color:#066}pre.cmd .clo,pre.cmd.opn,pre.cmd.pun{color:#660}pre.cmd.tag{color:#008}pre.cmd.atn{color:#606}pre.cmd.atv{color:#080}.var,pre.cmd.dec{color:#606}pre.cmd.fun{color:red}pre.cmd.prettyprint{background-color:#fcfcff;border:1px solid #bf5149}pre.cmd li.L1,pre.cmd li.L3,pre.cmd li.L5,pre.cmd li.L7,pre.cmd li.L9{background:#eee}
 
 /* from editor_style.css */
 .items_list,
@@ -8639,4 +8637,8 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .mce-i-plus:before {
   font-size: 11px;
   display: flex;
+}
+
+.sun-editor a{
+  cursor: pointer;
 }

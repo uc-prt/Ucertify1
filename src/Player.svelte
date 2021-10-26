@@ -192,6 +192,7 @@
         state.editBtnVisibility = false;
         state.category = event.target.value;
         state.type = (tag_category[event.target.value] != undefined) ? tag_category[event.target.value] : event.target.value;
+        state.prevValue['asset'] = '';
     }
 
     function setInputState(key, value) {

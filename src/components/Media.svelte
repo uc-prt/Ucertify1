@@ -446,8 +446,8 @@
                         </div>
                         <div class="col-md-8 px-0 m-b-lg pull-left">
                             <div class="col-md-12 px-0 pull-left pb-3">
-                                <label for="alt_text${index}" class="control-label float-left pr-4"><span class="mendatory_label float-left">Short Desctiption</span></label>
-                                <input type="text" require="1" title="Short Desctiption" class="col-md-12 float-left form-control height32 m-b-sm" data-key="alt"  data-index="${index}" placeholder="Short Desctiption" name="alt_text${index}" id="alt_text${index}" />
+                                <label for="alt_text${index}" class="control-label float-left pr-4"><span class="mendatory_label float-left">Short Description</span></label>
+                                <input type="text" require="1" title="Short Description" class="col-md-12 float-left form-control height32 m-b-sm" data-key="alt"  data-index="${index}" placeholder="Short Description" name="alt_text${index}" id="alt_text${index}" />
                             </div>
                             <div class="col-md-12 px-0 pull-left pb-3">
                                 <label for="related_tags${index}" class="control-label float-left pr-4"><span class="mendatory_label float-left">Tags</span></label>
