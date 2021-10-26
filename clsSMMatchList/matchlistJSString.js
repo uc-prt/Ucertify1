@@ -152,7 +152,6 @@ ucMlid.showUserAns = function(mlid) {
     window.mlid = mlid;
 
     function drop1(event,ui) {
-        console.log('checking.....');
         //console.log('drop1', ui);
         ucMlid.is_valid_drop = true;
         let _this = event.target;
