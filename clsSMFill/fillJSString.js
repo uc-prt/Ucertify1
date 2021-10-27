@@ -566,9 +566,9 @@ export default class fillJS {
 		this.userAnsXML += "</smans>";
 		window.ISSPECIALMODULEUSERXMLCHANGE = 1;
 		JS.select("#special_module_user_xml").value = this.userAnsXML;
-		this.updateModule('uxml', this.userAnsXML);
+	//	updateModule('uxml', this.userAnsXML);
 
-		if (parseInt(JS.select(fillid).getAttribute('manual_grade')) != 1) {
+		if (JS.select(fillid).node && parseInt(JS.select(fillid).getAttribute('manual_grade')) != 1) {
 			JS.select("#answer").checked = ((this.result) ? true : false);
 			if (this.result) {
 				JS.select("#answer").checked = true;

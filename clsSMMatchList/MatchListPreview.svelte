@@ -63,14 +63,13 @@
 
 	$: {
 	if (isReview == true) {
-			
 			// for displaying the ans
 			displayAns();
 			AH.select("#shuffleArea", "hide" );
 			ucMlid.modeOn("on");
 			// if mode is normal or swap list
 			if (multimatch == 1 || multimatch == 0) {
-				AH.select(".both-ans").click();
+			//	AH.select(".both-ans").click();
 				//AH.find("#"+containerID , "#sm_controller", {action: "addClass", actionData: "h"});
 				AH.select("#"+containerID +" #sm_controller",'addClass','h');
 				//AH.find("#"+containerID, "#sm_controller_default", {action: 'removeClass', actionData: 'h'});

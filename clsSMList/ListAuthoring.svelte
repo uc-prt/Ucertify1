@@ -1,4 +1,14 @@
+<!--
+ *  File Name   : ListAuthoring.svelte
+ *  Description : Generate the parent guids
+ *  Author      : Sundaram Tripathi
+ *  Package     : svelte_items
+ *  Last update : 05-May-2021
+ *  Last Updated By : Sundaram Tripathi
+-->
 <script>
+// @ts-nocheck
+
     import l from '../src/libs/editorLib/language.js';
     import {writable} from 'svelte/store';
     import { onMount,beforeUpdate,afterUpdate } from "svelte";
@@ -163,22 +173,7 @@
         // updates the xml
         updateXML(JSON.stringify({ "list": state.data_cdata }));
         if (state.data_cdata[row_no].cg && ((col_no == 0) ? (previous_data != state.data_cdata[row_no].c1): (previous_data != state.data_cdata[row_no].c2))) {
-            // modal = {
-            //     header: {
-            //         body: (<div>{l.save_header}</div>),
-            //         class: "editor_modal_title"
-            //     },
-            //     body: {
-            //     body: (<div>{l.child_update}</div>),
-            //         class: "editor_modal_content",
-            //         style: {height: 'auto'}
-            //     },
-            //     footer: {
-            //         body: [{label: 'OK', class: "bg-primary text-white", onAction: ()=> self.handleUpdate(row_no)}],
-            //         class: "editor_modal_action"
-            //     },
-            //     maxWidth: 'sm',
-            // };
+            //Remove some uncessasry code
             state.EditorModalBox = true;
             editorModalUpdate(true);
         }
