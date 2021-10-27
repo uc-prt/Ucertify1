@@ -25691,3 +25691,6 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .sun-editor a{
   cursor: pointer;
 }
+.mq-math-mode{
+  width: 100% !important;
+}
