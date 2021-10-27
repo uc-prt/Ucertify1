@@ -426,7 +426,7 @@ DND.readyThis = function(dndid) {
         let input = document.createElement('input');
         input.type = 'checkbox'
         input.id = 'prevent_dialog'
-        (AI.select('#prevent_dialog').parentElement).classList.add('check');
+        //AI.select('#prevent_dialog').parentElement.classList.add('check');
         input.classList.add('mr-1');
         input.onchange = function() {
             DND.prevent_dialog = this.checked;
@@ -460,7 +460,7 @@ DND.readyThis = function(dndid) {
         jsSwal({
             text: "How to Drop?",
             content: content,
-            timer: 10000,
+            //timer: 10000,
             buttons: false,
             showCloseButton: true
         });

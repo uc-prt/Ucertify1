@@ -1229,7 +1229,7 @@ export default class JUI extends API{
             errorAlert.classList.add('show');
             this.select("#showMsgBody").innerHTML = msg;
         } else {
-            this.insert(document.body, this.getModalHtml(msg, 'Alert'), 'beforeend');
+            this.insert(document.body, this.getModalHtml(msg, 'Alert'), 'beforebegin');
         }
         setTimeout(()=> {
             let alterRef= this.getBS(document.querySelector("#showMsgAlert"), 'Alert');

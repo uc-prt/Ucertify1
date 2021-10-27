@@ -449,7 +449,7 @@
                     <tr class = "table-head">
                         
                         <th
-                            class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : "text-center") }
+                            class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : " text-center") }
                             tabindex = {0}
                             
                             
@@ -483,7 +483,7 @@
                                     key = {j}
                                     id = {'tb' + (i) + (j)}
                                     
-                                    class = {  (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  + " "+"text-center test_area"  + ((data2.id == data.correct) ? 'dbg-success' : 'dbg-danger') +' position-relative'} 
+                                    class = {  (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  + " "+"text-center test_area"  + ((data2.id == data.correct) ? ' dbg-success' : ' dbg-danger') +' position-relative'} 
                                     
                                 >
                                     <i
@@ -528,22 +528,23 @@
 </main>
     
 <style>
-    :global(.fa-check) {
+    /* :global(.fa-check) { // on php side there is no need
         color: #46A546;
         position:relative;
         left:50px;
-    }
+    } */
 
-    :global(.fa-close) {
+    /* :global(.fa-close) { // on php side there is no need
         color: #A80000; 
         left:50px;
-    }
+    } */
 
     :global(.fa-close) {
         margin-left: 20px; 
         font-size: 18px; 
         position: absolute;
         top: 10px;
+        color: #A80000; 
     }
 
     :global(.fa-check) {
@@ -551,6 +552,7 @@
         font-size: 18px; 
         position: absolute;
         top: 10px;
+        color: #46A546;
     }
     :global(.fa-close), .fa-check,.middle_align {
         vertical-align: middle!important;
