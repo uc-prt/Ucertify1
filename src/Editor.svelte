@@ -465,7 +465,7 @@ function renderPlayer() {
 		}
 	});
 	if (state.player_render) {
-		tag_player(previewDom);
+		setTimeout(() => tag_player(previewDom), 500);
 		state.player_render = false;
 	}
 	//Show player tag with full width for UI improvement when the player is rendering
@@ -2910,7 +2910,7 @@ afterUpdate(() => {
 											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
-									{#if state.viewConfig.itemModule}
+									{#if state.viewConfig.itemModule && state.editorView != 'authoring'}
 										<div id="xml_show" class="overflow" role="application" tabindex="0" aria-label="application. {l['itemtype_' + subtype]}">
 											<svelte:component 
 												this={Items.preview} 
