@@ -812,3 +812,502 @@ function scrollToTop (duration) {
 function scrollnow(px) {
 	scrollToTop;
 }
+
+var UCUTIL = UCUTIL || {};
+UCUTIL.overlay = {
+    ui: function(type) {
+        var uitpl = {
+            1: '<div id="modal-from-test" class="modal test-modal" tabindex="-1"><div class="modal-body pt-0"><iframe title="Overlay window" name="test_frame" id="test_frame" frameBorder="0" src="" allowfullscreen="true"></iframe></div></div>'
+        };
+        return uitpl[type];
+    }
+};
+
+
+UCUTIL.parseJSON = function(obj, showErr_data) {
+    var showErr = showErr_data || false;
+    try {
+        return JSON.parse(obj);
+    } catch (e) {
+        if (showErr) {
+            console.warn(e);
+        }
+        return {}; //Return blank object
+    }
+};
+
+UCUTIL.param2Url = function(params) {
+    var url = [];
+    for (var i in params) {
+        var uri = i + '=' + params[i];
+        url.push(uri);
+    }
+    return url.join('&');
+};
+
+function getTestFrameworkDetail(checkViewAttr) {
+    var detail = -1;
+    const ucItemTest = document.querySelector('#uc-item-test-template');
+	if (ucItemTest) {
+        var tempTestView = ucItemTest.setAttribute('temp_test_view');
+        if (!checkViewAttr && tempTestView && tempTestView != '') {
+            return tempTestView;
+        }
+        return ucItemTest.attr('view');
+    }
+    return detail;
+}
+
+
+function createPlayerEmbed(embed, player_title, src, attributes, button_name) {
+    var embed_html = '';
+    src = src || false;
+    player_title = player_title || false;
+    button_name = button_name || false;
+    if (embed == 'inline') {
+        embed_html = '<iframe tabindex="0" title="' + player_title + '" src="' + src + '" onload="autoResize(this.id)" allow="fullscreen" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"' + attributes + '></iframe>';
+    } else if (embed == 'overlay') {
+        embed_html = '<button tabindex="0" type="button" ' + attributes + '>' + button_name + '</button>';
+    } else if (embed == 'new_tab') {
+        embed_html = '<a tabindex="0" href="' + src + '" target="_blank" ' + attributes + '>' + button_name + '</a>';
+    }
+
+    return embed_html;
+}
+
+function getPlayerAttrVal(self, item) {
+    var option_attr = '',
+        style_attr = '',
+        data = '';
+    if (self.getAttribute(item)) {
+        data = self.getAttribute(item);
+    } else {
+        if (self.getAttribute('option')) {
+            option_attr = UCUTIL.parseJSON(self.getAttribute('option'));
+        }
+        if (self.getAttribute('styles')) {
+            style_attr = UCUTIL.parseJSON(self.getAttribute('styles'));
+        }
+        if (option_attr[item] != undefined) {
+            data = option_attr[item];
+        } else if (style_attr[item] != undefined) {
+            item_val = style_attr[item];
+            data = (!isNaN(item_val) && item_val.indexOf('px') == -1 && item_val.indexOf('%') == -1) ? item_val + 'px' : item_val;
+        }
+    }
+
+    return data;
+}
+
+
+function createSimulationHtml(config, default_action, correct_ans, embed, self, is_review, hint, player_id, player_title) {
+    var us_ans = [],
+        default_act = [],
+        button_name = '',
+        lab_url = '',
+        is_sql = '',
+        attributes = '',
+		single = ''
+        title = '';
+    var lab_html = '<div class="alert alert-info clearfix lab-title p-md">',
+        dfault = '',
+        correct = new Array();
+    if (self.getAttribute('title')) {
+        title = self.getAttribute('title');
+    }
+    if (config != '') {
+        config = config.split('-');
+    }
+    if (document.querySelectorAll('#user_answer_details').length > 0) {
+        us_ans = document.querySelector('#user_answer_details').value;
+        us_ans = us_ans.replace('<!--[CDATA[', '').replace(']]-->', '').trim();
+        us_ans = us_ans.split('\n');
+    }
+    if (default_action != '') {
+        default_act = default_action.split('|');
+    }
+    var i;
+    default_act = [...default_act, ...us_ans];
+    default_act = default_act.filter(ele => ele);
+    for (i = 0; i < default_act.length; i++) {
+        var tmp = default_act[i].split('=');
+        dfault += '&default[' + tmp[0] + ']=' + tmp[1];
+    }
+    if (correct_ans != '') {
+        correct = correct_ans.split('|');
+    }
+    if (title != '') {
+        lab_html += '<span class="float-left" style="padding-top: 5px;">' + title + '</span>';
+    } else {
+        lab_html += '<span class="float-left" style="padding-top: 5px;">&nbsp;</span>';
+    }
+    if (is_review == 1 && sub_type == 'assessment') {
+        lab_url = 'javascipt:;\' disabled=\'disabled\'';
+    } else {
+        lab_url = baseUrl + 'sim/?module=' + config[0] + '&type=' + config[1] + '&version=' + config[2] + '&is_player=1' + dfault;
+    }
+    button_name = getPlayerAttrVal(self, 'button_name');
+    if (self.getAttribute('correct') || embed == 'inline') {
+        lab_url += '&show_click=1';
+        single = 1;
+    } else if (self.getAttribute('is_sql') || embed == 'overlay') {
+        is_sql = 1;
+    }
+    if (hint) {
+        hint_btn = '<button tabindex="0" type="button" style="margin-left:5px; background: #9B9B9B;" class="btn text-white" id="hintBtn' + player_id + '" onclick="swal({title:\'Hint\', text:\'' + hint + '\'});">Hint</button>';
+        hint = '';
+    } else {
+        hint_btn = '';
+    }
+    if (single == 1) {
+        lab_url += '&is_single=1';
+        if (typeof(us_ans) == 'undefined') {
+            us_ans = new Array();
+        }
+        var self_ele;
+        if (correct.length > 0 && is_review == 1) {
+            var table_str = '<table class="external"><tr><th>Correct Answer</th><th>Your Answer</th></tr>',
+                correct_str = '',
+                user_str = '';
+            sql_correct = correct[0].split('=');
+            if (sql_correct[0] == 'query_editor_area') {
+                correct_str += sql_correct[1];
+            } else {
+                for (i = 0; i < correct.length; i++) {
+                    var ch = correct[i].substring(correct[i].lastIndexOf('~'), correct[i].length);
+                    if (ch == '~i') {
+                        correct[i] = correct[i].replace(ch, '');
+                    }
+                    correct_str += correct[i] + '</br>';
+                }
+            }
+            for (i = 0; i < us_ans.length; i++) {
+                let query = us_ans[i].split('=');
+                if (query[0] == 'query_editor_area') {
+                    user_str += query[1] + '<br>';
+                } else {
+                    user_str += typeof(us_ans[i]) !== 'undefined' ? us_ans[i] + '</br>' : '';
+                }
+            }
+            table_str += '<tr><td>' + correct_str + '</td><td>' + user_str + '</td></tr></table>';
+            self_ele = self;
+            if (getTestFrameworkDetail() === 'split') {
+                self_ele = document.querySelector('#item_answer');
+            }
+            self_ele.innerHTML += table_str;
+        } else if (correct.length > 0) {
+            activate(1);
+            self_ele = self;
+            if (getTestFrameworkDetail() === 'split') {
+                var new_player = self.cloneNode();
+                self.remove();
+                const specialModExtQues = document.querySelector('#specialModuleExtQuestion');
+				specialModExtQues.innerHTML += new_player;
+                self_ele = document.querySelector('player[type=\'external\']');
+            }
+            attributes = 'id="msoffice_frame" frameBorder="0" correct="' + correct_ans + '" user_answer="' + us_ans.join('|') + '" onload="autoResize(this.id)" scrolling="no" player_id="' + player_id + '"';
+            self_ele.innerHTML += createPlayerEmbed('inline', player_title, lab_url + '&wmode=transparent', attributes);
+            setTimeout(function() { activate(0); }, 5000);
+        } else {
+            if (!self.getAttribute('try_me') && self.getAttribute('try_me') != 'inline') {
+                var tryMeBtn = self.getAttribute('custum-btn') ? '' : '<p tabindex="0" class="try-me-s">Click to see me in action</p>';
+                
+				const childrens = self.children || [];
+				for(let child of childrens){
+					child.innerHTML = '<a tabindex="' + tabindex.n + '" href="' + lab_url + '&nozoom=1" style="position:relative;display:inline-block;" onclick="return open_single_lab(this)">' + child.innerHTML + '</a>';
+					child.querySelector('a').insertAdjacentHTML('afterbegin', tryMeBtn);
+				}
+                
+				self.querySelector('img').classList.add('noImgModal');
+            }
+        }
+    } else if (self.getAttribute('guids') && self.getAttribute('guids') != '') {
+        if (title == '') title = 'Try it';
+        lab_url += '&no_action=1&content_guid=' + self.getAttribute('guids');
+        self.insertAdjacentHTML('afterbegin', '<a tabindex="0" class="btn btn-primary startlab focus_lab" href="' + lab_url + '" target="_blank">' + title + '</a>');
+    } else if (is_sql != '') {
+        lab_url += '&is_single=1';
+        attributes = 'class=\'btn btn-success startlab' + player_id + '\' onclick=\'bindSql("' + lab_url + '", ' + player_id + ')\'';
+        self.insertAdjacentHTML('afterbegin','<div class=\'text-center\'>' + createPlayerEmbed('overlay', false, false, attributes, (button_name) ? button_name : 'Start Lab') + hint_btn + '</div>');
+    } else if (embed == 'new_tab') {
+        attributes = 'class="btn btn-primary float-right startlab"';
+        self.insertAdjacentHTML('afterbegin', lab_html + createPlayerEmbed(embed, false, lab_url, attributes, (button_name) ? button_name : 'Start Lab') + '</div>');
+    } else {
+        self.insertAdjacentHTML('afterbegin', lab_html + '<a tabindex="0" class="btn btn-primary float-right startlab" href="' + lab_url + '" target="_blank">Start Lab</a></div>');
+    }
+}
+
+var evalInline = {
+    getRegString: function(str, smxml, isEval) {
+        isEval = isEval ? 1 : 0;
+        var regString = new RegExp('\\<' + str + '\\>([\\s\\S]*?)\\<\\/' + str + '\\>', 'gm');
+        var code_data_matched = regString.exec(smxml);
+        var code_data = '';
+        if (code_data_matched) {
+            code_data = code_data_matched[1];
+            code_data = !isEval ? code_data.replace(/</g, '&lt;').replace(/>/, '&gt;') : code_data;
+        }
+        return code_data;
+    },
+
+    createEditor: function(e, id, mode, isEval, theme) {
+        e.disabled = true;
+        mode = mode == 'html' ? 'xml' : mode;
+
+        if (typeof(CodeMirror) != 'function') {
+            $.ajax({
+                type: 'POST',
+                url: themeUrl + 'pe-items/lib/merged_codemirror.txt',
+                dataType: 'text',
+                success: function(res) {
+                    $('body').append(res);
+                    evalInline.renderEditor(e, id, mode, isEval);
+                    $('#printPanel' + id).hide();
+                }
+            });
+        } else {
+            evalInline.renderEditor(e, id, mode, isEval, theme);
+            $('#printPanel' + id).hide();
+        }
+    },
+
+    getBack: function(id) {
+        $('#printPanel' + id).show();
+        $('#evalCreator' + id).attr('disabled', false);
+        $('#editorPanel' + id).hide();
+        $('#framePanel' + id).hide();
+    },
+
+    renderEditor: function(e, id, mode, isEval, theme) {
+        $('#framePanel' + id).attr('style', 'width:38.3%;float:left;margin-left:5px;');
+        $('#editorPanel' + id).attr('style', 'width:59.6%;float:left;min-height:580px');
+        if (theme > 0) {
+            $('#editorPanel' + id + ' .panel-heading,#framePanel' + id + ' .panel-heading, #framePanel' + id + '.panel.panel-default.mb').attr('style', ' background: #474747;border-color: #000;color: #d5d5d5 !important;');
+            $('#framePanel' + id + ' textarea').attr('style', 'background: #272822;color: #fff;');
+        }
+        $('#framePanel' + id).attr('class', '');
+        $('#editorPanel' + id).attr('class', '');
+        var parentDiv = document.querySelector('#htmlEditor' + id);
+        parentDiv.style.border = '0';
+        var webXmlData = parentDiv.firstElementChild.innerText;
+        if (!webXmlData) {
+            webXmlData = parentDiv.firstElementChild.value;
+        }
+        parentDiv.innerHTML = '<textarea class="h" id="htmlText' + (id) + '"></textarea>';
+        $('#htmlText' + id).val(webXmlData);
+        var webEditor = document.querySelector(('#htmlEditor' + id) + ' textarea');
+        html_editor[id] = CodeMirror.fromTextArea(webEditor, {
+            lineNumbers: true,
+            mode: mode == 'xml' ? 'xml' : 'text/x-' + mode,
+            styleActiveLine: true,
+            autoCloseBrackets: true,
+            theme: theme ? 'monokai' : 'default',
+            lineWrapping: true,
+            scrollbarStyle: 'simple',
+            matchBrackets: true,
+            gutters: ['CodeMirror-linenumbers', 'breakpoints']
+        });
+        $('.CodeMirror').css({
+            'min-height': '580px',
+            'max-height': '580px',
+            'border': '0',
+            'line-height': '1.2',
+            'font-size': '16px'
+        });
+        $('#frameDiv' + id).css({
+            'height': '458.5px',
+            'position': 'relative'
+        });
+        $('.CodeMirror-scroll').css({ 'min-height': '558px', 'max-height': '558px' });
+        $('.CodeMirror-gutters').css('height', '580px');
+        if (isEval < 2) {
+            $('#inputPanel' + id).hide();
+            $('#frameDiv' + id).css('height', '580.5px');
+        }
+    },
+
+    sendToFrame: function(id, isEval, type, dbName) {
+        $('#runBtn' + id).prop('disabled', true);
+        isEval = isEval ? isEval : 0;
+        var input = 0;
+        var code = evalInline.getCode(id);
+        var video_and_audio_data = ['mp4', 'ogg', 'webm', 'mp3', 'wav'];
+        var img_data = ['gif', 'tif', 'png', 'jpg'];
+        var i;
+        code = code.replace(/src[ ]*=[ ]*['"](.*?)['"]/gm, function(fullMatch, src) {
+            if (src) {
+                for (i = 0; i < video_and_audio_data.length; i++) {
+                    if (src.includes(video_and_audio_data[i])) {
+                        return fullMatch.replace(src, 'https://s3.amazonaws.com/jigyaasa_content_stream/' + src);
+                    }
+                }
+                for (i = 0; i < img_data.length; i++) {
+                    if (src.includes(img_data[i])) {
+                        return fullMatch.replace(src, 'https://s3.amazonaws.com/jigyaasa_content_static/' + src);
+                    }
+                }
+            }
+
+        });
+
+        code = code.replace(/url\(['"](.*?)['"]\)/g, 'url("https://s3.amazonaws.com/jigyaasa_content_static/$1")');
+        //code = code.replace(/src="(.*?)"/g,'src="https://s3.amazonaws.com/jigyaasa_content_static/$1"').replace(/url\(['"](.*?)['"]\)/g,'url("https://s3.amazonaws.com/jigyaasa_content_static/$1")');
+        var frameDiv = document.querySelector('#frameDiv' + id);
+        frameDiv.style.position = 'relative';
+        frameDiv.style.overflow = 'auto';
+        activate(1, '#frameDiv' + id, '', 'absolute');
+        if (!isEval) {
+            var codeContainer = document.createElement('iframe');
+            codeContainer.className = 'fwidth bg-white border-0';
+            codeContainer.style.height = '564px';
+            codeContainer.style.width = '600px';
+            frameDiv.innerHTML = '';
+            frameDiv.appendChild(codeContainer);
+            var frameContent = frameDiv.firstElementChild.contentDocument;
+            frameContent.open();
+            frameContent.write(code);
+            frameContent.close();
+            activate(0);
+            $('#runBtn' + id).prop('disabled', false);
+        } else {
+            if (isEval > 1) {
+                evalInline.executeTestCases(id);
+            }
+            evalInline.runEvalPro(id, code, type, input, dbName);
+        }
+    },
+
+    getCode: function(id) {
+        var code = html_editor[id].getValue();
+        return code;
+    },
+
+    executeTestCases: function(id) {
+        var _userXml = $('#evalXML' + id).val();
+        var code = evalInline.getCode(id);
+        _userXml = _userXml.replace(/\<editor\>[\s\S]*?\<\/editor\>/g, '<editor>' + code + '</editor>');
+        _userXml = encodeURIComponent(_userXml);
+        $.ajax({
+            type: 'POST',
+            url: baseUrl + 'sim/evalpro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
+        }).done(function(res) {
+            if (res == 1) {
+                $('#evalCheck' + id).html('<span class="item_score font-weight-bold"><span class="label-correct">Correct</span></span>');
+            } else {
+                $('#evalCheck' + id).html('<span class="item_score font-weight-bold"><span class="label-incorrect">Incorrect</span></span>');
+            }
+            $('#runBtn' + id).prop('disabled', false);
+        });
+    },
+
+    resetDb: function(user_guid, dbName, id) {
+        activate(1, '#frameDiv' + id, '', 'absolute');
+        $('#resetBtn' + id).prop('disabled', false);
+        dbName = dbName ? dbName : 'myDBs';
+        $.ajax({
+            type: 'POST',
+            url: baseUrl + 'sim/evalpro/index.php',
+            data: {
+                'ajax': 1,
+                'in_editor': 0,
+                'user_guid': user_guid,
+                'resetDB': 1
+            },
+        }).done(function() {
+            $('#frameDiv' + id).html('<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>Database reset complete!</div>');
+            $('#resetBtn' + id).prop('disabled', false);
+        });
+    },
+
+    runEvalPro: function(id, code, type, stdin, dbName) {
+        dbName = dbName ? dbName : 'myDBs';
+        var _userXml = $('#evalXML' + id).val();
+        var pre = evalInline.getRegString('pre', _userXml, 1);
+        var post = evalInline.getRegString('post', _userXml, 1);
+        code = pre + code + post;
+        stdin = stdin ? stdin : $('#evalInput' + id).val();
+        var result = '';
+        $.ajax({
+            type: 'POST',
+            url: baseUrl + 'sim/evalpro/',
+            data: {
+                code: code,
+                repltype: type,
+                stdin: stdin,
+                user_guid: user_guid,
+                dbName: dbName,
+                'run_code': 1
+            },
+            dataType: 'json',
+            success: function(res) {
+                activate(0);
+                var out = res.output ? res.output : res.stderr ? res.stderr : 'Your code didn\'t print anything...';
+                $('#frameDiv' + id).html('<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>' + out + '</div>');
+                $('#runBtn' + id).prop('disabled', false);
+            }
+        });
+    }
+};
+
+function createPlaygroundHtml(smxml, isEval, theme, web_count, self, title) {
+    var mode = /language="(\w+)"/g.exec(smxml),
+        dbName = '',
+        prettyData = '';
+    if (mode) {
+        mode = mode[1];
+    }
+    if (smxml) {
+        if (smxml.indexOf('type="22"') > -1) {
+            mode = 'html';
+            var html_data = evalInline.getRegString('tag', smxml);
+            var css_data = evalInline.getRegString('css', smxml);
+            var js_data = evalInline.getRegString('js', smxml);
+            if (css_data.length > 1) {
+                css_data = '&lt;style&gt;' + css_data + '&lt;/style&gt;\n';
+            } else {
+                css_data = '';
+            }
+            if (js_data.length > 1) {
+                js_data = '&lt;script&gt;' + js_data + '&lt;/script&gt;';
+            } else {
+                js_data = '';
+            }
+            prettyData = html_data + css_data + js_data;
+        } else {
+            var editor_data = evalInline.getRegString('editor', smxml);
+            var caseData = evalInline.getRegString('case', smxml);
+            dbName = (/db_name="(.*?)"/gmi).exec(smxml);
+            dbName = (dbName) ? dbName[1] : '';
+            var evalInpData = caseData.replace(/\|\d+/g, '').replace(',', '\n');
+            prettyData = editor_data;
+        }
+        self.innerHTML = (
+            '<div class="row">' +
+            '<textarea class="h-imp" id="evalXML' + (web_count) + '">' + smxml.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</textarea>' +
+            '<div id="printPanel' + web_count + '" class="col-md-12"><div class="card"><div class="card-header height44">' +
+            title + '<div class="d-inline-block ml" id="evalPCheck' + web_count + '"></div><button id="evalCreator' + web_count + '" onclick="evalInline.createEditor(this,' + web_count + ',\'' + mode + '\',' + isEval + ',' + theme + ')" style="margin-top: -8px" type="button" class="btn btn-primary m-t-n-xs float-right"><i class="fa fa-code"></i> Run</button>' +
+            '</div>' +
+            '<div id="htmlPEditor' + web_count + '" class="card-body p-0 border-0">' +
+            '<pre class="prettyprint black linenums mb-0">' + prettyData + '</pre>' +
+            '</div></div></div>' +
+            '<div id="editorPanel' + web_count + '" class="h" style="max-height:500px;" class="col-md-12">' +
+            '<div class="card">' +
+            '<div class="card-header height44">' +
+            title + '<div class="d-inline-block ml" id="evalCheck' + web_count + '"></div><button class="btn btn-success float-right" style="margin-top: -8px" onclick="evalInline.sendToFrame(' + web_count + ',' + isEval + ',\'' + mode + '\',\'' + dbName + '\')"><i class="fa fa-code"></i> Run</button><button type="button" class="btn btn-danger mr-sm float-right mr-1" style="margin-top: -8px" onclick="evalInline.getBack(' + web_count + ')">Back</button>' + (dbName ? '<button type="button" id="resetBtn' + web_count + '" class="btn btn-danger mr-sm float-right mr-1" style="margin-top: -8px" onclick="evalInline.resetDb(\'' + user_guid + '\',\'' + dbName + '\',' + web_count + ')">ResetDB</button>' : '') +
+            '</div>' +
+            '<div id="htmlEditor' + web_count + '" class="card-body p-0 border-0">' +
+            '<pre class="prettyprint black linenums mb-0">' + prettyData + '</pre>' +
+            '</div></div></div>' +
+            '<div id="framePanel' + web_count + '" class="h-imp">' +
+            '<div class="card mb" id="inputPanel' + web_count + '">' +
+            '<div class="card-header height44">Input</div>' +
+            '<div id="inputDiv' + web_count + '" class="card-body p-0">' +
+            '<textarea rows="3" placeholder="Enter your input seperated by Enter.." class="form-control border-0 resize_none outline0 shadow-none p" id="evalInput' + web_count + '" autofocus>' + evalInpData + '</textarea>' +
+            '</div></div>' +
+            '<div class="card"><div class="card-header height44">Output</div>' +
+            '<div id="frameDiv' + web_count + '" class="card-body p" style="resize: both;overflow: auto;background:#fff">' +
+            '</div></div></div></div>'
+        );
+        prettyPrint();
+    }
+}

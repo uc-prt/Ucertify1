@@ -9,9 +9,7 @@
 	import { AH } from '../helper/HelperAI.svelte';
 	export let editorState;
 	export let ucEditor;
-	export let showAns;
-
-	let xml='', _module='', qxml='', uxml='<smans></smans>', windowHtml='', message = '';
+	let xml='', _module='', qxml='', uxml='<smans></smans>', windowHtml='';
 	let state = {};
 	let hdd = writable({
 			xml : '',
@@ -19,7 +17,6 @@
 			module : '0',
 			stepIndex : 0,
 			toggle : false,
-			snackback : false,
 			testMode : '0',
 			remediationToggle : false,
 			qxml : '',
@@ -42,7 +39,7 @@
 		let type = smxml.toString().match(/type="(.*?)"|type='(.*?)'/gim);
 		type = type.toString().replace(/type=|"/gim, '');
 		state.module = type;
-		editorState.activator = true;
+		editorState = {...editorState, activator : true};
 		await tick();
 		didMount();
 		callOnStateChange();
@@ -52,7 +49,14 @@
 	onDestroy(()=> {
 		AH.select('#testMode', 'attr', {id: 'answerCheck'}).innerHTML = (l.remediation);
 	})
-
+	const showAns = () => {
+		if (state.testMode == '1') {
+			editorState = {...editorState, message : (AH.select('#labAnswer').value == '1') ? 'Correct' : 'Incorrect'};
+			editorState = {...editorState, snackback: true};
+		}else{
+			editorState = {...editorState, snackback: false};
+		}
+	}
 	// call just after rendering
 	function didMount() {
 		setTimeout(function() {
@@ -81,7 +85,10 @@
 
 		// for answer checking
 		AH.listen(document, 'click', '#answerCheck', ()=> {
-			remediationMode();
+			showAns();
+			if (state.module != '17') {
+				remediationMode();
+			}
 		});
 		// for testmode
 		AH.listen(document, 'click', '#testMode', function() {
@@ -94,14 +101,8 @@
 			if (state.module == '17') {
 				AH.bind('#authoringFrame','load', ()=> {
 					let frameDoc = AH.select('#authoringFrame').contentDocument;
-		        	AH.listen(frameDoc, 'click', 'body', function(_this) {
-		        		if (state.testMode == '1') {
-		        			message = (AH.select('#labAnswer').value == '1') ? 'Correct' : 'Incorrect';
-		        			state.snackback = true; 
-		        		}
-		        	});
-					editorState.activator = false;
-		        });
+					editorState = {...editorState, activator : false};
+				});
 			}
 		}, 200);
 
@@ -179,7 +180,7 @@
 		})
 	}
 	async function testMode(fromRemed) {
-		editorState.activator = true;
+		editorState = {...editorState, activator: true};
 		AH.empty('#authoringFrame');
 		// removing the form in the authoring area
 		AH.find('#authoringArea', 'form', {action: 'remove'});
@@ -288,7 +289,7 @@
 			if (state.module == '17') {
 				// getting the uxml from the function getAnswerXMLLabsim() 
 				uxml = AH.select("#authoringFrame").contentWindow.getAnswerXMLLabsim();
-				uxml = uxml.uxml;
+				uxml = JSON.parse(uxml.uxml);
 			} else if (state.module == '18') {
 				uxml = AH.select("#authoringFrame").contentWindow.generateXML();	
 				uxml = JSON.stringify(uxml.xml);
@@ -316,7 +317,7 @@
 			setTimeout(function() {
 				// submitting the form
 				AH.select('form[target="authoringFrame"]').submit();
-				editorState.activator = true;
+				editorState = {...editorState, activator: true};
 			}, 100);
 		}
 	}
@@ -350,12 +351,6 @@
 	<input type="hidden" id="checkAnsStr" name="checkAnsStr" value=""/>
 	<button id="clickRun" name="clickRun" style="display: none"></button>
 </div>
-<Snackbar
-	bind:visible={state.snackback}
-	timeout={10}
->
-	{message}
-</Snackbar>
 <Dialog					
 	bind:visible={state.remediationToggle}
 	width={450}
