@@ -615,13 +615,13 @@ export function tag_player(obj) {
                 }
                 iframe_src = baseUrl + 'index.php?func=navigate_items&player_id=' + chapter_guid + '_' + player_id + '&group_guid=' + asset + '&chapter_guid=' + chapter_guid + '&title=' + title + '&player_setting' + options + quiz_attr + '&handler_type=quizPlayer';
                 var attributes = 'class="quiz_player" name="' + chapter_guid + '_' + player_id + '" id="' + chapter_guid + '_' + player_id + '" style="' + options + '" onLoad="window.parent.autoResize(this.id, 1)"';
-                AH.insert(_this, createPlayerEmbed('inline', player_title, iframe_src, attributes), 'beforend');
+                AH.insert(_this, createPlayerEmbed('inline', player_title, iframe_src, attributes), 'afterbegin');
                 player_id++;
                 break;
             case 'flashcard':
                 iframe_src = baseUrl + 'quiz_player.php?func=get_flashcard&player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options + '&item_sequence=1';
                 let tempFlashCardHtml = '<iframe tabindex=\'' + tabindex.z + '\' title=\'' + player_title + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\'></iframe>';
-                AH.insert(_this, tempFlashCardHtml, 'beforend');
+                AH.insert(_this, tempFlashCardHtml, 'afterbegin');
                 player_id++;
                 break;
             case 'download':
@@ -680,13 +680,13 @@ export function tag_player(obj) {
                 }
                 if (forSm) {
                     if (ques_type == 'sim') {
-                        AH.insert(_this, '<h1>this item is depricated, please contact ucertify support</h1>', 'beforend');
+                        AH.insert(_this, '<h1>this item is depricated, please contact ucertify support</h1>', 'afterend');
                     } else {
                         if (AH.selectAll('.UC_TERMINAL').length <= 0) {
                             if (_this.hasAttribute('exclude_asset')) {
                                 include_assets = '';
                             }
-                            AH.insert(_this, include_assets + terminal_title_tag + '<div class="UC_TERMINAL" style="' + options + '; height:240px; width: 99%;"><div class="term_container"><div id="terminal_font"><span class="icomoon-plus plus" rel="tooltip" data-original-title="Increase font size"></span><span class="icomoon-minus minus mt" rel="tooltip" data-original-title="Decrease font size"></span></div></div></div>', 'beforend');
+                            AH.insert(_this, include_assets + terminal_title_tag + '<div class="UC_TERMINAL" style="' + options + '; height:240px; width: 99%;"><div class="term_container"><div id="terminal_font"><span class="icomoon-plus plus" rel="tooltip" data-original-title="Increase font size"></span><span class="icomoon-minus minus mt" rel="tooltip" data-original-title="Decrease font size"></span></div></div></div>', 'afterbegin');
                             AH.getBS('#terminal_font span', 'Tooltip').enable();
                         }
                         if (typeof updateTFS != 'undefined') {
