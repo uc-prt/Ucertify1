@@ -426,6 +426,7 @@ DND.readyThis = function(dndid) {
         let input = document.createElement('input');
         input.type = 'checkbox'
         input.id = 'prevent_dialog'
+        (AI.select('#prevent_dialog').parentElement).classList.add('check');
         input.classList.add('mr-1');
         input.onchange = function() {
             DND.prevent_dialog = this.checked;
@@ -451,6 +452,7 @@ DND.readyThis = function(dndid) {
                 closeButton.onclick = function() { swal.close(); };
                 closeButton.textContent = '×';
                 let modal = document.querySelector('.swal-modal');
+                AI.select('.swal-modal').firstElementChild.className = "swal-text alignCheck";
                 modal.appendChild(closeButton);
             }
         }

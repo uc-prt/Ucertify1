@@ -447,19 +447,21 @@
             <table class = {"table testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">
                 <thead>
                     <tr class = "table-head">
+                        
                         <th
-                            class = {"preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : "text-center")}
+                            class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : "text-center") }
                             tabindex = {0}
-                            style = "background-color:{theme_color[state.theme]}!important;"
                             
-                        >{state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
+                            
+                        >
+                        {state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                         {#if state.cdata}
                             {#each state.cdata.option as data, i} 
                                 <th
                                     key = {i}
-                                    class = {"preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
+                                    class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
                                     tabindex = {0}
-                                    style = "background-color:{theme_color[state.theme]}!important"
+                                    
                                 >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                             {/each}
                         {/if}
@@ -470,18 +472,19 @@
                         {#each cm.cdata.term as data,i} 
                             <tr key = {i}>
                                 <td
-                                    class = "{data.id} position-relative"
+                                    class = { (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  +" "+  data.id +" position-relative"}
                                     tabindex = {0}
-                                    style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}!important;font-size:14pt;vertical-align:middle;font-family:{state.font}"
-                                >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
+                                    style = "font-size:14pt;vertical-align:middle;font-family:{state.font}"
+                                >
+                                {data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
                                 
                                 {#each cm.cdata.option as data2, j} 
                                 <td
                                     key = {j}
                                     id = {'tb' + (i) + (j)}
                                     
-                                    class = "{"text-center test_area " + ((data2.id == data.correct) ? "dbg-success" : "dbg-danger")}  position-relative" 
-                                    style = "background-color:{(((i % 2) == 0)?(theme_color_terms[state.theme]): "#FFF")}"
+                                    class = {  (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  + " "+"text-center test_area"  + ((data2.id == data.correct) ? 'dbg-success' : 'dbg-danger') +' position-relative'} 
+                                    
                                 >
                                     <i
                                         class = "fa fa-check"
@@ -573,4 +576,46 @@
         text-align: center;
     }
 
+    .theme_color_theme1 {
+        background-color: #5B9BD5!important;
+    }
+
+    .theme_color_theme2 {
+        background-color: #3B67BC!important;
+    }
+
+    .theme_color_theme3 {
+        background-color: #F6C3A2!important;
+    }
+
+    .theme_color_theme4 {
+        background-color: #70AD47!important;
+    }
+
+    .theme_color_theme5 {
+        background-color: #745998!important;
+    }
+
+
+    
+
+    .theme_color_terms_theme1 {
+        background-color: #DEEAF6;
+    }
+
+    .theme_color_terms_theme2 {
+        background-color: #D4DEF1;
+    }
+
+    .theme_color_terms_theme3 {
+        background-color: #FAE0CF;
+    }
+
+    .theme_color_terms_theme4 {
+        background-color: #E2EFD9;
+    }
+
+    .theme_color_terms_theme5 {
+        background-color: #E1DAE9;
+    }
 </style>   
