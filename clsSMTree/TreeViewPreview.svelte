@@ -150,7 +150,6 @@
     
     // Called when props or state gets change
     beforeUpdate(async ()=> {
-        console.log(previewState, editorState.editorView, previewState != editorState.editorView);
         if(previewState != editorState.editorView){
             setTimeout(function () {
                 ucTree.readyThis('#' + treeid, state.parsedOptions);
