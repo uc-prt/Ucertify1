@@ -361,8 +361,8 @@ function didMount(node, action) {
 				AH.select("#info").innerHTML = state.info;
 				AH.select("#info_show").innerHTML = state.info;
 				if(AH.isValid(state.vtt)){
-					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
-					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
+					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
+					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
 				}
 				initAddFeature(false, false, false, tempContent || " ");
 			}
