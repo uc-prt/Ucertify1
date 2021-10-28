@@ -53,7 +53,7 @@ let snt_detail_array = {};
 let stageComment = "";
 let editorHeaderRef; // refrence of editorHeader
 let editCount = 1;
-let saveCheckbox; // handle check of saving check box
+let saveCheckbox = true; // handle check of saving check box
 let createVariableCallback = {}; // refrence of createAlgo
 let modalVisible = false; // handle Modal instance
 let player_parent = ""; // check palyer tag
@@ -3010,7 +3010,7 @@ afterUpdate(() => {
 		</div>
 		<Checkbox 
 			id="saveCheckbox"
-			bind:checked={saveCheckbox}
+			checked={saveCheckbox}
 			value="Save any unsaved changes"
 			color="primary"
 			name="saveCheckbox"
