@@ -826,9 +826,9 @@ export function tag_player(obj) {
                     }
                 }
                 if (typeof open_test == 'function') {
-                    AH.insert(_this, lab_title_tag + '<a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right startlab\' ' + SCORM_url + '>Start Lab</a>' + player_info + '</div>', 'beforebegin');
+                    AH.insert(_this, lab_title_tag + '<a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right startlab\' ' + SCORM_url + '>Start Lab</a>' + player_info + '</div>', 'afterend');
                 } else {
-                    AH.insert(_this, lab_title_tag + '<a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right startlab\' ' + SCORM_url + ' target=\'_blank\'>Start Lab</a>' + player_info + '</div>', 'beforebegin');
+                    AH.insert(_this, lab_title_tag + '<a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right startlab\' ' + SCORM_url + ' target=\'_blank\'>Start Lab</a>' + player_info + '</div>', 'afterend');
                 }
                 break;
             case 'external':
@@ -1040,7 +1040,7 @@ export function tag_player(obj) {
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
                     var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
-                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterbegin');
+                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
                     AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
