@@ -582,9 +582,9 @@ function loadExamObjective(_this) {
 			});
 			if (obj != "null") {
 				for (let i in obj) {
-					AI.insert('.parent_ul','<li class="radio parent_li_'+i+' my-2" tag_guid="'+i+'"><label class="border exam_obj_label d-flex p rounded"><input type="checkbox" class="exam_obj_radio h" id="radio_'+i+'" name="exam_obj[]" value="'+i+'" /><div class="mt-sm"></div><span>'+obj[i].n+'</span></label><ul class="child_ul list-unstyled"></ul></li>', 'beforeend');
+					AI.insert('.parent_ul','<li class="radio parent_li_'+i+' my-2" tag_guid="'+i+'"><label class="border exam_obj_label w-100 p rounded"><input type="checkbox" class="exam_obj_radio h" id="radio_'+i+'" name="exam_obj[]" value="'+i+'" /><div class="mt-sm"></div><span>'+obj[i].n+'</span></label><ul class="child_ul list-unstyled"></ul></li>', 'beforeend');
 					for (let j in obj[i].c) {
-						AI.insert(AI.select('.parent_li_'+i).querySelector('.child_ul'), '<li class="radio child_li pl-4 my-2" tag_guid="'+j+'" ><label class="border exam_obj_label d-flex p rounded"><input type="checkbox" class="exam_obj_radio h" name="exam_obj[]" id="radio_'+j+'" value="'+j+'" /><div class="mt-sm"></div><span>'+obj[i].c[j].n+'</span></label></li>', 'beforeend');
+						AI.insert(AI.select('.parent_li_'+i).querySelector('.child_ul'), '<li class="radio child_li pl-4 my-2" tag_guid="'+j+'" ><label class="border exam_obj_label w-100 p rounded"><input type="checkbox" class="exam_obj_radio h" name="exam_obj[]" id="radio_'+j+'" value="'+j+'" /><div class="mt-sm"></div><span>'+obj[i].c[j].n+'</span></label></li>', 'beforeend');
 					}
 				}
 			}
