@@ -53,7 +53,7 @@ let snt_detail_array = {};
 let stageComment = "";
 let editorHeaderRef; // refrence of editorHeader
 let editCount = 1;
-let saveCheckbox; // handle check of saving check box
+let saveCheckbox = true; // handle check of saving check box
 let createVariableCallback = {}; // refrence of createAlgo
 let modalVisible = false; // handle Modal instance
 let player_parent = ""; // check palyer tag
@@ -361,8 +361,8 @@ function didMount(node, action) {
 				AH.select("#info").innerHTML = state.info;
 				AH.select("#info_show").innerHTML = state.info;
 				if(AH.isValid(state.vtt)){
-					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
-					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;");
+					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
+					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
 				}
 				initAddFeature(false, false, false, tempContent || " ");
 			}
@@ -1702,7 +1702,7 @@ function initAddFeature(title, stem, remediation, content) {
 
 // check whether init editor needed
 function callInlineEditor(where) {
-	if (document.querySelector("#authoringSection " + where + " .ebook_item_text").classList.contains("mce-content-body")) {
+	if (document.querySelector("#authoringSection " + where + " .ebook_item_text")?.classList.contains("mce-content-body")) {
 		editCount++;
 	} else {
 		if (editCount < 100) {
@@ -2910,7 +2910,7 @@ afterUpdate(() => {
 											style="padding: 10px 0 10px 0; white-space: pre-wrap word-wrap: break-word; font-size: 14px"
 										></div>
 									{/if}
-									{#if state.viewConfig.itemModule && state.editorView != 'authoring'}
+									{#if state.viewConfig.itemModule}
 										<div id="xml_show" class="overflow" role="application" tabindex="0" aria-label="application. {l['itemtype_' + subtype]}">
 											<svelte:component 
 												this={Items.preview} 
@@ -3010,7 +3010,7 @@ afterUpdate(() => {
 		</div>
 		<Checkbox 
 			id="saveCheckbox"
-			bind:checked={saveCheckbox}
+			checked={saveCheckbox}
 			value="Save any unsaved changes"
 			color="primary"
 			name="saveCheckbox"

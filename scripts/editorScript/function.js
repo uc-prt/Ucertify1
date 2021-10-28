@@ -450,7 +450,7 @@ function convertUcSyntaxSpaceInEntity(str) {
 	try {
 		if (str && str.match(/<uc:syntax/gm)) {
 			RegExp.escape = function (s) {
-				return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+				return s.replace(/[-\/\\^$*+.()|[\]{}]/g, '\\$&');
 			};
 			let ucStx = str.match(/<uc\:syntax[\s\S]*?<\/uc\:syntax>/gim);
 			if (ucStx) {
@@ -582,9 +582,9 @@ function loadExamObjective(_this) {
 			});
 			if (obj != "null") {
 				for (let i in obj) {
-					AI.insert('.parent_ul','<li class="radio parent_li_'+i+' my-2" tag_guid="'+i+'"><label class="border exam_obj_label d-flex p rounded"><input type="checkbox" class="exam_obj_radio h" id="radio_'+i+'" name="exam_obj[]" value="'+i+'" /><div class="mt-sm"></div><span>'+obj[i].n+'</span></label><ul class="child_ul list-unstyled"></ul></li>', 'beforeend');
+					AI.insert('.parent_ul','<li class="radio parent_li_'+i+' my-2" tag_guid="'+i+'"><label class="border exam_obj_label w-100 p rounded"><input type="checkbox" class="exam_obj_radio h" id="radio_'+i+'" name="exam_obj[]" value="'+i+'" /><div class="mt-sm"></div><span>'+obj[i].n+'</span></label><ul class="child_ul list-unstyled"></ul></li>', 'beforeend');
 					for (let j in obj[i].c) {
-						AI.insert(AI.select('.parent_li_'+i).querySelector('.child_ul'), '<li class="radio child_li pl-4 my-2" tag_guid="'+j+'" ><label class="border exam_obj_label d-flex p rounded"><input type="checkbox" class="exam_obj_radio h" name="exam_obj[]" id="radio_'+j+'" value="'+j+'" /><div class="mt-sm"></div><span>'+obj[i].c[j].n+'</span></label></li>', 'beforeend');
+						AI.insert(AI.select('.parent_li_'+i).querySelector('.child_ul'), '<li class="radio child_li pl-4 my-2" tag_guid="'+j+'" ><label class="border exam_obj_label w-100 p rounded"><input type="checkbox" class="exam_obj_radio h" name="exam_obj[]" id="radio_'+j+'" value="'+j+'" /><div class="mt-sm"></div><span>'+obj[i].c[j].n+'</span></label></li>', 'beforeend');
 					}
 				}
 			}
@@ -1037,6 +1037,162 @@ function createSimulationHtml(config, default_action, correct_ans, embed, self, 
     }
 }
 
+const AH = {
+	jsAction: function(selected, data) {
+        if (selected instanceof HTMLElement || selected instanceof Node) {
+            switch(data.action) {
+                case 'show': selected.style.display = data.actionData || "";
+                break;
+                case 'hide': selected.style.display = "none";
+                break;
+                case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
+                break;
+                case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
+                break;
+                case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
+                break;
+                case 'toggleClass': selected.classList.toggle(data.actionData);
+                break;
+                case 'html' : selected.innerHTML = data.actionData;
+                break;
+                case 'value': selected.value = data.actionData;
+                break;
+                case 'text': selected.textContent = data.actionData;
+                break;
+                case 'checked':  selected.checked = data.actionData;
+                break;
+                case 'remove': selected.remove();
+                break;
+                case 'removeAttr': selected.removeAttribute(data.actionData);
+                break;
+                case 'css' : this.setCss(selected, data.actionData);
+                break;
+                case 'attr': this.setAttr(selected, data.actionData);
+                break;
+                case 'data': this.setData(selected, data.actionData);
+                break;
+                case 'getData': this.getData(selected, data.actionData);
+                break;
+            }
+        }
+    },
+	selectAll: function(selector, action, actionData) {
+		let selected = typeof selector == 'object' ? selector : document.querySelectorAll(selector);
+		if (selected && selected.length > 0 && action) {
+			Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action, actionData}));
+		}
+		return selected;
+	},
+	setAttr: function(selector, attrs) {
+		let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+		if (selected) {
+			for (let property in attrs) {
+				selected.setAttribute(property, attrs[property]);
+			}
+		}
+		return selected || {};
+	},
+	// add css using object
+	setCss: function(selector, cssList) {
+		let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+		if (selected) {
+			for (let property in cssList) {
+				selected.style && (selected.style[property] = cssList[property]);
+			}
+		}
+		return selected || {};
+	},
+	ajax: function (sendData) {
+        let longData = "";
+        if (typeof (sendData.data) == 'object') {
+            if (sendData.formData) {
+                longData = sendData.data;
+            } else if (sendData.withUrl) {
+                let param = "?";
+                for (let k in sendData.data) {
+                    if (typeof sendData.data[k] != 'object') {
+                        param += "&" + k + "=" + sendData.data[k];
+                    }	
+                }
+                sendData.url += param;
+            } else {
+                longData = new FormData();
+                for (let prop in sendData.data) {
+                    if (typeof sendData.data[prop] == 'object' && this.isValid(sendData.data[prop])) {
+                        longData = this.jsonFormEncode(longData, prop, sendData.data[prop]);
+                    } else {
+                        longData.append(prop, sendData.data[prop]);
+                    }	
+                }
+            }
+        }
+        return new Promise((resolve, reject)=> {
+            const request = new XMLHttpRequest();
+            request.open(sendData.type || 'POST', sendData.url, true);
+            if (sendData.responseType) {
+                request.responseType = sendData.responseType;
+            }
+            request.onreadystatechange = (event) => {
+                if (request.readyState == 4 && request.status === 200) {
+                    try {
+                        resolve(request.responseText, event);
+                    } catch (err) {
+                        reject(err);
+                    }
+                } 
+            };
+            request.onerror = (requestError) => {
+                reject(requestError);
+            };
+            if (sendData.onStart) request.onloadstart = sendData.onStart;
+            if (sendData.onEnd) request.onloadend = sendData.onEnd;
+            request.send(longData);
+        });
+    },
+    jsonFormEncode: function(formData, prop, jsonArray) {
+        try {
+            if (Array.isArray(jsonArray)) {
+                for (let i = 0; i < jsonArray.length; i++) {
+                    for (let key in jsonArray[i]) {
+                        formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
+                    }
+                }
+            } else {
+                for (var key in jsonArray) {
+                    formData.append(`${prop}[${key}]`, jsonArray[key])
+                }
+            }
+        } catch(error) {
+            console.warn("Please provide valid JSON Object in ajax data."+ error);
+        }
+        return formData;
+    },
+	addScript: function(data, url, options={}) {
+        let sc = document.createElement("script");
+        if (url) {
+            sc.src = url;
+            sc.async = true;
+            if (options.callback) {
+                sc.onload = function() { 
+                    options.callback();
+                }
+            }
+        } else {
+            sc.innerHTML = data;
+        }
+        let selector = options.target ? document.body : document.head;
+        selector.append(sc);
+        return sc;
+    },
+	activate(loader) {
+        document.querySelector('#activateLoaderContainer') && document.querySelector('#activateLoaderContainer').remove(); 
+        if (loader > 0) {
+            document.body.insertAdjacentHTML('afterend', `<div id="activateLoaderContainer" class="activateOverlay" style="z-index:9999999;"><center><div class="activator" style="height:100px; width: 100px;"></div></center></div>`);
+        }
+    }
+}
+
+var html_editor = [];
 var evalInline = {
     getRegString: function(str, smxml, isEval) {
         isEval = isEval ? 1 : 0;
@@ -1052,41 +1208,50 @@ var evalInline = {
 
     createEditor: function(e, id, mode, isEval, theme) {
         e.disabled = true;
+		AH.activate(1);
         mode = mode == 'html' ? 'xml' : mode;
 
         if (typeof(CodeMirror) != 'function') {
-            $.ajax({
+			AH.ajax({
                 type: 'POST',
-                url: themeUrl + 'pe-items/lib/merged_codemirror.txt',
-                dataType: 'text',
-                success: function(res) {
-                    $('body').append(res);
-                    evalInline.renderEditor(e, id, mode, isEval);
-                    $('#printPanel' + id).hide();
-                }
-            });
+				longData: true,
+                url: themeUrl + 'svelte_items/lib/merged_codemirror.txt',
+            }).then((res) => {
+				const scriptStart = res.split("</script>");
+				scriptStart[0] = scriptStart[0].replace("<script>", "");
+				AH.addScript(scriptStart[0], "", {target: "body"});
+				const style = document.createElement('style');
+				scriptStart[1] = scriptStart[1].replace("<style>","");
+				scriptStart[1] = scriptStart[1].replace("</style>","");
+				style.innerHTML = scriptStart[1];
+				document.head.append(style);
+                setTimeout(() => evalInline.renderEditor(e, id, mode, isEval, theme), 500);
+				AH.selectAll('#printPanel' + id, 'hide');
+				AH.activate(0);
+			});
         } else {
-            evalInline.renderEditor(e, id, mode, isEval, theme);
-            $('#printPanel' + id).hide();
+            AH.selectAll('#printPanel' + id, 'hide');
+			setTimeout(() => evalInline.renderEditor(e, id, mode, isEval, theme), 500);
+			AH.activate(0);
         }
     },
 
     getBack: function(id) {
-        $('#printPanel' + id).show();
-        $('#evalCreator' + id).attr('disabled', false);
-        $('#editorPanel' + id).hide();
-        $('#framePanel' + id).hide();
+        AH.selectAll('#printPanel' + id, 'show')
+        AH.selectAll('#evalCreator' + id, 'attr', {'disabled': false})
+        AH.selectAll('#editorPanel' + id, 'hide');
+        AH.selectAll('#framePanel' + id, 'hide');
     },
 
     renderEditor: function(e, id, mode, isEval, theme) {
-        $('#framePanel' + id).attr('style', 'width:38.3%;float:left;margin-left:5px;');
-        $('#editorPanel' + id).attr('style', 'width:59.6%;float:left;min-height:580px');
+        AH.selectAll('#framePanel' + id, 'attr', {'style':'width:38.3%;float:left;margin-left:5px;'});
+        AH.selectAll('#editorPanel' + id, 'attr', {'style': 'width:59.6%;float:left;min-height:580px'});
         if (theme > 0) {
-            $('#editorPanel' + id + ' .panel-heading,#framePanel' + id + ' .panel-heading, #framePanel' + id + '.panel.panel-default.mb').attr('style', ' background: #474747;border-color: #000;color: #d5d5d5 !important;');
-            $('#framePanel' + id + ' textarea').attr('style', 'background: #272822;color: #fff;');
+            AH.selectAll('#editorPanel' + id + ' .panel-heading,#framePanel' + id + ' .panel-heading, #framePanel' + id + '.panel.panel-default.mb', 'attr', {'style': ' background: #474747;border-color: #000;color: #d5d5d5 !important;'});
+            AH.selectAll('#framePanel' + id + ' textarea', 'attr', {'style': 'background: #272822;color: #fff;'});
         }
-        $('#framePanel' + id).attr('class', '');
-        $('#editorPanel' + id).attr('class', '');
+        AH.selectAll('#framePanel' + id,'attr', {'class': ''});
+        AH.selectAll('#editorPanel' + id,'attr', {'class': ''});
         var parentDiv = document.querySelector('#htmlEditor' + id);
         parentDiv.style.border = '0';
         var webXmlData = parentDiv.firstElementChild.innerText;
@@ -1094,7 +1259,7 @@ var evalInline = {
             webXmlData = parentDiv.firstElementChild.value;
         }
         parentDiv.innerHTML = '<textarea class="h" id="htmlText' + (id) + '"></textarea>';
-        $('#htmlText' + id).val(webXmlData);
+        AH.selectAll('#htmlText' + id, 'value', webXmlData);
         var webEditor = document.querySelector(('#htmlEditor' + id) + ' textarea');
         html_editor[id] = CodeMirror.fromTextArea(webEditor, {
             lineNumbers: true,
@@ -1107,27 +1272,27 @@ var evalInline = {
             matchBrackets: true,
             gutters: ['CodeMirror-linenumbers', 'breakpoints']
         });
-        $('.CodeMirror').css({
+        AH.selectAll('.CodeMirror', 'css', {
             'min-height': '580px',
             'max-height': '580px',
             'border': '0',
             'line-height': '1.2',
             'font-size': '16px'
         });
-        $('#frameDiv' + id).css({
+        AH.selectAll('#frameDiv' + id, 'css', {
             'height': '458.5px',
             'position': 'relative'
         });
-        $('.CodeMirror-scroll').css({ 'min-height': '558px', 'max-height': '558px' });
-        $('.CodeMirror-gutters').css('height', '580px');
+        AH.selectAll('.CodeMirror-scroll', 'css', { 'min-height': '558px', 'max-height': '558px' });
+        AH.selectAll('.CodeMirror-gutters', 'css', {'height': '580px'});
         if (isEval < 2) {
-            $('#inputPanel' + id).hide();
-            $('#frameDiv' + id).css('height', '580.5px');
+            AH.selectAll('#inputPanel' + id, 'hide');
+            AH.selectAll('#frameDiv' + id, 'css', {'height': '580.5px'});
         }
     },
 
     sendToFrame: function(id, isEval, type, dbName) {
-        $('#runBtn' + id).prop('disabled', true);
+        AH.selectAll('#runBtn' + id, 'attr', {'disabled': true});
         isEval = isEval ? isEval : 0;
         var input = 0;
         var code = evalInline.getCode(id);
@@ -1155,7 +1320,7 @@ var evalInline = {
         var frameDiv = document.querySelector('#frameDiv' + id);
         frameDiv.style.position = 'relative';
         frameDiv.style.overflow = 'auto';
-        activate(1, '#frameDiv' + id, '', 'absolute');
+        AH.activate(1, '#frameDiv' + id, '', 'absolute');
         if (!isEval) {
             var codeContainer = document.createElement('iframe');
             codeContainer.className = 'fwidth bg-white border-0';
@@ -1167,8 +1332,8 @@ var evalInline = {
             frameContent.open();
             frameContent.write(code);
             frameContent.close();
-            activate(0);
-            $('#runBtn' + id).prop('disabled', false);
+            AH.activate(0);
+            AH.selectAll('#runBtn' + id, 'attr', {'disabled': false});
         } else {
             if (isEval > 1) {
                 evalInline.executeTestCases(id);
@@ -1183,28 +1348,28 @@ var evalInline = {
     },
 
     executeTestCases: function(id) {
-        var _userXml = $('#evalXML' + id).val();
+        var _userXml = AH.select('#evalXML' + id).value;
         var code = evalInline.getCode(id);
         _userXml = _userXml.replace(/\<editor\>[\s\S]*?\<\/editor\>/g, '<editor>' + code + '</editor>');
         _userXml = encodeURIComponent(_userXml);
-        $.ajax({
+        AH.ajax({
             type: 'POST',
             url: baseUrl + 'sim/evalpro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
-        }).done(function(res) {
+        }).then(function(res) {
             if (res == 1) {
-                $('#evalCheck' + id).html('<span class="item_score font-weight-bold"><span class="label-correct">Correct</span></span>');
+                AH.selectAll('#evalCheck' + id, 'html', '<span class="item_score font-weight-bold"><span class="label-correct">Correct</span></span>');
             } else {
-                $('#evalCheck' + id).html('<span class="item_score font-weight-bold"><span class="label-incorrect">Incorrect</span></span>');
+                AH.selectAll('#evalCheck' + id, 'html','<span class="item_score font-weight-bold"><span class="label-incorrect">Incorrect</span></span>');
             }
-            $('#runBtn' + id).prop('disabled', false);
+            AH.selectAll('#runBtn' + id, 'attr', {'disabled': false});
         });
     },
 
     resetDb: function(user_guid, dbName, id) {
-        activate(1, '#frameDiv' + id, '', 'absolute');
-        $('#resetBtn' + id).prop('disabled', false);
+        AH.activate(1, '#frameDiv' + id, '', 'absolute');
+        AH.selectAll('#resetBtn' + id, 'attr', {'disabled': false});
         dbName = dbName ? dbName : 'myDBs';
-        $.ajax({
+        AH.ajax({
             type: 'POST',
             url: baseUrl + 'sim/evalpro/index.php',
             data: {
@@ -1213,21 +1378,21 @@ var evalInline = {
                 'user_guid': user_guid,
                 'resetDB': 1
             },
-        }).done(function() {
-            $('#frameDiv' + id).html('<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>Database reset complete!</div>');
-            $('#resetBtn' + id).prop('disabled', false);
+        }).then(function() {
+            AH.selectAll('#frameDiv' + id, 'html','<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>Database reset complete!</div>');
+            AH.selectAll('#resetBtn' + id, 'attr',{'disabled': false});
         });
     },
 
     runEvalPro: function(id, code, type, stdin, dbName) {
         dbName = dbName ? dbName : 'myDBs';
-        var _userXml = $('#evalXML' + id).val();
+        var _userXml = AH.select('#evalXML' + id).value;
         var pre = evalInline.getRegString('pre', _userXml, 1);
         var post = evalInline.getRegString('post', _userXml, 1);
         code = pre + code + post;
-        stdin = stdin ? stdin : $('#evalInput' + id).val();
+        stdin = stdin ? stdin : AH.select('#evalInput' + id).value;
         var result = '';
-        $.ajax({
+        AH.ajax({
             type: 'POST',
             url: baseUrl + 'sim/evalpro/',
             data: {
@@ -1238,17 +1403,14 @@ var evalInline = {
                 dbName: dbName,
                 'run_code': 1
             },
-            dataType: 'json',
-            success: function(res) {
-                activate(0);
-                var out = res.output ? res.output : res.stderr ? res.stderr : 'Your code didn\'t print anything...';
-                $('#frameDiv' + id).html('<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>' + out + '</div>');
-                $('#runBtn' + id).prop('disabled', false);
-            }
-        });
+        }).then(function(res) {
+			AH.activate(0);
+			var out = res.output ? res.output : res.stderr ? res.stderr : 'Your code didn\'t print anything...';
+			AH.selectAll('#frameDiv' + id,'html','<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>' + out + '</div>');
+			AH.selectAll('#runBtn' + id, 'attr', {'disabled': false});
+		});
     }
 };
-
 function createPlaygroundHtml(smxml, isEval, theme, web_count, self, title) {
     var mode = /language="(\w+)"/g.exec(smxml),
         dbName = '',

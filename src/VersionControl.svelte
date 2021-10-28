@@ -89,7 +89,7 @@
                     AH.selectAll('#getting_list', 'hide');
                     var current_data = getParameterByName('version_date');
                     if (current_data) {
-                        AH.parent(AH.contains("td", current_data), 'tr').classList.contains('bg-danger');
+                        AH.parent(AH.contains("td", current_data), 'tr')?.classList?.contains('bg-danger');
                     }
                     AH.toggleDom('#replaced_diff_loader', 'show');
                     if (response.length > 0) {
@@ -150,7 +150,7 @@
     
     function incrementItem (data) {
 		if (state.clicks <= state.tableData.length - 2) {
-			getDiffData(data.version_date, '1');
+			getDiffData(data.version_date, '0');
 			state.clicks = state.clicks + 1;
 		} else{
 			state.clicks = state.tableData.length -1;
@@ -162,7 +162,7 @@
 			state.clicks = 0;
 		} else {
 			state.clicks = state.clicks - 1;
-			getDiffData(data.version_date, prev_indx);
+			getDiffData(data.version_date, '1');
 		}	
 	}
 </script>
