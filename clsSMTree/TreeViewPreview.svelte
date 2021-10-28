@@ -8,12 +8,12 @@
     
     import './libs/treeview.min.css';
     import '../css/jstree/style.css';
-    //import {jsTree} from './libs/jstree.min.js';
     export let isReview;
     export let xml;
     export let uxml;
     export let editorState = false;
     export let showAns;
+    let previewState = 'authoring';
     let isRerender = 1;
     let booleanDelete = true;
     let treeid = 'treemain0',
@@ -48,11 +48,6 @@
     }
     // Built-in method of react lifecycle and called just afetr render method once throughtout the program execution  
     onMount(async ()=> {
-        setTimeout(function () {
-            ucTree.readyThis('#' + treeid, state.parsedOptions);
-            // Forces to re-render the component
-            calcNodes(parsedXml.smxml.tree.__cdata);
-        }, 1000);
         // used to initialized tree plugin and bind some required events that needed
         if (typeof inNative != "undefined") {
             // Used in Native for cut and copy functionality
@@ -155,7 +150,14 @@
     
     // Called when props or state gets change
     beforeUpdate(async ()=> {
-        console.log("beforeupdate");
+        console.log(previewState, editorState.editorView, previewState != editorState.editorView);
+        if(previewState != editorState.editorView){
+            setTimeout(function () {
+                ucTree.readyThis('#' + treeid, state.parsedOptions);
+                calcNodes(parsedXml.smxml.tree.__cdata);
+            }, 1000);
+            previewState = editorState.editorView;
+        }
         if (window.inNative && window.inNative != undefined) {
             timer['pre_timer6'] = setTimeout(function () {
                 window.postMessage(`height___${AH.select("#treemain0").clientHeight}`, '*'); // increases the height of react native outer container
@@ -169,20 +171,8 @@
             isRerender++;
             // For loading the module according to change the value of props 
             loadModule(xml, uxml);
-            console.log("Parsing completed");
         }
     });
-
-    // afterUpdate(()=> {
-    //     if (parsedXml?.smxml?.tree?.__cdata) {
-
-    //         // used to initialized tree plugin and bind some required events that needed
-    //         ucTree.readyThis('#' + treeid, state.parsedOptions);
-    //         // Forces to re-render the component
-    //         calcNodes(parsedXml.smxml.tree.__cdata);
-            
-    //     }
-    // })
     
     // For cut and copy the Draggable element
     function cutAndCopyFunctionality() {
