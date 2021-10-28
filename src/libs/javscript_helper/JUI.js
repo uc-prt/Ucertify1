@@ -1208,9 +1208,15 @@ export default class JUI extends API{
 
     // store data
     set(key, value) {
+        if (key == 'save_item') {
+            this.addInLocalstorage(key, value);
+        }
         if (typeof globalThis == 'object') globalThis.JUITemp[key] = value;
     }
-
+    
+    addInLocalstorage(key, value) {
+        window.localStorage.setItem(key, value);
+    }
     // get data from store
     get(key) {
         return globalThis.JUITemp[key];
