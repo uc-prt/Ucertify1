@@ -1359,6 +1359,9 @@ DND.showchildansdrag = function(dndid, pElem, ansType, review) {
                     if (tgElem != '') {
                         cur_element.setAttribute("data-correctans", "1");
                         is_correct = true;
+                    }else{
+                        is_correct = false;
+                        break;
                     }
                 }
 
