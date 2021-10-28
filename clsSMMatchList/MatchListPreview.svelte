@@ -49,7 +49,8 @@
 	// let setList2Html;
 	let btnflag = 1;
 	let listenCall = 0;
-	let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
+	//let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
+	let containerID =  "matchmain";
 	let dragable;
 	var top1 = 0;
 	//let ucMlid = {};
@@ -107,7 +108,7 @@
 	function displayAns() {
 		let ans = ucMlid.checkAns("#"+containerID);
 
-		onUserAnsChange({uXml:ans.u,ans:ans.ans});
+		onUserAnsChange({uXml:ans.u,ans:ans?.ans});
 
 		if(editorState) {
 			showAns(ans.ans ? 'Correct' : 'Incorrect');
@@ -159,7 +160,7 @@
 						}, 60 * 1000);
 						// if (!UCINFO.isIphone) {
 							if (typeof(AH.alert) == 'function') 
-								AH.alert('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
+								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
 								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
@@ -327,8 +328,10 @@
 		if(state.xml != xml) {
 			state.xml = xml;
 			if(cmed) { 
-				containerID = "matchmain"+cmed; 
-				ucMlid.ajax_eId = "#matchmain"+cmed;
+				//containerID = "matchmain"+cmed;
+				containerID = "matchmain";
+				//ucMlid.ajax_eId = "#matchmain"+cmed;
+				ucMlid.ajax_eId = "#matchmain";
 			}
 			isShuffeled = false;
 			AH.select('#shuffleArea','css',{display:'block'});
@@ -752,9 +755,9 @@
 				</div>
 				<div class={btnflag == 0 ? "h":""}>
 					<div class="btn-group clearfix review_default h" id="sm_controller_default">
-						<button type="button" tabindex={0} class="btn btn-light correct-ans clr" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
-						<button type="button" tabindex={0} class="btn btn-primary both-ans clr" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
-						<button type="button" tabindex={0} class="btn btn-light your-answer clr" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
+						<button type="button" tabindex={0} class="btn btn-light correct-ans clr svelte_items_test" on:click={() => ucMlid.showCorrect('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showCorrect('#'+containerID)}}>Correct Answer</button>
+						<button type="button" tabindex={0} class="btn btn-primary both-ans clr svelte_items_test" on:click={() => ucMlid.showAll('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showAll('#'+containerID)}}>Compare</button>
+						<button type="button" tabindex={0} class="btn btn-light your-answer clr svelte_items_test" on:click={() => ucMlid.showYour('#'+containerID)} on:keyup={(e) => {if (e.keyCode == 13) ucMlid.showYour('#'+containerID)}}>Your Answer</button>
 					</div>
 				</div>
 				<div class="row-fluid">
