@@ -1567,7 +1567,7 @@
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
-            AH.select("#firstEditorDiv",'removeAttr','display');
+            AH.select("#firstEditorDiv").style.removeProperty('display');
         }
 
         if(!showHTML && !showJS) {
@@ -1581,7 +1581,7 @@
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
-            AH.select("#firstEditorDiv",'removeAttr','display');
+            AH.select("#firstEditorDiv").style.removeProperty('display');
         }
     }
 
