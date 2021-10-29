@@ -252,7 +252,6 @@
 
      // sets the width and floating property of the js, html, css and result editor
     function changeStyle() {
-        console.trace();
         // used for mobile team
         // if (window.inNative) {
         //     return;
