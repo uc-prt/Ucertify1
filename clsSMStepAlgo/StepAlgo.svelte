@@ -65,13 +65,13 @@
                     let data = _e.target.innerHTML
                     data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
                     all_steps[id].__cdata = data; 
-                    AH.select('#save_step_'+id,'attr',{disabled:false});
+                    //AH.select('#save_step_'+id,'attr',{disabled:false});
+                    AH.select('#save_step_'+id,'removeAttr','disabled');
                     updateXML();
-                    AH.select('#'+_element.id).click();
-                    setTimeout(function(){
+                    //AH.select('#'+_element.id).click();
+                    // setTimeout(function(){
                         _element.click();
-                        _element.click();
-                    },1000)
+                    // },1000)
                     
                 }
             //},0);
@@ -90,6 +90,11 @@
             } else if(curr.getAttribute("type") == "e") {
                 editMathbox(curr.getAttribute("originalKey"));
             }
+        })
+
+        AH.listen(document,'click','.steps_edit .editFill',function(curr,e){
+            let id = parseInt(curr.parentElement.getAttribute('data-seq'));
+            AH.select('#save_step_'+id,'removeAttr','disabled');
         })
 
         AH.listen(document,'touchstart','.editFill',function(curr,e) {

@@ -7,7 +7,8 @@ const defXMl = `<smxml type="4" name="HotSpot" bgimg="star_topology_000dlj.jpg" 
 </div>
 </smxml>`;
 let app;
-if(window.$contentIcon == 2 || window.$contentIcon == 4) {
+let newXML = XMLToJSON(window.QXML);
+if(['w', 's', 'p'].includes(newXML.smxml.div._type)) {
 	app = new HotspotTokenPreview({
 		target: document.getElementById(window.moduleContainer) || document.body,
 		props: {
