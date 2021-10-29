@@ -6427,6 +6427,9 @@ player:after {
     content: attr(type)" Player";
     text-transform: capitalize;
 }
+#editor #previewSection  player {
+  width: 100%;
+}
 #editor player {
   margin-top: 5px;
   font-size: 15px;
