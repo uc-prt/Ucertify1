@@ -2066,6 +2066,7 @@ function saveAction(event, customAction, saveType) {
 		case 'cancel':
 			console.warn("cancel action");
 			state.saveDialog = false;
+			AH.addInLocalstorage('save_item', false);
 			editorHeaderRef.callPendingAction();
 			break;
 		case 'save':
@@ -2705,6 +2706,12 @@ const insertBlockPanel = (idStr) => {
 	}
 };
 afterUpdate(() => {
+	// To open the save window if the guid is not saved and new guid open from the create app.
+	window.addEventListener("message", (event) => {
+		if (event.data == 'showDialog') {
+			state.saveDialog = true;
+		}
+	}, false);
 	AH.selectAll(".controls_button", 'remove', {action: 'remove'});
 	insertBlockPanel("#stem");
 	insertBlockPanel("#remediation");
