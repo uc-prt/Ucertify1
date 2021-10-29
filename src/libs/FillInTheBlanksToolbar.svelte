@@ -45,8 +45,7 @@
     }
 
     function cursorEvent(eventTriger) {
-       // let customKeyDownEvent = $.Event('keydown');
-       let customeKeyDownEvent = new Event('keydown');
+       let customKeyDownEvent = new Event('keydown');
         customKeyDownEvent.bubbles = true;
         customKeyDownEvent.cancelable = true;
 
