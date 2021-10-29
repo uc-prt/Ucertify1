@@ -58,8 +58,6 @@
 
 
         AH.listen(document,'mouseup','.steps_edit',function(_element,_e){
-            //setTimeout(function(){
-                console.log('check...');
                 let id = parseInt(_e.target.getAttribute('data-seq'));
                 if(!(Number.isNaN(id))) {
                     let data = _e.target.innerHTML
@@ -68,21 +66,11 @@
                     //AH.select('#save_step_'+id,'attr',{disabled:false});
                     AH.select('#save_step_'+id,'removeAttr','disabled');
                     updateXML();
-                    //AH.select('#'+_element.id).click();
-                    // setTimeout(function(){
-                        _element.click();
-                    // },1000)
                     
                 }
-            //},0);
+            
         })
 
-        // AH.listen(document,'mouseup','.steps_edit .editFill',function(_element,_e){
-        //     let id = _element.parentElement.getAttribute('data-seq');
-        //     AH.select('#save_step_'+id).disabled = false;
-        // })
-
-        
 
         AH.listen(document,'click','.editFill',function(curr,e) {
             if(curr.getAttribute("type") == "t") {
