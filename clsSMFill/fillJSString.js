@@ -646,7 +646,7 @@ export default class fillJS {
 				this.temp++;
 			}
 			
-			pElem.getAttribute("userans", userans);
+			pElem.setAttribute("userans", userans);
 		
 			userAnsXML += `<div id='${pElem.getAttribute("id")}' userAns='${userans}' anskey='${anskey}' userAnsSeq='${pElem.getAttribute("userAnsSeq")}'></div>\n`;
 
