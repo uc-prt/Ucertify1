@@ -47,7 +47,7 @@
             AH.select('#files_number').value = AH.find(parsedXmlNode, 'default').getAttribute('limit');
         }
 
-        //updateXML();
+        updateXML();
         parseXml(xml);
     });
 

@@ -568,7 +568,7 @@ export default class fillJS {
 		JS.select("#special_module_user_xml").value = this.userAnsXML;
 	//	updateModule('uxml', this.userAnsXML);
 
-		if (JS.select(fillid).node && parseInt(JS.select(fillid).getAttribute('manual_grade')) != 1) {
+		if (parseInt(JS.select(fillid)?.getAttribute('manual_grade') || '1') != 1) {
 			JS.select("#answer").checked = ((this.result) ? true : false);
 			if (this.result) {
 				JS.select("#answer").checked = true;
@@ -646,7 +646,7 @@ export default class fillJS {
 				this.temp++;
 			}
 			
-			pElem.getAttribute("userans", userans);
+			pElem.setAttribute("userans", userans);
 		
 			userAnsXML += `<div id='${pElem.getAttribute("id")}' userAns='${userans}' anskey='${anskey}' userAnsSeq='${pElem.getAttribute("userAnsSeq")}'></div>\n`;
 
