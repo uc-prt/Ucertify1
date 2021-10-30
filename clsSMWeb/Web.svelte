@@ -18,7 +18,11 @@
 	import '../src/libs/webitem.min.css';
 	
 	export let xml;
+	export let uxml 
 	export let uaXML;
+
+	uxml= uxml ? uxml : uaXML;
+	
 	export let inEditor;
 	export let editorState;
 	export let toggleMode;
@@ -227,7 +231,7 @@
 				xml={xml} 
 				inQuizPlayer={ editorState ? 0 : 1}  
 				editorState={editorState}
-				uaXML={uaXML}
+				uxml={uxml}
 			/> 
 		{:else if state.currentComponent == 0}
 			<WebAuthoring  
