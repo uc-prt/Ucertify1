@@ -27,6 +27,7 @@
 	export let setInlineEditor;
 	export let isReview;
 
+	let isHover;
 	let isPreview = 0;
 	let state = {};
 	let DataState = writable({

@@ -253,30 +253,64 @@
      // sets the width and floating property of the js, html, css and result editor
     function changeStyle() {
         // used for mobile team
+        // if (window.inNative) {
+        //     return;
+        // }
+        // if (showJS && (showHTML || showCSS)) {
+        //     // sets the width 50% of html/css editor if only one exist otherwise sets width 50% of parent element which contains both editor that have id 'firstEditorDiv' and float left
+        //     AH.select("#firstEditorDiv").style.cssText = 'float:left;width:50%';
+        //     // sets the width 50% of js editor and float left
+        //     AH.select("#jsEditorDiv").style.cssText = 'float:left;width:50%';
+        //     // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
+        //     AH.select("top_content").style.cssText = "clear:both;overflow:auto"
+        // }
+        // if (showHTML && showCSS) {
+        //     // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
+        //     AH.select("#top_content").style.cssText = 'clear:both;overflow:auto';
+        //     // sets html editor's width 50% and float left
+        //     AH.select("#html_panel").style.cssText = "float:left;width:50%";
+        //     // sets css editor's width 50% and float left
+        //     AH.select("#css_panel").style.cssText = "float:left;width:50%";
+        // }
+        // if ((showHTML + showCSS + showJS) == 1) {
+        //     // sets css property  width 50% and float left of parent element that contains html, css and js editor 
+        //     AH.select("#top_content").style.cssText = "float:left;width:60%";
+        //     // sets css property  width 40% and float left of element that contains result editor 
+        //     AH.select("#bottom_content").style.cssText = "float:left;width:40%";
+        // }
         if (window.inNative) {
-            return;
-        }
-        if (showJS && (showHTML || showCSS)) {
-            // sets the width 50% of html/css editor if only one exist otherwise sets width 50% of parent element which contains both editor that have id 'firstEditorDiv' and float left
-            document.getElementById("firstEditorDiv").style.cssText = 'float:left;width:50%';
-            // sets the width 50% of js editor and float left
-            document.getElementById("jsEditorDiv").style.cssText = 'float:left;width:50%';
-            // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
-            document.getElementById("top_content").style.cssText = "clear:both;overflow:auto"
-        }
-        if (showHTML && showCSS) {
-            // it is parent element that contains html, css and js editor. Styles it not to allow any floating element on left or right and sets overflow property 'auto'
-            document.querySelector("#top_content").style.cssText = 'clear:both;overflow:auto';
-            // sets html editor's width 50% and float left
-            document.querySelector("#html_panel").style.cssText = "float:left;width:50%";
-            // sets css editor's width 50% and float left
-            document.querySelector("#css_panel").style.cssText = "float:left;width:50%";
-        }
-        if ((showHTML + showCSS + showJS) == 1) {
-            // sets css property  width 50% and float left of parent element that contains html, css and js editor 
-            document.querySelector("#top_content").style.cssText = "float:left;width:60%";
-            // sets css property  width 40% and float left of element that contains result editor 
-            document.querySelector("#bottom_content").style.cssText = "float:left;width:40%";
+            return true;
+        } else {
+            // in case when js editor is visible and either html or css or both editor visible
+            if (showJS && (showHTML || showCSS)) {
+                // it is used to styled the splitter bar that exists on the left edge of the js editor
+                let splitter1 = Split(['#top_content'],{
+                sizes: [50],
+                direction: 'vertical',
+            })
+
+            }
+            // in case when html and css both editor is visible
+            if (showHTML && showCSS) {
+                // it is used to styled the splitter bar that exists on the left edge of the css editor
+                let splitter2 = Split(['#firstEditorDiv'],{
+                    sizes: [100],
+                    direction: 'vertical',
+                    //direction: "vertical",
+                })
+                Split(['#html_panel','#css_panel','#js_panel'],{
+                    sizes: [50,50,50],
+                })
+            }
+            // in case when only one editor visible
+            if ((showHTML + showCSS + showJS) == 1) {
+                // it is used to styled the splitter bar that exists on the left edge of the result editor in case when only one html, js or css editor is visible
+                let Splitter3 = Split(['#accordion'],{
+                sizes: [100],
+                direction: 'vertical',
+                //direction: "vertical",
+            })
+            }
         }
     }
 
@@ -1283,7 +1317,6 @@
 
     // used for check the result status of 'External Script' defined in 'Autograde' dialog box
     function externalCheck(get_cases) {
-        debugger;
         try {
             // contains RegExp pattern for match the string 'var flagONN'
             let re = /var flagONN/gm;
@@ -1519,7 +1552,7 @@
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
-            AH.select("#firstEditorDiv",'removeAttr','display');
+            AH.select("#firstEditorDiv").style.removeProperty('display');
         }
 
         if(!showCSS && !showHTML) {
@@ -1534,7 +1567,7 @@
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
-            AH.select("#firstEditorDiv",'removeAttr','display');
+            AH.select("#firstEditorDiv").style.removeProperty('display');
         }
 
         if(!showHTML && !showJS) {
@@ -1548,7 +1581,7 @@
                 sizes:[100]
             })
             AH.select('#top_content','css',{height:'100%'});
-            AH.select("#firstEditorDiv",'removeAttr','display');
+            AH.select("#firstEditorDiv").style.removeProperty('display');
         }
     }
 

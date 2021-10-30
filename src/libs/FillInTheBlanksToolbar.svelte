@@ -1067,28 +1067,28 @@
         width: 20px; 
         margin: auto;
         height: 19px;
-        background: url(../images/toolbar_images.png) -32px -487px;
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -32px -487px;
     }
 
     .yvariable {
         width: 22px; 
         margin: auto;
         height: 22px;
-        background: url(../images/toolbar_images.png) -30px -714px;
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -30px -714px;
     }
 
     .xfraction {
         width: 21px; 
         margin: auto;
         height: 49px;
-        background: url(../images/toolbar_images.png) -23px -922px;;
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -23px -922px;;
     }
 
     .modulus {
         width: 25px; 
         margin: auto;
         height: 30px;
-        background: url(../images/toolbar_images.png) -27px -848px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -27px -848px; 
     }
 
     .padder_less {
@@ -1107,224 +1107,224 @@
         width: 16px; 
         margin: auto;
         height: 48px;
-        background: url(../images/toolbar_images.png) -36px -381px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -36px -381px; 
     }
 
     .h-bar {
         width: 17px; 
         margin: auto;
         height: 34px;
-        background: url(../images/toolbar_images.png) -32px -507px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -32px -507px; 
     }
 
     /* .block-equal {
         width: 18px; 
         margin: auto;
         height: 38px;
-        background: url(../images/toolbar_images.png) -34px -436px;  unued css
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -34px -436px;  unued css
     } */
 
     .x-power-y {
         width: 21px; 
         margin: auto;
         height: 38px;
-        background: url(../images/toolbar_images.png) -1px -899px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -899px; 
     }
 
     /* .nine-matrix { 
-        background: url(../images/toolbar_images.png) -1px -0px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -0px; 
         width: 52px; 
         height: 37px;
         margin: auto;  // unused css
     } */
     /* .horizontal-matrix { 
-        background: url(../images/toolbar_images.png) -1px -38px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -38px; 
         width: 47px; 
         height: 40px;
         margin: auto;
     } */
     .long-division { 
-        background: url(../images/toolbar_images.png) -1px -79px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -79px; 
         width: 45px; 
         height: 32px;
         margin: auto;
     }
     /* .vertical-matrix { 
-        background: url(../images/toolbar_images.png) -1px -112px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -112px; 
         width: 45px; 
         margin: auto;
         height: 40px;  unused css
     } */
     /* .four-matrix { 
-        background: url(../images/toolbar_images.png) -1px -153px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -153px; 
         margin: auto;
         width: 38px; 
         height: 29px;  unused css
     } */
     .square-root-two { 
-        background: url(../images/toolbar_images.png) -1px -183px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -183px; 
         width: 38px; 
         height: 39px;
         margin: auto; 
     }
     .x-times-fraction { 
-        background: url(../images/toolbar_images.png) -1px -223px;
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -223px;
         margin: auto;
         width: 37px; 
         height: 50px; 
     }
     .square-root { 
-        background: url(../images/toolbar_images.png) -1px -274px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -274px; 
         width: 36px; 
         height: 34px; 
         margin: auto;
     }
     .brackets { 
-        background: url(../images/toolbar_images.png) -1px -309px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -309px; 
         width: 35px; 
         height: 34px; 
         margin: auto;
     }
     .h-power { 
-        background: url(../images/toolbar_images.png) -1px -344px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -344px; 
         width: 35px; 
         height: 36px; 
         margin: auto;
     }
     /* .single-matrix { 
-        background: url(../images/toolbar_images.png) -1px -381px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -381px; 
         width: 34px; 
         height: 26px;  // unused css
         margin: auto;
     } */
-    .curly-brackets { background: url(../images/toolbar_images.png) -1px -408px; 
+    .curly-brackets { background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -408px; 
         width: 33px; 
         margin: auto;
         height: 27px; 
     }
     /* .matrix-form { 
-        background: url(../images/toolbar_images.png) -1px -436px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -436px; 
         width: 32px; 
         height: 24px; 
         margin: auto;
     } */
     .xsquare { 
-        background: url(../images/toolbar_images.png) -1px -461px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -461px; 
         width: 31px; 
         height: 25px; 
         margin: auto;
     }
     .integrtion { 
-        background: url(../images/toolbar_images.png) -1px -487px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -487px; 
         width: 30px; 
         height: 40px;
         margin: auto; 
     }
     .opp-recbrackets { 
-        background: url(../images/toolbar_images.png) -1px -528px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -528px; 
         width: 30px; 
         height: 27px;
         margin: auto; 
     }
     .square-brackets { 
-        background: url(../images/toolbar_images.png) -1px -556px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -556px; 
         width: 30px; 
         height: 34px;
         margin: auto;
     }
     .xsubscript { 
-        background: url(../images/toolbar_images.png) -1px -591px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -591px; 
         width: 30px; 
         height: 31px; 
         margin: auto;
     }
     .dollar { 
-        background: url(../images/toolbar_images.png) -1px -623px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -623px; 
         width: 29px; 
         height: 31px; 
         margin: auto;
     }
     .h-sub { 
-        background: url(../images/toolbar_images.png) -1px -655px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -655px; 
         margin: auto;
         width: 29px; 
         height: 30px; 
     }
     .rec-brackets { 
-        background: url(../images/toolbar_images.png) -1px -686px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -686px; 
         width: 28px; 
         height: 31px; 
         margin: auto;
     }
     .xpower { 
-        background: url(../images/toolbar_images.png) -1px -718px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -718px; 
         width: 28px; 
         height: 30px; 
         margin: auto;
     }
     .bar-block { 
-        background: url(../images/toolbar_images.png) -1px -749px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -749px; 
         width: 26px; 
         height: 34px; 
         margin: auto;
     }
     .infinity { 
-        background: url(../images/toolbar_images.png) -1px -784px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -784px; 
         width: 26px; 
         height: 20px; 
         margin: auto;
     }
     .topbar-arrow { 
-        background: url(../images/toolbar_images.png) -1px -805px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -805px; 
         width: 26px; 
         height: 42px; 
         margin: auto;
     }
     .h-sup { 
-        background: url(../images/toolbar_images.png)-1px -848px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png)-1px -848px; 
         width: 25px; 
         height: 26px; 
         margin: auto;
     }
     .colon { 
-        background: url(../images/toolbar_images.png) -28px -749px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -28px -749px; 
         width: 24px; 
         height: 31px; 
         margin: auto;
     }
     .not-lesser { 
-        background: url(../images/toolbar_images.png) -28px -781px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -28px -781px; 
         width: 24px; 
         height: 23px; 
         margin: auto;
     }
     .h-sup-sub { 
-        background: url(../images/toolbar_images.png) -28px -805px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -28px -805px; 
         width: 23px; 
         height: 36px; 
         margin: auto;
     }
     /* .info-img { 
-        background: url(../images/toolbar_images.png) -1px -875px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -1px -875px; 
         margin: auto;
         width: 23px;  // unused css
         height: 23px; 
     } */
     .not-greater { 
-        background: url(../images/toolbar_images.png) -30px -686px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -30px -686px; 
         width: 22px; 
         margin: auto;
         height: 27px; 
     }
     /* .topbar-doublearrow { 
-        background: url(../images/toolbar_images.png) -25px -879px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -25px -879px; 
         width: 22px;
         margin: auto; // unused css
         height: 42px; 
     } */
 
     /* .x-div { 
-        background: url(../images/toolbar_images.png) -31px -623px; 
+        background: url(https://s3.amazonaws.com/jigyaasa_assets/items/toolbar_images.png) -31px -623px; 
         width: 21px; 
         height: 44px; // unused css
         margin: auto;

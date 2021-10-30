@@ -14,9 +14,9 @@
                             });
                     break;
                     case 4: {
-                            let hotXml = XMLToJSON(state.xml);
-                            //let type = hotXml && hotXml.smxml && hotXml.smxml.div && ["w", "s", "p"].includes(hotXml.smxml.div._type);
-                            let type = (state.content_icon == 2 || state.content_icon == 4) ? true : false;
+                            let hotXml = XMLToJSON(state.ajaxData.xml);
+                            let type = hotXml && hotXml.smxml && hotXml.smxml.div && ["w", "s", "p"].includes(hotXml.smxml.div._type);
+                            //let type = (state.content_icon == 2 || state.content_icon == 4) ? true : false;
                             resolve({
                                 "auth": type ? (await import('../clsSMHotspot/HotspotToken.svelte')).default : (await import('../clsSMHotspot/Hotspot.svelte')).default,
                                 "preview": type ? (await import('../clsSMHotspot/HotspotTokenPreview.svelte')).default : (await import('../clsSMHotspot/HotspotPreview.svelte')).default,
