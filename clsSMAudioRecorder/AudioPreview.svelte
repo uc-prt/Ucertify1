@@ -416,10 +416,12 @@
                 AH.select("#answer").checked = false;
                 state.useransstatus = false;
             }
+            
             // shows the answer
             if (editorState) {
                 showAns(ans);
             } else {
+                ans = (ans == 'Correct') ? true : false;
                 onUserAnsChange({uXml: uxml, ans: ans});
             }
         } else {
@@ -466,13 +468,13 @@
     }
 </script>
 <div id="preview_container" class="container">
-    <div class="row">
-        <ItemHelper 
+    <ItemHelper 
             on:setReview = {setReview}
             on:unsetReview = {unsetReview}
             reviewMode={isReview}
             handleReviewClick = {handleReviewMode}
         />
+    <div class="row">
         {#if isReview}
             {#if answer_status != true}
                 <div class="col-12 py-3">
@@ -557,8 +559,10 @@
                             class="btn btn-light py-0" 
                             disabled={state.isReset} 
                             on:click={setData} 
-                            data-bs-toggle="modal" 
+                            data-bs-toggle="modal"
+                            data-toggle="modal" 
                             data-bs-target="#preview_confirm_modal" 
+                            data-target="#preview_confirm_modal"
                             aria-label="Click on this button for override the previous recording"
                         >
                             <span class="icomoon-new-24px-reset-1 position-relative top1" data-bs-toggle="tooltip" data-placement="top" title="Reset Data"></span>
@@ -575,14 +579,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title tokenfield" aria-label="Confirmation Dialog box" tabindex="0">{l.confirm_label}</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" tabindex="0" aria-label="Click on this button for close the confirmation dialog box">&times;</button>
+                    <button type="button" class="close" data-bs-dismiss="modal" data-dismiss="modal" tabindex="0" aria-label="Click on this button for close the confirmation dialog box">&times;</button>
                 </div>
                 <div class="modal-body tokenfield" tabindex="0" aria-label={areaLabelForPreviewModalContent} id="previewDialogBody" name="previewDialogBody">
                     {l.modal_data}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="preview_dismiss_modal btn btn-light pr-2" data-bs-dismiss="modal" on:click={modalResponse} tabindex="0" aria-label="Click on this button for neglecte to override previous recording">{l.no_label}</button>
-                    <button type="button" class="preview_dismiss_done btn btn-primary" data-bs-dismiss="modal" on:click={manageData} tabindex="0" aria-label="Click on this button for override the previous recording">{l.yes_label}</button>
+                    <button type="button" class="preview_dismiss_modal btn btn-light pr-2" data-bs-dismiss="modal" data-dismiss="modal" on:click={modalResponse} tabindex="0" aria-label="Click on this button for neglecte to override previous recording">{l.no_label}</button>
+                    <button type="button" class="preview_dismiss_done btn btn-primary" data-bs-dismiss="modal" data-dismiss="modal" on:click={manageData} tabindex="0" aria-label="Click on this button for override the previous recording">{l.yes_label}</button>
                 </div>
             </div>
         </div>
