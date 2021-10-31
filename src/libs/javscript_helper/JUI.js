@@ -578,7 +578,7 @@ export default class JUI extends API{
     getBS(target, comp, options) {
         let selected = (typeof target == "object") ? target : document.querySelector(target);
         if (selected && this.bsCat1.includes(comp)) {
-            let isIns = bootstrap[comp].getInstance(selected);
+            let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
             if (isIns) {
                 return bootstrap[comp].getInstance(selected);
             } else {
@@ -1318,7 +1318,7 @@ export default class JUI extends API{
                 return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
             case 'showBSModal':
@@ -1330,7 +1330,7 @@ export default class JUI extends API{
                                     ${data}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal">OK</button>
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>

@@ -11745,7 +11745,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$8 = "clsSMWeb/Web.svelte";
 
-    // (232:40) 
+    // (236:40) 
     function create_if_block_2(ctx) {
     	let webauthoring;
     	let current;
@@ -11753,7 +11753,7 @@ var app = (function () {
     	webauthoring = new WebAuthoring({
     			props: {
     				key: "2",
-    				xml: /*xml*/ ctx[0],
+    				xml: /*xml*/ ctx[1],
     				toggleMode: /*toggleMode*/ ctx[3],
     				getChildXml: /*getChildXml*/ ctx[4],
     				showAns: /*showAns*/ ctx[5],
@@ -11773,7 +11773,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const webauthoring_changes = {};
-    			if (dirty & /*xml*/ 1) webauthoring_changes.xml = /*xml*/ ctx[0];
+    			if (dirty & /*xml*/ 2) webauthoring_changes.xml = /*xml*/ ctx[1];
     			if (dirty & /*toggleMode*/ 8) webauthoring_changes.toggleMode = /*toggleMode*/ ctx[3];
     			if (dirty & /*getChildXml*/ 16) webauthoring_changes.getChildXml = /*getChildXml*/ ctx[4];
     			if (dirty & /*showAns*/ 32) webauthoring_changes.showAns = /*showAns*/ ctx[5];
@@ -11799,14 +11799,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(232:40) ",
+    		source: "(236:40) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (224:40) 
+    // (228:40) 
     function create_if_block_1$1(ctx) {
     	let webpreview;
     	let current;
@@ -11814,10 +11814,10 @@ var app = (function () {
     	webpreview = new WebPreview({
     			props: {
     				key: "1",
-    				xml: /*xml*/ ctx[0],
+    				xml: /*xml*/ ctx[1],
     				inQuizPlayer: /*editorState*/ ctx[2] ? 0 : 1,
     				editorState: /*editorState*/ ctx[2],
-    				uaXML: /*uaXML*/ ctx[1]
+    				uxml: /*uxml*/ ctx[0]
     			},
     			$$inline: true
     		});
@@ -11832,10 +11832,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const webpreview_changes = {};
-    			if (dirty & /*xml*/ 1) webpreview_changes.xml = /*xml*/ ctx[0];
+    			if (dirty & /*xml*/ 2) webpreview_changes.xml = /*xml*/ ctx[1];
     			if (dirty & /*editorState*/ 4) webpreview_changes.inQuizPlayer = /*editorState*/ ctx[2] ? 0 : 1;
     			if (dirty & /*editorState*/ 4) webpreview_changes.editorState = /*editorState*/ ctx[2];
-    			if (dirty & /*uaXML*/ 2) webpreview_changes.uaXML = /*uaXML*/ ctx[1];
+    			if (dirty & /*uxml*/ 1) webpreview_changes.uxml = /*uxml*/ ctx[0];
     			webpreview.$set(webpreview_changes);
     		},
     		i: function intro(local) {
@@ -11856,14 +11856,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(224:40) ",
+    		source: "(228:40) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (222:2) {#if state.currentComponent == 2}
+    // (226:2) {#if state.currentComponent == 2}
     function create_if_block$6(ctx) {
     	let t;
 
@@ -11886,7 +11886,7 @@ var app = (function () {
     		block,
     		id: create_if_block$6.name,
     		type: "if",
-    		source: "(222:2) {#if state.currentComponent == 2}",
+    		source: "(226:2) {#if state.currentComponent == 2}",
     		ctx
     	});
 
@@ -11919,8 +11919,8 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			attr_dev(div, "id", "webModule");
-    			add_location(div, file$8, 220, 1, 9572);
-    			add_location(main, file$8, 219, 0, 9564);
+    			add_location(div, file$8, 224, 1, 9621);
+    			add_location(main, file$8, 223, 0, 9613);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12004,7 +12004,9 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Web", slots, []);
     	let { xml } = $$props;
+    	let { uxml } = $$props;
     	let { uaXML } = $$props;
+    	uxml = uxml ? uxml : uaXML;
     	let { inEditor } = $$props;
     	let { editorState } = $$props;
     	let { toggleMode } = $$props;
@@ -12244,6 +12246,7 @@ var app = (function () {
 
     	const writable_props = [
     		"xml",
+    		"uxml",
     		"uaXML",
     		"inEditor",
     		"editorState",
@@ -12259,14 +12262,15 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("xml" in $$props) $$invalidate(0, xml = $$props.xml);
-    		if ("uaXML" in $$props) $$invalidate(1, uaXML = $$props.uaXML);
-    		if ("inEditor" in $$props) $$invalidate(8, inEditor = $$props.inEditor);
+    		if ("xml" in $$props) $$invalidate(1, xml = $$props.xml);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("uaXML" in $$props) $$invalidate(8, uaXML = $$props.uaXML);
+    		if ("inEditor" in $$props) $$invalidate(9, inEditor = $$props.inEditor);
     		if ("editorState" in $$props) $$invalidate(2, editorState = $$props.editorState);
     		if ("toggleMode" in $$props) $$invalidate(3, toggleMode = $$props.toggleMode);
     		if ("getChildXml" in $$props) $$invalidate(4, getChildXml = $$props.getChildXml);
     		if ("showAns" in $$props) $$invalidate(5, showAns = $$props.showAns);
-    		if ("setInlineEditor" in $$props) $$invalidate(9, setInlineEditor = $$props.setInlineEditor);
+    		if ("setInlineEditor" in $$props) $$invalidate(10, setInlineEditor = $$props.setInlineEditor);
     		if ("isReview" in $$props) $$invalidate(6, isReview = $$props.isReview);
     	};
 
@@ -12280,6 +12284,7 @@ var app = (function () {
     		writable,
     		AH,
     		xml,
+    		uxml,
     		uaXML,
     		inEditor,
     		editorState,
@@ -12299,14 +12304,15 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("xml" in $$props) $$invalidate(0, xml = $$props.xml);
-    		if ("uaXML" in $$props) $$invalidate(1, uaXML = $$props.uaXML);
-    		if ("inEditor" in $$props) $$invalidate(8, inEditor = $$props.inEditor);
+    		if ("xml" in $$props) $$invalidate(1, xml = $$props.xml);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("uaXML" in $$props) $$invalidate(8, uaXML = $$props.uaXML);
+    		if ("inEditor" in $$props) $$invalidate(9, inEditor = $$props.inEditor);
     		if ("editorState" in $$props) $$invalidate(2, editorState = $$props.editorState);
     		if ("toggleMode" in $$props) $$invalidate(3, toggleMode = $$props.toggleMode);
     		if ("getChildXml" in $$props) $$invalidate(4, getChildXml = $$props.getChildXml);
     		if ("showAns" in $$props) $$invalidate(5, showAns = $$props.showAns);
-    		if ("setInlineEditor" in $$props) $$invalidate(9, setInlineEditor = $$props.setInlineEditor);
+    		if ("setInlineEditor" in $$props) $$invalidate(10, setInlineEditor = $$props.setInlineEditor);
     		if ("isReview" in $$props) $$invalidate(6, isReview = $$props.isReview);
     		if ("isHover" in $$props) isHover = $$props.isHover;
     		if ("isPreview" in $$props) isPreview = $$props.isPreview;
@@ -12320,14 +12326,15 @@ var app = (function () {
     	}
 
     	return [
+    		uxml,
     		xml,
-    		uaXML,
     		editorState,
     		toggleMode,
     		getChildXml,
     		showAns,
     		isReview,
     		state,
+    		uaXML,
     		inEditor,
     		setInlineEditor
     	];
@@ -12338,14 +12345,15 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
-    			xml: 0,
-    			uaXML: 1,
-    			inEditor: 8,
+    			xml: 1,
+    			uxml: 0,
+    			uaXML: 8,
+    			inEditor: 9,
     			editorState: 2,
     			toggleMode: 3,
     			getChildXml: 4,
     			showAns: 5,
-    			setInlineEditor: 9,
+    			setInlineEditor: 10,
     			isReview: 6
     		});
 
@@ -12359,15 +12367,19 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*xml*/ ctx[0] === undefined && !("xml" in props)) {
+    		if (/*xml*/ ctx[1] === undefined && !("xml" in props)) {
     			console_1$2.warn("<Web> was created without expected prop 'xml'");
     		}
 
-    		if (/*uaXML*/ ctx[1] === undefined && !("uaXML" in props)) {
+    		if (/*uxml*/ ctx[0] === undefined && !("uxml" in props)) {
+    			console_1$2.warn("<Web> was created without expected prop 'uxml'");
+    		}
+
+    		if (/*uaXML*/ ctx[8] === undefined && !("uaXML" in props)) {
     			console_1$2.warn("<Web> was created without expected prop 'uaXML'");
     		}
 
-    		if (/*inEditor*/ ctx[8] === undefined && !("inEditor" in props)) {
+    		if (/*inEditor*/ ctx[9] === undefined && !("inEditor" in props)) {
     			console_1$2.warn("<Web> was created without expected prop 'inEditor'");
     		}
 
@@ -12387,7 +12399,7 @@ var app = (function () {
     			console_1$2.warn("<Web> was created without expected prop 'showAns'");
     		}
 
-    		if (/*setInlineEditor*/ ctx[9] === undefined && !("setInlineEditor" in props)) {
+    		if (/*setInlineEditor*/ ctx[10] === undefined && !("setInlineEditor" in props)) {
     			console_1$2.warn("<Web> was created without expected prop 'setInlineEditor'");
     		}
 
@@ -12401,6 +12413,14 @@ var app = (function () {
     	}
 
     	set xml(value) {
+    		throw new Error("<Web>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<Web>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
     		throw new Error("<Web>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
