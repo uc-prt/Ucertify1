@@ -59,6 +59,7 @@
             plugins: plugins, 
             resizingBar: false,
             showPathLabel: false,
+            "linkProtocol": "https://",
             buttonList: [
                 ['formatBlock'],
                 ['bold', 'italic', 'underline'],
