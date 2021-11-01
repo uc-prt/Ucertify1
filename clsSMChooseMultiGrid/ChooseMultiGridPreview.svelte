@@ -110,14 +110,14 @@
                         preview_data.user_ans_xml = [
                             ...preview_data.user_ans_xml, {
                                 id: i,
-                                value: AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val')
+                                value: AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img')?.getAttribute('img_val')
                             }
                         ];
                     }) ;
                     //storeCorrectXYValue(preview_data.correctxmlarray);
                     preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
                     AH.selectAll('#sortable li').forEach((value, i) => {
-                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
+                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img')?.getAttribute('img_val'));
                     }) ;console.log(preview_data.userAns, 'kijk');
                     updateOnSorting();
                 },
@@ -413,7 +413,7 @@
                     preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
                     console.log('hrllo', preview_data.correctxmlarray);
                     AH.selectAll('#sortable li').forEach((value, i) => {
-                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img').getAttribute('img_val'));
+                        preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img')?.getAttribute('img_val'));
                     }) ;
                     if(window.inNative) {
                         window.getHeight && window.getHeight();

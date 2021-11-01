@@ -162,10 +162,14 @@
         switch (e.target.id) {
             case "allowSort":
                 // if allowsort is checked
+                if(state.isParagraph == "1" || state.isSentence == "1") {
+                    document.querySelector("#allowSort").checked = true;
+                }
+                
                 xml.smxml.list._allowsort = ((e.target.checked == true) ? "1" : "0");
                 break;
             case "isSentence":
-                // if issentence is checked
+                // if issentence is checked             
                 if (e.target.checked == true) {
                     
                     

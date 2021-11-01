@@ -810,11 +810,13 @@
 		state.fillMultiAttr = attrs;
 		state.fillInTheBlanksChoice = 5;
 		state.open = true;
-
+		setTimeout(function(){
+			if (attrs.defaultAns) AH.select("#responseDialog #defaultMultiAns").value = attrs.defaultAns;
+			AH.select("#responseDialog #rows").value = attrs.rows;
+			AH.select("#responseDialog #cols").value = attrs.cols;
+		},300)
 		// putting the values of defaultAns , row and col
-		if (attrs.defaultAns) AH.select("#responseDialog #defaultMultiAns").value = attrs.defaultAns;
-		AH.select("#responseDialog #rows").value = attrs.rows;
-		AH.select("#responseDialog #cols").value = attrs.cols;
+		
 	}
 	/*----------------------end of the functions----------------------------------------*/
 
@@ -1368,7 +1370,7 @@
 								style="margin:5px;width:100%"
 								placeholder={((AH.select("#defaultMultiAns").innerHTML != "") ? l.default_answer : "Default Answer")}
 								class="form-control"
-								value={state.fillMultiAttr.defaultAns}
+								
 							/>
 						</div>
 						<div>
@@ -1380,7 +1382,7 @@
 								style="margin:5px; width: 100px"					      
 								placeholder={((AH.select("#rows").innerHTML != "") ? l.rows : "Rows")}
 								class="form-control"
-								value={state.fillMultiAttr.rows}
+								
 							/>
 						</div>
 						<div class="mr-sm2">
@@ -1392,7 +1394,7 @@
 								style="margin: 5px; width: 100px"
 								placeholder={((AH.select("#cols").innerHTML != "") ? l.cols : "Cols")}
 								class="form-control"
-								value={state.fillMultiAttr.cols}
+								
 							/>
 						</div>
 					</div>
