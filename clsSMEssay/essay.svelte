@@ -60,6 +60,9 @@
             resizingBar: false,
             showPathLabel: false,
             "linkProtocol": "https://",
+            "attributesWhitelist": {
+                "all": "style",
+            },
             buttonList: [
                 ['formatBlock'],
                 ['bold', 'italic', 'underline'],
