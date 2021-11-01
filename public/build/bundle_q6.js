@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35731/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -1095,7 +1095,6 @@ var app = (function () {
 
         // Get bootstrap5 instance accoridng to compoenent
         getBS(target, comp, options) {
-            
             let selected = (typeof target == "object") ? target : document.querySelector(target);
             if (selected && this.bsCat1.includes(comp)) {
                 let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
