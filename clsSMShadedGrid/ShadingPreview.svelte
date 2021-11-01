@@ -379,7 +379,7 @@
     <ItemHelper 
         on:setReview = {setReview}
         on:unsetReview = {unsetReview}
-        reviewMode={false}
+        reviewMode={isReview}
         handleReviewClick = {handleReviewMode}
     />
     <table id="table" class="table-bordered shadingTable" style="pointer-events: {isReview ? 'none' : ''};">
