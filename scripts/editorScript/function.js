@@ -51,15 +51,15 @@ function replaceUnwantedTags(content, type) {
 		// content = content.replace(/&#160;/g, ' ').replace(/  /g, '&#160; ');
 		content = content.replace(/\$/g, '&#36;');
 		// @uc-abk Displaying same preview as eBook.
-		content = content.replace(/<br><table/g, '<table');  // <br><table		
-		content = content.replace(/<li><br>/g, '<li>');		// <li>\n
-		content = content.replace(/<br><\/li>/g, '</li>');	// \n</li>
-		content = content.replace(/<\/li><br>/g, '</li>');	// </li>\n
-		content = content.replace(/<\/ul><br>/g, '</ul>');	// </ul>\n
-		content = content.replace(/<br><\/ul>/g, '</ul>');	// \n</ul>
-		content = content.replace(/<\/ol><br>/g, '</ol>');	// </ol>\n
-		content = content.replace(/<br><\/ol>/g, '</ol>');	// \n</ol>
-		content = content.replace(/<br><li>/g, '<li>');		// \n<li>
+		content = content.replace(/<[Bb][Rr]><table/g, '<table');  // <[Bb][Rr]><table		
+		content = content.replace(/<li><[Bb][Rr]>/g, '<li>');		// <li>\n
+		content = content.replace(/<[Bb][Rr]><\/li>/g, '</li>');	// \n</li>
+		content = content.replace(/<\/li><[Bb][Rr]>/g, '</li>');	// </li>\n
+		content = content.replace(/<\/ul><[Bb][Rr]>/g, '</ul>');	// </ul>\n
+		content = content.replace(/<[Bb][Rr]><\/ul>/g, '</ul>');	// \n</ul>
+		content = content.replace(/<\/ol><[Bb][Rr]>/g, '</ol>');	// </ol>\n
+		content = content.replace(/<[Bb][Rr]><\/ol>/g, '</ol>');	// \n</ol>
+		content = content.replace(/<[Bb][Rr]><li>/g, '<li>');		// \n<li>
 		content = content.replace(/<grammarly-btn([\s\S]*?)<\/grammarly-btn>/g, '');
 		content = content.replace(/<grammarly([\s\S]*?)<\/grammarly([\s\S]*?)>/g, '');
 		content = content.replace(/<main.*?data-remove="true"[\s\S]*?<\/main>/g, '');

@@ -427,6 +427,7 @@ function setBasicData(title, stem, remediation, skip = false) {
 	}
 	AH.select("#title").innerHTML = title;
 	AH.select("#title_show").innerHTML = title;
+	stem = replaceUnwantedTags(stem);
 	stem = editorConfig.replaceUnwantedEntity(stem, 'cleanHiddenEnity');
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
