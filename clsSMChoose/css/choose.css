@@ -1,7 +1,7 @@
 #main {max-width:700px;min-width:300px;float: none;margin: 0 auto;min-height: 1px;}
 #sortable{list-style-type: none; margin: 0; padding: 0 5px;width:100%;overflow:hidden;}
 #sortable li{ margin: 5px 3px 5px 5px; padding: 0.4em; padding-left: 2.5em; font-size: 1em; border:1px solid #eee;cursor:pointer;background:#edf2fc url('../../images/dot.jpg') repeat-y top left; position: relative;border: 1px solid #96bbf6;}
-#sortable li div.prefix{position: absolute; margin-left: -19px; line-height: 23px;}
+#sortable li div.prefix{position: absolute; margin-left: -26px; line-height: 23px;}
 #sortable li div{display:inline-block;width:18px;height:18px;}
 .tick:before{content: "\2713";font-size:18px;font-weight:bolder;color:#fff;vertical-align:middle;margin-left:2px;}
 [id^='choose']{width: 100%;max-width:700px;text-align:left;}
