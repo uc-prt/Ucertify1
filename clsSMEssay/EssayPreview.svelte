@@ -54,7 +54,6 @@
             value: uAns,
             width: 'auto',
             toolbarContainer:"#essayPreviewToolbar",
-            placeholder: "Write text here.",
             resizingBar: false,
             showPathLabel: false,
             "linkProtocol": "https://",
