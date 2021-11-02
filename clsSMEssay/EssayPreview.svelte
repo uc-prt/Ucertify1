@@ -9,6 +9,7 @@
 
     export let xml;
     export let uxml;
+    //export let uaxml;
     export let isReview;
     export let editorState;
     let ucEssay;
@@ -49,7 +50,7 @@
 
     function initEdit() {
         essayEditor = sunEditor.create('essay_edit', { 
-            height: '300px',
+            height: '150px',
             value: uAns,
             width: 'auto',
             toolbarContainer:"#essayPreviewToolbar",
@@ -166,7 +167,7 @@
                 class="essay-container m-auto hero-unit"
             >
                 <div id="essayPreviewToolbar" class="sun-editor"></div>
-                <textarea id="essay_edit" class="text-left editor sun-editor-editable" ></textarea>
+                <textarea id="essay_edit" class="text-left editor sun-editor-editable svelte_items_test" ></textarea>
                 <div id="upload" class={window.isReview == true || isReview == true || localEssayData.type == "0" ? "h" : ""}>
                     <div id="drop">
                         Drag & Drop Files Here
