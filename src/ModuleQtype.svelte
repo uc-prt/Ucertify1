@@ -21,8 +21,6 @@
                             } else {
                                 type = (state.content_icon == 2 || state.content_icon == 4) ? true : false;
                             }
-                        
-                        
                             resolve({
                                 "auth": type ? (await import('../clsSMHotspot/HotspotToken.svelte')).default : (await import('../clsSMHotspot/Hotspot.svelte')).default,
                                 "preview": type ? (await import('../clsSMHotspot/HotspotTokenPreview.svelte')).default : (await import('../clsSMHotspot/HotspotPreview.svelte')).default,
