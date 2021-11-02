@@ -55,7 +55,11 @@
             toolbarContainer:"#essayPreviewToolbar",
             placeholder: "Write text here.",
             resizingBar: false,
-            showPathLabel: false,     
+            showPathLabel: false,
+            "linkProtocol": "https://",
+            "attributesWhitelist": {
+                "all": "style",
+            },
             plugins:plugins,
             defaultStyle: "padding-left: 10px",
             buttonList: [

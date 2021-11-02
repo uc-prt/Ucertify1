@@ -351,9 +351,9 @@ function didMount(node, action) {
 				initAddFeature(state.title, editorConfig.maintainAlignments(state.stem), editorConfig.maintainAlignments(state.remediation));
 			} else {
 				let contentText = (state.propsAjaxData?.content.replace(/\n/g,"<br>") || state.content);
-				contentText = (AH.isValid(contentText)) ? replaceUnwantedTags(contentText) : contentText;
+				contentText = replaceUnwantedTags(contentText);
 				contentText = editorConfig.replaceUnwantedEntity(contentText, 'only_self_close');
-				let tempContent = editorConfig.replaceUnwantedEntity(state.content, 'onlyEntity');
+				let tempContent = editorConfig.replaceUnwantedEntity(contentText, 'onlyEntity');
 				AH.select("#content").innerHTML = editorConfig.maintainAlignments(tempContent);
 				AH.select('#content_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(contentText));
 				AH.select("#title").innerHTML = editorConfig.replaceUnwantedEntity(state.title, 'onlyEntity');
@@ -427,6 +427,7 @@ function setBasicData(title, stem, remediation, skip = false) {
 	}
 	AH.select("#title").innerHTML = title;
 	AH.select("#title_show").innerHTML = title;
+	stem = replaceUnwantedTags(stem);
 	stem = editorConfig.replaceUnwantedEntity(stem, 'cleanHiddenEnity');
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
