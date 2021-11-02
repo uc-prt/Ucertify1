@@ -185,7 +185,7 @@
             "
         >V2.0</div>
         {#if enableClose == '1'}
-        <button
+        <!-- <button
             class="close"
             on:click={()=> onCloseBtn()}
             style ="
@@ -197,7 +197,7 @@
                 font-size: 42px;
             ">
             <span aria-hidden="true">×</span>
-        </button>
+        </button> -->
         {/if} 
         <div class="mainArea isotope grid" style = "overflow: auto; height: 379px;">
             {#each editorItems as data, i (data.id)} 

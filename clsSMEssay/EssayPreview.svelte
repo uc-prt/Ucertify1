@@ -57,11 +57,13 @@
             resizingBar: false,
             showPathLabel: false,
             "linkProtocol": "https://",
-            "attributesWhitelist": {
+            attributesWhitelist: {
                 "all": "style",
+                "font": "size"
             },
+            "addTagsWhitelist": "font",
             plugins:plugins,
-            defaultStyle: "padding-left: 10px",
+            defaultStyle: "padding: 10px",
             buttonList: [
                 ['formatBlock'],
                 ['bold', 'italic', 'underline'],
