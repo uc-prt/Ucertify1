@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35731/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -1097,7 +1097,7 @@ var app = (function () {
         getBS(target, comp, options) {
             let selected = (typeof target == "object") ? target : document.querySelector(target);
             if (selected && this.bsCat1.includes(comp)) {
-                let isIns = bootstrap[comp].getInstance(selected);
+                let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
                 if (isIns) {
                     return bootstrap[comp].getInstance(selected);
                 } else {
@@ -1725,9 +1725,15 @@ var app = (function () {
 
         // store data
         set(key, value) {
+            if (key == 'save_item') {
+                this.addInLocalstorage(key, value);
+            }
             if (typeof globalThis == 'object') globalThis.JUITemp[key] = value;
         }
-
+        
+        addInLocalstorage(key, value) {
+            window.localStorage.setItem(key, value);
+        }
         // get data from store
         get(key) {
             return globalThis.JUITemp[key];
@@ -1829,7 +1835,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -1841,7 +1847,7 @@ var app = (function () {
                                     ${data}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal">OK</button>
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
@@ -7595,7 +7601,7 @@ var app = (function () {
       }
     }
 
-    var css_248z = "#main{max-width:700px;min-width:300px;float:none;margin:0 auto;min-height:1px}#sortable{list-style-type:none;margin:0;padding:0 5px;width:100%;overflow:hidden}#sortable li{margin:5px 3px 5px 5px;padding:.4em;padding-left:2.5em;font-size:1em;border:1px solid #eee;cursor:pointer;background:#edf2fc url(https://s3.amazonaws.com/jigyaasa_assets/items/dot.jpg) repeat-y top left;position:relative;border:1px solid #96bbf6}#sortable li div.prefix{position:absolute;margin-left:-25px;line-height:23px}#sortable li div{display:inline-block;width:18px;height:18px}.tick:before{content:\"\\2713\";font-size:18px;font-weight:bolder;color:#fff;vertical-align:middle;margin-left:2px}[id^=choose]{width:100%;max-width:700px;text-align:left}[id^=choose] .choose_header{background-color:#d9e7fd;border-top:2px solid #96bbf6;margin:0;padding:5px 5px 5px 10px;line-height:1.8em;border-top-right-radius:10px;border-top-left-radius:10px}[id^=choose] .choose_bottom{font-size:12px!important;font-weight:700;color:#e33;background-color:#d9e7fd;margin:0;padding:.4em;padding-left:1em;font-size:1.4em;border-bottom-right-radius:10px;border-bottom-left-radius:10px}#sortable li.choose_sel{background-color:#4182b9!important;color:#fff!important}.remove-item{float:right;font-size:16px;color:#000;cursor:pointer;padding-top:9px}.pd-0{padding:0}[id^=choose] .mt{margin:10px 0}.choose_foot_content,.choose_head_content{overflow-x:hidden;padding:10px;text-align:left;background:#fff}.choose_item_container{overflow-x:hidden;padding:10px;text-align:left;background:#fff;overflow-y:scroll}.choose_foot_content,.choose_item_container{border-top:1px solid #cbcbcb}.choose_foot_content{overflow:hidden}.choose_item_container{min-height:207px}.message_content{display:none}#headingCorrect{width:82%;margin-left:16px}.mt-head{margin-left:12px}.choose_item_container textarea{overflow-y:hidden;min-height:34px;height:34px;width:89%;padding:5px;border-radius:5px;margin:0 13px;vertical-align:middle;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}.mtl{margin-left:10px}.paragraph_li{line-height:2em!important;border-radius:3px;background:0 0!important;display:block;margin:3px!important;padding:2px!important;padding-left:18px!important;padding-right:11px!important;border:none!important;color:#4d4d4d!important;cursor:move!important}.sentence_li{line-height:22px!important;border-radius:3px;display:inline-block;margin:10px!important;padding:1px 10px 5px 31px!important;cursor:move!important}.paragraph_li:hover,.sentence_li:hover{background-color:#edf2fc!important}.nw{width:0!important}.pg_handle{display:inline;padding-right:8px;font-size:12px;font-weight:bolder}.selmatch{border:solid 2px red!important;border-radius:2px!important}.copied{outline:2px solid #4682b4!important}[id^=choose] #sortable li:-moz-focusring{outline:2px solid #6b9ef1}@media only screen and (max-width:768px){.font17{font-size:15px!important}}";
+    var css_248z = "#main{max-width:700px;min-width:300px;float:none;margin:0 auto;min-height:1px}#sortable{list-style-type:none;margin:0;padding:0 5px;width:100%;overflow:hidden}#sortable li{margin:5px 3px 5px 5px;padding:.4em;padding-left:2.5em;font-size:1em;border:1px solid #eee;cursor:pointer;background:#edf2fc url(https://s3.amazonaws.com/jigyaasa_assets/items/dot.jpg) repeat-y top left;position:relative;border:1px solid #96bbf6}#sortable li div.prefix{position:absolute;margin-left:-19px;line-height:23px;}#sortable li div{display:inline-block;width:18px;height:18px}.tick:before{content:\"\\2713\";font-size:18px;font-weight:bolder;color:#fff;vertical-align:middle;margin-left:2px}[id^=choose]{width:100%;max-width:700px;text-align:left}[id^=choose] .choose_header{background-color:#d9e7fd;border-top:2px solid #96bbf6;margin:0;padding:5px 5px 5px 10px;line-height:1.8em;border-top-right-radius:10px;border-top-left-radius:10px}[id^=choose] .choose_bottom{font-size:12px!important;font-weight:700;color:#e33;background-color:#d9e7fd;margin:0;padding:.4em;padding-left:1em;font-size:1.4em;border-bottom-right-radius:10px;border-bottom-left-radius:10px}#sortable li.choose_sel{background-color:#4182b9!important;color:#fff!important}.remove-item{float:right;font-size:16px;color:#000;cursor:pointer;padding-top:9px}.pd-0{padding:0}[id^=choose] .mt{margin:10px 0}.choose_foot_content,.choose_head_content{overflow-x:hidden;padding:10px;text-align:left;background:#fff}.choose_item_container{overflow-x:hidden;padding:10px;text-align:left;background:#fff;overflow-y:scroll}.choose_foot_content,.choose_item_container{border-top:1px solid #cbcbcb}.choose_foot_content{overflow:hidden}.choose_item_container{min-height:207px}.message_content{display:none}#headingCorrect{width:82%;margin-left:16px}.mt-head{margin-left:12px}.choose_item_container textarea{overflow-y:hidden;min-height:34px;height:34px;width:89%;padding:5px;border-radius:5px;margin:0 13px;vertical-align:middle;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}.mtl{margin-left:10px}.paragraph_li{line-height:2em!important;border-radius:3px;background:0 0!important;display:block;margin:3px!important;padding:2px!important;padding-left:18px!important;padding-right:11px!important;border:none!important;color:#4d4d4d!important;cursor:move!important}.sentence_li{line-height:22px!important;border-radius:3px;display:inline-block;margin:10px!important;padding:1px 10px 5px 31px!important;cursor:move!important}.paragraph_li:hover,.sentence_li:hover{background-color:#edf2fc!important}.nw{width:0!important}.pg_handle{display:inline;padding-right:8px;font-size:12px;font-weight:bolder}.selmatch{border:solid 2px red!important;border-radius:2px!important}.copied{outline:2px solid #4682b4!important}[id^=choose] #sortable li:-moz-focusring{outline:2px solid #6b9ef1}@media only screen and (max-width:768px){.font17{font-size:15px!important}}";
     styleInject(css_248z);
 
     /* clsSMChoose/ChooseNReorderPreview.svelte generated by Svelte v3.34.0 */
@@ -12645,7 +12651,7 @@ var app = (function () {
     			? /*value*/ ctx[26].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 474, 36, 19736);
+    			add_location(img, file$2, 474, 36, 19739);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12780,7 +12786,7 @@ var app = (function () {
     			? /*value*/ ctx[26].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 464, 40, 19015);
+    			add_location(img, file$2, 464, 40, 19018);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12854,7 +12860,7 @@ var app = (function () {
     			: "") + " position-relative ui-draggable m-0 overflow-auto" + " svelte-1a6lpxt");
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 452, 28, 18234);
+    			add_location(li, file$2, 452, 28, 18237);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -12926,7 +12932,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "text-end pe-1");
-    			add_location(div, file$2, 499, 32, 21301);
+    			add_location(div, file$2, 499, 32, 21304);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12968,7 +12974,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status");
-    			add_location(i, file$2, 505, 40, 21684);
+    			add_location(i, file$2, 505, 40, 21687);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -12997,7 +13003,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status");
-    			add_location(i, file$2, 501, 40, 21435);
+    			add_location(i, file$2, 501, 40, 21438);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -13070,7 +13076,7 @@ var app = (function () {
     			? /*value*/ ctx[26].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 524, 32, 22869);
+    			add_location(img, file$2, 524, 32, 22872);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13211,7 +13217,7 @@ var app = (function () {
     			? /*value*/ ctx[26].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 513, 36, 22126);
+    			add_location(img, file$2, 513, 36, 22129);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13295,7 +13301,7 @@ var app = (function () {
     			: "") + " position-relative ui-draggable m-0 overflow-auto" + " svelte-1a6lpxt");
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 487, 24, 20474);
+    			add_location(li, file$2, 487, 24, 20477);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -13432,22 +13438,22 @@ var app = (function () {
     			div2 = element("div");
     			div2.textContent = `${l.drag_drop_set_seq_msg}`;
     			attr_dev(div0, "class", "choose_header font17 text-left rounded-top m-0");
-    			add_location(div0, file$2, 440, 12, 17683);
+    			add_location(div0, file$2, 440, 12, 17686);
     			attr_dev(ul, "id", "sortable");
     			attr_dev(ul, "data-row", ul_data_row_value = /*preview_data*/ ctx[1].maxRow);
     			attr_dev(ul, "data-col", ul_data_col_value = /*preview_data*/ ctx[1].maxCol);
     			attr_dev(ul, "class", "p-2 d-inline-block w-100 m-0");
-    			add_location(ul, file$2, 444, 16, 17865);
+    			add_location(ul, file$2, 444, 16, 17868);
     			attr_dev(div1, "class", "choose_body bg-white");
-    			add_location(div1, file$2, 443, 12, 17814);
+    			add_location(div1, file$2, 443, 12, 17817);
     			attr_dev(div2, "class", "choose_bottom font12 m-0 text-left font-weight-bold text-danger p-2 rounded-bottom");
     			attr_dev(div2, "id", "instruction");
-    			add_location(div2, file$2, 538, 12, 23564);
+    			add_location(div2, file$2, 538, 12, 23567);
     			attr_dev(div3, "id", "choose");
     			attr_dev(div3, "class", "text-center mx-auto");
-    			add_location(div3, file$2, 439, 8, 17625);
+    			add_location(div3, file$2, 439, 8, 17628);
     			attr_dev(div4, "id", "chid");
-    			add_location(div4, file$2, 432, 4, 17409);
+    			add_location(div4, file$2, 432, 4, 17412);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13644,7 +13650,7 @@ var app = (function () {
     									id: i,
     									value: AH$1.select("#" + value.getAttribute("id")).innerText != ""
     									? AH$1.select("#" + value.getAttribute("id")).innerText
-    									: AH$1.find("#" + value.getAttribute("id"), "img").getAttribute("img_val")
+    									: AH$1.find("#" + value.getAttribute("id"), "img")?.getAttribute("img_val")
     								}
     							],
     							preview_data
@@ -13661,7 +13667,7 @@ var app = (function () {
     							? ("\n").concat(preview_data.correctxmlarray[i].ischecked ? "!" : "")
     							: preview_data.correctxmlarray[i].ischecked ? "!" : "") + (AH$1.select("#" + value.getAttribute("id")).innerText != ""
     							? AH$1.select("#" + value.getAttribute("id")).innerText
-    							: AH$1.find("#" + value.getAttribute("id"), "img").getAttribute("img_val")),
+    							: AH$1.find("#" + value.getAttribute("id"), "img")?.getAttribute("img_val")),
     							preview_data
     						);
     					});
@@ -13998,7 +14004,7 @@ var app = (function () {
     						? ("\n").concat(preview_data.correctxmlarray[i].ischecked ? "!" : "")
     						: preview_data.correctxmlarray[i].ischecked ? "!" : "") + (AH$1.select("#" + value.getAttribute("id")).innerText != ""
     						? AH$1.select("#" + value.getAttribute("id")).innerText
-    						: AH$1.find("#" + value.getAttribute("id"), "img").getAttribute("img_val")),
+    						: AH$1.find("#" + value.getAttribute("id"), "img")?.getAttribute("img_val")),
     						preview_data
     					);
     				});

@@ -716,7 +716,7 @@ CHART_AUTH.updatePoint = function (type, id) {
                 } else {
                     // warning messege when tried to delete the column or point that is only left on chart board and no any more column/point exist
                     //JS.showmsg("Default Item(s) can not be Deleted", 3000);
-                    JS.alert("Default Item(s) can not be Deleted");
+                    JS.alert("Default Item(s) cannot be deleted");
                 }
             }
 
