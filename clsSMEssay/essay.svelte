@@ -59,10 +59,12 @@
             plugins: plugins, 
             resizingBar: false,
             showPathLabel: false,
-            "linkProtocol": "https://",
-            "attributesWhitelist": {
+            linkProtocol: "https://",
+            attributesWhitelist: {
                 "all": "style",
+                "font": "size"
             },
+            "addTagsWhitelist": "font",
             buttonList: [
                 ['formatBlock'],
                 ['bold', 'italic', 'underline'],

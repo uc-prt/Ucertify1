@@ -4509,7 +4509,7 @@ export default function (context, pluginCallButtons, plugins, lang, options, _re
         _tagConvertor: function (text) {
             if (!this._disallowedTextTagsRegExp) return text;
 
-            const ec = {'b': 'strong', 'i': 'em', 'ins': 'u', 'strike': 'del', 's': 'del'};
+            const ec = {'ins': 'u', 'strike': 'del', 's': 'del'};
             return text.replace(this._disallowedTextTagsRegExp, function (m, t, n) {
                 return t + (typeof ec[n] === 'string' ? ec[n] : n);
             });
