@@ -162,6 +162,7 @@
 							if (typeof(AH.alert) == 'function') 
 								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
 								
+								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
 								// if (typeof(bindDialog) == 'function') 
@@ -171,6 +172,9 @@
 					}
 					// return true;
 				}
+				setTimeout(function(){
+					AH.remove('.title');
+				},200)
         	}
 		})
 		
