@@ -65,6 +65,7 @@
     })
     // called every time when any props or state gets changed
     beforeUpdate(()=>{
+        console.log('checking');
         if (xml != state.xml) {
             state.xml = xml;
             if (isReview) {
@@ -316,7 +317,7 @@
 
     // changes theme of the html, js and css editors according to the checked status of 'Dark Mode' checkbox 
     function changeTheme() {
-        console.log();
+        console.warn('Loading...');
         // contains the checked status of the 'Dark Mode' checkbox
         let check = document.querySelector("#goDark").checked;
         // updates the value of state 'goDark' according to the value of variable 'check'
@@ -1713,7 +1714,7 @@
                             <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
                         </div>
                     <div class="float-right mt-2">
-                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
+                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
                             <li>
                                 <label for="goDark" class="dropdown-item mb-0 pointer">

@@ -133,15 +133,19 @@
 		loadLibs();
 		
 		dragable = new Draggable({
-			onDragEnter: ((event)=>{	
+			onDragEnter: ((event)=>{
 				AH.select(event.target,'addClass','drop-hover');
+				AI.selectAll('.list2').forEach(function(data,e){
+					if(data.children[0].getAttribute('class').match('drop-hover'))
+					data.children[0].classList.remove('drop-hover');
+				})
+				AI.selectAll('.list2','removeAttr','style')
 			}),
 			onDragLeave:((event)=>{
 				AH.select(event.target,'removeClass','drop-hover');
 			}),
 			onDragEnd:(event)=>{
 				displayAns();
-
 				AH.selectAll('.list2').forEach(function(data,_this){
 					AH.select(data,'removeClass','drop-hover');
 				})
@@ -880,8 +884,8 @@
 		style="background: #fff; border-radius: 5px;"
 	>
 		<!-- <div style="font-weight:bold;" class="clearfix"> -->
-			<div title="How to drop?" class="float-start">How to drop?</div>
-			<div class="float-end">
+			<div title="How to drop?" class="float-start float-left">How to drop?</div>
+			<div class="float-end float-right">
 				<Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>
 					<i class="mi mi-close" style="font-size:1.5rem;"><span class="u-sr-only">close</span></i>
 				</Button>

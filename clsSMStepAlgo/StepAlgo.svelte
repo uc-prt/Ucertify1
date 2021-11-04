@@ -676,16 +676,17 @@
                 {/if}    
             </div>
             <div class="svelteFooter">
-                <Button variant="contained" on:click={handleClose} class="colorStyle" >
+                <Button variant="contained" on:click={handleClose} class="colorStyle" style={'text-transform:capitalize;'} >
                     {l.cancel}
                 </Button>
                 <Button variant="contained" on:click={storeAns}
-                    class="bg-primary text-white">{l.done}
+                    class="bg-primary text-white" style={'text-transform:capitalize;'}>Done
                 </Button>
             </div>
         </Dialog>
 </main>
 <style>
+
     .font18 {
         font-size: 16px;
     }
