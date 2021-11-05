@@ -405,7 +405,13 @@ DND.readyThis = function(dndid) {
             backgroundColor: source.style.backgroundColor,
             backgroundImage: bgimage
         });
-        AI.find(target, 'p').innerText = AI.select(copied).innerText.trim();
+        // changes for php
+        if(AI.select(copied) != undefined) { 
+            AI.find(target, 'p').innerText = AI.select(copied).innerText.trim();
+        } else {
+            AI.find(target, 'p').innerText = copied.innerText.trim();
+        }
+       
 
         setTimeout(function() {
             DND.checkAns(dndid);
@@ -1761,8 +1767,9 @@ DND.checkAns = function(dndid) {
 
 // function for changing the user and ans points
 DND.calculatePoint = function(answer_points, user_points) {
-    AI.select('#answer_points', 'value', answer_points);
-    AI.select('#user_points', 'value', user_points);
+    //changes for php
+    AI.selectAll('#answer_points', 'value', answer_points);
+    AI.selectAll('#user_points', 'value', user_points);
 }
 
 // function for cheking module by traversing the child
