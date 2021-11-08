@@ -1155,7 +1155,7 @@ var app = (function () {
         getBS(target, comp, options) {
             let selected = (typeof target == "object") ? target : document.querySelector(target);
             if (selected && this.bsCat1.includes(comp)) {
-                let isIns = bootstrap[comp].getInstance(selected);
+                let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
                 if (isIns) {
                     return bootstrap[comp].getInstance(selected);
                 } else {
@@ -1893,7 +1893,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -1905,7 +1905,7 @@ var app = (function () {
                                     ${data}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal">OK</button>
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
@@ -3984,15 +3984,15 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(span0, "class", "icomoon-new-24px-reset-1 s3");
     			set_style(span0, "vertical-align", "text-top");
-    			add_location(span0, file$1, 587, 7, 19391);
+    			add_location(span0, file$1, 587, 7, 19423);
     			attr_dev(span1, "class", "position-relative bottom1");
-    			add_location(span1, file$1, 588, 7, 19482);
+    			add_location(span1, file$1, 588, 7, 19514);
     			attr_dev(div0, "id", "reset");
     			set_style(div0, "height", "27px");
     			set_style(div0, "width", "90px");
     			set_style(div0, "top", "2px");
     			attr_dev(div0, "class", "reset btn btn-outline-primary position-relative btn-sm mt-sm2 mr-sm2 float-end");
-    			add_location(div0, file$1, 583, 6, 19213);
+    			add_location(div0, file$1, 583, 6, 19245);
     			set_style(div1, "height", "34px");
 
     			set_style(div1, "width", window.inNative
@@ -4001,7 +4001,7 @@ var app = (function () {
 
     			set_style(div1, "background", "#d9e7fd");
     			set_style(div1, "border-top", "2px solid #96bbf6");
-    			add_location(div1, file$1, 575, 5, 19012);
+    			add_location(div1, file$1, 575, 5, 19044);
     			attr_dev(div2, "id", "hptmain0");
     			attr_dev(div2, "totalcorrectans", /*totalCorrectAns*/ ctx[0]);
     			attr_dev(div2, "dd", div2_dd_value = /*state*/ ctx[2].imgwidth);
@@ -4011,9 +4011,9 @@ var app = (function () {
     			set_style(div2, "background-repeat", "no-repeat");
     			set_style(div2, "position", "relative");
     			set_style(div2, "border", "2px solid #d9e7fd");
-    			add_location(div2, file$1, 591, 5, 19565);
+    			add_location(div2, file$1, 591, 5, 19597);
     			attr_dev(center, "key", "imageHeight_3");
-    			add_location(center, file$1, 574, 4, 18978);
+    			add_location(center, file$1, 574, 4, 19010);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, center, anchor);
@@ -4125,7 +4125,7 @@ var app = (function () {
     			attr_dev(img, "class", "hotSpotImg");
     			if (img.src !== (img_src_value = /*bgImgPath*/ ctx[17] + /*img_url*/ ctx[13])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", /*alt*/ ctx[1]);
-    			add_location(img, file$1, 535, 10, 17954);
+    			add_location(img, file$1, 535, 10, 17986);
     			attr_dev(div0, "id", "hotArea");
     			attr_dev(div0, "class", "hotArea hotArea hotAreaPreview");
 
@@ -4137,7 +4137,7 @@ var app = (function () {
 												width:${/*itemAreaWidth*/ ctx[8]};
 											`);
 
-    			add_location(div0, file$1, 544, 10, 18240);
+    			add_location(div0, file$1, 544, 10, 18272);
     			attr_dev(span, "id", "target");
     			attr_dev(span, "class", "target targetImg icomoon-plus-circle-2 svelte-11usv4u");
 
@@ -4147,7 +4147,7 @@ var app = (function () {
 											`);
 
     			toggle_class(span, "showBlock", /*isUxmlTarget*/ ctx[5]);
-    			add_location(span, file$1, 557, 10, 18591);
+    			add_location(span, file$1, 557, 10, 18623);
     			attr_dev(div1, "id", "SM0");
     			attr_dev(div1, "class", "SM position-relative m-0 p-0");
 
@@ -4163,17 +4163,17 @@ var app = (function () {
 											border-color: ${/*itemBorderColor*/ ctx[4]};
 										`);
 
-    			add_location(div1, file$1, 522, 9, 17584);
+    			add_location(div1, file$1, 522, 9, 17616);
     			attr_dev(div2, "id", "SM0");
     			attr_dev(div2, "class", "relative");
-    			add_location(div2, file$1, 521, 8, 17543);
+    			add_location(div2, file$1, 521, 8, 17575);
     			attr_dev(td, "class", "border");
-    			add_location(td, file$1, 520, 7, 17515);
-    			add_location(tr, file$1, 519, 6, 17503);
-    			add_location(tbody, file$1, 518, 5, 17489);
+    			add_location(td, file$1, 520, 7, 17547);
+    			add_location(tr, file$1, 519, 6, 17535);
+    			add_location(tbody, file$1, 518, 5, 17521);
     			attr_dev(table, "id", "hptmain0");
     			attr_dev(table, "class", "smbase smhotspot border-0 h-auto w-auto uc-table");
-    			add_location(table, file$1, 517, 4, 17405);
+    			add_location(table, file$1, 517, 4, 17437);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, table, anchor);
@@ -4277,7 +4277,7 @@ var app = (function () {
     			set_style(div, "left", "0");
     			set_style(div, "bottom", "0");
     			set_style(div, "background", "rgba(0,0,0,0.4)");
-    			add_location(div, file$1, 605, 6, 19967);
+    			add_location(div, file$1, 605, 6, 19999);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4336,19 +4336,19 @@ var app = (function () {
     			textarea = element("textarea");
     			attr_dev(div, "id", "previewArea");
     			attr_dev(div, "class", "relative");
-    			add_location(div, file$1, 514, 2, 17271);
-    			add_location(center, file$1, 509, 1, 17176);
+    			add_location(div, file$1, 514, 2, 17303);
+    			add_location(center, file$1, 509, 1, 17208);
     			attr_dev(input, "type", "hidden");
     			attr_dev(input, "id", "special_module_parse");
     			attr_dev(input, "name", "special_module_parse");
     			attr_dev(input, "userans", "");
     			input.value = /*userCorrect*/ ctx[15];
-    			add_location(input, file$1, 616, 1, 20217);
+    			add_location(input, file$1, 616, 1, 20249);
     			attr_dev(textarea, "class", "h");
     			attr_dev(textarea, "id", "special_module_user_xml");
-    			add_location(textarea, file$1, 623, 1, 20344);
+    			add_location(textarea, file$1, 623, 1, 20376);
     			attr_dev(main, "class", "svelte-11usv4u");
-    			add_location(main, file$1, 508, 0, 17168);
+    			add_location(main, file$1, 508, 0, 17200);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4596,8 +4596,8 @@ var app = (function () {
     					$$invalidate(4, itemBorderColor = parseXml.smxml.div._bordercolor);
     					$$invalidate(8, itemAreaWidth = parseXml.smxml.div._width + "px");
     					$$invalidate(7, itemAreaHeight = parseXml.smxml.div._height + "px");
-    					$$invalidate(9, itemAreaLeft = parseXml.smxml.div._left + "px");
-    					$$invalidate(6, itemAreaTop = parseXml.smxml.div._top + "px");
+    					$$invalidate(9, itemAreaLeft = parseInt(parseXml.smxml.div._left) + 4 + "px");
+    					$$invalidate(6, itemAreaTop = parseInt(parseXml.smxml.div._top) + 3 + "px");
     					let image = new Image();
 
     					image.onload = function () {

@@ -1115,7 +1115,6 @@ var app = (function () {
 
         // Get bootstrap5 instance accoridng to compoenent
         getBS(target, comp, options) {
-            
             let selected = (typeof target == "object") ? target : document.querySelector(target);
             if (selected && this.bsCat1.includes(comp)) {
                 let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
@@ -1856,7 +1855,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -5314,7 +5313,7 @@ var app = (function () {
     			attr_dev(div, "key", div_key_value = /*dataj*/ ctx[39].id);
     			attr_dev(div, "data-tags", div_data_tags_value = /*dataj*/ ctx[39].tags);
     			set_style(div, "display", "none");
-    			add_location(div, file$2, 700, 52, 36102);
+    			add_location(div, file$2, 700, 52, 36109);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -5379,7 +5378,7 @@ var app = (function () {
     			attr_dev(div, "class", "elementText");
     			attr_dev(div, "tabindex", div_tabindex_value = 0);
     			attr_dev(div, "title", div_title_value = /*dataj*/ ctx[39].label);
-    			add_location(div, file$2, 704, 60, 36788);
+    			add_location(div, file$2, 704, 60, 36795);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -5434,7 +5433,7 @@ var app = (function () {
     			? /*dataj*/ ctx[39].imagealt
     			: "No alt of image");
 
-    			add_location(img, file$2, 702, 60, 36375);
+    			add_location(img, file$2, 702, 60, 36382);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -5586,34 +5585,34 @@ var app = (function () {
     			span1 = element("span");
     			t3 = space();
     			attr_dev(span0, "class", "icomoon-arrow-left font26 btnGrp");
-    			add_location(span0, file$2, 688, 28, 35033);
+    			add_location(span0, file$2, 688, 28, 35040);
     			attr_dev(div0, "class", div0_class_value = "prevbutton col-lg-1 col-md-1 col-sm-2 col-2 px-sm-3 px-0 prevbutton_" + /*index*/ ctx[38]);
     			attr_dev(div0, "tabindex", div0_tabindex_value = 0);
     			attr_dev(div0, "title", "previous");
-    			add_location(div0, file$2, 687, 24, 34820);
+    			add_location(div0, file$2, 687, 24, 34827);
     			attr_dev(div1, "class", "font20 text-center text-dark");
     			attr_dev(div1, "tabindex", div1_tabindex_value = 0);
     			attr_dev(div1, "title", div1_title_value = /*datai*/ ctx[36].text);
-    			add_location(div1, file$2, 692, 32, 35324);
+    			add_location(div1, file$2, 692, 32, 35331);
     			attr_dev(div2, "class", "categorytitle card_border");
-    			add_location(div2, file$2, 691, 28, 35252);
+    			add_location(div2, file$2, 691, 28, 35259);
     			attr_dev(div3, "class", "elementContainer w-100 h-100 d-table");
-    			add_location(div3, file$2, 696, 36, 35689);
+    			add_location(div3, file$2, 696, 36, 35696);
     			attr_dev(div4, "class", "categoryiteminnercontainer w-100 h-100 text-center");
-    			add_location(div4, file$2, 695, 32, 35588);
+    			add_location(div4, file$2, 695, 32, 35595);
     			attr_dev(div5, "class", div5_class_value = "categoryitemcontainer p-1 categoryitemcontainer_" + /*index*/ ctx[38]);
-    			add_location(div5, file$2, 694, 28, 35486);
+    			add_location(div5, file$2, 694, 28, 35493);
     			attr_dev(div6, "class", "categoryinnercontainer p-0 r-lg col-lg-10 col-md-10 col-sm-8 col-8");
-    			add_location(div6, file$2, 690, 24, 35143);
+    			add_location(div6, file$2, 690, 24, 35150);
     			attr_dev(span1, "class", "icomoon-arrow-right-2 font26 btnGrp");
-    			add_location(span1, file$2, 715, 28, 37511);
+    			add_location(span1, file$2, 715, 28, 37518);
     			attr_dev(div7, "class", div7_class_value = "nextbutton col-md-1 col-lg-1 col-sm-2 col-2 px-sm-3 px-0 nextbutton_" + /*index*/ ctx[38]);
     			attr_dev(div7, "tabindex", div7_tabindex_value = 0);
     			attr_dev(div7, "title", "next");
-    			add_location(div7, file$2, 714, 24, 37317);
+    			add_location(div7, file$2, 714, 24, 37324);
     			attr_dev(div8, "class", "row np mb-3");
     			attr_dev(div8, "key", div8_key_value = /*index*/ ctx[38]);
-    			add_location(div8, file$2, 686, 20, 34758);
+    			add_location(div8, file$2, 686, 20, 34765);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div8, anchor);
@@ -5712,7 +5711,7 @@ var app = (function () {
     			attr_dev(button, "id", "reset_btn");
     			attr_dev(button, "class", "btn btn-primary me-sm-2 me-0 mb-2 reset_btn");
     			button.disabled = "disabled";
-    			add_location(button, file$2, 723, 16, 37786);
+    			add_location(button, file$2, 723, 16, 37793);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -5755,7 +5754,7 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(button, "type", "button");
     			attr_dev(button, "class", "matchbutton btn btn-primary mb-2");
-    			add_location(button, file$2, 726, 16, 38001);
+    			add_location(button, file$2, 726, 16, 38008);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -5829,13 +5828,13 @@ var app = (function () {
     			div1 = element("div");
     			create_component(showanswer1.$$.fragment);
     			attr_dev(div0, "class", "correctAnswer h");
-    			add_location(div0, file$2, 733, 16, 38296);
+    			add_location(div0, file$2, 733, 16, 38303);
     			attr_dev(div1, "class", "yourAnswer");
-    			add_location(div1, file$2, 736, 16, 38520);
+    			add_location(div1, file$2, 736, 16, 38527);
     			attr_dev(div2, "class", "scoreDiv");
-    			add_location(div2, file$2, 732, 12, 38257);
+    			add_location(div2, file$2, 732, 12, 38264);
     			attr_dev(div3, "class", "finalResult");
-    			add_location(div3, file$2, 731, 8, 38219);
+    			add_location(div3, file$2, 731, 8, 38226);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -5939,15 +5938,15 @@ var app = (function () {
     			t3 = space();
     			if (if_block3) if_block3.c();
     			attr_dev(div0, "class", "switchbutton");
-    			add_location(div0, file$2, 674, 4, 34189);
+    			add_location(div0, file$2, 674, 4, 34196);
     			attr_dev(div1, "class", div1_class_value = "categorycontainer center-block " + (/*windowwidth*/ ctx[3] > 1200 ? "span9" : ""));
-    			add_location(div1, file$2, 683, 8, 34557);
+    			add_location(div1, file$2, 683, 8, 34564);
     			attr_dev(div2, "class", "text-center");
-    			add_location(div2, file$2, 721, 8, 37692);
+    			add_location(div2, file$2, 721, 8, 37699);
     			attr_dev(div3, "class", div3_class_value = "alignTestarea px-3 mx-auto mt-3 " + (/*targetView*/ ctx[4] == "block" ? "h" : ""));
     			set_style(div3, "max-width", /*state*/ ctx[2].maxWidth);
-    			add_location(div3, file$2, 682, 4, 34430);
-    			add_location(div4, file$2, 673, 0, 34179);
+    			add_location(div3, file$2, 682, 4, 34437);
+    			add_location(div4, file$2, 673, 0, 34186);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6796,7 +6795,7 @@ var app = (function () {
     						AH.select(".matchbutton").disabled = true;
 
     						// shows game completion message
-    						AH.alert("Game Completed!!");
+    						AH.showmsg("Game Completed!!", 3000);
 
     						// shows the answer (Correct/Incorrect)
     						displayAnswer();
