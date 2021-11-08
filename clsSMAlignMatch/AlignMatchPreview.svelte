@@ -592,7 +592,7 @@
                         // disabled the 'Match' button
                         AH.select('.matchbutton').disabled = true;
                         // shows game completion message
-                        AH.alert("Game Completed!!");
+                        AH.showmsg("Game Completed!!",3000);
                         // shows the answer (Correct/Incorrect)
                         displayAnswer();
                     }
