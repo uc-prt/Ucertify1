@@ -783,6 +783,7 @@
 					<div class="span4 shuffleList1" dragable="1">
 						{#each list1 as data,i}
 								<div
+									data-cy={'id'+data.id}
 									key={i}
 									id={data.id}
 									class="list1 ui-draggable"
@@ -802,6 +803,7 @@
 					<div class="span4 shuffleList2">
 					{#each list2 as data,i}
 						<div 
+							data-cy={'id'+data.id}
 							key={i}
 							id={data.id} 
 							class="list2 ui-droppable" 
@@ -823,6 +825,7 @@
 							<div key={i} class="row-fluid">
 								<span class="span4">
 									<div 
+										data-cy={'id'+data.id}
 										id={data.id}
 										class="list1"
 										tabindex={0}
@@ -837,6 +840,7 @@
 								</span>
 								<span class="span4">
 									<div
+										data-cy={'id'+data.id}
 										id={data.id}
 										class="list3 ui-droppable"
 										data-droped=""
@@ -857,6 +861,7 @@
 						<div class="row-fluid match_options shuffleList2">
 							{#each list2 as data,i}
 								<div
+									data-cy={'id'+data.id}
 									key={i}
 									id={data.id}
 									class="list4 ui-draggable"
