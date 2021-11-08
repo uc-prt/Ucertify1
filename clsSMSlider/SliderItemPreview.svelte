@@ -64,7 +64,13 @@
                 if (typeof (uaXML.smans.slider) != "undefined") { //@sneh: added this line because map function was generating error in quiz player
                     localSliderData.map(function (data, i) {
                         // updates the value of array state datauserans at defined index with the value of slider's key array at index 'i' of json uaXML 
-                        state.datauserans[data.sliderid] = uaXML.smans.slider[i]._userAns;
+                        let user_ans = '';
+                        if (i in uaXML.smans.slider) {
+                            user_ans = uaXML.smans.slider[i]?._userAns;
+                        } else {
+                            user_ans = uaXML.smans.slider?._userAns;
+                        }
+                        state.datauserans[data.sliderid] = user_ans;
                     });
                 }
             }
