@@ -979,7 +979,6 @@ ucMlid.showAllCorrectAns = function(mlid) {
 
 
 ucMlid.showAllAns = function(mlid) {
-    console.table('showAns');
     AH.remove("#lines");
     AH.remove('.correct_incorrect_icon');
     

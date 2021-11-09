@@ -65,7 +65,6 @@
     })
     // called every time when any props or state gets changed
     beforeUpdate(()=>{
-        console.log('checking');
         if (xml != state.xml) {
             state.xml = xml;
             if (isReview) {
@@ -1446,7 +1445,6 @@
 
      // used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
     function parseXML(xml) {
-        console.log('checking');
         // contains the xml 
         xml = xml ? xml : state.xml;  
         // contains the html editor value from xml
