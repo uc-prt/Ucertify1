@@ -594,7 +594,6 @@ export default class fillJS {
 			}
 		}
 		let result = (branch.length - matchedBranch.length);
-		//console.log({branch,tree,matchedBranch,result});
 		return result == 0 ? true : false;
 	}
 
@@ -703,9 +702,6 @@ export default class fillJS {
 					userans = userans.replace(/[^a-zA-Z0-9]/gi, "");
 				}
 				//Multiple in textBox
-				console.log(this.result);
-				console.log('userans', userans);
-				console.log('test', JS.select(fillid).getAttribute('multi'));
 				if (JS.select(fillid).getAttribute('multi') != 0 || anskey.includes("#cm")) {
 					//if (anskey.substr(0, 1) != ",") {anskey = ","+anskey;}
 					//if (anskey.substr(-1, 1) != ",") {anskey += ",";}
