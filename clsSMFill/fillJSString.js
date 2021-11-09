@@ -677,6 +677,7 @@ export default class fillJS {
 				var anskey = pElem.getAttribute("anskey").trim(), 
 				userans = pElem.value.trim(),
 				codetype = pElem.getAttribute("codetype");
+				pElem.setAttribute('userans', userans);
 				if (codetype == 1) {
 					var regex_code = [/\s+/g,/\;$/,/"/g];
 					var regex_replace = ["","","'"];
