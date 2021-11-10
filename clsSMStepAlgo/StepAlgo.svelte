@@ -17,6 +17,7 @@
     let state = {};
     let new_xml = {}
     var all_steps = [];
+    export let showAns;
     export let stopAuthoringUpdate;
     export let xml;
     export let getChildXml;
@@ -382,6 +383,7 @@
         all_steps.push(obj);
         updateXML();
         state.snackback = true;
+        showAns((state.snackback ) ? "New Step Added" : "");
         var timer = setTimeout(function() {
             initEditor();
             clearTimeout(timer);
