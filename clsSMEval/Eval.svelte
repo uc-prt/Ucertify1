@@ -1651,7 +1651,7 @@
             </div>
         </div>
     </div>
-    <textarea id="special_module_user_xml" class="h"></textarea>
+    <!-- <textarea id="special_module_user_xml" class="h"></textarea> -->
     <Dialog bind:visible={state.remediationToggle} width={960} class="dialog bg-white">
         <div style="text-align: left;">
             <div class="font20">{l.remediation}</div>
