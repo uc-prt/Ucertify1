@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -4306,8 +4306,6 @@ var app = (function () {
     	let div;
     	let t1;
     	let input;
-    	let t2;
-    	let textarea;
     	let current;
     	itemhelper = new ItemHelper({ $$inline: true });
     	itemhelper.$on("setReview", /*setReview*/ ctx[20]);
@@ -4332,8 +4330,6 @@ var app = (function () {
     			if_block.c();
     			t1 = space();
     			input = element("input");
-    			t2 = space();
-    			textarea = element("textarea");
     			attr_dev(div, "id", "previewArea");
     			attr_dev(div, "class", "relative");
     			add_location(div, file$1, 514, 2, 17303);
@@ -4344,9 +4340,6 @@ var app = (function () {
     			attr_dev(input, "userans", "");
     			input.value = /*userCorrect*/ ctx[15];
     			add_location(input, file$1, 616, 1, 20249);
-    			attr_dev(textarea, "class", "h");
-    			attr_dev(textarea, "id", "special_module_user_xml");
-    			add_location(textarea, file$1, 623, 1, 20376);
     			attr_dev(main, "class", "svelte-11usv4u");
     			add_location(main, file$1, 508, 0, 17200);
     		},
@@ -4362,8 +4355,6 @@ var app = (function () {
     			if_block.m(div, null);
     			append_dev(main, t1);
     			append_dev(main, input);
-    			append_dev(main, t2);
-    			append_dev(main, textarea);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
