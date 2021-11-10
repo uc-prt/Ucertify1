@@ -905,7 +905,7 @@
 		</div>
 	</center>
 </div>
-<textarea class="h" id="special_module_user_xml"></textarea>
+<!-- <textarea class="h" id="special_module_user_xml"></textarea> -->
 <style type="text/css">
 	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
 	
