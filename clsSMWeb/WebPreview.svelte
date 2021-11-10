@@ -1411,10 +1411,12 @@
 
     // shows the output of the code in 'Result' editor
     function runCode() {
-        window.scroll({
+        if(showHTML + showCSS + showJS > 1) {
+            window.scroll({
             top: 500,
             behavior: 'smooth'  
-        });
+          });
+        }
         let date = new Date();
         date = date.getTime();
         let iframeId = "uC" + date;
