@@ -155,7 +155,9 @@
         }).then(function(data){
             if (document.querySelector("#splitterWeb")) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                splitter();
+                setTimeout(function(){
+                    splitter();
+                },500)
                 // returns from the function to prevent from re-appened the code if it was already defined
                 return true;
             }
@@ -167,10 +169,14 @@
             document.body.appendChild(script_data);
             if (!inQuizPlayer) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                splitter();
+                setTimeout(function(){
+                    splitter();
+                },500)
             } else {
                 // sets the width and floating property of the js, html, css and result editor
-                changeStyle();
+                setTimeout(function(){
+                    changeStyle();
+                },500)
             }
         });
 
