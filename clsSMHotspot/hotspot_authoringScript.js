@@ -42,7 +42,11 @@ export default class HotspotAuthScript {
 		let bgimg = "", attr = [], wd, hd, tp, lt, where, st;
 		let hp_image = JS.select('#im').getBoundingClientRect();
 		if (typeof(ui) !== "undefined") {
-			attributes = JSON.parse(JS.select('#'+key).dataset['attributes']);
+			attributes = JS.select('#'+key).dataset['attributes'];
+			if(attributes) {
+				attributes = JSON.parse(attributes);
+			}
+
 			if(!attributes) {
 				let attributeArr = [];
 				attributeArr[0] = {name:'id',value:key};
@@ -170,15 +174,15 @@ export default class HotspotAuthScript {
 		} else {
 			insert = JS.find(xmlDom, where);
 		}
-		if (img_w > 0 && img_h > 0) {
+		if (insert && img_w > 0 && img_h > 0) {
 			insert.setAttribute("width", img_w);
 			insert.setAttribute("height", img_h);
 		}
 		if (attributes) {
 			for (let _tempAttr of attributes ) {
 				if (_tempAttr.value !== "") {
-					insert.setAttribute(_tempAttr.name, _tempAttr.value);
-					if (_tempAttr.name=='type') insert.setAttribute(_tempAttr.value, 'hotspot');
+					insert && insert.setAttribute(_tempAttr.name, _tempAttr.value);
+					if (_tempAttr.name=='type') insert && insert.setAttribute(_tempAttr.value, 'hotspot');
 				} else {
 					insert.removeAttribute(_tempAttr.name);
 				}

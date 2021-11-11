@@ -189,7 +189,7 @@
 					itemAreaWidth = parseXml.smxml.div._width+'px';
 					itemAreaHeight = parseXml.smxml.div._height+'px';
 					itemAreaLeft = (parseInt(parseXml.smxml.div._left) + 4)+'px';
-					itemAreaTop = (parseInt(parseXml.smxml.div._top) + 3)+'px';
+					itemAreaTop = (parseInt(parseXml.smxml.div._top) + 2)+'px';
 					
 					let image = new Image();
 					image.onload = function() {
