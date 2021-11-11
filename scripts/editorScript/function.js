@@ -934,7 +934,7 @@ function createSimulationHtml(config, default_action, correct_ans, embed, self, 
     default_act = default_act.filter(ele => ele);
     for (i = 0; i < default_act.length; i++) {
         var tmp = default_act[i].split('=');
-        dfault += '&default[' + tmp[0] + ']=' + tmp[1];
+        dfault += '&default[' + (tmp[0] || '') + ']=' + (tmp[1] || '');
     }
     if (correct_ans != '') {
         correct = correct_ans.split('|');
@@ -947,7 +947,7 @@ function createSimulationHtml(config, default_action, correct_ans, embed, self, 
     if (is_review == 1 && sub_type == 'assessment') {
         lab_url = 'javascipt:;\' disabled=\'disabled\'';
     } else {
-        lab_url = baseUrl + 'sim/?module=' + config[0] + '&type=' + config[1] + '&version=' + config[2] + '&is_player=1' + dfault;
+        lab_url = baseUrl + 'sim/?module=' + (config[0] || '') + '&type=' + (config[1] || '') + '&version=' + (config[2] || '') + '&is_player=1' + dfault;
     }
     button_name = getPlayerAttrVal(self, 'button_name');
     if (self.getAttribute('correct') || embed == 'inline') {
@@ -1241,7 +1241,10 @@ var evalInline = {
 
     getBack: function(id) {
         AH.selectAll('#printPanel' + id, 'show')
-        AH.selectAll('#evalCreator' + id, 'attr', {'disabled': false})
+        const evalCreateButton = AH.selectAll('#evalCreator' + id);
+        if(evalCreateButton && evalCreateButton.length>0){
+            evalCreateButton.forEach(ele => ele.removeAttribute('disabled'));
+        }
         AH.selectAll('#editorPanel' + id, 'hide');
         AH.selectAll('#framePanel' + id, 'hide');
     },
@@ -1259,9 +1262,9 @@ var evalInline = {
         parentDiv.style.border = '0';
         var webXmlData = parentDiv.firstElementChild.innerText;
         if (!webXmlData) {
-            webXmlData = parentDiv.firstElementChild.value;
+            webXmlData = parentDiv.firstElementChild.getAttribute('value') || parentDiv.firstElementChild.value;
         }
-        parentDiv.innerHTML = '<textarea class="h" id="htmlText' + (id) + '"></textarea>';
+        parentDiv.innerHTML = `<textarea class="h" id="htmlText${id}" value="${webXmlData}"></textarea>`;
         AH.selectAll('#htmlText' + id, 'value', webXmlData);
         var webEditor = document.querySelector(('#htmlEditor' + id) + ' textarea');
         html_editor[id] = CodeMirror.fromTextArea(webEditor, {
