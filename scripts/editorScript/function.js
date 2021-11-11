@@ -48,7 +48,7 @@ function replaceUnwantedTags(content, type) {
 	try {
         content = `${content}`;
 		// eslint-disable-next-line no-regex-spaces
-		content = content.replace(/&nbsp;/g, ' ').replace(/&#160;/g, ' ').replace(/   /g, ' &#160; ').replace(/  /g, '&#160; ');
+		content = content.replace(/&#160;/g, ' ').replace(/   /g, ' &#160; ').replace(/  /g, '&#160; ');
 		// content = content.replace(/&#160;/g, ' ').replace(/  /g, '&#160; ');
 		content = content.replace(/\$/g, '&#36;');
 		// @uc-abk Displaying same preview as eBook.
@@ -76,7 +76,6 @@ function replaceUnwantedTags(content, type) {
 			content = content.replace(/inline_new/, 'inline');
 			content = content.replace(/sec_button inline|sec_button/, 'sec_button inline').replace(/ebook_item_text inline|ebook_item_text/, 'ebook_item_text inline');
 		}
-		content.replace(/&nbsp;/g, ' ').replace(/  /g, ' &nbsp;').replace(/> </g, '>&nbsp;<');
 	} catch (e) {
 		console.log("It seems incorrect active area / cursor position");
 	}
