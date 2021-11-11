@@ -11,7 +11,6 @@
 
 	
 	import {Draggable} from "../src/libs/javscript_helper/JUI.js";
-	//import smVal from '../lib/ValidateItems';
 	import l from '../src/libs/editorLib/language.js';	
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
@@ -45,8 +44,6 @@
 	let originalseq1 = "";
 	let originalseq2 = "";
 	ucMlid.sinfo = true;
-	// let setList1Html;
-	// let setList2Html;
 	let btnflag = 1;
 	let listenCall = 0;
 	//let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
@@ -79,11 +76,7 @@
 				AH.select("#"+containerID+ " #sm_controller_default","css",{display:"inline-block"})
 			} else {
 				// if mode is drag & drop
-				
-				//jQuery("#"+containerID).find("#sm_controller_default").addClass("h");
 				AH.select("#"+containerID+" "+"#sm_controller_default","addClass","h");
-
-				//jQuery("#"+containerID).find("#sm_controller").removeClass("h");
 				AH.select("#"+containerID + " " + "#sm_controller","removeClass","h");
 				setTimeout(function(){
 					document.getElementsByClassName("your-ans")[0].click();
@@ -92,7 +85,6 @@
 		} else {
 			// if remdiation mode is off
 			isReview = false;
-			//jQuery("#"+containerID).find("#sm_controller_default").css("display", "none");
 			AH.select("#"+containerID+" "+"#sm_controller_default","css",{display:'none'});
 			
 			if(isShuffeled == true) {
@@ -169,8 +161,6 @@
 								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
-								// if (typeof(bindDialog) == 'function') 
-									// bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
 							}
 						//}
 					}
@@ -182,19 +172,6 @@
         	}
 		})
 		
-		// AH.listen(document,'mouseup','.shuffleList1',function(){
-		// 	console.log('shuffleList1');
-		// 	setTimeout(function(){
-		// 		displayAns();
-		// 	},200)
-		// }) // Replaced
-
-		// AH.listen(document,'mouseup','.shuffleList2',function(){
-		// 	console.log('shuffleList2');
-		// 	setTimeout(function(){
-		// 		displayAns();
-		// 	},200)
-		// })
 
 		AH.listen('#matchmain ','click','.matchlist-delete',function(e){
 			setTimeout(function(){
