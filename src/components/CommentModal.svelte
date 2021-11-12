@@ -257,12 +257,14 @@
         let contentGuid = t.closest('.comment_container_head').getAttribute('content-guid');
         let timestamp    = t.closest('.comment_container').getAttribute('time-span');
         let id 			= t.closest('.comment_container').getAttribute('id');
+        let annotation_id 			= t.closest('.comment_container').getAttribute('anno_id');
         let _data = {
             user_guid_r:  userGuidR,
             base: contentGuid,
             creator_guid: creatorGuid,
             timestamp: timestamp,
             id: id,
+            annotation_id,
             tags: (typeof AH != "undefined" && AH.get('comments_type')) ? AH.get('comments_type') : -2,
         };
         if (deleteAll) {
