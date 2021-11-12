@@ -185,17 +185,12 @@
 		}) 
 		
 
-		// binding up the unsetreview function 
-		// jQuery("#unset-review").on('click',function(){
-		// 	unsetReview();
-		// });// Will Replaced
 
 		AH.listen(document,'click','#unset-review',function() {
 			unsetReview();
 		}) 
 
 		setTimeout(function(){ 
-			//jQuery("#"+containerID+" img").on('load', function() {
 			let imgContainerId = AH.select("#"+containerID+" img");
 			AH.listen(document,'load',imgContainerId, ()=> {
 				// if review mode is on
@@ -278,7 +273,6 @@
 			//containerId.querySelector('#ssm_controller').style.display = "inline-block";
 
 			var timer_next = setTimeout(function() {
-				//jQuery("#"+containerID).find('#sm_controller_default .your-ans').click();
 				AH.find("#"+containerID,'#sm_controller_default .your-ans').click();
 				clearTimeout(timer_next);				
 			}, 200);
@@ -288,10 +282,7 @@
 	// function calls when remediation mode is off after on.
 	function unsetReview() {
 		isReview = false;
-		//jQuery('.review_2, .review_default').addClass('h');
 		AH.addClass('.review_2, .review_default','h');
-
-		//jQuery('.review_2, .review_default').hide();
 		let removeclass = document.querySelectorAll('.review_2, .review_default');
 		for(let i = 0; i < removeclass.length; i++) {
 			removeclass[i].style.display = "none";
@@ -436,7 +427,6 @@
 
 		// checking for the reviewMode
 		if(isReview) {
-			//jQuery("#"+containerID).find('#sm_controller_default .both-ans').click();
 			AH.find("#"+containerID,'#sm_controller_default .both-ans').click();
 			var timer = setTimeout(function(){
 				is_remediation = true;
@@ -459,7 +449,6 @@
 			},100);
 			
 		} else {
-			//jQuery('.review_2, .review_default').addClass('h');
 			let review = document.querySelectorAll(".review_2, .review_default");
 			for(let i = 0; i < review.length; i++ ) {
 				review[i].classList.add("h");

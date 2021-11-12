@@ -150,6 +150,7 @@
                 renderCodeMirror();
             }) 
         }
+        console.warn('Test');
         AI.ajax({  
             url: itemUrl + "src/libs/split.js",
             longData: true,
