@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -7616,7 +7616,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (424:20) {#each localCData as data,i}
+    // (423:20) {#each localCData as data,i}
     function create_each_block(ctx) {
     	let li;
     	let raw_value = /*setInnerHtml*/ ctx[9](/*data*/ ctx[26]) + "";
@@ -7653,7 +7653,7 @@ var app = (function () {
 
     			attr_dev(li, "id", li_id_value = "id" + /*i*/ ctx[28]);
     			attr_dev(li, "tabindex", "0");
-    			add_location(li, file$1, 425, 28, 11502);
+    			add_location(li, file$1, 424, 28, 11475);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -7704,14 +7704,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(424:20) {#each localCData as data,i}",
+    		source: "(423:20) {#each localCData as data,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (445:5) {:else}
+    // (444:5) {:else}
     function create_else_block(ctx) {
     	let t;
 
@@ -7731,14 +7731,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(445:5) {:else}",
+    		source: "(444:5) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (443:5) {#if state.allowSort == 1 || state.isSentence == 1 || state.isParagraph == 1}
+    // (442:5) {#if state.allowSort == 1 || state.isSentence == 1 || state.isParagraph == 1}
     function create_if_block$1(ctx) {
     	let t;
 
@@ -7758,7 +7758,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(443:5) {#if state.allowSort == 1 || state.isSentence == 1 || state.isParagraph == 1}",
+    		source: "(442:5) {#if state.allowSort == 1 || state.isSentence == 1 || state.isParagraph == 1}",
     		ctx
     	});
 
@@ -7835,18 +7835,18 @@ var app = (function () {
     			t3 = space();
     			div1 = element("div");
     			if_block.c();
-    			add_location(center0, file$1, 398, 8, 10465);
+    			add_location(center0, file$1, 397, 8, 10438);
     			attr_dev(div0, "class", "choose_header font17 pl-4");
-    			add_location(div0, file$1, 411, 16, 10829);
+    			add_location(div0, file$1, 410, 16, 10802);
     			attr_dev(ul, "id", "sortable");
     			attr_dev(ul, "totalcorrectans", ul_totalcorrectans_value = /*state*/ ctx[3].totalcorrectans);
     			attr_dev(ul, "checkseq", ul_checkseq_value = /*state*/ ctx[3].allowSort);
     			attr_dev(ul, "class", "ui-sortable w-auto mt-0 p-2");
     			attr_dev(ul, "style", ul_style_value = "border-left:10px solid #d9e7fd;border-right: 10px solid #d9e7fd");
-    			add_location(ul, file$1, 412, 16, 10913);
+    			add_location(ul, file$1, 411, 16, 10886);
     			attr_dev(div1, "class", "choose_bottom pl-4");
     			attr_dev(div1, "id", "instruction");
-    			add_location(div1, file$1, 441, 16, 12296);
+    			add_location(div1, file$1, 440, 16, 12269);
     			attr_dev(div2, "id", /*containerID*/ ctx[1]);
 
     			attr_dev(div2, "type", div2_type_value = /*state*/ ctx[3].isSentence == "1"
@@ -7856,10 +7856,10 @@ var app = (function () {
     				: "normal");
 
     			attr_dev(div2, "class", "bg-white");
-    			add_location(div2, file$1, 410, 12, 10683);
-    			add_location(center1, file$1, 409, 8, 10662);
-    			add_location(div3, file$1, 397, 4, 10451);
-    			add_location(main, file$1, 396, 0, 10440);
+    			add_location(div2, file$1, 409, 12, 10656);
+    			add_location(center1, file$1, 408, 8, 10635);
+    			add_location(div3, file$1, 396, 4, 10424);
+    			add_location(main, file$1, 395, 0, 10413);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8110,7 +8110,6 @@ var app = (function () {
 
     	// calls when review mode is on
     	function setReview() {
-    		console.log("checking");
     		disableMouse("none");
     		ucChoose.modeOn("on");
     		$$invalidate(0, isReview = true);
