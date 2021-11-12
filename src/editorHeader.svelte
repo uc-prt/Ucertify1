@@ -712,7 +712,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="save_xml_new">
                         <Menuitem class="save_xml_btn dropdown-item vertical-center" action="save_as">
-                            <span class="icomoon-24px-save-as-3 mr-sm"></span>Save As
+                            <span class="icomoon-24px-save-as-3 mr-sm"></span>&nbsp;Save As
                         </Menuitem>
                     </div>
                 </div>
