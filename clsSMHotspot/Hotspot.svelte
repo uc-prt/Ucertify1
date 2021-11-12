@@ -316,7 +316,9 @@
         bgImgWidth = QXML.smxml._width + 'px';
         AH.select('#text0', 'show');
         AH.selectAll('.drawImage,#hptmain', 'hide');
-        AH.find(document, 'canvas').remove();
+        if(AH.find(document, 'canvas')) {
+            AH.find(document, 'canvas').remove();
+        }
 
         // for changing the {% , %} , symbols with span
         getData(QXML.smxml.div.__cdata);

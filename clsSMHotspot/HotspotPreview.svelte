@@ -6,6 +6,7 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import {movetarget} from './libs/util.svelte';
 	import { writable } from 'svelte/store';
+	import './css/hotspot.min.css';
 	export let xml;
 	export let uxml;
 	export let ansStatus;
@@ -610,7 +611,7 @@
 					{/if}
 				</center>
 			{:else}
-				{@html loadModule(moduleArr[item_type])}
+			{@html loadModule(moduleArr[item_type])}
 			{/if}
 		</div>
 	</center>
