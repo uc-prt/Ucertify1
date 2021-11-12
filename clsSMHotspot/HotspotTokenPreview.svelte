@@ -399,7 +399,7 @@
                         <div class="float-left position-relative d-inline" style="width: 1.5px; height: 1px">
                             <span
                                 class="float-left position-absolute"
-                                style="left: -2.5px"
+                                style="left: -2.5px; top: 2px;"
                             >{data.value}</span>
                         </div>
                     {:else if data.value == "#newline#"}

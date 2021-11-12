@@ -154,7 +154,7 @@
             setTimeout(function () {
                 ucTree.readyThis('#' + treeid, state.parsedOptions);
                 calcNodes(parsedXml.smxml.tree.__cdata);
-            }, 1000);
+            }, 0);
             previewState = editorState.editorView;
         }
         if (window.inNative && window.inNative != undefined) {
