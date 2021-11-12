@@ -1,0 +1,2 @@
+import{S as e,i as s,s as a,e as r,g as t,f as i,h as l,r as n,o}from"./main-9d6a36e5.js";function d(e){let s;return{c(){s=r("div"),s.innerHTML="<h1>Item is under developement.</h1>",t(s,"height","200px"),i(s,"class","alert alert-primary"),i(s,"role","alert")},m(e,a){l(e,s,a)},p:n,i:n,o:n,d(e){e&&o(s)}}}export default class extends e{constructor(e){super(),s(this,e,null,d,a,{})}}
+//# sourceMappingURL=UnderDev-6d4dc87c.js.map
