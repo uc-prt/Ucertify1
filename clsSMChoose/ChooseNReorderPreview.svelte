@@ -118,7 +118,6 @@
     
     // calls when review mode is on
 	function setReview() {
-		console.log('checking');
 		disableMouse("none");
 		ucChoose.modeOn("on");
 		isReview = true;
