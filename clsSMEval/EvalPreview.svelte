@@ -1361,7 +1361,7 @@
 			</div>
 		</div>
 		<textarea class="h" id="qxml_inp" name="qxml_inp" value={window.QXML} readOnly></textarea>
-		<textarea class="h" id="special_module_user_xml"></textarea>
+		<!-- <textarea class="h" id="special_module_user_xml"></textarea> -->
 		<input type="hidden" id="ansModeAnswer" value="" />
 	</div>
 	<Dialog bind:visible={state.confirmBoxOpen} width={545}>

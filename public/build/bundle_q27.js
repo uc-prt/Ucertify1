@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35731/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -1223,7 +1223,7 @@ var app = (function () {
         getBS(target, comp, options) {
             let selected = (typeof target == "object") ? target : document.querySelector(target);
             if (selected && this.bsCat1.includes(comp)) {
-                let isIns = bootstrap[comp].getInstance(selected);
+                let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
                 if (isIns) {
                     return bootstrap[comp].getInstance(selected);
                 } else {
@@ -1851,9 +1851,15 @@ var app = (function () {
 
         // store data
         set(key, value) {
+            if (key == 'save_item') {
+                this.addInLocalstorage(key, value);
+            }
             if (typeof globalThis == 'object') globalThis.JUITemp[key] = value;
         }
-
+        
+        addInLocalstorage(key, value) {
+            window.localStorage.setItem(key, value);
+        }
         // get data from store
         get(key) {
             return globalThis.JUITemp[key];
@@ -1955,7 +1961,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -1967,7 +1973,7 @@ var app = (function () {
                                     ${data}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal">OK</button>
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
@@ -3102,7 +3108,7 @@ var app = (function () {
     function add_css$1() {
     	var style = element("style");
     	style.id = "svelte-izmpft-style";
-    	style.textContent = ".fa-close{margin-left:20px;font-size:18px;position:absolute;top:10px;color:#A80000}.fa-check{margin-left:20px;font-size:18px;position:absolute;top:10px;color:#46A546}.fa-close,.fa-check.svelte-izmpft,.middle_align.svelte-izmpft{vertical-align:middle!important}.middle_align{width:164px;min-width:164px}.topic_input{min-width:257px}.preview_header{font-size:16pt;font-weight:bold;vertical-align:middle}.adjust_width{width:10%;text-align:center}.theme_color_theme1.svelte-izmpft{background-color:#5B9BD5!important}.theme_color_theme2.svelte-izmpft{background-color:#3B67BC!important}.theme_color_theme3.svelte-izmpft{background-color:#F6C3A2!important}.theme_color_theme4.svelte-izmpft{background-color:#70AD47!important}.theme_color_theme5.svelte-izmpft{background-color:#745998!important}.theme_color_terms_theme1.svelte-izmpft{background-color:#DEEAF6}.theme_color_terms_theme2.svelte-izmpft{background-color:#D4DEF1}.theme_color_terms_theme3.svelte-izmpft{background-color:#FAE0CF}.theme_color_terms_theme4.svelte-izmpft{background-color:#E2EFD9}.theme_color_terms_theme5.svelte-izmpft{background-color:#E1DAE9}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvaWNlTWF0cml4UHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBNmhCWSxTQUFTLEFBQUUsQ0FBQSxBQUNmLFdBQVcsQ0FBRSxJQUFJLENBQ2pCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsR0FBRyxDQUFFLElBQUksQ0FDVCxLQUFLLENBQUUsT0FBTyxBQUNsQixDQUFBLEFBRVEsU0FBUyxBQUFFLENBQUEsQUFDZixXQUFXLENBQUUsSUFBSSxDQUNqQixTQUFTLENBQUUsSUFBSSxDQUNmLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLEdBQUcsQ0FBRSxJQUFJLENBQ1QsS0FBSyxDQUFFLE9BQU8sQUFDbEIsQ0FBQSxBQUNRLFNBQVMsQUFBQyxDQUFFLHVCQUFTLENBQUMsYUFBYSxjQUFDLENBQUEsQUFDeEMsY0FBYyxDQUFFLE1BQU0sVUFBVSxBQUNwQyxDQUFBLEFBRVEsYUFBYSxBQUFFLENBQUEsQUFDbkIsS0FBSyxDQUFFLEtBQUssQ0FDWixTQUFTLENBQUUsS0FBSyxBQUNwQixDQUFDLEFBRU8sWUFBWSxBQUFFLENBQUEsQUFDbEIsU0FBUyxDQUFFLEtBQUssQUFDcEIsQ0FBQSxBQUVRLGVBQWUsQUFBRSxDQUFBLEFBQ3JCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsV0FBVyxDQUFFLElBQUksQ0FDakIsY0FBYyxDQUFFLE1BQU0sQUFDMUIsQ0FBQSxBQUVRLGFBQWEsQUFBRSxDQUFBLEFBQ25CLEtBQUssQ0FBRSxHQUFHLENBQ1YsVUFBVSxDQUFFLE1BQU0sQUFDdEIsQ0FBQSxBQUVBLG1CQUFtQixjQUFDLENBQUEsQUFDaEIsZ0JBQWdCLENBQUUsT0FBTyxVQUFVLEFBQ3ZDLENBQUEsQUFFQSxtQkFBbUIsY0FBQyxDQUFBLEFBQ2hCLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxBQUN2QyxDQUFBLEFBRUEsbUJBQW1CLGNBQUMsQ0FBQSxBQUNoQixnQkFBZ0IsQ0FBRSxPQUFPLFVBQVUsQUFDdkMsQ0FBQSxBQUVBLG1CQUFtQixjQUFDLENBQUEsQUFDaEIsZ0JBQWdCLENBQUUsT0FBTyxVQUFVLEFBQ3ZDLENBQUEsQUFFQSxtQkFBbUIsY0FBQyxDQUFBLEFBQ2hCLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxBQUN2QyxDQUFBLEFBS0EseUJBQXlCLGNBQUMsQ0FBQSxBQUN0QixnQkFBZ0IsQ0FBRSxPQUFPLEFBQzdCLENBQUEsQUFFQSx5QkFBeUIsY0FBQyxDQUFBLEFBQ3RCLGdCQUFnQixDQUFFLE9BQU8sQUFDN0IsQ0FBQSxBQUVBLHlCQUF5QixjQUFDLENBQUEsQUFDdEIsZ0JBQWdCLENBQUUsT0FBTyxBQUM3QixDQUFBLEFBRUEseUJBQXlCLGNBQUMsQ0FBQSxBQUN0QixnQkFBZ0IsQ0FBRSxPQUFPLEFBQzdCLENBQUEsQUFFQSx5QkFBeUIsY0FBQyxDQUFBLEFBQ3RCLGdCQUFnQixDQUFFLE9BQU8sQUFDN0IsQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDaG9pY2VNYXRyaXhQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
+    	style.textContent = ".fa-close{margin-left:20px;font-size:18px;position:absolute;top:10px;color:#A80000}.fa-check{margin-left:20px;font-size:18px;position:absolute;top:10px;color:#46A546}.fa-close,.fa-check.svelte-izmpft,.middle_align.svelte-izmpft{vertical-align:middle!important}.middle_align{width:164px;min-width:164px}.topic_input{min-width:257px}.preview_header{font-size:16pt;font-weight:bold;vertical-align:middle}.adjust_width{width:10%;text-align:center}.theme_color_theme1.svelte-izmpft{background-color:#5B9BD5!important}.theme_color_theme2.svelte-izmpft{background-color:#3B67BC!important}.theme_color_theme3.svelte-izmpft{background-color:#F6C3A2!important}.theme_color_theme4.svelte-izmpft{background-color:#70AD47!important}.theme_color_theme5.svelte-izmpft{background-color:#745998!important}.theme_color_terms_theme1.svelte-izmpft{background-color:#DEEAF6}.theme_color_terms_theme2.svelte-izmpft{background-color:#D4DEF1}.theme_color_terms_theme3.svelte-izmpft{background-color:#FAE0CF}.theme_color_terms_theme4.svelte-izmpft{background-color:#E2EFD9}.theme_color_terms_theme5.svelte-izmpft{background-color:#E1DAE9}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvaWNlTWF0cml4UHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBcWhCWSxTQUFTLEFBQUUsQ0FBQSxBQUNmLFdBQVcsQ0FBRSxJQUFJLENBQ2pCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsR0FBRyxDQUFFLElBQUksQ0FDVCxLQUFLLENBQUUsT0FBTyxBQUNsQixDQUFBLEFBRVEsU0FBUyxBQUFFLENBQUEsQUFDZixXQUFXLENBQUUsSUFBSSxDQUNqQixTQUFTLENBQUUsSUFBSSxDQUNmLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLEdBQUcsQ0FBRSxJQUFJLENBQ1QsS0FBSyxDQUFFLE9BQU8sQUFDbEIsQ0FBQSxBQUNRLFNBQVMsQUFBQyxDQUFFLHVCQUFTLENBQUMsYUFBYSxjQUFDLENBQUEsQUFDeEMsY0FBYyxDQUFFLE1BQU0sVUFBVSxBQUNwQyxDQUFBLEFBRVEsYUFBYSxBQUFFLENBQUEsQUFDbkIsS0FBSyxDQUFFLEtBQUssQ0FDWixTQUFTLENBQUUsS0FBSyxBQUNwQixDQUFDLEFBRU8sWUFBWSxBQUFFLENBQUEsQUFDbEIsU0FBUyxDQUFFLEtBQUssQUFDcEIsQ0FBQSxBQUVRLGVBQWUsQUFBRSxDQUFBLEFBQ3JCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsV0FBVyxDQUFFLElBQUksQ0FDakIsY0FBYyxDQUFFLE1BQU0sQUFDMUIsQ0FBQSxBQUVRLGFBQWEsQUFBRSxDQUFBLEFBQ25CLEtBQUssQ0FBRSxHQUFHLENBQ1YsVUFBVSxDQUFFLE1BQU0sQUFDdEIsQ0FBQSxBQUVBLG1CQUFtQixjQUFDLENBQUEsQUFDaEIsZ0JBQWdCLENBQUUsT0FBTyxVQUFVLEFBQ3ZDLENBQUEsQUFFQSxtQkFBbUIsY0FBQyxDQUFBLEFBQ2hCLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxBQUN2QyxDQUFBLEFBRUEsbUJBQW1CLGNBQUMsQ0FBQSxBQUNoQixnQkFBZ0IsQ0FBRSxPQUFPLFVBQVUsQUFDdkMsQ0FBQSxBQUVBLG1CQUFtQixjQUFDLENBQUEsQUFDaEIsZ0JBQWdCLENBQUUsT0FBTyxVQUFVLEFBQ3ZDLENBQUEsQUFFQSxtQkFBbUIsY0FBQyxDQUFBLEFBQ2hCLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxBQUN2QyxDQUFBLEFBS0EseUJBQXlCLGNBQUMsQ0FBQSxBQUN0QixnQkFBZ0IsQ0FBRSxPQUFPLEFBQzdCLENBQUEsQUFFQSx5QkFBeUIsY0FBQyxDQUFBLEFBQ3RCLGdCQUFnQixDQUFFLE9BQU8sQUFDN0IsQ0FBQSxBQUVBLHlCQUF5QixjQUFDLENBQUEsQUFDdEIsZ0JBQWdCLENBQUUsT0FBTyxBQUM3QixDQUFBLEFBRUEseUJBQXlCLGNBQUMsQ0FBQSxBQUN0QixnQkFBZ0IsQ0FBRSxPQUFPLEFBQzdCLENBQUEsQUFFQSx5QkFBeUIsY0FBQyxDQUFBLEFBQ3RCLGdCQUFnQixDQUFFLE9BQU8sQUFDN0IsQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDaG9pY2VNYXRyaXhQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
     	append_dev(document_1$1.head, style);
     }
 
@@ -3127,7 +3133,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (458:24) {#if state.cdata}
+    // (450:24) {#if state.cdata}
     function create_if_block_1(ctx) {
     	let each_1_anchor;
     	let each_value_2 = /*state*/ ctx[2].cdata.option;
@@ -3188,14 +3194,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(458:24) {#if state.cdata}",
+    		source: "(450:24) {#if state.cdata}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (459:28) {#each state.cdata.option as data, i}
+    // (451:28) {#each state.cdata.option as data, i}
     function create_each_block_2(ctx) {
     	let th;
     	let t_value = /*data*/ ctx[29].text.replace(/\n/gm, "</br>").replace(/#cm/gm, ",") + "";
@@ -3225,7 +3231,7 @@ var app = (function () {
     			: /*data*/ ctx[29].id + "text-center")) + " svelte-izmpft"));
 
     			attr_dev(th, "tabindex", th_tabindex_value = 0);
-    			add_location(th, file$1, 459, 32, 15037);
+    			add_location(th, file$1, 451, 32, 14524);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -3259,14 +3265,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(459:28) {#each state.cdata.option as data, i}",
+    		source: "(451:28) {#each state.cdata.option as data, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (471:20) {#if cm.cdata}
+    // (463:20) {#if cm.cdata}
     function create_if_block$1(ctx) {
     	let each_1_anchor;
     	let each_value = /*cm*/ ctx[1].cdata.term;
@@ -3327,14 +3333,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(471:20) {#if cm.cdata}",
+    		source: "(463:20) {#if cm.cdata}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (481:32) {#each cm.cdata.option as data2, j}
+    // (473:32) {#each cm.cdata.option as data2, j}
     function create_each_block_1(ctx) {
     	let td;
     	let i0;
@@ -3375,11 +3381,11 @@ var app = (function () {
     			attr_dev(i0, "class", "fa fa-check svelte-izmpft");
     			attr_dev(i0, "aria-hidden", "true");
     			attr_dev(i0, "style", i0_style_value = setIconStyle(/*isIE*/ ctx[3]));
-    			add_location(i0, file$1, 488, 36, 17893);
+    			add_location(i0, file$1, 480, 36, 17380);
     			attr_dev(i1, "class", "fa fa-close");
     			attr_dev(i1, "aria-hidden", "true");
     			attr_dev(i1, "style", i1_style_value = setIconStyle(/*isIE*/ ctx[3]));
-    			add_location(i1, file$1, 493, 36, 18168);
+    			add_location(i1, file$1, 485, 36, 17655);
     			attr_dev(input, "type", "radio");
     			attr_dev(input, "class", "test_radio CMRad");
     			attr_dev(input, "style", input_style_value = "vertical-align:middle;");
@@ -3391,7 +3397,7 @@ var app = (function () {
     			attr_dev(input, "data-userans", "");
     			attr_dev(input, "data-role", "none");
     			attr_dev(input, "tabindex", input_tabindex_value = -1);
-    			add_location(input, file$1, 498, 36, 18441);
+    			add_location(input, file$1, 490, 36, 17928);
     			attr_dev(label, "tabindex", label_tabindex_value = 0);
 
     			attr_dev(label, "class", label_class_value = "label_choice customRadCM " + (/*j*/ ctx[34] % 2 == 0
@@ -3399,7 +3405,7 @@ var app = (function () {
     			: "falseitemColorCM"));
 
     			attr_dev(label, "for", label_for_value = "t" + /*i*/ ctx[31] + /*j*/ ctx[34]);
-    			add_location(label, file$1, 512, 36, 19277);
+    			add_location(label, file$1, 504, 36, 18764);
     			attr_dev(td, "key", td_key_value = /*j*/ ctx[34]);
     			attr_dev(td, "id", td_id_value = "tb" + /*i*/ ctx[31] + /*j*/ ctx[34]);
 
@@ -3419,7 +3425,7 @@ var app = (function () {
     			? " dbg-success"
     			: " dbg-danger") + " position-relative") + " svelte-izmpft"));
 
-    			add_location(td, file$1, 481, 32, 17039);
+    			add_location(td, file$1, 473, 32, 16526);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -3478,14 +3484,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(481:32) {#each cm.cdata.option as data2, j}",
+    		source: "(473:32) {#each cm.cdata.option as data2, j}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (472:24) {#each cm.cdata.term as data,i}
+    // (464:24) {#each cm.cdata.term as data,i}
     function create_each_block(ctx) {
     	let tr;
     	let td;
@@ -3535,9 +3541,9 @@ var app = (function () {
     			set_style(td, "font-size", "14pt");
     			set_style(td, "vertical-align", "middle");
     			set_style(td, "font-family", /*state*/ ctx[2].font);
-    			add_location(td, file$1, 473, 32, 16095);
+    			add_location(td, file$1, 465, 32, 15582);
     			attr_dev(tr, "key", tr_key_value = /*i*/ ctx[31]);
-    			add_location(tr, file$1, 472, 28, 16048);
+    			add_location(tr, file$1, 464, 28, 15535);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -3608,7 +3614,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(472:24) {#each cm.cdata.term as data,i}",
+    		source: "(464:24) {#each cm.cdata.term as data,i}",
     		ctx
     	});
 
@@ -3683,20 +3689,20 @@ var app = (function () {
     			: " text-center")) + " svelte-izmpft"));
 
     			attr_dev(th, "tabindex", th_tabindex_value = 0);
-    			add_location(th, file$1, 450, 24, 14201);
+    			add_location(th, file$1, 442, 24, 13688);
     			attr_dev(tr, "class", "table-head");
-    			add_location(tr, file$1, 448, 20, 14126);
-    			add_location(thead, file$1, 447, 16, 14098);
-    			add_location(tbody, file$1, 469, 16, 15920);
+    			add_location(tr, file$1, 440, 20, 13613);
+    			add_location(thead, file$1, 439, 16, 13585);
+    			add_location(tbody, file$1, 461, 16, 15407);
     			attr_dev(table, "class", table_class_value = "table testmode_table ");
     			attr_dev(table, "id", "test_table");
     			attr_dev(table, "style", table_style_value = "" + ("position:relative; margin-top:20px;width:" + /*state*/ ctx[2].maxWidth + "px" + ";font-family: Georgia;"));
-    			add_location(table, file$1, 446, 12, 13928);
-    			add_location(center, file$1, 445, 8, 13907);
+    			add_location(table, file$1, 438, 12, 13415);
+    			add_location(center, file$1, 437, 8, 13394);
     			attr_dev(div, "id", "choicemain");
     			attr_dev(div, "style", div_style_value = "margin-bottom:20px");
-    			add_location(div, file$1, 438, 4, 13652);
-    			add_location(main, file$1, 437, 0, 13641);
+    			add_location(div, file$1, 430, 4, 13139);
+    			add_location(main, file$1, 429, 0, 13128);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3964,17 +3970,12 @@ var app = (function () {
     				let rawUaXML = [];
 
     				// storing uaXML in rawUaXML and storing its value
-    				/*    jQuery.map(uaXML, function (value, index) {
-            rawUaXML[index] = value;
-        }); replaced   */
     				rawUaXML = JSON.parse(JSON.stringify(uaXML));
 
     				//    setting the data-userans on the basis of ans
     				setTimeout(
     					function () {
     						rawUaXML.ans.map(function (data, i) {
-    							//alert("#"+data.userAns);
-    							//jQuery(".test_area").find("#"+data.userAns).attr("data-userans",data.userAns);
     							AH.selectAll(".test_area" + " #" + data.userAns, "attr", { "data-userans": data.userAns });
     						});
 
@@ -4003,7 +4004,6 @@ var app = (function () {
     		let name = e.target.name;
 
     		// set the user ans blank
-    		//    jQuery(mainId+" .test_area input[name=" + name + "]").attr("data-userans", ""); Replaced
     		let test_area_input = document.querySelectorAll(mainId + " .test_area input[name=" + name + "]");
 
     		for (let i = 0; i < test_area_input.length; i++) {
@@ -4180,7 +4180,6 @@ var app = (function () {
     			});
     		});
 
-    		//jQuery(".dbg-danger input:checked").siblings(".label_choice").attr("title", "is marked as incorrect");
     		AH.select(".dbg-danger input", "checked").forEach(_elm => {
     			AH.siblings(_elm, ".label_choice").forEach(_e => {
     				_e.setAttribute("title", "is marked as incorrect");

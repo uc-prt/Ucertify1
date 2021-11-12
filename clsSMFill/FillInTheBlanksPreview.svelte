@@ -879,7 +879,7 @@
 			ignoretype={state.ignoretype}
 			manual_grade={manual_grade || 0}
 			totalcorrectans={state.totalcorrectans}
-			style='font-family:"Open Sans",sans-serif; font-size: 16px'
+			style='font-family:"Open Sans",sans-serif; font-size: 15px'
 		>
 	
 		<div class="string d-flex align-items-center justify-content-center" id="previewArea"></div>
@@ -905,7 +905,7 @@
 		</div>
 	</center>
 </div>
-<textarea class="h" id="special_module_user_xml"></textarea>
+<!-- <textarea class="h" id="special_module_user_xml"></textarea> -->
 <style type="text/css">
 	/*@import 'layout/themes/bootstrap4/css/bootstrap5Beta1.css'; */
 	

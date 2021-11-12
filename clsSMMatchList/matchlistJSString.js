@@ -155,6 +155,9 @@ ucMlid.showUserAns = function(mlid) {
         //console.log('drop1', ui);
         ucMlid.is_valid_drop = true;
         let _this = event.target;
+        if(_this.nodeName == "SPAN") {
+            _this = _this.parentElement;
+        }
         let list;
         let clr = "black";
         if(AH.select('#main-page').length > 0 && AH.select('#main-page').getAttribute('mode') == "bla" ) clr = "white";
@@ -979,7 +982,6 @@ ucMlid.showAllCorrectAns = function(mlid) {
 
 
 ucMlid.showAllAns = function(mlid) {
-    console.table('showAns');
     AH.remove("#lines");
     AH.remove('.correct_incorrect_icon');
     

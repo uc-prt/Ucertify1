@@ -154,18 +154,12 @@
                 uaXML = JSON.parse(uaXML);
                 let rawUaXML = [];
                 // storing uaXML in rawUaXML and storing its value
-            /*    jQuery.map(uaXML, function (value, index) {
-                    rawUaXML[index] = value;
-                }); replaced   */
-
                 rawUaXML = JSON.parse(JSON.stringify(uaXML));
                 
                 
                 //    setting the data-userans on the basis of ans
                 setTimeout(function(){
                     rawUaXML.ans.map(function(data,i) {
-                        //alert("#"+data.userAns);
-                        //jQuery(".test_area").find("#"+data.userAns).attr("data-userans",data.userAns);
                         AH.selectAll(".test_area"+" #"+data.userAns,'attr',{"data-userans":data.userAns})
                     });
                     previewUserAns();
@@ -179,7 +173,6 @@
             }
         } else {
             // if is not user ans then unchecked all the radio btn
-           
                 let test_radio_len = document.getElementsByClassName('test_radio');
                 for(let i = 0; i < test_radio_len.length; i++) {
                     test_radio_len[i].checked = false;
@@ -193,7 +186,6 @@
         let id = e.target.id;
         let name = e.target.name;
         // set the user ans blank
-    //    jQuery(mainId+" .test_area input[name=" + name + "]").attr("data-userans", ""); Replaced
 
         let test_area_input = document.querySelectorAll(mainId+" .test_area input[name=" + name + "]");
         for (let i = 0; i < test_area_input.length; i++ ) {
@@ -390,7 +382,7 @@
             });
         })
 
-        //jQuery(".dbg-danger input:checked").siblings(".label_choice").attr("title", "is marked as incorrect");
+        
         AH.select(".dbg-danger input","checked").forEach((_elm)=>{
             AH.siblings(_elm,'.label_choice').forEach((_e)=>{
                 _e.setAttribute("title","is marked as incorrect");

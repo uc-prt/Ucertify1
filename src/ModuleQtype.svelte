@@ -15,7 +15,7 @@
                     break;
                     case 4: {
                             let type;
-                            if(state.ajaxData != '') {
+                            if(state.ajaxData.xml) {
                                 let hotXml = XMLToJSON(state.ajaxData.xml);
                                 type = hotXml && hotXml.smxml && hotXml.smxml.div && ["w", "s", "p"].includes(hotXml.smxml.div._type);
                             } else {

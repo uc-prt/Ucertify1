@@ -52,7 +52,7 @@
 			// contains the xml
 			//window.QXML = xml;
 			if (toggleMode != state.toggle) {
-				console.log({toggleMode});
+				//console.log({toggleMode});
 				state.toggle = toggleMode;
 				if (toggleMode == true) {
 					AI.set('renderCodeMirror', false);

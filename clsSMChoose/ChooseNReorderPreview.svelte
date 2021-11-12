@@ -20,14 +20,12 @@
     export let cmed;
     export let showAns;
     export let xml; 
-	//export let remedStatus; 
 	
 	export let stopPreviewUpdate;
 	export let editorState;
 	export let isReview; 
 	export let uxml;
 
-    //alert("fisrt",ucChoose.result);
 
 	
     
@@ -97,21 +95,6 @@
 			AH.addClass(_this,'active');
 		})
 
-
-		
-			// new Sortable(AI.find(document,"#sortable"), {
-			// 	onEnd: function(evt) {
-			// 		console.log('checking ans');
-			// 	}
-			// })
-    
-
-
-		// if it is review mode then show the ans
-		// if (window.isReviewMode) { done by feedback
-		
-
-		
     })
 
 	

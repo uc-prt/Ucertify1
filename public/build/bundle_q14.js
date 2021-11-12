@@ -2302,7 +2302,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -5012,6 +5012,9 @@ var app = (function () {
             //console.log('drop1', ui);
             ucMlid.is_valid_drop = true;
             let _this = event.target;
+            if(_this.nodeName == "SPAN") {
+                _this = _this.parentElement;
+            }
             let list;
             let clr = "black";
             if(AH.select('#main-page').length > 0 && AH.select('#main-page').getAttribute('mode') == "bla" ) clr = "white";
@@ -5831,7 +5834,6 @@ var app = (function () {
 
 
     ucMlid.showAllAns = function(mlid) {
-        console.table('showAns');
         AH.remove("#lines");
         AH.remove('.correct_incorrect_icon');
         
@@ -8401,7 +8403,7 @@ var app = (function () {
     function add_css$4() {
     	var style = element("style");
     	style.id = "svelte-bi3u6x-style";
-    	style.textContent = ".u-sr-only.svelte-bi3u6x{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}@media(max-width:500px){.shuffle.svelte-bi3u6x{text-align:center}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWF0Y2hMaXN0UHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBKzRCQyxVQUFVLGNBQUMsQ0FBQSxBQUNWLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLElBQUksQ0FBRSxRQUFRLENBQ2QsR0FBRyxDQUFFLElBQUksQ0FDVCxNQUFNLEdBQUcsQ0FDVCxPQUFPLEdBQUcsQ0FDVixTQUFTLE1BQU0sQUFDaEIsQ0FBQSxBQUNBLE1BQU0sV0FBVyxLQUFLLENBQUMsQUFBQyxDQUFBLEFBQ3ZCLFFBQVEsY0FBQyxDQUFBLEFBQ1IsV0FBVyxNQUFNLEFBQ2xCLENBQUEsQUFDRCxDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIk1hdGNoTGlzdFByZXZpZXcuc3ZlbHRlIl19 */";
+    	style.textContent = ".u-sr-only.svelte-bi3u6x{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}@media(max-width:500px){.shuffle.svelte-bi3u6x{text-align:center}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWF0Y2hMaXN0UHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBazNCQyxVQUFVLGNBQUMsQ0FBQSxBQUNWLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLElBQUksQ0FBRSxRQUFRLENBQ2QsR0FBRyxDQUFFLElBQUksQ0FDVCxNQUFNLEdBQUcsQ0FDVCxPQUFPLEdBQUcsQ0FDVixTQUFTLE1BQU0sQUFDaEIsQ0FBQSxBQUNBLE1BQU0sV0FBVyxLQUFLLENBQUMsQUFBQyxDQUFBLEFBQ3ZCLFFBQVEsY0FBQyxDQUFBLEFBQ1IsV0FBVyxNQUFNLEFBQ2xCLENBQUEsQUFDRCxDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIk1hdGNoTGlzdFByZXZpZXcuc3ZlbHRlIl19 */";
     	append_dev(document_1$2.head, style);
     }
 
@@ -8433,7 +8435,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (738:3) {#if editorState}
+    // (704:3) {#if editorState}
     function create_if_block_1(ctx) {
     	let div;
     	let mounted;
@@ -8449,7 +8451,7 @@ var app = (function () {
     			set_style(div, "cursor", "pointer");
     			set_style(div, "display", "none");
     			set_style(div, "color", "#aaa");
-    			add_location(div, file$4, 738, 4, 21850);
+    			add_location(div, file$4, 704, 4, 20303);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -8471,14 +8473,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(738:3) {#if editorState}",
+    		source: "(704:3) {#if editorState}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (820:4) {:else}
+    // (788:4) {:else}
     function create_else_block(ctx) {
     	let div1;
     	let t;
@@ -8515,9 +8517,9 @@ var app = (function () {
     			}
 
     			attr_dev(div0, "class", "row-fluid match_options shuffleList2");
-    			add_location(div0, file$4, 856, 6, 25757);
+    			add_location(div0, file$4, 826, 6, 24338);
     			attr_dev(div1, "class", "row-fluid shuffleList1");
-    			add_location(div1, file$4, 820, 5, 24710);
+    			add_location(div1, file$4, 788, 5, 23225);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -8593,14 +8595,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(820:4) {:else}",
+    		source: "(788:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (781:4) {#if (multimatch == 0 || multimatch == 1)}
+    // (747:4) {#if (multimatch == 0 || multimatch == 1)}
     function create_if_block$3(ctx) {
     	let div3;
     	let div0;
@@ -8644,13 +8646,13 @@ var app = (function () {
 
     			attr_dev(div0, "class", "span4 shuffleList1");
     			attr_dev(div0, "dragable", "1");
-    			add_location(div0, file$4, 782, 5, 23718);
+    			add_location(div0, file$4, 748, 5, 22171);
     			attr_dev(div1, "class", "span3");
-    			add_location(div1, file$4, 800, 5, 24220);
+    			add_location(div1, file$4, 767, 5, 22705);
     			attr_dev(div2, "class", "span4 shuffleList2");
-    			add_location(div2, file$4, 801, 5, 24251);
+    			add_location(div2, file$4, 768, 5, 22736);
     			attr_dev(div3, "class", "row-fluid");
-    			add_location(div3, file$4, 781, 4, 23689);
+    			add_location(div3, file$4, 747, 4, 22142);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -8729,19 +8731,20 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(781:4) {#if (multimatch == 0 || multimatch == 1)}",
+    		source: "(747:4) {#if (multimatch == 0 || multimatch == 1)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (822:6) {#each list1 as data,i}
+    // (790:6) {#each list1 as data,i}
     function create_each_block_3(ctx) {
     	let div3;
     	let span0;
     	let div0;
     	let raw_value = /*setList1Html*/ ctx[16](/*data*/ ctx[53], /*i*/ ctx[55]) + "";
+    	let div0_data_cy_value;
     	let div0_id_value;
     	let div0_tabindex_value;
     	let div0_data_correctans_value;
@@ -8755,6 +8758,7 @@ var app = (function () {
     	let span2;
     	let div2;
     	let t2;
+    	let div2_data_cy_value;
     	let div2_id_value;
     	let div2_data_correctans_value;
     	let div2_data_userans_value;
@@ -8776,6 +8780,7 @@ var app = (function () {
     			span2 = element("span");
     			div2 = element("div");
     			t2 = text("Place Here");
+    			attr_dev(div0, "data-cy", div0_data_cy_value = "id" + /*data*/ ctx[53].id);
     			attr_dev(div0, "id", div0_id_value = /*data*/ ctx[53].id);
     			attr_dev(div0, "class", "list1");
     			attr_dev(div0, "tabindex", div0_tabindex_value = 0);
@@ -8786,14 +8791,15 @@ var app = (function () {
     			? /*data*/ ctx[53].originalseq
     			: "0");
 
-    			add_location(div0, file$4, 824, 9, 24854);
+    			add_location(div0, file$4, 792, 9, 23369);
     			attr_dev(span0, "class", "span4");
-    			add_location(span0, file$4, 823, 8, 24824);
+    			add_location(span0, file$4, 791, 8, 23339);
     			attr_dev(div1, "id", div1_id_value = /*data*/ ctx[53].id);
     			attr_dev(div1, "class", "arrow");
-    			add_location(div1, file$4, 835, 9, 25191);
+    			add_location(div1, file$4, 804, 9, 23739);
     			attr_dev(span1, "class", "span3");
-    			add_location(span1, file$4, 834, 8, 25161);
+    			add_location(span1, file$4, 803, 8, 23709);
+    			attr_dev(div2, "data-cy", div2_data_cy_value = "id" + /*data*/ ctx[53].id);
     			attr_dev(div2, "id", div2_id_value = /*data*/ ctx[53].id);
     			attr_dev(div2, "class", "list3 ui-droppable");
     			attr_dev(div2, "data-droped", "");
@@ -8809,12 +8815,12 @@ var app = (function () {
     			? /*data*/ ctx[53].originalseq
     			: "0");
 
-    			add_location(div2, file$4, 838, 9, 25284);
+    			add_location(div2, file$4, 807, 9, 23832);
     			attr_dev(span2, "class", "span4");
-    			add_location(span2, file$4, 837, 8, 25254);
+    			add_location(span2, file$4, 806, 8, 23802);
     			attr_dev(div3, "key", div3_key_value = /*i*/ ctx[55]);
     			attr_dev(div3, "class", "row-fluid");
-    			add_location(div3, file$4, 822, 7, 24784);
+    			add_location(div3, file$4, 790, 7, 23299);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -8831,6 +8837,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty[0] & /*list1*/ 128 && raw_value !== (raw_value = /*setList1Html*/ ctx[16](/*data*/ ctx[53], /*i*/ ctx[55]) + "")) div0.innerHTML = raw_value;
+    			if (dirty[0] & /*list1*/ 128 && div0_data_cy_value !== (div0_data_cy_value = "id" + /*data*/ ctx[53].id)) {
+    				attr_dev(div0, "data-cy", div0_data_cy_value);
+    			}
+
     			if (dirty[0] & /*list1*/ 128 && div0_id_value !== (div0_id_value = /*data*/ ctx[53].id)) {
     				attr_dev(div0, "id", div0_id_value);
     			}
@@ -8851,6 +8861,10 @@ var app = (function () {
 
     			if (dirty[0] & /*list1*/ 128 && div1_id_value !== (div1_id_value = /*data*/ ctx[53].id)) {
     				attr_dev(div1, "id", div1_id_value);
+    			}
+
+    			if (dirty[0] & /*list1*/ 128 && div2_data_cy_value !== (div2_data_cy_value = "id" + /*data*/ ctx[53].id)) {
+    				attr_dev(div2, "data-cy", div2_data_cy_value);
     			}
 
     			if (dirty[0] & /*list1*/ 128 && div2_id_value !== (div2_id_value = /*data*/ ctx[53].id)) {
@@ -8884,19 +8898,20 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(822:6) {#each list1 as data,i}",
+    		source: "(790:6) {#each list1 as data,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (858:7) {#each list2 as data,i}
+    // (828:7) {#each list2 as data,i}
     function create_each_block_2(ctx) {
     	let div;
     	let html_tag;
     	let raw_value = /*setList2Html*/ ctx[17](/*data*/ ctx[53], /*alphabet*/ ctx[11][/*i*/ ctx[55]]) + "";
     	let t;
+    	let div_data_cy_value;
     	let div_key_value;
     	let div_id_value;
     	let div_tabindex_value;
@@ -8907,6 +8922,7 @@ var app = (function () {
     			div = element("div");
     			t = space();
     			html_tag = new HtmlTag(t);
+    			attr_dev(div, "data-cy", div_data_cy_value = "id" + /*data*/ ctx[53].id);
     			attr_dev(div, "key", div_key_value = /*i*/ ctx[55]);
     			attr_dev(div, "id", div_id_value = /*data*/ ctx[53].id);
     			attr_dev(div, "class", "list4 ui-draggable");
@@ -8920,7 +8936,7 @@ var app = (function () {
     			? /*data*/ ctx[53].originalseq
     			: "0");
 
-    			add_location(div, file$4, 858, 8, 25847);
+    			add_location(div, file$4, 828, 8, 24428);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -8929,6 +8945,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty[0] & /*list2*/ 256 && raw_value !== (raw_value = /*setList2Html*/ ctx[17](/*data*/ ctx[53], /*alphabet*/ ctx[11][/*i*/ ctx[55]]) + "")) html_tag.p(raw_value);
+
+    			if (dirty[0] & /*list2*/ 256 && div_data_cy_value !== (div_data_cy_value = "id" + /*data*/ ctx[53].id)) {
+    				attr_dev(div, "data-cy", div_data_cy_value);
+    			}
 
     			if (dirty[0] & /*list2*/ 256 && div_id_value !== (div_id_value = /*data*/ ctx[53].id)) {
     				attr_dev(div, "id", div_id_value);
@@ -8949,19 +8969,20 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(858:7) {#each list2 as data,i}",
+    		source: "(828:7) {#each list2 as data,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (784:6) {#each list1 as data,i}
+    // (750:6) {#each list1 as data,i}
     function create_each_block_1(ctx) {
     	let div;
     	let html_tag;
     	let raw_value = /*setList1Html*/ ctx[16](/*data*/ ctx[53], /*i*/ ctx[55]) + "";
     	let t;
+    	let div_data_cy_value;
     	let div_key_value;
     	let div_id_value;
     	let div_data_correctans_value;
@@ -8975,6 +8996,7 @@ var app = (function () {
     			div = element("div");
     			t = space();
     			html_tag = new HtmlTag(t);
+    			attr_dev(div, "data-cy", div_data_cy_value = "id" + /*data*/ ctx[53].id);
     			attr_dev(div, "key", div_key_value = /*i*/ ctx[55]);
     			attr_dev(div, "id", div_id_value = /*data*/ ctx[53].id);
     			attr_dev(div, "class", "list1 ui-draggable");
@@ -8988,7 +9010,7 @@ var app = (function () {
     			? /*data*/ ctx[53].originalseq
     			: "0");
 
-    			add_location(div, file$4, 784, 8, 23802);
+    			add_location(div, file$4, 750, 8, 22255);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -8997,6 +9019,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty[0] & /*list1*/ 128 && raw_value !== (raw_value = /*setList1Html*/ ctx[16](/*data*/ ctx[53], /*i*/ ctx[55]) + "")) html_tag.p(raw_value);
+
+    			if (dirty[0] & /*list1*/ 128 && div_data_cy_value !== (div_data_cy_value = "id" + /*data*/ ctx[53].id)) {
+    				attr_dev(div, "data-cy", div_data_cy_value);
+    			}
 
     			if (dirty[0] & /*list1*/ 128 && div_id_value !== (div_id_value = /*data*/ ctx[53].id)) {
     				attr_dev(div, "id", div_id_value);
@@ -9025,19 +9051,20 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(784:6) {#each list1 as data,i}",
+    		source: "(750:6) {#each list1 as data,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (803:5) {#each list2 as data,i}
+    // (770:5) {#each list2 as data,i}
     function create_each_block(ctx) {
     	let div;
     	let html_tag;
     	let raw_value = /*setList2Html*/ ctx[17](/*data*/ ctx[53], /*alphabet*/ ctx[11][/*i*/ ctx[55]]) + "";
     	let t;
+    	let div_data_cy_value;
     	let div_key_value;
     	let div_id_value;
     	let div_style_value;
@@ -9049,6 +9076,7 @@ var app = (function () {
     			div = element("div");
     			t = space();
     			html_tag = new HtmlTag(t);
+    			attr_dev(div, "data-cy", div_data_cy_value = "id" + /*data*/ ctx[53].id);
     			attr_dev(div, "key", div_key_value = /*i*/ ctx[55]);
     			attr_dev(div, "id", div_id_value = /*data*/ ctx[53].id);
     			attr_dev(div, "class", "list2 ui-droppable");
@@ -9062,7 +9090,7 @@ var app = (function () {
     			? /*data*/ ctx[53].originalseq
     			: "0");
 
-    			add_location(div, file$4, 803, 6, 24319);
+    			add_location(div, file$4, 770, 6, 22804);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -9071,6 +9099,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty[0] & /*list2*/ 256 && raw_value !== (raw_value = /*setList2Html*/ ctx[17](/*data*/ ctx[53], /*alphabet*/ ctx[11][/*i*/ ctx[55]]) + "")) html_tag.p(raw_value);
+
+    			if (dirty[0] & /*list2*/ 256 && div_data_cy_value !== (div_data_cy_value = "id" + /*data*/ ctx[53].id)) {
+    				attr_dev(div, "data-cy", div_data_cy_value);
+    			}
 
     			if (dirty[0] & /*list2*/ 256 && div_id_value !== (div_id_value = /*data*/ ctx[53].id)) {
     				attr_dev(div, "id", div_id_value);
@@ -9091,14 +9123,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(803:5) {#each list2 as data,i}",
+    		source: "(770:5) {#each list2 as data,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (889:4) <Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>
+    // (860:4) <Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>
     function create_default_slot_1(ctx) {
     	let i_1;
     	let span;
@@ -9109,10 +9141,10 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "close";
     			attr_dev(span, "class", "u-sr-only svelte-bi3u6x");
-    			add_location(span, file$4, 889, 54, 26742);
+    			add_location(span, file$4, 860, 54, 25355);
     			attr_dev(i_1, "class", "mi mi-close");
     			set_style(i_1, "font-size", "1.5rem");
-    			add_location(i_1, file$4, 889, 5, 26693);
+    			add_location(i_1, file$4, 860, 5, 25306);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i_1, anchor);
@@ -9127,14 +9159,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(889:4) <Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>",
+    		source: "(860:4) <Button style={'position:relative;left:21px;bottom:6px;'} on:click={()=>{state.dropDialog = false}}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (880:1) <Dialog    bind:visible={state.dropDialog}    width="350px"   height="271px"   style="background: #fff; border-radius: 5px;"  >
+    // (851:1) <Dialog    bind:visible={state.dropDialog}    width="350px"   height="271px"   style="background: #fff; border-radius: 5px;"  >
     function create_default_slot(ctx) {
     	let div0;
     	let t1;
@@ -9186,24 +9218,24 @@ var app = (function () {
     			label.textContent = "Do not show this dialog again";
     			attr_dev(div0, "title", "How to drop?");
     			attr_dev(div0, "class", "float-start float-left");
-    			add_location(div0, file$4, 886, 3, 26468);
+    			add_location(div0, file$4, 857, 3, 25081);
     			attr_dev(div1, "class", "float-end float-right");
-    			add_location(div1, file$4, 887, 3, 26547);
+    			add_location(div1, file$4, 858, 3, 25160);
     			attr_dev(img, "alt", "gif file");
     			if (img.src !== (img_src_value = AH$1.select("#matchmain").getAttribute("path") + "match_drop_000BOG.gif")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$4, 895, 4, 26846);
-    			add_location(br, file$4, 899, 4, 26967);
+    			add_location(img, file$4, 866, 4, 25459);
+    			add_location(br, file$4, 870, 4, 25580);
     			attr_dev(input, "type", "checkbox");
     			set_style(input, "top", "2px");
     			attr_dev(input, "class", "relative donotshowdialog");
     			attr_dev(input, "id", "dropId");
-    			add_location(input, file$4, 901, 5, 27002);
+    			add_location(input, file$4, 872, 5, 25615);
     			attr_dev(label, "for", "dropId");
-    			add_location(label, file$4, 902, 5, 27095);
+    			add_location(label, file$4, 873, 5, 25708);
     			attr_dev(span, "class", "mt-2");
-    			add_location(span, file$4, 900, 4, 26977);
-    			add_location(div2, file$4, 894, 3, 26836);
-    			add_location(div3, file$4, 893, 2, 26827);
+    			add_location(span, file$4, 871, 4, 25590);
+    			add_location(div2, file$4, 865, 3, 25449);
+    			add_location(div3, file$4, 864, 2, 25440);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -9255,7 +9287,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(880:1) <Dialog    bind:visible={state.dropDialog}    width=\\\"350px\\\"   height=\\\"271px\\\"   style=\\\"background: #fff; border-radius: 5px;\\\"  >",
+    		source: "(851:1) <Dialog    bind:visible={state.dropDialog}    width=\\\"350px\\\"   height=\\\"271px\\\"   style=\\\"background: #fff; border-radius: 5px;\\\"  >",
     		ctx
     	});
 
@@ -9378,48 +9410,48 @@ var app = (function () {
     			create_component(dialog.$$.fragment);
     			attr_dev(div0, "class", "btn-group clearfix review_2 h");
     			attr_dev(div0, "id", "sm_controller");
-    			add_location(div0, file$4, 755, 4, 22280);
+    			add_location(div0, file$4, 721, 4, 20733);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "tabindex", button0_tabindex_value = 0);
     			attr_dev(button0, "class", "btn btn-light correct-ans clr svelte_items_test");
-    			add_location(button0, file$4, 765, 6, 22648);
+    			add_location(button0, file$4, 731, 6, 21101);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "tabindex", button1_tabindex_value = 0);
     			attr_dev(button1, "class", "btn btn-primary both-ans clr svelte_items_test");
-    			add_location(button1, file$4, 766, 6, 22899);
+    			add_location(button1, file$4, 732, 6, 21352);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "tabindex", button2_tabindex_value = 0);
     			attr_dev(button2, "class", "btn btn-light your-answer clr svelte_items_test");
-    			add_location(button2, file$4, 767, 6, 23134);
+    			add_location(button2, file$4, 733, 6, 21587);
     			attr_dev(div1, "class", "btn-group clearfix review_default h");
     			attr_dev(div1, "id", "sm_controller_default");
-    			add_location(div1, file$4, 764, 5, 22565);
+    			add_location(div1, file$4, 730, 5, 21018);
     			attr_dev(div2, "class", div2_class_value = /*btnflag*/ ctx[12] == 0 ? "h" : "");
-    			add_location(div2, file$4, 763, 4, 22524);
+    			add_location(div2, file$4, 729, 4, 20977);
     			attr_dev(div3, "class", "heading");
-    			add_location(div3, file$4, 772, 6, 23452);
+    			add_location(div3, file$4, 738, 6, 21905);
     			attr_dev(div4, "class", "span4");
-    			add_location(div4, file$4, 771, 5, 23426);
+    			add_location(div4, file$4, 737, 5, 21879);
     			attr_dev(div5, "class", "span3");
-    			add_location(div5, file$4, 774, 5, 23511);
+    			add_location(div5, file$4, 740, 5, 21964);
     			attr_dev(div6, "class", "heading");
-    			add_location(div6, file$4, 776, 6, 23568);
+    			add_location(div6, file$4, 742, 6, 22021);
     			attr_dev(div7, "class", "span4");
-    			add_location(div7, file$4, 775, 5, 23542);
+    			add_location(div7, file$4, 741, 5, 21995);
     			attr_dev(div8, "class", "row-fluid");
-    			add_location(div8, file$4, 770, 4, 23397);
+    			add_location(div8, file$4, 736, 4, 21850);
     			attr_dev(div9, "id", /*containerID*/ ctx[4]);
     			attr_dev(div9, "path", "//s3.amazonaws.com/jigyaasa_content_static/");
     			attr_dev(div9, "multimatch", /*multimatch*/ ctx[3]);
     			attr_dev(div9, "totalcorrectans", /*totalCorrectAns*/ ctx[9]);
     			set_style(div9, "font-family", "Roboto, sans-serif");
     			set_style(div9, "font-size", "1em");
-    			add_location(div9, file$4, 747, 3, 22057);
-    			add_location(center, file$4, 736, 2, 21816);
+    			add_location(div9, file$4, 713, 3, 20510);
+    			add_location(center, file$4, 702, 2, 20269);
     			attr_dev(div10, "id", "previewSection");
     			attr_dev(div10, "class", "px-2 svelte_items_testing");
-    			add_location(div10, file$4, 735, 4, 21754);
-    			add_location(main, file$4, 734, 0, 21743);
+    			add_location(div10, file$4, 701, 4, 20207);
+    			add_location(main, file$4, 700, 0, 20196);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9638,11 +9670,7 @@ var app = (function () {
     	let originalseq1 = "";
     	let originalseq2 = "";
     	ucMlid.sinfo = true;
-
-    	// let setList1Html;
-    	// let setList2Html;
     	let btnflag = 1;
-
     	let listenCall = 0;
 
     	//let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
@@ -9720,12 +9748,11 @@ var app = (function () {
     							);
 
     							// if (!UCINFO.isIphone) {
-    							if (typeof AH$1.alert == "function") AH$1.showmsg("While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.");
+    							if (typeof AH$1.alert == "function") AH$1.showmsg("While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.", 3000);
 
     							if (ucMlid.chkDoNotShow(user_guid) != true) {
     								$$invalidate(10, state.dropDialog = true, state);
-    							} // if (typeof(bindDialog) == 'function') 
-    							// bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
+    							}
     						} //}
     					} // return true;
 
@@ -9738,18 +9765,6 @@ var app = (function () {
     				}
     			});
 
-    		// AH.listen(document,'mouseup','.shuffleList1',function(){
-    		// 	console.log('shuffleList1');
-    		// 	setTimeout(function(){
-    		// 		displayAns();
-    		// 	},200)
-    		// }) // Replaced
-    		// AH.listen(document,'mouseup','.shuffleList2',function(){
-    		// 	console.log('shuffleList2');
-    		// 	setTimeout(function(){
-    		// 		displayAns();
-    		// 	},200)
-    		// })
     		AH$1.listen("#matchmain ", "click", ".matchlist-delete", function (e) {
     			setTimeout(
     				function () {
@@ -9763,17 +9778,12 @@ var app = (function () {
     			setReview();
     		});
 
-    		// binding up the unsetreview function 
-    		// jQuery("#unset-review").on('click',function(){
-    		// 	unsetReview();
-    		// });// Will Replaced
     		AH$1.listen(document, "click", "#unset-review", function () {
     			unsetReview();
     		});
 
     		setTimeout(
     			(function () {
-    				//jQuery("#"+containerID+" img").on('load', function() {
     				let imgContainerId = AH$1.select("#" + containerID + " img");
 
     				AH$1.listen(document, "load", imgContainerId, () => {
@@ -9865,9 +9875,7 @@ var app = (function () {
     			//containerId.querySelector('#ssm_controller').style.display = "inline-block";
     			var timer_next = setTimeout(
     				function () {
-    					//jQuery("#"+containerID).find('#sm_controller_default .your-ans').click();
     					AH$1.find("#" + containerID, "#sm_controller_default .your-ans").click();
-
     					clearTimeout(timer_next);
     				},
     				200
@@ -9878,11 +9886,7 @@ var app = (function () {
     	// function calls when remediation mode is off after on.
     	function unsetReview() {
     		$$invalidate(0, isReview = false);
-
-    		//jQuery('.review_2, .review_default').addClass('h');
     		AH$1.addClass(".review_2, .review_default", "h");
-
-    		//jQuery('.review_2, .review_default').hide();
     		let removeclass = document.querySelectorAll(".review_2, .review_default");
 
     		for (let i = 0; i < removeclass.length; i++) {
@@ -10056,7 +10060,6 @@ var app = (function () {
 
     		// checking for the reviewMode
     		if (isReview) {
-    			//jQuery("#"+containerID).find('#sm_controller_default .both-ans').click();
     			AH$1.find("#" + containerID, "#sm_controller_default .both-ans").click();
 
     			var timer = setTimeout(
@@ -10079,7 +10082,6 @@ var app = (function () {
     				100
     			);
     		} else {
-    			//jQuery('.review_2, .review_default').addClass('h');
     			let review = document.querySelectorAll(".review_2, .review_default");
 
     			for (let i = 0; i < review.length; i++) {
@@ -10512,10 +10514,8 @@ var app = (function () {
     						AH$1.select("#" + containerID + " #sm_controller_default", "css", { display: "inline-block" });
     					} else {
     						// if mode is drag & drop
-    						//jQuery("#"+containerID).find("#sm_controller_default").addClass("h");
     						AH$1.select("#" + containerID + " " + "#sm_controller_default", "addClass", "h");
 
-    						//jQuery("#"+containerID).find("#sm_controller").removeClass("h");
     						AH$1.select("#" + containerID + " " + "#sm_controller", "removeClass", "h");
 
     						setTimeout(
@@ -10529,7 +10529,6 @@ var app = (function () {
     					// if remdiation mode is off
     					$$invalidate(0, isReview = false);
 
-    					//jQuery("#"+containerID).find("#sm_controller_default").css("display", "none");
     					AH$1.select("#" + containerID + " " + "#sm_controller_default", "css", { display: "none" });
 
     					if (isShuffeled == true) {

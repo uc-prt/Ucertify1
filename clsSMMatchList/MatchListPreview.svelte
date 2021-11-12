@@ -11,7 +11,6 @@
 
 	
 	import {Draggable} from "../src/libs/javscript_helper/JUI.js";
-	//import smVal from '../lib/ValidateItems';
 	import l from '../src/libs/editorLib/language.js';	
 	import { beforeUpdate, onMount } from 'svelte';
 	import ItemHelper from '../helper/ItemHelper.svelte';
@@ -45,8 +44,6 @@
 	let originalseq1 = "";
 	let originalseq2 = "";
 	ucMlid.sinfo = true;
-	// let setList1Html;
-	// let setList2Html;
 	let btnflag = 1;
 	let listenCall = 0;
 	//let containerID = (cmed) ? "matchmain" + cmed : "matchmain";
@@ -79,11 +76,7 @@
 				AH.select("#"+containerID+ " #sm_controller_default","css",{display:"inline-block"})
 			} else {
 				// if mode is drag & drop
-				
-				//jQuery("#"+containerID).find("#sm_controller_default").addClass("h");
 				AH.select("#"+containerID+" "+"#sm_controller_default","addClass","h");
-
-				//jQuery("#"+containerID).find("#sm_controller").removeClass("h");
 				AH.select("#"+containerID + " " + "#sm_controller","removeClass","h");
 				setTimeout(function(){
 					document.getElementsByClassName("your-ans")[0].click();
@@ -92,7 +85,6 @@
 		} else {
 			// if remdiation mode is off
 			isReview = false;
-			//jQuery("#"+containerID).find("#sm_controller_default").css("display", "none");
 			AH.select("#"+containerID+" "+"#sm_controller_default","css",{display:'none'});
 			
 			if(isShuffeled == true) {
@@ -164,13 +156,11 @@
 						}, 60 * 1000);
 						// if (!UCINFO.isIphone) {
 							if (typeof(AH.alert) == 'function') 
-								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.');
+								AH.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.',3000);
 								
 								
 							if(ucMlid.chkDoNotShow(user_guid) != true) {
 								state.dropDialog = true;
-								// if (typeof(bindDialog) == 'function') 
-									// bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
 							}
 						//}
 					}
@@ -182,19 +172,6 @@
         	}
 		})
 		
-		// AH.listen(document,'mouseup','.shuffleList1',function(){
-		// 	console.log('shuffleList1');
-		// 	setTimeout(function(){
-		// 		displayAns();
-		// 	},200)
-		// }) // Replaced
-
-		// AH.listen(document,'mouseup','.shuffleList2',function(){
-		// 	console.log('shuffleList2');
-		// 	setTimeout(function(){
-		// 		displayAns();
-		// 	},200)
-		// })
 
 		AH.listen('#matchmain ','click','.matchlist-delete',function(e){
 			setTimeout(function(){
@@ -208,17 +185,12 @@
 		}) 
 		
 
-		// binding up the unsetreview function 
-		// jQuery("#unset-review").on('click',function(){
-		// 	unsetReview();
-		// });// Will Replaced
 
 		AH.listen(document,'click','#unset-review',function() {
 			unsetReview();
 		}) 
 
 		setTimeout(function(){ 
-			//jQuery("#"+containerID+" img").on('load', function() {
 			let imgContainerId = AH.select("#"+containerID+" img");
 			AH.listen(document,'load',imgContainerId, ()=> {
 				// if review mode is on
@@ -301,7 +273,6 @@
 			//containerId.querySelector('#ssm_controller').style.display = "inline-block";
 
 			var timer_next = setTimeout(function() {
-				//jQuery("#"+containerID).find('#sm_controller_default .your-ans').click();
 				AH.find("#"+containerID,'#sm_controller_default .your-ans').click();
 				clearTimeout(timer_next);				
 			}, 200);
@@ -311,10 +282,7 @@
 	// function calls when remediation mode is off after on.
 	function unsetReview() {
 		isReview = false;
-		//jQuery('.review_2, .review_default').addClass('h');
 		AH.addClass('.review_2, .review_default','h');
-
-		//jQuery('.review_2, .review_default').hide();
 		let removeclass = document.querySelectorAll('.review_2, .review_default');
 		for(let i = 0; i < removeclass.length; i++) {
 			removeclass[i].style.display = "none";
@@ -459,7 +427,6 @@
 
 		// checking for the reviewMode
 		if(isReview) {
-			//jQuery("#"+containerID).find('#sm_controller_default .both-ans').click();
 			AH.find("#"+containerID,'#sm_controller_default .both-ans').click();
 			var timer = setTimeout(function(){
 				is_remediation = true;
@@ -482,7 +449,6 @@
 			},100);
 			
 		} else {
-			//jQuery('.review_2, .review_default').addClass('h');
 			let review = document.querySelectorAll(".review_2, .review_default");
 			for(let i = 0; i < review.length; i++ ) {
 				review[i].classList.add("h");
@@ -783,6 +749,7 @@
 					<div class="span4 shuffleList1" dragable="1">
 						{#each list1 as data,i}
 								<div
+									data-cy={'id'+data.id}
 									key={i}
 									id={data.id}
 									class="list1 ui-draggable"
@@ -802,6 +769,7 @@
 					<div class="span4 shuffleList2">
 					{#each list2 as data,i}
 						<div 
+							data-cy={'id'+data.id}
 							key={i}
 							id={data.id} 
 							class="list2 ui-droppable" 
@@ -823,6 +791,7 @@
 							<div key={i} class="row-fluid">
 								<span class="span4">
 									<div 
+										data-cy={'id'+data.id}
 										id={data.id}
 										class="list1"
 										tabindex={0}
@@ -837,6 +806,7 @@
 								</span>
 								<span class="span4">
 									<div
+										data-cy={'id'+data.id}
 										id={data.id}
 										class="list3 ui-droppable"
 										data-droped=""
@@ -857,6 +827,7 @@
 						<div class="row-fluid match_options shuffleList2">
 							{#each list2 as data,i}
 								<div
+									data-cy={'id'+data.id}
 									key={i}
 									id={data.id}
 									class="list4 ui-draggable"

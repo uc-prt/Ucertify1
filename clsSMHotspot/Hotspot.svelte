@@ -270,8 +270,8 @@
         bgImgWidth = QXML.smxml._width + 'px'; // Image Width
         hotAreaWidth = QXML.smxml.div._width + 'px'; // draggable area width
         hotAreaHeight = QXML.smxml.div._height + 'px'; // draggable area height
-        hotAreaLeft = QXML.smxml.div._left + 'px'; // draggable area left
-        hotAreaTop = QXML.smxml.div._top + 'px'; // draggable area top
+        hotAreaLeft = (parseInt(QXML.smxml.div._left) + 4) + 'px'; // draggable area left
+        hotAreaTop = (parseInt(QXML.smxml.div._top) + 2) + 'px'; // draggable area top
         let image = new Image();
         image.src = bgImgPath + QXML.smxml._bgimg;
         image.onload = function () {
@@ -336,8 +336,9 @@
             attrs[attrs.length] = { "name": "value", "value": xml.textContent.trim() }
         }
         if (typeof elem != "undefined") {
-            AH.select('#' + elem).dataset["attributes"] = JSON.stringify(attrs);
-
+            if(elem) {
+                AH.select('#' + elem).dataset["attributes"] = JSON.stringify(attrs);
+            }
         }
         if (xml.children.length > 0) {
             Array.prototype.forEach.call(xml.children, (child)=> {
@@ -557,7 +558,6 @@
                         handleUpdatedData(argument_data);
                     }
                 } else {
-                    console.log("Default Image set");
                     // in case when height and width does not passes the defined min and max condition
                     state.openImg = true;
                     image.src = bgImgPath + json_data.smxml._bgimg;
@@ -781,7 +781,6 @@
 
     // for setting position or size of the draggable element in spot an image module
     function setPS (w, h, t, l, del) {
-        console.log("setps");
         let ac = AH.select('#ID0');
         if (ac) {
             let acRect = ac.getBoundingClientRect();

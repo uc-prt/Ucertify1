@@ -65,7 +65,6 @@
     })
     // called every time when any props or state gets changed
     beforeUpdate(()=>{
-        console.log('checking');
         if (xml != state.xml) {
             state.xml = xml;
             if (isReview) {
@@ -151,12 +150,16 @@
                 renderCodeMirror();
             }) 
         }
+        console.warn('Test');
         AI.ajax({  
             url: itemUrl + "src/libs/split.js",
+            longData: true,
         }).then(function(data){
             if (document.querySelector("#splitterWeb")) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                splitter();
+                setTimeout(function(){
+                    splitter();
+                },500)
                 // returns from the function to prevent from re-appened the code if it was already defined
                 return true;
             }
@@ -168,10 +171,14 @@
             document.body.appendChild(script_data);
             if (!inQuizPlayer) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-                splitter();
+                setTimeout(function(){
+                    splitter();
+                },500)
             } else {
                 // sets the width and floating property of the js, html, css and result editor
-                changeStyle();
+                setTimeout(function(){
+                    changeStyle();
+                },500)
             }
         });
 
@@ -213,6 +220,7 @@
 
     
     function splitter() {
+        console.trace('splitter');
         // This code will running on mobile
         if (window.inNative) {
             return true;
@@ -253,6 +261,7 @@
 
      // sets the width and floating property of the js, html, css and result editor
     function changeStyle() {
+        console.trace('change Style');
         // used for mobile team
         // if (window.inNative) {
         //     return;
@@ -1412,10 +1421,12 @@
 
     // shows the output of the code in 'Result' editor
     function runCode() {
-        window.scroll({
+        if(showHTML + showCSS + showJS > 1) {
+            window.scroll({
             top: 500,
             behavior: 'smooth'  
-        });
+          });
+        }
         let date = new Date();
         date = date.getTime();
         let iframeId = "uC" + date;
@@ -1446,7 +1457,6 @@
 
      // used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
     function parseXML(xml) {
-        console.log('checking');
         // contains the xml 
         xml = xml ? xml : state.xml;  
         // contains the html editor value from xml

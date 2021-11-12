@@ -188,8 +188,8 @@
 					itemBorderColor  = parseXml.smxml.div._bordercolor;
 					itemAreaWidth = parseXml.smxml.div._width+'px';
 					itemAreaHeight = parseXml.smxml.div._height+'px';
-					itemAreaLeft = parseXml.smxml.div._left+'px';
-					itemAreaTop = parseXml.smxml.div._top+'px';
+					itemAreaLeft = (parseInt(parseXml.smxml.div._left) + 4)+'px';
+					itemAreaTop = (parseInt(parseXml.smxml.div._top) + 2)+'px';
 					
 					let image = new Image();
 					image.onload = function() {
@@ -621,7 +621,7 @@
 		userans="" 
 		value={userCorrect} 
 	/>
-	<textarea class="h" id="special_module_user_xml"></textarea>
+	<!-- <textarea class="h" id="special_module_user_xml"></textarea> -->
 </main>
 
 <style>

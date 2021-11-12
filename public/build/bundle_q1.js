@@ -2107,7 +2107,7 @@ var app = (function () {
                     return (`
                     <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
                         <span id="showMsgBody">${data}</span>
-                        <button type="button" class="btn-close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
                     </div>
                 `)
                 case 'showBSModal':
@@ -16506,9 +16506,7 @@ var app = (function () {
     			tabpreview.$set(tabpreview_changes);
 
     			if (/*state*/ ctx[10].data[0].hotspot) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
+    				if (if_block) ; else {
     					if_block = create_if_block_1$9(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -16617,14 +16615,13 @@ var app = (function () {
     			attr_dev(img, "class", "targetImg");
     			attr_dev(img, "tabindex", "0");
     			attr_dev(img, "alt", "target_img");
-    			if (img.src !== (img_src_value = itemUrl + "/images/target.png")) attr_dev(img, "src", img_src_value);
+    			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_assets/items/target.png")) attr_dev(img, "src", img_src_value);
     			set_style(img, "display", "none");
     			add_location(img, file$g, 455, 5, 14063);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
     		},
-    		p: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(img);
     		}
