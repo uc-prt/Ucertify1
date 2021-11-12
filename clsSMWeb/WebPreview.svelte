@@ -150,8 +150,10 @@
                 renderCodeMirror();
             }) 
         }
+        console.warn('Test');
         AI.ajax({  
             url: itemUrl + "src/libs/split.js",
+            longData: true,
         }).then(function(data){
             if (document.querySelector("#splitterWeb")) {
                 // used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
@@ -218,6 +220,7 @@
 
     
     function splitter() {
+        console.trace('splitter');
         // This code will running on mobile
         if (window.inNative) {
             return true;
@@ -258,6 +261,7 @@
 
      // sets the width and floating property of the js, html, css and result editor
     function changeStyle() {
+        console.trace('change Style');
         // used for mobile team
         // if (window.inNative) {
         //     return;

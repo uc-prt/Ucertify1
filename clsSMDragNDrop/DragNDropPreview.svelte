@@ -453,7 +453,7 @@ function changeLoadState() {
 				<StepPreview modules={state.data[0].step} containerID={container_id} {checkImages} uxml={uxml}/>
 				<TabPreview modules={state.data[0].tab} containerID={container_id} {checkImages} uxml={uxml}/>
 				{#if state.data[0].hotspot}
-					<img class="targetImg" tabindex="0" alt="target_img" src={itemUrl +"/images/target.png"} style="display: none" />
+					<img class="targetImg" tabindex="0" alt="target_img" src={"https://s3.amazonaws.com/jigyaasa_assets/items/target.png"} style="display: none" />
 				{/if}
 			{/if}
 		</div>
