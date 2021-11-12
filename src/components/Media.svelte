@@ -190,6 +190,10 @@
         } else {
             try {
                 window.frames['authoringFrame'].document.getElementById(upload_field_id).value = file;
+                const tabBgimg = window.frames['authoringFrame'].document.querySelector('#tab-bgimg');
+                if(tabBgimg){
+                    tabBgimg.value = file;
+                }
                 AH.trigger(window.frames['authoringFrame'].document.getElementById(upload_field_id), 'change');
             } catch (error) {
                 console.log(error);
