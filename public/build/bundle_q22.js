@@ -6782,11 +6782,11 @@ var app = (function () {
     function add_css$6() {
     	var style = element("style");
     	style.id = "svelte-gqd0n6-style";
-    	style.textContent = ".height44{height:44px}.cancel_btn_pop{background-color:lightgray!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiV2ViUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBb3hEWSxTQUFTLEFBQUcsQ0FBQSxBQUNoQixNQUFNLENBQUUsSUFBSSxBQUNoQixDQUFBLEFBQ1EsZUFBZSxBQUFFLENBQUEsQUFDckIsZ0JBQWdCLENBQUUsU0FBUyxVQUFVLEFBQ3pDLENBQUEiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiV2ViUHJldmlldy5zdmVsdGUiXX0= */";
+    	style.textContent = ".height44{height:44px}.cancel_btn_pop{background-color:lightgray!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiV2ViUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBa3hEWSxTQUFTLEFBQUcsQ0FBQSxBQUNoQixNQUFNLENBQUUsSUFBSSxBQUNoQixDQUFBLEFBQ1EsZUFBZSxBQUFFLENBQUEsQUFDckIsZ0JBQWdCLENBQUUsU0FBUyxVQUFVLEFBQ3pDLENBQUEiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiV2ViUHJldmlldy5zdmVsdGUiXX0= */";
     	append_dev(document_1$1.head, style);
     }
 
-    // (1638:4) {#if window.isIE || window.isIEEleven}
+    // (1636:4) {#if window.isIE || window.isIEEleven}
     function create_if_block_1(ctx) {
     	let div;
 
@@ -6795,7 +6795,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = `${l.es6_warining}`;
     			attr_dev(div, "class", "alert alert-danger");
-    			add_location(div, file$6, 1638, 8, 85897);
+    			add_location(div, file$6, 1636, 8, 85804);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -6810,14 +6810,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(1638:4) {#if window.isIE || window.isIEEleven}",
+    		source: "(1636:4) {#if window.isIE || window.isIEEleven}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1715:8) {:else}
+    // (1713:8) {:else}
     function create_else_block$1(ctx) {
     	let div22;
     	let div21;
@@ -6945,108 +6945,108 @@ var app = (function () {
     			t18 = space();
     			div17 = element("div");
     			attr_dev(span0, "class", "icomoon-coding-44px s3 align-middle mr-1");
-    			add_location(span0, file$6, 1719, 24, 90852);
+    			add_location(span0, file$6, 1717, 24, 90759);
     			attr_dev(span1, "class", "align-middle");
-    			add_location(span1, file$6, 1719, 86, 90914);
+    			add_location(span1, file$6, 1717, 86, 90821);
     			attr_dev(div0, "class", "mt-2 pt-1 pl-2 float-left");
-    			add_location(div0, file$6, 1718, 20, 90788);
+    			add_location(div0, file$6, 1716, 20, 90695);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn btn-primary runcode_btn ml mt-1");
-    			add_location(button0, file$6, 1723, 28, 91122);
+    			add_location(button0, file$6, 1721, 28, 91029);
     			attr_dev(div1, "class", "inline-block pull-right");
-    			add_location(div1, file$6, 1722, 24, 91056);
+    			add_location(div1, file$6, 1720, 24, 90963);
     			attr_dev(span2, "class", "icomoon-menu-2 s3 text-secondary pt-s d-block");
     			attr_dev(span2, "id", "dropdownMenuButton1");
-    			add_location(span2, file$6, 1726, 131, 91437);
+    			add_location(span2, file$6, 1724, 131, 91344);
     			attr_dev(button1, "class", "btn border-0 px-0 ml-2 mr-2");
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "data-bs-toggle", "dropdown");
     			attr_dev(button1, "data-toggle", "dropdown");
-    			add_location(button1, file$6, 1726, 24, 91330);
+    			add_location(button1, file$6, 1724, 24, 91237);
     			attr_dev(input, "type", "checkbox");
     			input.checked = input_checked_value = /*state*/ ctx[0].goDark;
     			attr_dev(input, "id", "goDark");
     			attr_dev(input, "class", "transparent h");
-    			add_location(input, file$6, 1730, 36, 91830);
-    			add_location(span3, file$6, 1731, 36, 91972);
+    			add_location(input, file$6, 1728, 36, 91737);
+    			add_location(span3, file$6, 1729, 36, 91879);
     			attr_dev(label, "for", "goDark");
     			attr_dev(label, "class", "dropdown-item mb-0 pointer");
-    			add_location(label, file$6, 1729, 32, 91738);
-    			add_location(li, file$6, 1728, 28, 91701);
+    			add_location(label, file$6, 1727, 32, 91645);
+    			add_location(li, file$6, 1726, 28, 91608);
     			attr_dev(ul, "class", "dropdown-menu dropdown-menu-right");
     			attr_dev(ul, "x-placement", "bottom-end");
     			attr_dev(ul, "aria-labelledby", "dropdownMenuButton1");
-    			add_location(ul, file$6, 1727, 24, 91563);
+    			add_location(ul, file$6, 1725, 24, 91470);
     			attr_dev(div2, "class", "float-right mt-2");
-    			add_location(div2, file$6, 1725, 20, 91275);
+    			add_location(div2, file$6, 1723, 20, 91182);
     			attr_dev(div3, "class", "d-flex");
-    			add_location(div3, file$6, 1721, 20, 91011);
+    			add_location(div3, file$6, 1719, 20, 90918);
     			attr_dev(div4, "id", "web_toolbar");
     			attr_dev(div4, "class", "bg-light w-100 height44 web_toolbar text-dark d-flex justify-content-between");
-    			add_location(div4, file$6, 1717, 16, 90660);
-    			add_location(span4, file$6, 1743, 36, 92600);
+    			add_location(div4, file$6, 1715, 16, 90567);
+    			add_location(span4, file$6, 1741, 36, 92507);
     			attr_dev(div5, "class", "card-header rounded-0");
-    			add_location(div5, file$6, 1742, 32, 92528);
+    			add_location(div5, file$6, 1740, 32, 92435);
     			attr_dev(textarea0, "name", "html");
     			attr_dev(textarea0, "id", "html_editor");
-    			add_location(textarea0, file$6, 1746, 36, 92817);
+    			add_location(textarea0, file$6, 1744, 36, 92724);
     			attr_dev(div6, "id", "html");
     			attr_dev(div6, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div6, "style", div6_style_value = "height: 347px ");
-    			add_location(div6, file$6, 1745, 32, 92693);
+    			add_location(div6, file$6, 1743, 32, 92600);
     			attr_dev(div7, "id", "html_panel");
     			attr_dev(div7, "class", "card m-0 p-0 rounded-0");
-    			add_location(div7, file$6, 1741, 28, 92443);
-    			add_location(span5, file$6, 1751, 36, 93126);
+    			add_location(div7, file$6, 1739, 28, 92350);
+    			add_location(span5, file$6, 1749, 36, 93033);
     			attr_dev(div8, "class", "card-header rounded-0");
-    			add_location(div8, file$6, 1750, 32, 93054);
+    			add_location(div8, file$6, 1748, 32, 92961);
     			attr_dev(textarea1, "name", "css");
     			attr_dev(textarea1, "id", "css_editor");
-    			add_location(textarea1, file$6, 1754, 36, 93341);
+    			add_location(textarea1, file$6, 1752, 36, 93248);
     			attr_dev(div9, "id", "css");
     			attr_dev(div9, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div9, "style", div9_style_value = "height: 347px");
-    			add_location(div9, file$6, 1753, 32, 93218);
+    			add_location(div9, file$6, 1751, 32, 93125);
     			attr_dev(div10, "id", "css_panel");
     			attr_dev(div10, "class", "card m-0 p-0 rounded-0");
-    			add_location(div10, file$6, 1749, 28, 92970);
-    			add_location(span6, file$6, 1759, 36, 93647);
+    			add_location(div10, file$6, 1747, 28, 92877);
+    			add_location(span6, file$6, 1757, 36, 93554);
     			attr_dev(div11, "class", "card-header rounded-0");
-    			add_location(div11, file$6, 1758, 32, 93575);
+    			add_location(div11, file$6, 1756, 32, 93482);
     			attr_dev(textarea2, "name", "js");
     			attr_dev(textarea2, "id", "js_editor");
-    			add_location(textarea2, file$6, 1762, 36, 93860);
+    			add_location(textarea2, file$6, 1760, 36, 93767);
     			attr_dev(div12, "id", "js");
     			attr_dev(div12, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div12, "style", div12_style_value = "height: 347px ");
-    			add_location(div12, file$6, 1761, 32, 93738);
+    			add_location(div12, file$6, 1759, 32, 93645);
     			attr_dev(div13, "id", "js_panel");
     			attr_dev(div13, "class", "card m-0 p-0 rounded-0");
-    			add_location(div13, file$6, 1757, 28, 93492);
+    			add_location(div13, file$6, 1755, 28, 93399);
     			attr_dev(div14, "id", "firstEditorDiv");
     			set_style(div14, "display", "flex");
-    			add_location(div14, file$6, 1740, 24, 92367);
+    			add_location(div14, file$6, 1738, 24, 92274);
     			attr_dev(div15, "id", "top_content");
-    			add_location(div15, file$6, 1739, 20, 92320);
-    			add_location(span7, file$6, 1770, 32, 94264);
+    			add_location(div15, file$6, 1737, 20, 92227);
+    			add_location(span7, file$6, 1768, 32, 94171);
     			attr_dev(div16, "class", "card-header rounded-0");
-    			add_location(div16, file$6, 1769, 28, 94196);
+    			add_location(div16, file$6, 1767, 28, 94103);
     			attr_dev(div17, "id", "result_div");
     			attr_dev(div17, "style", div17_style_value = "height: 347px");
     			attr_dev(div17, "class", "card-body content-div m-0 p-0 rounded-0");
-    			add_location(div17, file$6, 1772, 28, 94351);
+    			add_location(div17, file$6, 1770, 28, 94258);
     			attr_dev(div18, "class", "card rounded-0 nm");
-    			add_location(div18, file$6, 1768, 24, 94136);
+    			add_location(div18, file$6, 1766, 24, 94043);
     			attr_dev(div19, "id", "bottom_content");
     			attr_dev(div19, "style", div19_style_value = "overflow: hidden");
-    			add_location(div19, file$6, 1767, 20, 94059);
+    			add_location(div19, file$6, 1765, 20, 93966);
     			attr_dev(div20, "id", "accordion");
     			attr_dev(div20, "style", div20_style_value = "width:100%; background:white; padding:0px;");
-    			add_location(div20, file$6, 1738, 16, 92226);
+    			add_location(div20, file$6, 1736, 16, 92133);
     			attr_dev(div21, "class", "row");
-    			add_location(div21, file$6, 1716, 12, 90626);
+    			add_location(div21, file$6, 1714, 12, 90533);
     			attr_dev(div22, "class", "container-fluid");
-    			add_location(div22, file$6, 1715, 8, 90584);
+    			add_location(div22, file$6, 1713, 8, 90491);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div22, anchor);
@@ -7130,14 +7130,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(1715:8) {:else}",
+    		source: "(1713:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1646:4) {#if window.inNative }
+    // (1644:4) {#if window.inNative }
     function create_if_block$5(ctx) {
     	let div19;
     	let div18;
@@ -7268,129 +7268,129 @@ var app = (function () {
     			t19 = space();
     			div14 = element("div");
     			attr_dev(span0, "class", "icomoon-coding-44px s3 align-middle mr-1");
-    			add_location(span0, file$6, 1650, 24, 86496);
+    			add_location(span0, file$6, 1648, 24, 86403);
     			attr_dev(span1, "class", "align-middle");
-    			add_location(span1, file$6, 1650, 86, 86558);
+    			add_location(span1, file$6, 1648, 86, 86465);
     			attr_dev(div0, "class", "mt-2 pt pl-3 float-left");
-    			add_location(div0, file$6, 1649, 20, 86434);
+    			add_location(div0, file$6, 1647, 20, 86341);
     			attr_dev(span2, "class", "icomoon-menu-2 s3 text-secondary pt-s d-block");
-    			add_location(span2, file$6, 1653, 130, 86821);
+    			add_location(span2, file$6, 1651, 130, 86728);
     			attr_dev(button0, "class", "btn border-0 px-0 ml-2 mr-2");
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "data-toggle", "dropdown");
     			attr_dev(button0, "id", "dropdownMenuButton1");
-    			add_location(button0, file$6, 1653, 24, 86715);
+    			add_location(button0, file$6, 1651, 24, 86622);
     			attr_dev(input, "type", "checkbox");
     			input.checked = input_checked_value = /*state*/ ctx[0].goDark;
     			attr_dev(input, "id", "goDark");
     			attr_dev(input, "class", "position-absolute bg-transparent");
-    			add_location(input, file$6, 1657, 36, 87189);
-    			add_location(span3, file$6, 1658, 36, 87350);
+    			add_location(input, file$6, 1655, 36, 87096);
+    			add_location(span3, file$6, 1656, 36, 87257);
     			attr_dev(label, "for", "goDark");
     			attr_dev(label, "class", "dropdown-item mb-0 pointer");
-    			add_location(label, file$6, 1656, 32, 87097);
-    			add_location(li0, file$6, 1655, 28, 87060);
+    			add_location(label, file$6, 1654, 32, 87004);
+    			add_location(li0, file$6, 1653, 28, 86967);
     			attr_dev(ul0, "class", "dropdown-menu dropdown-menu-right");
     			attr_dev(ul0, "x-placement", "bottom-end");
     			attr_dev(ul0, "aria-labelledby", "dropdownMenuButton1");
-    			add_location(ul0, file$6, 1654, 24, 86922);
+    			add_location(ul0, file$6, 1652, 24, 86829);
     			attr_dev(div1, "class", "float-right mt-2 mr-2");
-    			add_location(div1, file$6, 1652, 20, 86655);
+    			add_location(div1, file$6, 1650, 20, 86562);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn btn-primary runcode_btn ml");
-    			add_location(button1, file$6, 1664, 24, 87626);
+    			add_location(button1, file$6, 1662, 24, 87533);
     			attr_dev(div2, "class", "inline-block pull-right");
-    			add_location(div2, file$6, 1663, 20, 87562);
+    			add_location(div2, file$6, 1661, 20, 87469);
     			attr_dev(div3, "id", "web_toolbar");
     			attr_dev(div3, "class", "bg-gray height44 web_toolbar text-dark");
-    			add_location(div3, file$6, 1648, 16, 86344);
+    			add_location(div3, file$6, 1646, 16, 86251);
     			attr_dev(a0, "class", "nav-link active text-white");
     			attr_dev(a0, "href", "#html_panel");
     			attr_dev(a0, "role", "tab");
     			attr_dev(a0, "data-toggle", "tab");
-    			add_location(a0, file$6, 1670, 28, 88019);
+    			add_location(a0, file$6, 1668, 28, 87926);
     			attr_dev(li1, "class", "nav-item");
     			attr_dev(li1, "id", "html_pane");
-    			add_location(li1, file$6, 1669, 24, 87954);
+    			add_location(li1, file$6, 1667, 24, 87861);
     			attr_dev(a1, "class", "nav-link text-white");
     			attr_dev(a1, "href", "#css_panel");
     			attr_dev(a1, "role", "tab");
     			attr_dev(a1, "data-toggle", "tab");
-    			add_location(a1, file$6, 1673, 28, 88236);
+    			add_location(a1, file$6, 1671, 28, 88143);
     			attr_dev(li2, "class", "nav-item");
     			attr_dev(li2, "id", "css_pane");
-    			add_location(li2, file$6, 1672, 24, 88172);
+    			add_location(li2, file$6, 1670, 24, 88079);
     			attr_dev(a2, "class", "nav-link text-white");
     			attr_dev(a2, "href", "#js_panel");
     			attr_dev(a2, "role", "tab");
     			attr_dev(a2, "data-toggle", "tab");
-    			add_location(a2, file$6, 1676, 28, 88443);
+    			add_location(a2, file$6, 1674, 28, 88350);
     			attr_dev(li3, "class", "nav-item");
     			attr_dev(li3, "id", "js_pane");
-    			add_location(li3, file$6, 1675, 24, 88380);
+    			add_location(li3, file$6, 1673, 24, 88287);
     			attr_dev(ul1, "class", "nav nav-pills nav-fill");
     			attr_dev(ul1, "role", "tablist");
-    			add_location(ul1, file$6, 1668, 20, 87879);
+    			add_location(ul1, file$6, 1666, 20, 87786);
     			attr_dev(textarea0, "name", "html");
     			attr_dev(textarea0, "id", "html_editor");
-    			add_location(textarea0, file$6, 1683, 36, 88974);
+    			add_location(textarea0, file$6, 1681, 36, 88881);
     			attr_dev(div4, "id", "html");
     			attr_dev(div4, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div4, "style", div4_style_value = "height: 347px");
-    			add_location(div4, file$6, 1682, 32, 88851);
+    			add_location(div4, file$6, 1680, 32, 88758);
     			attr_dev(div5, "id", "html_panel");
     			attr_dev(div5, "class", "m-0 p-0 rounded-0 tab-pane fade show active");
     			attr_dev(div5, "role", "tabpanel");
-    			add_location(div5, file$6, 1681, 28, 88728);
+    			add_location(div5, file$6, 1679, 28, 88635);
     			attr_dev(textarea1, "name", "css");
     			attr_dev(textarea1, "class", "css_text");
     			attr_dev(textarea1, "id", "css_editor");
-    			add_location(textarea1, file$6, 1688, 36, 89364);
+    			add_location(textarea1, file$6, 1686, 36, 89271);
     			attr_dev(div6, "id", "css");
     			attr_dev(div6, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div6, "style", div6_style_value = "height: 347px");
-    			add_location(div6, file$6, 1687, 32, 89241);
+    			add_location(div6, file$6, 1685, 32, 89148);
     			attr_dev(div7, "id", "css_panel");
     			attr_dev(div7, "class", "m-0 p-0 rounded-0 tab-pane fade show");
     			attr_dev(div7, "role", "tabpanel");
-    			add_location(div7, file$6, 1686, 28, 89127);
+    			add_location(div7, file$6, 1684, 28, 89034);
     			attr_dev(div8, "id", "firstEditorDiv");
-    			add_location(div8, file$6, 1680, 24, 88674);
+    			add_location(div8, file$6, 1678, 24, 88581);
     			attr_dev(textarea2, "name", "js");
     			attr_dev(textarea2, "id", "js_editor");
-    			add_location(textarea2, file$6, 1695, 36, 89845);
+    			add_location(textarea2, file$6, 1693, 36, 89752);
     			attr_dev(div9, "id", "js");
     			attr_dev(div9, "class", "card-body code_box content-div m-0 p-0");
     			attr_dev(div9, "style", div9_style_value = "height: 347px");
-    			add_location(div9, file$6, 1694, 32, 89723);
+    			add_location(div9, file$6, 1692, 32, 89630);
     			attr_dev(div10, "id", "js_panel");
     			attr_dev(div10, "class", "m-0 p-0 rounded-0 tab-pane fade show");
     			attr_dev(div10, "role", "tabpanel");
-    			add_location(div10, file$6, 1693, 28, 89610);
+    			add_location(div10, file$6, 1691, 28, 89517);
     			attr_dev(div11, "id", "jsEditorDiv");
-    			add_location(div11, file$6, 1692, 24, 89559);
+    			add_location(div11, file$6, 1690, 24, 89466);
     			attr_dev(div12, "id", "top_content");
     			attr_dev(div12, "class", "tab-content");
-    			add_location(div12, file$6, 1679, 20, 88607);
-    			add_location(span4, file$6, 1703, 32, 90222);
+    			add_location(div12, file$6, 1677, 20, 88514);
+    			add_location(span4, file$6, 1701, 32, 90129);
     			attr_dev(div13, "class", "card-header rounded-0");
-    			add_location(div13, file$6, 1702, 28, 90154);
+    			add_location(div13, file$6, 1700, 28, 90061);
     			attr_dev(div14, "id", "result_div");
     			attr_dev(div14, "style", div14_style_value = "min-height: 347px");
     			attr_dev(div14, "class", "card-body content-div m-0 p-0 rounded-0");
-    			add_location(div14, file$6, 1705, 28, 90309);
+    			add_location(div14, file$6, 1703, 28, 90216);
     			attr_dev(div15, "class", "card rounded-0 nm");
-    			add_location(div15, file$6, 1701, 24, 90094);
+    			add_location(div15, file$6, 1699, 24, 90001);
     			attr_dev(div16, "id", "bottom_content");
-    			add_location(div16, file$6, 1700, 20, 90044);
+    			add_location(div16, file$6, 1698, 20, 89951);
     			attr_dev(div17, "style", div17_style_value = "width: 100%;background: white;");
     			attr_dev(div17, "class", "content_parent");
-    			add_location(div17, file$6, 1667, 16, 87789);
+    			add_location(div17, file$6, 1665, 16, 87696);
     			attr_dev(div18, "class", "row");
-    			add_location(div18, file$6, 1647, 12, 86310);
+    			add_location(div18, file$6, 1645, 12, 86217);
     			attr_dev(div19, "class", "container-fluid");
     			attr_dev(div19, "id", "mainContainer");
-    			add_location(div19, file$6, 1646, 8, 86249);
+    			add_location(div19, file$6, 1644, 8, 86156);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div19, anchor);
@@ -7476,14 +7476,14 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(1646:4) {#if window.inNative }",
+    		source: "(1644:4) {#if window.inNative }",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1803:12) <Button key="cancel_btn"  style={'float:right;margin:10px;b;'} class="cancel_btn_pop" variant="contained" on:click={() => state.remediationToggle = false }>
+    // (1801:12) <Button key="cancel_btn"  style={'float:right;margin:10px;b;'} class="cancel_btn_pop" variant="contained" on:click={() => state.remediationToggle = false }>
     function create_default_slot_1(ctx) {
     	let t_value = l.cancel + "";
     	let t;
@@ -7505,14 +7505,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(1803:12) <Button key=\\\"cancel_btn\\\"  style={'float:right;margin:10px;b;'} class=\\\"cancel_btn_pop\\\" variant=\\\"contained\\\" on:click={() => state.remediationToggle = false }>",
+    		source: "(1801:12) <Button key=\\\"cancel_btn\\\"  style={'float:right;margin:10px;b;'} class=\\\"cancel_btn_pop\\\" variant=\\\"contained\\\" on:click={() => state.remediationToggle = false }>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1802:8) <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    // (1800:8) <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
     function create_footer_slot(ctx) {
     	let div;
     	let button;
@@ -7539,7 +7539,7 @@ var app = (function () {
     			attr_dev(div, "slot", "footer");
     			attr_dev(div, "class", "footer");
     			set_style(div, "border-top", "1px solid var(--divider, rgba(0, 0, 0, 0.1))");
-    			add_location(div, file$6, 1801, 8, 95286);
+    			add_location(div, file$6, 1799, 8, 95193);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7574,14 +7574,14 @@ var app = (function () {
     		block,
     		id: create_footer_slot.name,
     		type: "slot",
-    		source: "(1802:8) <div slot=\\\"footer\\\" class=\\\"footer\\\" style=\\\"border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));\\\">",
+    		source: "(1800:8) <div slot=\\\"footer\\\" class=\\\"footer\\\" style=\\\"border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1783:4) <Dialog                     bind:visible={state.remediationToggle}         width="650"         on:close={() => state.remediationToggle = false}         style="background: #fff; border-radius: 5px;"     >
+    // (1781:4) <Dialog                     bind:visible={state.remediationToggle}         width="650"         on:close={() => state.remediationToggle = false}         style="background: #fff; border-radius: 5px;"     >
     function create_default_slot(ctx) {
     	let h40;
     	let div1;
@@ -7621,18 +7621,18 @@ var app = (function () {
     			t4 = space();
     			t5 = text(t5_value);
     			t6 = space();
-    			add_location(div0, file$6, 1790, 16, 94941);
+    			add_location(div0, file$6, 1788, 16, 94848);
     			attr_dev(div1, "class", "d-flex justify-content-between");
-    			add_location(div1, file$6, 1789, 12, 94880);
+    			add_location(div1, file$6, 1787, 12, 94787);
     			attr_dev(h40, "class", "mt-1 font21 mb-4");
-    			add_location(h40, file$6, 1788, 8, 94838);
-    			add_location(br, file$6, 1797, 44, 95191);
-    			add_location(h41, file$6, 1797, 20, 95167);
-    			add_location(center, file$6, 1795, 16, 95097);
+    			add_location(h40, file$6, 1786, 8, 94745);
+    			add_location(br, file$6, 1795, 44, 95098);
+    			add_location(h41, file$6, 1795, 20, 95074);
+    			add_location(center, file$6, 1793, 16, 95004);
     			attr_dev(div2, "id", "remediationModel");
-    			add_location(div2, file$6, 1794, 12, 95053);
+    			add_location(div2, file$6, 1792, 12, 94960);
     			set_style(div3, "overflow-y", "auto");
-    			add_location(div3, file$6, 1793, 8, 95009);
+    			add_location(div3, file$6, 1791, 8, 94916);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h40, anchor);
@@ -7675,7 +7675,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(1783:4) <Dialog                     bind:visible={state.remediationToggle}         width=\\\"650\\\"         on:close={() => state.remediationToggle = false}         style=\\\"background: #fff; border-radius: 5px;\\\"     >",
+    		source: "(1781:4) <Dialog                     bind:visible={state.remediationToggle}         width=\\\"650\\\"         on:close={() => state.remediationToggle = false}         style=\\\"background: #fff; border-radius: 5px;\\\"     >",
     		ctx
     	});
 
@@ -7752,20 +7752,20 @@ var app = (function () {
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "h h-imp");
     			attr_dev(button0, "id", "set-review");
-    			add_location(button0, file$6, 1642, 4, 85988);
+    			add_location(button0, file$6, 1640, 4, 85895);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "h h-imp");
     			attr_dev(button1, "id", "unset-review");
-    			add_location(button1, file$6, 1643, 4, 86095);
-    			add_location(div0, file$6, 1644, 4, 86208);
+    			add_location(button1, file$6, 1641, 4, 86002);
+    			add_location(div0, file$6, 1642, 4, 86115);
     			attr_dev(input, "type", "hidden");
     			attr_dev(input, "id", "ansModeAnswer");
     			input.value = "";
-    			add_location(input, file$6, 1807, 4, 95638);
+    			add_location(input, file$6, 1805, 4, 95545);
     			attr_dev(div1, "id", "authoringArea");
     			attr_dev(div1, "class", "font14");
-    			add_location(div1, file$6, 1636, 0, 85804);
-    			add_location(div2, file$6, 1635, 0, 85798);
+    			add_location(div1, file$6, 1634, 0, 85711);
+    			add_location(div2, file$6, 1633, 0, 85705);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8085,11 +8085,10 @@ var app = (function () {
     				// appends this created script tag in body element of the document
     				document.body.appendChild(sc);
 
+    				// setTimeout(function(){
     				renderCodeMirror();
-    			});
+    			}); // },500)
     		}
-
-    		console.warn("Test");
 
     		AI.ajax({
     			url: itemUrl + "src/libs/split.js",
@@ -8097,12 +8096,7 @@ var app = (function () {
     		}).then(function (data) {
     			if (document.querySelector("#splitterWeb")) {
     				// used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-    				setTimeout(
-    					function () {
-    						splitter();
-    					},
-    					500
-    				);
+    				splitter();
 
     				// returns from the function to prevent from re-appened the code if it was already defined
     				return true;
@@ -8119,20 +8113,10 @@ var app = (function () {
 
     			if (!inQuizPlayer) {
     				// used for set the position, number of pixel where splitter bar can't be move on the edge, and orientation of the splitter bar
-    				setTimeout(
-    					function () {
-    						splitter();
-    					},
-    					500
-    				);
+    				splitter();
     			} else {
     				// sets the width and floating property of the js, html, css and result editor
-    				setTimeout(
-    					function () {
-    						changeStyle();
-    					},
-    					500
-    				);
+    				changeStyle();
     			}
     		});
 
@@ -8168,8 +8152,6 @@ var app = (function () {
     	}
 
     	function splitter() {
-    		console.trace("splitter");
-
     		// This code will running on mobile
     		if (window.inNative) {
     			return true;
@@ -8198,8 +8180,6 @@ var app = (function () {
 
     	// sets the width and floating property of the js, html, css and result editor
     	function changeStyle() {
-    		console.trace("change Style");
-
     		// used for mobile team
     		// if (window.inNative) {
     		//     return;
@@ -8333,6 +8313,8 @@ var app = (function () {
 
     	// initialize the html, css and js editor by converting textareas having id 'html_editor', 'css_editor', 'js_editor' in html, css and js editor
     	function renderCodeMirror() {
+    		console.trace();
+
     		if (rendered) {
     			// returns true to prevent from re-initialize the editors if it was already initialized
     			return true;
@@ -8375,7 +8357,12 @@ var app = (function () {
     		});
 
     		// used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
-    		parseXML();
+    		setTimeout(
+    			function () {
+    				parseXML();
+    			},
+    			500
+    		);
 
     		// used for mobile team
     		if (window.inNative) {
@@ -9511,7 +9498,7 @@ var app = (function () {
 
     	// used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
     	function parseXML(xml) {
-    		// contains the xml 
+    		console.trace(); // contains the xml 
     		xml = xml ? xml : state.xml;
 
     		// contains the html editor value from xml
@@ -10543,14 +10530,14 @@ var app = (function () {
     			add_location(label1, file$7, 1015, 24, 48076);
     			option0.__value = "";
     			option0.value = option0.__value;
-    			add_location(option0, file$7, 1017, 28, 48288);
+    			add_location(option0, file$7, 1017, 28, 48287);
     			option1.__value = "0";
     			option1.value = option1.__value;
-    			add_location(option1, file$7, 1018, 28, 48355);
+    			add_location(option1, file$7, 1018, 28, 48354);
     			option2.__value = "1";
     			option2.value = option2.__value;
-    			add_location(option2, file$7, 1019, 28, 48421);
-    			attr_dev(select0, "class", "form-control");
+    			add_location(option2, file$7, 1019, 28, 48420);
+    			attr_dev(select0, "class", "form-select");
     			attr_dev(select0, "id", "html_disable");
     			attr_dev(select0, "data-cy", "html_disable");
     			attr_dev(select0, "auto:focus", "autofocus");
@@ -10558,46 +10545,46 @@ var app = (function () {
     			attr_dev(div45, "class", "form-group");
     			add_location(div45, file$7, 1014, 20, 48027);
     			attr_dev(label2, "for", "css_disable");
-    			add_location(label2, file$7, 1023, 24, 48591);
+    			add_location(label2, file$7, 1023, 24, 48590);
     			option3.__value = "";
     			option3.value = option3.__value;
-    			add_location(option3, file$7, 1025, 28, 48776);
+    			add_location(option3, file$7, 1025, 28, 48774);
     			option4.__value = "0";
     			option4.value = option4.__value;
-    			add_location(option4, file$7, 1026, 28, 48843);
+    			add_location(option4, file$7, 1026, 28, 48841);
     			option5.__value = "1";
     			option5.value = option5.__value;
-    			add_location(option5, file$7, 1027, 28, 48909);
-    			attr_dev(select1, "class", "form-control");
+    			add_location(option5, file$7, 1027, 28, 48907);
+    			attr_dev(select1, "class", "form-select");
     			attr_dev(select1, "id", "css_disable");
     			attr_dev(select1, "data-cy", "css_disable");
-    			add_location(select1, file$7, 1024, 24, 48657);
+    			add_location(select1, file$7, 1024, 24, 48656);
     			attr_dev(div46, "class", "form-group");
-    			add_location(div46, file$7, 1022, 20, 48542);
+    			add_location(div46, file$7, 1022, 20, 48541);
     			attr_dev(label3, "for", "js_disable");
-    			add_location(label3, file$7, 1031, 24, 49079);
+    			add_location(label3, file$7, 1031, 24, 49077);
     			option6.__value = "";
     			option6.value = option6.__value;
-    			add_location(option6, file$7, 1033, 28, 49260);
+    			add_location(option6, file$7, 1033, 28, 49257);
     			option7.__value = "0";
     			option7.value = option7.__value;
-    			add_location(option7, file$7, 1034, 28, 49327);
+    			add_location(option7, file$7, 1034, 28, 49324);
     			option8.__value = "1";
     			option8.value = option8.__value;
-    			add_location(option8, file$7, 1035, 28, 49393);
-    			attr_dev(select2, "class", "form-control");
+    			add_location(option8, file$7, 1035, 28, 49390);
+    			attr_dev(select2, "class", "form-select");
     			attr_dev(select2, "id", "js_disable");
     			attr_dev(select2, "data-cy", "js_disable");
-    			add_location(select2, file$7, 1032, 24, 49143);
+    			add_location(select2, file$7, 1032, 24, 49141);
     			attr_dev(div47, "class", "form-group");
-    			add_location(div47, file$7, 1030, 20, 49030);
+    			add_location(div47, file$7, 1030, 20, 49028);
     			attr_dev(button6, "type", "button");
     			attr_dev(button6, "class", "btn btn-primary");
     			attr_dev(button6, "data-cy", "close_modal");
     			attr_dev(button6, "data-bs-dismiss", "modal");
-    			add_location(button6, file$7, 1039, 24, 49564);
+    			add_location(button6, file$7, 1039, 24, 49561);
     			attr_dev(div48, "class", "float-right");
-    			add_location(div48, file$7, 1038, 20, 49514);
+    			add_location(div48, file$7, 1038, 20, 49511);
     			attr_dev(div49, "class", "modal-body");
     			add_location(div49, file$7, 1013, 16, 47982);
     			attr_dev(div50, "class", "modal-content");
@@ -10611,7 +10598,7 @@ var app = (function () {
     			attr_dev(input2, "type", "hidden");
     			attr_dev(input2, "id", "ansModeAnswer");
     			input2.value = "";
-    			add_location(input2, file$7, 1045, 4, 49773);
+    			add_location(input2, file$7, 1045, 4, 49770);
     			attr_dev(div53, "id", "authoringArea");
     			set_style(div53, "line-height", "20px");
     			set_style(div53, "font-size", "14px");
