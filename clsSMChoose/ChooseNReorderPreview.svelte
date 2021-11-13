@@ -118,7 +118,6 @@
     
     // calls when review mode is on
 	function setReview() {
-		console.log('checking');
 		disableMouse("none");
 		ucChoose.modeOn("on");
 		isReview = true;
@@ -378,7 +377,7 @@
     // Return the html and css
     function setInnerHtml(item) { 
         
-        let htmlContent = '<div class="prefix pl-2 mr-2"'+((state.isSentence == "1")?"nw":"")+'"></div>'+((state.isParagraph == "1")?'<div class="pg_handle">&equiv;</div>':"")+((item.value.charAt(0) == "*")? item.value.slice(1) :item.value)
+        let htmlContent = '<div class="prefix pl-1 mr-2"'+((state.isSentence == "1")?"nw":"")+'"></div>'+((state.isParagraph == "1")?'<div class="pg_handle">&equiv;</div>':"")+((item.value.charAt(0) == "*")? item.value.slice(1) :item.value)
         
         return htmlContent;
 	}

@@ -21,10 +21,10 @@ export default class hotspotScript {
                 if (this.labBinded) {
                     let _this  = event, getVal = '';
                     if (_this.classList.contains('selected')) {	
-                        _this.getAttribute('data-userans', 0);
+                        _this.setAttribute('data-userans', 0);
                         _this.classList.remove('selected');
                     } else {
-                        _this.getAttribute('data-userans',1);
+                        _this.setAttribute('data-userans',1);
                         _this.classList.add('selected');
                     }
                     JS.find(hid, '[type] .textClick.selected', 'all').forEach(function(v,i) {
@@ -111,7 +111,11 @@ export default class hotspotScript {
                     this.result = false;
                 }
                 if (typeof calculatePoint != "undefined") {
-                    pElem.children.forEach((_elm)=> {
+                    // let data = JSON.parse(pElem.children);
+                    
+                    // let data = Object.values(pElem.children);
+                    // console.log(data); 
+                    JS.find(pElem,'p','all').forEach((_elm)=> {
                         if (_elm.classList.contains('selected') && _elm.getAttribute("data-userans") == _elm.getAttribute("data-correctans")) {
                             this.temp++;
                         }
