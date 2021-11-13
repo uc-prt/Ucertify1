@@ -16032,9 +16032,9 @@ var app = (function () {
     			attr_dev(input, "defaultvalue", "1");
     			attr_dev(input, "name", "rbs");
     			attr_dev(input, "class", "baseradio dndradio svelte-1n3xdnr");
-    			add_location(input, file$g, 395, 5, 11089);
+    			add_location(input, file$g, 395, 5, 11090);
     			attr_dev(span, "key", span_key_value = /*index*/ ctx[36]);
-    			add_location(span, file$g, 394, 4, 11065);
+    			add_location(span, file$g, 394, 4, 11066);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -16089,7 +16089,7 @@ var app = (function () {
     			attr_dev(img, "id", "pre_sample_image");
     			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_content_static/bg_000PLn.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = l.sample_img);
-    			add_location(img, file$g, 434, 16, 12389);
+    			add_location(img, file$g, 434, 16, 12390);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16140,7 +16140,7 @@ var app = (function () {
 
     			attr_dev(img, "class", /*borderclass*/ ctx[8]);
     			attr_dev(img, "alt", img_alt_value = /*alt*/ ctx[6] ? /*alt*/ ctx[6] : l.sample_img);
-    			add_location(img, file$g, 432, 4, 11949);
+    			add_location(img, file$g, 432, 4, 11950);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16622,7 +16622,7 @@ var app = (function () {
     			attr_dev(img, "alt", "target_img");
     			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_assets/items/target.png")) attr_dev(img, "src", img_src_value);
     			set_style(img, "display", "none");
-    			add_location(img, file$g, 455, 5, 14063);
+    			add_location(img, file$g, 455, 5, 14064);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16709,30 +16709,30 @@ var app = (function () {
     			attr_dev(input, "defaultchecked", "");
     			attr_dev(input, "name", "rbs");
     			attr_dev(input, "class", "baseradio dndradio");
-    			add_location(input, file$g, 390, 2, 10844);
+    			add_location(input, file$g, 390, 2, 10845);
     			attr_dev(div0, "id", "dndsteps");
     			attr_dev(div0, "class", "h svelte-1n3xdnr");
-    			add_location(div0, file$g, 389, 1, 10811);
+    			add_location(div0, file$g, 389, 1, 10812);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_testing");
     			attr_dev(button0, "id", "reviewCorrectAns");
-    			add_location(button0, file$g, 410, 3, 11440);
+    			add_location(button0, file$g, 410, 3, 11441);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn active your-ans btn-light svelte_items_testing");
     			attr_dev(button1, "id", "reviewUserAns");
     			set_style(button1, "margin-left", "-4px");
-    			add_location(button1, file$g, 415, 3, 11590);
+    			add_location(button1, file$g, 415, 3, 11591);
     			attr_dev(div1, "class", "btn-group mb-xl clearfix review h mb-3");
     			attr_dev(div1, "id", "sm_controller");
-    			add_location(div1, file$g, 409, 2, 11365);
+    			add_location(div1, file$g, 409, 2, 11366);
     			attr_dev(div2, "id", /*container_id*/ ctx[11]);
     			attr_dev(div2, "zoom", "");
     			attr_dev(div2, "totalcorrectans", /*totalcorrectans*/ ctx[7]);
     			attr_dev(div2, "class", "container_div svelte-1n3xdnr");
     			attr_dev(div2, "data-item", "svelte_items_testing");
-    			add_location(div2, file$g, 424, 2, 11789);
-    			add_location(center, file$g, 408, 1, 11354);
-    			add_location(div3, file$g, 384, 0, 10724);
+    			add_location(div2, file$g, 424, 2, 11790);
+    			add_location(center, file$g, 408, 1, 11355);
+    			add_location(div3, file$g, 384, 0, 10725);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
