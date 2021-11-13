@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -2921,8 +2921,8 @@ var app = (function () {
 
     function onUserAnsChange(result) {
     	if (result) {
-    		AH.select("#answer", "checked", result.ans ? true : false);
-    		AH.select("#special_module_user_xml", "value", result.uXml);
+    		AH$1.select("#answer", "checked", result.ans ? true : false);
+    		AH$1.select("#special_module_user_xml", "value", result.uXml);
 
     		if (typeof window == "object") {
     			window.ISSPECIALMODULEUSERXMLCHANGE = 1;
@@ -2936,7 +2936,7 @@ var app = (function () {
     	}
     }
 
-    const AH = new JUI();
+    const AH$1 = new JUI();
     const SSD = new JStore();
 
     const subscriber_queue = [];
@@ -3144,8 +3144,8 @@ var app = (function () {
                         } else {
                             this.isRevert && this.isRevert();
                         }
-
-                        this.node.remove();
+                        if(this.node)
+                            this.node.remove();
                     } else if (!this.isMoving && this.node) {
                         this.node.remove();
                     }
@@ -3166,6 +3166,7 @@ var app = (function () {
                 AI.listen('body', 'mousemove', drop, (current) => {
                     if (this.isStart && this.node && this.isMoving) {
                         this.target = current;
+                        AI.selectAll('.dropable','removeClass','drop-hover');
                         this.target.classList.add('drop-hover');
                         this.target.style.opacity = '0.7';
                         this.onOver && this.onOver(current);
@@ -3286,7 +3287,6 @@ var app = (function () {
         } 
         
         onRemove(source, target) {
-        
             source.removeAttribute('draging');
             source.style.backgroundColor = source.getAttribute('data-bgcolor');
             source.setAttribute('droping', 1);
@@ -4344,11 +4344,16 @@ var app = (function () {
                 swal(arguments[0]);
                 if (arguments[0].showCloseButton) {
                     let closeButton = document.createElement('button');
-                    closeButton.className = 'swal2-close';
+                    closeButton.className = 'swal2-close close';
                     closeButton.onclick = function() { swal.close(); };
                     closeButton.textContent = '×';
+                    closeButton.classList.add('position-relative');
+                    closeButton.style.bottom = '220px';
+                    closeButton.style.right = '10px';
                     let modal = document.querySelector('.swal-modal');
-                    AI.select('.swal-modal').firstElementChild.className = "swal-text alignCheck";
+                    AI.select('.swal-text').style.marginTop='23px';
+                    AI.select('.swal-text').style.marginBottom='10px';
+                    AI.select('.swal-text').style.float = 'left';
                     modal.appendChild(closeButton);
                 }
             };
@@ -4805,7 +4810,7 @@ var app = (function () {
                     copied_id = copy_drag.id;
                     copy_drag.classList.add('copiedclr');
                 } else {
-                    AI.showmsg('You cannot drag this');
+                    AH.showmsg('You cannot drag this');
                 }
             }
         }
@@ -10507,7 +10512,7 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		afterUpdate,
-    		AH,
+    		AH: AH$1,
     		modules,
     		containerID,
     		label_preview_data,
@@ -10567,7 +10572,7 @@ var app = (function () {
     							parahtml: setInnerHtml(data._richtext
     							? data.__cdata
     							: data._title != undefined
-    								? AH.ignoreEnity(data._title)
+    								? AH$1.ignoreEnity(data._title)
     								: "")
     						}
     					]);
@@ -17014,47 +17019,47 @@ var app = (function () {
     		}
 
     		if (xml) {
-    			AH.setCss(document.getElementById("dndsteps"), { display: "none" });
+    			AH$1.setCss(document.getElementById("dndsteps"), { display: "none" });
     		}
 
-    		AH.listen(document, "click", ".record", function (current_element) {
+    		AH$1.listen(document, "click", ".record", function (current_element) {
     			if (!current_element.classList.contains("lab_disable")) current_element.setAttribute("clicked", 1);
     		});
 
-    		AH.listen("body", "click", "#reviewUserAns", function () {
+    		AH$1.listen("body", "click", "#reviewUserAns", function () {
     			// for your ans
-    			AH.selectAll("#sm_controller button", "removeClass", "active");
+    			AH$1.selectAll("#sm_controller button", "removeClass", "active");
 
-    			AH.addClass("#sm_controller .your-ans", "active");
+    			AH$1.addClass("#sm_controller .your-ans", "active");
     			yourAnswer();
     		});
 
-    		AH.listen("body", "click", "#reviewCorrectAns", function () {
+    		AH$1.listen("body", "click", "#reviewCorrectAns", function () {
     			// for correct ans
-    			AH.selectAll("#sm_controller button", "removeClass", "active");
+    			AH$1.selectAll("#sm_controller button", "removeClass", "active");
 
-    			AH.addClass("#sm_controller .correct-ans", "active");
+    			AH$1.addClass("#sm_controller .correct-ans", "active");
     			correctAnswer();
     		});
 
-    		AH.listen(document, "click", "#" + container_id, function () {
+    		AH$1.listen(document, "click", "#" + container_id, function () {
     			displayAns();
     		});
 
-    		AH.listen(document, "keyup", "#" + container_id, function () {
+    		AH$1.listen(document, "keyup", "#" + container_id, function () {
     			displayAns();
     		});
 
-    		AH.listen(document, "change", "#" + container_id, function () {
+    		AH$1.listen(document, "change", "#" + container_id, function () {
     			displayAns();
     		});
 
-    		AH.listen(document, "mouseup", "#" + container_id, function () {
+    		AH$1.listen(document, "mouseup", "#" + container_id, function () {
     			displayAns();
     		});
 
     		// prevent to open context menu
-    		AH.bind("body", "contextmenu", function (event) {
+    		AH$1.bind("body", "contextmenu", function (event) {
     			event.preventDefault();
     		});
 
@@ -17080,8 +17085,8 @@ var app = (function () {
     				displayAns();
     				DND.modeOn(1);
     				DND.showansdrag("#" + container_id, "u", 1);
-    				AH.selectAll("#sm_controller button", "removeClass", "active");
-    				AH.addClass("#sm_controller .your-ans", "active");
+    				AH$1.selectAll("#sm_controller button", "removeClass", "active");
+    				AH$1.addClass("#sm_controller .your-ans", "active");
     			} else {
     				DND.modeOn(0);
     			}
@@ -17091,7 +17096,7 @@ var app = (function () {
     	// for checking the answer and creating the user ans
     	function displayAns() {
     		let result = DND.checkAns("#" + container_id);
-    		if (typeof is_sm != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
+    		if (typeof is_sm != "undefined") AH$1.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
 
     		if (editorState) {
     			showAns(result.ans ? "Correct" : "Incorrect");
@@ -17130,8 +17135,8 @@ var app = (function () {
 
     					DND.modeOn(1); // for showing correct answer and your answer tab
     					DND.showansdrag("#" + container_id, "u", 1);
-    					AH.selectAll("#sm_controller button", "removeClass", "active");
-    					AH.addClass("#sm_controller .your-ans", "active");
+    					AH$1.selectAll("#sm_controller button", "removeClass", "active");
+    					AH$1.addClass("#sm_controller .your-ans", "active");
     				} else {
     					try {
     						DND.modeOn(0);
@@ -17193,7 +17198,7 @@ var app = (function () {
     					: value.naturalWidth;
 
     					if (Number(originalWidth) != 0 || Number(originalHeight) != 0 || typeof from_myproject != "undefined" && from_myproject == 1) {
-    						AH.setCss("#" + container_id, {
+    						AH$1.setCss("#" + container_id, {
     							height: (imgHeight && imgHeight >= originalHeight
     							? imgHeight
     							: originalHeight) + "px",
@@ -17210,7 +17215,7 @@ var app = (function () {
     			$$invalidate(1, image_loaded = 1);
 
     			if (window.inNative) {
-    				window.postMessage(`height___${AH.select("#" + container_id + ">img").naturalHeight}`);
+    				window.postMessage(`height___${AH$1.select("#" + container_id + ">img").naturalHeight}`);
     			}
 
     			refreshModule();
@@ -17242,7 +17247,7 @@ var app = (function () {
 
     	// for changing the load stte
     	function changeLoadState() {
-    		AH.select("#pre_sample_image").remove();
+    		AH$1.select("#pre_sample_image").remove();
     		$$invalidate(1, image_loaded = 1);
     	}
 
@@ -17276,7 +17281,7 @@ var app = (function () {
     		onMount,
     		afterUpdate,
     		ItemHelper,
-    		AH,
+    		AH: AH$1,
     		onUserAnsChange,
     		XMLToJSON,
     		writable,
