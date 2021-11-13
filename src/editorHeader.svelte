@@ -797,7 +797,7 @@
                 <ul class="dropdown-menu dropdown-menu-left help_controls">
                     <Menuitem on:click={handleHelp}>
                         <span>
-                            <span class="icomoon-24px-help-video mr-sm"></span>Help Video
+                            <span class="icomoon-24px-help-video mr-sm"></span> Help Video
                         </span>
                     </Menuitem>
                     <Menuitem on:click={handleKeyboardShortcut}>
