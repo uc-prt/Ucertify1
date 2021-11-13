@@ -1,9 +1,9 @@
 <script context="module">
-    function checkmodule(targetData) {
+    function checkmodule(targetData, pointer_size) {
         let yourScore = 0;
         let ansDivHeight = targetData.ans_top + targetData.ans_h;
         let ansDivWidth = targetData.ans_left + targetData.ans_w;
-        if (targetData.top > targetData.ans_top && targetData.top < ansDivHeight && targetData.left > targetData.ans_left && targetData.left < ansDivWidth) {
+        if ((targetData.top + pointer_size) > targetData.ans_top && (targetData.top + parseInt(pointer_size / 2)) < ansDivHeight && (targetData.left + pointer_size) > targetData.ans_left && (targetData.left + parseInt(pointer_size / 2)) < ansDivWidth) {
             yourScore = 1;
         }
         return yourScore;
@@ -15,17 +15,18 @@
     export function movetarget(e, ans_h, ans_w, ans_left, ans_top) {
         // let tObj = document.getElementById('target')[0];
         // let hObj = document.getElementById('hotArea')[0];
+        let pointer_size = 13;
         let scoreFlag;
         let targetData = {x: e.layerX, y: e.layerY, top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
         if (e.layerX && e.layerY) {
-            targetData.top = e.layerY - 13;
-            targetData.left = e.layerX - 13;
+            targetData.top = e.layerY - pointer_size;
+            targetData.left = e.layerX - pointer_size;
         } else {
-            targetData.top = e.offsetY - 13;
-            targetData.left = e.offsetX - 13;
+            targetData.top = e.offsetY - pointer_size;
+            targetData.left = e.offsetX - pointer_size;
         }
         // checking answer
-        scoreFlag = checkmodule(targetData);
+        scoreFlag = checkmodule(targetData, pointer_size);
 
         // creating user ans xml
         targetData.uXml = createUserAnsXML(targetData.top, targetData.left);

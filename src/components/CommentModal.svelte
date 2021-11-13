@@ -12,9 +12,27 @@
    // var userName = "<{$user_fname}> <{$user_lname}>";
    // var funcname = "<{$data.func}>";
     let anno_type_new = (funcname == 'view_full_asset') ? "4" : "3";
+    let course_code;
     onMount(()=> {
         init();
     })
+    function convertTextIntoLinks() {
+        var comment  = document.getElementsByClassName('comment_text');
+        if (comment.length > 0) {
+            for(var i = 0; i <= comment.length; i++) {
+                if (comment[i] != undefined) {
+                    let text = comment[i].innerHTML;
+                    if (text.indexOf('http') > -1 && text.indexOf('href') == -1) {
+                        var exp   = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+                        var text1 = text.replace(exp, '<a target="_blank" href="$1">$1</a>');
+                        var exp2  =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+                        comment[i].innerHTML = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
+                    }
+                }
+            }
+        }
+    };
+
     function loadComments(type) {
         const comment_tab_list = AH.selectAll('.comment_tab');
         Array.prototype.forEach.call(comment_tab_list, function (curr) {
@@ -32,6 +50,30 @@
             }).then((res)=> {
                 AH.activate(0);
                 AH.select('#comment_modal_body').innerHTML = res;
+                const collapseContent = AH.selectAll('#comment_modal_body .collapse_content');
+                if (collapseContent.length > 0) {
+					collapseContent.forEach((ele) => {
+						if (ele.textContent.trim() == '') {
+							ele.remove();
+						}
+					});
+				}
+                AH.selectAll('#editor_comment_modal .commentTabs .active', 'removeClass', 'active');
+                AH.select('#editor_comment_modal .commentTabs a', 'addClass', 'active');
+                
+                if (type == 1) {
+                    AH.select('#comment_modal_body', 'addClass', 'pb-2');
+                    AH.select('#comment_modal_body', 'removeClass', ['pb-5', 'mb-2']);
+				} else {
+                    AH.select('#comment_modal_body', 'addClass', ['pb-5', 'mb-2']);
+                    AH.select('#comment_modal_body', 'removeClass', 'pb-2');
+				}
+                
+				convertTextIntoLinks();
+                const commentText = AH.selectAll('.comment_text');
+				if (commentText.length > 0) {
+					commentText.forEach(commentEle => commentEle.innerHTML = commentEle.innerHTML.replace(/(?:<br>\s*){2,}/g, '<br><br>'))
+				}
                 AH.initDropdown();
             });
         }
@@ -257,12 +299,14 @@
         let contentGuid = t.closest('.comment_container_head').getAttribute('content-guid');
         let timestamp    = t.closest('.comment_container').getAttribute('time-span');
         let id 			= t.closest('.comment_container').getAttribute('id');
+        let annotation_id 			= t.closest('.comment_container').getAttribute('anno_id');
         let _data = {
             user_guid_r:  userGuidR,
             base: contentGuid,
             creator_guid: creatorGuid,
             timestamp: timestamp,
             id: id,
+            annotation_id,
             tags: (typeof AH != "undefined" && AH.get('comments_type')) ? AH.get('comments_type') : -2,
         };
         if (deleteAll) {
