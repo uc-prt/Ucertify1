@@ -6,7 +6,7 @@
  *  Last update : 26-Aug-2021
  *  Last Updated By : Prabhat Kumar <prabhat.kumar@ucertify.com> 
 -->
-<script>
+<script> 
 // Importing all the required components
 import { onMount, afterUpdate } from 'svelte';
 import ItemHelper from '../helper/ItemHelper.svelte';
