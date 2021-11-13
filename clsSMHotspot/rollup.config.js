@@ -8,8 +8,6 @@ import postcss from "rollup-plugin-postcss";
 import autoPreprocess from'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
-console.log('production', production);
-console.log('process.env', process.env);
 function serve() {
 	let server;
 	
