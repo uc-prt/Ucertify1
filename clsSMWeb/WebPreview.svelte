@@ -389,7 +389,6 @@
 
         // initialize the html, css and js editor by converting textareas having id 'html_editor', 'css_editor', 'js_editor' in html, css and js editor
     function renderCodeMirror() {
-        console.trace();
         if (rendered) {
             // returns true to prevent from re-initialize the editors if it was already initialized
             return true;
@@ -1455,7 +1454,6 @@
 
      // used for set the value of html, css, js editors, makes editor readonly which was made disabled at the time of question creation, hide the editors which was made hidden at the time of questio creation and change the theme of html, css and js editors according to the check status of 'Dark Theme' checkbox
     function parseXML(xml) {
-        console.trace();        // contains the xml 
         xml = xml ? xml : state.xml;  
         // contains the html editor value from xml
         let htmlData = stringBetween(xml, "tag");
