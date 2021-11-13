@@ -152,8 +152,8 @@ export default class Draggable {
                     } else {
                         this.isRevert && this.isRevert();
                     }
-
-                    this.node.remove();
+                    if(this.node)
+                        this.node.remove();
                 } else if (!this.isMoving && this.node) {
                     this.node.remove();
                 }
@@ -174,6 +174,7 @@ export default class Draggable {
             AI.listen('body', 'mousemove', drop, (current) => {
                 if (this.isStart && this.node && this.isMoving) {
                     this.target = current;
+                    AI.selectAll('.dropable','removeClass','drop-hover');
                     this.target.classList.add('drop-hover');
                     this.target.style.opacity = '0.7';
                     this.onOver && this.onOver(current);
@@ -294,7 +295,6 @@ export default class Draggable {
     } 
     
     onRemove(source, target) {
-    
         source.removeAttribute('draging');
         source.style.backgroundColor = source.getAttribute('data-bgcolor');
         source.setAttribute('droping', 1);
