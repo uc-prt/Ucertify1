@@ -58,8 +58,6 @@
 						}
 					});
 				}
-                AH.selectAll('#editor_comment_modal .commentTabs .active', 'removeClass', 'active');
-                AH.select('#editor_comment_modal .commentTabs a', 'addClass', 'active');
                 
                 if (type == 1) {
                     AH.select('#comment_modal_body', 'addClass', 'pb-2');
