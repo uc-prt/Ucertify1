@@ -122,7 +122,7 @@
     function setContent(e) {
 		let selector  = (typeof e == 'object') ? e.target.id : e ;
 		let content = tinyMCE.activeEditor.getContent({format : 'raw'});
-		AH.select('#'+selector+'_show', 'html', );
+		AH.select('#'+selector+'_show', 'html', get_ucsyntax(content));
 		if (content.match(/<uc:syntax/gm)) prettyPrint();
 		let contentClear = AH.select('#webpageContentShow', 'html', tinyMCE.activeEditor.getContent())
 		contentClear = contentClear.textContent; //Removing special symbol
