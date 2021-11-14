@@ -918,7 +918,11 @@
 		//jQuery('.fillintheblank').addClass('default-hover');
 		AH.selectAll('.fillintheblank','addClass','default-hover');
 		
-		AI.selectAll('.edit_st ','css',{display:'none'})
+
+		/// Manage correct answer position ////
+		AH.selectAll('.edit_st ','css',{display:'none'});
+		AH.selectAll('#text','removeClass','corr_div');
+		AH.selectAll('#text','addClass','corr_div_correct');
 		showCorrect();
 		state.main_steps = true;
 		state.correct_answer = false;
@@ -939,15 +943,24 @@
 
 	function yourAnswer() {
 		//handleToggle(2);
-		
 		state.display = 1;
 		state.hideNext = true;
 		state.smController = '';
 		
 		//$('.fillintheblank').removeClass('default-hover');
 		AH.selectAll(".fillintheblank","removeClass","default-hover");
+
+	
+		AH.selectAll('.edit_st ','css',{display:'block'});
+		AH.selectAll('#text','addClass','corr_div');
+		AH.selectAll('#text','removeClass','corr_div_correct');
+
 		state.main_steps = false;
 		state.correct_answer = true;
+
+		// if(step_xml.smxml._fixed) {
+		// 	AI.selectAll('.edit_step ','css',{display:'none'})
+		// }
 		
 		//jQuery('.remed_disable').css('display', 'block');
 		AH.selectAll('.remed_disable','css',{display:'block'});
@@ -1211,6 +1224,18 @@
 
 	:global(.corr_div) {
 		position: absolute!important;
+		width: 38px;
+		line-height: 30px;
+		background-color: #21a81d;
+		color: #ffffff;
+		z-index: 1;
+		display: inline-block;
+		vertical-align: middle;
+		cursor: default;
+	}
+
+	:global(.corr_div_correct) {
+		position: relative;
 		width: 38px;
 		line-height: 30px;
 		background-color: #21a81d;

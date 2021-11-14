@@ -454,11 +454,16 @@ DND.readyThis = function(dndid) {
             swal(arguments[0]);
             if (arguments[0].showCloseButton) {
                 let closeButton = document.createElement('button');
-                closeButton.className = 'swal2-close';
+                closeButton.className = 'swal2-close close';
                 closeButton.onclick = function() { swal.close(); };
                 closeButton.textContent = '×';
+                closeButton.classList.add('position-relative');
+                closeButton.style.bottom = '220px';
+                closeButton.style.right = '10px';
                 let modal = document.querySelector('.swal-modal');
-                AI.select('.swal-modal').firstElementChild.className = "swal-text alignCheck";
+                AI.select('.swal-text').style.marginTop='23px'
+                AI.select('.swal-text').style.marginBottom='10px';
+                AI.select('.swal-text').style.float = 'left';
                 modal.appendChild(closeButton);
             }
         }
@@ -915,7 +920,7 @@ DND.bindKeyUp = function(dndid) {
                 copied_id = copy_drag.id;
                 copy_drag.classList.add('copiedclr');
             } else {
-                AI.showmsg('You cannot drag this');
+                AH.showmsg('You cannot drag this');
             }
         }
     }
