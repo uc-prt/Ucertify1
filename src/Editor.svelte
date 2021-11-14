@@ -97,7 +97,7 @@ let hdd = writable({
 	guid                    : "",
 	content_type            : "",
 	content_icon            : "",
-	webPageData             : "",
+	webPageData             : false,
 	sntTags                 : {},
 	strForRender            : "",
 	myComponent             : "SM",
@@ -968,7 +968,7 @@ function initEditorListeners() {
 	document.body.addEventListener('click', (e)=> {
 		AH.selectAll('.image_popover[data-bs-toggle="popover"]').forEach((_this)=> {
 			if (!_this.isSameNode(e.target) && _this.contains(e.target) && AH.hasInall('.popover', e.target).length === 0) {
-				AH.getBS(_this, 'Popover').hide();
+				AH.getBS(_this, 'Popover').remove();
 			}
 		});
 	});
