@@ -1,7 +1,7 @@
 <script>
     import { onMount, beforeUpdate, afterUpdate , tick } from 'svelte';
     import { writable } from 'svelte/store';
-import { AH } from '../helper/HelperAI.svelte';
+	import { AH } from '../helper/HelperAI.svelte';
     import {editorConfig} from './EditorConfig.svelte';
     export let editorState;
     export let content_guid;
@@ -32,6 +32,7 @@ import { AH } from '../helper/HelperAI.svelte';
 			content : "",
 			details : "",
 			Heading : "",
+			toggleMode: ""
         });
     const unsubscribe = hdd.subscribe((item)=> {
         state = item;
@@ -46,21 +47,27 @@ import { AH } from '../helper/HelperAI.svelte';
         state.content_subtype = editorState.item;
         afterInit();
     });
-
     beforeUpdate(async ()=> {
-        if (editorState.webpageArray != state.webpageArray) {
-			for (let i in editorState.webpageArray) {
-				state[i] = editorState.webpageArray[i];
-            }
-            state.webpageArray = editorState.webpageArray;
-			setTimeout(function() {
-				webPageData(getDataToSend(1));
-			}, 200);
+        if(editorState.toggleMode !== state.toggleMode){
+			if(editorState.editorView == 'authoring'){
+				if (editorState.webPageData) {
+					for (let i in editorState.webPageData) {
+						state[i] = editorState.webPageData[i];
+					}
+					state.webpageArray = editorState.webpageArray;
+					setTimeout(function() {
+						webPageData(getDataToSend(1));
+					}, 200);
+					state.toggleMode = editorState.toggleMode;
+				}
+			}
+
 		}
 	})
-	
 	function webPageData(data) {
-		editorState.webPageData = data;
+		for(let item in webData){
+			AH.select(item.id, 'html', data[item.id]);
+		}
 	}
 
     function afterInit() {
@@ -115,7 +122,7 @@ import { AH } from '../helper/HelperAI.svelte';
     function setContent(e) {
 		let selector  = (typeof e == 'object') ? e.target.id : e ;
 		let content = tinyMCE.activeEditor.getContent({format : 'raw'});
-		document.querySelector('#'+selector+'_show').innerHTML = get_ucsyntax(content);
+		AH.select('#'+selector+'_show', 'html', );
 		if (content.match(/<uc:syntax/gm)) prettyPrint();
 		let contentClear = AH.select('#webpageContentShow', 'html', tinyMCE.activeEditor.getContent())
 		contentClear = contentClear.textContent; //Removing special symbol
@@ -123,21 +130,21 @@ import { AH } from '../helper/HelperAI.svelte';
 		webPageData(getDataToSend(1));
 	}
     function refreshWebPage() {
-		activate(2);
+		AH.activate(2);
 		AH.ajax({
 			url: baseUrl + 'editor/index.php',
 			cache: false,
 			data: { 
 				ajax: "1", 
 				action: 'get_web_page_data', 
-				content_guid: editorState.content_guid,
-				content_text: editorState.currentWebPageData,
+				content_guid: editorState.guid,
+				content_text: editorState.webPageData,
 			},
 			type: 'post',
 		}).then((response)=> {
 			document.querySelector('#layoutMode').innerHTML = "<iframe></iframe>";
 			sendToFrame(response);
-			activate(0);
+			AH.activate(0);
 		});
 	}
 
@@ -378,8 +385,8 @@ import { AH } from '../helper/HelperAI.svelte';
 					<div
 						class="tinymce-editor auth-editor"
 						contentEditable={true}
-						id="subject"
-						data-text="Subject"
+						id="{item.id}"
+						data-text="{item.id}"
 						style="border-bottom: 1px solid #e7e7e7; margin: 10px 0 5px 0; min-height: 125px"
 						on:keyup={setContent.bind(this, item.arg)}
 					></div>

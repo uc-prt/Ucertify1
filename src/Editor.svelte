@@ -97,7 +97,7 @@ let hdd = writable({
 	guid                    : "",
 	content_type            : "",
 	content_icon            : "",
-	webPageData             : "",
+	webPageData             : false,
 	sntTags                 : {},
 	strForRender            : "",
 	myComponent             : "SM",

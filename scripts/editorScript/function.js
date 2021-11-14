@@ -1478,3 +1478,76 @@ function createPlaygroundHtml(smxml, isEval, theme, web_count, self, title) {
         prettyPrint();
     }
 }
+
+function seqTag(data, fromWebpage) {
+	fromWebpage = fromWebpage ? fromWebpage : false;
+	if (data && isValidContent(data)) {
+		var seq = data.match(/<seq(.*?)><\/seq>|<snt(.*?)><\/snt>/gim);
+		if (seq) {
+			for (var i = 0; i < seq.length; i++) {
+				var replaceSeq = seq[i].replace(/><\/seq>|><\/snt>/gim, " />").replace(/data-style/gim, "style");
+				data = data.replace(seq[i], replaceSeq);
+			}
+		}
+		data = customTableReplace(data);
+		var tg = [
+			"div",
+			"li",
+			"table",
+			"tbody",
+			"tr",
+			"td",
+			"th",
+			"h1",
+			"h2",
+			"h3",
+			"h4",
+			"h5",
+			"h6",
+			"pre",
+			"p",
+			"figure",
+			"figcaption",
+			"dl",
+			"dt",
+			"section",
+			"main",
+			"article"
+		];
+		// eslint-disable-next-line no-redeclare
+		for (var i in tg) {
+			data = data
+				.replace(new RegExp(tg[i] + ">\\s+<", "g"), tg[i] + "><")
+				.replace(new RegExp(">\\s+<" + tg[i], "g"), "><" + tg[i])
+				.replace(new RegExp(">\\s+</" + tg[i], "g"), "></" + tg[i])
+				.replace(new RegExp("\n.<" + tg[i], "g"), "<" + tg[i])
+				.replace(new RegExp(tg[i] + ">\n", "g"), tg[i] + ">");
+		}
+		data = data.replace(/<br \/> |<br\/> |<br> | <br \/>| <br\/>| <br>|<br \/>|<br\/>|<br>/gim, "\n"); //.replace(/\n&nbsp;/g,"");
+		data = data.replace(/<g class([\s\S]*?)>|<\/g>/, ""); //code for removing grammarly tag
+		data = data.replace(/<grammarly-btn([\s\S]*?)<\/grammarly-btn>/g, ""); //code for removing grammarly tag
+		data = data.replace(/<grammarly([\s\S]*?)<\/grammarly([\s\S]*?)>/g, ""); //code for removing grammarly tag
+		data = data.replace(/<p><\/p>/, "\n"); //code for removing blank <p>
+		data = data.replace(new RegExp("\n.<ul|\n<ul", "g"), "<ul"); //Remove extra new line before ul
+		data = data.replace(new RegExp("\n.<ol|\n<ol", "g"), "<ol"); //Remove extra new line after ol
+		data = data.replace(/\[/g, "&lsqb;");
+		// data = data.replace(new RegExp("<\/div>\n","g"),"</div>"); //Remove extra new line after div //@comment because we can't give newline after SNT
+		data = data.replace(/<main data-remove="true"[\s\S]*?<\/main>/g, ""); //code for removing add item button in preview
+		data = data.replace(/class\=(\"|\')ebook_item_text.*?(\"|\')/g, "class='ebook_item_text'"); //code for removing extra class added on ebook_item_text class
+		data = data.replace(/(\'|\")ebook_item_text(\'|\").*?\>/g, "'ebook_item_text'>"); //code for removing extra attribute added on ebook_item_text class
+		data = data.replace(/(\'|\")ebook_item_text inline(\'|\").*?\>/g, "'ebook_item_text inline'>");
+		data = data.replace(/(\'|\")inline ebook_item_text(\'|\").*?\>/g, "'ebook_item_text inline'>");
+		data = data.replace(/mce-item-table/g, ""); //remove tinymce table class
+		data = data.replace(/\<input type="hidden".*?\>|\<input type="hidden".*?\/>/gm, ""); //code to remove extra input type hidden
+		if (fromWebpage == "remed") {
+			data = data
+				.replace(/sec_button inline|sec_button/, "sec_button inline")
+				.replace(/ebook_item_text inline|ebook_item_text/, "ebook_item_text inline");
+		}
+		if (fromWebpage == 1) {
+			data = data.replace(/<p>/gim, "\n").replace(/<\/p>/, "");
+		}
+		return data;
+	}
+	return "";
+}
