@@ -8652,7 +8652,7 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .alignCheck {
   margin-top: 23px!important;
 }
-
+/* web page preview css */
 .gred_blue_bg {
   background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
 }
