@@ -5009,6 +5009,7 @@ var app = (function () {
         window.mlid = mlid;
 
         function drop1(event,ui) {
+            match_lines = [];
             //console.log('drop1', ui);
             ucMlid.is_valid_drop = true;
             let _this = event.target;
