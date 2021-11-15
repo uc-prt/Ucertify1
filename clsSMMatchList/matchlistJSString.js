@@ -417,7 +417,6 @@ ucMlid.bindKeyup = function(mlid) {
             //var str = '<svg id="lines"><marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" stroke-width = "2" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>'; @eslint issues solved
             let str = '<svg id="lines">';
             let base;
-           // jQuery.each(match_lines, function(index, value) {
             match_lines.forEach((value, index)=> {
                 index = value.split(",");
                 value = index[1].split("_");
@@ -436,7 +435,6 @@ ucMlid.bindKeyup = function(mlid) {
             AH.insert(mlid, str, "afterbegin");
             ucMlid.remove_lines(mlid);
 
-            //_ui_drag.removeAttr('style').css("position", "relative");
             _ui_drag.removeAttribute('style');
             _ui_drag.style.position = "relative";
             //jQuery('.clone').remove();
@@ -446,7 +444,6 @@ ucMlid.bindKeyup = function(mlid) {
                // _ui_drag.removeClass("dropped").text("Place Here").attr("data-userans", "").draggable("destroy"); // Need to fixed it.
             }
             ucMlid.checkAns(mlid);
-            //_ui_drag.removeClass('copiedclr');
             _ui_drag.classList.remove('copiedclr');
             copied_id = "";
         }
