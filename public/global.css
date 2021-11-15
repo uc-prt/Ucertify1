@@ -8652,25 +8652,3 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .alignCheck {
   margin-top: 23px!important;
 }
-/* web page preview css */
-.gred_blue_bg {
-  background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
-}
-.index4 {
-  z-index: 998 !important;
-}
-.span5 {
-  width: 380px;
-}
-.height30 {
-  height: 30px !important;
-}
-.width30 {
-  width: 30px;
-}
-.top2 {
-  top: 2px;
-}
-.course_component_height .row > *{
-  width: inherit !important;
-}
