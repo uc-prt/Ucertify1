@@ -67,10 +67,6 @@ ucMlid.remove_lines = function(mlid) {
 }
 
 
-// jQuery(document).on('click','.donotshowdialog', function() {
-//     var action = (jQuery(this).prop('checked') == true) ? 'store' : 'remove';
-//     ucMlid.storeDoNotShow(user_guid, action);
-// });
 
 AH.listen('body','click','.donotshowdialo',(_this) => {
     ucMlid.storeDoNotShow(user_guid, (_this.checked == true) ? 'store' : 'remove');
@@ -110,50 +106,11 @@ ucMlid.showUserAns = function(mlid) {
         zIndex: 100,
         cursorAt: { top: -10, left: -10 },
         cursor: "default",
-        // revert(is_valid_drop) {
-        //     if (!is_valid_drop) {
-        //         if (ucMlid.sinfo) {
-        //             ucMlid.sinfo = false;
-        //             setTimeout(function() {
-        //                 ucMlid.sinfo = true;
-        //             }, 60 * 1000);
-        //             if (!UCINFO.isIphone) {
-        //                 if (typeof(showmsg) == 'function') showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.', 3);
-        //                 if(ucMlid.chkDoNotShow(user_guid) != true) {
-        //                     if (typeof(bindDialog) == 'function') bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
-        //                 }
-        //             }
-        //         }
-        //         return true;
-        //     }
-        // },
-        // start() {
-        //     const _this = jQuery(this);
-        //     console.log(_this);
-        //     top = parseInt(_this.position().top + _this.height() / 2) + "_" + parseInt(_this.position().left + _this.width());
-        //     _this.after(_this.clone().addClass("clone").css({
-        //         "position": "absolute",
-        //         "top": _this.position().top,
-        //         "left": _this.position().left,
-        //         "width": _this.width() + 20,
-        //         "height": _this.height() + 15
-        //     }));
-        //    // console.log(top)
-        // },
-        // stop() {
-        //     const _this = jQuery(this);
-        //     _this.removeAttr('style').css("position", "relative");
-        //     jQuery('.clone').remove();
-        //     if (_this.hasClass("ui-droppable")) {
-        //         _this.removeClass("dropped").text("Place Here").attr("data-userans", "").draggable("destroy");
-        //     }
-        // }
     };
     window.mlid = mlid;
 
     function drop1(event,ui) {
         match_lines = [];
-        //console.log('drop1', ui);
         ucMlid.is_valid_drop = true;
         let _this = event.target;
         if(_this.nodeName == "SPAN") {
