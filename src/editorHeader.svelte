@@ -560,7 +560,7 @@
                             >
                                 <div class="form-check form-switch">
                                     <label 
-                                        class="form-check-label mt-1" 
+                                        class="form-check-label mt-1 position-relative" 
                                         for="flexSwitchCheckChecked"
                                         style="cursor: pointer;text-align: right;width:93px;"
                                     >
@@ -568,7 +568,7 @@
                                             class="form-check-input mt-2 pe-none" 
                                             type="checkbox" 
                                             id="flexSwitchCheckChecked" 
-                                            style="position:absolute;bottom:4px;"
+                                            style="position:absolute;bottom:4px; left: 0"
                                             on:click={toggleRemediation}
                                         >
                                         Review

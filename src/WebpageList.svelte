@@ -2,8 +2,10 @@
     import { beforeUpdate, onMount } from 'svelte';
     import { Button, Dialog } from 'svelte-mui/src';
     import { writable } from 'svelte/store';
-import { AH } from '../helper/HelperAI.svelte';
+    import { AH } from '../helper/HelperAI.svelte';
     import Loader from '../helper/Loader.svelte';
+    import l from './libs/editorLib/language';
+
     export let editorState;
     export let domainToggle;
     export let selectedDomain;
@@ -26,13 +28,14 @@ import { AH } from '../helper/HelperAI.svelte';
         AH.listen(document, 'change','#domains', (_this)=>{
 			let value = _this.value;
 			editorState.domainToggle = false;
-			activate(2);
+			AH.activate(2);
 			state.value = value;
 			if (value != 0) {
 				AH.ajax({
                     url: baseUrl+"editor/",
                     data: {"action":"loadwebpage","content_guid":value,"ajax":1}
                 }).then((data)=> {
+                    data = JSON.parse(data);
 					let webpageArray = [];
 					for(let i in data) {
 						AH.select('#'+i, 'html', data[i]);
@@ -41,7 +44,7 @@ import { AH } from '../helper/HelperAI.svelte';
 					editorState.webpageArray = webpageArray;
 					AH.select('#show_guid', 'html', value).style.display = 'block';
 					editorState.guid = value;
-					activate(0);
+					AH.activate(0);
 				}, "json");
 				AH.select('#save_xml', 'removeClass', 'disabled')
                 AH.select('#save_xml', 'attr',{disabled: false});
@@ -63,6 +66,7 @@ import { AH } from '../helper/HelperAI.svelte';
                     content_subtype: editorState.item
                 }
             }).then((data)=> {
+                data = JSON.parse(data);
                 if (data) {
                     for(var i in data) {
                         items.push({
@@ -102,20 +106,23 @@ import { AH } from '../helper/HelperAI.svelte';
 	function handleChange(event, index, value) {
 		value = event.target.value;
 		editorState.domainToggle = false;
-		activate(2);
 		state.value = value;
 		if (value != 0) {
+            AH.activate(2);
 			AH.ajax({
                 url: baseUrl+"editor/",
                 data: {"action":"loadwebpage","content_guid":value,"ajax":1}
             }).then((data)=> {
-				for (i in data) {
+                data = JSON.parse(data);
+				for (let i in data) {
 					AH.select('#'+i, 'html', data[i]);
 				}
 				AH.select('#show_guid', 'html', value);
 				editorState.guid = value;
-				activate(0);
-			});
+				editorState.webPageData = data;
+			}).finally(() => {
+				AH.activate(0);
+            });
 			AH.select('#save_xml', 'removeClass', 'disabled')
             AH.select('#save_xml', 'attr', {disabled: false});
 		}
@@ -138,7 +145,7 @@ import { AH } from '../helper/HelperAI.svelte';
                 <div class="col-12">
                     <select 
                         id="domains" 
-                        class="form-control form-control-md w-100 select2 webpage_list" 
+                        class="form-select w-100 select2 webpage_list" 
                         disabled="" 
                         name="webpage" 
                         on:blur={handleChange}
@@ -151,13 +158,12 @@ import { AH } from '../helper/HelperAI.svelte';
                 </div>
         </div>
     </div>
-    <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
-        <Button
+    <div slot="footer" class="footer">
+        <button
+            class="btn btn-outline-secondary float-end m-3"
             on:click={handleClose}
-            color="primary"
         >
-        Close
-        </Button>
+            {l.close}
+        </button>
     </div>
 </Dialog>
-
