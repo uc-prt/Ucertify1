@@ -148,12 +148,17 @@ afterUpdate(async() => {
 
 // for checking the answer and creating the user ans
 function displayAns() {
-	let result = DND.checkAns("#"+ container_id);
-	if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
-	if (editorState) {
-		showAns(result.ans ? "Correct" : "Incorrect");
-	}
-	onUserAnsChange(result);
+	setTimeout(function(){
+		let result;
+		result = DND.checkAns("#"+ container_id);
+		
+		if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
+		if (editorState) {
+			showAns(result.ans ? "Correct" : "Incorrect");
+		}
+		onUserAnsChange(result);
+	},100);
+	
 }
 
 // call whenever there is change in xml and changes the module accordingly
