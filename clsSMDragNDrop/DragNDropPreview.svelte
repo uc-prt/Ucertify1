@@ -97,7 +97,6 @@ onMount( async function() {
 		AH.addClass('#sm_controller .correct-ans', 'active');
 		correctAnswer();
 	});
-
 	AH.listen(document, 'click', '#'+ container_id, function() {
 		displayAns();
 	});
@@ -148,16 +147,15 @@ afterUpdate(async() => {
 
 // for checking the answer and creating the user ans
 function displayAns() {
+	//@Prabhat: Answer checking and attibute value updating happening at the same time so here we need to add the setTimeout for time laps in answer checking. 
 	setTimeout(function(){
-		let result;
-		result = DND.checkAns("#"+ container_id);
-		
+		let result = DND.checkAns("#"+ container_id);
 		if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
 		if (editorState) {
 			showAns(result.ans ? "Correct" : "Incorrect");
 		}
 		onUserAnsChange(result);
-	},100);
+	}, 100);
 	
 }
 
