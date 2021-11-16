@@ -882,7 +882,7 @@
 			style='font-family:"Open Sans",sans-serif; font-size: 15px'
 		>
 	
-		<div class="string d-flex align-items-center justify-content-center" id="previewArea"></div>
+		<div class="string" id="previewArea"></div>
 			<div style="color: #b94a48; margin-top: 5px" class="smnotes">
 				{#if state.matchtype == "0"}
 					*Exact matching is required.
