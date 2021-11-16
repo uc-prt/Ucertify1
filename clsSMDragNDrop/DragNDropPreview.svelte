@@ -148,6 +148,7 @@ afterUpdate(async() => {
 
 // for checking the answer and creating the user ans
 function displayAns() {
+	//@Prabhat: Answer checking and attibute value updating happening at the same time so here we need to add the setTimeout for time laps in answer checking. 
 	setTimeout(function(){
 		let result = DND.checkAns("#"+ container_id);
 		if (typeof(is_sm) != "undefined") AH.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
