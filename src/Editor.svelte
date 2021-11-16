@@ -195,60 +195,57 @@ onMount(async ()=> {
 	AH.setCss("#editor", {background: '#e9ecef'});
 	state.viewConfig = editorConfig.getConfig(state); // Getting editor config
 	editorConfig.checkStage(state);  // Getting stage of current guid
-	
-
-	
-		Items = await getItems(item, state);  // Getting Item compoenents
-		if (ajaxData) {
-			let xml = '', type = '';
-			if (state.viewConfig.isQuestion) {
-				xml = ajaxData.content_text.special_module_xml;
-				type = ajaxData.content_subtype;
-				// Getting Default XML
-				if (!AH.isValid(xml)) {
-					if(type === "26" && xml === "") { // If xml blank in case of multigrid then will execute if condition
-						xml = Items?.default.getDefaultXMl("editor_item_75.xml"); 
-						xml = formatXmlRef(xml, item);
-					} else {
-						xml = Items?.default.getDefaultXMl("sample"); 
-						xml = formatXmlRef(xml, item);
-					}
-					
+	Items = await getItems(item, state);  // Getting Item compoenents
+	if (ajaxData) {
+		let xml = '', type = '';
+		if (state.viewConfig.isQuestion) {
+			xml = ajaxData.content_text.special_module_xml;
+			type = ajaxData.content_subtype;
+			// Getting Default XML
+			if (!AH.isValid(xml)) {
+				if(type === "26" && xml === "") { // If xml blank in case of multigrid then will execute if condition
+					xml = Items?.default.getDefaultXMl("editor_item_75.xml"); 
+					xml = formatXmlRef(xml, item);
+				} else {
+					xml = Items?.default.getDefaultXMl("sample"); 
+					xml = formatXmlRef(xml, item);
 				}
 				
-				if (ajaxData.content_text.algo_qxml) {
-					state.algo_qxml = ajaxData.content_text.algo_qxml;
-				}
-				if (ajaxData.content_text.case_id) {
-					state.caseid_val = ajaxData.content_text.case_id;
-				}
-				// Checking item wise maniulations
-				if (Items?.UI?.cleanItemWise) {
-					({type, xml} = Items.UI.cleanItemWise(ajaxData, type, xml));
-				}
-				// Setting state for data
-				state.title = ajaxData.content_text.title;
-				state.stem = formatData(ajaxData.content_text.question, 'convertUcSyntax');
-				state.remediation = formatData(ajaxData.content_text.explanation, 'convertUcSyntax');
-			} else {
-				// set state and fillter content and formatting
-				state.content = replacePreTag(formatData(ajaxData.content_text.content), editorConfig.preTagTypes);
-				state.title = ajaxData?.content_text.title;
-				state.info = ajaxData?.content_text.info || '';
-				state.vtt = ajaxData?.content_text.vtt || '';
 			}
-			state.content_icon = ajaxData.content_icon;
-			state.draft = ajaxData.is_draft;
-			setModule(xml); // Update xml for items
-		} else { 
-			//@Pradeep: require default xml from ModuleQtype and use here.
-			if (itemXML) {
-				dxml = Items.default.getDefaultXMl(itemXML); 
-				dxml = formatXmlRef(dxml, item);
-				AH.set("error", AH.isValid(dxml) ? false : "XML is not found.");
+			
+			if (ajaxData.content_text.algo_qxml) {
+				state.algo_qxml = ajaxData.content_text.algo_qxml;
 			}
-			setModule(dxml); // Updating xml for items
+			if (ajaxData.content_text.case_id) {
+				state.caseid_val = ajaxData.content_text.case_id;
+			}
+			// Checking item wise maniulations
+			if (Items?.UI?.cleanItemWise) {
+				({type, xml} = Items.UI.cleanItemWise(ajaxData, type, xml));
+			}
+			// Setting state for data
+			state.title = ajaxData.content_text.title;
+			state.stem = formatData(ajaxData.content_text.question, 'convertUcSyntax');
+			state.remediation = formatData(ajaxData.content_text.explanation, 'convertUcSyntax');
+		} else {
+			// set state and fillter content and formatting
+			state.content = replacePreTag(formatData(ajaxData.content_text.content), editorConfig.preTagTypes);
+			state.title = ajaxData?.content_text.title;
+			state.info = ajaxData?.content_text.info || '';
+			state.vtt = ajaxData?.content_text.vtt || '';
 		}
+		state.content_icon = ajaxData.content_icon;
+		state.draft = ajaxData.is_draft;
+		setModule(xml); // Update xml for items
+	} else { 
+		//@Pradeep: require default xml from ModuleQtype and use here.
+		if (itemXML && Items?.default?.getDefaultXMl) {
+			dxml = Items.default.getDefaultXMl(itemXML); 
+			dxml = formatXmlRef(dxml, item);
+			AH.set("error", AH.isValid(dxml) ? false : "XML is not found.");
+		}
+		setModule(dxml); // Updating xml for items
+	}
 	// For debugging
 	AH.set("setEditor", updateModuleState);
 	AH.set('getEditor', getState);
