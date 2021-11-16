@@ -687,6 +687,7 @@ export function tag_player(obj) {
                                 include_assets = '';
                             }
                             AH.insert(_this, include_assets + terminal_title_tag + '<div class="UC_TERMINAL" style="' + options + '; height:240px; width: 99%;"><div class="term_container"><div id="terminal_font"><span class="icomoon-plus plus" rel="tooltip" data-original-title="Increase font size"></span><span class="icomoon-minus minus mt" rel="tooltip" data-original-title="Decrease font size"></span></div></div></div>', 'afterbegin');
+                            AH.getBS('#terminal_font span', 'Tooltip').enable();
                         }
                         if (typeof updateTFS != 'undefined') {
                             updateTFS();
