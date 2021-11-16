@@ -687,7 +687,6 @@ export function tag_player(obj) {
                                 include_assets = '';
                             }
                             AH.insert(_this, include_assets + terminal_title_tag + '<div class="UC_TERMINAL" style="' + options + '; height:240px; width: 99%;"><div class="term_container"><div id="terminal_font"><span class="icomoon-plus plus" rel="tooltip" data-original-title="Increase font size"></span><span class="icomoon-minus minus mt" rel="tooltip" data-original-title="Decrease font size"></span></div></div></div>', 'afterbegin');
-                            AH.getBS('#terminal_font span', 'Tooltip').enable();
                         }
                         if (typeof updateTFS != 'undefined') {
                             updateTFS();
@@ -1828,7 +1827,7 @@ export function mathMLRender(id_mathML, is_required) {
         }
     } else {
         let css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">';
-        AH.insert(document.body, css, 'beforend');
+        AH.insert(document.body, css, 'beforeend');
         AH.ajax({
             type: 'GET',
             url: itemUrl + '/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',
