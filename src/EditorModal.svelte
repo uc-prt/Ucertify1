@@ -5,7 +5,7 @@
     import { Dialog, Button } from 'svelte-mui';
 </script>
 
-<Dialog beforeClose={beforeCloseFunc} style="background-color:#fff; border-radius: 5px;max-width: {Math.max(modal.width, 590)}px; width: 100%; font-size: 14px;" bind:visible>
+<Dialog beforeClose={beforeCloseFunc} style="background-color:#fff; border-radius: 5px;max-width: {Math.max(modal.width || 0, 590)}px; width: 100%; font-size: 14px;" bind:visible>
     <h4 class="mt-1 font21 mb-4" style="text-align: left; {modal.header.style}">
         {@html modal.header.body}
     </h4>
