@@ -496,7 +496,7 @@
 								data-userans="${data_userans}" 
 								data-userhtml="${data_userhtml}" 
 								class="drag-resize hotspotTxt" 
-								style="max-width:${divWidth}; height:${divHeight}; line-height: 1.4;"
+								style="max-width:${divWidth}; height:${divHeight}; line-height: 1.4; font-size:17px!important;"
 							>
 							</div>
 						</div>

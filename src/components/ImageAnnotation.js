@@ -123,7 +123,7 @@ export default class ImageAnnotation {
                                             <div class="form-group pl-0 row">
                                                 <label for="annotate_image_align" class="col-md-3 control-label col-form-label form-control-label text-left font-weight-normal mb-0">${l.text_align}</label>
                                                 <div class="col-md-9">
-                                                    <select name="annotate_image_align" title="${l.text_align}" id="annotate_image_align" class="form-control form-control-sm">
+                                                    <select name="annotate_image_align" title="${l.text_align}" id="annotate_image_align" class="form-select from-select-sm">
                                                         <option value="0">${l.right}</option>
                                                         <option value="1">${l.bottom}</option>
                                                         <option value="2">${l.on_click}</option>
@@ -133,7 +133,7 @@ export default class ImageAnnotation {
                                             <div class="form-group pl-0 row">
                                                 <label for="annotate_symbol" class="col-md-3 control-label col-form-label form-control-label text-left font-weight-normal mb-0">${l.mark_symbol}</label>
                                                 <div class="col-md-9">
-                                                    <select name="annotate_symbol" id="annotate_symbol" title="${l.mark_symbol}" class="form-control form-control-sm">
+                                                    <select name="annotate_symbol" id="annotate_symbol" title="${l.mark_symbol}" class="form-select form-select-sm">
                                                         <option value="0">${l.number_marker}</option>
                                                         <option value="1">${l.plus_marker}</option>
                                                         <option value="2">${l.checkmark_marker}</option>
@@ -708,10 +708,10 @@ export default class ImageAnnotation {
                 }
             });
         } else {
-            if (desc_selector.length == 0 && object.find('.' + this.state.desc_pre_block).length == 0) {
+            if (desc_selector.length == 0 && JS.selectAll('.' + this.state.desc_pre_block).length == 0) {
                 JS.select(object.parentElement, 'removeClass', 'd-flex');
                 if (this.state.curdata.view == "0") {
-                    object.innerHTML = (`<div class="pre-block ${this.state.desc_pre_block} ${this.state.curdata.color == "1" ? 'bl' : 'rl'}" style='overflow:scroll;height:auto;min-height:${object.parent().find('img').height() + (object.parent().find('img').hasClass('img-bordered') ? 8 : 0)}px;margin-bottom:${object.parent().find(this.state.uc_annotation_container).outerHeight(true) - (object.parent().find('img').height() + (object.parent().find('img').hasClass('img-bordered') ? 8 : 0))}px;'><div class="${this.state.list_container}"></div></div>`)
+                    object.innerHTML = (`<div class="pre-block ${this.state.desc_pre_block} ${this.state.curdata.color == "1" ? 'bl' : 'rl'}" style='overflow:scroll;height:auto;min-height:${JS.find(object.parentElement, 'img')?.clientHeight + (JS.find(object.parentElement, 'img')?.classList.contains('img-bordered') ? 8 : 0)}px;margin-bottom:${object.parent().find(this.state.uc_annotation_container).outerHeight(true) - (object.parent().find('img').height() + (object.parent().find('img').hasClass('img-bordered') ? 8 : 0))}px;'><div class="${this.state.list_container}"></div></div>`)
                 } else {
                     object.innerHTML = (`<br><div class="pre-block ${this.state.desc_pre_block} ${this.state.curdata.color == "1" ? 'bl' : 'rl'}"><div class="${this.state.list_container}"></div></div>`);
                 }

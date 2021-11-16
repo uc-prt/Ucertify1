@@ -4924,10 +4924,6 @@ var app = (function () {
     };
 
 
-    // jQuery(document).on('click','.donotshowdialog', function() {
-    //     var action = (jQuery(this).prop('checked') == true) ? 'store' : 'remove';
-    //     ucMlid.storeDoNotShow(user_guid, action);
-    // });
 
     AH.listen('body','click','.donotshowdialo',(_this) => {
         ucMlid.storeDoNotShow(user_guid, (_this.checked == true) ? 'store' : 'remove');
@@ -4967,49 +4963,11 @@ var app = (function () {
             zIndex: 100,
             cursorAt: { top: -10, left: -10 },
             cursor: "default",
-            // revert(is_valid_drop) {
-            //     if (!is_valid_drop) {
-            //         if (ucMlid.sinfo) {
-            //             ucMlid.sinfo = false;
-            //             setTimeout(function() {
-            //                 ucMlid.sinfo = true;
-            //             }, 60 * 1000);
-            //             if (!UCINFO.isIphone) {
-            //                 if (typeof(showmsg) == 'function') showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.', 3);
-            //                 if(ucMlid.chkDoNotShow(user_guid) != true) {
-            //                     if (typeof(bindDialog) == 'function') bindDialog({ click: this, wd: 450, ht: 236, data: '<div title="How to drop?"><img src="' + jQuery(mlid).attr('path') + 'match_drop_000BOG.gif" /><br/><span><label><input type="checkbox" style="top:2px;" class="relative donotshowdialog"> Do not show this dialog again</label></span></div>' });
-            //                 }
-            //             }
-            //         }
-            //         return true;
-            //     }
-            // },
-            // start() {
-            //     const _this = jQuery(this);
-            //     console.log(_this);
-            //     top = parseInt(_this.position().top + _this.height() / 2) + "_" + parseInt(_this.position().left + _this.width());
-            //     _this.after(_this.clone().addClass("clone").css({
-            //         "position": "absolute",
-            //         "top": _this.position().top,
-            //         "left": _this.position().left,
-            //         "width": _this.width() + 20,
-            //         "height": _this.height() + 15
-            //     }));
-            //    // console.log(top)
-            // },
-            // stop() {
-            //     const _this = jQuery(this);
-            //     _this.removeAttr('style').css("position", "relative");
-            //     jQuery('.clone').remove();
-            //     if (_this.hasClass("ui-droppable")) {
-            //         _this.removeClass("dropped").text("Place Here").attr("data-userans", "").draggable("destroy");
-            //     }
-            // }
         };
         window.mlid = mlid;
 
         function drop1(event,ui) {
-            //console.log('drop1', ui);
+            match_lines = [];
             ucMlid.is_valid_drop = true;
             let _this = event.target;
             if(_this.nodeName == "SPAN") {
@@ -5316,7 +5274,6 @@ var app = (function () {
                 //var str = '<svg id="lines"><marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" stroke-width = "2" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>'; @eslint issues solved
                 let str = '<svg id="lines">';
                 let base;
-               // jQuery.each(match_lines, function(index, value) {
                 match_lines.forEach((value, index)=> {
                     index = value.split(",");
                     value = index[1].split("_");
@@ -5335,7 +5292,6 @@ var app = (function () {
                 AH.insert(mlid, str, "afterbegin");
                 ucMlid.remove_lines(mlid);
 
-                //_ui_drag.removeAttr('style').css("position", "relative");
                 _ui_drag.removeAttribute('style');
                 _ui_drag.style.position = "relative";
                 //jQuery('.clone').remove();
@@ -5343,7 +5299,6 @@ var app = (function () {
                 //if (_ui_drag.hasClass("ui-droppable")) {
                 if (_ui_drag.classList.contains("ui-droppable")) ;
                 ucMlid.checkAns(mlid);
-                //_ui_drag.removeClass('copiedclr');
                 _ui_drag.classList.remove('copiedclr');
                 copied_id = "";
             }
