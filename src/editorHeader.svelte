@@ -568,7 +568,7 @@
                                             class="form-check-input mt-2 pe-none" 
                                             type="checkbox" 
                                             id="flexSwitchCheckChecked" 
-                                            style="position:absolute;bottom:4px; left: 0"
+                                            style="position:absolute;bottom:4px;"
                                             on:click={toggleRemediation}
                                         >
                                         Review
