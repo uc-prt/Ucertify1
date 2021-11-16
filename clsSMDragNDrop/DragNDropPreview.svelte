@@ -97,7 +97,6 @@ onMount( async function() {
 		AH.addClass('#sm_controller .correct-ans', 'active');
 		correctAnswer();
 	});
-	console.log('container_id', container_id);
 	AH.listen(document, 'click', '#'+ container_id, function() {
 		displayAns();
 	});
