@@ -281,6 +281,10 @@
 			}
 			
 		}
+		///  Draggable disabled on review mode ///
+		AH.selectAll('.list1').forEach((_this)=>{
+			_this.setAttribute('draggable',false); 
+		})
 	}
 
 	// function calls when remediation mode is off after on.
@@ -300,7 +304,12 @@
 			AH.select('#shuffleArea','css',{display:'block'});
 		}
 		// set the user ans in the module 
-		ucMlid.modeOn();
+		ucMlid.modeOn();	
+
+		/// Draggable enabled on unset review mode ///
+		AH.selectAll('.list1').forEach((_this)=>{
+			_this.setAttribute('draggable',true); 
+		})
 	}
 
 	beforeUpdate(()=>{
