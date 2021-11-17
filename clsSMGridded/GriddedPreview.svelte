@@ -12,9 +12,6 @@
     import {AH,XMLToJSON,JSONToXML,onUserAnsChange} from "../helper/HelperAI.svelte";
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
     import GriddedHelper from './GriddedHelper.svelte';
-    
-
-
 
     export let isReview;
     export let xml;
@@ -23,7 +20,7 @@
     export let editorState;
 
     // Declare global variables ////
-
+    let customIsReview = isReview;
     let bool = ' '; 
     let userAns = [];
     let ans = [];
@@ -656,6 +653,7 @@
                 <ItemHelper 
                     handleReviewClick={handleReview}
                     reviewMode={isReview}
+                    customReviewMode={customIsReview}
                 />
             </center>
             <table border="1" id="tab2" style={'border-collapse:collapse;text-align:center'} >

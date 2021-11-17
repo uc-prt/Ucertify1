@@ -13,6 +13,7 @@
     export let uxml;
     export let editorState = false;
     export let showAns;
+    let customIsReview = isReview;
     let previewState = 'authoring';
     let isRerender = 1;
     let booleanDelete = true;
@@ -612,6 +613,7 @@
                         on:unsetReview = {unsetReview}
                         handleReviewClick={(mode)=> ucTree.showans('#treemain0', mode)}
                         reviewMode={isReview}
+                        customReviewMode={customIsReview}
                     />
                 </center>
                 <button type="button" on:click={delNodes} class="h h-imp" style="display: none" id="delNodes"></button>
