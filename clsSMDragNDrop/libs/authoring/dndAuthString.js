@@ -381,6 +381,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #drop-top').value = pos[0];
             AI.select('#authoring-modal #drop-left').value = pos[1];
             AI.select('#authoring-modal #drop-id').value = labkey;
+            AI.select('#authoring-modal #drop-height').value = length[1];
+            AI.select('#authoring-modal #drop-width').value = length[0];
             DND_AUTH.visible_class = '.dropitem';
 
             break;
@@ -491,6 +493,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
                 AI.select('#authoring-modal #lbl-top').value = pos[0];
                 AI.select('#authoring-modal #lbl-left').value = pos[1];
                 AI.select('#authoring-modal #lbl-id').value = labkey;
+                AI.select('#authoring-modal #lbl-height').value = length[1];
+                AI.select('#authoring-modal #lbl-width').value = length[0];
                 AI.select('#authoring-modal #label_class').innerHTML = DND_AUTH.labelClassOptions();
                 const selectedElement = _this.closest('.drag-resize');
                 if(selectedElement){
