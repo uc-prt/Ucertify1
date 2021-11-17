@@ -282,9 +282,19 @@
 			
 		}
 		///  Draggable disabled on review mode ///
-		AH.selectAll('.list1').forEach((_this)=>{
-			_this.setAttribute('draggable',false); 
-		})
+		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1').forEach((_this)=>{
+				_this.setAttribute('draggable',false); 
+			})
+		}
+
+		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4').forEach((_this)=>{
+				_this.setAttribute('draggable',false); 
+			})
+		}
+
+		
 	}
 
 	// function calls when remediation mode is off after on.
@@ -307,9 +317,18 @@
 		ucMlid.modeOn();	
 
 		/// Draggable enabled on unset review mode ///
-		AH.selectAll('.list1').forEach((_this)=>{
-			_this.setAttribute('draggable',true); 
-		})
+		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1').forEach((_this)=>{
+				_this.setAttribute('draggable',true); 
+			})
+		}
+
+		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4').forEach((_this)=>{
+				_this.setAttribute('draggable',true); 
+			})
+		}
+		
 	}
 
 	beforeUpdate(()=>{
