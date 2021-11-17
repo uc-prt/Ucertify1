@@ -112,6 +112,7 @@
             if (!state.store.resize) {
                 updateXML();
             }
+            loadModule(xml);
         });
 
         AH.listen('body','click', '#update_xml', function () {
