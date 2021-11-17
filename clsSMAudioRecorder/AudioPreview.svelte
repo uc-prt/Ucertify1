@@ -17,7 +17,7 @@
     export let showAns;
     export let isReview;
     export let editorState;
-
+    let customIsReview = isReview;
     let recognition;
     let synth;
     let previewResetClicked = 'no';
@@ -473,6 +473,7 @@
             on:unsetReview = {unsetReview}
             reviewMode={isReview}
             handleReviewClick = {handleReviewMode}
+            customReviewMode={customIsReview}
         />
     <div class="row">
         {#if isReview}

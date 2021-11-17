@@ -26,7 +26,7 @@
 	export let isReview;
 	export let uxml;
 	export let editorState;
-
+	let customIsReview = isReview;
 	let listheading1 = "";
 	let listheading2 = "";
 	let multimatch = "";	
@@ -757,6 +757,7 @@
 						on:unsetReview = {unsetReview} 
 						handleReviewClick={handleReview}
 						reviewMode={isReview} 
+						customReviewMode={customIsReview}
 					/>
 				</div>
 				<div class={btnflag == 0 ? "h":""}>

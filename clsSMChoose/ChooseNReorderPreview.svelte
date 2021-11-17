@@ -15,20 +15,14 @@
 	import {AH,XMLToJSON,onUserAnsChange} from "../helper/HelperAI.svelte";
 	import Sortable from 'sortablejs';
 	import './css/choose.min.css';
-	
-    
     export let cmed;
     export let showAns;
     export let xml; 
-	
 	export let stopPreviewUpdate;
 	export let editorState;
 	export let isReview; 
 	export let uxml;
-
-
-	
-    
+	let customIsReview = isReview;
 
     let containerID = (cmed)?"choose"+cmed:"choose";
     ucChoose.ajax_eId = (cmed)?"#choose"+cmed:"#choose";
@@ -396,13 +390,13 @@
 <main>
     <div>
         <center>
-			<ItemHelper 
-		
-		on:setReview = {setReview}
-		on:unsetReview = {unsetReview}
-		handleReviewClick={handleReviewMode}
-		reviewMode={isReview}
-	/>
+		<ItemHelper 
+			on:setReview = {setReview}
+			on:unsetReview = {unsetReview}
+			handleReviewClick={handleReviewMode}
+			reviewMode={isReview}
+			customReviewMode={customIsReview}
+		/>
             
 
         </center>

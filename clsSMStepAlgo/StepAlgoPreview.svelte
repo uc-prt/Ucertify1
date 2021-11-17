@@ -26,8 +26,6 @@
     var answer_array = [];
 	let btntype;
 	let resultNew = {};
-
-
     let var_list = '';
 	let special_module = {};
 	let lists = '';
@@ -46,7 +44,7 @@
     export let stopPreviewUpdate;
 	export let isReview;
 	export let uxml;
-
+	let customIsReview = isReview;
     let stateData = writable({
             blank                   : true,
 			hideNext                : false,
@@ -1141,6 +1139,7 @@
 				on:unsetReview = {unsetReview}
 				handleReviewClick={handleReview}
 				reviewMode={isReview}
+				customReviewMode={customIsReview}
 			/>
 			<div class={state.main_steps ? 'h-imp': 'inNativeStyle'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				

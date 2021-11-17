@@ -26,6 +26,7 @@
 	export let smValidate;
 	export let showAns;
 	// variable declaration
+	let customIsReview = isReview;
 	let smControllerCallback;
 	let cdata = "";
 	let dragData = "";
@@ -869,6 +870,7 @@
 			on:unsetReview = {unsetReview}
 			handleReviewClick={handleReview}
 			reviewMode={isReview}
+			customReviewMode={customIsReview}
 		/>
 		
 		<div 

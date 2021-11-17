@@ -9,6 +9,12 @@
                     Term Sample text,1,0,
                 ]]-->
             </smxml>`,
+        "sample": `
+            <smxml type="27" name="ChoiceMatrix" theme="theme1" font="arial" maxwidth="600">
+                <!--[CDATA[Stem,True,False,
+                Term Sample text,1,0,
+                Term Sample text,0,1,]]-->
+            </smxml>`,
     };
 
         return xmls[type];

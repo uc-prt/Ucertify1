@@ -18,6 +18,7 @@
     export let showAns;
     export let isReview;
     export let editorState;
+    let customIsReview = isReview;
     let targetView      = "none";
     let showcorrectanswer, box_width, corr_ans_count;
     let preview_data = {
@@ -436,6 +437,7 @@
             on:unsetReview={unsetReview}
             reviewMode={isReview}
             handleReviewClick={handleReviewMode}
+            customReviewMode={customIsReview}
         />
         <div id="choose" class="text-center mx-auto">
             <div class="choose_header font17 text-left rounded-top m-0">

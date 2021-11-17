@@ -18,7 +18,7 @@
     export let uxml;
     export let isReview;
     let useransNew;
-
+    let customIsReview = isReview;
     let cm = { cdata:"" };
     let isIE;
     let mainId = ""; 
@@ -434,6 +434,7 @@
             on:unsetReview = {unSetReview}
             handleReviewClick={handleReview}
             reviewMode={isReview}
+            customReviewMode={customIsReview}
         />
         <center>
             <table class = {"table testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">

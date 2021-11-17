@@ -20,6 +20,7 @@
     export let isReview;
     export let updateCSV;
     export let editorState;
+    let customIsReview = isReview;
     const CORRECT = 2,
         INCORRECT = 0;
     let jsonData = {},
@@ -678,6 +679,7 @@
             on:unsetReview = {unsetReview}
             reviewMode={isReview}
             handleReviewClick = {handleReviewMode}
+            customReviewMode={customIsReview}
         />
     </div>
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">

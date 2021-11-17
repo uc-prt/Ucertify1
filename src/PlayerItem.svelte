@@ -26,7 +26,6 @@
         'insight': l.insight,
     }
     let prevValueOption = {};
-    $: prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
 
     let securityCheckbox = false;
 
@@ -213,6 +212,7 @@
             AH.select('#xml_data').value = playground_val.trim();
         }
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
+        prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
     });
     </script>
@@ -758,7 +758,7 @@
                                 id="show_caption" 
                                 label={l.show_caption} 
                                 placeholder={l.img_show}
-                                value={prevValueOption?.show_caption}
+                                value={prevValueOption?.show_caption || ''}
                             />
                         </div>
                         <div class={(playerState.type == 'exhibit') ? 'mt-sm col-xs-5 exhibitShow': 'mt-sm col-xs-5'}>
@@ -767,10 +767,11 @@
                                 id="hide_caption" 
                                 label={l.hide_caption} 
                                 placeholder={l.img_hide}
-                                value={prevValueOption?.hide_caption}
+                                value={prevValueOption?.hide_caption || ''}
                             />
                         </div>
                         <div class={(playerState.type == 'exhibit') ? 'pt-sm col-xs-2 exhibiLink exhibitbtnlnk' : 'pt-sm col-xs-2'}>
+                            <!-- svelte-ignore a11y-no-onchange -->
                             <select 
                                 id="layout" 
                                 name="layout" 
@@ -805,7 +806,7 @@
                                 id="embed" 
                                 name="embed" 
                                 class="text-left btn border p-2 w-100 clearfix mt-sm pointer" 
-                                bind:value={prevValueOption.embed} 
+                                value={prevValueOption.embed} 
                                 on:change={(e)=>{setInputState('embed', e.target.value)}}
                             >
                                 <option value="inline">{l.embed}</option>

@@ -17,7 +17,7 @@
     export let isReview;
     export let showAns;
     export let editorState;
-
+    let customIsReview = isReview;
     let showSelectedAns = "";
     let ans = [];
     let ansCheck, userTab = true;
@@ -381,6 +381,7 @@
         on:unsetReview = {unsetReview}
         reviewMode={isReview}
         handleReviewClick = {handleReviewMode}
+        customReviewMode={customIsReview}
     />
     <table id="table" class="table-bordered shadingTable" style="pointer-events: {isReview ? 'none' : ''};">
         <tbody>

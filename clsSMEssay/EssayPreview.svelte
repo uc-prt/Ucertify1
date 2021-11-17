@@ -12,6 +12,7 @@
     //export let uaxml;
     export let isReview;
     export let editorState;
+    let customIsReview = isReview;
     let ucEssay;
     let files;
     let state = {
@@ -160,6 +161,7 @@
             <ItemHelper 
                 on:setReview = {setReview}
                 on:unsetReview = {unsetReview.bind(this, localEssayData.type)}
+                customReviewMode={customIsReview}
             />
             <div 
                 id={eid} 

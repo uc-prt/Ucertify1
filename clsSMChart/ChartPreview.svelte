@@ -19,8 +19,8 @@
 	export let isReview;
 	export let showAns;
 	export let editorState;
+    let customIsReview = isReview;
     let state = {};
-   
     // newXml used for contain the xml in json format, chartObj contains the instance of the highcharts
     let newXml = "", chartObj = '';
     // used for contain the x and y point value of each row of 'Set Answer' dialog box that comes when keyup on ADA button
@@ -516,6 +516,7 @@
             on:unsetReview = {unsetReview}
             reviewMode={isReview}
             handleReviewClick = {handleReviewMode}
+            customReviewMode={customIsReview}
         />
         <div id="chartmain0" class="userAns">
             {#if window.inNative}
