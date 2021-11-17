@@ -221,7 +221,8 @@
 				state.imgwidth = (parseXml.smxml.div._imgwidth) ? parseXml.smxml.div._imgwidth+'px' :  "auto !important";
 			}
 		};
-		image.src = bgImgPath + img_url;
+		if(img_url)
+		image.src =   bgImgPath + img_url;
 		if (uxml) {
 			userCorrect = uxml;
 			let parseUxml = XMLToJSON(uxml);
@@ -505,6 +506,15 @@
 			default : return("<div>Incorrect question type</div>");
 		}
 	}
+
+	//To handle review toggle
+	function handleReview(mode, event) {
+		if (mode == 'c') {
+			HotJS.showansdrag('#hptmain0', 'c',1);
+		} else {
+			HotJS.showansdrag('#hptmain0', 'u',1)
+		}
+	}
 	
 </script>
 <main>
@@ -610,6 +620,14 @@
 						></div>
 					{/if}
 				</center>
+			{:else if moduleArr[item_type] == "1" }
+				<ItemHelper 
+				on:setReview = {setReview}
+				on:unsetReview = {unsetReview}
+				handleReviewClick={handleReview}
+				reviewMode={isReview}
+			/>
+				{@html loadModule(moduleArr[item_type])}
 			{:else}
 			{@html loadModule(moduleArr[item_type])}
 			{/if}

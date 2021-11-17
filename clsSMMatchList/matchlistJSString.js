@@ -939,8 +939,9 @@ ucMlid.showAllCorrectAns = function(mlid) {
 ucMlid.showAllAns = function(mlid) {
     AH.remove("#lines");
     AH.remove('.correct_incorrect_icon');
-    
-    ucMlid.multimatch = document.querySelector(mlid).getAttribute("multimatch");
+    if(document.querySelector(mlid)) {
+        ucMlid.multimatch = document.querySelector(mlid).getAttribute("multimatch");
+    }
     if (ucMlid.multimatch < 2) {
         var str = '<svg id="lines"><marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>';
         str += '<marker id="trngle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill:#83C883"/></marker>';
@@ -1090,7 +1091,7 @@ ucMlid.showYour = function(mlid) {
         //self.append('<span class="correct_incorrect_icon" style="position:absolute;width:19px;height:19px;right:-9px;top:-9px;background:white;border-radius:15px 12px 12px;font-size:21px;"> ' + droped_value_indicator_html + '</span></span>');
         AH.insert(_this,'<span class="correct_incorrect_icon" style="position:absolute;width:19px;height:19px;right:-9px;top:-9px;background:white;border-radius:15px 12px 12px;font-size:21px;"> ' + droped_value_indicator_html + '</span>',"afterbegin");
     });
-}
+} 
 
 /*ajax based code*/
 ucMlid.showAll = function() { //@eslint issues solved
