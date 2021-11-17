@@ -378,7 +378,7 @@ ucMlid.bindKeyup = function(mlid) {
 
             let clr = "black";
             //if (jQuery('#main-page').length > 0 && jQuery('#main-page').attr('mode') == "bla") clr = "white";
-            if (AH.selectAll('#main-page').length > 0 && AH.selectAll('#main-page').getAttribute("mode") == "bla") clr = "white"
+            if (AH.selectAll('#main-page').length > 0 && AH.select('#main-page').getAttribute("mode") == "bla") clr = "white"
             //jQuery(_dropthis).css("position", "relative");
             _dropthis.style.position = "relative";
             // var list = top + "," + parseInt(jQuery(_dropthis).position().top + jQuery(_dropthis).height() / 2) + "_" + parseInt(jQuery(_dropthis).position().left) + "," + _ui_drag.attr('id') + "_" + jQuery(_dropthis).attr('id');
