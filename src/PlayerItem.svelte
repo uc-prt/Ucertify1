@@ -757,7 +757,8 @@
                                 fullWidth="true" 
                                 id="show_caption" 
                                 label={l.show_caption} 
-                                placeholder={l.img_show} 
+                                placeholder={l.img_show}
+                                value={prevValueOption?.show_caption}
                             />
                         </div>
                         <div class={(playerState.type == 'exhibit') ? 'mt-sm col-xs-5 exhibitShow': 'mt-sm col-xs-5'}>
@@ -766,6 +767,7 @@
                                 id="hide_caption" 
                                 label={l.hide_caption} 
                                 placeholder={l.img_hide}
+                                value={prevValueOption?.hide_caption}
                             />
                         </div>
                         <div class={(playerState.type == 'exhibit') ? 'pt-sm col-xs-2 exhibiLink exhibitbtnlnk' : 'pt-sm col-xs-2'}>
@@ -798,15 +800,19 @@
                     </div>
                     {#if (playerState.type == 'weblink' || playerState.type == 'exhibit') }
                         <div class="pt-sm col-xs-{(playerState.type == 'weblink') ? '3 textWidth' : (playerState.type == 'exhibit' ? '2 embedovrlyBtn' : '0')}">
+                            <!-- svelte-ignore a11y-no-onchange -->
                             <select 
                                 id="embed" 
                                 name="embed" 
                                 class="text-left btn border p-2 w-100 clearfix mt-sm pointer" 
-                                bind:value={playerState.embed} 
+                                bind:value={prevValueOption.embed} 
                                 on:change={(e)=>{setInputState('embed', e.target.value)}}
                             >
                                 <option value="inline">{l.embed}</option>
-                                <option value="new_tab">{playerState.type != 'exhibit' ? l.new_tab : l.overlay}</option>
+                                {#if playerState.type != 'exhibit'}
+                                    <option value="new_tab">{l.new_tab} </option>
+                                {/if}
+                                <option value="overlay">{l.overlay} </option>
                             </select>
                         </div>
                     {/if}

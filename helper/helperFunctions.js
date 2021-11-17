@@ -1828,7 +1828,7 @@ export function mathMLRender(id_mathML, is_required) {
         }
     } else {
         let css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">';
-        AH.insert(document.body, css, 'beforend');
+        AH.insert(document.body, css, 'beforeend');
         AH.ajax({
             type: 'GET',
             url: itemUrl + '/src/libs/katex.min.js',//window.baseUrlTheme + 'src/libs/katex.min.js',

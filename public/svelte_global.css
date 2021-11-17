@@ -25701,3 +25701,7 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .alignCheck {
   margin-top: 23px!important;
 }
+
+#preview .uc_step_explanation .uc_step {
+  padding: 10px 0;
+}
