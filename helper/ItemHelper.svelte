@@ -16,6 +16,7 @@
         event.target.classList.add('active');
         if (handleReviewClick) handleReviewClick(event.target.getAttribute('mode'), event);
     }
+    console.log('reviewMode', reviewMode);
 </script>
 <center>
 <button tabindex="0" type="button" class="h h-imp svelte_items_test" id="set-review" on:click="{()=>dispatch('setReview')}"></button>
