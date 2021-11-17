@@ -422,7 +422,7 @@
                                     pointer-events: {state.pointerEvents}
                                 "
                             >
-                                {data.value}
+                                {@html data.value}
                             </span>
                             <span
                                 class={state.iconVisible} 
