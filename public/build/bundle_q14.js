@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -8442,7 +8442,7 @@ var app = (function () {
     			set_style(div, "cursor", "pointer");
     			set_style(div, "display", "none");
     			set_style(div, "color", "#aaa");
-    			add_location(div, file$4, 736, 4, 21222);
+    			add_location(div, file$4, 736, 4, 21224);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -8508,9 +8508,9 @@ var app = (function () {
     			}
 
     			attr_dev(div0, "class", "row-fluid match_options shuffleList2");
-    			add_location(div0, file$4, 859, 6, 25297);
+    			add_location(div0, file$4, 859, 6, 25299);
     			attr_dev(div1, "class", "row-fluid shuffleList1");
-    			add_location(div1, file$4, 821, 5, 24184);
+    			add_location(div1, file$4, 821, 5, 24186);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -8637,13 +8637,13 @@ var app = (function () {
 
     			attr_dev(div0, "class", "span4 shuffleList1");
     			attr_dev(div0, "dragable", "1");
-    			add_location(div0, file$4, 781, 5, 23130);
+    			add_location(div0, file$4, 781, 5, 23132);
     			attr_dev(div1, "class", "span3");
-    			add_location(div1, file$4, 800, 5, 23664);
+    			add_location(div1, file$4, 800, 5, 23666);
     			attr_dev(div2, "class", "span4 shuffleList2");
-    			add_location(div2, file$4, 801, 5, 23695);
+    			add_location(div2, file$4, 801, 5, 23697);
     			attr_dev(div3, "class", "row-fluid");
-    			add_location(div3, file$4, 780, 4, 23101);
+    			add_location(div3, file$4, 780, 4, 23103);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -8782,14 +8782,14 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div0, file$4, 825, 9, 24328);
+    			add_location(div0, file$4, 825, 9, 24330);
     			attr_dev(span0, "class", "span4");
-    			add_location(span0, file$4, 824, 8, 24298);
+    			add_location(span0, file$4, 824, 8, 24300);
     			attr_dev(div1, "id", div1_id_value = /*data*/ ctx[54].id);
     			attr_dev(div1, "class", "arrow");
-    			add_location(div1, file$4, 837, 9, 24698);
+    			add_location(div1, file$4, 837, 9, 24700);
     			attr_dev(span1, "class", "span3");
-    			add_location(span1, file$4, 836, 8, 24668);
+    			add_location(span1, file$4, 836, 8, 24670);
     			attr_dev(div2, "data-cy", div2_data_cy_value = "id" + /*data*/ ctx[54].id);
     			attr_dev(div2, "id", div2_id_value = /*data*/ ctx[54].id);
     			attr_dev(div2, "class", "list3 ui-droppable");
@@ -8806,12 +8806,12 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div2, file$4, 840, 9, 24791);
+    			add_location(div2, file$4, 840, 9, 24793);
     			attr_dev(span2, "class", "span4");
-    			add_location(span2, file$4, 839, 8, 24761);
+    			add_location(span2, file$4, 839, 8, 24763);
     			attr_dev(div3, "key", div3_key_value = /*i*/ ctx[56]);
     			attr_dev(div3, "class", "row-fluid");
-    			add_location(div3, file$4, 823, 7, 24258);
+    			add_location(div3, file$4, 823, 7, 24260);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -8927,7 +8927,7 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div, file$4, 861, 8, 25387);
+    			add_location(div, file$4, 861, 8, 25389);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -9001,7 +9001,7 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div, file$4, 783, 8, 23214);
+    			add_location(div, file$4, 783, 8, 23216);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -9081,7 +9081,7 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div, file$4, 803, 6, 23763);
+    			add_location(div, file$4, 803, 6, 23765);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -9132,10 +9132,10 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "close";
     			attr_dev(span, "class", "u-sr-only svelte-bi3u6x");
-    			add_location(span, file$4, 893, 54, 26314);
+    			add_location(span, file$4, 893, 54, 26316);
     			attr_dev(i_1, "class", "mi mi-close");
     			set_style(i_1, "font-size", "1.5rem");
-    			add_location(i_1, file$4, 893, 5, 26265);
+    			add_location(i_1, file$4, 893, 5, 26267);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i_1, anchor);
@@ -9209,24 +9209,24 @@ var app = (function () {
     			label.textContent = "Do not show this dialog again";
     			attr_dev(div0, "title", "How to drop?");
     			attr_dev(div0, "class", "float-start float-left");
-    			add_location(div0, file$4, 890, 3, 26040);
+    			add_location(div0, file$4, 890, 3, 26042);
     			attr_dev(div1, "class", "float-end float-right");
-    			add_location(div1, file$4, 891, 3, 26119);
+    			add_location(div1, file$4, 891, 3, 26121);
     			attr_dev(img, "alt", "gif file");
     			if (img.src !== (img_src_value = AH$1.select("#matchmain").getAttribute("path") + "match_drop_000BOG.gif")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$4, 899, 4, 26418);
-    			add_location(br, file$4, 903, 4, 26539);
+    			add_location(img, file$4, 899, 4, 26420);
+    			add_location(br, file$4, 903, 4, 26541);
     			attr_dev(input, "type", "checkbox");
     			set_style(input, "top", "2px");
     			attr_dev(input, "class", "relative donotshowdialog");
     			attr_dev(input, "id", "dropId");
-    			add_location(input, file$4, 905, 5, 26574);
+    			add_location(input, file$4, 905, 5, 26576);
     			attr_dev(label, "for", "dropId");
-    			add_location(label, file$4, 906, 5, 26667);
+    			add_location(label, file$4, 906, 5, 26669);
     			attr_dev(span, "class", "mt-2");
-    			add_location(span, file$4, 904, 4, 26549);
-    			add_location(div2, file$4, 898, 3, 26408);
-    			add_location(div3, file$4, 897, 2, 26399);
+    			add_location(span, file$4, 904, 4, 26551);
+    			add_location(div2, file$4, 898, 3, 26410);
+    			add_location(div3, file$4, 897, 2, 26401);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -9402,48 +9402,48 @@ var app = (function () {
     			create_component(dialog.$$.fragment);
     			attr_dev(div0, "class", "btn-group clearfix review_2 h");
     			attr_dev(div0, "id", "sm_controller");
-    			add_location(div0, file$4, 753, 4, 21652);
+    			add_location(div0, file$4, 753, 4, 21654);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "tabindex", button0_tabindex_value = 0);
     			attr_dev(button0, "class", "btn btn-light correct-ans clr svelte_items_test");
-    			add_location(button0, file$4, 764, 6, 22060);
+    			add_location(button0, file$4, 764, 6, 22062);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "tabindex", button1_tabindex_value = 0);
     			attr_dev(button1, "class", "btn btn-primary both-ans clr svelte_items_test");
-    			add_location(button1, file$4, 765, 6, 22311);
+    			add_location(button1, file$4, 765, 6, 22313);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "tabindex", button2_tabindex_value = 0);
     			attr_dev(button2, "class", "btn btn-light your-answer clr svelte_items_test");
-    			add_location(button2, file$4, 766, 6, 22546);
+    			add_location(button2, file$4, 766, 6, 22548);
     			attr_dev(div1, "class", "btn-group clearfix review_default h");
     			attr_dev(div1, "id", "sm_controller_default");
-    			add_location(div1, file$4, 763, 5, 21977);
+    			add_location(div1, file$4, 763, 5, 21979);
     			attr_dev(div2, "class", div2_class_value = /*btnflag*/ ctx[13] == 0 ? "h" : "");
-    			add_location(div2, file$4, 762, 4, 21936);
+    			add_location(div2, file$4, 762, 4, 21938);
     			attr_dev(div3, "class", "heading");
-    			add_location(div3, file$4, 771, 6, 22864);
+    			add_location(div3, file$4, 771, 6, 22866);
     			attr_dev(div4, "class", "span4");
-    			add_location(div4, file$4, 770, 5, 22838);
+    			add_location(div4, file$4, 770, 5, 22840);
     			attr_dev(div5, "class", "span3");
-    			add_location(div5, file$4, 773, 5, 22923);
+    			add_location(div5, file$4, 773, 5, 22925);
     			attr_dev(div6, "class", "heading");
-    			add_location(div6, file$4, 775, 6, 22980);
+    			add_location(div6, file$4, 775, 6, 22982);
     			attr_dev(div7, "class", "span4");
-    			add_location(div7, file$4, 774, 5, 22954);
+    			add_location(div7, file$4, 774, 5, 22956);
     			attr_dev(div8, "class", "row-fluid");
-    			add_location(div8, file$4, 769, 4, 22809);
+    			add_location(div8, file$4, 769, 4, 22811);
     			attr_dev(div9, "id", /*containerID*/ ctx[4]);
     			attr_dev(div9, "path", "//s3.amazonaws.com/jigyaasa_content_static/");
     			attr_dev(div9, "multimatch", /*multimatch*/ ctx[3]);
     			attr_dev(div9, "totalcorrectans", /*totalCorrectAns*/ ctx[9]);
     			set_style(div9, "font-family", "Roboto, sans-serif");
     			set_style(div9, "font-size", "1em");
-    			add_location(div9, file$4, 745, 3, 21429);
-    			add_location(center, file$4, 734, 2, 21188);
+    			add_location(div9, file$4, 745, 3, 21431);
+    			add_location(center, file$4, 734, 2, 21190);
     			attr_dev(div10, "id", "previewSection");
     			attr_dev(div10, "class", "px-2 svelte_items_testing");
-    			add_location(div10, file$4, 733, 4, 21126);
-    			add_location(main, file$4, 732, 0, 21115);
+    			add_location(div10, file$4, 733, 4, 21128);
+    			add_location(main, file$4, 732, 0, 21117);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9882,7 +9882,7 @@ var app = (function () {
     			}
     		}
 
-    		///  Draggable disabled on review mode ///
+    		///  Draggable disabled on review mode /// 
     		if (AH$1.selectAll(".list4").length == 0) {
     			AH$1.selectAll(".list1").forEach(_this => {
     				_this.setAttribute("draggable", false);

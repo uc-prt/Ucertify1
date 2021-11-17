@@ -11,7 +11,7 @@
     import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import { AH, XMLToJSON, onUserAnsChange } from '../helper/HelperAI.svelte';
-    import './css/slider.min.css';
+    import './css/slider.min.css'; 
 
     export let xml;
     export let uxml;

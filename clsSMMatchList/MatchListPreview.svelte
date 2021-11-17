@@ -281,7 +281,7 @@
 			}
 			
 		}
-		///  Draggable disabled on review mode ///
+		///  Draggable disabled on review mode /// 
 		if(AH.selectAll('.list4').length == 0) {
 			AH.selectAll('.list1').forEach((_this)=>{
 				_this.setAttribute('draggable',false); 
@@ -298,7 +298,7 @@
 	}
 
 	// function calls when remediation mode is off after on.
-	function unsetReview() {
+	function unsetReview() { 
 		isReview = false;
 		AH.addClass('.review_2, .review_default','h');
 		let removeclass = document.querySelectorAll('.review_2, .review_default');

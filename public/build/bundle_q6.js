@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35732/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -7688,7 +7688,7 @@ var app = (function () {
 
     			attr_dev(li, "id", li_id_value = "id" + /*i*/ ctx[29]);
     			attr_dev(li, "tabindex", "0");
-    			add_location(li, file$1, 418, 28, 11527);
+    			add_location(li, file$1, 418, 28, 11528);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -7871,18 +7871,18 @@ var app = (function () {
     			t3 = space();
     			div1 = element("div");
     			if_block.c();
-    			add_location(center0, file$1, 391, 8, 10452);
+    			add_location(center0, file$1, 391, 8, 10453);
     			attr_dev(div0, "class", "choose_header font17 pl-4");
-    			add_location(div0, file$1, 404, 16, 10854);
+    			add_location(div0, file$1, 404, 16, 10855);
     			attr_dev(ul, "id", "sortable");
     			attr_dev(ul, "totalcorrectans", ul_totalcorrectans_value = /*state*/ ctx[3].totalcorrectans);
     			attr_dev(ul, "checkseq", ul_checkseq_value = /*state*/ ctx[3].allowSort);
     			attr_dev(ul, "class", "ui-sortable w-auto mt-0 p-2");
     			attr_dev(ul, "style", ul_style_value = "border-left:10px solid #d9e7fd;border-right: 10px solid #d9e7fd");
-    			add_location(ul, file$1, 405, 16, 10938);
+    			add_location(ul, file$1, 405, 16, 10939);
     			attr_dev(div1, "class", "choose_bottom pl-4");
     			attr_dev(div1, "id", "instruction");
-    			add_location(div1, file$1, 434, 16, 12321);
+    			add_location(div1, file$1, 434, 16, 12322);
     			attr_dev(div2, "id", /*containerID*/ ctx[1]);
 
     			attr_dev(div2, "type", div2_type_value = /*state*/ ctx[3].isSentence == "1"
@@ -7892,10 +7892,10 @@ var app = (function () {
     				: "normal");
 
     			attr_dev(div2, "class", "bg-white");
-    			add_location(div2, file$1, 403, 12, 10708);
-    			add_location(center1, file$1, 402, 8, 10687);
-    			add_location(div3, file$1, 390, 4, 10438);
-    			add_location(main, file$1, 389, 0, 10427);
+    			add_location(div2, file$1, 403, 12, 10709);
+    			add_location(center1, file$1, 402, 8, 10688);
+    			add_location(div3, file$1, 390, 4, 10439);
+    			add_location(main, file$1, 389, 0, 10428);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
