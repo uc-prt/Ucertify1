@@ -281,10 +281,24 @@
 			}
 			
 		}
+		///  Draggable disabled on review mode /// 
+		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1').forEach((_this)=>{
+				_this.setAttribute('draggable',false); 
+			})
+		}
+
+		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4').forEach((_this)=>{
+				_this.setAttribute('draggable',false); 
+			})
+		}
+
+		
 	}
 
 	// function calls when remediation mode is off after on.
-	function unsetReview() {
+	function unsetReview() { 
 		isReview = false;
 		AH.addClass('.review_2, .review_default','h');
 		let removeclass = document.querySelectorAll('.review_2, .review_default');
@@ -300,7 +314,21 @@
 			AH.select('#shuffleArea','css',{display:'block'});
 		}
 		// set the user ans in the module 
-		ucMlid.modeOn();
+		ucMlid.modeOn();	
+
+		/// Draggable enabled on unset review mode ///
+		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1').forEach((_this)=>{
+				_this.setAttribute('draggable',true); 
+			})
+		}
+
+		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4').forEach((_this)=>{
+				_this.setAttribute('draggable',true); 
+			})
+		}
+		
 	}
 
 	beforeUpdate(()=>{

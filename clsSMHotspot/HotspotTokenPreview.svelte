@@ -10,7 +10,7 @@
     export let showAns;
     export let uxml;
     let ansSwitch = 0;
-    let state = {};
+    let state = {}; 
     let hdd = writable({
             xml: "",
             itemType: "",
@@ -422,7 +422,7 @@
                                     pointer-events: {state.pointerEvents}
                                 "
                             >
-                                {data.value}
+                                {@html data.value}
                             </span>
                             <span
                                 class={state.iconVisible} 
