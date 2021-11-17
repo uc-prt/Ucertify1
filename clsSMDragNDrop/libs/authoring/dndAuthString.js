@@ -510,7 +510,7 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
                 AI.select('#authoring-modal #lbl-height').value = length[1];
                 AI.select('#authoring-modal #lbl-width').value = length[0];
                 AI.select('#authoring-modal #label_class').innerHTML = DND_AUTH.labelClassOptions();
-                const selectedElement = _this.closest('.drag-resize');
+                const selectedElement = _this?.closest('.drag-resize');
                 if(selectedElement){
                     AI.select('#authoring-modal #lbl_border_size').value = selectedElement.style.borderWidth.slice(0, selectedElement.style.borderWidth.length-2);
                     AI.select('#authoring-modal #lbl_border_color').value = selectedElement.style.borderColor;

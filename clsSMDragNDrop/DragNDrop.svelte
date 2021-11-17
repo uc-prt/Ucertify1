@@ -94,7 +94,7 @@
     function checkDndExtended() {
         let xml = AH.select("#special_module_xml").value;
         let isDNDExtended = 0;
-        let oldxml = ['</step>', '</tab>', '</jscript>', '</menulist>'];
+        let oldxml = ['</step>', '</tab>', '</jscript>', '</menulist>', '</tabhead>'];
         if (xml) {
             for (let index = 0; index < oldxml.length; index++) {
                 if (xml.includes(oldxml[index])) {
@@ -112,6 +112,7 @@
             if (!state.store.resize) {
                 updateXML();
             }
+            loadModule(xml);
         });
 
         AH.listen('body','click', '#update_xml', function () {

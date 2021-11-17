@@ -117,7 +117,6 @@ onMount( async function() {
 	AH.bind('body', 'contextmenu', function(event) {
 		event.preventDefault()
 	});
-	console.log('dragNDrop');
 })
 
 // call everytime when updating will happen

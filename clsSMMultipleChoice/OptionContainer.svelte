@@ -17,8 +17,6 @@
         // opens the url in new tab with parent guid
         window.open(futureUrl, '_blank');
     }
-    
-console.log('MCQ');
 </script>
 
 {#if previewMode}
@@ -81,8 +79,8 @@ console.log('MCQ');
         </div>
     {:else}
         <div class="mb-xl ml-lg overflow" id="user_answer">
-            {#each data as mcqItem, i (mcqItem.id)}
-                <span key={mcqItem.id} anscounter="0">
+            {#each data as mcqItem, i}
+                <span anscounter="0">
                     <section class="answer_container">
                         <label for="pUserans-{letters[i]}" class="option glow">	
                             <div class="span1 float-left">
@@ -119,8 +117,8 @@ console.log('MCQ');
 	{/if}
 {:else}
     <div class="mb-xl clear-both ml-lg overflow" id="user_answer">
-        {#each data as items, i(items.id)}
-            <span key={items.id} anscounter="0">
+        {#each data as items, i}
+            <span anscounter="0">
                 <section class="answer_container">
                     <div style="min-height: 46px;" class="option">	
                         <div class="span1 float-left">
