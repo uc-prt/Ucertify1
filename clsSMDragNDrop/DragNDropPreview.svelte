@@ -38,6 +38,7 @@ export let showAns;
 export let editorState;
 
 // initializing the variable
+let customIsReview = isReview;
 let QXML = "";
 let image_loaded = 0;
 let bgImg = "";
@@ -389,6 +390,7 @@ function changeLoadState() {
 	<ItemHelper 
 		on:setReview = {setReview}
 		on:unsetReview = {unsetReview}
+		customReviewMode={customIsReview}
 	/>
 	<div id="dndsteps" class="h" >
 		<input id="base" type="radio" on:click={() => DND.setStep('base')} defaultValue="1" defaultChecked name="rbs" class="baseradio dndradio" /> 

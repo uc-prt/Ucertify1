@@ -18,6 +18,7 @@
 	export let isReview;
 	export let showAns;
 	export let editorState;
+    let customIsReview = isReview;
     let state = {};
     let preview_store = writable({
 		xml : "",
@@ -357,6 +358,7 @@
             on:unsetReview = {unsetReview}
             reviewMode={isReview}
             handleReviewClick = {handleReviewMode}
+            customReviewMode={customIsReview}
         />
         <div
             id="mathmain"

@@ -13,7 +13,7 @@
 	export let isReview;
 	export let showAns;
 	export let editorState;
-
+	let customIsReview = isReview;
 	const HotJS = new hotspotScript();
 	let parseXml = "";
 	let answerStatus;
@@ -522,6 +522,7 @@
 		<ItemHelper 
 			on:setReview = {setReview}
 			on:unsetReview = {unsetReview}
+			customReviewMode={customIsReview}
 		/>
 		<div id="previewArea" class="relative">
 			<!-- if the type is text click or text select -->

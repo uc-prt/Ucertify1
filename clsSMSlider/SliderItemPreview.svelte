@@ -18,6 +18,7 @@
     export let showAns;
     export let isReview;
     export let editorState;
+    let customIsReview = isReview;
     let localSliderData = [], userAnsXML, user_ans_tab = true ;
     let state = {
         datauserans: {}
@@ -262,6 +263,7 @@
         on:unsetReview = {unsetReview}
         reviewMode={isReview}
         handleReviewClick = {handleReviewMode}
+        customReviewMode={customIsReview}
     />
     <div id="slidermain">
         <div class="slider_item_container">
