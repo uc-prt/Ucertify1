@@ -330,7 +330,7 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
     let parent = AI.select('.parent').getAttribute("data-parent")
     let htmlparent = parent == "dndmain" ? "#dndmain" : parent;
     let pos = [];
-    let length = [];
+    let length = [100, 30];
     let labkey = key;
     let hptkey = key;
     if (typeof(key) == "undefined") {
@@ -393,6 +393,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #int-left').value = pos[1];
             AI.select('#authoring-modal #int-id').value = labkey;
             AI.select('#authoring-modal .inputbox #custom_class_input').innerHTML = DND_AUTH.customClassOptions();
+            AI.select('#authoring-modal #int-height').value = length[1];
+            AI.select('#authoring-modal #int-width').value = length[0];
             DND_AUTH.visible_class = '.inputbox';
 
             break;
@@ -402,6 +404,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #mlt-top').value = pos[0];
             AI.select('#authoring-modal #mlt-left').value = pos[1];
             AI.select('#authoring-modal #mlt-id').value = labkey;
+            AI.select('#authoring-modal #mlt-height').value = length[1];
+            AI.select('#authoring-modal #mlt-width').value = length[0];
             AI.select('#authoring-modal .multiline #custom_class').innerHTML = DND_AUTH.customClassOptions();
             DND_AUTH.visible_class = '.multiline';
 
@@ -412,6 +416,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #chk-top').value = pos[0];
             AI.select('#authoring-modal #chk-left').value = pos[1];
             AI.select('#authoring-modal #chk-id').value = labkey;
+            AI.select('#authoring-modal #chk-height').value = length[1];
+            AI.select('#authoring-modal #chk-width').value = length[0];
             DND_AUTH.visible_class = '.chekbox';
 
             break;
@@ -421,6 +427,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #rd-top').value = pos[0];
             AI.select('#authoring-modal #rd-left').value = pos[1];
             AI.select('#authoring-modal #rd-id').value = labkey;
+            AI.select('#authoring-modal #rd-height').value = length[1];
+            AI.select('#authoring-modal #rd-width').value = length[0];
             DND_AUTH.visible_class = '.rdio';
 
             break;
@@ -430,6 +438,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #btn-top').value = pos[0];
             AI.select('#authoring-modal #btn-left').value = pos[1];
             AI.select('#authoring-modal #btn-id').value = labkey;
+            AI.select('#authoring-modal #btn-height').value = length[1];
+            AI.select('#authoring-modal #btn-width').value = length[0];
             DND_AUTH.visible_class = '.button';
 
             break;
@@ -439,6 +449,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #ddn-top').value = pos[0];
             AI.select('#authoring-modal #ddn-left').value = pos[1];
             AI.select('#authoring-modal #ddn-id').value = labkey;
+            AI.select('#authoring-modal #ddn-height').value = length[1];
+            AI.select('#authoring-modal #ddn-width').value = length[0];
             DND_AUTH.visible_class = '.dropdown';
             break;
         case "listbox":
@@ -447,6 +459,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #lst-top').value = pos[0];
             AI.select('#authoring-modal #lst-left').value = pos[1];
             AI.select('#authoring-modal #lst-id').value = labkey;
+            AI.select('#authoring-modal #lst-height').value = length[1];
+            AI.select('#authoring-modal #lst-width').value = length[0];
             DND_AUTH.visible_class = '.listbox';
 
             break;
@@ -513,6 +527,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #area-top').value = pos[0];
             AI.select('#authoring-modal #area-left').value = pos[1];
             AI.select('#authoring-modal #area-id').value = labkey;
+            AI.select('#authoring-modal #area-height').value = length[1];
+            AI.select('#authoring-modal #area-width').value = length[0];
             DND_AUTH.visible_class = '.area';
 
             break;
@@ -522,6 +538,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #mnl-top').value = pos[0];
             AI.select('#authoring-modal #mnl-left').value = pos[1];
             AI.select('#authoring-modal #mnl-id').value = labkey;
+            AI.select('#authoring-modal #mnl-height').value = length[1];
+            AI.select('#authoring-modal #mnl-width').value = length[0];
             DND_AUTH.visible_class = '.menulist';
 
             break;
@@ -531,6 +549,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #hpt-top').value = pos[0];
             AI.select('#authoring-modal #hpt-left').value = pos[1];
             AI.select('#authoring-modal #hpt-id').value = labkey;
+            AI.select('#authoring-modal #hpt-height').value = length[1];
+            AI.select('#authoring-modal #hpt-width').value = length[0];
             DND_AUTH.visible_class = '.hotspot';
 
             break;
@@ -543,6 +563,8 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
             AI.select('#authoring-modal #hpt_clk-top').value = pos[0];
             AI.select('#authoring-modal #hpt_clk-left').value = pos[1];
             AI.select('#authoring-modal #hpt_clk-id').value = hptkey;
+            AI.select('#authoring-modal #hpt_clk-height').value = length[1];
+            AI.select('#authoring-modal #hpt_clk-width').value = length[0];
             DND_AUTH.visible_class = '.hotspot_click';
 
             break;
