@@ -11,7 +11,6 @@
     export let reviewMode = false;
     export let handleReviewClick;
     export let customReviewMode;
-    console.log('customReviewMode', customReviewMode);
     const dispatch = createEventDispatcher();
     function handleSmClick(event) {
         document.querySelectorAll('.smControlerBtn button').forEach((el)=> el.classList.remove('active'));
