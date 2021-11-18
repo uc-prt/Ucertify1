@@ -508,7 +508,7 @@
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
-            if (_this.getAttribute('id') != undefined && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'icon' && !_this.disabled) {
+            if (_this.getAttribute('id') != undefined && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'icon' && !_this.disabled && _this.value.trim() != 'false') {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {
                     option_attr += (option_attr != '') ? ',"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"' : '"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"';
                 } else if (style.indexOf(_this.getAttribute('id')) > -1) {
@@ -539,6 +539,9 @@
             }
         });
         player = createPlayerVersionTwo(player, option_attr, style_attr);
+        if (state.type == 'playground'){
+            player += ' isEval=1'
+        }
         if (state.type == 'playground' && document.querySelector('#xml_data')) {
             let xml_data = AH.select('#xml_data').value;
             xml_data = xml_data.replace(/\n/g, "#nl#").replace(/\r\n/g, "#nl#").replace(/\t/g, "#t#").replace(/\ \ /g, "#s#").replace(/\</g, "#lt#").replace(/\>/g, "#gt#");
