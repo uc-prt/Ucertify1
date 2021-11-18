@@ -26,9 +26,9 @@
     let courses = []; // courses
     let error = {};
     let state = {};
-    let domainData = "";
     let fromProject = getQueryString("from_myproject") == 1 ? true : false;
-    let url = AH.url();
+    let url = new URLSearchParams(window.location.search);
+    let converge_parent = '';
     //State creation
     let hdd = writable({
         open: false,
@@ -59,12 +59,12 @@
     onMount(async ()=> {
         init();
         
-        if (AH.get('domainData')) {
-            domainData= AH.get('domainData')[editorState.guid];
-            setDomainData();
-        } else if (fromProject && url.get('router_guid')) {
-            var router_guid = url.get('router_guid').split(',');
-            router_guid = Object.assign({}, [...router_guid]);
+        let domainData= AH.get('domainData');
+        let domainGuids = url.get('content_guid') ? url.get('content_guid') : "";
+    
+        if (domainData) {
+            setDomainData(domainData[editorState.guid]);
+        } else if (fromProject && domainGuids) {
             AH.activate(1);
             AH.ajax({
             url: baseUrl + "editor/index.php",
@@ -72,16 +72,15 @@
                     ajax: "1",
                     course_code: editor.course,
                     action: "get_domain",
-                    guids: router_guid, 
+                    guids: domainGuids, 
                     keys: 'e,d'
                 },
             }).then((response)=> {
                 response =JSON.parse(response);
                 domainData = response[guid]
                 AH.set('domainData', domainData);
-                setDomainData();
-                AH.activate(0);
-            });
+                setDomainData(domainData);
+            }).finally(() => AH.activate(0));
         }
         // Default Data for domain
         items.push({value: 0, key: "0", label: "Select Domain"});
@@ -161,7 +160,7 @@
         }, 500);
     })
 
-    function setDomainData() {
+    function setDomainData(domainData) {
         if (domainData && url.get('router_guid')) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
@@ -226,7 +225,7 @@
             var isAssessment = isAssessment ? isAssessment.split(",") : null;
             if (isAssessment != null) {
                 if (isAssessment[isAssessment.length - 1].length == 5) {
-                    var converge_parent = isAssessment[isAssessment.length - 1];
+                    converge_parent = isAssessment[isAssessment.length - 1];
                     isAssessment.splice(-1, 1);
                 }
             }
@@ -333,10 +332,11 @@
                     state.objectives = chapters[1]; 
                     state.coverage = chapters[2]; 
                     state.value = items;
-                    AH.activate(0);
                 } catch (e) {
                     console.log("Coverage no found");
                 }
+            }).finally(() => {
+                AH.activate(0);
             });
         } catch (e) {console.log(e);}
     }
@@ -345,7 +345,6 @@
     function handleChange(event) {
         let value = event.target.value;
         state.value = value;
-        console.log('state.value', state.value);
         try {
             if (objectives || state.objectives) {
                 if (state.objectives) {
@@ -409,8 +408,7 @@
         //set state of editor
         editorState.exam_objective_mapping_save = 1;
         setTimeout(function() {
-            AH.activate(1);
-            if (from_coverage) {
+            if (from_coverage || url.get('action') == 'new') {
                 // for add new content
                 saveDomain(1);
             } else {
@@ -518,16 +516,17 @@
                     >
                         Lesson
                     </label>
+                    <!-- svelte-ignore a11y-no-onchange -->
                     <select
                         id="select_domain"
                         on:change={handleChange}
                         style="margin: 2px 24px; width: 70%;"
                         class="domain_select"
-                        test={state.value}
+                        value={state.value}
                         disabled={url.get("todo_table") == 1 ? true : false}
                     >
                         {#each items as data}
-                            <option value={data.value} key={data.key} selected={data.value == state.value ? 'selected' : ""}>
+                            <option value={data.value}>
                                 {data.label}
                             </option>
                         {/each}
@@ -541,23 +540,24 @@
                         >
                             Section{" "}
                         </label>
+                        <!-- svelte-ignore a11y-no-onchange -->
                         <select
                             on:change={handleCoverageChange}
                             style="margin: 2px 24px; width: 70%;"
                             class="domain_select"
                             id="domain_select"
-                            test={state.coverage_guid}
+                            value={state.coverage_guid}
                             disabled={url.get("todo_table") == 1 ? true : false}
                         >
                             {#each state.itemsCoverage as data}
-                                <option value={data.value} key={data.key} selected={data.value == state.coverage_guid ? 'selected' : ""}>
+                                <option value={data.value}>
                                     {data.label}
                                 </option>
                             {/each}
                         </select>
                     </div>
                 {/if}
-                {#if (url.get("in_frame") == 1 && fromProject && smdata.content_type != "f") || url.get("todo_table") == 1 || url.get("from_coverage") == 1}
+                {#if (fromProject && smdata.content_type != "f") || url.get("todo_table") == 1 || url.get("from_coverage") == 1}
                     <div class="col-md-12 pl-0 mt-3 ml-2">
                         <div class="col-md-12">
                             {#if window.objectives && window.coverage_data}
@@ -569,15 +569,17 @@
                                     >
                                         Test{" "}
                                     </label>
+                                    <!-- svelte-ignore a11y-no-onchange -->
                                     <select
                                         style="width: 73%;"
                                         on:change={handleTestChange}
                                         class="domain_select"
                                         id="test_select"
+                                        value={state.test.t}
                                         disabled={smdata.item == 36 ? true : false}
                                     >
                                         {#each state.testSetList as data}
-                                            <option value={data.value} key={data.key} selected={state.test.t == data.value ? 'selected' : ''}>
+                                            <option value={data.value}>
                                                 {data.label}
                                             </option>
                                         {/each}

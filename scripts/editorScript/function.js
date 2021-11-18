@@ -547,7 +547,7 @@ function checkedExamObjective(_this) {
 		AI.select('input[name="exam_obj[]"]').parentElement.style.background = '#fff';
 		let content_guid = getURLParameter('content_guid');
 		for (let k in guid) {
-			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || window.frameElement.getAttribute("guid") == k || content_guid == k) {
+			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || (window.frameElement && window.frameElement.getAttribute("guid") == k) || content_guid == k) {
 				let tag_guid = (content_guid) ? content_guid : (from_myproject != 1 ? _this.previousElementSibling.value : window.frameElement.getAttribute("guid"));
 				tag_guid = guid[tag_guid].split(',');
 				for (i = 0; i<=tag_guid.length; i++) {
