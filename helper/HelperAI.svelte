@@ -6,18 +6,6 @@
 
     };
 
-    let JU = new JUI();
-
-    JU.listen('body','keydown','.smControlerBtn .correct-ans',function(_this,e) {
-        if(e.which === 13) {
-            _this.click();
-        }
-    })
-    JU.listen('body','keydown','.smControlerBtn .your-ans',function(_this,e) {
-        if(e.which === 13) {
-            _this.click();
-        }
-    })
 
     export function XMLToJSON(myXml) {
         //var myXml = xml;
@@ -107,7 +95,7 @@
             }
         });
     }
-    export const AH = JU;
+    export const AH = new JUI();
     export const SSD = new JStore();
 
 </script>
