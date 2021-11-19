@@ -442,6 +442,7 @@
     function unsetReview() {
         targetView = "none";
         isReview = false;
+        customIsReview = false;
     }
 
     function matchButton() {
