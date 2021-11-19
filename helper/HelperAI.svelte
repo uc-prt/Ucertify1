@@ -6,16 +6,6 @@
 
     };
 
-    // JUI.listen('body','keydown','.smControlerBtn .correct-ans',function(_this,e) {
-    //     if(e.which === 13) {
-    //         _this.click();
-    //     }
-    // })
-    // JUI.listen('body','keydown','.smControlerBtn .your-ans',function(_this,e) {
-    //     if(e.which === 13) {
-    //         _this.click();
-    //     }
-    // })
 
     export function XMLToJSON(myXml) {
         //var myXml = xml;
