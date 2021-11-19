@@ -261,6 +261,7 @@
 
 	// when remediation mode is on
 	function setReview() {
+		isReview= true;
 		targetView = "block";
 		//isDotCreate = false;
 		// if the module is imagehighlight then it draw the correct answer on the module using the function drawOnCanvas
@@ -515,15 +516,18 @@
 			HotJS.showansdrag('#hptmain0', 'u',1)
 		}
 	}
-	
 </script>
 <main>
 	<center>
-		<ItemHelper 
-			on:setReview = {setReview}
-			on:unsetReview = {unsetReview}
-			customReviewMode={customIsReview}
-		/>
+		{#if moduleArr[item_type] == "1" || moduleArr[item_type] == "2"}
+			<ItemHelper 
+				on:setReview = {setReview}
+				on:unsetReview = {unsetReview}
+				handleReviewClick={handleReview}
+				customReviewMode={customIsReview}
+				reviewMode={isReview}
+			/>
+		{/if}
 		<div id="previewArea" class="relative">
 			<!-- if the type is text click or text select -->
 			{#if moduleArr[item_type] == "4"}
@@ -621,14 +625,6 @@
 						></div>
 					{/if}
 				</center>
-			{:else if moduleArr[item_type] == "1" }
-				<ItemHelper 
-				on:setReview = {setReview}
-				on:unsetReview = {unsetReview}
-				handleReviewClick={handleReview}
-				reviewMode={isReview}
-			/>
-				{@html loadModule(moduleArr[item_type])}
 			{:else}
 			{@html loadModule(moduleArr[item_type])}
 			{/if}
