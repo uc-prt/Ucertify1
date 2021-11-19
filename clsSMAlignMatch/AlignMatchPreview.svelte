@@ -7,7 +7,7 @@
  *  Last Updated By : Rashmi Kumari
 -->
 <script>
-    import { onMount, afterUpdate } from "svelte";
+    import { onMount, beforeUpdate, afterUpdate } from "svelte";
     import { XMLToJSON, AH, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import ShowAnswer from './showAnswer.svelte';
@@ -78,6 +78,10 @@
         }
     });
 
+    beforeUpdate(() => {
+        loadModule(xml);
+    });
+
     afterUpdate(() => {
         if (ignoreItemIdKeys.length > 0) {
             if (!blnAllAttempted) {
@@ -92,9 +96,8 @@
             }
         }
     });
-
-    $: {
-        loadModule(xml);
+    
+    $: {        
 		if (isReview) {
             targetView = "block";
             setReview();
@@ -107,6 +110,7 @@
 
     // loads the module according to the value of question xml and user xml
     function loadModule(loadXml) {
+        console.log("YESSSS");
         reverseToInitial();
         // contains json data of xml
         loadXml = XMLToJSON(loadXml);
@@ -417,7 +421,9 @@
     }
 
     function setReview() {
-        isReview = true;
+        //@Prabhat: this was throwing so commenting this line.https://www.screencast.com/t/UMeRnIsZmH
+        // isReview = true;
+        customIsReview = true;
         targetView = "block";
         setTimeout(function() {
             AH.selectAll('.your_ans_td:first-child').forEach((tdval) => {
@@ -427,8 +433,8 @@
                 } else {
                     AH.parent(tdval).classList.add('typeIncorrect');
                 }
-            }, 100);
-        });
+            });
+        }, 100);
         // shows the answer (Correct/Incorrect)
         displayAnswer();
     }
@@ -673,15 +679,13 @@
 </script>
 <svelte:window bind:innerWidth={windowwidth} />
 <div>
-    <div class="switchbutton">
-        <ItemHelper 
-            on:setReview = {setReview}
-            on:unsetReview = {unsetReview}
-            reviewMode={isReview}
-            handleReviewClick = {handleReviewMode}
-            customReviewMode={customIsReview}
-        />
-    </div>
+    <ItemHelper
+        on:setReview = {setReview}
+        on:unsetReview = {unsetReview}
+        handleReviewClick={handleReviewMode}
+        reviewMode={isReview}
+        customReviewMode={customIsReview}
+    />
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">
         <div class="categorycontainer center-block {(windowwidth > 1200) ? 'span9' : ''}">
             {#if state.xml}

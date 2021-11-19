@@ -12,9 +12,7 @@
     export let reviewMode = false;
     export let handleReviewClick;
     export let customReviewMode;
-    console.log('customReviewMode', customReviewMode);
-
-
+    
     AH.listen('body','keydown','.smControlerBtn .correct-ans',function(_this,e) {
         if(e.which === 13) {
             _this.click();
