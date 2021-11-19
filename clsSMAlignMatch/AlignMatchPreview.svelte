@@ -110,7 +110,6 @@
 
     // loads the module according to the value of question xml and user xml
     function loadModule(loadXml) {
-        console.log("YESSSS");
         reverseToInitial();
         // contains json data of xml
         loadXml = XMLToJSON(loadXml);
