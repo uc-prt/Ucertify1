@@ -547,7 +547,7 @@ function checkedExamObjective(_this) {
 		AI.select('input[name="exam_obj[]"]').parentElement.style.background = '#fff';
 		let content_guid = getURLParameter('content_guid');
 		for (let k in guid) {
-			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || window.frameElement.getAttribute("guid") == k || content_guid == k) {
+			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || (window.frameElement && window.frameElement.getAttribute("guid") == k) || content_guid == k) {
 				let tag_guid = (content_guid) ? content_guid : (from_myproject != 1 ? _this.previousElementSibling.value : window.frameElement.getAttribute("guid"));
 				tag_guid = guid[tag_guid].split(',');
 				for (i = 0; i<=tag_guid.length; i++) {
@@ -1359,7 +1359,7 @@ var evalInline = {
         _userXml = encodeURIComponent(_userXml);
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
+            url: itemUrl + '/evalPro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
         }).then(function(res) {
             if (res == 1) {
                 AH.selectAll('#evalCheck' + id, 'html', '<span class="item_score font-weight-bold"><span class="label-correct">Correct</span></span>');
@@ -1376,7 +1376,7 @@ var evalInline = {
         dbName = dbName ? dbName : 'myDBs';
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/index.php',
+            url: itemUrl + 'evalPro/index.php',
             data: {
                 'ajax': 1,
                 'in_editor': 0,
@@ -1391,15 +1391,15 @@ var evalInline = {
 
     runEvalPro: function(id, code, type, stdin, dbName) {
         dbName = dbName ? dbName : 'myDBs';
-        var _userXml = AH.select('#evalXML' + id).value;
+        var _userXml = document.querySelector('#evalXML' + id).value;
         var pre = evalInline.getRegString('pre', _userXml, 1);
         var post = evalInline.getRegString('post', _userXml, 1);
         code = pre + code + post;
-        stdin = stdin ? stdin : AH.select('#evalInput' + id).value;
+        stdin = stdin ? stdin : document.querySelector('#evalInput' + id).value;
         var result = '';
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/',
+            url: itemUrl + 'evalPro/index.php',
             data: {
                 code: code,
                 repltype: type,
@@ -1550,4 +1550,31 @@ function seqTag(data, fromWebpage) {
 		return data;
 	}
 	return "";
+}
+
+
+function getDocHeight (e) {
+    var t = (e = e || document).body,
+        i = e.documentElement;
+    return Math.max(t.scrollHeight, t.offsetHeight, i.clientHeight, i.scrollHeight, i.offsetHeight);
+}
+
+function autoResize (e) {
+    const t = document.querySelector('#' + e);
+    const base = t.closest('.base');
+    if ('block' != base.style.display && t.classList.contains('quiz_player')) return !1;
+  
+    try {
+        AH.activate(1);
+        var i = document.getElementById(e),
+            r = i.contentDocument ? i.contentDocument : i.contentWindow.document,
+            n = t.contentDocument.querySelector('body');
+      
+        var o = t.classList.contains('quiz_player') ? getDocHeight(r) : n.clientHeight;
+        n.querySelectorAll('.file_nohelp').length > 0 && (o = n.querySelector('.file_nohelp').clientHeight, w = n.querySelector('.file_nohelp').clientWidth, t.style.width = `${w}px`), n.querySelectorAll('.ui-dialog').length > 0 && (o = n.querySelector('.ui-dialog').clientHeight + 30, w = n.querySelector('.ui-dialog').clientWidth, n.querySelector('.ui-dialog').style.marginTop='10px', t.style.width=`${w}px`), t.style.height=`${o}px`, t.style.width = '100%', o <= 0 && setTimeout(function () {
+            autoResize(e);
+        }, 1e3), activate(0);
+    } catch (e) {
+        activate(0), console.warn('Error in function autoResize', e);
+    }
 }
