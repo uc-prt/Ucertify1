@@ -92,9 +92,9 @@
             }
         }
     });
-
+    
     $: {
-        loadModule(xml);
+        // loadModule(xml);
 		if (isReview) {
             targetView = "block";
             setReview();
@@ -427,8 +427,8 @@
                 } else {
                     AH.parent(tdval).classList.add('typeIncorrect');
                 }
-            }, 100);
-        });
+            });
+        }, 100);
         // shows the answer (Correct/Incorrect)
         displayAnswer();
     }
@@ -673,15 +673,13 @@
 </script>
 <svelte:window bind:innerWidth={windowwidth} />
 <div>
-    <div class="switchbutton">
-        <ItemHelper 
-            on:setReview = {setReview}
-            on:unsetReview = {unsetReview}
-            reviewMode={isReview}
-            handleReviewClick = {handleReviewMode}
-            customReviewMode={customIsReview}
-        />
-    </div>
+    <ItemHelper
+        on:setReview = {setReview}
+        on:unsetReview = {unsetReview}
+        handleReviewClick={handleReviewMode}
+        reviewMode={isReview}
+        customReviewMode={customIsReview}
+    />
     <div class="alignTestarea px-3 mx-auto mt-3 {targetView == 'block' ? 'h' : ''}" style="max-width: { state.maxWidth }">
         <div class="categorycontainer center-block {(windowwidth > 1200) ? 'span9' : ''}">
             {#if state.xml}
