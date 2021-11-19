@@ -41,6 +41,30 @@
 
     // Called once throughout the programm execution
     onMount(() => {
+
+
+        ///////////////  For ADA //////////////
+        AH.listen('#controls_container','keydown','#preview_recordButton',function(_this,e){
+            if(e.which === 13) {
+                startRecording();
+            }
+        })
+
+        AH.listen('#controls_container','keydown','#preview_stopButton',function(_this,e){
+            if(e.which === 13) {
+                console.log('checking....')
+                playRecording();
+                AH.find('#controls_container','#preview_stopButton').style.disabled = state.disabled;
+            }
+        })
+
+        AH.listen('#controls_container','keydown','#resetButton',function(_this,e){
+            if(e.which === 13) {
+                setData();
+            }
+        })
+
+
         if (!(window.webkitSpeechRecognition || window.SpeechRecognition)) {
             // shows the warning message that your browser does not support the speechRecognition
             AH.alert(l.browser_support_msg);

@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -4316,7 +4316,7 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$1 = "clsSMAudioRecorder/AudioPreview.svelte";
 
-    // (509:8) {:else}
+    // (533:8) {:else}
     function create_else_block_1(ctx) {
     	let div1;
     	let div0;
@@ -4398,40 +4398,40 @@ var app = (function () {
     			button2 = element("button");
     			span3 = element("span");
     			attr_dev(b0, "class", "noteColor bolder");
-    			add_location(b0, file$1, 511, 20, 24679);
+    			add_location(b0, file$1, 535, 20, 25415);
     			attr_dev(div0, "class", "");
     			attr_dev(div0, "tabindex", "0");
     			attr_dev(div0, "aria-label", "Recording will end after 15 sec");
-    			add_location(div0, file$1, 510, 16, 24586);
+    			add_location(div0, file$1, 534, 16, 25322);
     			attr_dev(div1, "class", "col-12 pb-3");
-    			add_location(div1, file$1, 509, 12, 24544);
-    			add_location(b1, file$1, 523, 103, 25540);
+    			add_location(div1, file$1, 533, 12, 25280);
+    			add_location(b1, file$1, 547, 103, 26276);
     			attr_dev(div2, "class", "p-2 tokenfield bg-light mb-3");
     			attr_dev(div2, "aria-label", "Audio Recorder");
     			attr_dev(div2, "tabindex", "0");
-    			add_location(div2, file$1, 523, 20, 25457);
+    			add_location(div2, file$1, 547, 20, 26193);
     			attr_dev(span0, "class", "align-self-center mx-auto previewInitialState tokenfield");
     			attr_dev(span0, "aria-label", "Click on record to start recording");
     			attr_dev(span0, "tabindex", "0");
-    			add_location(span0, file$1, 525, 24, 25700);
+    			add_location(span0, file$1, 549, 24, 26436);
     			if (img0.src !== (img0_src_value = "//s3.amazonaws.com/jigyaasa_content_static/6ba174bf48e9b6dc8d8bd19d13c9caa9_000Awg.gif")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "recording is on");
     			attr_dev(img0, "class", "w-100 h-100 img_fit");
-    			add_location(img0, file$1, 527, 28, 26000);
+    			add_location(img0, file$1, 551, 28, 26736);
     			attr_dev(div3, "class", "h previewRecordingOn tokenfield");
     			attr_dev(div3, "aria-label", "recording is on");
     			attr_dev(div3, "tabindex", "0");
-    			add_location(div3, file$1, 526, 24, 25884);
+    			add_location(div3, file$1, 550, 24, 26620);
     			if (img1.src !== (img1_src_value = "//s3.amazonaws.com/jigyaasa_content_static/giphy_000AYi.gif")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "audio is playing");
     			attr_dev(img1, "class", "w-100 h-100 img_fit");
-    			add_location(img1, file$1, 530, 28, 26323);
+    			add_location(img1, file$1, 554, 28, 27059);
     			attr_dev(div4, "class", "h previewAudioPlaying tokenfield");
     			attr_dev(div4, "aria-label", "Audio is playing");
     			attr_dev(div4, "tabindex", "0");
-    			add_location(div4, file$1, 529, 24, 26205);
+    			add_location(div4, file$1, 553, 24, 26941);
     			attr_dev(div5, "class", "mx-auto text-danger recording_status initialState mb-3 d-flex mx-auto");
-    			add_location(div5, file$1, 524, 20, 25592);
+    			add_location(div5, file$1, 548, 20, 26328);
     			attr_dev(span1, "class", "icomoon-circle-2 s2 text-danger position-relative top1");
     			attr_dev(span1, "data-bs-toggle", "tooltip");
     			attr_dev(span1, "data-bs-placement", "top");
@@ -4442,32 +4442,32 @@ var app = (function () {
 
     			attr_dev(span1, "id", "recordButtonTooltip");
     			attr_dev(span1, "name", "recordButtonTooltip");
-    			add_location(span1, file$1, 542, 28, 27104);
+    			add_location(span1, file$1, 566, 28, 27840);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "name", "preview_recordButton");
     			attr_dev(button0, "id", "preview_recordButton");
     			attr_dev(button0, "class", "btn btn-light py-0");
     			attr_dev(button0, "aria-label", button0_aria_label_value = "Click for " + /*areaLabelForPreviewRecordButton*/ ctx[3]);
-    			add_location(button0, file$1, 534, 24, 26690);
+    			add_location(button0, file$1, 558, 24, 27426);
     			attr_dev(span2, "class", "icomoon-24px-autoplay-4 position-relative top1");
     			attr_dev(span2, "data-bs-toggle", "tooltip");
     			attr_dev(span2, "data-bs-placement", "top");
     			attr_dev(span2, "title", "Play Audio");
     			attr_dev(span2, "id", "stopButtonTooltip");
     			attr_dev(span2, "name", "stopButtonTooltip");
-    			add_location(span2, file$1, 553, 28, 27880);
+    			add_location(span2, file$1, 577, 28, 28616);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "name", "preview_stopButton");
     			attr_dev(button1, "id", "preview_stopButton");
     			button1.disabled = button1_disabled_value = /*state*/ ctx[4].disabled;
     			attr_dev(button1, "class", "btn btn-light py-0");
     			attr_dev(button1, "aria-label", button1_aria_label_value = "Click for " + /*areaLabelForPreviewStopButton*/ ctx[1]);
-    			add_location(button1, file$1, 544, 24, 27418);
+    			add_location(button1, file$1, 568, 24, 28154);
     			attr_dev(span3, "class", "icomoon-new-24px-reset-1 position-relative top1");
     			attr_dev(span3, "data-bs-toggle", "tooltip");
     			attr_dev(span3, "data-placement", "top");
     			attr_dev(span3, "title", "Reset Data");
-    			add_location(span3, file$1, 568, 28, 28813);
+    			add_location(span3, file$1, 592, 28, 29549);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "name", "resetButton");
     			attr_dev(button2, "id", "resetButton");
@@ -4478,18 +4478,18 @@ var app = (function () {
     			attr_dev(button2, "data-bs-target", "#preview_confirm_modal");
     			attr_dev(button2, "data-target", "#preview_confirm_modal");
     			attr_dev(button2, "aria-label", "Click on this button for override the previous recording");
-    			add_location(button2, file$1, 555, 24, 28123);
+    			add_location(button2, file$1, 579, 24, 28859);
     			attr_dev(div6, "id", "controls_container");
 
     			attr_dev(div6, "class", div6_class_value = "bg-light text-center w-100 p-2 " + (/*state*/ ctx[4].pointerEvents == "none"
     			? "pointerEventOff"
     			: "pointerEventOn"));
 
-    			add_location(div6, file$1, 533, 20, 26525);
+    			add_location(div6, file$1, 557, 20, 27261);
     			attr_dev(div7, "class", "border rounded shadow-sm");
-    			add_location(div7, file$1, 522, 16, 25398);
+    			add_location(div7, file$1, 546, 16, 26134);
     			attr_dev(div8, "class", "col-12 col-md-8 offset-md-2");
-    			add_location(div8, file$1, 521, 12, 25340);
+    			add_location(div8, file$1, 545, 12, 26076);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -4591,14 +4591,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(509:8) {:else}",
+    		source: "(533:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (479:8) {#if isReview}
+    // (503:8) {#if isReview}
     function create_if_block$1(ctx) {
     	let t0;
     	let div;
@@ -4625,11 +4625,11 @@ var app = (function () {
     			t2 = space();
     			t3 = text(t3_value);
     			attr_dev(b, "class", "noteColor bolder");
-    			add_location(b, file$1, 505, 16, 24410);
+    			add_location(b, file$1, 529, 16, 25146);
     			attr_dev(div, "class", "col-12 pb-3");
     			attr_dev(div, "tabindex", "0");
     			attr_dev(div, "aria-label", "matching is case insensitive");
-    			add_location(div, file$1, 504, 12, 24313);
+    			add_location(div, file$1, 528, 12, 25049);
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
@@ -4663,14 +4663,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(479:8) {#if isReview}",
+    		source: "(503:8) {#if isReview}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (516:12) {#if state.showTranscript == true}
+    // (540:12) {#if state.showTranscript == true}
     function create_if_block_2(ctx) {
     	let div1;
     	let div0;
@@ -4690,10 +4690,10 @@ var app = (function () {
     			b.textContent = `${l.spoken_label}`;
     			t1 = space();
     			textarea = element("textarea");
-    			add_location(b, file$1, 517, 62, 24961);
+    			add_location(b, file$1, 541, 62, 25697);
     			attr_dev(label, "for", "preview_show_transcript");
-    			add_location(label, file$1, 517, 25, 24924);
-    			add_location(div0, file$1, 517, 20, 24919);
+    			add_location(label, file$1, 541, 25, 25660);
+    			add_location(div0, file$1, 541, 20, 25655);
     			attr_dev(textarea, "id", "preview_show_transcript");
     			attr_dev(textarea, "name", "preview_show_transcript");
     			attr_dev(textarea, "class", "w-100 form-control");
@@ -4706,9 +4706,9 @@ var app = (function () {
     			? /*state*/ ctx[4].cdata.trim()
     			: "Nothing"));
 
-    			add_location(textarea, file$1, 518, 20, 25019);
+    			add_location(textarea, file$1, 542, 20, 25755);
     			attr_dev(div1, "class", "col-12 pb-3");
-    			add_location(div1, file$1, 516, 16, 24873);
+    			add_location(div1, file$1, 540, 16, 25609);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -4738,14 +4738,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(516:12) {#if state.showTranscript == true}",
+    		source: "(540:12) {#if state.showTranscript == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (492:12) {:else}
+    // (516:12) {:else}
     function create_else_block(ctx) {
     	let div;
     	let textarea;
@@ -4773,9 +4773,9 @@ var app = (function () {
     			? "Correct"
     			: "Incorrect"));
 
-    			add_location(textarea, file$1, 493, 20, 23656);
+    			add_location(textarea, file$1, 517, 20, 24392);
     			attr_dev(div, "class", "col-12 py-3");
-    			add_location(div, file$1, 492, 16, 23610);
+    			add_location(div, file$1, 516, 16, 24346);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4807,14 +4807,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(492:12) {:else}",
+    		source: "(516:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (480:12) {#if answer_status != true}
+    // (504:12) {#if answer_status != true}
     function create_if_block_1(ctx) {
     	let div;
     	let textarea;
@@ -4833,9 +4833,9 @@ var app = (function () {
     			textarea.readOnly = "readonly";
     			attr_dev(textarea, "tabindex", "0");
     			attr_dev(textarea, "aria-label", textarea_aria_label_value = "correct Answer is " + /*state*/ ctx[4].correctAns);
-    			add_location(textarea, file$1, 481, 20, 23115);
+    			add_location(textarea, file$1, 505, 20, 23851);
     			attr_dev(div, "class", "col-12 py-3");
-    			add_location(div, file$1, 480, 16, 23069);
+    			add_location(div, file$1, 504, 16, 23805);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4859,7 +4859,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(480:12) {#if answer_status != true}",
+    		source: "(504:12) {#if answer_status != true}",
     		ctx
     	});
 
@@ -4942,54 +4942,54 @@ var app = (function () {
     			button2 = element("button");
     			button2.textContent = `${l.yes_label}`;
     			attr_dev(div0, "class", "row");
-    			add_location(div0, file$1, 477, 4, 22972);
+    			add_location(div0, file$1, 501, 4, 23708);
     			attr_dev(div1, "id", "preview_container");
     			attr_dev(div1, "class", "container");
-    			add_location(div1, file$1, 469, 0, 22680);
+    			add_location(div1, file$1, 493, 0, 23416);
     			attr_dev(h4, "class", "modal-title tokenfield");
     			attr_dev(h4, "aria-label", "Confirmation Dialog box");
     			attr_dev(h4, "tabindex", "0");
-    			add_location(h4, file$1, 581, 20, 29356);
+    			add_location(h4, file$1, 605, 20, 30092);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "close");
     			attr_dev(button0, "data-bs-dismiss", "modal");
     			attr_dev(button0, "data-dismiss", "modal");
     			attr_dev(button0, "tabindex", "0");
     			attr_dev(button0, "aria-label", "Click on this button for close the confirmation dialog box");
-    			add_location(button0, file$1, 582, 20, 29484);
+    			add_location(button0, file$1, 606, 20, 30220);
     			attr_dev(div2, "class", "modal-header");
-    			add_location(div2, file$1, 580, 16, 29309);
+    			add_location(div2, file$1, 604, 16, 30045);
     			attr_dev(div3, "class", "modal-body tokenfield");
     			attr_dev(div3, "tabindex", "0");
     			attr_dev(div3, "aria-label", /*areaLabelForPreviewModalContent*/ ctx[2]);
     			attr_dev(div3, "id", "previewDialogBody");
     			attr_dev(div3, "name", "previewDialogBody");
-    			add_location(div3, file$1, 584, 16, 29706);
+    			add_location(div3, file$1, 608, 16, 30442);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "preview_dismiss_modal btn btn-light pr-2");
     			attr_dev(button1, "data-bs-dismiss", "modal");
     			attr_dev(button1, "data-dismiss", "modal");
     			attr_dev(button1, "tabindex", "0");
     			attr_dev(button1, "aria-label", "Click on this button for neglecte to override previous recording");
-    			add_location(button1, file$1, 588, 20, 29969);
+    			add_location(button1, file$1, 612, 20, 30705);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "class", "preview_dismiss_done btn btn-primary");
     			attr_dev(button2, "data-bs-dismiss", "modal");
     			attr_dev(button2, "data-dismiss", "modal");
     			attr_dev(button2, "tabindex", "0");
     			attr_dev(button2, "aria-label", "Click on this button for override the previous recording");
-    			add_location(button2, file$1, 589, 20, 30243);
+    			add_location(button2, file$1, 613, 20, 30979);
     			attr_dev(div4, "class", "modal-footer");
-    			add_location(div4, file$1, 587, 16, 29922);
+    			add_location(div4, file$1, 611, 16, 30658);
     			attr_dev(div5, "class", "modal-content");
-    			add_location(div5, file$1, 579, 12, 29265);
+    			add_location(div5, file$1, 603, 12, 30001);
     			attr_dev(div6, "class", "modal-dialog modal-md modal-dialog-centered");
-    			add_location(div6, file$1, 578, 8, 29195);
+    			add_location(div6, file$1, 602, 8, 29931);
     			attr_dev(div7, "class", "modal fade");
     			attr_dev(div7, "id", "preview_confirm_modal");
-    			add_location(div7, file$1, 577, 4, 29135);
+    			add_location(div7, file$1, 601, 4, 29871);
     			attr_dev(div8, "class", "preview_modal_container container");
-    			add_location(div8, file$1, 576, 0, 29083);
+    			add_location(div8, file$1, 600, 0, 29819);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5113,6 +5113,27 @@ var app = (function () {
 
     	// Called once throughout the programm execution
     	onMount(() => {
+    		///////////////  For ADA //////////////
+    		AH.listen("#controls_container", "keydown", "#preview_recordButton", function (_this, e) {
+    			if (e.which === 13) {
+    				startRecording();
+    			}
+    		});
+
+    		AH.listen("#controls_container", "keydown", "#preview_stopButton", function (_this, e) {
+    			if (e.which === 13) {
+    				console.log("checking....");
+    				playRecording();
+    				AH.find("#controls_container", "#preview_stopButton").style.disabled = state.disabled;
+    			}
+    		});
+
+    		AH.listen("#controls_container", "keydown", "#resetButton", function (_this, e) {
+    			if (e.which === 13) {
+    				setData();
+    			}
+    		});
+
     		if (!(window.webkitSpeechRecognition || window.SpeechRecognition)) {
     			// shows the warning message that your browser does not support the speechRecognition
     			AH.alert(l.browser_support_msg);
