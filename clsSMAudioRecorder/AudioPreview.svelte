@@ -342,7 +342,7 @@
                     // clears the timeout which is started when recording stared
                     clearTimeout(previewManageTimer);
                     // shows message that recording ended
-                    AH.alert(l.recording_ended);
+                    AH.showmsg(l.recording_ended,3000);
                     // handles with gif of recording and play and icon of record button
                     manageStopStatus();
                     // shows the initial state image of the audio container

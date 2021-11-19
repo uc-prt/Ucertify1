@@ -199,9 +199,6 @@
 					state.loaditem = parseInt(editorUrl.get('content_subtype'));
 				}
 			}
-			if (ajaxRes['domains'] && editorUrl.get('from_myproject') == "1") {
-				window.is_domain = Object.keys(ajaxRes['domains']).length > 0 ? 1 : 0;
-			}
 			
 			
 			//if (ajaxRes['user']) state._user = ajaxRes['user'];
@@ -213,6 +210,11 @@
 				subtype = parseInt(ajaxData.content_subtype);
 				state.content_icon = ajaxData.content_icon;
 				state.loaditem = parseInt(ajaxData.content_subtype);
+			}
+
+			if(ajaxRes?.coverage_data && Object.keys(JSON.parse(ajaxRes.coverage_data)).length > 0){
+				window.is_domain = 1;
+				window.domains = JSON.parse(ajaxRes.coverage_data);
 			}
 		}
 	}

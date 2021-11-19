@@ -8,9 +8,22 @@
 -->
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { AH } from './HelperAI.svelte';
     export let reviewMode = false;
     export let handleReviewClick;
     export let customReviewMode;
+    
+    AH.listen('body','keydown','.smControlerBtn .correct-ans',function(_this,e) {
+        if(e.which === 13) {
+            _this.click();
+        }
+    })
+    AH.listen('body','keydown','.smControlerBtn .your-ans',function(_this,e) {
+        if(e.which === 13) {
+            _this.click();
+        }
+    })
+
     const dispatch = createEventDispatcher();
     function handleSmClick(event) {
         document.querySelectorAll('.smControlerBtn button').forEach((el)=> el.classList.remove('active'));

@@ -596,6 +596,7 @@ export function tag_player(obj) {
         switch (type) {
             case 'quiz':
                 var quiz_attr = '';
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('quick_feedback')) {
                     quiz_attr = '&quick_feedback=1';
                 }
@@ -950,6 +951,7 @@ export function tag_player(obj) {
                 self = _this;
                 let web_count = 0;
                 web_count += 1;
+                _this.classList.add('w-100');
                 if (asset != '') {
                     AH.ajax({
                         url: baseUrl + 'index.php',

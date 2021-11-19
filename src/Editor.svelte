@@ -1017,11 +1017,11 @@ function initEditorListeners() {
 		swapPanel(_this);
 	});
 
-	AH.listen(document, 'click', '#preview player', (_this)=> {
-		if (_this.getAttribute('type') != 'exhibit') {
-			renderPlayer();
-		}
-	});
+	// AH.listen(document, 'click', '#preview player', (_this)=> {
+	// 	if (_this.getAttribute('type') != 'exhibit') {
+	// 		renderPlayer();
+	// 	}
+	// });
 
 	AH.listen(document, 'click', '.panel-controls__duplicate', (_this)=> {
 		let _this_section = _this.closest('.uc_step');
