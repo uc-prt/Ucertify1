@@ -1410,6 +1410,7 @@ var evalInline = {
             },
         }).then(function(res) {
 			AH.activate(0);
+            res = JSON.parse(res);
 			var out = res.output ? res.output : res.stderr ? res.stderr : 'Your code didn\'t print anything...';
 			AH.selectAll('#frameDiv' + id,'html','<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>' + out + '</div>');
 			AH.selectAll('#runBtn' + id, 'attr', {'disabled': false});
