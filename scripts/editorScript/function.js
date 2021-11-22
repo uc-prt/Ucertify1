@@ -1014,13 +1014,13 @@ function createSimulationHtml(config, default_action, correct_ans, embed, self, 
             if (!self.getAttribute('try_me') && self.getAttribute('try_me') != 'inline') {
                 var tryMeBtn = self.getAttribute('custum-btn') ? '' : '<p tabindex="0" class="try-me-s">Click to see me in action</p>';
                 
-				const childrens = self.children || [];
-				for(let child of childrens){
-					child.innerHTML = '<a tabindex="' + tabindex.n + '" href="' + lab_url + '&nozoom=1" style="position:relative;display:inline-block;" onclick="return open_single_lab(this)">' + child.innerHTML + '</a>';
-					child.querySelector('a').insertAdjacentHTML('afterbegin', tryMeBtn);
-				}
+                self.insertAdjacentHTML(
+                    'afterbegin', 
+                    `<a tabindex="0" href="${lab_url}&nozoom=1" style="position:relative;display:inline-block;">${tryMeBtn}</a>`);
                 
-				self.querySelector('img').classList.add('noImgModal');
+                if(self.querySelector('img')){
+                    self.querySelector('img').classList.add('noImgModal');
+                }
             }
         }
     } else if (self.getAttribute('guids') && self.getAttribute('guids') != '') {
@@ -1578,4 +1578,38 @@ function autoResize (e) {
     } catch (e) {
         activate(0), console.warn('Error in function autoResize', e);
     }
+}
+
+function makeModal (modalId, modalTitle, modalBody, modalFooter = '', modalClass = '') {
+    return`
+    <div class="modal ${modalClass}" id=${modalId} tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                ${modalTitle?`<div class="modal-header">
+                    <h5 class="modal-title">${modalTitle}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>`: ''}
+                <div class="modal-body">
+                    <p>${modalBody}</p>
+                </div>
+                ${modalFooter? `<div class="moda-footer">${modalFooter}</div>`:''}
+            </div>
+        </div>
+    </div>
+    `
+}
+function bindSql(lab_url, player_id) {
+    AH.activate(1);
+    const sqlPlayer = AH.selectAll('#sql'+player_id);
+    if(sqlPlayer.length == 0){
+        const modalBody = `<div class="row-fluid" style="overflow:auto;height:400px;"><iframe id="sqlEditor" frameborder="0" src="${lab_url}" style="height:400px;width:100%;"></iframe></div>`;
+        const m1 = makeModal('sql'+player_id, 'SQL Editor', modalBody, '');
+        document.body.insertAdjacentHTML('beforeend', m1);
+    }
+    var myModal = new bootstrap.Modal(document.getElementById('sql'+player_id), {
+        keyboard: false,
+        focus: true
+    });
+    myModal.show();
+    AH.activate(0);
 }

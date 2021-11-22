@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { Textfield } from 'svelte-mui/src';
+import Button from 'svelte-mui/src/Button.svelte';
     import { AH } from '../helper/HelperAI.svelte';
     export let playerState;
     export let oldValue;
@@ -215,7 +216,9 @@
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
     });
-    </script>
+$:console.log(playerState);
+$:console.log(prevValueOption);
+</script>
     <div>
         {#if playerState.category == "knowledge_check"}
             <div class="knowledge_check_tag" key="tag_quiz">
@@ -506,7 +509,6 @@
                         value={playerState?.prevValue?.asset || ""}
                         placeholder={l.media_url}
                         label={l.url_txt}
-                        on:change={playerState.type == 'video' ? (e)=>{setVideoAsset('asset', e.target.value)} : null}
                         disabled={(playerState.security && playerState.type == 'video') ? true : false}
                     />
                 </div>
@@ -521,7 +523,7 @@
                                     fullWidth="true"
                                     label={l.transcript_id}
                                     placeholder={l.enter_id}
-                                    on:change={playerState.type == 'video' ? (e)=>{setVideoAsset('guid', e.target.value)} : null}
+                                    value="{playerState?.prevValue?.group_guids || ''}"
                                     disabled={(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? true : false}
                                 />
                             </div>
@@ -542,7 +544,7 @@
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
-                                value={prevValueOption?.preview || ""}
+                                value={playerState?.prevValue?.preview || ""}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
                                 disabled={playerState.security || playerState.intervals}

@@ -8654,3 +8654,41 @@ i.mce-ico.mce-i-mytextwithicon::before {
 #preview .uc_step_explanation .uc_step {
   padding: 10px 0;
 }
+
+
+.term_container {
+    float: right;
+    width: 20px;
+}
+
+#item_answer .UC_TERMINAL #terminal_font, .UC_TERMINAL #terminal_font {
+  position: fixed;
+  z-index: 200;
+}
+#terminal_font{
+  font-size: 12px;
+  color: black;
+  transition: all .6s;
+  cursor: pointer;
+  background: #ccc;
+  height: 40px;
+  border-radius: 2px;
+  padding: 1px;
+}
+
+#terminal_font, #voice_btn {
+  position: absolute !important;
+}
+
+#terminal_font span {
+    display: flex;
+    padding: 2px;
+}
+
+.right5 {
+    right: 5px;
+}
+
+.bottom6 {
+    bottom: 6px;
+}

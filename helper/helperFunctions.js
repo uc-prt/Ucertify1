@@ -49,7 +49,7 @@ ITEMPLAYER.test = function (player, content_guid, player_id, asset, embed, no_of
         data: { 'func': 'start_test', 'player_id': content_guid + '_' + player_id, 'assignment_code': asset, 'is_player': 1, 'embed': embed, 'no_of_attempts': no_of_attempts, 'ajax': 1 },
     }).then((data) => {
         if (data) {
-            AH.insert(player, data, 'beforend');
+            AH.insert(player, data, 'beforeend');
         }
     });
 };
@@ -650,6 +650,8 @@ export function tag_player(obj) {
                 if (title != '') {
                     terminal_title_tag = '<div class="alert alert-info clearfix lab-title p-md">' + title + '</div>';
                 }
+                
+                _this.classList.add('w-100');
                 switch (terminalType) {
                     case 'java':
                     case 'php':
@@ -862,7 +864,7 @@ export function tag_player(obj) {
                 break;
             case 'annotation':
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + asset + '_' + player_id + '&group_guid=' + asset + '&image_annotation=1';
-                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + asset + '_' + player_id + ' id=' + asset + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id,1)\' allowfullscreen title=\'' + player_title + '\'></iframe>', 'beforend');
+                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + asset + '_' + player_id + ' id=' + asset + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id,1)\' allowfullscreen title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
                 break;
             case 'exhibit':
@@ -968,6 +970,7 @@ export function tag_player(obj) {
                 }
                 break;
             case 'video':
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('security')) {
                     wguVideoPlayer(_this, player_title);
                     player_id++;
@@ -1009,7 +1012,7 @@ export function tag_player(obj) {
                     }
                 }
                 if (sub_type == '' && (asset.indexOf('jigyaasa.info') > -1 || asset.indexOf('ucertify.com') > -1)) {
-                    AH.insert(_this, video_title_tag + '<center><div class="bg-black ml-md"><video class="outline0" controls name="media"><source src="' + asset + '" type="video/mp4"></video></div></center>', 'beforend');
+                    AH.insert(_this, video_title_tag + '<center><div class="bg-black ml-md"><video class="outline0" controls name="media"><source src="' + asset + '" type="video/mp4"></video></div></center>', 'beforeend');
                 } else if (sub_type == 'video_plus') {
                     if (!preview_image || preview_image == '') {
                         preview_image = asset.replace(extension, 'png');
@@ -1041,8 +1044,8 @@ export function tag_player(obj) {
                         vtt_preview_html = '';
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
-                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
-                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
+                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="lazy" class="w-100"></iframe></center>';
+                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'beforeend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
                     AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
@@ -1075,13 +1078,14 @@ export function tag_player(obj) {
                         if (AH.selectAll('#video_player_' + player_id).length > 0) {
                             new_player_id = player_id + Math.floor(Math.random() * 90 + 10);
                         }
-                        AH.insert(_this, video_title_tag + '<center><div tabindex="' + tabindex.z + '" title="Video" class="video_preview" id="video_player_' + new_player_id + '" embed=1 style="position:relative;display:inline-block;min-width:500px;max-width:800px" asset="' + _full_url + asset + '"' + '><img title="' + video_alt + '" src="' + preview_image + '"/><span class="play-video-icon" style="position:absolute;cursor:pointer;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;" ></span></div></center>', 'afterbegin');
+                        AH.insert(_this, video_title_tag + '<center><video class="outline0" controls name="media"  id="video_player_' + new_player_id + '" poster="'+preview_image+'"><source src="' + _full_url + asset + '" type="video/mp4"></video></center>', 'afterbegin');
                     }
                 }
                 AH.find(_this, `[titleid="${player_id}"]`, { action: 'html', actionData: title })
                 player_id++;
                 break;
             case 'audio':
+                _this.classList.add('w-100');
                 var audio_title_tag = '';
                 if (title != '') {
                     audio_title_tag = '<div class="mb-xl alert alert-info lab-title p-xl"><span class="icomoon-play-3 mr"></span>' + title;
@@ -1089,7 +1093,7 @@ export function tag_player(obj) {
                 if (!is_full_url) {
                     asset = '//s3.amazonaws.com/jigyaasa_content_stream/' + asset;
                 }
-                AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 m-b-xxs"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforend');
+                AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 mb-1"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforeend');
                 break;
             case 'pdf':
                 var pdf_url, download_html, des_css = (description == '') ? { 'display': 'none' } : { 'display': 'block', 'margin': '0' };
@@ -1129,7 +1133,7 @@ export function tag_player(obj) {
                     frame_width = (sub_type == 'embed' || embed == 'inline') ? '100%' : getPlayerAttrVal(_this, 'width');
                 if (sub_type == 'embed' || embed == 'inline') {
                     frame_height = (frame_height == '') ? '500px' : frame_height;
-                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforend');
+                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
                     weblinkHeight = frame_height.replace(/px|%/g, '');
                     document.addEventListener('fullscreenchange', exitHandler);
                     document.addEventListener('webkitfullscreenchange', exitHandler);
@@ -1176,7 +1180,7 @@ export function tag_player(obj) {
                 var tag_href = 'https://wgu.idm.oclc.org/login?&url=' + tag_url + '&amp;w=640&amp;h=360&amp;fWidth=660&amp;fHeight=410';
                 var msg = '<div class="alert alert-info clearfix"><b>Error in displaying video?</b> Please click on SHOW VIDEO button to open the video in new tab.';
                 msg += '<a class="btn btn-primary float-right" href="' + tag_href + '" target="_blank">Show Video</a></div>';
-                AH.insert(_this, msg + frame, 'beforend');
+                AH.insert(_this, msg + frame, 'beforeend');
                 player_id++;
                 break;
             case 'object3d':
@@ -1193,7 +1197,7 @@ export function tag_player(obj) {
                 } else {
                     tag_html = '<div class="alert alert-info clearfix p-md">' + title + '<a tabindex="' + tabindex.z + '" class="btn btn-primary float-right open-3d-object" title="' + title + '">3D View</a></div>';
                 }
-                AH.insert(_this, tag_html, 'beforend');
+                AH.insert(_this, tag_html, 'beforeend');
                 player_id++;
                 break;
             case 'math features':
@@ -1241,7 +1245,7 @@ export function tag_player(obj) {
                     '<span class="icomoon-close relative closing_btn pointer"style =' + subtypeContainer[sub_type]['close_style'] + ' data-bs-toggle="tooltip" title="Click to close!"></span>' +
                     '<img id="img_drag" data-bs-toggle="tooltip" title="Drag to measure!" class=' + subtypeContainer[sub_type]['img_class'] + ' style="max-width:none;' + subtypeContainer[sub_type]['style'] + '" src="' + themeUrl + 'foundation/css/images/' + subtypeContainer[sub_type]['link'] + '"></img>' +
                     '</div></div></div>';
-                AH.insert(_this, math_tools, 'beforend');
+                AH.insert(_this, math_tools, 'beforeend');
                 if (typeof (rotatable) == 'undefined') {
                     AH.getJSON(baseThemeUrl + 'ux/js/jquery.ui.rotatable.js').then(function () {
                         //JS('#math_target').rotatable();
@@ -1277,6 +1281,7 @@ export function tag_player(obj) {
                 player_id++;
                 break;
             case 'lablink':
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('labguid')) {
                     asset = _this.getAttribute('labguid');
                 }
@@ -1299,7 +1304,7 @@ export function tag_player(obj) {
                         alt = 'Preview of the ' + _this.getAttribute('title') + ' video';
                     }
                 }
-                AH.insert(_this, '<center><div tabindex="' + tabindex.z + '" class="integrate" style="position:relative;display:inline-block;min-width:500px;max-width:800px;cursor:pointer" asset="' + asset + '" title="' + title + '"><img class="noImgModal" alt="' + alt + '" title="Click to play video" src="' + DOWNLOAD_IMAGE_URL + preview_image + '"/><span class="play-video-icon" style="position:absolute;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;"></span></div></center>', 'beforend');
+                AH.insert(_this, '<center><div tabindex="' + tabindex.z + '" class="integrate" style="position:relative;display:inline-block;min-width:500px;max-width:800px;cursor:pointer" asset="' + asset + '" title="' + title + '"><img class="noImgModal" alt="' + alt + '" title="Click to play video" src="' + DOWNLOAD_IMAGE_URL + preview_image + '"/><span class="play-video-icon" style="position:absolute;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;"></span></div></center>', 'beforeend');
 
                 if (_this.hasAttribute('display')) {
                     AH.selectAll(_this.querySelectorAll('.integrate'), 'addClass', _this.getAttribute('display'));
@@ -1478,14 +1483,14 @@ export function tag_player(obj) {
                     iframe_src = baseUrl + 'utils/brain_games/' + game + '/index.php';
                     tag_html = '<iframe tabindex=\'' + tabindex.z + '\' title=\'' + player_title + ' \'class=\'quiz_player brain_games\'  name=\'brain_game' + player_id + '\' id=\'brain_game' + player_id + '\' src=\'' + iframe_src + '\'  onLoad=\'window.parent.autoResize(this.id)\'></iframe>';
                 }
-                AH.insert(_this, tag_html, 'beforend');
+                AH.insert(_this, tag_html, 'beforeend');
                 player_id++;
                 break;
             case 'plugin':
                 tag_div = '<div class="alert alert-info clearfix p-md" plugin-cmp-id="' + player_id + '" player-asset="' + asset + '"><span style="line-height:34px;">' + title;
                 tag_div += '</span><a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right open-plugin-component\'>Open</a></div>';
                 if (AH.selectAll('[plugin-cmp-id="' + player_id + '"]').length == 0) {
-                    AH.insert(_this, tag_div, 'beforend');
+                    AH.insert(_this, tag_div, 'beforeend');
                 }
                 player_id++;
                 break;
@@ -1524,7 +1529,7 @@ export function tag_player(obj) {
                 card_url = 'open_test(\'' + card_url + '\')';
                 card_url = 'onclick="' + card_url + '"';
                 tag_div += '<a tabindex=\'' + tabindex.z + '\' ' + card_url + ' class=\'btn btn-primary card_player\'>' + link_text + '</a></div>';
-                AH.insert(_this, tag_div, 'beforend');
+                AH.insert(_this, tag_div, 'beforeend');
                 player_id++;
                 break;
             case 'live_lab':
@@ -1537,7 +1542,7 @@ export function tag_player(obj) {
                 break;
             default:
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
-                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforend');
+                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
                 break;
         }
