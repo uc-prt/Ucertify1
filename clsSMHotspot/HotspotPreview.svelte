@@ -125,43 +125,31 @@
 			}
 
 			switch (e.which) {
-				case 37:    //left arrow key
-					// $(".target0").finish().animate({
-					// 	left: "-=2"
-					// });
+				case 37: 
 					window.scroll({
 						left: "-=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 38:    //up arrow key
-					// $(".target0").finish().animate({
-					// 	top: "-=2"
-					// });
+				case 38:  
 					window.scroll({
 						top: "-=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 39:    //right arrow key
-					// $(".target0").finish().animate({
-					// 	left: "+=2"
-					// });
+				case 39: 
 					window.scroll({
 						left: "+=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 40:    //bottom arrow key
-					// $(".target0").finish().animate({
-					// 	top: "+=2"
-					// });
+				case 40:   
 					window.scroll({
 						top: "+=2",
 						behavior: 'smooth'  
           			});
 					break;
-					case 13:    //Press Enter key Set Answer
+				case 13:    //Press Enter key Set Answer
 					checkAnswer();
 					break;
 			}		
