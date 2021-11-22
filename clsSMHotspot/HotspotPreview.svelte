@@ -1,5 +1,5 @@
 <script>
-	import { onMount, beforeUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import hotspotScript from './hotspotScript.js';
 	import DooScribPlugin from './hotspotDrawingScript.js';
 	import { XMLToJSON, onUserAnsChange, AH } from '../helper/HelperAI.svelte';
@@ -38,8 +38,6 @@
 	let itemAreaHeight = '';
 	let itemAreaWidth = '';
 	let itemAreaLeft = '';
-	let targetLeft 		= 100;
-	let targetTop 		= 100;
 	let targetView      = "none";
 	let ans_x 			= 0;
 	let ans_y 			= 0;
