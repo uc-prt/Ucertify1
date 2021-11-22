@@ -290,7 +290,7 @@
 		let result = {}; 
 		if (typeName == 'textclick' || typeName == 'textselect') {
 			result = HotJS.check_Ans('#previewArea #hptmain0');
-			answerStatus = result.status;
+			answerStatus = result.ans;
 		} else {
 			result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
 			isUxmlTarget = true;
