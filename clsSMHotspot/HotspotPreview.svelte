@@ -47,8 +47,6 @@
 	let ans_w 			= 0;
 	let type			= "";
 	let img_url 		= "";
-	let manual_grade 	= 0;
-	let onError			= null; 
 	let item_type       = "";
 	let xmlHeight       = 0;
 	let xmlWidth        = 0;
@@ -116,11 +114,7 @@
 		}
 
 		AH.listen('#previewArea','keydown','#im0', function(_this,e) {
-			let result;
-			console.log('click....');
 			if (e.which === 13) {
-				//movetarget(e,document.getElementById('hptmain0').getElementsByClassName('target')[0],document.getElementById('hptmain0').getElementsByClassName('hotArea')[0]);	
-				//movetarget(e, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
 				checkAnswer(e);
 			}
 
