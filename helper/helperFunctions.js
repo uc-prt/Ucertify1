@@ -54,7 +54,7 @@ ITEMPLAYER.test = function (player, content_guid, player_id, asset, embed, no_of
     });
 };
 
-ITEMPLAYER.stepplayer = function () { };
+
 export const ucTimeline = {
     inViewport: function (element, detectPartial) {
         element = JS(element);
@@ -978,7 +978,7 @@ export function tag_player(obj) {
                 }
                 if (_this.hasAttribute('stepcaptions')) {
                     intervals = getPlayerAttrVal(_this, 'intervals');
-                    ITEMPLAYER.stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
+                    stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
                     player_id++;
                     break;
                 }
@@ -1272,7 +1272,7 @@ export function tag_player(obj) {
                 if (_this.hasAttribute('stepcaptions')) {
                     stepcaptions = _this.getAttribute('stepcaptions');
                 }
-                ITEMPLAYER.stepplayer(_this, asset, title, intervals, stepcaptions);
+                stepplayer(_this, asset, title, intervals, stepcaptions);
                 player_id++;
                 break;
             case 'toggleoutput':
@@ -1872,4 +1872,392 @@ export function ajaxContentUpdate(config) {
     //         }
     //     }
     // }
+}
+
+const playerTagConst = {
+    setTimeOut: 1000,
+    setTimeOutFive: 500,
+    effectValue: 1500,
+    setTimeOutTwo: 200,
+    coordinateX: 250,
+    straightAngle: 180,
+    straightAngleDouble: 180.0,
+    frameWidth: 100,
+    arrayValue: 2,
+    loaderOffset: 3,
+    substrValue: 4,
+    playerAttrAsset: 7,
+    playerAttrAssetValue: 8,
+    cmpAssetLength: 5,
+    matchIndex: 7,
+    playerAttrCmp: 11,
+    compaireKeyCode: 13,
+    cmpscrollheight: 115,
+    scrollheighttrue: 50,
+    scrollheightfalse: 95,
+    y1Value: 350,
+    c1Value: 400,
+    c2Value: 350,
+    sliceValue: 6,
+    x1Value: 300,
+    c1cmpValue: 600,
+    y1Axis: 150,
+    xinside: 27,
+    yinside: 20,
+    charcode: 176,
+    lleftValue: 40,
+    zifalse: 1060,
+    windowheight: 0.3,
+    cssWidth: 10
+};
+function stepplayergenerate(mod, stepcaptions, intervals) {
+    if (document.getElementById('stepplayer' + mod) != null) {
+        var video = document.getElementById('vid' + mod);
+        function checkLoad() {
+            if (video.readyState === playerTagConst.substrValue) {
+                var duration = Math.floor(video.duration);
+                var imagecounter = '';
+                var intervalArray, i, perTime;
+                if (intervals != undefined && intervals != '') {
+                    var intervalArrayOld = intervals.split(',');
+                    intervalArray = [];
+                    intervalArrayOld.forEach((num) => {
+                        if (intervalArray.indexOf(num) == -1) {
+                            intervalArray.push(num);
+                        }
+                    });
+                } else {
+                    var limit = 4;
+                    intervalArray = [];
+                    for (i = 1; i <= limit; i++) {
+                        perTime = Math.floor((duration / limit) * (parseInt(i) - 1));
+                        intervalArray.push(perTime);
+                    }
+                }
+                var stepcaptions_array = [];
+                if (stepcaptions != undefined && stepcaptions != '') {
+                    stepcaptions_array = stepcaptions.split('###');
+                }
+                for (i = 0; i < intervalArray.length; i++) {
+                    perTime = intervalArray[i];
+                    var scaption =
+                        stepcaptions_array[i] != undefined ? stepcaptions_array[i] : '';
+                    imagecounter =
+                        imagecounter +
+                        '<button type="button" data-caption="' +
+                        scaption +
+                        '" title="' +
+                        scaption +
+                        '" class="btn btn-outline-secondary interval_btn imgnums imgbtn_' +
+                        i +
+                        (i > playerTagConst.arrayValue ? ' h' : '') +
+                        '" data-time=' +
+                        perTime +
+                        ' data-rel=' +
+                        i +
+                        ' >' +
+                        (parseInt(i) + 1) +
+                        '</button>';
+                }
+
+                imagecounter =
+                    '<div class="btn-group col-lg-12 col-md-12 col-sm-12 m-0 p-0"><div class="btn-group" id="pageScroll" style="overflow:hidden;"><button type="button" class="btn btn-outline-secondary imgnums prevbtn navtools" title="Previous Frame" rel="tooltip" disabled="disabled">&#171;</button>' +
+                    imagecounter +
+                    '<button type="button" class="btn btn-outline-secondary imgnums nextbtn navtools"  title="Next Frame" rel="tooltip">&#187;</button></div></div>';
+
+                document.querySelector('#stepplayer' + mod + ' .imagecounter').innerHTML = imagecounter;
+                document.querySelectorAll(`#stepplayer${mod} .interval_btn`).forEach((ele) => {
+                    ele.addEventListener('click', (self) => {
+                        moveToInterval(mod, self.currentTarget.getAttribute('data-time'));
+                    });
+                });
+                document.querySelector('.prevbtn').addEventListener('click', () => playerNavigation(mod, 0));
+                document.querySelector('.nextbtn').addEventListener('click', () => playerNavigation(mod, 1));
+                playerCheck(document.querySelector('#stepplayer' + mod + ' .imagecounter'));
+                video.addEventListener(
+                    'timeupdate',
+                    function () {
+                        var currentTime = Math.floor(video.currentTime);
+                        if (currentTime == 0) {
+                            playerReset(mod);
+                        }
+                        if (document.querySelectorAll('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime + '"]').length > 0) {
+                            document.querySelector('#stepplayer' + mod + ' .imgnums').classList.remove('active');
+                            document.querySelector('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime +'"]').classList.add('active');
+                            if (document.querySelector('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime +'"]').offsetWidth == 0) {
+                                playerNavigation(mod, 1);
+                            }
+                            var caption = document.querySelector('#stepplayer' + mod +' .imgnums[data-time="' + currentTime +'"]').getAttribute('data-caption');
+                            if (video.currentTime != 0) {
+                                document.querySelector('#stepplayer' + mod + ' .stepcaption').innerHTML = caption;
+                            }
+                        }
+                        if (video.currentTime == video.duration) {
+                            changeplaypausebtn(mod, 'play');
+                        }
+                    },
+                    false
+                );
+            } else {
+                setTimeout(checkLoad, playerTagConst.frameWidth);
+            }
+        }
+        checkLoad();
+    }
+}
+function playerNavigation(mod, next) {
+    let object = document.querySelector('#stepplayer' + mod + ' .imagecounter #pageScroll');
+    let current_visible = object.querySelectorAll('button:not(.navtools)')
+    let prevbtn = object.querySelector('.prevbtn');
+    let nextbtn = object.querySelector('.nextbtn');
+    current_visible.forEach((el) => {
+        el.classList.add('h');
+    });
+    if (next) {
+        current_visible.forEach(function(ele) {
+            ele.classList.remove('h');
+            if (ele.nextSibling.classList.contains('nextbtn')) {
+                nextbtn.setAttribute('disabled', 'disabled')
+            } else {
+                prevbtn.removeAttribute('disabled');
+            }
+        });
+    } else {
+        current_visible.forEach(function(ele) {
+            ele.classList.remove('h');
+            if (ele.previousSibling.classList.contains('prevbtn')) {
+                prevbtn.setAttribute('disabled', 'disabled')
+            } else {
+                nextbtn.removeAttribute('disabled');
+            }
+        });
+    }
+}
+function moveToInterval(mod, perTime) {
+    let video = document.getElementById('vid' + mod);
+    video.currentTime = perTime;
+    video.play();
+    changeplaypausebtn(mod, 'pause');
+}
+function playerCheck(object) {
+    if(object.querySelector('button:not(.navtools)').length <= 3) {
+        object.querySelector('.navtools').setAttribute('disabled', 'disabled');
+    } else {
+        object.querySelector('.nextbtn').removeAttribute('disabled');
+    }
+}
+function playerReset(mod) {
+    let object = document.querySelector('#stepplayer' + mod + ' .imagecounter #pageScroll');
+    let btns = object.querySelectorAll('button:not(.navtools)');
+    btns.forEach((el) => {
+        el.classList.add('h');
+    });
+    for (let index=0; index < 3 ; index++ ) {
+        if (btns[index] != undefined) {
+            btns[index].classList.remove('h');
+        }
+    }
+    playerCheck(object);
+}
+function changeplaypausebtn(mod, type) {
+    var playicon = 'icomoon-play-5';
+    var pauseicon = 'icomoon-pause-22';
+    if (type == 'play') {
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.remove(pauseicon);
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.add(playicon);
+    } else if (type == 'pause') { //NOSONAR
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.remove(playicon);
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.add(pauseicon);
+    }
+}
+function playpausevideo(mod, type) {
+    var video = document.getElementById('vid' + mod);
+    if (type == 'play') {
+        video.play();
+        changeplaypausebtn(mod, 'pause');
+    } else if (type == 'reset') { //NOSONAR
+        video.pause();
+        video.currentTime = 0;
+        changeplaypausebtn(mod, 'play');
+    }
+}
+function toggleFullScreen(ele, self, height) {
+    let btn = self.currentTarget.children;
+    if (fullHeightAllow) {
+        if (ele.requestFullscreen) {
+            ele.requestFullscreen();
+        } else if (ele.mozRequestFullScreen) {
+            ele.mozRequestFullScreen();
+        } else if (ele.webkitRequestFullscreen) {
+            ele.webkitRequestFullscreen();
+        } else if (ele.msRequestFullscreen) { //NOSONAR
+            ele.msRequestFullscreen();
+        }
+        ele.style.height = '100%';
+        btn[1].textContent = 'Revert';
+        btn[0].classList.add('icomoon-new-24px-collapse-1');
+        btn[0].classList.remove('icomoon-new-24px-expand-1');
+        fullHeightAllow = false;
+    } else {
+        fullHeightAllow = true;
+        ele.style.height = height;
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { //NOSONAR
+            document.msExitFullscreen();
+        }
+        btn[1].textContent = 'Full Screen';
+        btn[0].classList.remove('icomoon-new-24px-collapse-1');
+        btn[0].classList.add('icomoon-new-24px-expand-1');
+    }
+}
+function stepplayer(player, asset, title, intervals, stepcaptions, player_id) {
+    if (stepcaptions) {
+        stepcaptions = stepcaptions.replace(/\\(\W)/gm, '$1');
+    }
+    let a = document.querySelectorAll('.stepplayerhtml').length;
+    let newID = parseInt(a) + 1;
+
+    let settings_html =
+        '<div class="dropup settingDropDown float-start"> <span class="text-secondary icomoon-cog m-sm pointer" data-bs-toggle="dropdown" tabindex="0" aria-label="Settings" title="Settings" rel="tooltip"></span> <ul id="settingTabs" class="dropdown-menu font14 p-sm" role="menu"> <ul class="border-bottom margin-n-20 nav nav-pills"> <li class="nav-item ps-0"><a class="nav-link active" data-bs-toggle="tab" href="#ccmenu' +
+        newID +
+        '"><span class="icomoon-captions-1 s3 font-weight-bold" rel="tooltip" data-original-title="Caption"></span></a></li><li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#playback' +
+        newID +
+        '"><span class="icomoon-speed-1 s3 font-weight-bold" rel="tooltip" data-original-title="Speed"></span></a></li></ul> <div class="float-start m-t-n tab-content w-100"> <div class="float-start mt-1 tab-pane w-100 active show position-relative" style="bottom:47px;" id="ccmenu' +
+        newID +
+        '"> <ul class="float-start mt-1 ps-0 w-100" style="list-style-type: none;"> <li><a class="dropdown-item subtitles" data-mod="' +
+        newID +
+        '" data-value="0" tabindex="0">Off</a></li><li><a class="dropdown-item subtitles bg-l-grey font-weight-bold" data-mod="' +
+        newID +
+        '" data-value="1" tabindex="0">English</a></li></ul> </div><div class="float-start mt-1 tab-pane w-100 position-relative" style="bottom:47px;" id="playback' +
+        newID +
+        '"> <ul class="float-start margin-1 overflow-y-scroll ps-0 speedmenu w-100" style="list-style-type: none;max-height:65px;"></ul> </div></div></ul></div><div class="float-start ml-md pointer h-imp"><span class="text-secondary icomoon-expand stepplayer-fs" data-mod="' +
+        newID +
+        '" rel="tooltip" data-original-title="Full screen"></span></div>';
+
+    let download_html =
+        '<div class="card stepplayerhtml mx-auto" id="stepplayer' +
+        newID +
+        '" style="width:60%;min-height:400px;"><div class="card-header d-inline-flex"><div class="col-9 pt-2">' +
+        title +
+        '</div><button aria-label="Full Screen" type="button" class="btn btn-sm ml-auto stepplayer_fullscreen' +
+        player_id + 
+        ' outline2" title="Full Screen / Revert" rel="tooltip"><i class=" full-screen-btn-icon icomoon-new-24px-expand-1 font19 mt-tp mr-1 float-start"></i><small aria-hidden="true" class="toolbar-label font18 line_height1 align-bottom d-none d-lg-inline-block full-screen-btn-label" id="resize' +
+        newID +
+        '">Full Screen</small></button></div><div class="card-body position-relative"><div class="card-text text-center"> <video id="vid' +
+        newID +
+        '" style="max-width:100%;" oncontextmenu="return false;"> <source src="' +
+        asset +
+        '"/>Your browser does not support the video tag. </video><div class="stepcaption font15"></div></div></div><div class="card-footer"><div class="row col-12 m-0 p-0"> <div class="row col-12"><button class="float-start mr-md btn btn-info startbtn h" type="button" data-mod="' +
+        newID +
+        '" data-html="Start">Start</button></div><div class="stepplayercont row m-0 p-0 col-12"><div class="col-12 col-lg-10 col-md-9 col-sm-12 imagecounter p-0"></div><div class="col-lg-2 col-md-3 col-sm-12 float-end m-0 p-0"> <span class="float-start s4 pointer mt-sm playpausebtn icomoon-play-5 text-secondary" tabindex="0" aria-label="Play/Pause Button"  title="Play/Pause Button" rel="tooltip" style="margin-top: 5px!important;"></span><div class="float-start ml-md" style="margin-top:7px!important;">' +
+        settings_html +
+        '</div></div></div><div class="clear-both"></div></div></div></div>';
+
+    player.innerHTML = download_html;
+    stepplayergenerate(newID, stepcaptions, intervals); // function added
+
+    //ADDING SPEED CODE START
+    let speedArray = ['0.5', '1', '1.5', '2'];
+    let speedhtml = '';
+    for (let i in speedArray) {
+        if (speedArray.hasOwnProperty(i)) {
+            speedhtml =
+                speedhtml +
+                '<li><a class="dropdown-item gifspeed ' +
+                (i == 1 ? 'bg-l-grey font-weight-bold' : '') +
+                '" data-mod="' +
+                newID +
+                '" data-speed="' +
+                speedArray[i] +
+                '" tabindex="0">' +
+                speedArray[i] +
+                'x</a></li>';
+            
+        }
+    }
+
+    //Bootstrsap tab code.
+    setTimeout(() => {
+        document.querySelector('#stepplayer' + newID + ' .speedmenu').innerHTML = speedhtml;
+
+        let triggerTabList = [].slice.call(document.querySelectorAll('#stepplayer' + newID + ' .nav-pills a.nav-link'))
+        triggerTabList.forEach(function (triggerEl) {
+            let tabTrigger = new bootstrap.Tab(triggerEl)
+            triggerEl.addEventListener('click', function(event) {
+                document.querySelector(`#stepplayer${newID} #settingTabs`).classList.toggle('show');
+                event.preventDefault()
+                tabTrigger.show()
+            });
+        })
+    }, 1000);
+
+    
+        //Show setting dropdown.
+    AH.listen(document, 'click', `#stepplayer${newID} .settingDropDown`, (_this, self) => {
+        _this.querySelector('#settingTabs').classList.toggle('show');
+    });
+
+    AH.listen(document, 'keyup', `#stepplayer${newID} .settingDropDown`, (_this, self) => {
+        if (self.keyCode == 13) {
+            _this.querySelector('#settingTabs').classList.toggle('show');
+        }
+    });
+        
+    AH.listen(document, 'click', `#stepplayer${newID}.stepplayerhtml .playpausebtn`, (_this, self) => {
+        let mod = _this.closest('.stepplayerhtml').querySelector('.startbtn').getAttribute('data-mod');
+        let video = document.getElementById('vid' + mod);
+        if (video.paused) {
+            video.play();
+            changeplaypausebtn(mod, 'pause');
+        } else {
+            video.pause();
+            changeplaypausebtn(mod, 'play');
+        }
+    })
+
+    AH.listen('document', 'click', `#stepplayer${newID}.stepplayerhtml .startbtn`,(_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        if (_this.getAttribute('data-html') == 'Stop') {
+            _this.setAttribute('data-html', 'Start');
+            _this.innerHTML = 'Start';
+            document.querySelector('#stepplayer' + mod + ' .stepplayercont').classList.add('h');
+            playpausevideo(mod, 'reset');
+            document.querySelector('#stepplayer' + mod + ' .stepcaption').innerHTML = '';
+        } else {
+            document.querySelector('#stepplayer' + mod + ' .stepplayercont').classList.remove('h');
+            _this.setAttribute('data-html', 'Stop');
+            _this.innerHTML = 'Stop';
+            playpausevideo(mod, 'play');
+        }
+    });
+
+    AH.listen('document', 'click', `#stepplayer${newID}.stepplayerhtml .gifspeed`,(_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        let speed = _this.getAttribute('data-speed');
+        let video = document.getElementById('vid' + mod);
+        video.playbackRate = speed;
+        document.querySelector('#stepplayer' + mod + ' .gifspeed').classList.remove('bg-l-grey font-weight-bold');
+        _this.classList.add('bg-l-grey font-weight-bold');
+    });
+
+    AH.listen('document', 'click', `.stepplayer_fullscreen${player_id}`, (_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        let isshow = _this.getAttribute('data-value');
+            if (isshow == 1) {
+                document.querySelector('#stepplayer' + mod + ' .stepcaption').classList.remove('h')
+            } else {
+                document.querySelector('#stepplayer' + mod + ' .stepcaption').classList.add('h');
+            }
+            document.querySelector('#stepplayer' + mod + ' .subtitles').classList.remove('bg-l-grey font-weight-bold');
+            _this.classList.add('bg-l-grey font-weight-bold');
+    });
+
+    AH.listen('document', 'click', `#stepplayer${newID} .subtitles`,(_this, self) => {
+        toggleFullScreen(_this.parentNode.parentNode, self, '400px');
+    });
 }

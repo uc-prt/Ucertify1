@@ -507,7 +507,7 @@
             }
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
-        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon'];
+        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon', 'exhibit_inline_checkbox', 'graded_checkbox'];
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
             if (_this.getAttribute('id') && !ignoreAttrs.includes(_this.getAttribute('id'))  && !_this.disabled && _this.value.trim() != 'false') {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {

@@ -23287,10 +23287,6 @@ div[sub_type=image-annotation] [a_c='1'] {
   margin-top: -40px!important
 }
 
-#editor .stepplayerhtml #settingTabs {
-  display: none!important;
-}
-
 #editor .stepplayerhtml .settingDropDown .icomoon-cog {
   font-size: 18px!important;
 }
