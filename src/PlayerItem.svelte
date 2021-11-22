@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { Textfield } from 'svelte-mui/src';
+import Button from 'svelte-mui/src/Button.svelte';
     import { AH } from '../helper/HelperAI.svelte';
     export let playerState;
     export let oldValue;
@@ -202,7 +203,7 @@
             }
         }
         if (oldValue.stepcaptions) {
-            createSteptable('create');
+            setTimeout(() => createSteptable('create'), 500);
         }
         if (oldValue.playground && !AI.isValid(oldValue.asset)) {
             let playground_val = (oldValue.playground).replace(/#nl#/g, "\n").replace(/\#t\#/g, "\t").replace(/\#s\#/g, "  ").replace(/\#lt\#/g, "<").replace(/\#gt\#/g, ">");
@@ -215,7 +216,7 @@
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
     });
-    </script>
+</script>
     <div>
         {#if playerState.category == "knowledge_check"}
             <div class="knowledge_check_tag" key="tag_quiz">
@@ -506,7 +507,6 @@
                         value={playerState?.prevValue?.asset || ""}
                         placeholder={l.media_url}
                         label={l.url_txt}
-                        on:change={playerState.type == 'video' ? (e)=>{setVideoAsset('asset', e.target.value)} : null}
                         disabled={(playerState.security && playerState.type == 'video') ? true : false}
                     />
                 </div>
@@ -521,7 +521,7 @@
                                     fullWidth="true"
                                     label={l.transcript_id}
                                     placeholder={l.enter_id}
-                                    on:change={playerState.type == 'video' ? (e)=>{setVideoAsset('guid', e.target.value)} : null}
+                                    value="{playerState?.prevValue?.group_guids || ''}"
                                     disabled={(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? true : false}
                                 />
                             </div>
@@ -542,7 +542,7 @@
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
-                                value={prevValueOption?.preview || ""}
+                                value={playerState?.prevValue?.preview || ""}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
                                 disabled={playerState.security || playerState.intervals}
@@ -644,8 +644,8 @@
                                         <p class="help-block text-danger mb-0 mt">{playerState.msg}</p>
                                     {/if}
                                     <button class="btn mt-3 btn-secondary float-left mt-lg" on:click={()=>{createSteptable('add')}}>{l.add_interval}</button>
-                                    <input type="hidden" id="intervals" name="intervals" value="" />
-                                    <input type="hidden" id="stepcaptions" name="stepcaptions" value="" />
+                                    <input type="hidden" id="intervals" name="intervals" value="{prevValueOption?.intervals || ''}" />
+                                    <input type="hidden" id="stepcaptions" name="stepcaptions" value="{playerState?.prevValue?.stepcaptions || ''}" />
                                 </div>
                             {/if}
                         </div>

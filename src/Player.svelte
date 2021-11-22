@@ -11,7 +11,7 @@
     export let value;
     export let renderPlayerFunc;
     let itemArray = ['quiz', 'link', 'terminal', 'object3d', 'exhibit', 'insight', 'lablink', 'playground', 'simulation'];
-    const option = ['nofeedback', 'embed', 'no_of_attempt', 'correct', 'default', 'preview', 'isplayer', 'display', 'mode_checkbox', 'show_caption', 'hide_caption', 'button_name', 'intervals', 'notitle', 'token', 'wid', 'loid', 'inline'];
+    const option = ['nofeedback', 'embed', 'no_of_attempt', 'correct', 'default', 'isplayer', 'display', 'mode_checkbox', 'show_caption', 'hide_caption', 'button_name', 'intervals', 'notitle', 'token', 'wid', 'loid', 'inline'];
     const style = ['class', 'style', 'height', 'width' ,'color', 'align', 'size', 'layout', 'bordered'];
     const guid = ['guid', 'guids', 'labguid', 'help', 'asset'];
     const category = {'quiz' : 'knowledge_check', 'terminal': 'lab', 'simulation' : 'lab', 'insight' : 'lab', 'lablink' : 'lab', 'playground' : 'lab', 'video' : 'media', 'audio' : 'media', 'exhibit' : 'link', 'pdf' : 'link', 'weblink' : 'link', 'download' : 'link', 'object3d' : 'objects'};
@@ -162,7 +162,7 @@
                 stepcaption_array[i] = stepcaption_array[i].replace(/\\(\W)/g, "$1");
             }
             AH.select('.stepplayertable tbody').innerHTML = '';
-            interval_array,forEach((val, i)=> {
+            interval_array.forEach((val, i)=> {
                 appendData(val, stepcaption_array[i]);
             });
         }
@@ -507,14 +507,15 @@
             }
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
+        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon', 'exhibit_inline_checkbox', 'graded_checkbox'];
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
-            if (_this.getAttribute('id') != undefined && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'icon' && !_this.disabled && _this.value.trim() != 'false') {
+            if (_this.getAttribute('id') && !ignoreAttrs.includes(_this.getAttribute('id'))  && !_this.disabled && _this.value.trim() != 'false') {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {
                     option_attr += (option_attr != '') ? ',"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"' : '"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"';
                 } else if (style.indexOf(_this.getAttribute('id')) > -1) {
                     style_attr += (style_attr != '') ? ',"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"' : '"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"';
                 } else if (guid.indexOf(_this.getAttribute('id')) > -1) {
-                    player += ' asset="' + ((_this.closest('.video_asset')) ? _this.getAttribute('data-value').trim() : _this.value.trim())+'"';
+                    player += ' asset="' + _this.value.trim()+'"';
                 } else {
                     if (_this.getAttribute('id') == 'security') {
                         id_value = _this.value.trim();
