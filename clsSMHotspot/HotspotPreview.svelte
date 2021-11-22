@@ -165,11 +165,6 @@
 					checkAnswer();
 					break;
 			}		
-
-
-
-
-
 		})
 
 		AH.listen('#previewArea', 'click', '.textClick', function() {
@@ -295,6 +290,7 @@
 		let result = {}; 
 		if (typeName == 'textclick' || typeName == 'textselect') {
 			result = HotJS.check_Ans('#previewArea #hptmain0');
+			answerStatus = result.status;
 		} else {
 			result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
 			isUxmlTarget = true;
