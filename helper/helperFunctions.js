@@ -49,12 +49,12 @@ ITEMPLAYER.test = function (player, content_guid, player_id, asset, embed, no_of
         data: { 'func': 'start_test', 'player_id': content_guid + '_' + player_id, 'assignment_code': asset, 'is_player': 1, 'embed': embed, 'no_of_attempts': no_of_attempts, 'ajax': 1 },
     }).then((data) => {
         if (data) {
-            AH.insert(player, data, 'beforend');
+            AH.insert(player, data, 'beforeend');
         }
     });
 };
 
-ITEMPLAYER.stepplayer = function () { };
+
 export const ucTimeline = {
     inViewport: function (element, detectPartial) {
         element = JS(element);
@@ -596,6 +596,7 @@ export function tag_player(obj) {
         switch (type) {
             case 'quiz':
                 var quiz_attr = '';
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('quick_feedback')) {
                     quiz_attr = '&quick_feedback=1';
                 }
@@ -649,6 +650,8 @@ export function tag_player(obj) {
                 if (title != '') {
                     terminal_title_tag = '<div class="alert alert-info clearfix lab-title p-md">' + title + '</div>';
                 }
+                
+                _this.classList.add('w-100');
                 switch (terminalType) {
                     case 'java':
                     case 'php':
@@ -861,7 +864,7 @@ export function tag_player(obj) {
                 break;
             case 'annotation':
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + asset + '_' + player_id + '&group_guid=' + asset + '&image_annotation=1';
-                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + asset + '_' + player_id + ' id=' + asset + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id,1)\' allowfullscreen title=\'' + player_title + '\'></iframe>', 'beforend');
+                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + asset + '_' + player_id + ' id=' + asset + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id,1)\' allowfullscreen title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
                 break;
             case 'exhibit':
@@ -950,6 +953,7 @@ export function tag_player(obj) {
                 self = _this;
                 let web_count = 0;
                 web_count += 1;
+                _this.classList.add('w-100');
                 if (asset != '') {
                     AH.ajax({
                         url: baseUrl + 'index.php',
@@ -966,6 +970,7 @@ export function tag_player(obj) {
                 }
                 break;
             case 'video':
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('security')) {
                     wguVideoPlayer(_this, player_title);
                     player_id++;
@@ -973,7 +978,7 @@ export function tag_player(obj) {
                 }
                 if (_this.hasAttribute('stepcaptions')) {
                     intervals = getPlayerAttrVal(_this, 'intervals');
-                    ITEMPLAYER.stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
+                    stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
                     player_id++;
                     break;
                 }
@@ -1007,7 +1012,7 @@ export function tag_player(obj) {
                     }
                 }
                 if (sub_type == '' && (asset.indexOf('jigyaasa.info') > -1 || asset.indexOf('ucertify.com') > -1)) {
-                    AH.insert(_this, video_title_tag + '<center><div class="bg-black ml-md"><video class="outline0" controls name="media"><source src="' + asset + '" type="video/mp4"></video></div></center>', 'beforend');
+                    AH.insert(_this, video_title_tag + '<center><div class="bg-black ml-md"><video class="outline0" controls name="media"><source src="' + asset + '" type="video/mp4"></video></div></center>', 'beforeend');
                 } else if (sub_type == 'video_plus') {
                     if (!preview_image || preview_image == '') {
                         preview_image = asset.replace(extension, 'png');
@@ -1039,8 +1044,8 @@ export function tag_player(obj) {
                         vtt_preview_html = '';
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
-                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><div tabindex="' + tabindex.z + '" class="click_on_enter col-md-12 col-sm-12 v-plus-preview pointer p-0 mb-0" id="' + v_plus_id + '" title="' + player_title + '" isrc="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '"><div class="row mx-0"><div class="' + v_plus_previewbox_class + ' v-preview-box"><div class="v-container mr-md-3"><div class="play-video-icon video_play_icon"></div></div></div><div class="' + v_plus_previewbox2_class + '"><div class="v-sidebar h-100 overflow-hide"><div class="v-p-toolbar"><div class="float-left pl-md"><span>Video transcript</span></div><div class="float-right pr-md"><span class="float-right pointer v-vtt-download"><i class=icomoon-file-download></i> Download</span></div></div>' + vtt_preview_html + '</div></div></div></div></center>';
-                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'afterend');
+                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="lazy" class="w-100"></iframe></center>';
+                    AH.insert(_this, video_title_tag + v_plus_preview_html, 'beforeend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
                     AH.select('.v-container','css',{backgroundImage:v_p_url,zoom: bg_zoom});
@@ -1073,13 +1078,14 @@ export function tag_player(obj) {
                         if (AH.selectAll('#video_player_' + player_id).length > 0) {
                             new_player_id = player_id + Math.floor(Math.random() * 90 + 10);
                         }
-                        AH.insert(_this, video_title_tag + '<center><div tabindex="' + tabindex.z + '" title="Video" class="video_preview" id="video_player_' + new_player_id + '" embed=1 style="position:relative;display:inline-block;min-width:500px;max-width:800px" asset="' + _full_url + asset + '"' + '><img title="' + video_alt + '" src="' + preview_image + '"/><span class="play-video-icon" style="position:absolute;cursor:pointer;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;" ></span></div></center>', 'afterbegin');
+                        AH.insert(_this, video_title_tag + '<center><video class="outline0" controls name="media"  id="video_player_' + new_player_id + '" poster="'+preview_image+'"><source src="' + _full_url + asset + '" type="video/mp4"></video></center>', 'afterbegin');
                     }
                 }
                 AH.find(_this, `[titleid="${player_id}"]`, { action: 'html', actionData: title })
                 player_id++;
                 break;
             case 'audio':
+                _this.classList.add('w-100');
                 var audio_title_tag = '';
                 if (title != '') {
                     audio_title_tag = '<div class="mb-xl alert alert-info lab-title p-xl"><span class="icomoon-play-3 mr"></span>' + title;
@@ -1087,7 +1093,7 @@ export function tag_player(obj) {
                 if (!is_full_url) {
                     asset = '//s3.amazonaws.com/jigyaasa_content_stream/' + asset;
                 }
-                AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 m-b-xxs"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforend');
+                AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 mb-1"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforeend');
                 break;
             case 'pdf':
                 var pdf_url, download_html, des_css = (description == '') ? { 'display': 'none' } : { 'display': 'block', 'margin': '0' };
@@ -1127,7 +1133,7 @@ export function tag_player(obj) {
                     frame_width = (sub_type == 'embed' || embed == 'inline') ? '100%' : getPlayerAttrVal(_this, 'width');
                 if (sub_type == 'embed' || embed == 'inline') {
                     frame_height = (frame_height == '') ? '500px' : frame_height;
-                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforend');
+                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
                     weblinkHeight = frame_height.replace(/px|%/g, '');
                     document.addEventListener('fullscreenchange', exitHandler);
                     document.addEventListener('webkitfullscreenchange', exitHandler);
@@ -1174,7 +1180,7 @@ export function tag_player(obj) {
                 var tag_href = 'https://wgu.idm.oclc.org/login?&url=' + tag_url + '&amp;w=640&amp;h=360&amp;fWidth=660&amp;fHeight=410';
                 var msg = '<div class="alert alert-info clearfix"><b>Error in displaying video?</b> Please click on SHOW VIDEO button to open the video in new tab.';
                 msg += '<a class="btn btn-primary float-right" href="' + tag_href + '" target="_blank">Show Video</a></div>';
-                AH.insert(_this, msg + frame, 'beforend');
+                AH.insert(_this, msg + frame, 'beforeend');
                 player_id++;
                 break;
             case 'object3d':
@@ -1191,7 +1197,7 @@ export function tag_player(obj) {
                 } else {
                     tag_html = '<div class="alert alert-info clearfix p-md">' + title + '<a tabindex="' + tabindex.z + '" class="btn btn-primary float-right open-3d-object" title="' + title + '">3D View</a></div>';
                 }
-                AH.insert(_this, tag_html, 'beforend');
+                AH.insert(_this, tag_html, 'beforeend');
                 player_id++;
                 break;
             case 'math features':
@@ -1239,7 +1245,7 @@ export function tag_player(obj) {
                     '<span class="icomoon-close relative closing_btn pointer"style =' + subtypeContainer[sub_type]['close_style'] + ' data-bs-toggle="tooltip" title="Click to close!"></span>' +
                     '<img id="img_drag" data-bs-toggle="tooltip" title="Drag to measure!" class=' + subtypeContainer[sub_type]['img_class'] + ' style="max-width:none;' + subtypeContainer[sub_type]['style'] + '" src="' + themeUrl + 'foundation/css/images/' + subtypeContainer[sub_type]['link'] + '"></img>' +
                     '</div></div></div>';
-                AH.insert(_this, math_tools, 'beforend');
+                AH.insert(_this, math_tools, 'beforeend');
                 if (typeof (rotatable) == 'undefined') {
                     AH.getJSON(baseThemeUrl + 'ux/js/jquery.ui.rotatable.js').then(function () {
                         //JS('#math_target').rotatable();
@@ -1266,7 +1272,7 @@ export function tag_player(obj) {
                 if (_this.hasAttribute('stepcaptions')) {
                     stepcaptions = _this.getAttribute('stepcaptions');
                 }
-                ITEMPLAYER.stepplayer(_this, asset, title, intervals, stepcaptions);
+                stepplayer(_this, asset, title, intervals, stepcaptions);
                 player_id++;
                 break;
             case 'toggleoutput':
@@ -1275,6 +1281,7 @@ export function tag_player(obj) {
                 player_id++;
                 break;
             case 'lablink':
+                _this.classList.add('w-100');
                 if (_this.hasAttribute('labguid')) {
                     asset = _this.getAttribute('labguid');
                 }
@@ -1297,7 +1304,7 @@ export function tag_player(obj) {
                         alt = 'Preview of the ' + _this.getAttribute('title') + ' video';
                     }
                 }
-                AH.insert(_this, '<center><div tabindex="' + tabindex.z + '" class="integrate" style="position:relative;display:inline-block;min-width:500px;max-width:800px;cursor:pointer" asset="' + asset + '" title="' + title + '"><img class="noImgModal" alt="' + alt + '" title="Click to play video" src="' + DOWNLOAD_IMAGE_URL + preview_image + '"/><span class="play-video-icon" style="position:absolute;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;"></span></div></center>', 'beforend');
+                AH.insert(_this, '<center><div tabindex="' + tabindex.z + '" class="integrate" style="position:relative;display:inline-block;min-width:500px;max-width:800px;cursor:pointer" asset="' + asset + '" title="' + title + '"><img class="noImgModal" alt="' + alt + '" title="Click to play video" src="' + DOWNLOAD_IMAGE_URL + preview_image + '"/><span class="play-video-icon" style="position:absolute;z-index:10;left:50%;top:50%;margin-top:-30px;margin-left:-30px;"></span></div></center>', 'beforeend');
 
                 if (_this.hasAttribute('display')) {
                     AH.selectAll(_this.querySelectorAll('.integrate'), 'addClass', _this.getAttribute('display'));
@@ -1476,14 +1483,14 @@ export function tag_player(obj) {
                     iframe_src = baseUrl + 'utils/brain_games/' + game + '/index.php';
                     tag_html = '<iframe tabindex=\'' + tabindex.z + '\' title=\'' + player_title + ' \'class=\'quiz_player brain_games\'  name=\'brain_game' + player_id + '\' id=\'brain_game' + player_id + '\' src=\'' + iframe_src + '\'  onLoad=\'window.parent.autoResize(this.id)\'></iframe>';
                 }
-                AH.insert(_this, tag_html, 'beforend');
+                AH.insert(_this, tag_html, 'beforeend');
                 player_id++;
                 break;
             case 'plugin':
                 tag_div = '<div class="alert alert-info clearfix p-md" plugin-cmp-id="' + player_id + '" player-asset="' + asset + '"><span style="line-height:34px;">' + title;
                 tag_div += '</span><a tabindex=\'' + tabindex.z + '\' class=\'btn btn-primary float-right open-plugin-component\'>Open</a></div>';
                 if (AH.selectAll('[plugin-cmp-id="' + player_id + '"]').length == 0) {
-                    AH.insert(_this, tag_div, 'beforend');
+                    AH.insert(_this, tag_div, 'beforeend');
                 }
                 player_id++;
                 break;
@@ -1522,7 +1529,7 @@ export function tag_player(obj) {
                 card_url = 'open_test(\'' + card_url + '\')';
                 card_url = 'onclick="' + card_url + '"';
                 tag_div += '<a tabindex=\'' + tabindex.z + '\' ' + card_url + ' class=\'btn btn-primary card_player\'>' + link_text + '</a></div>';
-                AH.insert(_this, tag_div, 'beforend');
+                AH.insert(_this, tag_div, 'beforeend');
                 player_id++;
                 break;
             case 'live_lab':
@@ -1535,7 +1542,7 @@ export function tag_player(obj) {
                 break;
             default:
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
-                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforend');
+                AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
                 break;
         }
@@ -1865,4 +1872,392 @@ export function ajaxContentUpdate(config) {
     //         }
     //     }
     // }
+}
+
+const playerTagConst = {
+    setTimeOut: 1000,
+    setTimeOutFive: 500,
+    effectValue: 1500,
+    setTimeOutTwo: 200,
+    coordinateX: 250,
+    straightAngle: 180,
+    straightAngleDouble: 180.0,
+    frameWidth: 100,
+    arrayValue: 2,
+    loaderOffset: 3,
+    substrValue: 4,
+    playerAttrAsset: 7,
+    playerAttrAssetValue: 8,
+    cmpAssetLength: 5,
+    matchIndex: 7,
+    playerAttrCmp: 11,
+    compaireKeyCode: 13,
+    cmpscrollheight: 115,
+    scrollheighttrue: 50,
+    scrollheightfalse: 95,
+    y1Value: 350,
+    c1Value: 400,
+    c2Value: 350,
+    sliceValue: 6,
+    x1Value: 300,
+    c1cmpValue: 600,
+    y1Axis: 150,
+    xinside: 27,
+    yinside: 20,
+    charcode: 176,
+    lleftValue: 40,
+    zifalse: 1060,
+    windowheight: 0.3,
+    cssWidth: 10
+};
+function stepplayergenerate(mod, stepcaptions, intervals) {
+    if (document.getElementById('stepplayer' + mod) != null) {
+        var video = document.getElementById('vid' + mod);
+        function checkLoad() {
+            if (video.readyState === playerTagConst.substrValue) {
+                var duration = Math.floor(video.duration);
+                var imagecounter = '';
+                var intervalArray, i, perTime;
+                if (intervals != undefined && intervals != '') {
+                    var intervalArrayOld = intervals.split(',');
+                    intervalArray = [];
+                    intervalArrayOld.forEach((num) => {
+                        if (intervalArray.indexOf(num) == -1) {
+                            intervalArray.push(num);
+                        }
+                    });
+                } else {
+                    var limit = 4;
+                    intervalArray = [];
+                    for (i = 1; i <= limit; i++) {
+                        perTime = Math.floor((duration / limit) * (parseInt(i) - 1));
+                        intervalArray.push(perTime);
+                    }
+                }
+                var stepcaptions_array = [];
+                if (stepcaptions != undefined && stepcaptions != '') {
+                    stepcaptions_array = stepcaptions.split('###');
+                }
+                for (i = 0; i < intervalArray.length; i++) {
+                    perTime = intervalArray[i];
+                    var scaption =
+                        stepcaptions_array[i] != undefined ? stepcaptions_array[i] : '';
+                    imagecounter =
+                        imagecounter +
+                        '<button type="button" data-caption="' +
+                        scaption +
+                        '" title="' +
+                        scaption +
+                        '" class="btn btn-outline-secondary interval_btn imgnums imgbtn_' +
+                        i +
+                        (i > playerTagConst.arrayValue ? ' h' : '') +
+                        '" data-time=' +
+                        perTime +
+                        ' data-rel=' +
+                        i +
+                        ' >' +
+                        (parseInt(i) + 1) +
+                        '</button>';
+                }
+
+                imagecounter =
+                    '<div class="btn-group col-lg-12 col-md-12 col-sm-12 m-0 p-0"><div class="btn-group" id="pageScroll" style="overflow:hidden;"><button type="button" class="btn btn-outline-secondary imgnums prevbtn navtools" title="Previous Frame" rel="tooltip" disabled="disabled">&#171;</button>' +
+                    imagecounter +
+                    '<button type="button" class="btn btn-outline-secondary imgnums nextbtn navtools"  title="Next Frame" rel="tooltip">&#187;</button></div></div>';
+
+                document.querySelector('#stepplayer' + mod + ' .imagecounter').innerHTML = imagecounter;
+                document.querySelectorAll(`#stepplayer${mod} .interval_btn`).forEach((ele) => {
+                    ele.addEventListener('click', (self) => {
+                        moveToInterval(mod, self.currentTarget.getAttribute('data-time'));
+                    });
+                });
+                document.querySelector('.prevbtn').addEventListener('click', () => playerNavigation(mod, 0));
+                document.querySelector('.nextbtn').addEventListener('click', () => playerNavigation(mod, 1));
+                playerCheck(document.querySelector('#stepplayer' + mod + ' .imagecounter'));
+                video.addEventListener(
+                    'timeupdate',
+                    function () {
+                        var currentTime = Math.floor(video.currentTime);
+                        if (currentTime == 0) {
+                            playerReset(mod);
+                        }
+                        if (document.querySelectorAll('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime + '"]').length > 0) {
+                            document.querySelector('#stepplayer' + mod + ' .imgnums').classList.remove('active');
+                            document.querySelector('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime +'"]').classList.add('active');
+                            if (document.querySelector('#stepplayer' + mod + ' .imgnums[data-time="' + currentTime +'"]').offsetWidth == 0) {
+                                playerNavigation(mod, 1);
+                            }
+                            var caption = document.querySelector('#stepplayer' + mod +' .imgnums[data-time="' + currentTime +'"]').getAttribute('data-caption');
+                            if (video.currentTime != 0) {
+                                document.querySelector('#stepplayer' + mod + ' .stepcaption').innerHTML = caption;
+                            }
+                        }
+                        if (video.currentTime == video.duration) {
+                            changeplaypausebtn(mod, 'play');
+                        }
+                    },
+                    false
+                );
+            } else {
+                setTimeout(checkLoad, playerTagConst.frameWidth);
+            }
+        }
+        checkLoad();
+    }
+}
+function playerNavigation(mod, next) {
+    let object = document.querySelector('#stepplayer' + mod + ' .imagecounter #pageScroll');
+    let current_visible = object.querySelectorAll('button:not(.navtools)')
+    let prevbtn = object.querySelector('.prevbtn');
+    let nextbtn = object.querySelector('.nextbtn');
+    current_visible.forEach((el) => {
+        el.classList.add('h');
+    });
+    if (next) {
+        current_visible.forEach(function(ele) {
+            ele.classList.remove('h');
+            if (ele.nextSibling.classList.contains('nextbtn')) {
+                nextbtn.setAttribute('disabled', 'disabled')
+            } else {
+                prevbtn.removeAttribute('disabled');
+            }
+        });
+    } else {
+        current_visible.forEach(function(ele) {
+            ele.classList.remove('h');
+            if (ele.previousSibling.classList.contains('prevbtn')) {
+                prevbtn.setAttribute('disabled', 'disabled')
+            } else {
+                nextbtn.removeAttribute('disabled');
+            }
+        });
+    }
+}
+function moveToInterval(mod, perTime) {
+    let video = document.getElementById('vid' + mod);
+    video.currentTime = perTime;
+    video.play();
+    changeplaypausebtn(mod, 'pause');
+}
+function playerCheck(object) {
+    if(object.querySelector('button:not(.navtools)').length <= 3) {
+        object.querySelector('.navtools').setAttribute('disabled', 'disabled');
+    } else {
+        object.querySelector('.nextbtn').removeAttribute('disabled');
+    }
+}
+function playerReset(mod) {
+    let object = document.querySelector('#stepplayer' + mod + ' .imagecounter #pageScroll');
+    let btns = object.querySelectorAll('button:not(.navtools)');
+    btns.forEach((el) => {
+        el.classList.add('h');
+    });
+    for (let index=0; index < 3 ; index++ ) {
+        if (btns[index] != undefined) {
+            btns[index].classList.remove('h');
+        }
+    }
+    playerCheck(object);
+}
+function changeplaypausebtn(mod, type) {
+    var playicon = 'icomoon-play-5';
+    var pauseicon = 'icomoon-pause-22';
+    if (type == 'play') {
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.remove(pauseicon);
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.add(playicon);
+    } else if (type == 'pause') { //NOSONAR
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.remove(playicon);
+        document.querySelector('#stepplayer' + mod + ' .playpausebtn').classList.add(pauseicon);
+    }
+}
+function playpausevideo(mod, type) {
+    var video = document.getElementById('vid' + mod);
+    if (type == 'play') {
+        video.play();
+        changeplaypausebtn(mod, 'pause');
+    } else if (type == 'reset') { //NOSONAR
+        video.pause();
+        video.currentTime = 0;
+        changeplaypausebtn(mod, 'play');
+    }
+}
+function toggleFullScreen(ele, self, height) {
+    let btn = self.currentTarget.children;
+    if (fullHeightAllow) {
+        if (ele.requestFullscreen) {
+            ele.requestFullscreen();
+        } else if (ele.mozRequestFullScreen) {
+            ele.mozRequestFullScreen();
+        } else if (ele.webkitRequestFullscreen) {
+            ele.webkitRequestFullscreen();
+        } else if (ele.msRequestFullscreen) { //NOSONAR
+            ele.msRequestFullscreen();
+        }
+        ele.style.height = '100%';
+        btn[1].textContent = 'Revert';
+        btn[0].classList.add('icomoon-new-24px-collapse-1');
+        btn[0].classList.remove('icomoon-new-24px-expand-1');
+        fullHeightAllow = false;
+    } else {
+        fullHeightAllow = true;
+        ele.style.height = height;
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { //NOSONAR
+            document.msExitFullscreen();
+        }
+        btn[1].textContent = 'Full Screen';
+        btn[0].classList.remove('icomoon-new-24px-collapse-1');
+        btn[0].classList.add('icomoon-new-24px-expand-1');
+    }
+}
+function stepplayer(player, asset, title, intervals, stepcaptions, player_id) {
+    if (stepcaptions) {
+        stepcaptions = stepcaptions.replace(/\\(\W)/gm, '$1');
+    }
+    let a = document.querySelectorAll('.stepplayerhtml').length;
+    let newID = parseInt(a) + 1;
+
+    let settings_html =
+        '<div class="dropup settingDropDown float-start"> <span class="text-secondary icomoon-cog m-sm pointer" data-bs-toggle="dropdown" tabindex="0" aria-label="Settings" title="Settings" rel="tooltip"></span> <ul id="settingTabs" class="dropdown-menu font14 p-sm" role="menu"> <ul class="border-bottom margin-n-20 nav nav-pills"> <li class="nav-item ps-0"><a class="nav-link active" data-bs-toggle="tab" href="#ccmenu' +
+        newID +
+        '"><span class="icomoon-captions-1 s3 font-weight-bold" rel="tooltip" data-original-title="Caption"></span></a></li><li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#playback' +
+        newID +
+        '"><span class="icomoon-speed-1 s3 font-weight-bold" rel="tooltip" data-original-title="Speed"></span></a></li></ul> <div class="float-start m-t-n tab-content w-100"> <div class="float-start mt-1 tab-pane w-100 active show position-relative" style="bottom:47px;" id="ccmenu' +
+        newID +
+        '"> <ul class="float-start mt-1 ps-0 w-100" style="list-style-type: none;"> <li><a class="dropdown-item subtitles" data-mod="' +
+        newID +
+        '" data-value="0" tabindex="0">Off</a></li><li><a class="dropdown-item subtitles bg-l-grey font-weight-bold" data-mod="' +
+        newID +
+        '" data-value="1" tabindex="0">English</a></li></ul> </div><div class="float-start mt-1 tab-pane w-100 position-relative" style="bottom:47px;" id="playback' +
+        newID +
+        '"> <ul class="float-start margin-1 overflow-y-scroll ps-0 speedmenu w-100" style="list-style-type: none;max-height:65px;"></ul> </div></div></ul></div><div class="float-start ml-md pointer h-imp"><span class="text-secondary icomoon-expand stepplayer-fs" data-mod="' +
+        newID +
+        '" rel="tooltip" data-original-title="Full screen"></span></div>';
+
+    let download_html =
+        '<div class="card stepplayerhtml mx-auto" id="stepplayer' +
+        newID +
+        '" style="width:60%;min-height:400px;"><div class="card-header d-inline-flex"><div class="col-9 pt-2">' +
+        title +
+        '</div><button aria-label="Full Screen" type="button" class="btn btn-sm ml-auto stepplayer_fullscreen' +
+        player_id + 
+        ' outline2" title="Full Screen / Revert" rel="tooltip"><i class=" full-screen-btn-icon icomoon-new-24px-expand-1 font19 mt-tp mr-1 float-start"></i><small aria-hidden="true" class="toolbar-label font18 line_height1 align-bottom d-none d-lg-inline-block full-screen-btn-label" id="resize' +
+        newID +
+        '">Full Screen</small></button></div><div class="card-body position-relative"><div class="card-text text-center"> <video id="vid' +
+        newID +
+        '" style="max-width:100%;" oncontextmenu="return false;"> <source src="' +
+        asset +
+        '"/>Your browser does not support the video tag. </video><div class="stepcaption font15"></div></div></div><div class="card-footer"><div class="row col-12 m-0 p-0"> <div class="row col-12"><button class="float-start mr-md btn btn-info startbtn h" type="button" data-mod="' +
+        newID +
+        '" data-html="Start">Start</button></div><div class="stepplayercont row m-0 p-0 col-12"><div class="col-12 col-lg-10 col-md-9 col-sm-12 imagecounter p-0"></div><div class="col-lg-2 col-md-3 col-sm-12 float-end m-0 p-0"> <span class="float-start s4 pointer mt-sm playpausebtn icomoon-play-5 text-secondary" tabindex="0" aria-label="Play/Pause Button"  title="Play/Pause Button" rel="tooltip" style="margin-top: 5px!important;"></span><div class="float-start ml-md" style="margin-top:7px!important;">' +
+        settings_html +
+        '</div></div></div><div class="clear-both"></div></div></div></div>';
+
+    player.innerHTML = download_html;
+    stepplayergenerate(newID, stepcaptions, intervals); // function added
+
+    //ADDING SPEED CODE START
+    let speedArray = ['0.5', '1', '1.5', '2'];
+    let speedhtml = '';
+    for (let i in speedArray) {
+        if (speedArray.hasOwnProperty(i)) {
+            speedhtml =
+                speedhtml +
+                '<li><a class="dropdown-item gifspeed ' +
+                (i == 1 ? 'bg-l-grey font-weight-bold' : '') +
+                '" data-mod="' +
+                newID +
+                '" data-speed="' +
+                speedArray[i] +
+                '" tabindex="0">' +
+                speedArray[i] +
+                'x</a></li>';
+            
+        }
+    }
+
+    //Bootstrsap tab code.
+    setTimeout(() => {
+        document.querySelector('#stepplayer' + newID + ' .speedmenu').innerHTML = speedhtml;
+
+        let triggerTabList = [].slice.call(document.querySelectorAll('#stepplayer' + newID + ' .nav-pills a.nav-link'))
+        triggerTabList.forEach(function (triggerEl) {
+            let tabTrigger = new bootstrap.Tab(triggerEl)
+            triggerEl.addEventListener('click', function(event) {
+                document.querySelector(`#stepplayer${newID} #settingTabs`).classList.toggle('show');
+                event.preventDefault()
+                tabTrigger.show()
+            });
+        })
+    }, 1000);
+
+    
+        //Show setting dropdown.
+    AH.listen(document, 'click', `#stepplayer${newID} .settingDropDown`, (_this, self) => {
+        _this.querySelector('#settingTabs').classList.toggle('show');
+    });
+
+    AH.listen(document, 'keyup', `#stepplayer${newID} .settingDropDown`, (_this, self) => {
+        if (self.keyCode == 13) {
+            _this.querySelector('#settingTabs').classList.toggle('show');
+        }
+    });
+        
+    AH.listen(document, 'click', `#stepplayer${newID}.stepplayerhtml .playpausebtn`, (_this, self) => {
+        let mod = _this.closest('.stepplayerhtml').querySelector('.startbtn').getAttribute('data-mod');
+        let video = document.getElementById('vid' + mod);
+        if (video.paused) {
+            video.play();
+            changeplaypausebtn(mod, 'pause');
+        } else {
+            video.pause();
+            changeplaypausebtn(mod, 'play');
+        }
+    })
+
+    AH.listen('document', 'click', `#stepplayer${newID}.stepplayerhtml .startbtn`,(_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        if (_this.getAttribute('data-html') == 'Stop') {
+            _this.setAttribute('data-html', 'Start');
+            _this.innerHTML = 'Start';
+            document.querySelector('#stepplayer' + mod + ' .stepplayercont').classList.add('h');
+            playpausevideo(mod, 'reset');
+            document.querySelector('#stepplayer' + mod + ' .stepcaption').innerHTML = '';
+        } else {
+            document.querySelector('#stepplayer' + mod + ' .stepplayercont').classList.remove('h');
+            _this.setAttribute('data-html', 'Stop');
+            _this.innerHTML = 'Stop';
+            playpausevideo(mod, 'play');
+        }
+    });
+
+    AH.listen('document', 'click', `#stepplayer${newID}.stepplayerhtml .gifspeed`,(_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        let speed = _this.getAttribute('data-speed');
+        let video = document.getElementById('vid' + mod);
+        video.playbackRate = speed;
+        document.querySelector('#stepplayer' + mod + ' .gifspeed').classList.remove('bg-l-grey font-weight-bold');
+        _this.classList.add('bg-l-grey font-weight-bold');
+    });
+
+    AH.listen('document', 'click', `.stepplayer_fullscreen${player_id}`, (_this, self) => {
+        let mod = _this.getAttribute('data-mod');
+        let isshow = _this.getAttribute('data-value');
+            if (isshow == 1) {
+                document.querySelector('#stepplayer' + mod + ' .stepcaption').classList.remove('h')
+            } else {
+                document.querySelector('#stepplayer' + mod + ' .stepcaption').classList.add('h');
+            }
+            document.querySelector('#stepplayer' + mod + ' .subtitles').classList.remove('bg-l-grey font-weight-bold');
+            _this.classList.add('bg-l-grey font-weight-bold');
+    });
+
+    AH.listen('document', 'click', `#stepplayer${newID} .subtitles`,(_this, self) => {
+        toggleFullScreen(_this.parentNode.parentNode, self, '400px');
+    });
 }

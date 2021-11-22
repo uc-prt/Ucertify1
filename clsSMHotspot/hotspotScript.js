@@ -94,7 +94,7 @@ export default class hotspotScript {
             sendDataToNative.inNativeIsCorrect = this.result;
             window.postMessage(JSON.stringify(sendDataToNative), '*')
         }
-        return {uXml: this.userAnsXML, status: this.result};
+        return {uXml: this.userAnsXML, ans: this.result};
     }
 
     // checking child answer and return useransxml

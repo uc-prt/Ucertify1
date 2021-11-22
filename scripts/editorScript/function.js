@@ -547,7 +547,7 @@ function checkedExamObjective(_this) {
 		AI.select('input[name="exam_obj[]"]').parentElement.style.background = '#fff';
 		let content_guid = getURLParameter('content_guid');
 		for (let k in guid) {
-			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || window.frameElement.getAttribute("guid") == k || content_guid == k) {
+			if ( (_this.previousElementSibling && _this.previousElementSibling.value == k) || (window.frameElement && window.frameElement.getAttribute("guid") == k) || content_guid == k) {
 				let tag_guid = (content_guid) ? content_guid : (from_myproject != 1 ? _this.previousElementSibling.value : window.frameElement.getAttribute("guid"));
 				tag_guid = guid[tag_guid].split(',');
 				for (i = 0; i<=tag_guid.length; i++) {
@@ -1014,13 +1014,13 @@ function createSimulationHtml(config, default_action, correct_ans, embed, self, 
             if (!self.getAttribute('try_me') && self.getAttribute('try_me') != 'inline') {
                 var tryMeBtn = self.getAttribute('custum-btn') ? '' : '<p tabindex="0" class="try-me-s">Click to see me in action</p>';
                 
-				const childrens = self.children || [];
-				for(let child of childrens){
-					child.innerHTML = '<a tabindex="' + tabindex.n + '" href="' + lab_url + '&nozoom=1" style="position:relative;display:inline-block;" onclick="return open_single_lab(this)">' + child.innerHTML + '</a>';
-					child.querySelector('a').insertAdjacentHTML('afterbegin', tryMeBtn);
-				}
+                self.insertAdjacentHTML(
+                    'afterbegin', 
+                    `<a tabindex="0" href="${lab_url}&nozoom=1" style="position:relative;display:inline-block;">${tryMeBtn}</a>`);
                 
-				self.querySelector('img').classList.add('noImgModal');
+                if(self.querySelector('img')){
+                    self.querySelector('img').classList.add('noImgModal');
+                }
             }
         }
     } else if (self.getAttribute('guids') && self.getAttribute('guids') != '') {
@@ -1359,7 +1359,7 @@ var evalInline = {
         _userXml = encodeURIComponent(_userXml);
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
+            url: itemUrl + '/evalPro/?user_code=' + _userXml + '&execute_testcases=1&isCompiled=0',
         }).then(function(res) {
             if (res == 1) {
                 AH.selectAll('#evalCheck' + id, 'html', '<span class="item_score font-weight-bold"><span class="label-correct">Correct</span></span>');
@@ -1376,7 +1376,7 @@ var evalInline = {
         dbName = dbName ? dbName : 'myDBs';
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/index.php',
+            url: itemUrl + 'evalPro/index.php',
             data: {
                 'ajax': 1,
                 'in_editor': 0,
@@ -1391,15 +1391,15 @@ var evalInline = {
 
     runEvalPro: function(id, code, type, stdin, dbName) {
         dbName = dbName ? dbName : 'myDBs';
-        var _userXml = AH.select('#evalXML' + id).value;
+        var _userXml = document.querySelector('#evalXML' + id).value;
         var pre = evalInline.getRegString('pre', _userXml, 1);
         var post = evalInline.getRegString('post', _userXml, 1);
         code = pre + code + post;
-        stdin = stdin ? stdin : AH.select('#evalInput' + id).value;
+        stdin = stdin ? stdin : document.querySelector('#evalInput' + id).value;
         var result = '';
         AH.ajax({
             type: 'POST',
-            url: baseUrl + 'sim/evalpro/',
+            url: itemUrl + 'evalPro/index.php',
             data: {
                 code: code,
                 repltype: type,
@@ -1410,6 +1410,7 @@ var evalInline = {
             },
         }).then(function(res) {
 			AH.activate(0);
+            res = JSON.parse(res);
 			var out = res.output ? res.output : res.stderr ? res.stderr : 'Your code didn\'t print anything...';
 			AH.selectAll('#frameDiv' + id,'html','<div class=\'fwidth bg-white border-0 font14\' style=\'height:282px\'>' + out + '</div>');
 			AH.selectAll('#runBtn' + id, 'attr', {'disabled': false});
@@ -1550,4 +1551,65 @@ function seqTag(data, fromWebpage) {
 		return data;
 	}
 	return "";
+}
+
+
+function getDocHeight (e) {
+    var t = (e = e || document).body,
+        i = e.documentElement;
+    return Math.max(t.scrollHeight, t.offsetHeight, i.clientHeight, i.scrollHeight, i.offsetHeight);
+}
+
+function autoResize (e) {
+    const t = document.querySelector('#' + e);
+    const base = t.closest('.base');
+    if ('block' != base.style.display && t.classList.contains('quiz_player')) return !1;
+  
+    try {
+        AH.activate(1);
+        var i = document.getElementById(e),
+            r = i.contentDocument ? i.contentDocument : i.contentWindow.document,
+            n = t.contentDocument.querySelector('body');
+      
+        var o = t.classList.contains('quiz_player') ? getDocHeight(r) : n.clientHeight;
+        n.querySelectorAll('.file_nohelp').length > 0 && (o = n.querySelector('.file_nohelp').clientHeight, w = n.querySelector('.file_nohelp').clientWidth, t.style.width = `${w}px`), n.querySelectorAll('.ui-dialog').length > 0 && (o = n.querySelector('.ui-dialog').clientHeight + 30, w = n.querySelector('.ui-dialog').clientWidth, n.querySelector('.ui-dialog').style.marginTop='10px', t.style.width=`${w}px`), t.style.height=`${o}px`, t.style.width = '100%', o <= 0 && setTimeout(function () {
+            autoResize(e);
+        }, 1e3), activate(0);
+    } catch (e) {
+        activate(0), console.warn('Error in function autoResize', e);
+    }
+}
+
+function makeModal (modalId, modalTitle, modalBody, modalFooter = '', modalClass = '') {
+    return`
+    <div class="modal ${modalClass}" id=${modalId} tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                ${modalTitle?`<div class="modal-header">
+                    <h5 class="modal-title">${modalTitle}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>`: ''}
+                <div class="modal-body">
+                    <p>${modalBody}</p>
+                </div>
+                ${modalFooter? `<div class="moda-footer">${modalFooter}</div>`:''}
+            </div>
+        </div>
+    </div>
+    `
+}
+function bindSql(lab_url, player_id) {
+    AH.activate(1);
+    const sqlPlayer = AH.selectAll('#sql'+player_id);
+    if(sqlPlayer.length == 0){
+        const modalBody = `<div class="row-fluid" style="overflow:auto;height:400px;"><iframe id="sqlEditor" frameborder="0" src="${lab_url}" style="height:400px;width:100%;"></iframe></div>`;
+        const m1 = makeModal('sql'+player_id, 'SQL Editor', modalBody, '');
+        document.body.insertAdjacentHTML('beforeend', m1);
+    }
+    var myModal = new bootstrap.Modal(document.getElementById('sql'+player_id), {
+        keyboard: false,
+        focus: true
+    });
+    myModal.show();
+    AH.activate(0);
 }
