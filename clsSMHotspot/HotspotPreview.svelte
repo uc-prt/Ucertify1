@@ -337,6 +337,7 @@
 
 	// when remediation mode is off
 	function unsetReview() {
+		isReview= false;
 		targetView = "none";
 		// if the module is imagehighlight then it hide the correct answer ans show user ans on the module using the function drawOnCanvas
 		if (moduleArr[item_type] == "3") {
