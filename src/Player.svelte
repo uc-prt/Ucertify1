@@ -162,7 +162,7 @@
                 stepcaption_array[i] = stepcaption_array[i].replace(/\\(\W)/g, "$1");
             }
             AH.select('.stepplayertable tbody').innerHTML = '';
-            interval_array,forEach((val, i)=> {
+            interval_array.forEach((val, i)=> {
                 appendData(val, stepcaption_array[i]);
             });
         }
@@ -507,8 +507,9 @@
             }
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
+        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon'];
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
-            if (_this.getAttribute('id') != undefined && _this.getAttribute('id') != 'type' && _this.getAttribute('id') != 'isplayer_checkbox' && _this.getAttribute('id') != 'icon' && !_this.disabled && _this.value.trim() != 'false') {
+            if (_this.getAttribute('id') && !ignoreAttrs.includes(_this.getAttribute('id'))  && !_this.disabled && _this.value.trim() != 'false') {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {
                     option_attr += (option_attr != '') ? ',"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"' : '"' + _this.getAttribute('id') + '":"' + _this.value.trim() + '"';
                 } else if (style.indexOf(_this.getAttribute('id')) > -1) {

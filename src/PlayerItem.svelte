@@ -203,7 +203,7 @@ import Button from 'svelte-mui/src/Button.svelte';
             }
         }
         if (oldValue.stepcaptions) {
-            createSteptable('create');
+            setTimeout(() => createSteptable('create'), 500);
         }
         if (oldValue.playground && !AI.isValid(oldValue.asset)) {
             let playground_val = (oldValue.playground).replace(/#nl#/g, "\n").replace(/\#t\#/g, "\t").replace(/\#s\#/g, "  ").replace(/\#lt\#/g, "<").replace(/\#gt\#/g, ">");
@@ -216,8 +216,6 @@ import Button from 'svelte-mui/src/Button.svelte';
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
     });
-$:console.log(playerState);
-$:console.log(prevValueOption);
 </script>
     <div>
         {#if playerState.category == "knowledge_check"}
@@ -646,8 +644,8 @@ $:console.log(prevValueOption);
                                         <p class="help-block text-danger mb-0 mt">{playerState.msg}</p>
                                     {/if}
                                     <button class="btn mt-3 btn-secondary float-left mt-lg" on:click={()=>{createSteptable('add')}}>{l.add_interval}</button>
-                                    <input type="hidden" id="intervals" name="intervals" value="" />
-                                    <input type="hidden" id="stepcaptions" name="stepcaptions" value="" />
+                                    <input type="hidden" id="intervals" name="intervals" value="{prevValueOption?.intervals || ''}" />
+                                    <input type="hidden" id="stepcaptions" name="stepcaptions" value="{playerState?.prevValue?.stepcaptions || ''}" />
                                 </div>
                             {/if}
                         </div>

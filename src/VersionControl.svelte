@@ -47,7 +47,7 @@
                 data: {ajax:1,current_diff:current_diff,content_guid :state.guid ,version_date : _this.getAttribute('data-version'), react_content_diff : 1, get_source : 1},                         
             }).then((response)=> {
                 AH.toggleDom('#diff_loader', 'hide');
-                AH.select('#back_to_list').classList.remove("h-imp");
+                AH.select('#back_to_list')?.classList.remove("h-imp");
                 AH.select('#show_diff').innerHTML = response;
                 AH.toggleDom('#show_diff', 'show');//.prepend('<button type="button" class="btn btn-light mb-xl pull-right" id="back_to_list">Back To List</button>').show();
 			});
