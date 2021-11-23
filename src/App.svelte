@@ -74,6 +74,7 @@
 				searchQuery[key] = value;
 			}
 			if (editorUrl.get('content_guid')) {
+				window.content_guid = editorUrl.get('content_guid');
 				AH.getAPIDataJ('cat2.item_content_draft_get', where, async (res)=> {
 					apiData = await checkRevision(res);
 					apiData = apiData[editorUrl.get('content_guid')];

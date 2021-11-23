@@ -1026,6 +1026,9 @@ export function tag_player(obj) {
                     } catch (err) {
                         console.warn(err);
                     }
+                    if(!group_guids){
+                        group_guids += `${window.content_guid}`;
+                    }
                     var v_plus_id = 'v-plus-preview' + group_guids, bg_zoom = '';
                     var v_plus_previewbox_class = 'col-md-7 col-12 p-0';
                     var v_plus_previewbox2_class = 'col-md-5 col-sm-12 col-12 p-0';
@@ -1044,7 +1047,7 @@ export function tag_player(obj) {
                         vtt_preview_html = '';
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
-                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="lazy" class="w-100"></iframe></center>';
+                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="eager" class="w-100"></iframe></center>';
                     AH.insert(_this, video_title_tag + v_plus_preview_html, 'beforeend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
