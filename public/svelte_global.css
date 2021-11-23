@@ -25737,3 +25737,15 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .bottom6 {
     bottom: 6px;
 }
+
+@keyframes scaleUpT {
+    from{
+        transform: scale(0.1);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+.scaleUp{
+    animation: scaleUpT 0.5s ease-in-out;
+}

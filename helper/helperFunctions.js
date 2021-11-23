@@ -1152,7 +1152,7 @@ export function tag_player(obj) {
                 if (sub_type == 'embed' || embed == 'inline') {
                     _this.classList.add('w-100');
                     frame_height = (frame_height == '') ? '500px' : frame_height;
-                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button id="fullScreenButton" class=\'bg-light\' title=\'Full Screen\' onclick=\'functionForFullscreen(weblinkFrame_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
+                    AH.insert(_this, '<center><div class=\'weblinkContainer overflow-auto\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button id="fullScreenButton" class=\'bg-light\' title=\'Full Screen\' onclick=\'functionForFullscreen(weblinkFrame_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
                     player_id++;
                     break;
                 }
@@ -1555,6 +1555,7 @@ export function tag_player(obj) {
                 player_id++;
                 break;
             default:
+                _this.classList.add('w-100');
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
                 AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
@@ -1579,7 +1580,7 @@ function exhibitAction(action, player_id, v){
     if (action == 'scenarioAction') {
         if(AH.selectAll(`modal-player${player_id}`)?.length == 0){
             
-            const m1 = makeModal (`modal-player${player_id}`, '', v?.nextElementSibling?.innerHTML || '');
+            const m1 = makeModal (`modal-player${player_id}`, '', v?.nextElementSibling?.innerHTML || '', '', 'scaleUp');
             document.body.insertAdjacentHTML('beforeend', m1);
         }
         var myModal = new bootstrap.Modal(document.getElementById(`modal-player${player_id}`), {
@@ -1597,7 +1598,8 @@ function exhibitAction(action, player_id, v){
             ele.classList.add('h');
             aEle.innerText = show_caption;
         }
-        ele.querySelector('.close')?.addEventListener('click', () => {
+        ele.querySelector('.close')?.addEventListener('click', (e) => {
+            e.stopPropagation();
             ele.classList.add('h');
             aEle.innerText = show_caption;
         })

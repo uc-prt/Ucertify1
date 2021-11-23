@@ -857,7 +857,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                                 value="{styles?.height || ''}"
                             />
                         </div>
-                        {#if playerState.embed != 'inline'}
+                        {#if playerState.embed != 'inline' && playerState.embed != 'new_win'}
                             <div class="mt-sm">
                                 <Textfield
                                     id="width"

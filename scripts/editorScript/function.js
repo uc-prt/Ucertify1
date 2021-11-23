@@ -1582,9 +1582,9 @@ function autoResize (e) {
 
 function makeModal (modalId, modalTitle, modalBody, modalFooter = '', modalClass = '') {
     return`
-    <div class="modal ${modalClass}" id=${modalId} tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+    <div class="modal" id=${modalId} tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered md-content">
+            <div class="modal-content ${modalClass}">
             <div class="modal-header">
                 ${modalTitle?`
                     <h5 class="modal-title">${modalTitle}</h5>
