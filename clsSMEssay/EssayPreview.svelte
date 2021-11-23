@@ -86,8 +86,7 @@
     // it is called when state updated
     beforeUpdate(()=> {
         if (xml != state.xml) {
-            state.xml = xml ;
-            console.log("Updating from Preview");
+            state.xml = xml;
             loadXML(xml, uxml);
         }
     });
@@ -105,7 +104,7 @@
         // Parsing XMLs
         try {
             let essay = essayXML.smxml.default ? essayXML.smxml.default : essayXML.smxml;
-            uAns = essayUser && (essayUser.smans.userans).charCodeAt(0)!=10 ? essayUser.smans.userans : (essay.__cdata !== undefined ? essay.__cdata : '');
+            uAns = essayUser && (essayUser.smans?.userans)?.charCodeAt(0)!=10 ? essayUser.smans.userans : (essay.__cdata !== undefined ? essay.__cdata : '');
             //self.userAnsXML = $('#special_module_user_xml').val();
             localEssayData = {
                 userans: uAns,
@@ -188,7 +187,7 @@
                     </div>
                 </div>
                 <ul class={localEssayData.type == "0" ? "essay_upload_status text-left h" : "essay_upload_status text-left working_file" } style="list-style-type: none;">
-                    {#if localEssayData.upload != '' }
+                    {#if localEssayData.upload != '' && localEssayData.upload != undefined}
                         {#each localEssayData.upload.split(',') as uploaded, index}
                             <li class="working">
                                 <span class="download">
@@ -287,13 +286,6 @@
         color: #7f858a;
         border: 1px solid #CCCCCC;
     }
-    /* .can_upload {
-        font-size: 12px;
-        font-weight: 100;
-        position: relative;
-        top: 45px;
-        overflow-wrap: break-word;
-    } */
     #drop a {
         /* background-color: #007a96; */
         padding: 12px 5%;
