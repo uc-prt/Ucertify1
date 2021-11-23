@@ -25747,5 +25747,5 @@ i.mce-ico.mce-i-mytextwithicon::before {
     }
 }
 .scaleUp{
-    animation: scaleUpT 0.5s ease-in-out;
+    animation: scaleUpT 0.4s ease-in-out;
 }
