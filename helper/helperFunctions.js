@@ -872,7 +872,7 @@ export function tag_player(obj) {
                 var btn_style = '',
                     img_tag = '',
                     action = '',
-                    bordered = show_caption = getPlayerAttrVal(_this, 'bordered'),
+                    bordered = getPlayerAttrVal(_this, 'bordered'),
                     show_caption = getPlayerAttrVal(_this, 'show_caption'),
                     hide_caption = getPlayerAttrVal(_this, 'hide_caption'),
                     layout = getPlayerAttrVal(_this, 'layout'),
@@ -880,7 +880,8 @@ export function tag_player(obj) {
                 //For old exhibit tag
                 if (!_this.hasAttribute('category')) {
                     embed = 'overlay';
-                    if (asset != '') {
+                    sub_type = 'image';
+                    if (asset) {
                         sub_type = 'item';
                     } else {
                         sub_type = 'image';
@@ -890,28 +891,34 @@ export function tag_player(obj) {
                     }
                     show_caption = title;
                 }
-                if (img != '' && img != undefined) {
+                if (img) {
                     img = (img.indexOf('//s3.amazonaws.com') > -1) ? img : DOWNLOAD_IMAGE_URL + img;
                     img_tag = '<img src="' + img + '" alt="' + alt + '"' + (bordered ? 'class="img-bordered"' : '') + ' />';
                 } else {
                     img_tag = _this.innerHTML;
                 }
                 if (embed == 'inline') {
-                    action = 'showToggleOutput(_this)';
-                } else if (embed == 'overlay') {
-                    action = 'scenarioAction(_this)';
+                    action = 'showToggleOutput';
+                } else if (embed == 'overlay') { //NOSONAR
+                    action = 'scenarioAction';
                 }
-                var html_tag = (is_inline) ? 'span' : 'div';
+            
+                let html_tag = is_inline ? 'span' : 'div';
+            
                 if (layout == 'button') {
-                    btn_style = `<button type="button" onclick="${action}" class="toggleoutputbtn btn btn-primary ${sub_type}_tag_btn" data-player="${player_id}" data-show="${show_caption}" data-hide="${hide_caption}" tabindex="0">${show_caption}</button>`;
-                } else if (layout == 'link') {
-                    btn_style = `<span class="link-2" onclick="${action}" data-player="${player_id}" data-show="${show_caption}" data-hide="${hide_caption}">${show_caption}</span>`;
+                    btn_style = `<button type="button" class="exhibitAction btn btn-primary mb-1" action="${action}" player_id="${player_id}" data-show="${show_caption}" data-hide="${
+                        hide_caption || ''
+                    }" tabindex="0">${show_caption}</button>`;
+                } else if (layout == 'link') { //NOSONAR
+                    btn_style = `<span class="link-primary pointer exhibitAction" action="${action}" player_id="${player_id}" data-show="${show_caption}" data-hide="${
+                        hide_caption || ''
+                    }">${show_caption}</span>`;
                 }
                 if (sub_type == 'image') {
-                    var button_tag = btn_style + `<div class="toggleoutputimg pt-md h" data-player="${player_id}">${img_tag}</div>`;
+                    let button_tag = `${btn_style} <div class="pt-md h" id="player_${player_id}">${img_tag}</div>`;
                     _this.innerHTML = `<${html_tag}>${button_tag}</${html_tag}>`;
                     player_id++;
-                } else if (sub_type == 'item' && asset != '') {
+                } else if (sub_type == 'item' && asset) {
                     var old_player_id = player_id, old_assest = asset;
                     AH.ajax({
                         url: baseUrl + 'index_data.php?func=get_exhibit',
@@ -919,28 +926,34 @@ export function tag_player(obj) {
                             'guid': asset, 
                             'ajax': 1 
                         },
-                    }).then((data) => {
-                        let pdfDoc = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`
-                        _this.innerHTML = pdfDoc;
-                        if (AH.find('.exhibit_' + old_assest + '_' + old_player_id, 'player', 'all').length != 0 && embed == 'inline') {
-                            tag_player(document.querySelector(`.exhibit_${old_assest}_${old_player_id}`));
+                    }).then((res) => {
+                        const exhibitItem = res;
+                        if (embed == 'overlay') {
+                            _this.innerHTML = `<${html_tag}>${btn_style}<div class="pt h text-left" id="player_${player_id}">${exhibitItem}</div></${html_tag}>`;
+                        } else {
+                            _this.innerHTML = `<${html_tag}>${btn_style}<div class="bg-lighter-blue blue_border px-2 pb-2 h" id="player_${player_id}">
+                            <span class="close font28 pointer float-end me-2" action="${action}">&times;</span>${exhibitItem}</div></${html_tag}>`;
+                            document.querySelector(`#player_${player_id} span.close`).addEventListener('click', () =>
+                                exhibitAction('showToggleOutput', player_id)
+                            );
                         }
                         player_id++;
                     }).catch(function() {
                         console.log("error");
                     });;
                 } else if (sub_type == 'text') {
-                    text = '';
-                    var span_tag = '';
-                    if (_this.hasAttribute('text')) {
-                        text = _this.getAttribute('text');
-                    }
+                    let text = _this.attributes?.text?.value;
+                    let span_tag = '';
+
                     if (embed == 'inline') {
-                        btn_style = (layout == 'button') ? 'btn btn-primary' : '';
-                        hide_caption = (hide_caption == '') ? show_caption : hide_caption;
-                        span_tag = '<span class="link ' + btn_style + ' nohover ' + sub_type + '_tag_btn" embed="inline" guid="sample" toggle_link="' + hide_caption + '" layout="button" tabindex="0">' + show_caption + '</span><div class="span-inline h pt">' + text + '</div>';
+                        btn_style = layout == 'button' ? 'btn btn-primary' : 'link-primary pointer';
+                        hide_caption = hide_caption || show_caption;
+
+                        span_tag = `<span class="${btn_style} nohover ${sub_type} exhibitAction" action="${action}" embed="inline" guid="sample" data-show="${show_caption}" data-hide="${
+                            hide_caption || ''
+                        }" layout="button" tabindex="0" player_id="${player_id}">${show_caption}</span><div class="span-inline h pt" id="player_${player_id}">${text}</div>`;
                     } else {
-                        span_tag = btn_style + '<div class="toggleoutputimg h" data-player="' + player_id + '">' + text + '</div>';
+                        span_tag = `${btn_style} <div class="h" id="player_${player_id}">${text}</div>`;
                     }
                     _this.innerHTML = span_tag;
                     player_id++;
@@ -1550,7 +1563,49 @@ export function tag_player(obj) {
                 break;
         }
     });
+    setTimeout(() => {
+        AH.listen(document, 'click', '.exhibitAction', (v) => {
+            exhibitAction(v.attributes?.action?.value, v.attributes?.player_id?.value, v)
+        })
+    }, 1000);
 }
+function exhibitAction(action, player_id, v){
+    AH.activate(1);
+    const aEle = document.querySelector(`[player_id='${player_id}']`);
+
+    const show_caption = aEle.attributes['data-show']?.value;
+    const hide_caption = aEle.attributes['data-hide']['value']
+        ? aEle.attributes['data-hide'].value
+        : show_caption;
+
+    if (action == 'scenarioAction') {
+        if(AH.selectAll(`modal-player${player_id}`)?.length == 0){
+            
+            const m1 = makeModal (`modal-player${player_id}`, '', v?.nextElementSibling?.innerHTML || '');
+            document.body.insertAdjacentHTML('beforeend', m1);
+        }
+        var myModal = new bootstrap.Modal(document.getElementById(`modal-player${player_id}`), {
+            keyboard: false,
+            focus: true
+        });
+        myModal.show();
+        aEle.innerText = hide_caption;
+    } else if (action == 'showToggleOutput') {
+        const ele = v.nextElementSibling;
+        if (ele.classList.contains('h')) {
+            ele.classList.remove('h');
+            aEle.innerText = hide_caption;
+        } else {
+            ele.classList.add('h');
+            aEle.innerText = show_caption;
+        }
+        ele.querySelector('.close')?.addEventListener('click', () => {
+            ele.classList.add('h');
+            aEle.innerText = show_caption;
+        })
+    }
+    AH.activate(0);
+};
 
 function getTestFrameworkDetail(checkViewAttr) {
     var detail = -1;

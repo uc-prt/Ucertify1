@@ -836,7 +836,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                     <div class="mt-sm">
                         <Textfield
                             id="alt"
-                            bind:value={playerState.prevValue.alt}
+                            value={playerState.prevValue.alt}
                             label={l.img_alt}
                             placeholder={l.img_desc}
                             fullWidth="true"
