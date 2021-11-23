@@ -724,17 +724,17 @@ function formatXml(xml, cdata_format) {
     return formatted;
 }
 
-function functionForFullscreen() {
-	var frame_element = document.getElementById("authoringFrame");
+function functionForFullscreen(ele = "#authoringFrame") {
+	var frame_element = typeof ele == 'object'?ele:document.querySelector(ele);
 	if (BigScreen.enabled) {
 		BigScreen.toggle(frame_element);
 	}
 	BigScreen.onenter = function () {
-		document.querySelector('#authoringFrame')
+		frame_element
       .contentDocument
       .querySelector('#fullScreenButton').innerText = 'Back To Editor';
     
-		const iconEle = document.querySelector('#authoringFrame')
+		const iconEle = frame_element
       .contentDocument
       .querySelector('#smartFullscr i');
     if(iconEle){

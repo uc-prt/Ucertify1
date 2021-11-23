@@ -1112,6 +1112,7 @@ export function tag_player(obj) {
                 AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 mb-1"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforeend');
                 break;
             case 'pdf':
+                _this.classList.add('w-100');
                 var pdf_url, download_html, des_css = (description == '') ? { 'display': 'none' } : { 'display': 'block', 'margin': '0' };
                 if (asset.match('^https://')) {
                     asset = asset.replace('https://', 'http://');
@@ -1147,14 +1148,11 @@ export function tag_player(obj) {
             case 'weblink':
                 var frame_height = getPlayerAttrVal(_this, 'height'),
                     frame_width = (sub_type == 'embed' || embed == 'inline') ? '100%' : getPlayerAttrVal(_this, 'width');
+                _this.classList.remove('w-100');
                 if (sub_type == 'embed' || embed == 'inline') {
+                    _this.classList.add('w-100');
                     frame_height = (frame_height == '') ? '500px' : frame_height;
-                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
-                    weblinkHeight = frame_height.replace(/px|%/g, '');
-                    document.addEventListener('fullscreenchange', exitHandler);
-                    document.addEventListener('webkitfullscreenchange', exitHandler);
-                    document.addEventListener('mozfullscreenchange', exitHandler);
-                    document.addEventListener('MSFullscreenChange', exitHandler);
+                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button id="fullScreenButton" class=\'bg-light\' title=\'Full Screen\' onclick=\'functionForFullscreen(weblinkFrame_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
                     player_id++;
                     break;
                 }
@@ -1164,7 +1162,7 @@ export function tag_player(obj) {
                 var player_txt = _this.innerHTML || '',
                     html_arr = [];
                 var center_tag = (player_txt == '') ? ['<center>', '</center>'] : ['', ''];
-                html_arr[0] = center_tag[0] + '<div tabindex="' + tabindex.z + '" class="weblink" style="position:relative;display:inline-block;min-width:166px;max-width:860px;cursor:pointer" asset="' + asset + '" title="' + title + '">';
+                html_arr[0] = center_tag[0] + '<a tabindex="' + tabindex.z + '" class="weblink" style="position:relative;display:inline-block;min-width:166px;max-width:860px;cursor:pointer" href="' + asset + '" title="' + title + '" target="_blank">';
                 if (_this.hasAttribute('icon') && _this.getAttribute('icon') !== '') {
                     html_arr[1] = '<span class="' + _this.getAttribute('icon') + ' s8 float-left"></span>';
                 } else {
@@ -1172,7 +1170,7 @@ export function tag_player(obj) {
                 }
                 var frame_align = (player_txt == '') ? '' : 'tip-c';
                 if (html_arr[1] == '') frame_align = '';
-                html_arr[2] = `<div class="${frame_align}">${player_txt}</div></div>${center_tag[1]}`;
+                html_arr[2] = `<div class="${frame_align}">${player_txt}</div></a>${center_tag[1]}`;
                 _this.innerHTML = html_arr.join('');
                 if (_this.hasAttribute('overlay') && _this.getAttribute('overlay') == '1') {
                     _this.querySelector('.weblink').classList.add('overlay');
