@@ -872,7 +872,7 @@ export function tag_player(obj) {
                 var btn_style = '',
                     img_tag = '',
                     action = '',
-                    bordered = show_caption = getPlayerAttrVal(_this, 'bordered'),
+                    bordered = getPlayerAttrVal(_this, 'bordered'),
                     show_caption = getPlayerAttrVal(_this, 'show_caption'),
                     hide_caption = getPlayerAttrVal(_this, 'hide_caption'),
                     layout = getPlayerAttrVal(_this, 'layout'),
@@ -880,7 +880,8 @@ export function tag_player(obj) {
                 //For old exhibit tag
                 if (!_this.hasAttribute('category')) {
                     embed = 'overlay';
-                    if (asset != '') {
+                    sub_type = 'image';
+                    if (asset) {
                         sub_type = 'item';
                     } else {
                         sub_type = 'image';
@@ -890,28 +891,34 @@ export function tag_player(obj) {
                     }
                     show_caption = title;
                 }
-                if (img != '' && img != undefined) {
+                if (img) {
                     img = (img.indexOf('//s3.amazonaws.com') > -1) ? img : DOWNLOAD_IMAGE_URL + img;
                     img_tag = '<img src="' + img + '" alt="' + alt + '"' + (bordered ? 'class="img-bordered"' : '') + ' />';
                 } else {
                     img_tag = _this.innerHTML;
                 }
                 if (embed == 'inline') {
-                    action = 'showToggleOutput(_this)';
-                } else if (embed == 'overlay') {
-                    action = 'scenarioAction(_this)';
+                    action = 'showToggleOutput';
+                } else if (embed == 'overlay') { //NOSONAR
+                    action = 'scenarioAction';
                 }
-                var html_tag = (is_inline) ? 'span' : 'div';
+            
+                let html_tag = is_inline ? 'span' : 'div';
+            
                 if (layout == 'button') {
-                    btn_style = `<button type="button" onclick="${action}" class="toggleoutputbtn btn btn-primary ${sub_type}_tag_btn" data-player="${player_id}" data-show="${show_caption}" data-hide="${hide_caption}" tabindex="0">${show_caption}</button>`;
-                } else if (layout == 'link') {
-                    btn_style = `<span class="link-2" onclick="${action}" data-player="${player_id}" data-show="${show_caption}" data-hide="${hide_caption}">${show_caption}</span>`;
+                    btn_style = `<button type="button" class="exhibitAction btn btn-primary mb-1" action="${action}" player_id="${player_id}" data-show="${show_caption}" data-hide="${
+                        hide_caption || ''
+                    }" tabindex="0">${show_caption}</button>`;
+                } else if (layout == 'link') { //NOSONAR
+                    btn_style = `<span class="link-primary pointer exhibitAction" action="${action}" player_id="${player_id}" data-show="${show_caption}" data-hide="${
+                        hide_caption || ''
+                    }">${show_caption}</span>`;
                 }
                 if (sub_type == 'image') {
-                    var button_tag = btn_style + `<div class="toggleoutputimg pt-md h" data-player="${player_id}">${img_tag}</div>`;
+                    let button_tag = `${btn_style} <div class="pt-md h" id="player_${player_id}">${img_tag}</div>`;
                     _this.innerHTML = `<${html_tag}>${button_tag}</${html_tag}>`;
                     player_id++;
-                } else if (sub_type == 'item' && asset != '') {
+                } else if (sub_type == 'item' && asset) {
                     var old_player_id = player_id, old_assest = asset;
                     AH.ajax({
                         url: baseUrl + 'index_data.php?func=get_exhibit',
@@ -919,28 +926,34 @@ export function tag_player(obj) {
                             'guid': asset, 
                             'ajax': 1 
                         },
-                    }).then((data) => {
-                        let pdfDoc = `<${html_tag}>${btn_style}<div class="toggleoutputimg pt h text-left exhibit_${old_assest}_${old_player_id}" data-player="${old_player_id}">${data}</div></${html_tag}>`
-                        _this.innerHTML = pdfDoc;
-                        if (AH.find('.exhibit_' + old_assest + '_' + old_player_id, 'player', 'all').length != 0 && embed == 'inline') {
-                            tag_player(document.querySelector(`.exhibit_${old_assest}_${old_player_id}`));
+                    }).then((res) => {
+                        const exhibitItem = res;
+                        if (embed == 'overlay') {
+                            _this.innerHTML = `<${html_tag}>${btn_style}<div class="pt h text-left" id="player_${player_id}">${exhibitItem}</div></${html_tag}>`;
+                        } else {
+                            _this.innerHTML = `<${html_tag}>${btn_style}<div class="bg-lighter-blue blue_border px-2 pb-2 h" id="player_${player_id}">
+                            <span class="close font28 pointer float-end me-2" action="${action}">&times;</span>${exhibitItem}</div></${html_tag}>`;
+                            document.querySelector(`#player_${player_id} span.close`).addEventListener('click', () =>
+                                exhibitAction('showToggleOutput', player_id)
+                            );
                         }
                         player_id++;
                     }).catch(function() {
                         console.log("error");
                     });;
                 } else if (sub_type == 'text') {
-                    text = '';
-                    var span_tag = '';
-                    if (_this.hasAttribute('text')) {
-                        text = _this.getAttribute('text');
-                    }
+                    let text = _this.attributes?.text?.value;
+                    let span_tag = '';
+
                     if (embed == 'inline') {
-                        btn_style = (layout == 'button') ? 'btn btn-primary' : '';
-                        hide_caption = (hide_caption == '') ? show_caption : hide_caption;
-                        span_tag = '<span class="link ' + btn_style + ' nohover ' + sub_type + '_tag_btn" embed="inline" guid="sample" toggle_link="' + hide_caption + '" layout="button" tabindex="0">' + show_caption + '</span><div class="span-inline h pt">' + text + '</div>';
+                        btn_style = layout == 'button' ? 'btn btn-primary' : 'link-primary pointer';
+                        hide_caption = hide_caption || show_caption;
+
+                        span_tag = `<span class="${btn_style} nohover ${sub_type} exhibitAction" action="${action}" embed="inline" guid="sample" data-show="${show_caption}" data-hide="${
+                            hide_caption || ''
+                        }" layout="button" tabindex="0" player_id="${player_id}">${show_caption}</span><div class="span-inline h pt" id="player_${player_id}">${text}</div>`;
                     } else {
-                        span_tag = btn_style + '<div class="toggleoutputimg h" data-player="' + player_id + '">' + text + '</div>';
+                        span_tag = `${btn_style} <div class="h" id="player_${player_id}">${text}</div>`;
                     }
                     _this.innerHTML = span_tag;
                     player_id++;
@@ -1026,6 +1039,9 @@ export function tag_player(obj) {
                     } catch (err) {
                         console.warn(err);
                     }
+                    if(!group_guids){
+                        group_guids += `${window.content_guid}`;
+                    }
                     var v_plus_id = 'v-plus-preview' + group_guids, bg_zoom = '';
                     var v_plus_previewbox_class = 'col-md-7 col-12 p-0';
                     var v_plus_previewbox2_class = 'col-md-5 col-sm-12 col-12 p-0';
@@ -1044,7 +1060,7 @@ export function tag_player(obj) {
                         vtt_preview_html = '';
                     }
                     var add_class = (_this.hasAttribute('is_multiple') && _this.getAttribute('is_multiple') == 1) ? 'class="mx-auto width10"' : '';
-                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="lazy" class="w-100"></iframe></center>';
+                    var v_plus_preview_html = '<center cid="' + v_plus_id + '" style="display:flex;" ' + add_class + '><iframe id="' + v_plus_id + '" title="' + player_title + '" src="' + baseUrl + 'utils/video_plus/index.php?content_guid=' + group_guids + '&no_header=1&question=1&img=' + preview_image + '&framework=' + framework + '" loading="eager" class="w-100"></iframe></center>';
                     AH.insert(_this, video_title_tag + v_plus_preview_html, 'beforeend');
                     var v_p_url = 'url("' + preview_image + '")';
                     //_this.find('.v-container').css({ 'background-image': v_p_url, 'zoom': bg_zoom });
@@ -1096,6 +1112,7 @@ export function tag_player(obj) {
                 AH.insert(_this, audio_title_tag + '<audio controls="controls" class="position-absolute right5 bottom6 mb-1"><source src="' + asset + '" type="audio/mpeg"></audio></div>', 'beforeend');
                 break;
             case 'pdf':
+                _this.classList.add('w-100');
                 var pdf_url, download_html, des_css = (description == '') ? { 'display': 'none' } : { 'display': 'block', 'margin': '0' };
                 if (asset.match('^https://')) {
                     asset = asset.replace('https://', 'http://');
@@ -1131,14 +1148,11 @@ export function tag_player(obj) {
             case 'weblink':
                 var frame_height = getPlayerAttrVal(_this, 'height'),
                     frame_width = (sub_type == 'embed' || embed == 'inline') ? '100%' : getPlayerAttrVal(_this, 'width');
+                _this.classList.remove('w-100');
                 if (sub_type == 'embed' || embed == 'inline') {
+                    _this.classList.add('w-100');
                     frame_height = (frame_height == '') ? '500px' : frame_height;
-                    AH.insert(_this, '<center><div class=\'weblinkContainer\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button class=\'bg-light\' title=\'Full Screen\' onclick=\'weblinkfullscreen(weblinkEmbed_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
-                    weblinkHeight = frame_height.replace(/px|%/g, '');
-                    document.addEventListener('fullscreenchange', exitHandler);
-                    document.addEventListener('webkitfullscreenchange', exitHandler);
-                    document.addEventListener('mozfullscreenchange', exitHandler);
-                    document.addEventListener('MSFullscreenChange', exitHandler);
+                    AH.insert(_this, '<center><div class=\'weblinkContainer overflow-auto\' style=\'position:relative;height:' + frame_height + ';width:' + frame_width + '\' id=\'weblinkEmbed_' + player_id + '\'><iframe src=\'' + asset + '\' height=\'100%\' width=\'' + frame_width + '\' allowfullscreen=\'true\' class=\'weblink_player\' id=\'weblinkFrame_' + player_id + '\'></iframe><button id="fullScreenButton" class=\'bg-light\' title=\'Full Screen\' onclick=\'functionForFullscreen(weblinkFrame_' + player_id + ')\' rel=\'tooltip\' style=\'position:absolute;top:0;right:0;border:0;padding:10px\'><i class=\'icomoon-new-24px-expand-1 fullScreenIcon\' /><span class=\'fullscreenBtn pl-md align-top pull-right\'>Full Screen</span></button></div></center>', 'beforeend');
                     player_id++;
                     break;
                 }
@@ -1148,7 +1162,7 @@ export function tag_player(obj) {
                 var player_txt = _this.innerHTML || '',
                     html_arr = [];
                 var center_tag = (player_txt == '') ? ['<center>', '</center>'] : ['', ''];
-                html_arr[0] = center_tag[0] + '<div tabindex="' + tabindex.z + '" class="weblink" style="position:relative;display:inline-block;min-width:166px;max-width:860px;cursor:pointer" asset="' + asset + '" title="' + title + '">';
+                html_arr[0] = center_tag[0] + '<a tabindex="' + tabindex.z + '" class="weblink" style="position:relative;display:inline-block;min-width:166px;max-width:860px;cursor:pointer" href="' + asset + '" title="' + title + '" target="_blank">';
                 if (_this.hasAttribute('icon') && _this.getAttribute('icon') !== '') {
                     html_arr[1] = '<span class="' + _this.getAttribute('icon') + ' s8 float-left"></span>';
                 } else {
@@ -1156,7 +1170,7 @@ export function tag_player(obj) {
                 }
                 var frame_align = (player_txt == '') ? '' : 'tip-c';
                 if (html_arr[1] == '') frame_align = '';
-                html_arr[2] = `<div class="${frame_align}">${player_txt}</div></div>${center_tag[1]}`;
+                html_arr[2] = `<div class="${frame_align}">${player_txt}</div></a>${center_tag[1]}`;
                 _this.innerHTML = html_arr.join('');
                 if (_this.hasAttribute('overlay') && _this.getAttribute('overlay') == '1') {
                     _this.querySelector('.weblink').classList.add('overlay');
@@ -1541,13 +1555,57 @@ export function tag_player(obj) {
                 player_id++;
                 break;
             default:
+                _this.classList.add('w-100');
                 iframe_src = baseUrl + 'quiz_player.php?player_id=' + content_guid + '_' + player_id + '&group_guid=' + asset + '&title=' + title + '&player_setting' + options;
                 AH.insert(_this, '<iframe tabindex=\'' + tabindex.z + '\' class=\'quiz_player\' name=' + content_guid + '_' + player_id + ' id=' + content_guid + '_' + player_id + ' src=\'' + iframe_src + '\' style=\'' + options + '\' onLoad=\'window.parent.autoResize(this.id)\' title=\'' + player_title + '\'></iframe>', 'beforeend');
                 player_id++;
                 break;
         }
     });
+    setTimeout(() => {
+        AH.listen(document, 'click', '.exhibitAction', (v) => {
+            exhibitAction(v.attributes?.action?.value, v.attributes?.player_id?.value, v)
+        })
+    }, 1000);
 }
+function exhibitAction(action, player_id, v){
+    AH.activate(1);
+    const aEle = document.querySelector(`[player_id='${player_id}']`);
+
+    const show_caption = aEle.attributes['data-show']?.value;
+    const hide_caption = aEle.attributes['data-hide']['value']
+        ? aEle.attributes['data-hide'].value
+        : show_caption;
+
+    if (action == 'scenarioAction') {
+        if(AH.selectAll(`modal-player${player_id}`)?.length == 0){
+            
+            const m1 = makeModal (`modal-player${player_id}`, '', v?.nextElementSibling?.innerHTML || '', '', 'scaleUp');
+            document.body.insertAdjacentHTML('beforeend', m1);
+        }
+        var myModal = new bootstrap.Modal(document.getElementById(`modal-player${player_id}`), {
+            keyboard: false,
+            focus: true
+        });
+        myModal.show();
+        aEle.innerText = hide_caption;
+    } else if (action == 'showToggleOutput') {
+        const ele = v.nextElementSibling;
+        if (ele.classList.contains('h')) {
+            ele.classList.remove('h');
+            aEle.innerText = hide_caption;
+        } else {
+            ele.classList.add('h');
+            aEle.innerText = show_caption;
+        }
+        ele.querySelector('.close')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            ele.classList.add('h');
+            aEle.innerText = show_caption;
+        })
+    }
+    AH.activate(0);
+};
 
 function getTestFrameworkDetail(checkViewAttr) {
     var detail = -1;
