@@ -29,6 +29,7 @@ import Button from 'svelte-mui/src/Button.svelte';
     let prevValueOption = {};
 
     let securityCheckbox = false;
+    let styles = {};
 
     function getJsonAttrValue(data, input_id) {
             if (data != '') {
@@ -215,6 +216,7 @@ import Button from 'svelte-mui/src/Button.svelte';
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
+        styles = JSON.parse(playerState?.prevValue?.styles || "{}");
     });
 </script>
     <div>
@@ -812,8 +814,9 @@ import Button from 'svelte-mui/src/Button.svelte';
                                 <option value="inline">{l.embed}</option>
                                 {#if playerState.type != 'exhibit'}
                                     <option value="new_tab">{l.new_tab} </option>
+                                {:else}
+                                    <option value="overlay">{l.overlay} </option>
                                 {/if}
-                                <option value="overlay">{l.overlay} </option>
                             </select>
                         </div>
                     {/if}
@@ -836,7 +839,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                     <div class="mt-sm">
                         <Textfield
                             id="alt"
-                            bind:value={playerState.prevValue.alt}
+                            value={playerState.prevValue.alt}
                             label={l.img_alt}
                             placeholder={l.img_desc}
                             fullWidth="true"
@@ -851,15 +854,17 @@ import Button from 'svelte-mui/src/Button.svelte';
                                 fullWidth="true"
                                 placeholder={playerState.embed == 'inline' ? l.img_height : l.frame_height}
                                 label={ (playerState.embed == 'inline') ? l.frame_ht : l.imgage_ht}
+                                value="{styles?.height || ''}"
                             />
                         </div>
-                        {#if playerState.embed != 'inline'}
+                        {#if playerState.embed != 'inline' && playerState.embed != 'new_win'}
                             <div class="mt-sm">
                                 <Textfield
                                     id="width"
                                     fullWidth="true"
                                     placeholder={l.enter_img_width}
                                     label={l.img_width}
+                                    value="{styles?.width || ''}"
                                 />
                             </div>
                         {/if}
