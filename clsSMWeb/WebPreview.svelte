@@ -191,6 +191,21 @@
         }
         // it is used only re-render purpose as its value first changes but callback function again reset it its initial value
         //state.goDark =!state.goDark;
+
+        AH.listen('#web_toolbar','keydown','.runcode_btn',function(data,e){
+            if(e.which === 13) {
+                runCode();
+            }
+            
+        })
+
+        AI.listen('#web_toolbar','keydown','#goDarkButton',function(data,e){
+            if(e.which === 13) {
+                data.click();
+            }
+        })
+
+
     });
 
     function setReview() {
@@ -1418,12 +1433,12 @@
 
     // shows the output of the code in 'Result' editor
     function runCode() {
-        if(showHTML + showCSS + showJS > 1) {
+        // if(showHTML + showCSS + showJS > 1) {
             window.scroll({
-            top: 500,
-            behavior: 'smooth'  
-          });
-        }
+                bottom: 200,
+                behavior: 'smooth'  
+            });
+        // }
         let date = new Date();
         date = date.getTime();
         let iframeId = "uC" + date;
@@ -1720,7 +1735,7 @@
                             <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
                         </div>
                     <div class="float-right mt-2">
-                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" data-bs-toggle="dropdown" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
+                        <button class="btn border-0 px-0 ml-2 mr-2" type="button" id='goDarkButton' data-bs-toggle="dropdown" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" aria-labelledby="dropdownMenuButton1">
                             <li>
                                 <label for="goDark" class="dropdown-item mb-0 pointer">

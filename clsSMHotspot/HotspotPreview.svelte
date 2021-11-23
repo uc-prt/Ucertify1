@@ -1,5 +1,5 @@
 <script>
-	import { onMount, beforeUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import hotspotScript from './hotspotScript.js';
 	import DooScribPlugin from './hotspotDrawingScript.js';
 	import { XMLToJSON, onUserAnsChange, AH } from '../helper/HelperAI.svelte';
@@ -38,8 +38,6 @@
 	let itemAreaHeight = '';
 	let itemAreaWidth = '';
 	let itemAreaLeft = '';
-	let targetLeft 		= 100;
-	let targetTop 		= 100;
 	let targetView      = "none";
 	let ans_x 			= 0;
 	let ans_y 			= 0;
@@ -47,8 +45,6 @@
 	let ans_w 			= 0;
 	let type			= "";
 	let img_url 		= "";
-	let manual_grade 	= 0;
-	let onError			= null; 
 	let item_type       = "";
 	let xmlHeight       = 0;
 	let xmlWidth        = 0;
@@ -116,60 +112,39 @@
 		}
 
 		AH.listen('#previewArea','keydown','#im0', function(_this,e) {
-			let result;
-			console.log('click....');
 			if (e.which === 13) {
-				//movetarget(e,document.getElementById('hptmain0').getElementsByClassName('target')[0],document.getElementById('hptmain0').getElementsByClassName('hotArea')[0]);	
-				//movetarget(e, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
 				checkAnswer(e);
 			}
 
 			switch (e.which) {
-				case 37:    //left arrow key
-					// $(".target0").finish().animate({
-					// 	left: "-=2"
-					// });
+				case 37: 
 					window.scroll({
 						left: "-=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 38:    //up arrow key
-					// $(".target0").finish().animate({
-					// 	top: "-=2"
-					// });
+				case 38:  
 					window.scroll({
 						top: "-=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 39:    //right arrow key
-					// $(".target0").finish().animate({
-					// 	left: "+=2"
-					// });
+				case 39: 
 					window.scroll({
 						left: "+=2",
 						behavior: 'smooth'  
           			});
 					break;
-				case 40:    //bottom arrow key
-					// $(".target0").finish().animate({
-					// 	top: "+=2"
-					// });
+				case 40:   
 					window.scroll({
 						top: "+=2",
 						behavior: 'smooth'  
           			});
 					break;
-					case 13:    //Press Enter key Set Answer
+				case 13:    //Press Enter key Set Answer
 					checkAnswer();
 					break;
 			}		
-
-
-
-
-
 		})
 
 		AH.listen('#previewArea', 'click', '.textClick', function() {
@@ -295,6 +270,7 @@
 		let result = {}; 
 		if (typeName == 'textclick' || typeName == 'textselect') {
 			result = HotJS.check_Ans('#previewArea #hptmain0');
+			answerStatus = result.ans;
 		} else {
 			result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
 			isUxmlTarget = true;
@@ -337,6 +313,7 @@
 
 	// when remediation mode is off
 	function unsetReview() {
+		isReview= false;
 		targetView = "none";
 		// if the module is imagehighlight then it hide the correct answer ans show user ans on the module using the function drawOnCanvas
 		if (moduleArr[item_type] == "3") {
