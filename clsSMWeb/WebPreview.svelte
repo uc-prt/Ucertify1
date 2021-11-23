@@ -194,9 +194,8 @@
 
         AH.listen('#web_toolbar','keydown','.runcode_btn',function(data,e){
             if(e.which === 13) {
-                runCode();
+                runCode(0);
             }
-            
         })
 
         AI.listen('#web_toolbar','keydown','#goDarkButton',function(data,e){
@@ -204,8 +203,6 @@
                 data.click();
             }
         })
-
-
     });
 
     function setReview() {
@@ -503,7 +500,7 @@
         // sets the value of state 'remediationToggle' to true that indicates that remediation mode is on
        state.remediationToggle = true ;
         // shows the output of the code in 'Result' editor
-        runCode();
+        runCode(0);
     }
 
      // used for show the result of testcases
@@ -513,7 +510,7 @@
         // contains rows of Remediation dialog box in each row 2 columns exist in first column testcase number defined and in second column their result status defined
         let case_result = [];
         // shows the output of the code in 'Result' editor according to the value of argument variable 'isRun'
-        isRun ? runCode() : "";
+        isRun ? runCode(1) : "";
         // contains the string defined in 'Testcases' field of 'Autograde' dialog box
         let get_test_cases = stringBetween(state.xml, '<autograde type="testcase">', '</autograde>');
         // enters in this block if any testcase defined in 'Testcases' of 'Autograde' dialog box
@@ -1432,13 +1429,17 @@
     }
 
     // shows the output of the code in 'Result' editor
-    function runCode() {
-        // if(showHTML + showCSS + showJS > 1) {
-            window.scroll({
-                bottom: 200,
-                behavior: 'smooth'  
-            });
-        // }
+    function runCode(is_scroll_top) {
+        // @Prabhat: In case of run button we need to scroll to the position of the run button div
+        // and in case of submit we need to scroll to top.
+        let scroll_top =  AH.select('.runcode_btn').offsetTop;
+        if (is_scroll_top) {
+            scroll_top = 0;
+        }
+        window.scroll({
+            top: scroll_top,
+            behavior: 'smooth'  
+        });
         let date = new Date();
         date = date.getTime();
         let iframeId = "uC" + date;
@@ -1673,7 +1674,7 @@
                         </ul>
                     </div>
                     <div class="inline-block pull-right">x`
-                        <button type="button" class="btn btn-primary runcode_btn ml" on:click={runCode}>{l.run}</button>
+                        <button type="button" class="btn btn-primary runcode_btn ml" on:click={() => runCode(0)}>{l.run}</button>
                     </div>
                 </div>
                 <div style={'width: 100%;background: white;'} class="content_parent">
@@ -1732,7 +1733,7 @@
                     </div>
                     <div class="d-flex">
                         <div class="inline-block pull-right">
-                            <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={runCode}>{l.run}</button>
+                            <button type="button" class="btn btn-primary runcode_btn ml mt-1" on:click={() => runCode(0)}>{l.run}</button>
                         </div>
                     <div class="float-right mt-2">
                         <button class="btn border-0 px-0 ml-2 mr-2" type="button" id='goDarkButton' data-bs-toggle="dropdown" data-toggle="dropdown"><span class="icomoon-menu-2 s3 text-secondary pt-s d-block" id="dropdownMenuButton1"></span></button>
