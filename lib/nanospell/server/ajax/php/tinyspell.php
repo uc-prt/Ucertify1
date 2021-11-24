@@ -16,8 +16,6 @@ try {
 	if ( $post->method == 'spellcheck' ) {
 		echo '{"id":"' . protect( $post->id ) . '","result": {';
 		$first = true;
-		var_dump('$post->params->words', $post->params->words);
-		exit;
 		foreach ( $post->params->words as $word ) {
 			if ( ! $spellcheckObject->SpellCheckWord( $word ) ) {
 				if ( $first ) {
