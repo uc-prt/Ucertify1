@@ -30,7 +30,6 @@ import Media from "./components/Media.svelte";
 import l from './libs/editorLib/language';
 import ImageAnnotation from './components/ImageAnnotation';
 import EditorPopoverModal from './components/EditorPopoverModal.svelte';
-import PeGlossaryContentLink from './components/PeGlossaryContentLink.svelte';
 import AnalyzeEbook from './components/AnalyzeEbook.svelte';
 
 // Taking Props
@@ -1000,7 +999,13 @@ function initEditorListeners() {
 						state.playerArr[playerAttr.name] = playerAttr.value;
 					}
 				});
-				if (_this.getAttribute('type') == 'playground' || _this.classList.contains('link')) {
+				if ( _this.classList.contains('link')) {
+					state.playerArr['asset'] = _this.getAttribute('guid');
+					let option = JSON.parse(_this.getAttribute['option'] || "{}");
+					option = {...option, show_caption:  option.show_caption || _this.textContent, embed: _this.getAttribute('embed') || 'overlay'}
+					state.playerArr['option'] = JSON.stringify(option);
+				}
+				if (_this.getAttribute('type') == 'playground') {
 					state.playerArr['playground'] = _this.textContent;
 				}
 				state.playerArr['obj'] = _this;
@@ -3185,4 +3190,3 @@ afterUpdate(() => {
 <svelte:window on:keyup={handleKeyup} on:keydown={handleKeydown} />
 <InteractiveItem bind:this={_interactiveItem}/>
 <EditorPopoverModal />
-<PeGlossaryContentLink />

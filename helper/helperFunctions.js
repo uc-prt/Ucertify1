@@ -1564,16 +1564,123 @@ export function tag_player(obj) {
     });
     setTimeout(() => {
         AH.listen(document, 'click', '.exhibitAction', (v) => {
-            exhibitAction(v.attributes?.action?.value, v.attributes?.player_id?.value, v)
-        })
+            if(document.querySelector('[href="#custom_columnize"]').classList.contains('active')){
+                exhibitAction(v.attributes?.action?.value, v.attributes?.player_id?.value, v)
+            }
+        });
+        AH.listen(document, 'click', 'span.link', (v) => {
+            if(document.querySelector('[href="#custom_columnize"]').classList.contains('active')){
+                parseSpanLinks(v, window);
+            }
+        });
     }, 1000);
 }
+async function parseSpanLinks(e, window_data) {
+    AH.activate(1);
+    const win_obj = window_data;
+    const guid = e.getAttribute('guid');
+    const embed = e.getAttribute('embed');
+    let url = '', data='';
+
+    if (guid) {
+        url += `${document.location.origin}/preview?content_guid=${guid}&change_links_target=1`;
+    } else {
+        return false;
+    }
+
+    switch (embed.toLowerCase()) {
+        case 'new':
+            win_obj.open(url + '&action=new', '_blank');
+            break;
+        case 'inline':
+            if (e.classList.contains('span-inline')) {
+                if (e.hasAttribute('toggle_link')) {
+                    let txt = e.attributes?.toggle_link.value;
+                    e.attributes.toggle_link = e.innerText;
+                    e.innerText = txt;
+                }
+            } else if(e.nextSibling.getAttribute('linkedGuid') != null) {
+                if (e.nextSibling.style.display == 'none') {
+                    e.nextSibling.style.display = 'block';
+                } else {
+                    e.nextSibling.style.display = 'none';
+                }
+            } else {
+                const response = await AH.ajax({
+                    url: baseUrl + 'index_data.php?func=get_exhibit',
+                    data: { 
+                        'guid': guid, 
+                        'ajax': 1 
+                    },
+                });
+                data = `<div linkedGuid="${guid}"class="bg-lighter-blue blue_border px-3 pt-3" style="display:none;"><span class="close float-right font28 pointer">&times;</span><div class="section_${guid}">${response}</div></div>`;
+                e.insertAdjacentHTML('afterend', data);
+                prettyPrint();
+                e.nextSibling.style.display = 'block';
+                ele.nextSibling.querySelector('.close')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    ele.classList.add('h');
+                    aEle.innerText = show_caption;
+                });
+            }
+            break;
+        case 'factlink':
+            let offset = document.getElementById(guid) && document.getElementById(guid)?.offsetTop - 40;
+            if (offset) {
+                win_obj.scroll({
+                    top: offset,
+                    behavior: 'smooth'  
+                });
+            }
+            break;
+        default:
+            if (e.classList.contains('span-inline')) {
+                if (e.hasAttribute('toggle_link')) {
+                    let txt = e.attributes?.toggle_link.value;
+                    e.attributes.toggle_link = e.innerText;
+                    e.innerText = txt;
+                }
+            } else if(e.nextSibling?.getAttribute('linkedGuid') != null) {
+                if (e.nextSibling.style.display == 'none') {
+                    e.nextSibling.style.display = 'block';
+                } else {
+                    e.nextSibling.style.display = 'none';
+                }
+            } else {
+                const response = await AH.ajax({
+                    url: baseUrl + 'index_data.php?func=get_exhibit',
+                    data: { 
+                        'guid': guid, 
+                        'ajax': 1 
+                    },
+                });
+                
+                data = `<div linkedGuid="${guid}"class="bg-lighter-blue blue_border px-3 py-1"><div class="section_${guid}">${response}</div></div>`;
+                if(AH.selectAll(`modal-section_${guid}`)?.length == 0){
+                    
+                    const m1 = makeModal (`modal-section_${guid}`, '', data, '', 'scaleUp');
+                    document.body.insertAdjacentHTML('beforeend', m1);
+                }
+                var myModal = new bootstrap.Modal(document.getElementById(`modal-section_${guid}`), {
+                    keyboard: false,
+                    focus: true
+                });
+                myModal.show();
+                prettyPrint();
+            }
+            break;
+    }
+    AH.activate(0);
+}
+
 function exhibitAction(action, player_id, v){
     AH.activate(1);
     const aEle = document.querySelector(`[player_id='${player_id}']`);
-
-    const show_caption = aEle.attributes['data-show']?.value;
-    const hide_caption = aEle.attributes['data-hide']['value']
+    if(!aEle){
+        return;
+    }
+    const show_caption = aEle?.attributes['data-show']?.value;
+    const hide_caption = aEle?.attributes['data-hide']['value']
         ? aEle.attributes['data-hide'].value
         : show_caption;
 
@@ -1602,7 +1709,7 @@ function exhibitAction(action, player_id, v){
             e.stopPropagation();
             ele.classList.add('h');
             aEle.innerText = show_caption;
-        })
+        });
     }
     AH.activate(0);
 };
