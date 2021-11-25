@@ -544,7 +544,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
-                                value={playerState?.prevValue?.preview || ""}
+                                value={playerState?.prevValue?.preview || prevValueOption?.preview || ''}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
                                 disabled={playerState.security || playerState.intervals}

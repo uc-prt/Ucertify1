@@ -719,7 +719,7 @@
                 AH.alert(l.asset_not_empty);
             } else {
                 AH.activate(2);
-                let url = AH.select('.media_tag #asset').getAttribute('data-value');
+                let url = AH.select('.media_tag #asset').value;
                 AH.ajax({
                     url: baseUrl+'utils/vtt_parser.php', 
                     data: {
@@ -728,6 +728,7 @@
                             video_url:url
                         }
                 }).then((response)=> {
+                    response = JSON.parse(response);
                     if (response.msg == 'Media already exist!') {
                         AI.showmsg(l.vtt_exists);
                         AH.select('.edit_transcript').disabled =  (response.vtt != 1);
@@ -739,7 +740,7 @@
                         if (state.add_transcript) {
                             setTimeout(function() {
                                 AH.select('#media_title').value = AH.select('.media_tag #title').value;
-                                AH.select('#media_url').value = AH.select('.media_tag #asset').getAttribute('data-value');
+                                AH.select('#media_url').value = AH.select('.media_tag #asset').value;
                                 AH.select('#courses').value = window.editor.course;
                                 updateVideoLink();
                             }, 100);
