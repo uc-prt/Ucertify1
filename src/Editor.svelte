@@ -463,7 +463,6 @@ function renderPlayer() {
 	});
 	if (state.player_render) {
 		setTimeout(() => tag_player(previewDom), 500);
-		state.player_render = false;
 	}
 	//Show player tag with full width for UI improvement when the player is rendering
 	previewDom.querySelectorAll('player').forEach(function (_elm) {
