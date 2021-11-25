@@ -464,11 +464,6 @@ function renderPlayer() {
 	if (state.player_render) {
 		setTimeout(() => tag_player(previewDom), 500);
 	}
-	//Show player tag with full width for UI improvement when the player is rendering
-	previewDom.querySelectorAll('player').forEach(function (_elm) {
-		(_elm.innerHTML != '') ? _elm.classList.add('w-100') : _elm.classList.remove('w-100');
-	});
-	//working of ebook interactive items
 	// initEbookInteractivity();
 	//listStyleChange("list2", "list3", "list4", "list5", "list6");
 	if (player_parent) {
@@ -2073,6 +2068,7 @@ function saveAction(event, customAction, saveType) {
 			break;
 		case 'save':
 			console.warn("Save action");
+			console.log(AH.get('save'));
 			if (AH.get('save')) {
 				if (from_myproject == 1 && state.guid.length == 5 && state.course_list) {
 					publishSelected();

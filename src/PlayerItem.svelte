@@ -34,7 +34,7 @@ import Button from 'svelte-mui/src/Button.svelte';
     function getJsonAttrValue(data, input_id) {
             if (data != '') {
                 let tempValue = '';
-                data = JSON.parse(data);
+                data = JSON.parse(data || "{}");
                 for (var key in data) {
                     if (playerState[key] != undefined && key != 'intervals') {
                         tempValue = data[key];
@@ -798,7 +798,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                             disabled={(playerState.type == 'exhibit' && playerState.sub_type != 'item') ? true : false}
                             error={(playerState.msg != '') ? playerState.msg : false}
                             helperText={playerState.msg}
-                            is_multiple={(playerState.type == 'exhibit' && playerState.sub_type == 'item') ? 0 : null}
+                            is_multiple={(playerState.type == 'exhibit' && (playerState.sub_type == undefined || playerState.sub_type == 'item')) ? 0 : null}
                         />
                     </div>
                     {#if (playerState.type == 'weblink' || playerState.type == 'exhibit') }
