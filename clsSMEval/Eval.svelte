@@ -192,6 +192,8 @@
                 AH.selectAll(".action_block", 'removeClass', 'd-flex');
                 AH.selectAll(".action_block, .language_select_button, .database_select_button, .pre-div", 'hide');
                 AH.selectAll(".selected_language", 'removeClass', 'hidden');
+                const editableContent = AH.selectAll('[contenteditable="true"]');
+                editableContent?.forEach(ele => ele.setAttribute('contenteditable', 'false'));
                 // hide the pre and post block in case of preview
                 addPreBlock(0);
                 addPostBlock(0);
@@ -255,6 +257,10 @@
                     renderCodeMirror();
                     editor.setValue(privXML.trim());
                 }
+                const editableContent = AH.selectAll('[contenteditable="false"]');
+                editableContent?.forEach(ele => ele.setAttribute('contenteditable', 'true'));
+
+                setInlineEditor("#title");
                 setInlineEditor("#stem");
                 setInlineEditor("#remediation");
             }
