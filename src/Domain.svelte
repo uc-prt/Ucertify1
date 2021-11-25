@@ -58,114 +58,96 @@
 
     onMount(async ()=> {
         init();
-        
-        let domainData= AH.get('domainData');
-        let domainGuids = url.get('content_guid') ? url.get('content_guid') : "";
-    
-        if (domainData) {
-            setDomainData(domainData[editorState.guid]);
-        } else if (fromProject && domainGuids) {
+        let domainGuids = url.get('router_guid') ? url.get('router_guid') : url.get('content_guid');
+        domainGuids = domainGuids.split(',').map(ele => `guids[]=`+ele);
+        if (fromProject && domainGuids) {
             AH.activate(1);
-            AH.ajax({
-            url: baseUrl + "editor/index.php",
-            data: {
-                    ajax: "1",
-                    course_code: editor.course,
-                    action: "get_domain",
-                    guids: domainGuids, 
-                    keys: 'e,d'
-                },
-            }).then((response)=> {
-                response =JSON.parse(response);
-                domainData = response[guid]
-                AH.set('domainData', domainData);
-                setDomainData(domainData);
-            }).finally(() => AH.activate(0));
-        }
-        // Default Data for domain
-        items.push({value: 0, key: "0", label: "Select Domain"});
-        itemsCoverage.push({value: 0, key: "0", label: "Select Section"});
-        courses.push({value: 0, key: "0", label: "Select Course"});
-        if (!error['domains']) {
-            let is_draft = '';
-            for (let i in domains) {
-                if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
-                    is_draft = ' (Unpublished)';
+            let res = await AH.ajax({
+                url: baseUrl + `editor/index.php?ajax=1&course_code=${editor.course}&action=get_domain&${domainGuids.join('&')}&keys=e,d`,
+                });
+            res = JSON.parse(res);
+            setDomainData(res[guid]);
+            // Default Data for domain
+            items.push({value: 0, key: "0", label: "Select Domain"});
+            courses.push({value: 0, key: "0", label: "Select Course"});
+            itemsCoverage.push({value: 0, key: "0", label: "Select Section"});
+
+            if (!error['domains']) {
+                let is_draft = '';
+                for (let i in domains) {
+                    if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
+                        is_draft = ' (Unpublished)';
+                    }
+                    items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
                 }
-                items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
             }
-        }
-        if (!error['my_coursess']) {
-            for (let i in my_courses) {
-                courses.push({value: my_courses[i]["course_code"], key: i, label: my_courses[i]["course_name"] + " "});
+            if (!error['my_courses']) {
+                for (let i in my_courses) {
+                    courses.push({value: my_courses[i]["course_code"], key: i, label: my_courses[i]["course_name"] + " "});
+                }
             }
-        }
-        // Get data setting from create url
-        if ( (url.get("from_educator") == 1 && url.get("in_frame") == 1) || url.get("from_coverage") == 1 ) {
-            setTestValue("t", url.get("e"));
-            setTestValue("p", url.get("d"));
-        }
-        var objTemp = state.test;
-        objTemp["t"] = objTemp["t"] ? parseInt(objTemp["t"]) : 0;
-        objTemp["p"] = objTemp["p"] ? parseInt(objTemp["p"]) : 0;
-        testSetList = [];
-        testSetList.push({value: 0, key: "0", label: "Select Test"});
-        if (test_set) {
-            for (let i = 1; i <= test_set.p; i++) {
-                testSetList.push({value: i, key: i, label: `Practice Test ${i}`});
+            var objTemp = state.test;
+            objTemp["t"] = objTemp["t"] ? parseInt(objTemp["t"]) : 0;
+            objTemp["p"] = objTemp["p"] ? parseInt(objTemp["p"]) : 0;  
+            
+            
+            testSetList = [];
+            testSetList.push({value: 0, key: "0", label: "Select Test"});
+            if (test_set) {
+                for (let i = 1; i <= test_set.p; i++) {
+                    testSetList.push({value: i, key: i, label: `Practice Test ${i}`});
+                }
+                if (test_set["-2"] == 1) {
+                    testSetList.push({value: -2, key: "-2", label: "Post Assessment"});
+                }
+                if (test_set["-13"] == 1) {
+                    testSetList.push({value: -13, key: "-13", label: "Lab1"});
+                    testSetList.push({value: -14, key: "-14", label: "Lab2"});
+                }
             }
-            if (test_set["-2"] == 1) {
-                testSetList.push({value: -2, key: "-2", label: "Post Assessment"});
-            }
-            if (test_set["-13"] == 1) {
-                testSetList.push({value: -13, key: "-13", label: "Lab1"});
-                testSetList.push({value: -14, key: "-14", label: "Lab2"});
-            }
-        }
+            testSetList.push({value: -3, key: "-3", label: "Quiz"});
+            testSetList.push({value: -1, key: "-1", label: "Exercise"});
+            testSetList.push({value: -10, key: "-10", label: "Knowledge Check"});
 
-        testSetList.push({value: -3, key: "-3", label: "Quiz"});
-        testSetList.push({value: -1, key: "-1", label: "Exercise"});
-        //@ Vaibhav : for kc option at domain
-        testSetList.push({value: -10, key: "-10", label: "Knowledge Check"});
+            state.test = objTemp;
+            if (objTemp.t == "-13" || objTemp.t == "-14") {
+                state.disExercise =  true;
+            }
+            state.testSetList = testSetList;
+            state.itemsCoverage = itemsCoverage;
 
-        state.test = objTemp;
-        if (objTemp.t == "-13" || objTemp.t == "-14") {
-            state.disExercise =  true;
-        }
-        state.testSetList = testSetList;
-        state.itemsCoverage = itemsCoverage; 
-        // Get Item mapping
-        AH.ajax({
-            url: baseUrl + "editor/index.php",
-            withUrl: true,
-            data: {
-                ajax: "1",
-                course_code: editor.course,
-                action: "get_items_mapping"
-            },
-        }).then((response)=> {
-            state.mapping = JSON.parse(response);
+            const mappingRes = await AH.ajax({
+                    url: baseUrl + "editor/index.php",
+                    withUrl: true,
+                    data: {
+                        ajax: "1",
+                        course_code: editor.course,
+                        action: "get_items_mapping"
+                    },
+                });
+            state.mapping = JSON.parse(mappingRes);
             setDomainMapping();
-        });
-        // Checking mapping of domain
-        setTimeout(function() {
-            if (state.mapping && guid) {
-                setDomainMapping();
-            } else if (content_domain) {
-                let tempValue = content_domain.match(/[0-9]/) ? content_domain : 0;
-                state.value = tempValue;
-                selectedDomain(tempValue);
-            }
-            selectedTest(state.test);
-        }, 500);
-    })
+            
+            // Checking mapping of domain
+            setTimeout(function() {
+                if (state.mapping && guid) {
+                    setDomainMapping();
+                } else if (content_domain) {
+                    let tempValue = content_domain.match(/[0-9]/) ? content_domain : 0;
+                    state.value = tempValue;
+                    selectedDomain(tempValue);
+                }
+                selectedTest(state.test);
+            }, 500);
+        }
+    });
 
     function setDomainData(domainData) {
         if (domainData && url.get('router_guid')) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
-            url.set("p1", domainData["p1"])
-            url.set("p2", domainData["p2"]);
+            url.set("p1", domainData['p1']);
+            url.set("p2", domainData['p2'] || '');
             url.set('group_type', "q,u,f,c");
             url.set('in_frame', 1);
             setTestValue("t", domainData["e"]);
@@ -219,18 +201,6 @@
             test_set = test_set ? (typeof test_set == "object" ? test_set : JSON.parse(test_set) ) : "";
         } catch(e) {
             error['test_set'] = e;
-        }
-
-        try {
-            var isAssessment = isAssessment ? isAssessment.split(",") : null;
-            if (isAssessment != null) {
-                if (isAssessment[isAssessment.length - 1].length == 5) {
-                    converge_parent = isAssessment[isAssessment.length - 1];
-                    isAssessment.splice(-1, 1);
-                }
-            }
-        } catch (e) {
-            error['isAssessment'] = e;
         }
         testType = { "-4": "p", "-2": "f", q: "q", u: "u", t: "t" };
     }
@@ -435,7 +405,6 @@
             console.log(e);
         }
     }
-    $: console.log('state.value', state.value);
 </script>
 
 <Dialog bind:visible={state.open} width="700" style="background: #fff; border-radius: 5px;">
@@ -494,6 +463,7 @@
                         >
                             Course
                         </label>
+                        <!-- svelte-ignore a11y-no-onchange -->
                         <select
                             id="course_select"
                             bind:value={state.courses}
