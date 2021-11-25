@@ -112,7 +112,6 @@ export default class EssayNewReact extends JUI {
         this.activate(1);
         let tsuid = (typeof test_session_uid == "undefined") ? "" : test_session_uid;
         let uploadURL = essayUploadUrl + "?func=essay&exts=" + this.select(eid).dataset['filetypeexts'] + "&test_session_uid=" + tsuid; //Upload URL
-        console.log(uploadURL)
         this.ajax({
             url: uploadURL,
             dataType: 'text',
