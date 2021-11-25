@@ -51,8 +51,7 @@
         state = items;
     })
 
-    $: 
-    {
+    $:  {
         if (isReview) {
             // this condition will true in test area
             modeOn();
@@ -66,8 +65,7 @@
             modeOff();
         }
     }
-    
-    
+
     ///////  XML change then automatically reload code ///////////////
     beforeUpdate(()=> {
         if (xml != state.xml) {
@@ -77,18 +75,6 @@
 
         
     });  
-
-    // function for checking the focus
-/*    function checkFocus(list){
-        let is_focus = false;
-        jQuery(".choiceMatrixRender").find("."+list).each(function() {
-            if(jQuery(this).is(":focus")) {
-                is_focus = true;
-                return false;
-            }
-        });
-        return is_focus;
-    }  */
 
     afterUpdate(()=> {
         if(!isReview) hideCorIncorIcon();
@@ -125,21 +111,11 @@
         state.font=MYXML.smxml._font;
         state.maxWidth = ((MYXML.smxml._maxwidth)?MYXML.smxml._maxwidth: 800 );
         
-
         let formattedData = lib.parseCSVFormat(MYXML.smxml.__cdata);
         let cdata = formattedData;
         let rawData = [];
-
-        // copy cdata into rawData////// 
-
-        /* jQuery.map(cdata, function (value, index) {
-            rawData[index] = value;
-        });   Replaced     */
-
         rawData = JSON.parse(JSON.stringify(cdata));
 
-
-        
         state.cdata = rawData; 
         state.stem = rawData.stem;
         cm.cdata = rawData;
@@ -155,8 +131,6 @@
                 let rawUaXML = [];
                 // storing uaXML in rawUaXML and storing its value
                 rawUaXML = JSON.parse(JSON.stringify(uaXML));
-                
-                
                 //    setting the data-userans on the basis of ans
                 setTimeout(function(){
                     rawUaXML.ans.map(function(data,i) {
@@ -164,10 +138,7 @@
                     });
                     previewUserAns();
                 },100)
-
-                    // for showing the userans , that is the answer which is marked by the user
-                    
-                
+                // for showing the userans , that is the answer which is marked by the user
             } catch (e) {
                 //uaXML = "";
             }
@@ -186,22 +157,14 @@
         let id = e.target.id;
         let name = e.target.name;
         // set the user ans blank
-
         let test_area_input = document.querySelectorAll(mainId+" .test_area input[name=" + name + "]");
         for (let i = 0; i < test_area_input.length; i++ ) {
             test_area_input[i].setAttribute("data-userans","");
         }
-    
-
-
-
         // setting the data-userans on which user is clicked
         AH.selectAll(mainId+" .test_area" + " #" + id + "",'attr',{"data-userans":id});
-       
         let userans = { "type": "34", "ans": [] };
-
         /////////// updating the user ans /////////////////////////
-        
         let test_radio = document.getElementsByClassName('test_radio');
         for(let i = 0; i<test_radio.length; i++ ) {
             if (test_radio[i].checked == true) {
@@ -211,16 +174,7 @@
                 })
             }
         }  
-    
-        // for autograding
-        
-        // updaing the value in the textarea 
-
-        
-        //AH('special_module_user_xml').value = JSON.stringify(userans);
-
         useransNew = JSON.stringify(userans);
-
         displayAnswer();  
     }
 
@@ -298,7 +252,6 @@
 
     // for showing correct answer
     function previewCorrectAns() {
-
         let test_radio = document.querySelectorAll((mainId+" .test_radio"));
         for( let i = 0; i < test_radio.length; i++ ) {
             if(test_radio[i].getAttribute('value') == test_radio[i].getAttribute('data-correct')) {
@@ -307,7 +260,6 @@
                 test_radio[i].checked = false;
             }
         }
-        
     }
 
     /////// This function setReview mode ////////////// 
@@ -351,9 +303,6 @@
                 _e.style.display = "inline-flex";
             });
         })
-        
-        
-        
 
         AH.select(".dbg-danger input", "checked").forEach((_elm)=>{
             AH.siblings(_elm,'.fa-close').forEach((_e)=>{
@@ -361,28 +310,22 @@
             });
         })
 
-
         AH.selectAll('.dbg-success input, .dbg-danger input', 'removeAttr', 'as');
-        
-       
+
         AH.select(".dbg-success input", "checked").forEach((_succRem)=> {
             _succRem.setAttribute("as", 1);
-        })
-
-        //jQuery(".dbg-danger input:checked").attr("as", 0); // Removed
+        });
         
         AH.select(".dbg-success input", "checked").forEach((_dangRem)=> {
             _dangRem.setAttribute("as", 0);
         })
 
-         
         AH.select(".dbg-success input","checked").forEach((_elm)=> {
             AH.siblings(_elm,'.label_choice').forEach((_e)=> {
                 _e.setAttribute("title","is marked as correct");
             });
         })
 
-        
         AH.select(".dbg-danger input","checked").forEach((_elm)=>{
             AH.siblings(_elm,'.label_choice').forEach((_e)=>{
                 _e.setAttribute("title","is marked as incorrect");
@@ -392,7 +335,6 @@
 
     /////// Hiding correct or incorrect answer ////////////////
     function hideCorIncorIcon() {
-        
         let hide_icon_length =  document.getElementsByClassName('fa-check');
         let hide_icon_length1 = document.getElementsByClassName('fa-close');
         for (let i=0; i<hide_icon_length.length; i++) {
@@ -440,12 +382,9 @@
             <table class = {"table testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">
                 <thead>
                     <tr class = "table-head">
-                        
                         <th
                             class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : " text-center") }
                             tabindex = {0}
-                            
-                            
                         >
                         {state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                         {#if state.cdata}
@@ -454,7 +393,6 @@
                                     key = {i}
                                     class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
                                     tabindex = {0}
-                                    
                                 >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                             {/each}
                         {/if}
@@ -519,19 +457,7 @@
         </center>               
     </div>
 </main>
-    
 <style>
-    /* :global(.fa-check) { // on php side there is no need
-        color: #46A546;
-        position:relative;
-        left:50px;
-    } */
-
-    /* :global(.fa-close) { // on php side there is no need
-        color: #A80000; 
-        left:50px;
-    } */
-
     :global(.fa-close) {
         margin-left: 20px; 
         font-size: 18px; 
@@ -539,7 +465,6 @@
         top: 10px;
         color: #A80000; 
     }
-
     :global(.fa-check) {
         margin-left: 20px; 
         font-size: 18px; 
@@ -550,66 +475,49 @@
     :global(.fa-close), .fa-check,.middle_align {
         vertical-align: middle!important;
     }
-
     :global(.middle_align) {
         width: 164px;
         min-width: 164px;
     } 
-
     :global(.topic_input) {
         min-width: 257px;
     }
-
     :global(.preview_header) {
         font-size: 16pt;
         font-weight: bold;
         vertical-align: middle;
     }
-
     :global(.adjust_width) {
         width: 10%;
         text-align: center;
     }
-
     .theme_color_theme1 {
         background-color: #5B9BD5!important;
     }
-
     .theme_color_theme2 {
         background-color: #3B67BC!important;
     }
-
     .theme_color_theme3 {
         background-color: #F6C3A2!important;
     }
-
     .theme_color_theme4 {
         background-color: #70AD47!important;
     }
-
     .theme_color_theme5 {
         background-color: #745998!important;
     }
-
-
-    
-
     .theme_color_terms_theme1 {
         background-color: #DEEAF6;
     }
-
     .theme_color_terms_theme2 {
         background-color: #D4DEF1;
     }
-
     .theme_color_terms_theme3 {
         background-color: #FAE0CF;
     }
-
     .theme_color_terms_theme4 {
         background-color: #E2EFD9;
     }
-
     .theme_color_terms_theme5 {
         background-color: #E1DAE9;
     }
