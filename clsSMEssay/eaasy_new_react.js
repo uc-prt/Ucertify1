@@ -1,6 +1,6 @@
 
 
-const essayUploadUrl = baseUrl + 'reactUpload.php/'; // UCINFO.ITEM_THEME_URL+"controller/v2/" + 'Upload.php/';
+const essayUploadUrl = baseUrl + 'reactUpload.php'; // UCINFO.ITEM_THEME_URL+"controller/v2/" + 'Upload.php/';
 import JUI from '../src/libs/javscript_helper/JUI.js';
 let editor;
 export default class EssayNewReact extends JUI {
