@@ -2067,8 +2067,6 @@ function saveAction(event, customAction, saveType) {
 			editorHeaderRef.callPendingAction();
 			break;
 		case 'save':
-			console.warn("Save action");
-			console.log(AH.get('save'));
 			if (AH.get('save')) {
 				if (from_myproject == 1 && state.guid.length == 5 && state.course_list) {
 					publishSelected();
