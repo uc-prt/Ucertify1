@@ -250,7 +250,7 @@ export default class Draggable {
                 this.lastPosition = this.checkPosition(event, this.node)
                 this.node.style.top = this.lastPosition[1] - this.node.offsetHeight / 2 + 'px';
                 this.node.style.left = this.lastPosition[0]  - this.node.offsetWidth / 2 + 'px';
-                this.node.style.zIndex = 'auto';
+                this.node.style.zIndex = '100';
                 this.onDragStop && this.onDragStop(event, {top: (this.lastPosition[1] - this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )}, this.node)
             }
             this.node = null;
