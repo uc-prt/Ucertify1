@@ -296,7 +296,6 @@
 		// convert xml 
 		let newXml = XMLToJSON(loadXml);
 		if (!newXml) {
-			console.warn({Error: "XMl format not correct", xml: loadXml});
 			// return if xml format is not correct or there is any issue
 			return false;
 		}
