@@ -281,8 +281,8 @@
     }
 
     // Function to disable the item in case of review Mode: on click submit button, or from review mode lab opened.
-    function disableItem(customIsReview) {
-        if (customIsReview) {
+    function disableItem(is_review) {
+        if (is_review) {
             let mainID = '#main-' + CM;
             let test_radio = AH.selectAll(mainID + " .test_radio");
             for (let i = 0; i < test_radio.length; i++) {
