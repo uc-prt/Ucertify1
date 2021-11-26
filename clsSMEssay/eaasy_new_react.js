@@ -177,7 +177,7 @@ export default class EssayNewReact extends JUI {
         this.activate(1);
         this.ajax({
             url: essayUploadUrl, 
-            data: { "action": "remove_file", "file_name": filename }
+            data: { "action": "remove_file", 'test_session_uid': test_session_uid, "file_name": filename }
         }).then((data)=> {
             this.parent(item).remove();
             this.updateXML(eid);
