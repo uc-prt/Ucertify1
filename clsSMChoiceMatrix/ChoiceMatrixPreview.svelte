@@ -17,6 +17,7 @@
     export let xml; 
     export let uxml;
     export let isReview;
+    export let CM;
     let useransNew;
     let customIsReview = isReview;
     let cm = { cdata:"" };
@@ -72,11 +73,10 @@
             state.xml = xml ;
             loadModule(xml, uxml);
         }
-
-        
     });  
 
     afterUpdate(()=> {
+        disableItem(customIsReview);
         if(!isReview) hideCorIncorIcon();
     })
     
@@ -264,11 +264,8 @@
 
     /////// This function setReview mode ////////////// 
     function modeOn() {
-        isReview = true;	
-        let test_radio = AH.selectAll(mainId + " .test_radio");
-        for (let i = 0; i < test_radio.length; i++) {
-            test_radio[i].disabled = true;
-        }
+        isReview = true;
+        disableItem(isReview);
         yourAnswer();
     }
 
@@ -281,21 +278,18 @@
         }
     
         hideCorIncorIcon();  
-
-        // AH.select(".dbg-success input","checked").forEach((_elm)=>{
-        //     AH.siblings(_elm,".label_choice").forEach((_e)=>{
-        //         _e.setAttribute("title","")                    
-        //     })
-        // }); Fix
-        
-
-        // AH.select(".dbg-danger input:checked").forEach((_elm)=>{
-        //     AH.siblings(_elm,".label_choice").forEach((_e)=>{
-        //         _e.setAttribute("title","")                    
-        //     })
-        // }); Fix
     }
 
+    // Function to disable the item in case of review Mode: on click submit button, or from review mode lab opened.
+    function disableItem(is_review) {
+        if (is_review) {
+            let mainID = '#main-' + CM;
+            let test_radio = AH.selectAll(mainID + " .test_radio");
+            for (let i = 0; i < test_radio.length; i++) {
+                test_radio[i].disabled = true;
+            }
+        }
+    }
     // This function showing correct or incorrect icon////////////////
     function showCorIncorIcon() {     
         AH.select(".dbg-success input", "checked").forEach((_elm)=>{
