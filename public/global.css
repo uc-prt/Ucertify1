@@ -8700,3 +8700,7 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .scaleUp{
     animation: scaleUpT 0.4s ease-in-out;
 }
+
+#dndmain .cursor_move.ui-draggable.ui-resizable{
+    z-index: 100;
+}
