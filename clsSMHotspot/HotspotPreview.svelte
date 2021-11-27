@@ -155,7 +155,7 @@
 			checkAnswer();
 		});
 	});
-
+	
 	function xmlParser() {
 		item_type = parseXml['smxml']['div']['_type'];
 		xmlHeight = parseXml['smxml']['_height'];
@@ -565,7 +565,7 @@
 		<div id="previewArea" class="relative">
 			<!-- if the type is text click or text select -->
 			{#if moduleArr[item_type] == "4"}
-				<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto uc-table'>
+				<table id="hptmain0" class='smbase smhotspot border-0 h-auto w-auto uc-table no_overflow_wrapper'>
 					<tbody>
 						<tr>
 							<td class="border">
