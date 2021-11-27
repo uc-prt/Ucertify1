@@ -730,7 +730,7 @@
                 <button type="button" id="reset_btn" class="btn btn-primary me-sm-2 me-0 mb-2 reset_btn" disabled="disabled" on:click="{resetButton}">{l.reset}</button>
             {/if}
             {#if state.xml}
-                <button type="button" class="matchbutton btn btn-primary mb-2" on:click="{matchButton}">{state.xml.settings.matchButtonText}</button>
+                <button type="button" class="matchbutton btn btn-primary mb-2" on:click="{matchButton}" on:keydown="{keydownAda}">{state.xml.settings.matchButtonText}</button>
             {/if}
         </div>
     </div>
