@@ -32,6 +32,94 @@
             }
         }
     };
+    function anotateData(base, data){
+        console.log(data);
+        if(base && data?.ranges.length){
+            data.ranges.forEach((range, cnt) => {
+                if(range.start){
+                    const pathS = range.start.split('/');
+                    let pathE = range.end.split('/');
+                    let currentElement = base;
+                    let currentElementIndex = -1;
+                    while(pathS.length){
+
+                        let curr = '';
+                        while (!curr){
+                            curr = pathS.shift();
+                            if(curr == pathE[0]){
+                                pathE.shift();
+                            }
+                        }            
+                        curr = curr.split('[');
+
+                        const requiredTagName = curr[0].toUpperCase();
+                        let index = parseInt(curr[1].slice(0,curr[1].length-1));
+                        
+                        let currentChildNodes = currentElement.childNodes;
+                        for(let ind in currentChildNodes){
+                            if(currentChildNodes[ind].tagName == requiredTagName){
+                                index -= 1;
+                                if(index == 0){
+                                    currentElement = currentChildNodes[ind];
+                                    currentElementIndex = ind;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    currentElement = currentElement.parentElement;
+                    let startIndex = parseInt(currentElementIndex);
+                    while(pathE.length){
+                        let curr = '';
+                        while (!curr){
+                            curr = pathE.shift();
+                        }
+                        curr = curr.split('[');
+
+                        const requiredTagName = curr[0].toUpperCase();
+                        let index = parseInt(curr[1].slice(0,curr[1].length-1));
+                        
+                        let currentChildNodes = currentElement.childNodes;
+                        for(let ind in currentChildNodes){
+                            if(currentChildNodes[ind].tagName == requiredTagName){
+                                index -= 1;
+                            }
+                            if(index == 0){
+                                currentElement = currentChildNodes[ind];
+                                currentElementIndex = ind;
+                                startIndex = 0;
+                                break;
+                            }
+                            if(ind >= startIndex){
+                                const spanTag = document.createElement('span');
+                                spanTag.classList.add('annotator-hl', 'color0', 'annotator-share',  `${data.base}_${data.id}`);
+                                spanTag.innerHTML = currentChildNodes[ind].outerHTML || currentChildNodes[ind].textContent;
+                                currentElement.replaceChild(spanTag, currentChildNodes[ind]);
+                            }
+                        }
+
+                    }
+                }
+                setTimeout(() => {
+                    const findAnnotate = document.getElementsByClassName(`${data.base}_${data.id}`);
+                    let contentHTML;
+                    let lastElement;
+                    Array.prototype.forEach.call(findAnnotate, ele => {
+                        if(ele.classList.contains('comment_container_head')){
+                            contentHTML = ele.innerHTML;
+                        }
+                        else{
+                            lastElement = ele;
+                        }
+                    });
+                    if(lastElement && contentHTML){
+                        lastElement.insertAdjacentHTML('afterend', contentHTML);
+                    }
+                }, 500);
+            });
+        }
+    }
 
     function loadComments(type) {
         const comment_tab_list = AH.selectAll('.comment_tab');
@@ -47,7 +135,7 @@
             AH.ajax({
                 url : `${CREATEAPP_PATH}?func=get_comments&content_guid=${CurrGuid}&user_guid=${user_guid}&add_ui=1&annotation_type=${type}`,
                 withUrl: true,
-            }).then((res)=> {
+            }).then(async (res)=> {
                 AH.activate(0);
                 AH.select('#comment_modal_body').innerHTML = res;
                 const collapseContent = AH.selectAll('#comment_modal_body .collapse_content');
@@ -72,6 +160,19 @@
 				if (commentText.length > 0) {
 					commentText.forEach(commentEle => commentEle.innerHTML = commentEle.innerHTML.replace(/(?:<br>\s*){2,}/g, '<br><br>'))
 				}
+
+				if (type == 1) {
+					let response = await AH.ajax({
+                        url:baseUrl+ `store.php?action=read&read_only=1&is_context=1&base=${CurrGuid}`
+                    });
+                    response = JSON.parse(response || "[]");
+                    response.forEach(eleData => {
+                        const base = AH.select(`[annotation_id="${eleData.base}"]`);
+                        anotateData(base, eleData);
+                    });
+                }
+            }).finally(() => {
+                AH.activate(0);
                 AH.initDropdown();
             });
         }
