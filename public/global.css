@@ -7155,6 +7155,7 @@ div[type="timeline/slideshow"] > section:last-child {
 .comment_container {
   border: 1px solid #ccc;
   background-color: #e9ecef;
+  white-space: normal;
 }
 .footer_box {
   display: flex; 
@@ -8703,4 +8704,8 @@ i.mce-ico.mce-i-mytextwithicon::before {
 
 #dndmain .cursor_move.ui-draggable.ui-resizable{
     z-index: 100;
+}
+.annotator-color0, .color0 {
+    background-color: rgba(255, 255, 10, 0.3) !important;
+    color: black;
 }
