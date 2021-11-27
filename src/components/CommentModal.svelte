@@ -33,7 +33,6 @@
         }
     };
     function anotateData(base, data){
-        console.log(data);
         if(base && data?.ranges.length){
             data.ranges.forEach((range, cnt) => {
                 if(range.start){
@@ -103,18 +102,18 @@
                 }
                 setTimeout(() => {
                     const findAnnotate = document.getElementsByClassName(`${data.base}_${data.id}`);
-                    let contentHTML;
+                    let contentElement;
                     let lastElement;
                     Array.prototype.forEach.call(findAnnotate, ele => {
                         if(ele.classList.contains('comment_container_head')){
-                            contentHTML = ele.innerHTML;
+                            contentElement = ele;
                         }
                         else{
                             lastElement = ele;
                         }
                     });
-                    if(lastElement && contentHTML){
-                        lastElement.insertAdjacentHTML('afterend', contentHTML);
+                    if(lastElement && contentElement){
+                        lastElement.insertAdjacentElement('afterend', contentElement.firstElementChild);
                     }
                 }, 500);
             });
@@ -309,7 +308,6 @@
         let userGuidR   = user_guid;
         let anno_id		= t.closest('.comment_container').getAttribute('anno_id');
         let id 			= t.closest('.comment_container').getAttribute('id');
-        //console.log(contentGuid, creatorGuid, userGuidR);
         AH.find(t.closest('.comment_footer'), '.reply_textbox', {action: 'value', actionData: ''});
         t.closest('.comment_btns').remove();
         if (btnType == 'reply') {
@@ -378,7 +376,6 @@
                 anno_id:      anno_id,
                 tags: (typeof AH != "undefined" && AH.get('comments_type')) ? AH.get('comments_type') : -2,
             };
-            console.log('data', _data);
             AH.ajax({
                 url    : `${CREATEAPP_PATH}?func=edit_comment`,
                 data   : _data,
