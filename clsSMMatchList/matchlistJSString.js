@@ -113,7 +113,7 @@ ucMlid.showUserAns = function(mlid) {
         match_lines = [];
         ucMlid.is_valid_drop = true;
         let _this = event.target;
-        if(_this.nodeName == "SPAN") {
+        if(_this.nodeName == "SPAN" || _this.nodeName == "IMG") {
             _this = _this.parentElement;
         }
         let list;
