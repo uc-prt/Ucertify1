@@ -67,6 +67,31 @@
                         }
                     }
                     
+                    if(range.startOffset && pathE.length == 0){
+                        let elements = currentElement.childNodes || [];
+                        let offsetStart = range.startOffset;
+                        let offsetEnd = range.endOffset;
+                        for(let ele of elements){
+                            if(offsetStart - ele.textContent.length <= 0) { 
+                                const higlightedText = ele.textContent.slice(offsetStart, offsetEnd);
+                                const insertBeforeText = document.createTextNode(ele.textContent.slice(0, offsetStart))
+                                
+                                const spanTag = document.createElement('span');
+                                spanTag.classList.add('annotator-hl', 'color0', 'annotator-share',  `${data.base}_${data.id}`);
+                                spanTag.innerHTML = higlightedText;
+
+                                currentElement.insertBefore(insertBeforeText, ele);
+                                currentElement.replaceChild(spanTag, ele);
+                                spanTag.insertAdjacentHTML('afterend', ele.textContent.slice(offsetEnd));
+                                break;
+                                
+                            } else{
+                                offsetStart -= ele.textContent.length; 
+                                offsetEnd -= ele.textContent.length
+                            }
+                        }
+                    }
+                    
                     currentElement = currentElement.parentElement;
                     let startIndex = parseInt(currentElementIndex);
                     while(pathE.length){
