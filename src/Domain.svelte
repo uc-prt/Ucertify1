@@ -59,14 +59,16 @@
     onMount(async ()=> {
         init();
         let domainGuids = url.get('router_guid') ? url.get('router_guid') : url.get('content_guid');
-        domainGuids = domainGuids.split(',').map(ele => `guids[]=`+ele);
-        if (fromProject && domainGuids) {
+        if (fromProject) {
             AH.activate(1);
-            let res = await AH.ajax({
-                url: baseUrl + `editor/index.php?ajax=1&course_code=${editor.course}&action=get_domain&${domainGuids.join('&')}&keys=e,d`,
-                });
-            res = JSON.parse(res);
-            setDomainData(res[guid]);
+            if(domainGuids){        
+                domainGuids = domainGuids.split(',').map(ele => `guids[]=`+ele);
+                let res = await AH.ajax({
+                    url: baseUrl + `editor/index.php?ajax=1&course_code=${editor.course}&action=get_domain&${domainGuids.join('&')}&keys=e,d`,
+                    });
+                res = JSON.parse(res);
+                setDomainData(res[guid]);
+            }
             // Default Data for domain
             items.push({value: 0, key: "0", label: "Select Domain"});
             courses.push({value: 0, key: "0", label: "Select Course"});
