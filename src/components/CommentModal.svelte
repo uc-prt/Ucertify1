@@ -1,6 +1,5 @@
 <script>
     import { onMount } from 'svelte';
-import { element } from 'svelte/internal';
     import {AH} from  '../../helper/HelperAI.svelte';
     export let funcname;
     export let user_guid;
