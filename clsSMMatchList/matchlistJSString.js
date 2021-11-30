@@ -194,7 +194,6 @@ ucMlid.showUserAns = function(mlid) {
         onDragStart: ((event)=>{
             ucMlid.is_valid_drop = false;
             let _this = event.target;
-            console.log('Test');
             if(_this.nodeName === 'IMG') {
                 _this = _this.parentElement;
             }
