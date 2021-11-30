@@ -46,7 +46,7 @@ ucMlid.remove_lines = function(mlid) {
             path : element.getAttribute('d'),
             base : element.getAttribute('base').split('_'),
         };
-        rem.userans = AH.find("#matchmain", `[id="${rem.base[0]}"]`).getAttribute('data-userans').split(',');
+        rem.userans = AH.find("#matchmain", `[id="${rem.base[0]}"]`)?.getAttribute('data-userans').split(',');
         if (rem.userans.includes(rem.base[1]) != false) { 
             rem.userans.splice(rem.userans.indexOf(rem.base[1]), 1); 
         }
@@ -194,6 +194,9 @@ ucMlid.showUserAns = function(mlid) {
         onDragStart: ((event)=>{
             ucMlid.is_valid_drop = false;
             let _this = event.target;
+            if(_this.nodeName === 'IMG') {
+                _this = _this.parentElement;
+            }
             top1 = parseInt(_this.offsetTop + _this.clientHeight / 2) + "_" + parseInt(_this.offsetLeft + _this.offsetWidth);
             //AH.clone(_this);
             

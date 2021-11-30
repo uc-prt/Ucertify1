@@ -401,7 +401,7 @@
                                     tabindex = {0}
                                     style = "font-size:14pt;vertical-align:middle;font-family:{state.font}"
                                 >
-                                {data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
+                                {@html data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
                                 
                                 {#each cm.cdata.option as data2, j} 
                                 <td

@@ -234,7 +234,7 @@ function checkImages(is_image_load) {
 				let originalWidth = value.clientWidth > value.naturalWidth ? value.clientWidth : value.naturalWidth;
 				if (Number(originalWidth) != 0 || Number(originalHeight) != 0 || (typeof from_myproject != "undefined" && from_myproject ==  1)) {
 					AH.setCss("#" + container_id, {
-						height: ((imgHeight && imgHeight >= originalHeight) ? imgHeight : originalHeight) + "px",
+						height: parseInt(((imgHeight && imgHeight >= originalHeight) ? imgHeight : originalHeight)) + 8 + "px", // 8px increas for border.
 						width: ((imgWidth && imgWidth >= originalWidth) ? imgWidth : originalWidth) + "px"
 					})
 				}
