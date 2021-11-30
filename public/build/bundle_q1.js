@@ -7572,7 +7572,7 @@ var app = (function () {
     			option.textContent = "Please Select";
     			option.__value = "Please Select";
     			option.value = option.__value;
-    			add_location(option, file$4, 163, 24, 6139);
+    			add_location(option, file$4, 163, 24, 6143);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -7681,7 +7681,7 @@ var app = (function () {
     			attr_dev(option, "data-correctans", option_data_correctans_value = /*option*/ ctx[9].correctans);
     			attr_dev(option, "data-defaultans", option_data_defaultans_value = /*option*/ ctx[9].defaultans);
     			attr_dev(option, "data-userans", option_data_userans_value = /*option*/ ctx[9].userans);
-    			option.__value = option_value_value = /*option*/ ctx[9].key;
+    			option.__value = option_value_value = /*option*/ ctx[9].key + 1;
     			option.value = option.__value;
     			add_location(option, file$4, 159, 32, 5852);
     		},
@@ -7708,7 +7708,7 @@ var app = (function () {
     				attr_dev(option, "data-userans", option_data_userans_value);
     			}
 
-    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key)) {
+    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key + 1)) {
     				prop_dev(option, "__value", option_value_value);
     				option.value = option.__value;
     			}
