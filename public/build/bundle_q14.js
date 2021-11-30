@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -4654,10 +4654,8 @@ var app = (function () {
     function create_if_block(ctx) {
     	let div;
     	let button0;
-    	let span0;
     	let t1;
     	let button1;
-    	let span1;
     	let mounted;
     	let dispose;
 
@@ -4665,24 +4663,20 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			button0 = element("button");
-    			span0 = element("span");
-    			span0.textContent = "Correct Answer";
+    			button0.textContent = "Correct Answer";
     			t1 = space();
     			button1 = element("button");
-    			span1 = element("span");
-    			span1.textContent = "Your Answer";
-    			add_location(span0, file, 38, 131, 1621);
+    			button1.textContent = "Your Answer";
     			attr_dev(button0, "tabindex", "0");
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "mode", "c");
     			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_test");
     			add_location(button0, file, 38, 8, 1498);
-    			add_location(span1, file, 39, 135, 1793);
     			attr_dev(button1, "tabindex", "0");
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "mode", "u");
     			attr_dev(button1, "class", "btn btn-light your-ans active svelte_items_test");
-    			add_location(button1, file, 39, 8, 1666);
+    			add_location(button1, file, 39, 8, 1653);
     			attr_dev(div, "class", "smControlerBtn btn-group mb-3");
     			attr_dev(div, "role", "group");
     			attr_dev(div, "aria-label", "Answer buttons");
@@ -4691,10 +4685,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, button0);
-    			append_dev(button0, span0);
     			append_dev(div, t1);
     			append_dev(div, button1);
-    			append_dev(button1, span1);
 
     			if (!mounted) {
     				dispose = [
@@ -5537,7 +5529,7 @@ var app = (function () {
                 path : element.getAttribute('d'),
                 base : element.getAttribute('base').split('_'),
             };
-            rem.userans = AH$1.find("#matchmain", `[id="${rem.base[0]}"]`).getAttribute('data-userans').split(',');
+            rem.userans = AH$1.find("#matchmain", `[id="${rem.base[0]}"]`)?.getAttribute('data-userans').split(',');
             if (rem.userans.includes(rem.base[1]) != false) { 
                 rem.userans.splice(rem.userans.indexOf(rem.base[1]), 1); 
             }
@@ -5685,6 +5677,10 @@ var app = (function () {
             onDragStart: ((event)=>{
                 ucMlid.is_valid_drop = false;
                 let _this = event.target;
+                console.log('Test');
+                if(_this.nodeName === 'IMG') {
+                    _this = _this.parentElement;
+                }
                 top1 = parseInt(_this.offsetTop + _this.clientHeight / 2) + "_" + parseInt(_this.offsetLeft + _this.offsetWidth);
                 //AH.clone(_this);
                 
