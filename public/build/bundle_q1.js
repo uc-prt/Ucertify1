@@ -1,2 +1,17559 @@
-var app=function(){"use strict";function t(){}function e(t){return t()}function n(){return Object.create(null)}function o(t){t.forEach(e)}function r(t){return"function"==typeof t}function a(t,e){return t!=t?e==e:t!==e||t&&"object"==typeof t||"function"==typeof t}let i,s;function l(t,e){return i||(i=document.createElement("a")),i.href=e,t===i.href}function c(t,e){t.appendChild(e)}function d(t,e,n){var o;const r=function(t){const e=function(t){return t?t.getRootNode?t.getRootNode():t.ownerDocument:document}(t);return e.host,e}(t);if(!(null===(o=r)||void 0===o?void 0:o.getElementById(e))){const t=g("style");t.id=e,t.textContent=n,function(t,e){c(t.head||t,e)}(r,t)}}function u(t,e,n){t.insertBefore(e,n||null)}function p(t){t.parentNode.removeChild(t)}function f(t,e){for(let n=0;n<t.length;n+=1)t[n]&&t[n].d(e)}function g(t){return document.createElement(t)}function m(t){return document.createTextNode(t)}function h(){return m(" ")}function b(){return m("")}function y(t,e,n,o){return t.addEventListener(e,n,o),()=>t.removeEventListener(e,n,o)}function v(t,e,n){null==n?t.removeAttribute(e):t.getAttribute(e)!==n&&t.setAttribute(e,n)}function w(t,e){e=""+e,t.wholeText!==e&&(t.data=e)}function _(t,e,n,o){t.style.setProperty(e,n,o?"important":"")}function x(t){s=t}function A(){if(!s)throw new Error("Function called outside component initialization");return s}function k(t){A().$$.after_update.push(t)}function I(){const t=A();return(e,n)=>{const o=t.$$.callbacks[e];if(o){const r=function(t,e,n=!1){const o=document.createEvent("CustomEvent");return o.initCustomEvent(t,n,!1,e),o}(e,n);o.slice().forEach((e=>{e.call(t,r)}))}}}const $=[],E=[],T=[],C=[],O=Promise.resolve();let D=!1;function S(t){T.push(t)}let N=!1;const j=new Set;function L(){if(!N){N=!0;do{for(let t=0;t<$.length;t+=1){const e=$[t];x(e),M(e.$$)}for(x(null),$.length=0;E.length;)E.pop()();for(let t=0;t<T.length;t+=1){const e=T[t];j.has(e)||(j.add(e),e())}T.length=0}while($.length);for(;C.length;)C.pop()();D=!1,N=!1,j.clear()}}function M(t){if(null!==t.fragment){t.update(),o(t.before_update);const e=t.dirty;t.dirty=[-1],t.fragment&&t.fragment.p(t.ctx,e),t.after_update.forEach(S)}}const P=new Set;let z;function R(){z={r:0,c:[],p:z}}function q(){z.r||o(z.c),z=z.p}function B(t,e){t&&t.i&&(P.delete(t),t.i(e))}function H(t,e,n,o){if(t&&t.o){if(P.has(t))return;P.add(t),z.c.push((()=>{P.delete(t),o&&(n&&t.d(1),o())})),t.o(e)}}function F(t){t&&t.c()}function U(t,n,a,i){const{fragment:s,on_mount:l,on_destroy:c,after_update:d}=t.$$;s&&s.m(n,a),i||S((()=>{const n=l.map(e).filter(r);c?c.push(...n):o(n),t.$$.on_mount=[]})),d.forEach(S)}function X(t,e){const n=t.$$;null!==n.fragment&&(o(n.on_destroy),n.fragment&&n.fragment.d(e),n.on_destroy=n.fragment=null,n.ctx=[])}function J(t,e){-1===t.$$.dirty[0]&&($.push(t),D||(D=!0,O.then(L)),t.$$.dirty.fill(0)),t.$$.dirty[e/31|0]|=1<<e%31}function K(e,r,a,i,l,c,d,u=[-1]){const f=s;x(e);const g=e.$$={fragment:null,ctx:null,props:c,update:t,not_equal:l,bound:n(),on_mount:[],on_destroy:[],on_disconnect:[],before_update:[],after_update:[],context:new Map(f?f.$$.context:r.context||[]),callbacks:n(),dirty:u,skip_bound:!1,root:r.target||f.$$.root};d&&d(g.root);let m=!1;if(g.ctx=a?a(e,r.props||{},((t,n,...o)=>{const r=o.length?o[0]:n;return g.ctx&&l(g.ctx[t],g.ctx[t]=r)&&(!g.skip_bound&&g.bound[t]&&g.bound[t](r),m&&J(e,t)),n})):[],g.update(),m=!0,o(g.before_update),g.fragment=!!i&&i(g.ctx),r.target){if(r.hydrate){const t=function(t){return Array.from(t.childNodes)}(r.target);g.fragment&&g.fragment.l(t),t.forEach(p)}else g.fragment&&g.fragment.c();r.intro&&B(e.$$.fragment),U(e,r.target,r.anchor,r.customElement),L()}x(f)}class Y{$destroy(){X(this,1),this.$destroy=t}$on(t,e){const n=this.$$.callbacks[t]||(this.$$.callbacks[t]=[]);return n.push(e),()=>{const t=n.indexOf(e);-1!==t&&n.splice(t,1)}}$set(t){var e;this.$$set&&(e=t,0!==Object.keys(e).length)&&(this.$$.skip_bound=!0,this.$$set(t),this.$$.skip_bound=!1)}}function W(t,e={}){const n="tagin-tag",o="tagin-tag-remove",r="tagin-input",a=t.dataset.separator||e.separator||",",i=t.dataset.duplicate||e.duplicate||"false",s=(0,eval)(t.dataset.transform)||e.transform||(t=>t),l=t.dataset.placeholder||e.placeholder||"",c=t=>`<span class="tagin-tag">${t}<span class="${o}"></span></span>`,d=()=>t.value,u=()=>d().split(a);!function(){const e=`<div class="${"tagin-wrapper "+t.className.replace("tagin","").trim()}">${""===d().trim()?"":u().map(c).join("")}<input type="text" class="tagin-input" placeholder="${l}"></div>`;t.insertAdjacentHTML("afterend",e)}();const p=t.nextElementSibling,f=p.getElementsByClassName(r)[0],g=()=>[...p.getElementsByClassName(n)].map((t=>t.textContent)),m=()=>g().join(a),h=()=>{t.value=m(),t.dispatchEvent(new Event("change"))};function b(){const t=document.createElement("div");t.classList.add(r,"tagin-input-hidden");const e=f.value||f.getAttribute("placeholder")||"";t.innerHTML=e.replace(/ /g,"&nbsp;"),document.body.appendChild(t),f.style.setProperty("width",Math.ceil(window.getComputedStyle(t).width.replace("px",""))+1+"px"),t.remove()}function y(t=!1){const e=s(f.value.replace(new RegExp(function(t){return t.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,"\\$&")}(a),"g"),"").trim());""===e&&(f.value=""),(f.value.includes(a)||t&&""!=f.value)&&(g().includes(e)&&"false"===i?function(t){for(const e of p.getElementsByClassName(n))e.textContent===t&&(e.style.transform="scale(1.09)",setTimeout((()=>{e.removeAttribute("style")}),150))}(e):(f.insertAdjacentHTML("beforebegin",c(e)),h()),f.value="",f.removeAttribute("style"))}p.addEventListener("click",(()=>f.focus())),f.addEventListener("focus",(()=>p.classList.add("focus"))),f.addEventListener("blur",(()=>p.classList.remove("focus"))),document.addEventListener("click",(t=>{t.target.closest("."+o)&&(t.target.closest("."+o).parentNode.remove(),h())})),f.addEventListener("keydown",(t=>{""===f.value&&8===t.keyCode&&p.getElementsByClassName(n).length&&(p.querySelector(".tagin-tag:last-of-type").remove(),h())})),f.addEventListener("input",(()=>{y(),b()})),f.addEventListener("blur",(()=>{y(!0),b()})),b(),t.addEventListener("change",(()=>{d()!==m()&&([...p.getElementsByClassName(n)].map((t=>t.remove())),""!==d().trim()&&f.insertAdjacentHTML("beforebegin",u().map(c).join("")))}))}var V=".tagin{display:none}.tagin-wrapper{border: 1px solid #ccc;display:flex;flex-wrap:wrap;height:auto;padding:calc(.375rem - 2px) calc(.75rem - 2px);position:relative;overflow:hidden;cursor:text}.tagin-wrapper.focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.tagin.is-valid+.tagin-wrapper,.was-validated .tagin:valid+.tagin-wrapper{border-color:#28a745}.tagin.is-invalid+.tagin-wrapper,.was-validated .tagin:invalid+.tagin-wrapper{border-color:#dc3545}.tagin-tag{border-radius:.25rem;color:#fff;border:0;padding:0 4px;display:inline-flex;align-items:center;height:24px;margin:2px;font-weight:300;background-color:#6c757d;transition:transform .1s}.tagin-tag-remove{margin-left:2px;width:18px;height:18px;cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z'/%3E%3C/svg%3E\")}.tagin-tag-remove:hover{background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z'/%3E%3C/svg%3E\")}.tagin-input{margin-left:2px;border-color:transparent;outline:0;border-width:1px 0;padding:0 2px 0 0;height:28px;color:#495057}.tagin-input:not(.tagin-input-hidden){width:4px;min-width:4px}.tagin-input-hidden{position:absolute;top:0;left:-9999px;overflow:hidden;visibility:hidden;white-space:nowrap";class Q extends class{constructor(t){this._servers=["http://localhost/pe-gold3/","https://www.ucertify.com/","https://www.jigyaasa.info/","http://172.10.195.203/pe-gold3/"],this._REMOTE_API_URL=this._servers[1]+"pe-api/1/index.php",this._client={email:"pradeep.yadav@ucertify.com",password:"786pradeep",isSocial:"false",clientId:"040MA"}}validateApp(t){return new Promise(((e,n)=>{let o=t?"&action=refresh_token&refresh_token=1":"",r=this._client.isSocial?"&social_login=1":"",a=`${this._REMOTE_API_URL}?func=cat2.authenticate&device_id=${this._client.clientId}&email=${this._client.email}&password=${this._client.password+r+o}`,i=new XMLHttpRequest;i.open("POST",a,!0),i.onreadystatechange=t=>{if(4==i.readyState&&200===i.status)try{let t=i.responseText.match(/<jsonstring>(.*?)<\/jsonstring>/);e(JSON.parse(t[1]))}catch(t){n(t)}},i.onerror=t=>{n(t)},t&&i.setRequestHeader("old-access-token",globalThis.apiAccessToken),i.send()}))}getAPIDataJ(t,e,n=function(){}){let o="",r={},a="",i=e.ajax_info||{};if(e=this._assignPartial(e,{},"ajax_info",!0),r.device_id=this._client.clientId,"object"==typeof e)for(let t in e)"object"!=typeof e[t]&&(o+="&"+t+"="+e[t]);if(void 0!==t&&""!=t){for(let t in r)"object"!=typeof r[t]&&(a+="&"+t+"="+r[t]);a+="&func="+t}this.getAPIDataJSON(this._REMOTE_API_URL+"?"+a+"&debug=0&"+o,o,i,(o=>{"Expired"==o?this.getAPIDataJ(t,e,n):n(o)}),t)}getAPIDataJSON(t,e,n,o=function(){},r){let a=new XMLHttpRequest;a.open("POST",t,!0),a.onreadystatechange=t=>{if(4==a.readyState&&200===a.status){let t=a.responseText,n={};try{let e=t.match(/<jsonstring>(.*?)<\/jsonstring>/);if(""!=e[1]){let t=JSON.parse(e[1]);if(t.error&&["Expired","-9"].includes(t.error.error_id))return console.log("Api Error = ",t.error.error_id),void this.validateApp(-9!=t.error.error_id).then((t=>{"Success"==t.status&&(this.setAccessKey(t),o("Expired"))})).catch((t=>{console.log(t)}));t.response?(n=t.response,console.warn("Api data J reponse <-- Received --\x3e",t)):null==t.response&&null==t.error?(n=t,console.warn("Api data J reponse <-- Received II--\x3e",n)):(n=void 0,console.warn({Response_error:t.error}))}}catch(o){if(console.warn("Please check your Internet connection."),console.log("Api data error = ",t),!e.includes("must_reply_override"))return 0;n=void 0}o(n)}},e.includes("no_access_token_required")||a.setRequestHeader("access-token",globalThis.apiAccessToken),a.setRequestHeader("Content-type","application/json"),a.setRequestHeader("Access-Control-Allow-Origin","*"),a.setRequestHeader("Access-Control-Allow-Headers","*"),a.send()}_assignPartial(t,e={},n,o=!1){if(n=n.split(","),o)for(let o in t){-1===n.indexOf(o)&&(e[o]=t[o])}else for(let o in n){let r=n[o];void 0!==t[r]&&(e[r]=t[r])}return e}setAccessKey(t){t.access_token&&t.access_token.length>50&&(globalThis.apiAccessToken=t.access_token,"undefined"!=typeof Storage&&localStorage.setItem("apiAccessToken",t.access_token))}}{constructor(t){super(),this.trackInf={},this.buffer={},this.bsCat1=["Modal","Tooltip","Collapse","Popover","ScrollSpy","Tab","Alert","Dropdown"],this.extraSelectors=["hidden","visible","selected","checked","enabled","children","childNodes"],this.parseHtml=this.templateHtml.bind(this),this.isSSDloaded="",this.loadSSD()}loadSSD(){"object"==typeof globalThis?(globalThis.eventTracker=globalThis.eventTracker||{},globalThis.JUITemp=globalThis.JUITemp||{}):this.isSSDloaded=setInterval((()=>{"object"==typeof globalThis&&(globalThis.eventTracker=globalThis.eventTracker||{},globalThis.JUITemp=globalThis.JUITemp||{},clearInterval(this.isSSDloaded))}),500)}validate(t){return new Promise(((e,n)=>{this.validateApp(t).then((t=>{if("Success"!=t.status)n(t);else try{this.setAccessKey(t),e(t)}catch(t){n(t)}})).catch((t=>{n(t)}))}))}param2Url(t){let e=[];for(var n in t){var o=n+"="+t[n];e.push(o)}return e.join("&")}unique(t){return t.filter(((t,e,n)=>n.indexOf(t)===e))}parseJSON(t,e){let n=e||!1;try{return JSON.parse(t)}catch(t){return n&&console.warn(t),{}}}parseDom(t){return(new DOMParser).parseFromString(t,"text/html")}addScript(t,e,n={}){let o=document.createElement("script");return e?(o.src=e,o.async=!0,n.callback&&(o.onload=function(){n.callback()})):o.innerHTML=t,(n.target?document.body:document.head).append(o),o}createLink(t,e={}){let n=document.createElement("link"),o=e.target?document.body:document.head;return n.href=t,e.preload?(n.rel="preload",n.onload=function(){this.rel=e.type||"stylesheet"},n.as=e.as||"style",n.crossorigin="anonymous"):n.rel="stylesheet",o.append(n),n}enableTagView(t){let e=document.querySelectorAll(".tagin");for(const n of e)t?W(n,t):W(n);return e}addTagViewCss(){this.insert(document.head,`<style>${V}</style>`,"beforeend")}hasInall(t,e){let n="object"==typeof t?t:document.querySelectorAll(t),o=[];return n&&Array.prototype.forEach.call(n,(t=>{t.contains(e)&&o.push(t)})),o}removeDomAttr(t,e){let n="object"==typeof t?t:document.querySelector(t);return n&&Array.prototype.forEach.call(e,(t=>{n.removeAttribute(t)})),n||{}}trigger(t,e,n){let o="object"==typeof t?t:document.querySelector(t);o?n?o.dispatchEvent(new Event(e,n)):o.dispatchEvent(new Event(e)):console.warn("Selector not found.",t)}findChild(t,e,n){let o=("object"==typeof t?t:document.querySelector(t)).children||[],r=[];if(e&&o.length>0){let t=0;for(;o[t];){if(o[t].matches(e)){if(!n){r=o[t];break}r.push(o[t])}t++}return r}return o}closest(t,e){let n="object"==typeof t?t:document.querySelector(t),o=n?n.parentElement:null,r=[];if(e)for(;o;){if(this.find(o,e)){r=this.find(o,e);break}o=o.parentElement}return r}parent(t,e){let n="object"==typeof t?t:document.querySelector(t),o=n?n.parentElement:null;if(e)for(;o&&!o.matches(e);)o=o.parentElement;return o}siblings(t,e){let n="object"==typeof t?t:document.querySelector(t),o=[];if(n)for(var r=n.parentNode.firstChild;r;)r!==n&&r.nodeType===Node.ELEMENT_NODE&&(e?r.matches(e)&&o.push(r):o.push(r)),r=r.nextElementSibling||r.nextSibling;return o}nextAll(t){let e=("object"==typeof t?t:document.querySelector(t)).nextElementSibling,n=[];if(e)for(;e;)e=e.nextElementSibling,n.push(e);return n}nextElm(t,e){let n=("object"==typeof t?t:document.querySelector(t)).nextElementSibling;if(e)for(;n&&!n.matches(e);)n=n.nextElementSibling;return n}prevElm(t,e){let n=("object"==typeof t?t:document.querySelector(t)).previousElementSibling;if(e)for(;n&&!n.matches(e);)n=n.previousElementSibling;return n}onReady(t){document.addEventListener("DOMContentLoaded",(function(e){t.call(e)}))}create(t,e){let n=document.createElement(t);return e&&(n.innerHTML=e),n}clone(t){let e="object"==typeof t?t:document.querySelector(t);return e?e.cloneNode(!0):null}serialize(t){let e="object"==typeof t?t:document.querySelector(t);return e?new URLSearchParams(new FormData(e)).toString():null}empty(t){let e="object"==typeof t?t:document.querySelector(t);if(e)for(;e.firstChild;)e.removeChild(e.firstChild);return e}getBS(t,e,n){let o="object"==typeof t?t:document.querySelector(t);if(o&&this.bsCat1.includes(e)){if(bootstrap[e].getInstance&&bootstrap[e].getInstance(o))return bootstrap[e].getInstance(o);return new bootstrap[e](o,n)}return{}}enableBsAll(t,e,n){if(this.bsCat1.includes(e)){return[].slice.call(document.querySelectorAll(t)).map((function(t){return n?new bootstrap[e](t,n):new bootstrap[e](t)}))}return console.error("Bootstrap can't enable for this component name"),[]}hideBsAll(t,e){let n=[].slice.call(document.querySelectorAll(t));this.bsCat1.includes(e)?n.forEach((function(t){bootstrap[e].getInstance(t)?.hide?.()})):console.error("Bootstrap can't disable for this component name")}initDropdown(){let t=this;t.enableBsAll('[data-toggle="dropdown"]',"Dropdown"),t.bind("body","click",(function(e){e.target.closest('[data-toggle="dropdown"]')||(t.selectAll('[data-toggle="dropdown"]').forEach((function(t){t.classList.remove("show")})),t.selectAll(".dropdown-menu").forEach((function(t){t.classList.remove("show")})))}))}ajax(t){let e="";if("object"==typeof t.data)if(t.formData)e=t.data;else if(t.withUrl){let e="?";for(let n in t.data)"object"!=typeof t.data[n]&&(e+="&"+n+"="+t.data[n]);t.url+=e}else{e=new FormData;for(let n in t.data)"object"==typeof t.data[n]&&this.isValid(t.data[n])?e=this.jsonFormEncode(e,n,t.data[n]):e.append(n,t.data[n])}return new Promise(((n,o)=>{const r=new XMLHttpRequest;r.open(t.type||"POST",t.url,!0),t.responseType&&(r.responseType=t.responseType),r.onreadystatechange=t=>{if(4==r.readyState&&200===r.status)try{n(r.responseText,t)}catch(t){o(t)}},r.onerror=t=>{o(t)},t.onStart&&(r.onloadstart=t.onStart),t.onEnd&&(r.onloadend=t.onEnd),r.send(e)}))}jsonFormEncode(t,e,n){try{if(Array.isArray(n))for(let o=0;o<n.length;o++)for(let r in n[o])t.append(`${e}[${o}][${r}]`,n[o][r]);else for(var o in n)t.append(`${e}[${o}]`,n[o])}catch(t){console.warn("Please provide valid JSON Object in ajax data."+t)}return t}getJSON(t){var e=document.createElement("script");e.src=t,document.body.appendChild(e)}offset(t){let e="object"==typeof t?t:document.querySelector(t),n={rect:e};if(e){let t=e.getBoundingClientRect();n={target:e,clientRect:t,top:t.top+window.scrollY,left:t.left+window.scrollX}}return n}findInArray(t,e){return!(!t||!e)&&e.find((e=>e==t))}inArray(t,e){let n=[];return t&&e&&t.forEach((t=>{e.forEach((e=>{t==e&&!n.includes(e)&&n.push(e)}))})),n.length>0?n.length:-1}serializeArray(t,e){let n=[];return t.forEach((t=>{if((!e||t.matches(e))&&(console.log(t.attributes.length),t.attributes.length>0)){let e={};for(let n of t.attributes)e[n.name]=n.value;n.push(e)}})),n}find(t,e,n){let o="object"==typeof t?t:document.querySelector(t);if(o)switch("object"==typeof n?"action":n){case"all":return o?.querySelectorAll(e);case"child":return o?.querySelector(e).childNodes;case"hidden":return Array.prototype.filter.call(o.querySelectorAll(e),(t=>0==t.offsetWidth&&0==t.offsetHeight));case"visible":return Array.prototype.filter.call(o.querySelectorAll(e),(t=>t.offsetWidth>0&&t.offsetHeight>0));case"checked":return Array.prototype.filter.call(document.querySelectorAll(selector),(t=>t.checked));case"selected":return Array.prototype.filter.call(o.querySelectorAll(e),(t=>t.selected));case"action":{let t=o.querySelectorAll(e);return t&&t.length>0&&n.action&&t.forEach((t=>this.jsAction(t,{action:n.action,actionData:n.actionData}))),t}default:return o.querySelector(e)}return[]}selectAll(t,e,n){let o=this.isExtraSelectors(e,n)?this.selectAction(t,e):"object"==typeof t?t:document.querySelectorAll(t);return o&&o.length>0&&e&&Array.prototype.forEach.call(o,(t=>this.jsAction(t,{action:e,actionData:n}))),o}isExtraSelectors(t,e){return!!this.extraSelectors.includes(t)&&("checked"!=t||void 0===e)}select(t,e,n){return this.isExtraSelectors(e,n)?this.selectAction(t,e):((t="object"==typeof t?t:document.querySelector(t))&&this.jsAction(t,{action:e,actionData:n}),t||{})}getElm(t,e){return document.getElementById(t)||{}}listenAll(t,e,n){let o="object"==typeof t?t:document.querySelectorAll(t);if(o&&o.length>0)for(let t=0;t<o.length;t++)o[t].addEventListener(e,n,!1)}bind(t,e,n){let o="object"==typeof t?t:document.querySelector(t);o&&o.addEventListener(e,n)}listen(t,e,n,o){let r="object"==typeof t?t:"undefined"!=typeof document&&document.querySelector(t);if(!r)return!1;globalThis.eventTracker[n]&&r.removeEventListener(e,globalThis.eventTracker[n]),globalThis.eventTracker[n]=this.onListen.bind(this,n,o,r),r.addEventListener(e,globalThis.eventTracker[n])}removeClass(t,e){let n="object"==typeof t?t:document.querySelectorAll(t);return n&&n?.length>0?Array.prototype.forEach.call(n,(t=>this.jsAction(t,{action:"removeClass",actionData:e}))):"object"==typeof n&&this.jsAction(n,{action:"removeClass",actionData:e}),n||{}}addClass(t,e){let n="object"==typeof t?t:document.querySelectorAll(t);return n&&n?.length>0?Array.prototype.forEach.call(n,(t=>this.jsAction(t,{action:"addClass",actionData:e}))):"object"==typeof n&&this.jsAction(n,{action:"addClass",actionData:e}),n||{}}toggleDom(t,e="toggleDisplay"){let n="object"==typeof t?t:document.querySelectorAll(t);return n&&n.length>0&&Array.prototype.forEach.call(n,(t=>this.jsAction(t,{action:e}))),n||{}}select2(t){let e=document.querySelector(t+" + span > .selection > span");e&&e.click()}setData(t,e){let n="object"==typeof t?t:document.querySelector(t);if(n)for(let t in e)n.dataset[t]=e[t];return n||{}}getData(t,e){return("object"==typeof t?t:document.querySelector(t))?.dataset[e]||{}}setAttr(t,e){let n="object"==typeof t?t:document.querySelector(t);if(n)for(let t in e)n.setAttribute(t,e[t]);return n||{}}setCss(t,e){let n="object"==typeof t?t:document.querySelector(t);if(n)for(let t in e)n.style&&(n.style[t]=e[t]);return n||{}}remove(t){let e=document.querySelectorAll(t);e.length>0&&Array.prototype.forEach.call(e,(t=>t.remove()))}replaceWith(t,e){let n="object"==typeof t?t:document.querySelector(t);if(n){let t=this.templateHtml(e);return n.replaceWith(t),t}return n}wrap(t,e){let n="object"==typeof t?t:document.querySelector(t);if(n){let t=this.templateHtml(e),o=this.innerChild(t);return o.innerHTML=n.outerHTML,n.parentNode.replaceChild(t,n),o.firstChild}return n}unwrap(t){let e="object"==typeof t?t:document.querySelectorAll(t);e&&e.length>0&&e.forEach((t=>{t.outerHTML=t.innerHTML}))}insertAfter(t,e){return t="object"==typeof t?t:document.querySelector(t),e="object"==typeof e?e:document.querySelector(e),t&&e&&e.parentNode.insertBefore(t,e.nextSibling),t}insert(t,e,n){let o="object"==typeof t?t:document.querySelector(t);if(o)switch(n){case"beforebegin":o.insertAdjacentHTML("beforebegin",e);break;case"afterbegin":o.insertAdjacentHTML("afterbegin",e);break;case"beforeend":o.insertAdjacentHTML("beforeend",e);break;case"afterend":o.insertAdjacentHTML("afterend",e)}return o||{}}domIndex(t){let e="object"==typeof t?t:document.querySelector(t);return e?Array.from(e.parentNode.children).indexOf(e):-1}match(t,e){let n="object"==typeof t?t:document.querySelector(t),o=[];return n&&n.length>0?(Array.prototype.forEach.call(n,(t=>{t.matches(e)&&o.push(t)})),o):n&&n.matches(e)}contains(t,e){let n="object"==typeof t?t:document.querySelectorAll(t);return n&&n.length>0?[].filter.call(n,(function(t){return RegExp(e).test(t.textContent)})):[]}extend(){let t={},e=!1,n=0,o=arguments.length;"[object Boolean]"===Object.prototype.toString.call(arguments[0])&&(e=arguments[0],n++);const r=function(n){for(let o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e&&"[object Object]"===Object.prototype.toString.call(n[o])?t[o]=extend(!0,t[o],n[o]):t[o]=n[o])};for(;n<o;n++){r(arguments[n])}return t}url(t){return t=t||("object"==typeof window?window.location.href:""),new URLSearchParams(t)}updateEditorUrl(t){let e=`?action=new&content_subtype=${t.subtype}&content_type=${t.type}&content_icon=${t.content_icon}&react_content=1`;window.history.replaceState(null,"",e)}getUrlVars(){let t,e=[],n=window.location.href.slice(window.location.href.indexOf("?")+1).split("&");for(let o=0;o<n.length;o++)t=n[o].split("="),e.push(t[0]),e[t[0]]=t[1];return e}setApiKey(t){globalThis.apiAccessToken=t}validateAjaxData(t,e){if(0==e||8==e){if(t&&!this.get("is_proposed")){if(t.content_text){try{t.content_text.answers.forEach(((e,n)=>{t.content_text.answers[n].answer=e.answer.replace(/\n/g,"")}))}catch(t){return{answers:[{is_correct:"0",answer:"Option A.",id:"01"},{is_correct:"0",answer:"Option B.",id:"02"},{is_correct:"0",answer:"Option C.",id:"03"},{is_correct:"0",answer:"Option D.",id:"04"}],correct_ans_str:"D",total_answers:4,correct_answers:1}}return t.content_text}return t}return{answers:[{is_correct:"0",answer:"Option A.",id:"01"},{is_correct:"0",answer:"Option B.",id:"02"},{is_correct:"0",answer:"Option C.",id:"03"},{is_correct:"0",answer:"Option D.",id:"04"}],correct_ans_str:"D",total_answers:4,correct_answers:1}}return t}watchDom(t,e,n={childList:!0}){let o=new MutationObserver((function(t){e&&e(t)}));return o.observe(t,n),o}ignoreEnity(t){return t.replace(/&amp;/g,"&")}cache(t){var e=new Map;return function(n){if(e.has(n))return e.get(n);var o=t(n);return e.set(n,o),o}}set(t,e){"save_item"==t&&this.addInLocalstorage(t,e),"object"==typeof globalThis&&(globalThis.JUITemp[t]=e)}addInLocalstorage(t,e){window.localStorage.setItem(t,e)}get(t){return globalThis.JUITemp[t]}caller(){console.log("called from "+arguments.callee.caller.toString())}showmsg(t,e=1e4){let n=document.querySelector("#showMsgAlert");this.buffer.showmsg&&clearTimeout(this.buffer.showmsg),n?(n.classList.add("show"),this.select("#showMsgBody").innerHTML=t):this.insert(document.body,this.getModalHtml(t,"Alert"),"beforebegin"),setTimeout((()=>{let t=this.getBS(document.querySelector("#showMsgAlert"),"Alert");t.close&&t.close()}),e)}alert(t){document.getElementById("showBSModal")?(this.getBS("#showBSModal","Modal").show(),this.select("#showBSBody").innerHTML=t||"No msg provided..."):(this.insert(document.body,this.getModalHtml(t,"showBSModal"),"beforeend"),this.getBS("#showBSModal","Modal").show())}formatXml(t,e){let n=e||!1,o=n?t.match(/<!--\[CDATA\[[\s\S]*?\]\]-->/gim):"";if(t=t.replace(/\t/g,"").replace(/(>)(<)(\/*)/g,"$1\n$2$3").replace(/ *(.*) +\n/g,"$1\n").replace(/(<.+>)(.+\n)/g,"$1\n$2"),n){let e=t.match(/<!--\[CDATA\[[\s\S]*?\]\]-->/gim);t=t.replace(e,o)}let r="",a=t.split("\n"),i=0,s="other",l={"single->single":0,"single->closing":-1,"single->opening":0,"single->other":0,"closing->single":0,"closing->closing":-1,"closing->opening":0,"closing->other":0,"opening->single":1,"opening->closing":0,"opening->opening":1,"opening->other":1,"other->single":0,"other->closing":-1,"other->opening":0,"other->other":0};for(let t=0;t<a.length;t++){let e=a[t];if(""!=e){let t=Boolean(e.match(/<.+\/>/)),n=Boolean(e.match(/<\/.+>/)),o=Boolean(e.match(/<[^!].*>/)),a=t?"single":n?"closing":o?"opening":"other",c=s+"->"+a;s=a;let d="";i+=l[c];for(let t=0;t<i;t++)d+="\t";"opening->closing"==c?r=r.substr(0,r.length-1)+e+"\n":r+=d+e+"\n"}}return r}getModalHtml(t,e){switch(e){case"Alert":return`\n                    <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">\n                        <span id="showMsgBody">${t}</span>\n                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>\n                    </div>\n                `;case"showBSModal":return`\n                    <div class="modal fade" id="showBSModal" tabindex="-1" aria-labelledby="Alert" aria-hidden="true">\n                        <div class="modal-dialog modal-dialog-centered" id="showBSDialog">\n                            <div class="modal-content">\n                                <div class="modal-body text-center fs-5 pt-4" id="showBSBody">\n                                    ${t}\n                                </div>\n                                <div class="modal-footer">\n                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>\n                                </div>\n                            </div>\n                        </div>\n                    </div>`;default:return"<div>Nothing</div>"}}isValid(t,e=!1){return!(!t||null==t||""==t||"undefined"==t||null==t)||!(!e||t==e)}store(t,e){}query(t){var e="item_error_log=1";if("object"==typeof t)for(let n in t)"object"!=typeof t[n]&&(e+="&"+n+"="+t[n]);return e}activate(t){document.querySelector("#activateLoaderContainer")&&document.querySelector("#activateLoaderContainer").remove(),t>0&&this.insert(document.body,'<div id="activateLoaderContainer" class="activateOverlay" style="z-index:9999999;"><center><div class="activator" style="height:100px; width: 100px;"></div></center></div>',"afterend")}onListen(t,e,n,o){let r=o.target,a=r.closest&&r.closest(t);a&&n.contains(a)&&e.call(this,a,o)}isFocus(t){return("object"==typeof t?t:document.querySelector(t))==document.activeElement}innerChild(t){let e="object"==typeof t?t:document.querySelector(t),n=e;if(e&&e.lastChild)for(e=e.lastChild;e;)n=e,e=e.lastChild;return n}templateHtml(t){let e=document.createElement("template");return e.innerHTML=t,e.content.firstElementChild.cloneNode(!0)}selectAction(t,e){switch(e){case"hidden":return Array.prototype.filter.call(document.querySelectorAll(t),(t=>0==t.offsetWidth&&0==t.offsetHeight));case"visible":return Array.prototype.filter.call(document.querySelectorAll(t),(t=>t.offsetWidth>0&&t.offsetHeight>0));case"selected":return Array.prototype.filter.call(document.querySelectorAll(t),(t=>t.selected));case"checked":return Array.prototype.filter.call(document.querySelectorAll(t),(t=>t.checked));case"enabled":return document.querySelectorAll(t+":not([disabled]");case"children":return document.querySelector(t).children;case"childNodes":return document.querySelector(t).childNodes;default:return document.querySelector(t)}}jsAction(t,e){if(t instanceof HTMLElement||t instanceof Node)switch(e.action){case"show":t.style.display=e.actionData||"";break;case"hide":t.style.display="none";break;case"toggleDisplay":t.style.display="none"==t.style.display?"block":"none";break;case"addClass":"object"==typeof e.actionData?t.classList.add(...e.actionData):t.classList.add(e.actionData);break;case"removeClass":"object"==typeof e.actionData?t.classList.remove(...e.actionData):t.classList.remove(e.actionData);break;case"toggleClass":t.classList.toggle(e.actionData);break;case"html":t.innerHTML=e.actionData;break;case"value":t.value=e.actionData;break;case"text":t.textContent=e.actionData;break;case"checked":t.checked=e.actionData;break;case"remove":t.remove();break;case"removeAttr":t.removeAttribute(e.actionData);break;case"css":this.setCss(t,e.actionData);break;case"attr":this.setAttr(t,e.actionData);break;case"data":this.setData(t,e.actionData);break;case"getData":this.getData(t,e.actionData)}}slideUp(t,e=500){t.style.transitionProperty="height, margin, padding",t.style.transitionDuration=e+"ms",t.style.boxSizing="border-box",t.style.height=t.offsetHeight+"px",t.offsetHeight,t.style.overflow="hidden",t.style.height=0,t.style.paddingTop=0,t.style.paddingBottom=0,t.style.marginTop=0,t.style.marginBottom=0,window.setTimeout((()=>{t.style.display="none",t.style.removeProperty("height"),t.style.removeProperty("padding-top"),t.style.removeProperty("padding-bottom"),t.style.removeProperty("margin-top"),t.style.removeProperty("margin-bottom"),t.style.removeProperty("overflow"),t.style.removeProperty("transition-duration"),t.style.removeProperty("transition-property")}),e)}slideDown(t,e=500){t.style.removeProperty("display");let n=window.getComputedStyle(t).display;"none"===n&&(n="block"),t.style.display=n;let o=t.offsetHeight;t.style.overflow="hidden",t.style.height=0,t.style.paddingTop=0,t.style.paddingBottom=0,t.style.marginTop=0,t.style.marginBottom=0,t.offsetHeight,t.style.boxSizing="border-box",t.style.transitionProperty="height, margin, padding",t.style.transitionDuration=e+"ms",t.style.height=o+"px",t.style.removeProperty("padding-top"),t.style.removeProperty("padding-bottom"),t.style.removeProperty("margin-top"),t.style.removeProperty("margin-bottom"),window.setTimeout((()=>{t.style.removeProperty("height"),t.style.removeProperty("overflow"),t.style.removeProperty("transition-duration"),t.style.removeProperty("transition-property")}),e)}slideToggle(t,e=500){return"none"===window.getComputedStyle(t).display?this.slideDown(t,e):this.slideUp(t,e)}setCookie(t,e,n){const o=new Date;o.setTime(o.getTime()+24*n*60*60*1e3);let r="expires="+o.toUTCString();document.cookie=t+"="+e+";"+r+";path=/"}getCookie(t){let e=t+"=",n=decodeURIComponent(document.cookie).split(";");for(let t=0;t<n.length;t++){let o=n[t];for(;" "==o.charAt(0);)o=o.substring(1);if(0==o.indexOf(e))return o.substring(e.length,o.length)}return""}}new Q;class G{config={};VERSION="1.2.0";DOMNodeTypes={ELEMENT_NODE:1,TEXT_NODE:3,CDATA_SECTION_NODE:4,COMMENT_NODE:8,DOCUMENT_NODE:9};constructor(){this.initConfigDefaults(),this.initRequiredPolyfills()}initConfigDefaults(){void 0===this.config.escapeMode&&(this.config.escapeMode=!0),this.config.attributePrefix=this.config.attributePrefix||"_",this.config.arrayAccessForm=this.config.arrayAccessForm||"none",this.config.emptyNodeForm=this.config.emptyNodeForm||"text",void 0===this.config.enableToStringFunc&&(this.config.enableToStringFunc=!0),this.config.arrayAccessFormPaths=this.config.arrayAccessFormPaths||[],void 0===this.config.skipEmptyTextNodesForObj&&(this.config.skipEmptyTextNodesForObj=!0),void 0===this.config.stripWhitespaces&&(this.config.stripWhitespaces=!0),this.config.datetimeAccessFormPaths=this.config.datetimeAccessFormPaths||[],void 0===this.config.useDoubleQuotes&&(this.config.useDoubleQuotes=!1),this.config.xmlElementsFilter=this.config.xmlElementsFilter||[],this.config.jsonPropertiesFilter=this.config.jsonPropertiesFilter||[],void 0===this.config.keepCData&&(this.config.keepCData=!1)}initRequiredPolyfills(){}getNodeLocalName(t){var e=t.localName;return null==e&&(e=t.baseName),null!=e&&""!=e||(e=t.nodeName),e}getNodePrefix(t){return t.prefix}escapeXmlChars(t){return"string"==typeof t?t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&apos;"):t}unescapeXmlChars(t){return t.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&amp;/g,"&")}checkInStdFiltersArrayForm(t,e,n,o){for(var r=0;r<t.length;r++){var a=t[r];if("string"==typeof a){if(a==o)break}else if(a instanceof RegExp){if(a.test(o))break}else if("function"==typeof a&&a(e,n,o))break}return r!=t.length}toArrayAccessForm(t,e,n){switch(this.config.arrayAccessForm){case"property":t[e]instanceof Array?t[e+"_asArray"]=t[e]:t[e+"_asArray"]=[t[e]]}!(t[e]instanceof Array)&&this.config.arrayAccessFormPaths.length>0&&this.checkInStdFiltersArrayForm(this.config.arrayAccessFormPaths,t,e,n)&&(t[e]=[t[e]])}fromXmlDateTime(t){var e=t.split(/[-T:+Z]/g),n=new Date(e[0],e[1]-1,e[2]),o=e[5].split(".");if(n.setHours(e[3],e[4],o[0]),o.length>1&&n.setMilliseconds(o[1]),e[6]&&e[7]){var r=60*e[6]+Number(e[7]);r=0+("-"==(/\d\d-\d\d:\d\d$/.test(t)?"-":"+")?-1*r:r),n.setMinutes(n.getMinutes()-r-n.getTimezoneOffset())}else-1!==t.indexOf("Z",t.length-1)&&(n=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate(),n.getHours(),n.getMinutes(),n.getSeconds(),n.getMilliseconds())));return n}checkFromXmlDateTimePaths(t,e,n){if(this.config.datetimeAccessFormPaths.length>0){var o=n.split(".#")[0];return this.checkInStdFiltersArrayForm(this.config.datetimeAccessFormPaths,t,e,o)?this.fromXmlDateTime(t):t}return t}checkXmlElementsFilter(t,e,n,o){return!(e==this.DOMNodeTypes.ELEMENT_NODE&&this.config.xmlElementsFilter.length>0)||this.checkInStdFiltersArrayForm(this.config.xmlElementsFilter,t,n,o)}parseDOMChildren(t,e){if(t.nodeType==this.DOMNodeTypes.DOCUMENT_NODE){for(var n=new Object,o=t.childNodes,r=0;r<o.length;r++){if((a=o.item(r)).nodeType==this.DOMNodeTypes.ELEMENT_NODE)n[i=this.getNodeLocalName(a)]=this.parseDOMChildren(a,i)}return n}if(t.nodeType==this.DOMNodeTypes.ELEMENT_NODE){(n=new Object).__cnt=0;for(o=t.childNodes,r=0;r<o.length;r++){var a=o.item(r),i=this.getNodeLocalName(a);if(a.nodeType!=this.DOMNodeTypes.COMMENT_NODE){var s=e+"."+i;this.checkXmlElementsFilter(n,a.nodeType,i,s)&&(n.__cnt++,null==n[i]?(n[i]=this.parseDOMChildren(a,s),this.toArrayAccessForm(n,i,s)):(null!=n[i]&&(n[i]instanceof Array||(n[i]=[n[i]],this.toArrayAccessForm(n,i,s))),n[i][n[i].length]=this.parseDOMChildren(a,s)))}}for(var l=0;l<t.attributes.length;l++){var c=t.attributes.item(l);n.__cnt++,n[this.config.attributePrefix+c.name]=c.value}var d=this.getNodePrefix(t);return null!=d&&""!=d&&(n.__cnt++,n.__prefix=d),null!=n["#text"]&&(n.__text=n["#text"],n.__text instanceof Array&&(n.__text=n.__text.join("\n")),this.config.stripWhitespaces&&(n.__text=n.__text.trim()),delete n["#text"],"property"==this.config.arrayAccessForm&&delete n["#text_asArray"],n.__text=this.checkFromXmlDateTimePaths(n.__text,i,e+"."+i)),null!=n["#cdata-section"]&&(n.__cdata=n["#cdata-section"],delete n["#cdata-section"],"property"==this.config.arrayAccessForm&&delete n["#cdata-section_asArray"]),0==n.__cnt&&"text"==this.config.emptyNodeForm?n="":1==n.__cnt&&null!=n.__text?n=n.__text:1!=n.__cnt||null==n.__cdata||this.config.keepCData?n.__cnt>1&&null!=n.__text&&this.config.skipEmptyTextNodesForObj&&(this.config.stripWhitespaces&&""==n.__text||""==n.__text.trim())&&delete n.__text:n=n.__cdata,delete n.__cnt,!this.config.enableToStringFunc||null==n.__text&&null==n.__cdata||(n.toString=function(){return(null!=this.__text?this.__text:"")+(null!=this.__cdata?this.__cdata:"")}),n}if(t.nodeType==this.DOMNodeTypes.TEXT_NODE||t.nodeType==this.DOMNodeTypes.CDATA_SECTION_NODE)return t.nodeValue}startTag(t,e,n,o){var r="<"+(null!=t&&null!=t.__prefix?t.__prefix+":":"")+e;if(null!=n)for(var a=0;a<n.length;a++){var i=n[a],s=t[i];this.config.escapeMode&&(s=this.escapeXmlChars(s)),r+=" "+i.substr(this.config.attributePrefix.length)+"=",this.config.useDoubleQuotes?r+='"'+s+'"':r+="'"+s+"'"}return r+=o?"/>":">"}endTag(t,e){return"</"+(null!=t.__prefix?t.__prefix+":":"")+e+">"}endsWith(t,e){return-1!==t.indexOf(e,t.length-e.length)}jsonXmlSpecialElem(t,e){return!!("property"==this.config.arrayAccessForm&&this.endsWith(e.toString(),"_asArray")||0==e.toString().indexOf(this.config.attributePrefix)||0==e.toString().indexOf("__")||t[e]instanceof Function)}jsonXmlElemCount(t){var e=0;if(t instanceof Object)for(var n in t)this.jsonXmlSpecialElem(t,n)||e++;return e}checkJsonObjPropertiesFilter(t,e,n){return 0==this.config.jsonPropertiesFilter.length||""==n||this.checkInStdFiltersArrayForm(this.config.jsonPropertiesFilter,t,e,n)}parseJSONAttributes(t){var e=[];if(t instanceof Object)for(var n in t)-1==n.toString().indexOf("__")&&0==n.toString().indexOf(this.config.attributePrefix)&&e.push(n);return e}parseJSONTextAttrs(t){var e="";return null!=t.__cdata&&(e+="<![CDATA["+t.__cdata+"]]>"),null!=t.__text&&(this.config.escapeMode?e+=this.escapeXmlChars(t.__text):e+=t.__text),e}parseJSONTextObject(t){var e="";return t instanceof Object?e+=this.parseJSONTextAttrs(t):null!=t&&(this.config.escapeMode?e+=this.escapeXmlChars(t):e+=t),e}getJsonPropertyPath(t,e){return""===t?e:t+"."+e}parseJSONArray(t,e,n,o){var r="";if(0==t.length)r+=this.startTag(t,e,n,!0);else for(var a=0;a<t.length;a++)r+=this.startTag(t[a],e,this.parseJSONAttributes(t[a]),!1),r+=this.parseJSONObject(t[a],this.getJsonPropertyPath(o,e)),r+=this.endTag(t[a],e);return r}parseJSONObject(t,e){var n="";if(this.jsonXmlElemCount(t)>0)for(var o in t)if(!this.jsonXmlSpecialElem(t,o)&&(""==e||this.checkJsonObjPropertiesFilter(t,o,this.getJsonPropertyPath(e,o)))){var r=t[o],a=this.parseJSONAttributes(r);if(null==r||null==r)n+=this.startTag(r,o,a,!0);else if(r instanceof Object)if(r instanceof Array)n+=this.parseJSONArray(r,o,a,e);else if(r instanceof Date)n+=this.startTag(r,o,a,!1),n+=r.toISOString(),n+=this.endTag(r,o);else{this.jsonXmlElemCount(r)>0||null!=r.__text||null!=r.__cdata?(n+=this.startTag(r,o,a,!1),n+=this.parseJSONObject(r,this.getJsonPropertyPath(e,o)),n+=this.endTag(r,o)):n+=this.startTag(r,o,a,!0)}else n+=this.startTag(r,o,a,!1),n+=this.parseJSONTextObject(r),n+=this.endTag(r,o)}return n+=this.parseJSONTextObject(t)}parseXmlString(t){var e,n=window.ActiveXObject||"ActiveXObject"in window;if(void 0===t)return null;if(window.DOMParser){var o=new window.DOMParser,r=null;if(!n)try{r=o.parseFromString("INVALID","text/xml").getElementsByTagName("parsererror")[0].namespaceURI}catch(t){r=null}try{e=o.parseFromString(t,"text/xml"),null!=r&&e.getElementsByTagNameNS(r,"parsererror").length>0&&(e=null)}catch(t){e=null}}else 0==t.indexOf("<?")&&(t=t.substr(t.indexOf("?>")+2)),(e=new ActiveXObject("Microsoft.XMLDOM")).async="false",e.loadXML(t);return e}asArray(t){return void 0===t||null==t?[]:t instanceof Array?t:[t]}toXmlDateTime(t){return t instanceof Date?t.toISOString():"number"==typeof t?new Date(t).toISOString():null}asDateTime(t){return"string"==typeof t?this.fromXmlDateTime(t):t}xml2json(t){return this.parseDOMChildren(t)}xml_str2json(t){var e=this.parseXmlString(t);return null!=e?this.xml2json(e):null}json2xml_str(t){return this.parseJSONObject(t,"")}json2xml(t){var e=this.json2xml_str(t);return this.parseXmlString(e)}getVersion(){return this.VERSION}}function Z(t){t=t.replace(/<\!--\[CDATA\[/g,"<![CDATA[").replace(/\]\]-->/g,"]]>");let e=new G({useDoubleQuotes:!0}),n=JSON.stringify(e.xml_str2json(t));return n=n.replace("SMXML","smxml"),n=JSON.parse(n),n}const tt=new Q;new class{constructor(t={}){this._options=t,this._allowed=!1,this._init()}_init(){"undefined"!=typeof Storage?(this._allowed=!0,window.onstorage=t=>{this._options.onStore&&this._options.onStore(t)}):(this._allowed=!1,console.warn("Sorry! No Web Storage support.."))}key(t){if(this._allowed)return this._options.session?console.warn("Session has not key method."):window.localStorage.key(t)}get(t){if(this._allowed)return this._options.session?window.sessionStorage.getItem(t):window.localStorage.getItem(t)}set(t,e){if(this._allowed)return this._options.session?window.sessionStorage.setItem(t,e):window.localStorage.setItem(t,e)}remove(t){if(this._allowed)return this._options.session?window.sessionStorage.removeItem(t):window.localStorage.removeItem(t)}clearAll(){if(this._allowed)return this._options.session?window.sessionStorage.clear():window.localStorage.clear()}};function et(t){d(t,"svelte-ri6gyf",".smControlerBtn .btn-light:not([disabled]):not(.disabled).active{color:#fff!important;-webkit-box-shadow:inset 0 2px 0 #1266f1!important;box-shadow:inset 0 2px 0 #1266f1!important;background-color:#2572f2!important;border-color:#2572f2!important;border-top-color:#0c57d3!important}")}function nt(e){let n,r,a,i,s,l;return{c(){n=g("div"),r=g("button"),r.textContent="Correct Answer",a=h(),i=g("button"),i.textContent="Your Answer",v(r,"tabindex","0"),v(r,"type","button"),v(r,"mode","c"),v(r,"class","btn btn-light correct-ans svelte_items_test"),v(i,"tabindex","0"),v(i,"type","button"),v(i,"mode","u"),v(i,"class","btn btn-light your-ans active svelte_items_test"),v(n,"class","smControlerBtn btn-group mb-3"),v(n,"role","group"),v(n,"aria-label","Answer buttons")},m(t,o){u(t,n,o),c(n,r),c(n,a),c(n,i),s||(l=[y(r,"click",e[3]),y(i,"click",e[3])],s=!0)},p:t,d(t){t&&p(n),s=!1,o(l)}}}function ot(e){let n,r,a,i,s,l,d,f=(e[0]||e[1])&&nt(e);return{c(){n=g("center"),r=g("button"),a=h(),i=g("button"),s=h(),f&&f.c(),v(r,"tabindex","0"),v(r,"type","button"),v(r,"class","h h-imp svelte_items_test"),v(r,"id","set-review"),v(i,"tabindex","0"),v(i,"type","button"),v(i,"class","h h-imp svelte_items_test"),v(i,"id","unset-review")},m(t,o){u(t,n,o),c(n,r),c(n,a),c(n,i),c(n,s),f&&f.m(n,null),l||(d=[y(r,"click",e[5]),y(i,"click",e[6])],l=!0)},p(t,[e]){t[0]||t[1]?f?f.p(t,e):(f=nt(t),f.c(),f.m(n,null)):f&&(f.d(1),f=null)},i:t,o:t,d(t){t&&p(n),f&&f.d(),l=!1,o(d)}}}function rt(t,e,n){let{reviewMode:o=!1}=e,{handleReviewClick:r}=e,{customReviewMode:a}=e;tt.listen("body","keydown",".smControlerBtn .correct-ans",(function(t,e){13===e.which&&t.click()})),tt.listen("body","keydown",".smControlerBtn .your-ans",(function(t,e){13===e.which&&t.click()}));const i=I();return t.$$set=t=>{"reviewMode"in t&&n(0,o=t.reviewMode),"handleReviewClick"in t&&n(4,r=t.handleReviewClick),"customReviewMode"in t&&n(1,a=t.customReviewMode)},[o,a,i,function(t){document.querySelectorAll(".smControlerBtn button").forEach((t=>t.classList.remove("active"))),t.target.classList.add("active"),r&&r(t.target.getAttribute("mode"),t)},r,()=>i("setReview"),()=>i("unsetReview")]}class at extends Y{constructor(t){super(),K(this,t,rt,ot,a,{reviewMode:0,handleReviewClick:4,customReviewMode:1},et)}}const it=[];class st{constructor(t,e,n,o){"object"==typeof t?(this.container=t.containment,this.drag=t.classes,this.ignore=t.ignore,this.initDraggable()):(this.drag=e,this.drop=n,this.container=t,this.initDnd()),this.lastPosition=[0,0],window.draglist=o,this.isStart=!1,this.isMoving=!1,this.node=null,this.target=null,this.prenode=null}checkPosition(t,e){let n=document.querySelector(this.container).getBoundingClientRect(),o=t.clientX-n.left,r=t.clientY-n.top,a={width:e.offsetWidth/2,height:e.offsetHeight/2};return o<a.width?o=a.width:o>n.width-a.width&&(o=n.width-a.width),r<a.height?r=a.height:r>n.height-a.height&&(r=n.height-a.height),o<0&&(o=a.width+10),r<0&&(r=a.height+10),[o,r]}binddndEvents(t,e){t&&(AI.listen("body","mousedown",t,((t,n)=>{if(this.changeContainment&&(this.container=this.changeContainment(t)),!t.classList.contains("uc_drag_disable")&&!t.classList.contains("lab_disable")&&(e&&AI.selectAll(e).forEach((t=>{"2"==t.getAttribute("droping")?t.style.zIndex=5:t.style.zIndex=2})),this.prenode=t,this.isStart=!1,this.node=null,this.onDragStart)){let t=this.onDragStart(n,this.prenode);t.style.zIndex=100,this.node=t,this.lastPosition=this.checkPosition(n,this.prenode),t.style.top=this.lastPosition[1]+this.prenode.offsetHeight/2+"px",t.style.left=this.lastPosition[0]-this.prenode.offsetWidth/2+"px",document.querySelector(this.container).appendChild(t),this.isStart=!0}})),AI.listen("body","dragstart",t,((t,e)=>{e.preventDefault()})),AI.listenAll("body","mousemove",(t=>{this.isStart&&this.node&&(this.isMoving=!0,this.lastPosition=this.checkPosition(t,this.node),this.node.style.top=this.lastPosition[1]+this.node.offsetHeight/2+"px",this.node.style.left=this.lastPosition[0]-this.node.offsetWidth/2+"px",this.onDrag&&this.onDrag(t,{node:this.node,top:this.lastPosition[1]+this.node.offsetHeight/2,left:this.lastPosition[0]-this.node.offsetWidth/2}))})),AI.listenAll("body","mouseup",(()=>{if(this.isStart&&this.node&&this.isMoving){if(this.isMoving=!1,this.isStart=!1,this.target)if("1"==this.target.getAttribute("droping")&&"2"==this.prenode.getAttribute("droping"))this.onDropChange(this.prenode,this.target,window.draglist[this.prenode.id][0]),this.saveDetail(window.draglist[this.prenode.id][0],this.target),delete window.draglist[this.prenode.id];else if("2"==this.target.getAttribute("droping")&&"2"==this.prenode.getAttribute("droping")){this.onDropInterchange(this.prenode,this.target,window.draglist[this.prenode.id][0],window.draglist[this.target.id][0]);let t=Object.assign({},window.draglist);this.saveDetail(t[this.prenode.id][0],this.target),this.saveDetail(t[this.target.id][0],this.prenode)}else"2"==this.target.getAttribute("droping")&&"1"==this.prenode.getAttribute("draging")?(this.onDragInterchange(this.prenode,this.target,window.draglist[this.target.id][0]),this.saveDetail(this.prenode,this.target)):this.prenode.id!=this.target.id?(this.saveDetail(this.prenode,this.target),this.onDrop(this.prenode,this.target)):this.prenode.id==this.target.id&&(this.target.classList.remove("drop-hover"),this.target.style.opacity="");else if("2"==this.node.getAttribute("draging")){let t=window.draglist[this.prenode.id];this.onRemove(this.prenode,t[0]),delete window.draglist[this.prenode.id]}else this.isRevert&&this.isRevert();this.node&&this.node.remove()}else!this.isMoving&&this.node&&this.node.remove();e&&AI.selectAll(e).forEach((t=>{t.style.zIndex=""})),this.node=null,this.target=null,this.prenode=null}))),e&&(AI.listen("body","mousemove",e,(t=>{this.isStart&&this.node&&this.isMoving&&(this.target=t,AI.selectAll(".dropable","removeClass","drop-hover"),this.target.classList.add("drop-hover"),this.target.style.opacity="0.7",this.onOver&&this.onOver(t))})),AI.listen("body","mouseover",e,(t=>{this.target=t,this.target.classList.add("drop-hover")})),AI.listen("body","mouseout",e,(()=>{this.isStart&&this.node&&this.isMoving&&this.target&&(this.onOut&&this.onOut(this.target),this.target.style.opacity="1",this.target=null),null==this.target&&null==this.target||this.target.classList.remove("drop-hover")})))}bindDraggable(t){AI.listen("body","mousedown",t,((t,e)=>{if(3!=e.which){if(this.changeContainment&&(this.container=this.changeContainment(t)),this.ignore&&Array.isArray(this.ignore)&&e.target){let t=!1;for(let n=0;n<this.ignore.length;n++)if(e.target.closest(this.ignore[n])||e.target.classList.contains(this.ignore[n])){t=!0;break}if(t)return!1}this.isStart=!0,this.node=t,this.lastPosition=this.checkPosition(e,t),t.style.top=this.lastPosition[1]-t.offsetHeight/2+"px",t.style.left=this.lastPosition[0]-t.offsetWidth/2+"px",this.onDragStart&&this.onDragStart(e,t)}})),AI.listen("body","dragstart",t,((t,e)=>{e.preventDefault()})),AI.listenAll("body","mousemove",(t=>{this.isStart&&this.node&&(this.isMoving=!0,this.lastPosition=this.checkPosition(t,this.node),this.node.style.top=this.lastPosition[1]-this.node.offsetHeight/2+"px",this.node.style.left=this.lastPosition[0]-this.node.offsetWidth/2+"px",this.node.style.zIndex=100,this.onDrag&&this.onDrag(t,{top:this.lastPosition[1]-this.node.offsetHeight/2,left:this.lastPosition[0]-this.node.offsetWidth/2}))})),AI.listenAll("body","mouseup",(t=>{this.isStart&&this.node&&this.isMoving&&(this.isMoving=!1,this.isStart=!1,this.lastPosition=this.checkPosition(t,this.node),this.node.style.top=this.lastPosition[1]-this.node.offsetHeight/2+"px",this.node.style.left=this.lastPosition[0]-this.node.offsetWidth/2+"px",this.node.style.zIndex="100",this.onDragStop&&this.onDragStop(t,{top:this.lastPosition[1]-this.node.offsetHeight/2,left:this.lastPosition[0]-this.node.offsetWidth/2},this.node)),this.node=null}))}initDnd(){window.isDraggableAdded||(this.binddndEvents(this.drag,this.drop),window.isDraggableAdded=!0)}initDraggable(){window.isDraggable||(this.bindDraggable(this.drag),window.isDraggable=!0)}saveDetail(t,e){window.draglist[e.id]=[t,e],window.draglist=window.draglist}onDrop(t,e){let n=t.cloneNode(!0);e.style.backgroundColor=n.getAttribute("data-bgcolor"),e.setAttribute("draging",2),e.setAttribute("droping",2),"1"!=t.getAttribute("data-multi_drag")&&(t.classList.add("uc_drag_disable"),t.style.setProperty("cursor","no-drop","important"),t.style.setProperty("opacity","0.5","important")),e.classList.remove("drop-hover"),e.style.opacity="1",AI.find(e,"p").innerText=AI.find(n,"p").innerText}onRemove(t,e){t.removeAttribute("draging"),t.style.backgroundColor=t.getAttribute("data-bgcolor"),t.setAttribute("droping",1),e&&(e.classList.remove("uc_drag_disable"),e.style.cursor="",e.style.opacity=""),t.classList.remove("drop-hover"),t.style.opacity="1",AI.find(t,"p").innerText=t.getAttribute("data-caption")}onDropChange(t,e,n){this.onDrop(n,e),this.onRemove(t)}onDropInterchange(t,e,n,o){this.onDrop(n,e),this.onDrop(o,t)}onDragInterchange(t,e,n){this.onRemove(e,n),this.onDrop(t,e)}}"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self&&self;function lt(t){return t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t}var ct,dt=lt((function(t,e){t.exports=function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,o){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:o})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=8)}([function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o="swal-button";e.CLASS_NAMES={MODAL:"swal-modal",OVERLAY:"swal-overlay",SHOW_MODAL:"swal-overlay--show-modal",MODAL_TITLE:"swal-title",MODAL_TEXT:"swal-text",ICON:"swal-icon",ICON_CUSTOM:"swal-icon--custom",CONTENT:"swal-content",FOOTER:"swal-footer",BUTTON_CONTAINER:"swal-button-container",BUTTON:o,CONFIRM_BUTTON:o+"--confirm",CANCEL_BUTTON:o+"--cancel",DANGER_BUTTON:o+"--danger",BUTTON_LOADING:o+"--loading",BUTTON_LOADER:o+"__loader"},e.default=e.CLASS_NAMES},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0}),e.getNode=function(t){var e="."+t;return document.querySelector(e)},e.stringToNode=function(t){var e=document.createElement("div");return e.innerHTML=t.trim(),e.firstChild},e.insertAfter=function(t,e){var n=e.nextSibling;e.parentNode.insertBefore(t,n)},e.removeNode=function(t){t.parentElement.removeChild(t)},e.throwErr=function(t){throw"SweetAlert: "+(t=t.replace(/ +(?= )/g,"")).trim()},e.isPlainObject=function(t){if("[object Object]"!==Object.prototype.toString.call(t))return!1;var e=Object.getPrototypeOf(t);return null===e||e===Object.prototype},e.ordinalSuffixOf=function(t){var e=t%10,n=t%100;return 1===e&&11!==n?t+"st":2===e&&12!==n?t+"nd":3===e&&13!==n?t+"rd":t+"th"}},function(t,e,n){function o(t){for(var n in t)e.hasOwnProperty(n)||(e[n]=t[n])}Object.defineProperty(e,"__esModule",{value:!0}),o(n(25));var r=n(26);e.overlayMarkup=r.default,o(n(27)),o(n(28)),o(n(29));var a=n(0),i=a.default.MODAL_TITLE,s=a.default.MODAL_TEXT,l=a.default.ICON,c=a.default.FOOTER;e.iconMarkup='\n  <div class="'+l+'"></div>',e.titleMarkup='\n  <div class="'+i+'"></div>\n',e.textMarkup='\n  <div class="'+s+'"></div>',e.footerMarkup='\n  <div class="'+c+'"></div>\n'},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1);e.CONFIRM_KEY="confirm",e.CANCEL_KEY="cancel";var r={visible:!0,text:null,value:null,className:"",closeModal:!0},a=Object.assign({},r,{visible:!1,text:"Cancel",value:null}),i=Object.assign({},r,{text:"OK",value:!0});e.defaultButtonList={cancel:a,confirm:i};var s=function(t){switch(t){case e.CONFIRM_KEY:return i;case e.CANCEL_KEY:return a;default:var n=t.charAt(0).toUpperCase()+t.slice(1);return Object.assign({},r,{text:n,value:t})}},l=function(t,e){var n=s(t);return!0===e?Object.assign({},n,{visible:!0}):"string"==typeof e?Object.assign({},n,{visible:!0,text:e}):o.isPlainObject(e)?Object.assign({visible:!0},n,e):Object.assign({},n,{visible:!1})},c=function(t){for(var e={},n=0,o=Object.keys(t);n<o.length;n++){var r=o[n],i=t[r],s=l(r,i);e[r]=s}return e.cancel||(e.cancel=a),e},d=function(t){var n={};switch(t.length){case 1:n[e.CANCEL_KEY]=Object.assign({},a,{visible:!1});break;case 2:n[e.CANCEL_KEY]=l(e.CANCEL_KEY,t[0]),n[e.CONFIRM_KEY]=l(e.CONFIRM_KEY,t[1]);break;default:o.throwErr("Invalid number of 'buttons' in array ("+t.length+").\n      If you want more than 2 buttons, you need to use an object!")}return n};e.getButtonListOpts=function(t){var n=e.defaultButtonList;return"string"==typeof t?n[e.CONFIRM_KEY]=l(e.CONFIRM_KEY,t):Array.isArray(t)?n=d(t):o.isPlainObject(t)?n=c(t):!0===t?n=d([!0,!0]):!1===t?n=d([!1,!1]):void 0===t&&(n=e.defaultButtonList),n}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),a=n(0),i=a.default.MODAL,s=a.default.OVERLAY,l=n(30),c=n(31),d=n(32),u=n(33);e.injectElIntoModal=function(t){var e=o.getNode(i),n=o.stringToNode(t);return e.appendChild(n),n};var p=function(t){t.className=i,t.textContent=""},f=function(t,e){p(t);var n=e.className;n&&t.classList.add(n)};e.initModalContent=function(t){var e=o.getNode(i);f(e,t),l.default(t.icon),c.initTitle(t.title),c.initText(t.text),u.default(t.content),d.default(t.buttons,t.dangerMode)};var g=function(){var t=o.getNode(s),e=o.stringToNode(r.modalMarkup);t.appendChild(e)};e.default=g},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r={isOpen:!1,promise:null,actions:{},timer:null},a=Object.assign({},r);e.resetState=function(){a=Object.assign({},r)},e.setActionValue=function(t){if("string"==typeof t)return i(o.CONFIRM_KEY,t);for(var e in t)i(e,t[e])};var i=function(t,e){a.actions[t]||(a.actions[t]={}),Object.assign(a.actions[t],{value:e})};e.setActionOptionsFor=function(t,e){var n=(void 0===e?{}:e).closeModal,o=void 0===n||n;Object.assign(a.actions[t],{closeModal:o})},e.default=a},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),a=n(0),i=a.default.OVERLAY,s=a.default.SHOW_MODAL,l=a.default.BUTTON,c=a.default.BUTTON_LOADING,d=n(5);e.openModal=function(){o.getNode(i).classList.add(s),d.default.isOpen=!0};var u=function(){o.getNode(i).classList.remove(s),d.default.isOpen=!1};e.onAction=function(t){void 0===t&&(t=r.CANCEL_KEY);var e=d.default.actions[t],n=e.value;if(!1===e.closeModal){var a=l+"--"+t;o.getNode(a).classList.add(c)}else u();d.default.promise.resolve(n)},e.getState=function(){var t=Object.assign({},d.default);return delete t.promise,delete t.timer,t},e.stopLoading=function(){for(var t=document.querySelectorAll("."+l),e=0;e<t.length;e++)t[e].classList.remove(c)}},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){(function(e){t.exports=e.sweetAlert=n(9)}).call(e,n(7))},function(t,e,n){(function(e){t.exports=e.swal=n(10)}).call(e,n(7))},function(t,e,n){"undefined"!=typeof window&&n(11),n(16);var o=n(23).default;t.exports=o},function(t,e,n){var o=n(12);"string"==typeof o&&(o=[[t.i,o,""]]);var r={insertAt:"top",transform:void 0};n(14)(o,r),o.locals&&(t.exports=o.locals)},function(t,e,n){(t.exports=n(13)(void 0)).push([t.i,'.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}',""])},function(t,e){function n(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var a=o(r);return[n].concat(r.sources.map((function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"}))).concat([a]).join("\n")}return[n].join("\n")}function o(t){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}t.exports=function(t){var e=[];return e.toString=function(){return this.map((function(e){var o=n(e,t);return e[2]?"@media "+e[2]+"{"+o+"}":o})).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var o={},r=0;r<this.length;r++){var a=this[r][0];"number"==typeof a&&(o[a]=!0)}for(r=0;r<t.length;r++){var i=t[r];"number"==typeof i[0]&&o[i[0]]||(n&&!i[2]?i[2]=n:n&&(i[2]="("+i[2]+") and ("+n+")"),e.push(i))}},e}},function(t,e,n){function o(t,e){for(var n=0;n<t.length;n++){var o=t[n],r=g[o.id];if(r){r.refs++;for(var a=0;a<r.parts.length;a++)r.parts[a](o.parts[a]);for(;a<o.parts.length;a++)r.parts.push(d(o.parts[a],e))}else{var i=[];for(a=0;a<o.parts.length;a++)i.push(d(o.parts[a],e));g[o.id]={id:o.id,refs:1,parts:i}}}}function r(t,e){for(var n=[],o={},r=0;r<t.length;r++){var a=t[r],i=e.base?a[0]+e.base:a[0],s={css:a[1],media:a[2],sourceMap:a[3]};o[i]?o[i].parts.push(s):n.push(o[i]={id:i,parts:[s]})}return n}function a(t,e){var n=h(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var o=v[v.length-1];if("top"===t.insertAt)o?o.nextSibling?n.insertBefore(e,o.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),v.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function i(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=v.indexOf(t);e>=0&&v.splice(e,1)}function s(t){var e=document.createElement("style");return t.attrs.type="text/css",c(e,t.attrs),a(t,e),e}function l(t){var e=document.createElement("link");return t.attrs.type="text/css",t.attrs.rel="stylesheet",c(e,t.attrs),a(t,e),e}function c(t,e){Object.keys(e).forEach((function(n){t.setAttribute(n,e[n])}))}function d(t,e){var n,o,r,a;if(e.transform&&t.css){if(!(a=e.transform(t.css)))return function(){};t.css=a}if(e.singleton){var c=y++;n=b||(b=s(e)),o=u.bind(null,n,c,!1),r=u.bind(null,n,c,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=l(e),o=f.bind(null,n,e),r=function(){i(n),n.href&&URL.revokeObjectURL(n.href)}):(n=s(e),o=p.bind(null,n),r=function(){i(n)});return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e)}else r()}}function u(t,e,n,o){var r=n?"":o.css;if(t.styleSheet)t.styleSheet.cssText=_(e,r);else{var a=document.createTextNode(r),i=t.childNodes;i[e]&&t.removeChild(i[e]),i.length?t.insertBefore(a,i[e]):t.appendChild(a)}}function p(t,e){var n=e.css,o=e.media;if(o&&t.setAttribute("media",o),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}function f(t,e,n){var o=n.css,r=n.sourceMap,a=void 0===e.convertToAbsoluteUrls&&r;(e.convertToAbsoluteUrls||a)&&(o=w(o)),r&&(o+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var i=new Blob([o],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(i),s&&URL.revokeObjectURL(s)}var g={},m=function(t){var e;return function(){return void 0===e&&(e=t.apply(this,arguments)),e}}((function(){return window&&document&&document.all&&!window.atob})),h=function(t){var e={};return function(n){return void 0===e[n]&&(e[n]=t.call(this,n)),e[n]}}((function(t){return document.querySelector(t)})),b=null,y=0,v=[],w=n(15);t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||(e.singleton=m()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=r(t,e);return o(n,e),function(t){for(var a=[],i=0;i<n.length;i++){var s=n[i];(l=g[s.id]).refs--,a.push(l)}for(t&&o(r(t,e),e),i=0;i<a.length;i++){var l;if(0===(l=a[i]).refs){for(var c=0;c<l.parts.length;c++)l.parts[c]();delete g[l.id]}}}};var _=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,o=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,(function(t,e){var r,a=e.trim().replace(/^"(.*)"$/,(function(t,e){return e})).replace(/^'(.*)'$/,(function(t,e){return e}));return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(a)?t:(r=0===a.indexOf("//")?a:0===a.indexOf("/")?n+a:o+a.replace(/^\.\//,""),"url("+JSON.stringify(r)+")")}))}},function(t,e,n){var o=n(17);"undefined"==typeof window||window.Promise||(window.Promise=o),n(21),String.prototype.includes||(String.prototype.includes=function(t,e){return"number"!=typeof e&&(e=0),!(e+t.length>this.length)&&-1!==this.indexOf(t,e)}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{value:function(t,e){if(null==this)throw new TypeError('"this" is null or not defined');var n=Object(this),o=n.length>>>0;if(0===o)return!1;for(var r=0|e,a=Math.max(r>=0?r:o-Math.abs(r),0);a<o;){if(function(t,e){return t===e||"number"==typeof t&&"number"==typeof e&&isNaN(t)&&isNaN(e)}(n[a],t))return!0;a++}return!1}}),"undefined"!=typeof window&&[Element.prototype,CharacterData.prototype,DocumentType.prototype].forEach((function(t){t.hasOwnProperty("remove")||Object.defineProperty(t,"remove",{configurable:!0,enumerable:!0,writable:!0,value:function(){this.parentNode.removeChild(this)}})}))},function(t,e,n){(function(e){!function(n){function o(){}function r(t,e){return function(){t.apply(e,arguments)}}function a(t){if("object"!=typeof this)throw new TypeError("Promises must be constructed via new");if("function"!=typeof t)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],u(t,this)}function i(t,e){for(;3===t._state;)t=t._value;0!==t._state?(t._handled=!0,a._immediateFn((function(){var n=1===t._state?e.onFulfilled:e.onRejected;if(null!==n){var o;try{o=n(t._value)}catch(t){return void l(e.promise,t)}s(e.promise,o)}else(1===t._state?s:l)(e.promise,t._value)}))):t._deferreds.push(e)}function s(t,e){try{if(e===t)throw new TypeError("A promise cannot be resolved with itself.");if(e&&("object"==typeof e||"function"==typeof e)){var n=e.then;if(e instanceof a)return t._state=3,t._value=e,void c(t);if("function"==typeof n)return void u(r(n,e),t)}t._state=1,t._value=e,c(t)}catch(e){l(t,e)}}function l(t,e){t._state=2,t._value=e,c(t)}function c(t){2===t._state&&0===t._deferreds.length&&a._immediateFn((function(){t._handled||a._unhandledRejectionFn(t._value)}));for(var e=0,n=t._deferreds.length;e<n;e++)i(t,t._deferreds[e]);t._deferreds=null}function d(t,e,n){this.onFulfilled="function"==typeof t?t:null,this.onRejected="function"==typeof e?e:null,this.promise=n}function u(t,e){var n=!1;try{t((function(t){n||(n=!0,s(e,t))}),(function(t){n||(n=!0,l(e,t))}))}catch(t){if(n)return;n=!0,l(e,t)}}var p=setTimeout;a.prototype.catch=function(t){return this.then(null,t)},a.prototype.then=function(t,e){var n=new this.constructor(o);return i(this,new d(t,e,n)),n},a.all=function(t){var e=Array.prototype.slice.call(t);return new a((function(t,n){function o(a,i){try{if(i&&("object"==typeof i||"function"==typeof i)){var s=i.then;if("function"==typeof s)return void s.call(i,(function(t){o(a,t)}),n)}e[a]=i,0==--r&&t(e)}catch(t){n(t)}}if(0===e.length)return t([]);for(var r=e.length,a=0;a<e.length;a++)o(a,e[a])}))},a.resolve=function(t){return t&&"object"==typeof t&&t.constructor===a?t:new a((function(e){e(t)}))},a.reject=function(t){return new a((function(e,n){n(t)}))},a.race=function(t){return new a((function(e,n){for(var o=0,r=t.length;o<r;o++)t[o].then(e,n)}))},a._immediateFn="function"==typeof e&&function(t){e(t)}||function(t){p(t,0)},a._unhandledRejectionFn=function(t){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",t)},a._setImmediateFn=function(t){a._immediateFn=t},a._setUnhandledRejectionFn=function(t){a._unhandledRejectionFn=t},void 0!==t&&t.exports?t.exports=a:n.Promise||(n.Promise=a)}(this)}).call(e,n(18).setImmediate)},function(t,e,n){function o(t,e){this._id=t,this._clearFn=e}var r=Function.prototype.apply;e.setTimeout=function(){return new o(r.call(setTimeout,window,arguments),clearTimeout)},e.setInterval=function(){return new o(r.call(setInterval,window,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t&&t.close()},o.prototype.unref=o.prototype.ref=function(){},o.prototype.close=function(){this._clearFn.call(window,this._id)},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout((function(){t._onTimeout&&t._onTimeout()}),e))},n(19),e.setImmediate=setImmediate,e.clearImmediate=clearImmediate},function(t,e,n){(function(t,e){!function(t,n){function o(t){"function"!=typeof t&&(t=new Function(""+t));for(var e=new Array(arguments.length-1),n=0;n<e.length;n++)e[n]=arguments[n+1];var o={callback:t,args:e};return c[l]=o,s(l),l++}function r(t){delete c[t]}function a(t){var e=t.callback,o=t.args;switch(o.length){case 0:e();break;case 1:e(o[0]);break;case 2:e(o[0],o[1]);break;case 3:e(o[0],o[1],o[2]);break;default:e.apply(n,o)}}function i(t){if(d)setTimeout(i,0,t);else{var e=c[t];if(e){d=!0;try{a(e)}finally{r(t),d=!1}}}}if(!t.setImmediate){var s,l=1,c={},d=!1,u=t.document,p=Object.getPrototypeOf&&Object.getPrototypeOf(t);p=p&&p.setTimeout?p:t,"[object process]"==={}.toString.call(t.process)?s=function(t){e.nextTick((function(){i(t)}))}:function(){if(t.postMessage&&!t.importScripts){var e=!0,n=t.onmessage;return t.onmessage=function(){e=!1},t.postMessage("","*"),t.onmessage=n,e}}()?function(){var e="setImmediate$"+Math.random()+"$",n=function(n){n.source===t&&"string"==typeof n.data&&0===n.data.indexOf(e)&&i(+n.data.slice(e.length))};t.addEventListener?t.addEventListener("message",n,!1):t.attachEvent("onmessage",n),s=function(n){t.postMessage(e+n,"*")}}():t.MessageChannel?function(){var t=new MessageChannel;t.port1.onmessage=function(t){i(t.data)},s=function(e){t.port2.postMessage(e)}}():u&&"onreadystatechange"in u.createElement("script")?function(){var t=u.documentElement;s=function(e){var n=u.createElement("script");n.onreadystatechange=function(){i(e),n.onreadystatechange=null,t.removeChild(n),n=null},t.appendChild(n)}}():s=function(t){setTimeout(i,0,t)},p.setImmediate=o,p.clearImmediate=r}}("undefined"==typeof self?void 0===t?this:t:self)}).call(e,n(7),n(20))},function(t,e){function n(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function r(t){if(d===setTimeout)return setTimeout(t,0);if((d===n||!d)&&setTimeout)return d=setTimeout,setTimeout(t,0);try{return d(t,0)}catch(e){try{return d.call(null,t,0)}catch(e){return d.call(this,t,0)}}}function a(t){if(u===clearTimeout)return clearTimeout(t);if((u===o||!u)&&clearTimeout)return u=clearTimeout,clearTimeout(t);try{return u(t)}catch(e){try{return u.call(null,t)}catch(e){return u.call(this,t)}}}function i(){m&&f&&(m=!1,f.length?g=f.concat(g):h=-1,g.length&&s())}function s(){if(!m){var t=r(i);m=!0;for(var e=g.length;e;){for(f=g,g=[];++h<e;)f&&f[h].run();h=-1,e=g.length}f=null,m=!1,a(t)}}function l(t,e){this.fun=t,this.array=e}function c(){}var d,u,p=t.exports={};!function(){try{d="function"==typeof setTimeout?setTimeout:n}catch(t){d=n}try{u="function"==typeof clearTimeout?clearTimeout:o}catch(t){u=o}}();var f,g=[],m=!1,h=-1;p.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];g.push(new l(t,e)),1!==g.length||m||r(s)},l.prototype.run=function(){this.fun.apply(null,this.array)},p.title="browser",p.browser=!0,p.env={},p.argv=[],p.version="",p.versions={},p.on=c,p.addListener=c,p.once=c,p.off=c,p.removeListener=c,p.removeAllListeners=c,p.emit=c,p.prependListener=c,p.prependOnceListener=c,p.listeners=function(t){return[]},p.binding=function(t){throw new Error("process.binding is not supported")},p.cwd=function(){return"/"},p.chdir=function(t){throw new Error("process.chdir is not supported")},p.umask=function(){return 0}},function(t,e,n){n(22).polyfill()},function(t,e,n){function o(t,e){if(null==t)throw new TypeError("Cannot convert first argument to object");for(var n=Object(t),o=1;o<arguments.length;o++){var r=arguments[o];if(null!=r)for(var a=Object.keys(Object(r)),i=0,s=a.length;i<s;i++){var l=a[i],c=Object.getOwnPropertyDescriptor(r,l);void 0!==c&&c.enumerable&&(n[l]=r[l])}}return n}function r(){Object.assign||Object.defineProperty(Object,"assign",{enumerable:!1,configurable:!0,writable:!0,value:o})}t.exports={assign:o,polyfill:r}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(24),r=n(6),a=n(5),i=n(36),s=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];if("undefined"!=typeof window){var n=i.getOpts.apply(void 0,t);return new Promise((function(t,e){a.default.promise={resolve:t,reject:e},o.default(n),setTimeout((function(){r.openModal()}))}))}};s.close=r.onAction,s.getState=r.getState,s.setActionValue=a.setActionValue,s.stopLoading=r.stopLoading,s.setDefaults=i.setDefaults,e.default=s},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(0).default.MODAL,a=n(4),i=n(34),s=n(35),l=n(1);e.init=function(t){o.getNode(r)||(document.body||l.throwErr("You can only use SweetAlert AFTER the DOM has loaded!"),i.default(),a.default()),a.initModalContent(t),s.default(t)},e.default=e.init},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0).default.MODAL;e.modalMarkup='\n  <div class="'+o+'" role="dialog" aria-modal="true"></div>',e.default=e.modalMarkup},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o='<div \n    class="'+n(0).default.OVERLAY+'"\n    tabIndex="-1">\n  </div>';e.default=o},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0).default.ICON;e.errorIconMarkup=function(){var t=o+"--error",e=t+"__line";return'\n    <div class="'+t+'__x-mark">\n      <span class="'+e+" "+e+'--left"></span>\n      <span class="'+e+" "+e+'--right"></span>\n    </div>\n  '},e.warningIconMarkup=function(){var t=o+"--warning";return'\n    <span class="'+t+'__body">\n      <span class="'+t+'__dot"></span>\n    </span>\n  '},e.successIconMarkup=function(){var t=o+"--success";return'\n    <span class="'+t+"__line "+t+'__line--long"></span>\n    <span class="'+t+"__line "+t+'__line--tip"></span>\n\n    <div class="'+t+'__ring"></div>\n    <div class="'+t+'__hide-corners"></div>\n  '}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0).default.CONTENT;e.contentMarkup='\n  <div class="'+o+'">\n\n  </div>\n'},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.BUTTON_CONTAINER,a=o.default.BUTTON,i=o.default.BUTTON_LOADER;e.buttonMarkup='\n  <div class="'+r+'">\n\n    <button\n      class="'+a+'"\n    ></button>\n\n    <div class="'+i+'">\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n\n  </div>\n'},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(4),r=n(2),a=n(0),i=a.default.ICON,s=a.default.ICON_CUSTOM,l=["error","warning","success","info"],c={error:r.errorIconMarkup(),warning:r.warningIconMarkup(),success:r.successIconMarkup()},d=function(t,e){var n=i+"--"+t;e.classList.add(n);var o=c[t];o&&(e.innerHTML=o)},u=function(t,e){e.classList.add(s);var n=document.createElement("img");n.src=t,e.appendChild(n)},p=function(t){if(t){var e=o.injectElIntoModal(r.iconMarkup);l.includes(t)?d(t,e):u(t,e)}};e.default=p},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(2),r=n(4),a=function(t){navigator.userAgent.includes("AppleWebKit")&&(t.style.display="none",t.offsetHeight,t.style.display="")};e.initTitle=function(t){if(t){var e=r.injectElIntoModal(o.titleMarkup);e.textContent=t,a(e)}},e.initText=function(t){if(t){var e=document.createDocumentFragment();t.split("\n").forEach((function(t,n,o){e.appendChild(document.createTextNode(t)),n<o.length-1&&e.appendChild(document.createElement("br"))}));var n=r.injectElIntoModal(o.textMarkup);n.appendChild(e),a(n)}}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(4),a=n(0),i=a.default.BUTTON,s=a.default.DANGER_BUTTON,l=n(3),c=n(2),d=n(6),u=n(5),p=function(t,e,n){var r=e.text,a=e.value,p=e.className,f=e.closeModal,g=o.stringToNode(c.buttonMarkup),m=g.querySelector("."+i),h=i+"--"+t;m.classList.add(h),p&&(Array.isArray(p)?p:p.split(" ")).filter((function(t){return t.length>0})).forEach((function(t){m.classList.add(t)})),n&&t===l.CONFIRM_KEY&&m.classList.add(s),m.textContent=r;var b={};return b[t]=a,u.setActionValue(b),u.setActionOptionsFor(t,{closeModal:f}),m.addEventListener("click",(function(){return d.onAction(t)})),g},f=function(t,e){var n=r.injectElIntoModal(c.footerMarkup);for(var o in t){var a=t[o],i=p(o,a,e);a.visible&&n.appendChild(i)}0===n.children.length&&n.remove()};e.default=f},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r=n(4),a=n(2),i=n(5),s=n(6),l=n(0).default.CONTENT,c=function(t){t.addEventListener("input",(function(t){var e=t.target.value;i.setActionValue(e)})),t.addEventListener("keyup",(function(t){if("Enter"===t.key)return s.onAction(o.CONFIRM_KEY)})),setTimeout((function(){t.focus(),i.setActionValue("")}),0)},d=function(t,e,n){var o=document.createElement(e),r=l+"__"+e;for(var a in o.classList.add(r),n){var i=n[a];o[a]=i}"input"===e&&c(o),t.appendChild(o)},u=function(t){if(t){var e=r.injectElIntoModal(a.contentMarkup),n=t.element,o=t.attributes;"string"==typeof n?d(e,n,o):e.appendChild(n)}};e.default=u},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),a=function(){var t=o.stringToNode(r.overlayMarkup);document.body.appendChild(t)};e.default=a},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(5),r=n(6),a=n(1),i=n(3),s=n(0),l=s.default.MODAL,c=s.default.BUTTON,d=s.default.OVERLAY,u=function(t){t.preventDefault(),h()},p=function(t){t.preventDefault(),b()},f=function(t){if(o.default.isOpen)switch(t.key){case"Escape":return r.onAction(i.CANCEL_KEY)}},g=function(t){if(o.default.isOpen)switch(t.key){case"Tab":return u(t)}},m=function(t){if(o.default.isOpen)return"Tab"===t.key&&t.shiftKey?p(t):void 0},h=function(){var t=a.getNode(c);t&&(t.tabIndex=0,t.focus())},b=function(){var t=a.getNode(l).querySelectorAll("."+c),e=t[t.length-1];e&&e.focus()},y=function(t){t[t.length-1].addEventListener("keydown",g)},v=function(t){t[0].addEventListener("keydown",m)},w=function(){var t=a.getNode(l).querySelectorAll("."+c);t.length&&(y(t),v(t))},_=function(t){if(a.getNode(d)===t.target)return r.onAction(i.CANCEL_KEY)},x=function(t){var e=a.getNode(d);e.removeEventListener("click",_),t&&e.addEventListener("click",_)},A=function(t){o.default.timer&&clearTimeout(o.default.timer),t&&(o.default.timer=window.setTimeout((function(){return r.onAction(i.CANCEL_KEY)}),t))},k=function(t){t.closeOnEsc?document.addEventListener("keyup",f):document.removeEventListener("keyup",f),t.dangerMode?h():b(),w(),x(t.closeOnClickOutside),A(t.timer)};e.default=k},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),a=n(37),i=n(38),s={title:null,text:null,icon:null,buttons:r.defaultButtonList,content:null,className:null,closeOnClickOutside:!0,closeOnEsc:!0,dangerMode:!1,timer:null},l=Object.assign({},s);e.setDefaults=function(t){l=Object.assign({},s,t)};var c=function(t){var e=t&&t.button,n=t&&t.buttons;return void 0!==e&&void 0!==n&&o.throwErr("Cannot set both 'button' and 'buttons' options!"),void 0!==e?{confirm:e}:n},d=function(t){return o.ordinalSuffixOf(t+1)},u=function(t,e){o.throwErr(d(e)+" argument ('"+t+"') is invalid")},p=function(t,e){var n=t+1,r=e[n];o.isPlainObject(r)||void 0===r||o.throwErr("Expected "+d(n)+" argument ('"+r+"') to be a plain object")},f=function(t,e){var n=t+1,r=e[n];void 0!==r&&o.throwErr("Unexpected "+d(n)+" argument ("+r+")")},g=function(t,e,n,r){var a=e instanceof Element;if("string"==typeof e){if(0===n)return{text:e};if(1===n)return{text:e,title:r[0]};if(2===n)return p(n,r),{icon:e};u(e,n)}else{if(a&&0===n)return p(n,r),{content:e};if(o.isPlainObject(e))return f(n,r),e;u(e,n)}};e.getOpts=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];var n={};t.forEach((function(e,o){var r=g(0,e,o,t);Object.assign(n,r)}));var o=c(n);n.buttons=r.getButtonListOpts(o),delete n.button,n.content=a.getContentOpts(n.content);var d=Object.assign({},s,l,n);return Object.keys(d).forEach((function(t){i.DEPRECATED_OPTS[t]&&i.logDeprecation(t)})),d}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r={element:"input",attributes:{placeholder:""}};e.getContentOpts=function(t){var e={};return o.isPlainObject(t)?Object.assign(e,t):t instanceof Element?{element:t}:"input"===t?r:null}},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0}),e.logDeprecation=function(t){var n=e.DEPRECATED_OPTS[t],o=n.onlyRename,r=n.replacement,a=n.subOption,i=n.link,s='SweetAlert warning: "'+t+'" option has been '+(o?"renamed":"deprecated")+".";r&&(s+=" Please use"+(a?' "'+a+'" in ':" ")+'"'+r+'" instead.');var l="https://sweetalert.js.org";s+=i?" More details: "+l+i:" More details: "+l+"/guides/#upgrading-from-1x",console.warn(s)},e.DEPRECATED_OPTS={type:{replacement:"icon",link:"/docs/#icon"},imageUrl:{replacement:"icon",link:"/docs/#icon"},customClass:{replacement:"className",onlyRename:!0,link:"/docs/#classname"},imageSize:{},showCancelButton:{replacement:"buttons",link:"/docs/#buttons"},showConfirmButton:{replacement:"button",link:"/docs/#button"},confirmButtonText:{replacement:"button",link:"/docs/#button"},confirmButtonColor:{},cancelButtonText:{replacement:"buttons",link:"/docs/#buttons"},closeOnConfirm:{replacement:"button",subOption:"closeModal",link:"/docs/#button"},closeOnCancel:{replacement:"buttons",subOption:"closeModal",link:"/docs/#buttons"},showLoaderOnConfirm:{replacement:"buttons"},animation:{},inputType:{replacement:"content",link:"/docs/#content"},inputValue:{replacement:"content",link:"/docs/#content"},inputPlaceholder:{replacement:"content",link:"/docs/#content"},html:{replacement:"content",link:"/docs/#content"},allowEscapeKey:{replacement:"closeOnEsc",onlyRename:!0,link:"/docs/#closeonesc"},allowClickOutside:{replacement:"closeOnClickOutside",onlyRename:!0,link:"/docs/#closeonclickoutside"}}}])}(ct={exports:{}},ct.exports),ct.exports)),ut="undefined"!=typeof navigator&&navigator.userAgent.toLowerCase().indexOf("firefox")>0;function pt(t,e,n){t.addEventListener?t.addEventListener(e,n,!1):t.attachEvent&&t.attachEvent("on".concat(e),(function(){n(window.event)}))}function ft(t,e){for(var n=e.slice(0,e.length-1),o=0;o<n.length;o++)n[o]=t[n[o].toLowerCase()];return n}function gt(t){"string"!=typeof t&&(t="");for(var e=(t=t.replace(/\s/g,"")).split(","),n=e.lastIndexOf("");n>=0;)e[n-1]+=",",e.splice(n,1),n=e.lastIndexOf("");return e}for(var mt={backspace:8,tab:9,clear:12,enter:13,return:13,esc:27,escape:27,space:32,left:37,up:38,right:39,down:40,del:46,delete:46,ins:45,insert:45,home:36,end:35,pageup:33,pagedown:34,capslock:20,"⇪":20,",":188,".":190,"/":191,"`":192,"-":ut?173:189,"=":ut?61:187,";":ut?59:186,"'":222,"[":219,"]":221,"\\":220},ht={"⇧":16,shift:16,"⌥":18,alt:18,option:18,"⌃":17,ctrl:17,control:17,"⌘":91,cmd:91,command:91},bt={16:"shiftKey",18:"altKey",17:"ctrlKey",91:"metaKey",shiftKey:16,ctrlKey:17,altKey:18,metaKey:91},yt={16:!1,18:!1,17:!1,91:!1},vt={},wt=1;wt<20;wt++)mt["f".concat(wt)]=111+wt;var _t=[],xt="all",At=[],kt=function(t){return mt[t.toLowerCase()]||ht[t.toLowerCase()]||t.toUpperCase().charCodeAt(0)};function It(t){xt=t||"all"}function $t(){return xt||"all"}var Et=function(t){var e=t.key,n=t.scope,o=t.method,r=t.splitKey,a=void 0===r?"+":r;gt(e).forEach((function(t){var e=t.split(a),r=e.length,i=e[r-1],s="*"===i?"*":kt(i);if(vt[s]){n||(n=$t());var l=r>1?ft(ht,e):[];vt[s]=vt[s].map((function(t){return(!o||t.method===o)&&t.scope===n&&function(t,e){for(var n=t.length>=e.length?t:e,o=t.length>=e.length?e:t,r=!0,a=0;a<n.length;a++)-1===o.indexOf(n[a])&&(r=!1);return r}(t.mods,l)?{}:t}))}}))};function Tt(t,e,n){var o;if(e.scope===n||"all"===e.scope){for(var r in o=e.mods.length>0,yt)Object.prototype.hasOwnProperty.call(yt,r)&&(!yt[r]&&e.mods.indexOf(+r)>-1||yt[r]&&-1===e.mods.indexOf(+r))&&(o=!1);(0!==e.mods.length||yt[16]||yt[18]||yt[17]||yt[91])&&!o&&"*"!==e.shortcut||!1===e.method(t,e)&&(t.preventDefault?t.preventDefault():t.returnValue=!1,t.stopPropagation&&t.stopPropagation(),t.cancelBubble&&(t.cancelBubble=!0))}}function Ct(t){var e=vt["*"],n=t.keyCode||t.which||t.charCode;if(Ot.filter.call(this,t)){if(93!==n&&224!==n||(n=91),-1===_t.indexOf(n)&&229!==n&&_t.push(n),["ctrlKey","altKey","shiftKey","metaKey"].forEach((function(e){var n=bt[e];t[e]&&-1===_t.indexOf(n)?_t.push(n):!t[e]&&_t.indexOf(n)>-1?_t.splice(_t.indexOf(n),1):"metaKey"===e&&t[e]&&3===_t.length&&(t.ctrlKey||t.shiftKey||t.altKey||(_t=_t.slice(_t.indexOf(n))))})),n in yt){for(var o in yt[n]=!0,ht)ht[o]===n&&(Ot[o]=!0);if(!e)return}for(var r in yt)Object.prototype.hasOwnProperty.call(yt,r)&&(yt[r]=t[bt[r]]);t.getModifierState&&(!t.altKey||t.ctrlKey)&&t.getModifierState("AltGraph")&&(-1===_t.indexOf(17)&&_t.push(17),-1===_t.indexOf(18)&&_t.push(18),yt[17]=!0,yt[18]=!0);var a=$t();if(e)for(var i=0;i<e.length;i++)e[i].scope===a&&("keydown"===t.type&&e[i].keydown||"keyup"===t.type&&e[i].keyup)&&Tt(t,e[i],a);if(n in vt)for(var s=0;s<vt[n].length;s++)if(("keydown"===t.type&&vt[n][s].keydown||"keyup"===t.type&&vt[n][s].keyup)&&vt[n][s].key){for(var l=vt[n][s],c=l.splitKey,d=l.key.split(c),u=[],p=0;p<d.length;p++)u.push(kt(d[p]));u.sort().join("")===_t.sort().join("")&&Tt(t,l,a)}}}function Ot(t,e,n){_t=[];var o=gt(t),r=[],a="all",i=document,s=0,l=!1,c=!0,d="+";for(void 0===n&&"function"==typeof e&&(n=e),"[object Object]"===Object.prototype.toString.call(e)&&(e.scope&&(a=e.scope),e.element&&(i=e.element),e.keyup&&(l=e.keyup),void 0!==e.keydown&&(c=e.keydown),"string"==typeof e.splitKey&&(d=e.splitKey)),"string"==typeof e&&(a=e);s<o.length;s++)r=[],(t=o[s].split(d)).length>1&&(r=ft(ht,t)),(t="*"===(t=t[t.length-1])?"*":kt(t))in vt||(vt[t]=[]),vt[t].push({keyup:l,keydown:c,scope:a,mods:r,shortcut:o[s],method:n,key:o[s],splitKey:d});void 0!==i&&!function(t){return At.indexOf(t)>-1}(i)&&window&&(At.push(i),pt(i,"keydown",(function(t){Ct(t)})),pt(window,"focus",(function(){_t=[]})),pt(i,"keyup",(function(t){Ct(t),function(t){var e=t.keyCode||t.which||t.charCode,n=_t.indexOf(e);if(n>=0&&_t.splice(n,1),t.key&&"meta"===t.key.toLowerCase()&&_t.splice(0,_t.length),93!==e&&224!==e||(e=91),e in yt)for(var o in yt[e]=!1,ht)ht[o]===e&&(Ot[o]=!1)}(t)})))}var Dt={setScope:It,getScope:$t,deleteScope:function(t,e){var n,o;for(var r in t||(t=$t()),vt)if(Object.prototype.hasOwnProperty.call(vt,r))for(n=vt[r],o=0;o<n.length;)n[o].scope===t?n.splice(o,1):o++;$t()===t&&It(e||"all")},getPressedKeyCodes:function(){return _t.slice(0)},isPressed:function(t){return"string"==typeof t&&(t=kt(t)),-1!==_t.indexOf(t)},filter:function(t){var e=t.target||t.srcElement,n=e.tagName,o=!0;return!e.isContentEditable&&("INPUT"!==n&&"TEXTAREA"!==n&&"SELECT"!==n||e.readOnly)||(o=!1),o},unbind:function(t){if(t){if(Array.isArray(t))t.forEach((function(t){t.key&&Et(t)}));else if("object"==typeof t)t.key&&Et(t);else if("string"==typeof t){for(var e=arguments.length,n=new Array(e>1?e-1:0),o=1;o<e;o++)n[o-1]=arguments[o];var r=n[0],a=n[1];"function"==typeof r&&(a=r,r=""),Et({key:t,scope:r,method:a,splitKey:"+"})}}else Object.keys(vt).forEach((function(t){return delete vt[t]}))}};for(var St in Dt)Object.prototype.hasOwnProperty.call(Dt,St)&&(Ot[St]=Dt[St]);if("undefined"!=typeof window){var Nt=window.hotkeys;Ot.noConflict=function(t){return t&&window.hotkeys===Ot&&(window.hotkeys=Nt),Ot},window.hotkeys=Ot}let jt=dt,Lt="#dndmainPreview",Mt=!0,Pt=null,zt={},Rt=0;const qt={};let Bt=!0;function Ht(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function Ft(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=Ut(Ht(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Ht(t,n,a);o[a]?o[a].p(i,r):(o[a]=Ut(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function Ut(t){let e,n,o,r,a,i,s,l,d,f,m,b,y;return{c(){e=g("div"),n=g("input"),m=h(),v(n,"type",o=t[5]._type),v(n,"class",r="dnd"+t[5]._id+" dnd_textbox "+t[5]._custom_class),v(n,"name",""),v(n,"data-correctans",a=t[5]._correctans?t[5]._correctans:""),v(n,"data-userans",i=t[5]._userans?t[5]._userans:""),v(n,"data-udisplay",""),v(n,"data-udisabled",""),v(n,"data-defaultans",s=t[5]._defaultans?t[5]._defaultans:""),v(n,"placeholder",l=t[5]._placeholder?t[5]._placeholder:""),v(n,"data-nocase",d=t[5]._nocase?t[5]._nocase:""),v(n,"data-ismultipleanswer",f=t[5]._ismultipleanswer?t[5]._ismultipleanswer:""),v(e,"key",b=t[7]),v(e,"id",y="dnd"+t[5]._id),v(e,"class","drag-resize dndTest"),_(e,"position","absolute"),_(e,"top",t[5]._top+"px"),_(e,"left",t[5]._left+"px"),_(e,"height",t[5]._height+"px"),_(e,"width",t[5]._width+"px"),_(e,"z-index","1")},m(t,o){u(t,e,o),c(e,n),c(e,m)},p(t,c){1&c&&o!==(o=t[5]._type)&&v(n,"type",o),1&c&&r!==(r="dnd"+t[5]._id+" dnd_textbox "+t[5]._custom_class)&&v(n,"class",r),1&c&&a!==(a=t[5]._correctans?t[5]._correctans:"")&&v(n,"data-correctans",a),1&c&&i!==(i=t[5]._userans?t[5]._userans:"")&&v(n,"data-userans",i),1&c&&s!==(s=t[5]._defaultans?t[5]._defaultans:"")&&v(n,"data-defaultans",s),1&c&&l!==(l=t[5]._placeholder?t[5]._placeholder:"")&&v(n,"placeholder",l),1&c&&d!==(d=t[5]._nocase?t[5]._nocase:"")&&v(n,"data-nocase",d),1&c&&f!==(f=t[5]._ismultipleanswer?t[5]._ismultipleanswer:"")&&v(n,"data-ismultipleanswer",f),1&c&&y!==(y="dnd"+t[5]._id)&&v(e,"id",y),1&c&&_(e,"top",t[5]._top+"px"),1&c&&_(e,"left",t[5]._left+"px"),1&c&&_(e,"height",t[5]._height+"px"),1&c&&_(e,"width",t[5]._width+"px")},d(t){t&&p(e)}}}function Xt(e){let n,o=e[0]&&e[0].length>0&&Ft(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=Ft(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function Jt(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=[],s=o;return k((()=>{i.length>0&&""!=r&&s.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{27&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(4,s=[]),n(4,s[0]=o,s)):n(4,s=o),n(0,i=[]),s.map((function(t){if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}n(0,i=[...i,t])}))):n(0,i=[]))},[i,o,r,a,s]}qt.prevent_dialog=!1,qt.storage={store:function(t,e,n){if(!t)return this.state;if(!e)return t in this.state?this.state[t]:{};if(arguments.length<3){if(!(t in this.state))return;return this.state[t][e]}t in this.state||(this.state[t]={}),this.state[t][e]=n},remove:function(t){this.state[t]&&delete this.state[t]},state:{}},qt.browser={},qt.browser.msie=!1,qt.browser.version=0,"undefined"!=typeof navigator&&navigator.userAgent.match(/MSIE ([0-9]+)\./)&&(qt.browser.msie=!0,qt.browser.version=RegExp.$1),qt.sqlparser=function(t,e){"boolean"!=typeof e&&(e=!1);let n=[];if(e){n.optional=[],n.mustbeone=[];let e=t.match(/{.*?}/g);if(null!=e)for(let o=0;o<e.length;o++){t=t.replace(e[o],""),r=e[o].trim();let r=r.substr(1,r.length-2);-1!=r.indexOf("|")?(r=r.split("|"),n.mustbeone.push(r)):n.optional.push(r)}}return n.sql=t.toLowerCase().replace(/([?~!@#$%^&*()_+\-=\[\]{};':",\./\<>%])/g," $1 ").replace(/[;]/g," ").trim().replace(/(,|`|\n)/g," ").replace(/\s{2,}/g," ").split(" "),n},String.prototype.sqlparser=function(t){return qt.sqlparser(this.toString(),t)},qt.setStep=function(t){if((t=t.match(/dnd/g)||"base"==t?t:"dnd"+t)&&""!=t.trim()){let e,n=document.querySelector("#"+t),o=!!n&&n.closest('[id^="dndmainPreview"]');if(o&&(e="#"+o.getAttribute("id")),e){let n=document.querySelector(Lt);if(n){let t=AI.find(n,"[type='step']","all");for(let e=0;e<t.length;e++)AI.setCss(t[e],{display:"none"})}let o=AI.select(e);if("base"==t){let t=AI.find(o,"#base");AI.selectAll(t,"checked",!0)}else{AI.select("#step_"+t,"checked",!0);let e=AI.find(o,"#"+t);AI.setCss(e.parentElement,{display:"block"}),AI.setCss(e,{display:"block"})}}}},"undefined"!=typeof window&&(window.setStep=qt.setStep),qt.wrapInner=function(t,e,n,o){try{for("string"==typeof e&&(e=document.createElement(e)),t.appendChild(e).setAttribute(n,o);t.firstChild!==e;)e.appendChild(t.firstChild)}catch(t){console.warn(t)}},qt.activate=function(t=0){if(0!=t&&0==document.querySelectorAll(".spinner").length){let t=document.createElement("div");t.className="spinner";let e=document.createElement("div");e.className="loading",t.appendChild(e),null!=document.body&&document.body.appendChild(t)}else document.getElementsByClassName("spinner")[0]&&document.getElementsByClassName("spinner")[0].remove()},qt.readyThis=function(t){let e=AI.select(t),n=AI.find(t,'[zoom="1"]',"all");n.length>0&&n.forEach((function(t){qt.wrapInner(t,"div","class","zoom_wrap"),qt.wrapInner(t,"div","class","zoom_container");let e=document.createElement("div");e.class="c_zoom";let n=document.createElement("input");n.type="range",n.id="c_zoom",n.min="1",n.max="7",e.append(n),t.appendChild(e),t.insertBefore(e,t.firstChild)})),AI.listen("body","change",".c_zoom",(function(t){let e=AI.find(t.parentElement.parentElement,".zoom_wrap");if(e)switch(t.value){case"1":case"2":e.setAttribute("class","zoom_wrap zoom2");break;case"3":e.setAttribute("class","zoom_wrap zoom3");break;case"4":e.setAttribute("class","zoom_wrap zoom4");break;case"5":e.setAttribute("class","zoom_wrap zoom5");break;case"6":e.setAttribute("class","zoom_wrap zoom6");break;case"7":e.setAttribute("class","zoom_wrap zoom7")}})),AI.listen("body","click",".hotspot_test",(function(n,o){if(n.classList.contains("lab_disable"))return;let r=AI.find(e,".targetImg");if(!o.target.classList.contains("tmpTarget")&&AI.find(n,".hs_item","all").length>AI.find(n,".tmpTarget","all").length){let t=Math.round(o.pageY-qt.offset(n).top-(r?r.offsetHeight?r.offsetHeight:32:0)/2)-window.pageYOffset,e=Math.round(o.pageX-qt.offset(n).left-(r?r.offsetHeight?r.offsetHeight:32:0)/2)-window.pageXOffset;if("c_zoom"!=o.target.getAttribute("id")){o.target.classList.contains("hs_item")&&o.target.setAttribute("data-correctans","1");let a=AI.clone(r);a.classList.remove("targetImg"),a.classList.add("tmpTarget"),a.id=n.id+"_"+(AI.find(n,".tmpTarget","all").length+1),AI.setCss(a,{position:"absolute",top:t+"px",left:e+"px",display:"block"}),qt.storage.store(a.id,"tgElem",o.target.id),AI.insertAfter(a,AI.find(n,".hs_item","all")[AI.find(n,".hs_item","all").length-1])}}else if(o.target.classList.contains("tmpTarget")){let t=o.target.id.split("_")[1],r=qt.storage.store(o.target.id,"tgElem");if(o.target.remove(),t)for(let e=t-1;e<AI.find(n,".tmpTarget","all").length;e++){let t=n.id+"_"+(e+1),o=n.id+"_"+(e+2),r=qt.storage.store(o,"tgElem");qt.storage.store(t,"tgElem",r),qt.storage.remove(o),AI.select("#"+o).id=t}if(void 0!==r){let t=!0,n=AI.find(e,".tmpTarget","all");for(let e=0;e<n.length;e++)if(qt.storage.store(n[e].id,"tgElem")==r){t=!1;break}t&&AI.select("#dndmainPreview #"+r).setAttribute("data-correctans","0")}}let a="",i=1,s=AI.find(e,".tmpTarget","all");for(let t=0;t<s.length;t++)a+='"'+i+'":['+s[t].offsetTop+","+s[t].offsetLeft+","+s[t].offsetWidth+","+s[t].offsetHeight+"],",i++;n.setAttribute("data-userans","{"+a.substr(0,a.length-1)+"}"),qt.checkAns(t)}));let o=AI.find(e,"[data-dragimage]","all");for(let t=0;t<o.length;t++)if("undefined"!=o[t].getAttribute("data-dragimage")&&""!=o[t].getAttribute("data-dragimage")){let e=o[t].getAttribute("data-path")+o[t].getAttribute("data-dragimage");AI.insert("body",'<img src="'+e+'" style="display:none"/>',"beforeend")}let r=AI.selectAll(".dropable");for(let t=0;t<r.length;t++){let e=r[t].id,n=r[t].dataset.droped;e&&n&&(zt[e]=[AI.select("#"+n),AI.select("#"+e)])}let a=new st("#dndmainPreview","[draging]","[droping]",zt);a.onDrag=function(t){t.clientY<=80?window.scrollTo(0,window.scrollY-5):t.clientY>=window.innerHeight+20&&window.scrollTo(0,window.scrollY+5),1==AI.selectAll("#external_lab").length&&AI.select("#external_lab").scrollTo(t.clientX,t.clientY),1==AI.selectAll("#user_answer").length&&AI.select("#user_answer").scrollTo(t.clientX,t.clientY)},a.onDragStart=function(e,n){let o,r,a=n;n.classList.contains("dropable")&&a.getAttribute("data-droped")&&""!=a.getAttribute("data-droped").trim()&&(a=AI.find(t,"#"+a.getAttribute("data-droped"))),r=void 0!==a.getAttribute("data-dragimage")&&""!=a.getAttribute("data-dragimage")?"url("+a.getAttribute("data-path")+a.getAttribute("data-dragimage")+")":a.style.backgroundImage,"none"==r||""==r?o={width:a.offsetWidth,height:a.offsetHeight}:(o=new Image,o.src=r.substr(4,r.length-5));let i=n.cloneNode(!0);return i.removeAttribute("droping"),i.style.position="absolute",i.style.zIndex=0,i.backgroundImage=r,i.style.width=o.width+"px",i.style.height=o.height+"px",i},a.onDrop=function(e,n){let o=e.cloneNode(!0);n.style.backgroundColor=o.getAttribute("data-bgcolor"),n.setAttribute("draging",2),n.setAttribute("droping",2),"0"==e.getAttribute("data-multi_drag")&&(e.classList.add("uc_drag_disable"),e.style.setProperty("cursor","no-drop","important"),e.style.setProperty("opacity","0.5","important")),n.classList.remove("drop-hover"),n.style.opacity="1";let r=e.getAttribute("data-droped")?e.getAttribute("data-droped"):e.getAttribute("id"),a="";a=e.getAttribute("data-dropimage")&&""!=e.getAttribute("data-dropimage")?"url("+e.getAttribute("data-path")+e.getAttribute("data-dropimage")+")":e.style.backgroundImage,qt.browser.msie&&r&&""==AI.find(AI.select(t),"#"+r).innerText.trim()&&(e.style.backgroundColor="transparent"),n.setAttribute("data-userans",r),n.setAttribute("data-droped",r),n.setAttribute("data-path",e.getAttribute("data-path")),n.setAttribute("data-dropimage",e.getAttribute("data-dropimage")),n.setAttribute("data-dragimage",e.getAttribute("data-dragimage")),AI.setCss(n,{backgroundColor:e.style.backgroundColor,backgroundImage:a}),null!=AI.select(o)?AI.find(n,"p").innerText=AI.select(o).innerText.trim():AI.find(n,"p").innerText=o.innerText.trim(),setTimeout((function(){qt.checkAns(t)}),500)},a.isRevert=function(){if(qt.prevent_dialog)return!1;AI.showmsg("While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.",3e3);let t=document.createElement("img");t.src="//s3.amazonaws.com/jigyaasa_content_static/how-to-drop-final_000BeI.gif",t.alt="How to Drop?";let e=document.createElement("div"),n=document.createElement("div"),o=document.createElement("input");o.type="checkbox",o.id="prevent_dialog",o.classList.add("mr-1"),o.onchange=function(){qt.prevent_dialog=this.checked,this.checked&&jt.close()};let r=document.createElement("label");r.setAttribute("for","prevent_dialog"),r.innerText="Don't show me message again!",n.append(t),e.append(o),e.append(r),n.append(e),jt=function(){if(dt(arguments[0]),arguments[0].showCloseButton){let t=document.createElement("button");t.className="swal2-close close",t.onclick=function(){dt.close()},t.textContent="×",t.classList.add("position-relative"),t.style.bottom="220px",t.style.right="10px";let e=document.querySelector(".swal-modal");AI.select(".swal-text").style.marginTop="23px",AI.select(".swal-text").style.marginBottom="10px",AI.select(".swal-text").style.float="left",e.appendChild(t)}},jt({text:"How to Drop?",content:n,buttons:!1,showCloseButton:!0})},a.onRemove=function(e,n){e.removeAttribute("draging"),e.setAttribute("droping",1),n&&(n.classList.remove("uc_drag_disable"),n.style.cursor="",n.style.opacity=""),e.classList.remove("drop-hover"),e.style.opacity="1",e.setAttribute("data-userans",""),e.setAttribute("data-droped",""),e.style.backgroundColor=e.getAttribute("data-bgcolor"),e.style.backgroundImage=e.getAttribute("data-bgimage"),AI.find(e,"p").innerText=e.getAttribute("data-caption"),setTimeout((function(){qt.checkAns(t)}),500)},a.onOver=function(t){try{let e="";t.getAttribute("hoverimage")&&(e=t.getAttribute("data-path")+t.getAttribute("hoverimage")),(t.style.backgroundImage.match(/undefined/)||t.style.backgroundImage.match(/none/))&&(t.style.backgroundImage="url("+e+")")}catch(t){console.warn(t)}},a.onOut=function(t){try{let e="none";t.getAttribute("hoverimage")&&(e=t.getAttribute("hoverimage")),-1!=t.style.backgroundImage.search(e)&&(t.style.backgroundImage="")}catch(t){console.warn(t)}},AI.listen("body","dblclick",t+" [detail]",(function(e,n){try{e.closest(t)&&(5==e.getAttribute("data-detail").length?(qt.activate(1),AI.ajax({url:baseUrl+"index.php",data:{lab_detail:e.getAttribute("data-detail"),ajax:"1"},longUrl:!0}).then((function(t){qt.activate(0),AI.selectAll(".detail-modal").length<1?AI.insert("#main-page",'<div id="modal-from-detail" class="detail-modal modal fade" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content no-padding"><span class="close-icon" data-dismiss="modal" aria-hidden="true"></span><div class="detail_data">'+t+"</div></div></div></div>","beforeend"):AI.select(".detail-modal .detail_data").innerHTML=t,AI.getBS("#modal-from-detail","Modal").show()}))):""!=e.getAttribute("data-detail")&&(AI.select(".detail").length<1?(AI.insert("body",'<div class="detail"><span class="close_detail">&times;</span><div class="detail_data">'+e.getAttribute("data-detail")+"</div></div>","beforeend"),AI.setCss(AI.select(".detail"),{top:n.pageY+"px",left:n.pageX+"px",display:"block"})):(AI.select(".detail .detail_data").innerText=e.getAttribute("data-detail"),AI.setCss(AI.select(".detail .detail_data"),{top:n.pageY+"px",left:n.pageX+"px",display:"block"}))))}catch(t){console.warn(t)}})),AI.listen("body","click",".close_detail",(function(){AI.select(".detail").nodeName&&AI.select(".detail").remove()}));let i=1;AI.listen("body","click",t+" [image]",(function(t){try{let e=t.getAttribute("image").split(",");t.style.backgroundImage="url("+t.getAttribute("data-path")+e[i]+")",i++,e.length==i&&(i=0)}catch(t){console.warn(t)}}))},qt.draggable=function(t,e){e?(t.classList.remove("uc_drag_disable"),t.style.cursor="",t.style.opacity=1):(t.classList.add("uc_drag_disable"),t.style.setProperty("cursor","no-drop","important"),t.style.setProperty("opacity","0.7","important"))},qt.tabMove=function(t,e=1){if(t.id){let n=AI.selectAll(".ks"),o=-1;for(let r=0;r<n.length;r++)if(t.id==n[r].id){o=e?r==n.length-1?0:r+1:0==r?n.length-1:r-1;break}-1!=o&&n[o].focus()}},qt.checkContainment=function(t,e=0,n=0){let o=parseInt(t.style.top.replace("px",""))+e,r=parseInt(t.style.left.replace("px",""))+n,a=parseInt(t.parentElement.style.width.replace("px","")),i=parseInt(t.parentElement.style.height.replace("px",""));return r>a-t.offsetWidth?r=a-t.offsetWidth:r<0&&(r=0),o>i-t.offsetHeight?o=i-t.offsetHeight:o<0&&(o=0),{top:o,left:r}},qt.bindKeyUp=function(t){let e=AI.find(t,"[id^=dndID]","all");for(let t=0;t<e.length;t++)"tab"==e[t].getAttribute("type")||e[t].classList.contains("dndlabel")||e[t].classList.add("ks");let n=0,o="",r={clientX:16,clientY:16};AI.find(t,".selmatch",{action:"removeClass",actionData:"selmatch"});let a=AI.selectAll(".ks");let i=function(t,e){return[].map.call(a,(function(t){return t})).sort((n=t,o=e,function(t,e){let r=parseInt(t.style[n]),a=parseInt(e.style[n]);if(r==a){let n=parseInt(t.style[o]),r=parseInt(e.style[o]);return n<r?-1:n>r?1:0}return r<a?-1:r>a?1:0}));var n,o}("top","left");for(let e=0;e<i.length;e++){let n=i[e].getAttribute("id"),o=i[e].parentElement;n&&AI.find(t,"#"+n,{action:"remove"}),o&&o.append(i[e])}function s(){if(AI.selectAll(".ks").length>0){let t=AI.select(".ks"),e=t.children[0];e&&(e.classList.contains("dnd_textbox")||e.classList.contains("dndcheckbox")||e.classList.contains("dnd_select"))?e.focus():0!=AI.find(t,".customRad","all").length?AI.find(t,".customRad").focus():t.focus()}}function l(){if(AI.selectAll(".ks").length>0){let t=AI.selectAll(".ks")[AI.selectAll(".ks").length-1],e=t.children[0];e&&(e.classList.contains("dnd_textbox")||e.classList.contains("dndcheckbox")||e.classList.contains("dnd_select"))?e.focus():0!=AI.find(t,".customRad","all").length?AI.find(t,".customRad").focus():t.focus()}}function c(e,n=0){let o=!1,r=AI.find(t,"."+e,"all"),a=n?AI.select(".tmpTarget:focus"):AI.select(".ks:focus");if(a.nodeName){let t=a.getAttribute("id");for(let e=0;e<r.length;e++)if(t==r[e].getAttribute("id")){o=!0;break}}return o}function d(e,n){let o=AI.select(".hotspot_test");"c_zoom"!=o.getAttribute("id")&&AI.setCss(AI.find(t,".tmpTarget:focus"),{position:"absolute",top:e+"px",left:n+"px"});let r=AI.find(t,".tmpTarget","all"),a="",i=1;for(let t=0;t<r.length;t++)a+='"'+i+'":['+r[t].offsetTop+","+r[t].offsetLeft+","+r[t].offsetWidth+","+r[t].offsetHeight+"],",i++;o.setAttribute("data-userans","{"+a.substr(0,a.length-1)+"}"),qt.setHotspotans(o),qt.checkAns(t)}function u(){!function(){let e=AI.selectAll(".ks");for(let n=0;n<e.length;n++)if(e[n].classList.contains("hotspot_test")){let o=e[n],a=o.children;for(let e=0;e<a.length;e++)if(a[e].classList.contains("drag-resize")&&AI.find(o,".hs_item","all").length>AI.find(o,".tmpTarget","all").length){let e=Math.round(r.clientY-AI.find(t,".targetImg").offsetHeight/2),n=Math.round(r.clientX-AI.find(t,".targetImg").offsetWidth/2);if("c_zoom"!=o.getAttribute("id")&&AI.find(t,".targetImg")){let r=AI.find(t,".targetImg").cloneNode(!0);r.classList.remove("targetImg"),r.classList.add("tmpTarget"),r.id=o.id+"_"+(AI.find(o,".tmpTarget","all").length+1),AI.setCss(r,{position:"absolute",top:e+"px",left:n+"px",display:"block"}),qt.storage.store(r.id,"tgElem",o.id),AI.insertAfter(r,AI.find(o,".hs_item","all")[AI.find(o,".hs_item","all").length-1])}let a=AI.find(t,".tmpTarget","all"),i="",s=1;for(let t=0;t<a.length;t++)i+='"'+s+'":['+a[t].offsetTop+","+a[t].offsetLeft+","+a[t].offsetWidth+","+a[t].offsetHeight+"],",s++;o.setAttribute("data-userans","{"+i.substr(0,i.length-1)+"}"),qt.checkAns(t),r.clientX+=35}qt.setHotspotans(o)}}(),n=0,function(){AI.find(t,".selmatch",{action:"removeClass",actionData:"selmatch"});let e=AI.selectAll(".ks"),o=e.length,r=e[n];r&&(r.children[0]&&(r.children[0].classList.contains("dnd_textbox")||r.children[0].classList.contains("dndcheckbox")||r.children[0].classList.contains("dnd_select"))?r.children[0].focus():0!=AI.find(r,".customRad","all").length?AI.find(r,".customRad").focus():r.focus()),n==o-1?n=0:n++}()}function p(){let e=AI.select(".ks:focus");e&&(e.classList.contains("ui-draggable")&&!e.classList.contains("uc_drag_disable")?(AI.find(t,".dragable",{action:"removeClass",actionData:"copiedclr"}),o=e.id,e.classList.add("copiedclr")):AH.showmsg("You cannot drag this"))}function f(){let e=AI.select(".ks:focus");if(e&&""!=o&&e.classList.contains("ui-droppable")){let n=AI.find(t,"#"+o);n.classList.remove("copiedclr");let r="",a=n.getAttribute("data-droped")?n.getAttribute("data-droped"):n.getAttribute("id");r=n.getAttribute("data-dropimage")&&""!=n.getAttribute("data-dropimage")?"url("+n.getAttribute("data-path")+n.getAttribute("data-dropimage")+")":n.style.backgroundImage,e.getAttribute("data-droped")&&""!=e.getAttribute("data-droped").trim()&&qt.draggable(AI.find(t,"#"+e.getAttribute("data-droped")),1),qt.browser.msie&&AI.find(t,"#"+a)&&""==AI.find(t,"#"+a).innerText.trim()&&(n.style.backgroundColor="transparent"),AI.setAttr(e,{userans:a,"data-droped":a,"data-userans":a,"data-path":n.getAttribute("path"),"data-dropimage":n.getAttribute("dropimage"),"data-dragimage":n.getAttribute("dragimage"),draging:"2",droping:"2"}),zt[e.id]=[n,e],AI.find(e,"p").innerText=n.innerText.trim(),AI.setCss(e,{backgroundColor:n.style.backgroundColor,backgroundImage:r}),"0"==AI.find(t,"#"+a).getAttribute("data-multi_drag")&&(n.classList.contains("dropable")?qt.draggable(AI.find(t,"#"+a),0):qt.draggable(n,0)),qt.checkAns(t),o=""}}Ot.unbind("alt+down,down,up,left,right,enter,delete","dragndrop"),Ot("alt+down,down,up,left,right,enter,delete","dragndrop",(function(e,n){switch(n.key){case"alt+down":u();break;case"down":if(0==AI.select("#sm_controller").offsetHeight)if(c("tmpTarget",1)){e.preventDefault();let t=qt.checkContainment(AI.select(".tmpTarget:focus"),4,0);d(t.top,t.left)}else if(c("dragable")||c("dropable")){let t=AI.select(".ks:focus"),n=AI.selectAll(".ks")[AI.selectAll(".ks").length-1];t&&(t.id==n.id||n.children[0]&&n.children[0].id==t.id||AI.find(n,".customRad")&&AI.find(n,".customRad").id==t.id)?s():qt.tabMove(t,1),e.preventDefault()}break;case"up":if(0==AI.select("#sm_controller").offsetHeight)if(c("tmpTarget",1)){e.preventDefault();let t=qt.checkContainment(AI.select(".tmpTarget:focus"),-4,0);d(t.top,t.left)}else if(c("dragable")||c("dropable")){let t=AI.select(".ks:focus"),n=AI.selectAll(".ks")[0];t&&(t.id==n.id||n.children[0]&&n.children[0].id==t.id||AI.find(n,".customRad")&&AI.find(n,".customRad").id==t.id)?l():qt.tabMove(t,0),e.preventDefault()}break;case"left":if(0==AI.select("#sm_controller").offsetHeight)if(c("tmpTarget",1)){e.preventDefault();let t=qt.checkContainment(AI.select(".tmpTarget:focus"),0,-4);d(t.top,t.left)}else if(c("dragable")||c("dropable")){let t=AI.select(".ks:focus"),e=AI.selectAll(".ks")[0];t&&(t.id==e.id||e.children[0]&&e.children[0].id==t.id||AI.find(e,".customRad")&&AI.find(e,".customRad").id==t.id)?l():qt.tabMove(t,0)}break;case"right":if(0==AI.select("#sm_controller").offsetHeight)if(c("tmpTarget",1)){e.preventDefault();let t=qt.checkContainment(AI.select(".tmpTarget:focus"),0,4);d(t.top,t.left)}else if(c("dragable")||c("dropable")){let t=AI.select(".ks:focus"),e=AI.selectAll(".ks")[AI.selectAll(".ks").length-1];t&&(t.id==e.id||e.children[0]&&e.children[0].id==t.id||AI.find(e,".customRad")&&AI.find(e,".customRad").id==t.id)?s():qt.tabMove(t,1)}break;case"enter":0==AI.select("#sm_controller").offsetHeight&&(c("dragable")?p():c("dropable")&&f());break;case"delete":0==AI.select("#sm_controller").offsetHeight&&c("dropable")&&function(e){let n=e.target,o=n.getAttribute("data-droped");n.classList.contains("dropable")&&""!=o&&(AI.setCss(n,{backgroundColor:n.getAttribute("data-bgcolor"),backgroundImage:n.getAttribute("data-bgimage")}),n.setAttribute("data-droped",""),n.setAttribute("data-userans",""),n.setAttribute("droping","1"),n.removeAttribute("draging"),"0"==AI.select("#"+o).getAttribute("data-multi_drag")&&qt.draggable(AI.select("#"+o),1),zt&&zt[n.id]&&delete zt[n.id],AI.find(n,"p").innerText=n.getAttribute("data-caption"));let r=setTimeout((function(){qt.checkAns(t),clearTimeout(r)}),100)}(e)}})),Ot.setScope("dragndrop"),Ot.filter=function(){return!0},AI.listen("body","keyup",".ks",(function(t,e){13!=e.keyCode||t.classList.contains("lab_disable")||(t.focus(),t.classList.contains("dragable")?p():t.classList.contains("dropable")&&f())})),AI.listen("body","keydown","#dndmainPreview",(function(e,r){let a=AI.selectAll(".ks")[AI.selectAll(".ks").length-1],i=AI.select(".ks");AI.select(".ks:focus").nodeName&&((AI.select(".ks:focus").getAttribute("id")==a.getAttribute("id")||a.children[0]&&AI.find(a.children[0],".customRad")&&AI.select(".ks:focus").getAttribute("id")==AI.find(a.children[0],".customRad").getAttribute("id"))&&9==(r.which||r.keyCode)&&0==r.shiftKey&&(r.preventDefault(),s()),(AI.select(".ks:focus").getAttribute("id")==i.getAttribute("id")||i.children[0]&&AI.find(i.children[0],".customRad")&&AI.select(".ks:focus").getAttribute("id")==AI.find(i.children[0],".customRad"))&&1==r.shiftKey&&9==(r.which||r.keyCode)&&(r.preventDefault(),l())),27==r.which&&(AI.find(t,".copiedclr",{action:"removeClass",actionData:"copiedclr"}),n=0,o="",a.children[0]&&(a.children[0].classList.contains("dnd_textbox")||a.children[0].classList.contains("dndcheckbox")||a.children[0].classList.contains("dnd_select"))?(a.children[0].focus(),a.children[0].blur()):0!=AI.find(a,".customRad","all").length?(AI.find(a,".customRad").focus(),AI.find(a,".customRad").blur()):(a.focus(),a.blur()))})),AI.listenAll("body","click",(function(){c("dragable")||c("dropable")||(AI.find(t,".copiedclr",{action:"removeClass",actionData:"copiedclr"}),o="")})),AI.listen("body","keypress","#dndmainPreview input",(function(t,e){if(13==e.which)return e.preventDefault(),!1}))},qt.calcArea=function(t){let e=0,n=0,o=1/0,r=0,a=1/0;for(;e<t.length;){let i=parseInt(t[e++],10),s=parseInt(t[e++],10);i<o?o=i:i>n&&(n=i),s<a?a=s:s>r&&(r=s)}return{top:a,left:o,width:n-o,height:r-a}},qt.getCorrect=function(t){let e=-1,n=t.getAttribute("data-anskey"),o=t.getAttribute("data-userans");return(n==o||""!=o&&n.split(",").includes(o))&&(e=1),""==n&&""==o&&(e=-2),e},qt.showansdrag=function(t,e,n){let o=AI.select(t),r=AI.find(t,".tab-pane","all");if(qt.browser.msie&&r.length>0)for(let e=0;e<r.length;e++){let n=r[e];if(n.offsetHeight<=0&&AI.selectAll(t+">.tab-content,"+t+">img").length<1){let t=0,o=0,r=AI.find(n,".drag-resize","all");for(let n=0;n<r.length;n++){let n=r[e];n.offsetHeight>o&&(o=n.offsetHeight),qt.offset(n).top>t&&(o=qt.offset(n).top),n.classList.contains("dragable")>-1&&"transparent"==n.style.backgroundColor&&"none"==n.style.backgroundImage&&""==n.innerText.trim()&&AI.setCss(n,{backgroundColor:"white",opacity:"0",filter:"alpha(opacity=0)"})}n.style.height=o+t+"px",AI.setCss(n,{height:o+t+"px",overflow:"hidden"}),AI.setCss(drag_element.parentElement,{overflow:"hidden"})}}void 0===n&&(n=0);let a=AI.find(o,".dndTest","all");for(let o=0;o<a.length;o++)qt.showchildansdrag(t,a[o],e,n);let i=document.querySelectorAll(".dropable.ui-droppable");for(let t=0;t<i.length;t++){let n=i[t];(n.getAttribute("data-droped")||"c"==e)&&(n.innerHTML=n.innerHTML.replace("Drop Here","").replace("Place Here",""))}},qt.offset=function(t){let e=t.getBoundingClientRect();return{top:e.top+document.body.scrollTop,left:e.left+document.body.scrollLeft}},qt.position=function(t){return{left:t.offsetLeft,top:t.offsetTop}},qt.setHotspotans=function(t){let e=t.getAttribute("data-userans");if(e){e=JSON.parse(e);let n=AI.find(t,".hs_item","all");for(let t=0;t<n.length;t++){let o=n[t],r=qt.position(o);r.width=o.offsetWidth,r.height=o.offsetHeight;for(let t=0;t<Object.keys(e).length;t++){let n=Object.keys(e)[t];if(r.top<=e[n][0]+e[n][3]/2&&e[n][0]+e[n][3]/2<=r.top+r.height){if(r.left<=e[n][1]+e[n][2]/2&&e[n][1]+e[n][2]/2<=r.left+r.width){o.setAttribute("data-correctans","1");break}}else o.setAttribute("data-correctans","0")}}}},qt.showchildansdrag=function(t,e,n,o){let r=-2,a=AI.select(t);if(e.classList.contains("hotspot")||e.classList.contains("hotspot_test")){let t=AI.find(e,".tmpTarget:not([showtarget])","all");t.length>0&&t.forEach((t=>t.remove()));let o=AI.find(e,".hs_item","all");if("c"==n){let t={height:AI.find(a,".targetImg").offsetHeight?AI.find(a,".targetImg").offsetHeight:32,width:AI.find(a,".targetImg").offsetWidth?AI.find(a,".targetImg").offsetWidth:32};for(let n=0;n<o.length;n++){let r=qt.position(o[n]),i=r.top+o[n].offsetHeight/2-t.height/2,s=r.left+o[n].offsetWidth/2-t.width/2;if("area"==o[n].nodeName.toLowerCase()){let e=qt.calcArea(o[n].getAttribute("coords").split(","));i=e.top+e.height/2-t.height/2,s=e.left+e.width/2-t.width/2}let l=AI.clone(AI.find(a,".targetImg"));l.classList.remove("targetImg"),l.classList.add("tmpTarget"),l.id=e.id+"_"+(n+1),AI.setCss(l,{position:"absolute",top:i+"px",left:s+"px",display:"block"}),e.append(l)}}else if("u"==n){let t=e.getAttribute("data-userans"),n=null;if(t&&(n=JSON.parse(t)),null!=n&&Object.keys(n).length>0){let t=[],i=[];for(let e=0;e<o.length;e++){let a=o[e],s=qt.position(a),l="";if(Object.keys(n).forEach((function(e){"string"!=typeof l||t.includes(e)||(s.width=a.offsetWidth,s.height=a.offsetHeight,"area"==a.nodeName.toLowerCase()&&(s=qt.calcArea(a.getAttribute("coords").split(","))),s.top<=n[e][0]+n[e][3]/2&&n[e][0]+n[e][3]/2<=s.top+s.height&&s.left<=n[e][1]+n[e][2]/2&&n[e][1]+n[e][2]/2<=s.left+s.width&&(l=a,t.push(e),i[e]={tgElem:l.id,userans:n[e]}))})),""==l){r=!1;break}a.setAttribute("data-correctans","1"),r=!0}Object.keys(i).forEach((function(t){let n=AI.clone(AI.find(a,".targetImg"));n.classList.remove("targetImg"),n.classList.add("tmpTarget"),n.id=e.id+"_"+t,AI.setCss(n,{position:"absolute",top:i[t].userans[0]+"px",left:i[t].userans[1]+"px",display:"block"}),qt.storage.store(n.id,"tgElem",i[t].tgElem),e.append(n)})),Object.keys(n).forEach((function(o){if(!t.includes(o)){let t=AI.clone(AI.find(a,".targetImg"));t.classList.remove("targetImg"),t.classList.add("tmpTarget"),t.id=e.id+"_"+o,AI.setCss(t,{position:"absolute",top:n[o][0]+"px",left:n[o][1]+"px",display:"block"}),qt.storage.store(t.id,"tgElem",e.id),e.append(t)}}))}}}if(e.classList.contains("dropable")){let t="none";if(e.getAttribute("data-bgimage")&&(t="url("+(e.getAttribute("data-path")+e.getAttribute("data-bgimage"))+")"),AI.setCss(e,{backgroundColor:e.getAttribute("data-bgcolor"),backgroundImage:t}),AI.find(e,"p").innerHTML=e.getAttribute("data-caption"),"c"==n){let t=e.getAttribute("data-anskey").split(",");t.length&&t.forEach((function(n,o){if(""!=n.trim()){let r,i=AI.find(a,"#"+n);r=t.length>1?AI.selectAll('.dropable[data-anskey="'+e.getAttribute("data-anskey")+'"]')[o]:e,i&&(AI.setCss(r,{backgroundColor:i.getAttribute("data-bgcolor"),backgroundImage:i.getAttribute("data-dropimage")||i.getAttribute("data-bgimage")?"url("+(i.getAttribute("data-path")+(i.getAttribute("data-dropimage")?i.getAttribute("data-dropimage"):i.getAttribute("data-bgimage")))+")":"none"}),AI.find(r,"p").innerHTML=i.getAttribute("data-caption"))}}))}else if("u"==n){if(""!=e.getAttribute("data-userans").trim())try{let t=AI.find(a,"#"+e.getAttribute("data-userans"));t?(AI.setCss(e,{backgroundColor:t.getAttribute("data-bgcolor"),backgroundImage:t.getAttribute("data-dropimage")||t.getAttribute("data-bgimage")?"url("+(t.getAttribute("data-path")+(t.getAttribute("data-dropimage")?t.getAttribute("data-dropimage"):t.getAttribute("data-bgimage")))+")":""}),AI.find(e,"p").innerHTML=t.getAttribute("data-caption"),e.setAttribute("droping",2),e.setAttribute("draging",2),"0"==t.getAttribute("data-multi_drag")&&(t.classList.add("uc_drag_disable"),t.style.setProperty("cursor","no-drop","important"),t.style.setProperty("opacity","0.5","important"))):(e.setAttribute("droping",1),e.removeAttribute("draging"))}catch(t){console.warn("User ans xml destroyed",e.getAttribute("data-userans"))}if(void 0!==e.getAttribute("name")&&""!=e.getAttribute("name")){let t=e.getAttribute("data-anskey").split(","),n=[],o=AI.find(a,'.dropable[name="'+e.getAttribute("name")+'"]',"all");for(let t=0;t<o.length;t++)(void 0!==o[t].getAttribute("data-userans")&&""!=o[t].getAttribute("data-userans")||AI.find(o[t],".correct_incorrect_icon","all").length>0)&&n.push(o[t].getAttribute("data-userans"));void 0!==e.getAttribute("data-userans")&&""!=e.getAttribute("data-userans")?r=qt.getCorrect(e):t.length-n.length>0&&(r=-1)}else r=qt.getCorrect(e)}}if("step"==e.getAttribute("type")&&void 0!==e.getAttribute("data-udisplay")){(null==Pt||e.getAttribute("id").match(Pt+"_0"))&&(Pt=e.getAttribute("id"));let t=!0;"c"==n?t=!!e.getAttribute("data-cdisplay"):"u"==n&&(t=!!e.getAttribute("data-udisplay")),t?qt.setStep(e.getAttribute("id")):qt.setStep(Pt)}if("SPAN"==e.nodeName&&(e.classList.contains("menu")?e.getAttribute("data-correctans")>0&&(r=-1,e.getAttribute("data-userans")>0&&(e.setAttribute("clicked","1"),r=1)):(AI.setAttr(e,{sel:"0",class:"off"}),"c"==n&&Nmuber(e.getAttribute("data-correctans"))>0&&AI.setAttr(e,{sel:"1",class:"on"}),"u"==n&&(r=-1,Number(e.getAttribute("data-userans"))>0&&AI.setAttr(e,{sel:"1",class:"on"}),1==o&&(Number(e.getAttribute("data-userans"))>0&&Number(e.getAttribute("data-correctans"))>0?r=1:(Number(e.getAttribute("data-userans"))<1&&Number(e.getAttribute("data-correctans"))>0&&(e.classList.remove("off"),e.classList.add("off")),Number(e.getAttribute("data-correctans"))<1&&Number(e.getAttribute("data-defaultans"))<1&&Number(e.getAttribute("data-userans"))<1&&(r=-2)))))),AI.find(e,'[class*="dnd_"],.dndradio,.dndcheckbox,.dropable,.hotspot,.hotspot_test,[type="step"],[type="tab"]',"all").length>0){let a=e.children;if(a.length>0)for(let i=0;i<a.length;i++){let s=a[i];if(void 0!==e.getAttribute("type")&&["step","tab"].includes(e.getAttribute("type"))&&qt.showchildansdrag(t,s,n,o),null==s.getAttribute("data-correctans")&&s.setAttribute("data-correctans",""),null==s.getAttribute("data-userans")&&s.setAttribute("data-userans",""),null==s.getAttribute("data-defaultans")&&s.setAttribute("data-defaultans",""),"SELECT"==s.nodeName){r=-1;let t=AI.find(s,"[data-correctans='1']","all").length,e=0,o=AI.find(s,"option","all"),a="0";s.value="";for(let t=0;t<o.length;t++)"c"==n?Number(o[t].getAttribute("data-correctans"))>0&&(o[t].parentElement.value=o[t].value):"u"==n&&(Number(o[t].getAttribute("data-userans"))>0&&(o[t].parentElement.value=o[t].value),o[t].selected&&1==Number(o[t].getAttribute("data-correctans"))&&e++,Number(o[t].getAttribute("data-defaultans"))>0&&(a=o[t].value));t==e&&(r=1),""==s.value.trim()&&AI.find(s,"option")&&(s.value=a)}"INPUT"==s.nodeName?(r=-1,""==s.getAttribute("data-correctans")&&s.getAttribute("data-correctans","0"),"radio"!=s.getAttribute("type")&&"checkbox"!=s.getAttribute("type")||(s.checked=!1,"c"==n?Number(s.getAttribute("data-correctans"))>0&&(s.checked=!0):"u"==n&&(Number(s.getAttribute("data-userans"))>0&&(s.checked=!0),Number(s.getAttribute("data-userans"))==Number(s.getAttribute("data-correctans"))&&(r=1))),"text"!=s.getAttribute("type")&&"password"!=s.getAttribute("type")||(void 0===s.type&&(s.type="text"),"c"==n?s.value=s.getAttribute("data-correctans"):"u"==n&&(s.value=s.getAttribute("data-userans"),r=qt.testText(s)))):"TEXTAREA"==s.nodeName&&(r=-1,"c"==n?s.value=s.getAttribute("data-correctans"):"u"==n&&(s.value=s.getAttribute("data-userans"),r=qt.testText(s)))}}let i=!1;if(AI.find(e,".choicematrixradio","all").length?i=AI.find(e,".choicematrixradio").checked:AI.find(e,".custRad","all").length&&(i=AI.find(e,".custRad").checked),"u"==n&&1==o){if(-2!=r){let t="";AI.find(e,".custRad","all").length||AI.find(e,".choicematrixradio","all").length?(AI.find(e,".choicematrixradio")&&(AI.find(e,".choicematrixradio").disabled=!0),AI.find(e,".custRad")&&(AI.find(e,".custRad").disabled=!0),t=qt.markUserAnswerChoiceMatrix(r,i)):t=qt.markUserAnswer(r),e.setAttribute("as",r),e.insertAdjacentHTML("beforeend",t)}}else"u"==n&&0==o?((AI.find(e,".custRad","all").length||AI.find(e,".choicematrixradio","all").length)&&(AI.find(e,".choicematrixradio")&&(AI.find(e,".choicematrixradio").disabled=!1),AI.find(e,".custRad")&&(AI.find(e,".custRad").disabled=!1)),AI.remove(".correct_incorrect_icon")):AI.remove(".correct_incorrect_icon")},qt.markUserAnswer=function(t){let e="";return e=1==t?window.inNative?'<span class="icomoon-checkmark-circles" style="color:green;">':'<span class="icomoon-checkmark-circle" style="color:green;">':window.inNative?'<span class="icomoon-cancel-circles" style="color:red;">':'<span class="icomoon-cancel-circle" style="color:red;">','<span class="correct_incorrect_icon" style="position:absolute;width:18px;height:18px;right:-9px;top:-9px;background:white;border-radius:15px 12px 12px;font-size:21px;"> '+e+"</span></span>"},qt.markUserAnswerChoiceMatrix=function(t,e){let n="",o="";return 1==t&&1==e?(o=window.inNative?'<span class="icomoon-checkmark-circles" style="color:green;">':'<span class="icomoon-checkmark-circle" style="color:green;">',n='<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> '+o+"</span></span>"):1!=t&&1==e&&(o=window.inNative?'<span class="icomoon-cancel-circles" style="color:red;">':'<span class="icomoon-cancel-circle style="color:red;">',n='<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> '+o+"</span></span>"),n},qt.checkAns=function(t){let e="<smans type='15'>\n";Mt=!0,Rt=0,Bt=!0;let n=AI.select(t),o=AI.find(n,".dndTest","all");for(let n=0;n<o.length;n++)e=qt.checkChildAnswer(t,o[n],e);return e+="</smans>",Mt=Bt,window.inNative&&"function"==typeof window.getHeight&&window.getHeight(),qt.calculatePoint(n.getAttribute("totalcorrectans"),Rt),window.inNative&&window.postMessage(JSON.stringify({userAnswers:e,inNativeIsCorrect:Mt}),"*"),{uXml:e,ans:Mt}},qt.calculatePoint=function(t,e){AI.selectAll("#answer_points","value",t),AI.selectAll("#user_points","value",e)},qt.checkChildAnswer=function(t,e,n){let o=AI.select(t);if(e.classList.contains("hotspot_test")){let t=AI.find(e,".hs_item","all"),o=[];for(let e=0;e<t.length;e++)"0"==t[e].getAttribute("data-correctans")?o.push(0):(o.push(1),Rt++);Mt=!o.includes(0),n+="<div id='"+e.getAttribute("id")+"' userAns='"+e.getAttribute("data-userans")+"'></div>\n"}else if(e.classList.contains("dropable")){let t=e.getAttribute("data-anskey").split(",");if(""!=e.getAttribute("name")||t.includes(e.getAttribute("data-userans")))if(void 0!==e.getAttribute("name")&&""!=e.getAttribute("name")){let n=[],r=AI.find(o,'.dropable[name="'+e.getAttribute("name")+'"]',"all");for(let t=0;t<r.length;t++)void 0!==r[t].getAttribute("data-userans")&&""!=r[t].getAttribute("data-userans")&&n.push(r[t].getAttribute("data-userans"));0!=qt.compareArray(t,n)?Mt=!1:Rt++}else Rt++;else Mt=!1;n+="<div id='"+e.getAttribute("id")+"' userAns='"+e.getAttribute("data-userans")+"'></div>\n"}else if(e.classList.contains("menulist")&&!e.classList.contains("menu"))e.getAttribute("data-correctans")!=e.getAttribute("sel")?Mt=!1:Rt++,n+="<div id='"+e.getAttribute("id")+"' userAns='"+e.getAttribute("sel")+"'></div>\n";else if(e.classList.contains("record"))null!=e.getAttribute("clicked")&&""!=e.getAttribute("clicked")||e.setAttribute("clicked","0"),1!=Number(e.getAttribute("clicked"))?Mt=!1:Rt++,n+="<div id='"+e.getAttribute("id")+"' userAns='"+e.getAttribute("clicked")+"'></div>\n";else if(AI.find(e,'[class*="dnd_"],.dndradio,.dndcheckbox,.dropable,.record,.hotspot_test,[type="step"],[type="tab"]',"all").length>0){let o="",r=e.children;for(let a=0;a<r.length;a++){let i=r[a];if(void 0!==e.getAttribute("type")&&["step","tab"].includes(e.getAttribute("type"))&&(n=qt.checkChildAnswer(t,i,n)),null==i.getAttribute("data-correctans")&&i.setAttribute("data-correctans",""),null==i.getAttribute("data-userans")&&i.setAttribute("data-userans",""),null==i.getAttribute("data-defaultans")&&i.setAttribute("data-defaultans",""),i.disabled&&(o=" udisabled='1'"),"SELECT"==i.nodeName){let t="",e=0,r=AI.find(i,"[data-correctans='1']","all").length,a=AI.find(i,"option","all");for(let n=0;n<a.length;n++)a[n].selected&&(e++,1!=Number(a[n].getAttribute("data-correctans"))?Mt=!1:Rt++,t=t+(n+1)+",");e!=r&&(Mt=!1),n+='<div id="'+i.parentElement.getAttribute("id")+'" userAns="'+t+'" '+o+"></div>\n"}else if("INPUT"==i.nodeName){if("radio"==i.getAttribute("type")||"checkbox"==i.getAttribute("type"))1==Number(i.getAttribute("data-correctans"))&&!i.checked||1!=Number(i.getAttribute("data-correctans"))&&i.checked?Mt=!1:Rt++,i.checked?n+="<div id='"+i.parentElement.getAttribute("id")+"' userAns='1' "+o+"></div>\n":n+="<div id='"+i.parentElement.getAttribute("id")+"' userAns='0' "+o+"></div>\n";else if("text"==i.getAttribute("type")||"password"==i.getAttribute("type")){let t,e=[];1==Number(i.getAttribute("data-ismultipleanswer"))&&(e=i.getAttribute("data-correctans").split(",")),e.push(i.getAttribute("data-correctans")),1==Number(i.getAttribute("data-nocase"))?(e=e.map((function(t){return t.toLowerCase()})),t=i.value.toLowerCase()):t=i.value,e.indexOf(t)<0?Mt=!1:Rt++,n+="<div id='"+i.parentElement.getAttribute("id")+"' userAns='"+i.value+"' "+o+"></div>\n"}}else if("BUTTON"==i.nodeName)void 0!==i.getAttribute("data-userans")&&(n+="<div id='"+i.parentElement.getAttribute("id")+"' userAns='"+i.getAttribute("data-userans")+"' "+o+"></div>\n");else if("TEXTAREA"==i.nodeName){if(""!=(i.getAttribute("data-parser")?i.getAttribute("data-parser").trim():"")){let t=i.getAttribute("data-correctans").sqlparser(!0),e=i.value.replace(/"/g,"'");if(e=e.sqlparser(),0==qt.compareArray(t.sql,e.sql)){if(t.mustbeone.length>0)for(let n=0;n<t.mustbeone.length;n++)qt.compareArray(t.mustbeone[n],e.sql).length>=t.mustbeone[n].length&&(Mt=!1)}else Mt=!1}else{let t,e=[];1==Number(i.getAttribute("data-ismultipleanswer"))&&(e=i.getAttribute("data-correctans").split(",")),e.push(i.getAttribute("data-correctans")),1==Number(i.getAttribute("data-nocase"))?(e=e.map((function(t){return t.toLowerCase()})),t=i.value.toLowerCase()):t=i.value,e.indexOf(t)<0?Mt=!1:Rt++}n+="<div id='"+i.parentElement.getAttribute("id")+"' userAns='"+i.value+"' "+o+"></div>\n"}}}return 0==Mt&&(Bt=!1),n},qt.areaToggle=function(t){t.classList.contains("off")?AI.setAttr(AI.select(t),{sel:"1",class:"on"}):AI.setAttr(AI.select(t),{sel:"0",class:"off"})},qt.testText=function(t){let e,n=-1,o=t.getAttribute("data-parser")?t.getAttribute("data-parser").trim():"",r=t.getAttribute("data-correctans"),a=t.value.replace(/"/g,"'").trim(),i=[];return""!=o?(r=r.sqlparser(!0),a=a.sqlparser(),0==qt.compareArray(r.sql,a.sql)&&(n=1)):(1==Number(t.getAttribute("data-ismultipleanswer"))&&(i=t.getAttribute("data-correctans").split(",")),i.push(t.getAttribute("data-correctans")),1==Number(t.getAttribute("data-nocase"))?(i=i.map((function(t){return t.toLowerCase()})),e=t.value.toLowerCase()):e=t.value,i.indexOf(e)>-1&&(n=1)),n},qt.compareArray=function(t,e){let n=[];for(let o=0;o<t.length;o++)for(let r=0;r<e.length;r++)e[r]!=t[o]||n.push(e[r]);let o=t.length-n.length;return o<0?0:o},qt.modeOn=function(t){AI.selectAll(".test","addClass","h"),AI.selectAll(".review","addClass","h"),t?(AI.selectAll(".review","removeClass","h"),Ot.unbind("alt+down,down,up,left,right,enter,delete","dragndrop"),qt.unBindLab(),qt.showansdrag(Lt,"u",1),AI.setCss("#sm_controller",{display:"block"}),AI.selectAll("#sm_controller button","removeClass","active"),AI.addClass("#sm_controller .your-ans","active")):(AI.selectAll(".test","removeClass","h"),qt.bindKeyUp(Lt),AI.setCss("#sm_controller",{display:"none"}),qt.bindLab(),qt.showansdrag(Lt,"u"))},qt.unBindLab=function(){let t=AI.select(Lt),e=AI.find(t,"select,input,textarea","all");for(let t=0;t<e.length;t++){if("INPUT"==e[t].nodeName){let n=e[t].getAttribute("type");"text"==n||"password"==n?e[t].setAttribute("data-userans",e[t].value):"radio"!=n&&"checkbox"!=n||e[t].setAttribute("data-userans",e[t].checked?1:0)}else if("SELECT"==e[t].nodeName){let n=AI.find(e[t],"option","all");for(let t=0;t<n.length;t++)n[t].setAttribute("data-userans",n[t].selected?1:0)}else"TEXTAREA"==e[t].nodeName&&e[t].setAttribute("data-userans",e[t].value);e[t].style.pointerEvents="none"}AI.find(Lt,".dragable, .dropable, .hotspot_test, .tmpTarget, .record,  [data-droped*=dndID]",{action:"addClass",actionData:"lab_disable"}),AI.find(t,".hs_item",{action:"addClass",actionData:"ajax_hs_item"})},qt.bindLab=function(){let t=AI.select(Lt),e=AI.find(t,"select,input,textarea","all");if(AI.find(t,".hs_item",{action:"removeClass",actionData:"ajax_hs_item"}),AI.find(Lt,".dragable, .dropable, .hotspot_test, .tmpTarget, .record,  [data-droped*=dndID]",{action:"removeClass",actionData:"lab_disable"}),e)for(let t=0;t<e.length;t++)e[t].style.pointerEvents="all";qt.readyThis(Lt)},qt.textBoxAlignment=function(t){t.style.textAlign=isNaN(t.value)?"left":"center"},qt.clearText=function(t){try{let e=AI.select(Lt),n=AI.find(e,".dnd"+t,"all");if(n)for(let t=0;t<n.length;t++)n[t].value=""}catch(t){console.warn("ID does not exist for clearing text ",t)}},"undefined"!=typeof document&&document.addEventListener("DOMContentLoaded",(function(){let t=AI.selectAll(".dnd_textbox");for(let e=0;e<t.length;e++)qt.textBoxAlignment(t[e]);AI.listen("body","change",".dnd_textbox",(function(t){qt.textBoxAlignment(t)}))}));class Kt extends Y{constructor(t){super(),K(this,t,Jt,Xt,a,{modules:1,containerID:2,uxml:3})}}function Yt(t,e,n){const o=t.slice();return o[4]=e[n],o[6]=n,o}function Wt(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=Qt(Yt(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Yt(t,n,a);o[a]?o[a].p(i,r):(o[a]=Qt(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function Vt(t){let e,n=t[4].value+"";return{c(){e=g("p")},m(t,o){u(t,e,o),e.innerHTML=n},p(t,o){1&o&&n!==(n=t[4].value+"")&&(e.innerHTML=n)},d(t){t&&p(e)}}}function Qt(t){let e,n,o,r,a,i,s,l,d,f,m,b=t[4].value&&Vt(t);return{c(){e=g("div"),b&&b.c(),n=h(),v(e,"key",o=t[6]),v(e,"id",r=t[4].id),v(e,"draging","1"),v(e,"name",""),v(e,"class","drag-resize dragable ui-draggable dndTest"),v(e,"data-caption",a=t[4].caption),v(e,"data-bgcolor",i=t[4].bgcolor),v(e,"data-multi_drag",s=t[4].multi_drag),v(e,"data-dragimage",l=t[4].dragimage),v(e,"data-dropimage",d=t[4].dropimage),v(e,"data-bgimage",f=t[4].bgimage),v(e,"data-detail",""),v(e,"tabindex","0"),v(e,"data-path",(window.inNative,m="https://s3.amazonaws.com/jigyaasa_content_static/")),_(e,"position","absolute"),_(e,"top",t[4].top),_(e,"left",t[4].left),_(e,"height",t[4].height),_(e,"width",t[4].width),_(e,"border",t[4].border),_(e,"background-color",t[4].backgroundColor),_(e,"background-image",t[4].backgroundImage),v(e,"aria-disabled","false")},m(t,o){u(t,e,o),b&&b.m(e,null),c(e,n)},p(t,o){t[4].value?b?b.p(t,o):(b=Vt(t),b.c(),b.m(e,n)):b&&(b.d(1),b=null),1&o&&r!==(r=t[4].id)&&v(e,"id",r),1&o&&a!==(a=t[4].caption)&&v(e,"data-caption",a),1&o&&i!==(i=t[4].bgcolor)&&v(e,"data-bgcolor",i),1&o&&s!==(s=t[4].multi_drag)&&v(e,"data-multi_drag",s),1&o&&l!==(l=t[4].dragimage)&&v(e,"data-dragimage",l),1&o&&d!==(d=t[4].dropimage)&&v(e,"data-dropimage",d),1&o&&f!==(f=t[4].bgimage)&&v(e,"data-bgimage",f),1&o&&_(e,"top",t[4].top),1&o&&_(e,"left",t[4].left),1&o&&_(e,"height",t[4].height),1&o&&_(e,"width",t[4].width),1&o&&_(e,"border",t[4].border),1&o&&_(e,"background-color",t[4].backgroundColor),1&o&&_(e,"background-image",t[4].backgroundImage)},d(t){t&&p(e),b&&b.d()}}}function Gt(e){let n,o=e[0]&&e[0].length>0&&Wt(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=Wt(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function Zt(t,e){return"1"==e?"":t||"#CCFFCC"}function te(t){if(t){let e=t.split(",")[0];return window.inNative,"https://s3.amazonaws.com/jigyaasa_content_static/"+e}return""}function ee(t,e,n){let{modules:o}=e,r=o,a=[];return t.$$set=t=>{"modules"in t&&n(1,o=t.modules)},t.$$.update=()=>{2&t.$$.dirty&&(o?(0==Array.isArray(o)?(r=[],r[0]=o):r=o,n(0,a=[]),r.map((function(t){var e;n(0,a=[...a,{id:"dnd"+t._id,caption:t._value,bgcolor:Zt(t._bgcolor,t._invisible),multi_drag:t._multi_drag,dragimage:t._image?t._image.split(",")[1]:"",dropimage:t._image?t._image.split(",")[2]:"",bgimage:t._image?t._image.split(",")[0]:"",top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",border:(e=t._border_color,e?"1px solid "+e:""),backgroundColor:Zt(t._bgcolor,t._invisible),backgroundImage:t._image?"url('"+te(t._image)+"')":"none",value:t._value}])}))):n(0,a=[]))},[a,o]}class ne extends Y{constructor(t){super(),K(this,t,ee,Gt,a,{modules:1})}}function oe(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function re(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=ae(oe(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=oe(t,n,a);o[a]?o[a].p(i,r):(o[a]=ae(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function ae(t){let e,n,o,r,a,i,s,l,d,f,m,b;return{c(){e=g("div"),n=g("p"),o=h(),v(e,"key",r=t[7]),v(e,"id",a=t[5].id),v(e,"name",""),v(e,"tabindex","0"),v(e,"data-anskey",i=t[5].anskey),v(e,"data-caption",s=t[5].caption),v(e,"data-userans",l=t[5].userans),v(e,"data-droped",d=t[5].droped),v(e,"data-bgcolor",f=t[5].bgcolor),v(e,"data-path",(window.inNative,m="https://s3.amazonaws.com/jigyaasa_content_static/")),v(e,"data-dragimage",""),v(e,"data-dropimage",""),v(e,"data-bgimage",""),v(e,"class","drag-resize dropable ui-droppable dndTest"),v(e,"droping",b=t[5].userans?"2":"1"),_(e,"position","absolute"),_(e,"top",t[5].top),_(e,"left",t[5].left),_(e,"height",t[5].height),_(e,"width",t[5].width),_(e,"border",t[5].border),_(e,"z-index","1 \r\n                ")},m(t,r){u(t,e,r),c(e,n),c(e,o)},p(t,n){1&n&&a!==(a=t[5].id)&&v(e,"id",a),1&n&&i!==(i=t[5].anskey)&&v(e,"data-anskey",i),1&n&&s!==(s=t[5].caption)&&v(e,"data-caption",s),1&n&&l!==(l=t[5].userans)&&v(e,"data-userans",l),1&n&&d!==(d=t[5].droped)&&v(e,"data-droped",d),1&n&&f!==(f=t[5].bgcolor)&&v(e,"data-bgcolor",f),1&n&&b!==(b=t[5].userans?"2":"1")&&v(e,"droping",b),1&n&&_(e,"top",t[5].top),1&n&&_(e,"left",t[5].left),1&n&&_(e,"height",t[5].height),1&n&&_(e,"width",t[5].width),1&n&&_(e,"border",t[5].border)},d(t){t&&p(e)}}}function ie(e){let n,o=e[0]&&e[0].length>0&&re(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=re(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function se(t,e){return t||(e||"")}function le(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=o,s=[];return k((()=>{i&&s.length>0&&""!=r&&i.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll("#dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll("#dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{27&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(4,i=[]),n(4,i[0]=o,i)):n(4,i=o),n(0,s=[]),i.map((function(t){let e="";if(t._anskey){t._anskey.split(",").forEach((function(t){e+="dnd"+t+","})),e=e.slice(0,-1)}if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}var o,r,i;n(0,s=[...s,{id:"dnd"+t._id,anskey:t._anskey?e:"",caption:t._value,userans:se(t._userans,t._defaultans),droped:se(t._userans,t._defaultans),bgcolor:(r=t._bgcolor,i=t._invisible,"1"==i?"":r||"#FFFFCC"),top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",border:(o=t._border,o?"1px solid "+o:"")}])}))):(n(4,i=[]),n(0,s=[])))},[s,o,r,a,i]}class ce extends Y{constructor(t){super(),K(this,t,le,ie,a,{modules:1,containerID:2,uxml:3})}}function de(t,e,n){const o=t.slice();return o[6]=e[n],o[8]=n,o}function ue(t,e,n){const o=t.slice();return o[9]=e[n],o}function pe(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=ye(de(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=de(t,n,a);o[a]?o[a].p(i,r):(o[a]=ye(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function fe(e){let n;return{c(){n=g("option"),n.textContent="Please Select",n.__value="Please Select",n.value=n.__value},m(t,e){u(t,n,e)},p:t,d(t){t&&p(n)}}}function ge(t){let e,n=t[6].select,o=[];for(let e=0;e<n.length;e+=1)o[e]=be(ue(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[6].select,a=0;a<n.length;a+=1){const i=ue(t,n,a);o[a]?o[a].p(i,r):(o[a]=be(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function me(t){let e,n,o,r,a,i,s,l=t[9].text+"";return{c(){e=g("option"),n=m(l),v(e,"key",o=t[9].key),v(e,"data-correctans",r=t[9].correctans),v(e,"data-defaultans",a=t[9].defaultans),v(e,"data-userans",i=t[9].userans),e.__value=s=t[9].key,e.value=e.__value},m(t,o){u(t,e,o),c(e,n)},p(t,c){1&c&&l!==(l=t[9].text+"")&&w(n,l),1&c&&o!==(o=t[9].key)&&v(e,"key",o),1&c&&r!==(r=t[9].correctans)&&v(e,"data-correctans",r),1&c&&a!==(a=t[9].defaultans)&&v(e,"data-defaultans",a),1&c&&i!==(i=t[9].userans)&&v(e,"data-userans",i),1&c&&s!==(s=t[9].key)&&(e.__value=s,e.value=e.__value)},d(t){t&&p(e)}}}function he(t){let e,n,o,r,a,i,s,l=t[9].text+"";return{c(){e=g("option"),n=m(l),e.selected="selected",v(e,"key",o=t[9].key),v(e,"data-correctans",r=t[9].correctans),v(e,"data-defaultans",a=t[9].defaultans),v(e,"data-userans",i=t[9].userans),e.__value=s=t[9].key+1,e.value=e.__value},m(t,o){u(t,e,o),c(e,n)},p(t,c){1&c&&l!==(l=t[9].text+"")&&w(n,l),1&c&&o!==(o=t[9].key)&&v(e,"key",o),1&c&&r!==(r=t[9].correctans)&&v(e,"data-correctans",r),1&c&&a!==(a=t[9].defaultans)&&v(e,"data-defaultans",a),1&c&&i!==(i=t[9].userans)&&v(e,"data-userans",i),1&c&&s!==(s=t[9].key+1)&&(e.__value=s,e.value=e.__value)},d(t){t&&p(e)}}}function be(t){let e;function n(t,e){return 1==t[9].selected?he:me}let o=n(t),r=o(t);return{c(){r.c(),e=b()},m(t,n){r.m(t,n),u(t,e,n)},p(t,a){o===(o=n(t))&&r?r.p(t,a):(r.d(1),r=o(t),r&&(r.c(),r.m(e.parentNode,e)))},d(t){r.d(t),t&&p(e)}}}function ye(t){let e,n,o,r,a,i,s;function l(t,e){return t[6].select.length?ge:fe}let d=l(t),f=d(t);return{c(){e=g("div"),n=g("select"),f.c(),a=h(),v(n,"class",o=t[6].id+" dnd_select align_baseline_middle"),v(n,"name",""),v(n,"size","0"),v(n,"data-userans",r=t[6].userans),v(n,"data-udisplay",""),v(n,"data-udisabled",""),v(n,"data-correctans",""),v(n,"data-defaultans",""),v(e,"key",i=t[8]),v(e,"as","-1"),v(e,"id",s=t[6].id),v(e,"class","drag-resize dndTest"),_(e,"position","absolute"),_(e,"top",t[6].top),_(e,"left",t[6].left),_(e,"height",t[6].height),_(e,"width",t[6].width),_(e,"z-index","1")},m(t,o){u(t,e,o),c(e,n),f.m(n,null),c(e,a)},p(t,a){d===(d=l(t))&&f?f.p(t,a):(f.d(1),f=d(t),f&&(f.c(),f.m(n,null))),1&a&&o!==(o=t[6].id+" dnd_select align_baseline_middle")&&v(n,"class",o),1&a&&r!==(r=t[6].userans)&&v(n,"data-userans",r),1&a&&s!==(s=t[6].id)&&v(e,"id",s),1&a&&_(e,"top",t[6].top),1&a&&_(e,"left",t[6].left),1&a&&_(e,"height",t[6].height),1&a&&_(e,"width",t[6].width)},d(t){t&&p(e),f.d()}}}function ve(e){let n,o=e[0]&&e[0].length>0&&pe(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=pe(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function we(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=0,s=[],l=o;return k((()=>{s.length>0&&""!=r&&l.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{59&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(5,l=[]),n(5,l[0]=o,l)):n(5,l=o),n(0,s=[]),l.map((function(t){if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}let e=[];t.__text&&t.__text.split("\n").map((function(o,r){t._userans==r+1+","?n(4,i=1):n(4,i=0),"+"==o.trim().charAt(0)?e.push({key:r,correctans:0,defaultans:1,userans:i||"",text:o.trim().slice(1),selected:1}):"*"==o.trim().charAt(0)?e.push({key:r,correctans:1,defaultans:0,userans:i||"",text:o.trim().slice(1)}):e.push({key:r,correctans:0,defaultans:0,userans:i||"",text:o.trim()})})),n(0,s=[...s,{id:"dnd"+t._id,top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",userans:t._userans?t._userans:"",select:e}])}))):n(0,s=[]))},[s,o,r,a,i,l]}class _e extends Y{constructor(t){super(),K(this,t,we,ve,a,{modules:1,containerID:2,uxml:3})}}function xe(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function Ae(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=$e(xe(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=xe(t,n,a);o[a]?o[a].p(i,r):(o[a]=$e(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function ke(t){let e,n,o,r,a,i,s,l,c;return{c(){e=g("input"),v(e,"type","radio"),v(e,"id",n="rad"+t[5].id),v(e,"class",o="dnd"+t[5].id+" custRad dndradio"),v(e,"data-title",r=t[5].id),v(e,"data-correctans",a=t[5].correctans),v(e,"data-defaultans",i=t[5].defaultans),v(e,"data-userans",s=t[5].userans),v(e,"data-udisplay",""),v(e,"data-udisabled",""),v(e,"data-checktype",l=t[5].checktype),v(e,"name",c=t[5].name),e.value="0"},m(t,n){u(t,e,n)},p(t,d){1&d&&n!==(n="rad"+t[5].id)&&v(e,"id",n),1&d&&o!==(o="dnd"+t[5].id+" custRad dndradio")&&v(e,"class",o),1&d&&r!==(r=t[5].id)&&v(e,"data-title",r),1&d&&a!==(a=t[5].correctans)&&v(e,"data-correctans",a),1&d&&i!==(i=t[5].defaultans)&&v(e,"data-defaultans",i),1&d&&s!==(s=t[5].userans)&&v(e,"data-userans",s),1&d&&l!==(l=t[5].checktype)&&v(e,"data-checktype",l),1&d&&c!==(c=t[5].name)&&v(e,"name",c)},d(t){t&&p(e)}}}function Ie(t){let e,n,o,r,a,i,s,l,c;return{c(){e=g("input"),v(e,"type","radio"),v(e,"id",n="rad"+t[5].id),v(e,"class",o="dnd"+t[5].id+" custRad dndradio"),v(e,"data-title",r=t[5].id),v(e,"data-correctans",a=t[5].correctans),v(e,"data-defaultans",i=t[5].defaultans),v(e,"data-userans",s=1),e.checked="checked",v(e,"data-udisplay",""),v(e,"data-udisabled",""),v(e,"data-checktype",l=t[5].checktype),v(e,"name",c=t[5].name),e.value="1"},m(t,n){u(t,e,n)},p(t,s){1&s&&n!==(n="rad"+t[5].id)&&v(e,"id",n),1&s&&o!==(o="dnd"+t[5].id+" custRad dndradio")&&v(e,"class",o),1&s&&r!==(r=t[5].id)&&v(e,"data-title",r),1&s&&a!==(a=t[5].correctans)&&v(e,"data-correctans",a),1&s&&i!==(i=t[5].defaultans)&&v(e,"data-defaultans",i),1&s&&l!==(l=t[5].checktype)&&v(e,"data-checktype",l),1&s&&c!==(c=t[5].name)&&v(e,"name",c)},d(t){t&&p(e)}}}function $e(t){let e,n,o,r,a,i,s,l;function d(t,e){return"1"==t[5].defaultans&&""==t[5].userans?Ie:ke}let f=d(t),m=f(t);return{c(){e=g("div"),m.c(),n=h(),o=g("label"),i=h(),v(o,"for",r="rad"+t[5].id),v(o,"class",a=("true"==t[5].checktype?"tureitemColor":"falseitemColor")+" customRad radio_sim "+(window.inNative?"native":"")),v(o,"data-correctans",""),v(o,"data-userans",""),v(o,"data-defaultans",""),v(e,"key",s=t[7]),v(e,"as","-1"),v(e,"id",l="dnd"+t[5].id),v(e,"class","only-dragable dndTest"),_(e,"position","absolute"),_(e,"top",t[5].top),_(e,"left",t[5].left),_(e,"height",t[5].height),_(e,"width",t[5].width),_(e,"z-index","1")},m(t,r){u(t,e,r),m.m(e,null),c(e,n),c(e,o),c(e,i)},p(t,i){f===(f=d(t))&&m?m.p(t,i):(m.d(1),m=f(t),m&&(m.c(),m.m(e,n))),1&i&&r!==(r="rad"+t[5].id)&&v(o,"for",r),1&i&&a!==(a=("true"==t[5].checktype?"tureitemColor":"falseitemColor")+" customRad radio_sim "+(window.inNative?"native":""))&&v(o,"class",a),1&i&&l!==(l="dnd"+t[5].id)&&v(e,"id",l),1&i&&_(e,"top",t[5].top),1&i&&_(e,"left",t[5].left),1&i&&_(e,"height",t[5].height),1&i&&_(e,"width",t[5].width)},d(t){t&&p(e),m.d()}}}function Ee(e){let n,o=e[0]&&e[0].length>0&&Ae(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=Ae(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function Te(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=[],s=o;return k((()=>{i.length>0&&""!=r&&s.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{27&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(4,s=[]),n(4,s[0]=o,s)):n(4,s=o),n(0,i=[]),s.map((function(t){if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}n(0,i=[...i,{id:t._id,top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",userans:t._userans?t._userans:"",correctans:t._correctans,defaultans:t._defaultans,checktype:t._checktype,name:t._name}])}))):n(0,i=[]))},[i,o,r,a,s]}class Ce extends Y{constructor(t){super(),K(this,t,Te,Ee,a,{modules:1,containerID:2,uxml:3})}}function Oe(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function De(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=Se(Oe(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Oe(t,n,a);o[a]?o[a].p(i,r):(o[a]=Se(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function Se(t){let e,n,o,r,a,i,s,l,d,f,m,b,y;return{c(){e=g("div"),n=g("textarea"),m=h(),v(n,"class",o=t[5].classes),v(n,"data-title",r=t[5].id),v(n,"data-correctans",a=t[5].correctans),v(n,"data-defaultans",i=t[5].defaultans?t[5].defaultans.__cdata:""),v(n,"data-parser",s=t[5].parser),v(n,"placeholder",l=t[5].placeholder),v(n,"data-nocase",d=t[5].nocase),v(n,"data-userans",f=t[5].userans),v(e,"key",b=t[7]),v(e,"id",y="dnd"+t[5].id),v(e,"class","drag-resize dndTest"),_(e,"position","absolute"),_(e,"top",t[5].top),_(e,"left",t[5].left),_(e,"height",t[5].height),_(e,"width",t[5].width),_(e,"z-index","1")},m(t,o){u(t,e,o),c(e,n),c(e,m)},p(t,c){1&c&&o!==(o=t[5].classes)&&v(n,"class",o),1&c&&r!==(r=t[5].id)&&v(n,"data-title",r),1&c&&a!==(a=t[5].correctans)&&v(n,"data-correctans",a),1&c&&i!==(i=t[5].defaultans?t[5].defaultans.__cdata:"")&&v(n,"data-defaultans",i),1&c&&s!==(s=t[5].parser)&&v(n,"data-parser",s),1&c&&l!==(l=t[5].placeholder)&&v(n,"placeholder",l),1&c&&d!==(d=t[5].nocase)&&v(n,"data-nocase",d),1&c&&f!==(f=t[5].userans)&&v(n,"data-userans",f),1&c&&y!==(y="dnd"+t[5].id)&&v(e,"id",y),1&c&&_(e,"top",t[5].top),1&c&&_(e,"left",t[5].left),1&c&&_(e,"height",t[5].height),1&c&&_(e,"width",t[5].width)},d(t){t&&p(e)}}}function Ne(e){let n,o=e[0]&&e[0].length>0&&De(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=De(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function je(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=[],s=o;return k((()=>{i.length>0&&""!=r&&s.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{27&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(4,s=[]),n(4,s[0]=o,s)):n(4,s=o),n(0,i=[]),s.map((function(t){if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}var e;n(0,i=[...i,{id:t._id,top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",correctans:t.correctans?(e=t.correctans,e.__cdata?e.__cdata:"object"==typeof e&&e[0]?e[0].__cdata?e[0].__cdata:e[0]:"string"==typeof e&&e.length>1?e:""):"",defaultans:t.defaultans?t.defaultans.__cdata:"",parser:t._parser?t._parser:"",placeholder:t._placeholder?t._placeholder:"",nocase:t._nocase,userans:t._userans?t._userans:"",classes:"dnd"+t._id+" dnd_textarea "+t._custom_class}])}))):n(0,i=[]))},[i,o,r,a,s]}class Le extends Y{constructor(t){super(),K(this,t,je,Ne,a,{modules:1,containerID:2,uxml:3})}}function Me(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function Pe(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=qe(Me(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Me(t,n,a);o[a]?o[a].p(i,r):(o[a]=qe(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function ze(t){let e,n,o,r,a;return{c(){e=g("input"),v(e,"type","checkbox"),v(e,"class",n="dnd"+t[5].id+" dndcheckbox"),v(e,"data-correctans",o=t[5].correctans),v(e,"data-defaultans",r=t[5].defaultans),v(e,"data-userans",a=t[5].userans),v(e,"data-udisplay",""),v(e,"data-udisabled",""),v(e,"name",""),e.value=""},m(t,n){u(t,e,n)},p(t,i){1&i&&n!==(n="dnd"+t[5].id+" dndcheckbox")&&v(e,"class",n),1&i&&o!==(o=t[5].correctans)&&v(e,"data-correctans",o),1&i&&r!==(r=t[5].defaultans)&&v(e,"data-defaultans",r),1&i&&a!==(a=t[5].userans)&&v(e,"data-userans",a)},d(t){t&&p(e)}}}function Re(t){let e,n,o,r,a;return{c(){e=g("input"),v(e,"type","checkbox"),v(e,"class",n="dnd"+t[5].id+" dndcheckbox"),v(e,"data-correctans",o=t[5].correctans),v(e,"data-defaultans",r=t[5].defaultans),v(e,"data-userans","1"),v(e,"data-udisplay",""),v(e,"data-udisabled",""),v(e,"name",""),e.value="",e.checked=a=!0},m(t,n){u(t,e,n)},p(t,a){1&a&&n!==(n="dnd"+t[5].id+" dndcheckbox")&&v(e,"class",n),1&a&&o!==(o=t[5].correctans)&&v(e,"data-correctans",o),1&a&&r!==(r=t[5].defaultans)&&v(e,"data-defaultans",r)},d(t){t&&p(e)}}}function qe(t){let e,n,o,r;function a(t,e){return"1"==t[5].defaultans&&""==t[5].userans?Re:ze}let i=a(t),s=i(t);return{c(){e=g("div"),s.c(),n=h(),v(e,"key",o=t[7]),v(e,"id",r="dnd"+t[5].id),v(e,"class","only-dragable dndTest"),_(e,"position","absolute"),_(e,"top",t[5].top),_(e,"left",t[5].left),_(e,"height",t[5].height),_(e,"width",t[5].width)},m(t,o){u(t,e,o),s.m(e,null),c(e,n)},p(t,o){i===(i=a(t))&&s?s.p(t,o):(s.d(1),s=i(t),s&&(s.c(),s.m(e,n))),1&o&&r!==(r="dnd"+t[5].id)&&v(e,"id",r),1&o&&_(e,"top",t[5].top),1&o&&_(e,"left",t[5].left),1&o&&_(e,"height",t[5].height),1&o&&_(e,"width",t[5].width)},d(t){t&&p(e),s.d()}}}function Be(e){let n,o=e[0].length>0&&Pe(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0].length>0?o?o.p(t,e):(o=Pe(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function He(t,e,n){let{modules:o}=e,{containerID:r=""}=e,{uxml:a=""}=e,i=[],s=o;return k((()=>{i&&i.length>0&&""!=r&&s.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID),"uxml"in t&&n(3,a=t.uxml)},t.$$.update=()=>{27&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(4,s=[]),n(4,s[0]=o,s)):n(4,s=o),n(0,i=[]),s.map((function(t){if(""!=a){let e=Z(a);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}n(0,i=[...i,{top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",id:t._id,userans:t._userans?t._userans:"",correctans:t._correctans?t._correctans:"",defaultans:t._defaultans?t._defaultans:""}])}))):n(0,i=[]))},[i,o,r,a,s]}class Fe extends Y{constructor(t){super(),K(this,t,He,Be,a,{modules:1,containerID:2,uxml:3})}}function Ue(t,e,n){const o=t.slice();return o[4]=e[n],o[6]=n,o}function Xe(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=Je(Ue(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Ue(t,n,a);o[a]?o[a].p(i,r):(o[a]=Je(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function Je(t){let e,n,o,r,a;return{c(){e=g("div"),v(e,"key",n=t[6]),v(e,"id",o="dnd"+t[4].id),v(e,"data-type","tabhead"),v(e,"class",r=t[4].classes),v(e,"style",a=t[4].styles),v(e,"name",""),v(e,"data-userans",""),v(e,"data-udisplay",""),v(e,"data-udisabled","")},m(t,n){u(t,e,n)},p(t,n){1&n&&o!==(o="dnd"+t[4].id)&&v(e,"id",o),1&n&&r!==(r=t[4].classes)&&v(e,"class",r),1&n&&a!==(a=t[4].styles)&&v(e,"style",a)},d(t){t&&p(e)}}}function Ke(e){let n,o=e[0]&&e[0].length>0&&Xe(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=Xe(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function Ye(t,e,n){let{modules:o}=e,{containerID:r=""}=e,a=[],i=o;return k((()=>{a.length>0&&""!=r&&i.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll("#dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll("#dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID)},t.$$.update=()=>{11&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(3,i=[]),n(3,i[0]=o,i)):n(3,i=o),n(0,a=[]),i.map((function(t){let e=function(t){let e="";for(let n in t)e+=n.replace(/_/g,"-")+":"+t[n]+";";return e}(Object.assign({position:"absolute",top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px"},function(t){if(void 0!==t){let e={};return t.split(";").map((function(t){try{let n=t.split(":");e[n[0]]=n[1]}catch(t){console.warn(t)}})),e}}(t._style)));n(0,a=[...a,{top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",styles:e,id:t._id,classes:"drag-resize dndtabhead dndTest "+t._class}])}))):n(0,a=[]))},[a,o,r,i]}class We extends Y{constructor(t){super(),K(this,t,Ye,Ke,a,{modules:1,containerID:2})}}function Ve(t,e,n){const o=t.slice();return o[4]=e[n],o[6]=n,o}function Qe(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=Ge(Ve(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Ve(t,n,a);o[a]?o[a].p(i,r):(o[a]=Ge(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function Ge(t){let e,n,o,r,a,i,s,l,d,f=t[4].parahtml+"";return{c(){e=g("div"),n=g("p"),o=m(f),a=h(),v(n,"class","pl_7"),v(n,"style",r=t[4].paraStyle),v(e,"key",i=t[6]),v(e,"id",s="dnd"+t[4].id),v(e,"class",l=t[4].classes),v(e,"tabindex","1"),v(e,"style",d=t[4].style)},m(t,r){u(t,e,r),c(e,n),c(n,o),c(e,a)},p(t,a){1&a&&f!==(f=t[4].parahtml+"")&&w(o,f),1&a&&r!==(r=t[4].paraStyle)&&v(n,"style",r),1&a&&s!==(s="dnd"+t[4].id)&&v(e,"id",s),1&a&&l!==(l=t[4].classes)&&v(e,"class",l),1&a&&d!==(d=t[4].style)&&v(e,"style",d)},d(t){t&&p(e)}}}function Ze(e){let n,o=e[0]&&e[0].length&&Qe(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length?o?o.p(t,e):(o=Qe(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function tn(t){let e="";for(let n in t)e+=n.replace(/_/g,"-")+":"+t[n]+";";return e}function en(t){if(void 0!==t){let e={};return t.split(",").map((function(t){try{let n=t.split(":");e[n[0]]=n[1]}catch(t){console.warn(t)}})),e}}function nn(t,e,n){let{modules:o}=e,{containerID:r=""}=e,a=[],i=o;return k((()=>{a.length>0&&""!=r&&i.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll("#dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll("#dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID)},t.$$.update=()=>{11&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(3,i=[]),n(3,i[0]=o,i)):n(3,i=o),n(0,a=[]),i.map((function(t){let e=tn(Object.assign({position:"absolute",top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",border:t._border_size+"px solid "+t._border_color,background_color:t._background_color},en(t._style))),o=tn(function(t){if(void 0!==t._label_class)return en(t._style)}(t));var r;n(0,a=[...a,{id:t._id,style:e,classes:"dndlabel dndTest "+(t._label_class?t._label_class:""),paraStyle:o,parahtml:(r=t._richtext?t.__cdata:null!=t._title?tt.ignoreEnity(t._title):"",r?r.replace(/&#(\d+);/g,(function(t,e){return String.fromCharCode(e)})):"")}])}))):n(0,a=[]))},[a,o,r,i]}class on extends Y{constructor(t){super(),K(this,t,nn,Ze,a,{modules:1,containerID:2})}}function rn(t,e,n){const o=t.slice();return o[7]=e[n],o[9]=n,o}function an(t,e,n){const o=t.slice();return o[10]=e[n],o[12]=n,o}function sn(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=un(rn(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=rn(t,n,a);o[a]?o[a].p(i,r):(o[a]=un(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function ln(t){let e,n,o;return{c(){e=g("div"),n=g("img"),_(n,"display","none"),v(n,"alt","hotspot"),l(n.src,(window.inNative,o="https://s3.amazonaws.com/jigyaasa_content_static/"+t[7].bgimg+"?"+Date.now()))||v(n,"src",o)},m(t,o){u(t,e,o),c(e,n)},p(t,e){1&e&&!l(n.src,(window.inNative,o="https://s3.amazonaws.com/jigyaasa_content_static/"+t[7].bgimg+"?"+Date.now()))&&v(n,"src",o)},d(t){t&&p(e)}}}function cn(t){let e,n=t[7].child,o=[];for(let e=0;e<n.length;e+=1)o[e]=dn(an(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[7].child,a=0;a<n.length;a+=1){const i=an(t,n,a);o[a]?o[a].p(i,r):(o[a]=dn(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function dn(t){let e,n,o;return{c(){e=g("div"),v(e,"key",n=t[12]),v(e,"id",o=t[7].id+"_"+(t[12]+1)),v(e,"data-correctans","0"),v(e,"class","drag-resize hs_item ui-droppable"),_(e,"position","absolute"),_(e,"top",t[10].top),_(e,"left",t[10].left),_(e,"height",t[10].height),_(e,"width",t[10].width)},m(t,n){u(t,e,n)},p(t,n){1&n&&o!==(o=t[7].id+"_"+(t[12]+1))&&v(e,"id",o),1&n&&_(e,"top",t[10].top),1&n&&_(e,"left",t[10].left),1&n&&_(e,"height",t[10].height),1&n&&_(e,"width",t[10].width)},d(t){t&&p(e)}}}function un(t){let e,n,o,r,a,i,s=t[7].bgimg&&ln(t),l=t[7].child.length>0&&cn(t);return{c(){e=g("div"),s&&s.c(),n=h(),l&&l.c(),o=h(),v(e,"key",r=t[9]),v(e,"id",a="dnd"+t[7].id),v(e,"class","drag-resize hotspot_test dndTest"),_(e,"position","absolute"),_(e,"top",t[7].top),_(e,"left",t[7].left),_(e,"height",t[7].height),_(e,"width",t[7].width),_(e,"border",t[7].border),_(e,"background-image",t[7].backgroundImage+"\r\n                        z-index: 1\r\n                    "),v(e,"data-userans",i=t[7].userans)},m(t,r){u(t,e,r),s&&s.m(e,null),c(e,n),l&&l.m(e,null),c(e,o)},p(t,r){t[7].bgimg?s?s.p(t,r):(s=ln(t),s.c(),s.m(e,n)):s&&(s.d(1),s=null),t[7].child.length>0?l?l.p(t,r):(l=cn(t),l.c(),l.m(e,o)):l&&(l.d(1),l=null),1&r&&a!==(a="dnd"+t[7].id)&&v(e,"id",a),1&r&&_(e,"top",t[7].top),1&r&&_(e,"left",t[7].left),1&r&&_(e,"height",t[7].height),1&r&&_(e,"width",t[7].width),1&r&&_(e,"border",t[7].border),1&r&&_(e,"background-image",t[7].backgroundImage+"\r\n                        z-index: 1\r\n                    "),1&r&&i!==(i=t[7].userans)&&v(e,"data-userans",i)},d(t){t&&p(e),s&&s.d(),l&&l.d()}}}function pn(e){let n,o,r,a=e[0]&&e[0].length>0&&sn(e);return{c(){n=g("div"),o=g("div"),a&&a.c(),v(o,"class","hotspotContainer"),v(o,"style",r="height:"+e[1])},m(t,e){u(t,n,e),c(n,o),a&&a.m(o,null)},p(t,[e]){t[0]&&t[0].length>0?a?a.p(t,e):(a=sn(t),a.c(),a.m(o,null)):a&&(a.d(1),a=null),2&e&&r!==(r="height:"+t[1])&&v(o,"style",r)},i:t,o:t,d(t){t&&p(n),a&&a.d()}}}function fn(t,e,n){let{modules:o}=e,{uxml:r}=e,{module_type:a}=e,i=[],s=o,l=0,c="auto";return t.$$set=t=>{"modules"in t&&n(2,o=t.modules),"uxml"in t&&n(3,r=t.uxml),"module_type"in t&&n(4,a=t.module_type)},t.$$.update=()=>{if(125&t.$$.dirty)if(o){if(0==Array.isArray(o)?(n(5,s=[]),n(5,s[0]=o,s)):n(5,s=o),n(0,i=[]),"15"==a)try{s.map((t=>{n(6,l=t._height),l<t._height&&n(6,l=t._height)}))}catch(t){n(6,l=350)}n(1,c=0==l?"auto":l+100+"px"),s.map((function(t,e){let o=[],a=JSON.parse(t.__text?t.__text:t.__cdata);for(let t in a)o.push({top:a[t][0]+"px",left:a[t][1]+"px",width:a[t][2]+"px",height:a[t][3]+"px"});if(r){let e=Z(r);if(e&&e.smans&&e.smans.div){let n=e.smans.div;0==Array.isArray(n)&&(n=[],n[0]=e.smans.div);for(let e in n)n[e]._id=="dnd"+t._id&&(t._userans=n[e]._userAns)}}var s;n(0,i=[...i,{id:t._id,top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",backgroundImage:"url('"+(s=t._bgimg,(s?(window.inNative,"https://s3.amazonaws.com/jigyaasa_content_static/"+s):"")+"')"),userans:t._userans?t._userans:"",bgimg:t._bgimg,child:o}])}))}else n(0,i=[])},[i,c,o,r,a,s,l]}class gn extends Y{constructor(t){super(),K(this,t,fn,pn,a,{modules:2,uxml:3,module_type:4})}}function mn(t,e,n){const o=t.slice();return o[8]=e[n],o[10]=n,o}function hn(t,e,n){const o=t.slice();return o[11]=e[n],o[13]=n,o}function bn(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=wn(mn(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=mn(t,n,a);o[a]?o[a].p(i,r):(o[a]=wn(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function yn(t){let e,n=t[8].menulist_item,o=[];for(let e=0;e<n.length;e+=1)o[e]=vn(hn(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[8].menulist_item,a=0;a<n.length;a+=1){const i=hn(t,n,a);o[a]?o[a].p(i,r):(o[a]=vn(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function vn(t){let e,n,o,r,a,i,s;function l(){return t[4](t[11])}return{c(){e=g("span"),v(e,"key",n="menu_"+t[13]),v(e,"id",o=t[11].id),v(e,"class",r=t[11].classes),v(e,"data-correctans",a=t[11].correctans),v(e,"data-defaultans",""),v(e,"data-userans",""),_(e,"position","absolute"),_(e,"top",t[11].top),_(e,"left",t[11].left),_(e,"height",t[11].height),_(e,"width",t[11].width)},m(t,n){u(t,e,n),i||(s=y(e,"click",l),i=!0)},p(n,i){t=n,1&i&&o!==(o=t[11].id)&&v(e,"id",o),1&i&&r!==(r=t[11].classes)&&v(e,"class",r),1&i&&a!==(a=t[11].correctans)&&v(e,"data-correctans",a),1&i&&_(e,"top",t[11].top),1&i&&_(e,"left",t[11].left),1&i&&_(e,"height",t[11].height),1&i&&_(e,"width",t[11].width)},d(t){t&&p(e),i=!1,s()}}}function wn(t){let e,n,o,r=t[8].menulist_item.length>0&&yn(t);return{c(){e=g("div"),r&&r.c(),n=h(),v(e,"key",o=t[10]),v(e,"class","drag-resize"),_(e,"position","absolute"),_(e,"top",t[8].top),_(e,"left",t[8].left),_(e,"height",t[8].height),_(e,"width",t[8].width),_(e,"z-index","1"),v(e,"data-correctans",""),v(e,"data-userans",""),v(e,"data-defaultans","")},m(t,o){u(t,e,o),r&&r.m(e,null),c(e,n)},p(t,o){t[8].menulist_item.length>0?r?r.p(t,o):(r=yn(t),r.c(),r.m(e,n)):r&&(r.d(1),r=null),1&o&&_(e,"top",t[8].top),1&o&&_(e,"left",t[8].left),1&o&&_(e,"height",t[8].height),1&o&&_(e,"width",t[8].width)},d(t){t&&p(e),r&&r.d()}}}function _n(e){let n,o=e[0]&&e[0].length>0&&bn(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=bn(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function xn(t,e,n){return(parseFloat(n._height)/parseFloat(e)-0)*(parseFloat(t)-1)+0*(parseFloat(t)-1)+0}function An(t,e,n){return(parseFloat(n._width)/parseFloat(e)-0)*(parseFloat(t)-1)+0*(parseFloat(t)-1)+0}function kn(t,e){return parseFloat(e._height)/parseFloat(t)-0}function In(t,e){return parseFloat(e._width)/parseFloat(t)-0}function $n(t,e,n){let{modules:o}=e,r=[],a=o,i=[];return t.$$set=t=>{"modules"in t&&n(1,o=t.modules)},t.$$.update=()=>{15&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(2,a=[]),n(2,a[0]=o,a)):n(2,a=o),n(0,r=[]),a.map((function(t){let e,o,a,s=0,l=[];n(3,i=[]),t.__text&&function(t){let e=t.split("|");for(let t=0;t<e.length;t++){let o=e[t].match(/\(.*?\)/gi);n(3,i[t]=o?o[0].replace("(","").replace(")","").replace(/"/g,"").replace(/'/g,""):"",i)}}(t.__text),a=t._matrix?t._matrix.split("x"):[],e=a[0],o=a[1];for(let n=1;n<=e;n++)for(let r=1;r<=o;r++)l.push({id:t._id+"_"+n+"_"+r,classes:t._correctans&&i[s]?"menu off menulist dndTest record":"menu off menulist dndTest",correctans:i[s]?"1":"0",top:xn(n,e,t)+"px",left:An(r,o,t)+"px",height:kn(e,t)+"px",width:In(o,t)+"px",click_event:i[s]?i[s]:""}),s++;n(0,r=[...r,{top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",menulist_item:l}])}))):n(0,r=[]))},[r,o,a,i,t=>window.setStep(t.click_event)]}class En extends Y{constructor(t){super(),K(this,t,$n,_n,a,{modules:1})}}function Tn(t,e,n){const o=t.slice();return o[4]=e[n],o[6]=n,o}function Cn(t){let e,n=t[0],o=[];for(let e=0;e<n.length;e+=1)o[e]=On(Tn(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(1&r){let a;for(n=t[0],a=0;a<n.length;a+=1){const i=Tn(t,n,a);o[a]?o[a].p(i,r):(o[a]=On(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function On(t){let e,n,o,r,a,i,s,l,d,f=(t[4].value?t[4].value:"")+"";return{c(){e=g("div"),n=g("button"),o=m(f),i=h(),v(n,"type","button"),v(n,"class",r="dnd"+t[4].id+" dnd_button"),v(n,"name",""),v(n,"tabindex","-1"),n.value=a=t[4].value?t[4].value:"",v(n,"data-correctans",""),v(n,"data-defaultans",""),v(n,"data-userans",""),v(e,"key",s=t[6]),v(e,"id",l="dnd"+t[4].id),v(e,"class",d=t[4].classes),_(e,"position","absolute"),_(e,"top",t[4].top),_(e,"left",t[4].left),_(e,"height",t[4].height),_(e,"width",t[4].width),v(e,"data-correctans",""),v(e,"data-defaultans",""),v(e,"data-userans",""),v(e,"tabindex","0")},m(t,r){u(t,e,r),c(e,n),c(n,o),c(e,i)},p(t,i){1&i&&f!==(f=(t[4].value?t[4].value:"")+"")&&w(o,f),1&i&&r!==(r="dnd"+t[4].id+" dnd_button")&&v(n,"class",r),1&i&&a!==(a=t[4].value?t[4].value:"")&&(n.value=a),1&i&&l!==(l="dnd"+t[4].id)&&v(e,"id",l),1&i&&d!==(d=t[4].classes)&&v(e,"class",d),1&i&&_(e,"top",t[4].top),1&i&&_(e,"left",t[4].left),1&i&&_(e,"height",t[4].height),1&i&&_(e,"width",t[4].width)},d(t){t&&p(e)}}}function Dn(e){let n,o=e[0]&&e[0].length>0&&Cn(e);return{c(){n=g("div"),o&&o.c()},m(t,e){u(t,n,e),o&&o.m(n,null)},p(t,[e]){t[0]&&t[0].length>0?o?o.p(t,e):(o=Cn(t),o.c(),o.m(n,null)):o&&(o.d(1),o=null)},i:t,o:t,d(t){t&&p(n),o&&o.d()}}}function Sn(t,e,n){let{modules:o}=e,{containerID:r=""}=e,a=[],i=o;return k((()=>{a.length>0&&""!=r&&i.map((function(t){let e=["onclick","ondblclick","oncontextmenu","ondragstart","ondrag","ondragend","ondrop","onmouseover","onmouseup","onmousedown","onchange","onfocus","onblur","onkeyup","onkeypress","onkeydown"],n=document.querySelector("#"+r);e.forEach((function(o,r){if(n){let o=n.querySelectorAll(".dnd"+t._id);o&&o.forEach((function(t){t.removeAttribute(e[r])}))}})),Object.keys(t).forEach((function(o){let r=o.replace("_","").trim();if(e.includes(r)&&n){let e=n.querySelectorAll(".dnd"+t._id);e&&e.forEach((function(e){e.setAttribute(r,t[o])}))}}))}))})),t.$$set=t=>{"modules"in t&&n(1,o=t.modules),"containerID"in t&&n(2,r=t.containerID)},t.$$.update=()=>{11&t.$$.dirty&&(o?(0==Array.isArray(o)?(n(3,i=[]),n(3,i[0]=o,i)):n(3,i=o),n(0,a=[]),i.map((function(t){n(0,a=[...a,{top:t._top+"px",left:t._left+"px",height:t._height+"px",width:t._width+"px",id:t._id,classes:"drag-resize dndTest "+t._class,value:t._value}])}))):n(0,a=[]))},[a,o,r,i]}class Nn extends Y{constructor(t){super(),K(this,t,Sn,Dn,a,{modules:1,containerID:2})}}function jn(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function Ln(t,e,n){const o=t.slice();return o[5]=e[n],o[7]=n,o}function Mn(t){let e,n,o,r,a=t[2],i=[];for(let e=0;e<a.length;e+=1)i[e]=Pn(Ln(t,a,e));let s=t[2],l=[];for(let e=0;e<s.length;e+=1)l[e]=Rn(jn(t,s,e));const c=t=>H(l[t],1,1,(()=>{l[t]=null}));return{c(){e=g("ul");for(let t=0;t<i.length;t+=1)i[t].c();n=h(),o=g("div");for(let t=0;t<l.length;t+=1)l[t].c();v(e,"class","nav nav-pills margin-bottom dndTest"),v(e,"data-correctans",""),v(e,"data-userans",""),v(e,"data-defaultans",""),v(e,"role","tablist"),v(o,"class","tab-content dndTest"),v(o,"type","tab"),_(o,"position","relative")},m(t,a){u(t,e,a);for(let t=0;t<i.length;t+=1)i[t].m(e,null);u(t,n,a),u(t,o,a);for(let t=0;t<l.length;t+=1)l[t].m(o,null);r=!0},p(t,n){if(4&n){let o;for(a=t[2],o=0;o<a.length;o+=1){const r=Ln(t,a,o);i[o]?i[o].p(r,n):(i[o]=Pn(r),i[o].c(),i[o].m(e,null))}for(;o<i.length;o+=1)i[o].d(1);i.length=a.length}if(7&n){let e;for(s=t[2],e=0;e<s.length;e+=1){const r=jn(t,s,e);l[e]?(l[e].p(r,n),B(l[e],1)):(l[e]=Rn(r),l[e].c(),B(l[e],1),l[e].m(o,null))}for(R(),e=s.length;e<l.length;e+=1)c(e);q()}},i(t){if(!r){for(let t=0;t<s.length;t+=1)B(l[t]);r=!0}},o(t){l=l.filter(Boolean);for(let t=0;t<l.length;t+=1)H(l[t]);r=!1},d(t){t&&p(e),f(i,t),t&&p(n),t&&p(o),f(l,t)}}}function Pn(t){let e,n,o,r,a,i,s,l,d=t[5]._value+"";return{c(){e=g("li"),n=g("a"),o=m(d),s=h(),v(n,"class",r="nav-link"+("1"==t[5]._display?" active":"")),v(n,"href",a="#dnd"+t[5]._id),v(n,"data-bs-toggle","pill"),v(n,"data-bs-target",i="#dnd"+t[5]._id),v(e,"key",l="tab_pills_list_"+t[7]),v(e,"class","nav-item")},m(t,r){u(t,e,r),c(e,n),c(n,o),c(e,s)},p(t,e){4&e&&d!==(d=t[5]._value+"")&&w(o,d),4&e&&r!==(r="nav-link"+("1"==t[5]._display?" active":""))&&v(n,"class",r),4&e&&a!==(a="#dnd"+t[5]._id)&&v(n,"href",a),4&e&&i!==(i="#dnd"+t[5]._id)&&v(n,"data-bs-target",i)},d(t){t&&p(e)}}}function zn(t){let e,n,o,r,a;return{c(){e=g("img"),l(e.src,(window.inNative,n="https://s3.amazonaws.com/jigyaasa_content_static/"+t[5]._bgimg))||v(e,"src",n),v(e,"alt",o=t[5]._alt)},m(n,o){u(n,e,o),r||(a=y(e,"load",t[4]),r=!0)},p(t,r){4&r&&!l(e.src,(window.inNative,n="https://s3.amazonaws.com/jigyaasa_content_static/"+t[5]._bgimg))&&v(e,"src",n),4&r&&o!==(o=t[5]._alt)&&v(e,"alt",o)},d(t){t&&p(e),r=!1,a()}}}function Rn(t){let e,n,o,r,a,i,s,l,d,f,m,b,y,w,_,x,A,k,I,$,E,T,C,O,D=t[5]._bgimg&&zn(t);return o=new ne({props:{modules:t[5].drag?t[5].drag:[]}}),a=new ce({props:{modules:t[5].drop?t[5].drop:[],uxml:t[0]}}),s=new Ce({props:{modules:t[5].radio?t[5].radio:[],uxml:t[0]}}),d=new _e({props:{modules:t[5].select?t[5].select:[],uxml:t[0]}}),m=new Kt({props:{modules:t[5].textbox?t[5].textbox:[],uxml:t[0]}}),y=new Fe({props:{modules:t[5].checkbox?t[5].checkbox:[],uxml:t[0]}}),_=new We({props:{modules:t[5].tabhead?t[5].tabhead:[]}}),A=new gn({props:{modules:t[5].hotspot?t[5].hotspot:[],uxml:t[0]}}),I=new En({props:{modules:t[5].menulist?t[5].menulist:[]}}),{c(){e=g("div"),D&&D.c(),n=h(),F(o.$$.fragment),r=h(),F(a.$$.fragment),i=h(),F(s.$$.fragment),l=h(),F(d.$$.fragment),f=h(),F(m.$$.fragment),b=h(),F(y.$$.fragment),w=h(),F(_.$$.fragment),x=h(),F(A.$$.fragment),k=h(),F(I.$$.fragment),$=h(),v(e,"key",E="tab_pills_preview_"+t[7]),v(e,"id",T="dnd"+t[5]._id),v(e,"type","tab"),v(e,"role","tabpanel"),v(e,"class",C="tab-pane "+("1"==t[5]._display?"active":"")),v(e,"data-correctans",""),v(e,"data-userans",""),v(e,"data-defaultans","")},m(t,p){u(t,e,p),D&&D.m(e,null),c(e,n),U(o,e,null),c(e,r),U(a,e,null),c(e,i),U(s,e,null),c(e,l),U(d,e,null),c(e,f),U(m,e,null),c(e,b),U(y,e,null),c(e,w),U(_,e,null),c(e,x),U(A,e,null),c(e,k),U(I,e,null),c(e,$),O=!0},p(t,r){t[5]._bgimg?D?D.p(t,r):(D=zn(t),D.c(),D.m(e,n)):D&&(D.d(1),D=null);const i={};4&r&&(i.modules=t[5].drag?t[5].drag:[]),o.$set(i);const l={};4&r&&(l.modules=t[5].drop?t[5].drop:[]),1&r&&(l.uxml=t[0]),a.$set(l);const c={};4&r&&(c.modules=t[5].radio?t[5].radio:[]),1&r&&(c.uxml=t[0]),s.$set(c);const u={};4&r&&(u.modules=t[5].select?t[5].select:[]),1&r&&(u.uxml=t[0]),d.$set(u);const p={};4&r&&(p.modules=t[5].textbox?t[5].textbox:[]),1&r&&(p.uxml=t[0]),m.$set(p);const f={};4&r&&(f.modules=t[5].checkbox?t[5].checkbox:[]),1&r&&(f.uxml=t[0]),y.$set(f);const g={};4&r&&(g.modules=t[5].tabhead?t[5].tabhead:[]),_.$set(g);const h={};4&r&&(h.modules=t[5].hotspot?t[5].hotspot:[]),1&r&&(h.uxml=t[0]),A.$set(h);const b={};4&r&&(b.modules=t[5].menulist?t[5].menulist:[]),I.$set(b),(!O||4&r&&T!==(T="dnd"+t[5]._id))&&v(e,"id",T),(!O||4&r&&C!==(C="tab-pane "+("1"==t[5]._display?"active":"")))&&v(e,"class",C)},i(t){O||(B(o.$$.fragment,t),B(a.$$.fragment,t),B(s.$$.fragment,t),B(d.$$.fragment,t),B(m.$$.fragment,t),B(y.$$.fragment,t),B(_.$$.fragment,t),B(A.$$.fragment,t),B(I.$$.fragment,t),O=!0)},o(t){H(o.$$.fragment,t),H(a.$$.fragment,t),H(s.$$.fragment,t),H(d.$$.fragment,t),H(m.$$.fragment,t),H(y.$$.fragment,t),H(_.$$.fragment,t),H(A.$$.fragment,t),H(I.$$.fragment,t),O=!1},d(t){t&&p(e),D&&D.d(),X(o),X(a),X(s),X(d),X(m),X(y),X(_),X(A),X(I)}}}function qn(t){let e,n,o=t[2]&&t[2].length>0&&Mn(t);return{c(){e=g("div"),o&&o.c()},m(t,r){u(t,e,r),o&&o.m(e,null),n=!0},p(t,[n]){t[2]&&t[2].length>0?o?(o.p(t,n),4&n&&B(o,1)):(o=Mn(t),o.c(),B(o,1),o.m(e,null)):o&&(R(),H(o,1,1,(()=>{o=null})),q())},i(t){n||(B(o),n=!0)},o(t){H(o),n=!1},d(t){t&&p(e),o&&o.d()}}}function Bn(t,e,n){let{modules:o}=e,{uxml:r=""}=e,{checkImages:a}=e,i=o;return t.$$set=t=>{"modules"in t&&n(3,o=t.modules),"uxml"in t&&n(0,r=t.uxml),"checkImages"in t&&n(1,a=t.checkImages)},t.$$.update=()=>{8&t.$$.dirty&&(o?0==Array.isArray(o)?(n(2,i=[]),n(2,i[0]=o,i)):n(2,i=o):n(2,i=[]))},[r,a,i,o,()=>{a(2)}]}class Hn extends Y{constructor(t){super(),K(this,t,Bn,qn,a,{modules:3,uxml:0,checkImages:1})}}function Fn(t,e,n){const o=t.slice();return o[6]=e[n],o[8]=n,o}function Un(t,e,n){const o=t.slice();return o[6]=e[n],o[8]=n,o}function Xn(t){let e,n,o,r,a=t[3],i=[];for(let e=0;e<a.length;e+=1)i[e]=Jn(Un(t,a,e));let s=t[3],l=[];for(let e=0;e<s.length;e+=1)l[e]=Yn(Fn(t,s,e));const c=t=>H(l[t],1,1,(()=>{l[t]=null}));return{c(){e=g("ul");for(let t=0;t<i.length;t+=1)i[t].c();n=h(),o=g("div");for(let t=0;t<l.length;t+=1)l[t].c();v(e,"class","nav nav-tabs margin-bottom dndTest mt-3"),v(e,"data-correctans",""),v(e,"data-userans",""),v(e,"data-defaultans",""),v(o,"class","tab-content dndTest"),v(o,"type","tab"),_(o,"position","relative")},m(t,a){u(t,e,a);for(let t=0;t<i.length;t+=1)i[t].m(e,null);u(t,n,a),u(t,o,a);for(let t=0;t<l.length;t+=1)l[t].m(o,null);r=!0},p(t,n){if(8&n){let o;for(a=t[3],o=0;o<a.length;o+=1){const r=Un(t,a,o);i[o]?i[o].p(r,n):(i[o]=Jn(r),i[o].c(),i[o].m(e,null))}for(;o<i.length;o+=1)i[o].d(1);i.length=a.length}if(15&n){let e;for(s=t[3],e=0;e<s.length;e+=1){const r=Fn(t,s,e);l[e]?(l[e].p(r,n),B(l[e],1)):(l[e]=Yn(r),l[e].c(),B(l[e],1),l[e].m(o,null))}for(R(),e=s.length;e<l.length;e+=1)c(e);q()}},i(t){if(!r){for(let t=0;t<s.length;t+=1)B(l[t]);r=!0}},o(t){l=l.filter(Boolean);for(let t=0;t<l.length;t+=1)H(l[t]);r=!1},d(t){t&&p(e),f(i,t),t&&p(n),t&&p(o),f(l,t)}}}function Jn(t){let e,n,o,r,a,i,s,l,d=t[6]._value+"";return{c(){e=g("li"),n=g("a"),o=m(d),s=h(),v(n,"href",r="#dnd"+t[6]._id),v(n,"data-bs-target",a="#dnd"+t[6]._id),v(n,"data-bs-toggle","tab"),v(n,"class",i="1"==t[6]._display?" active nav-link":" nav-link"),v(e,"key",l="tab_list_"+t[8]),v(e,"class","nav-item")},m(t,r){u(t,e,r),c(e,n),c(n,o),c(e,s)},p(t,e){8&e&&d!==(d=t[6]._value+"")&&w(o,d),8&e&&r!==(r="#dnd"+t[6]._id)&&v(n,"href",r),8&e&&a!==(a="#dnd"+t[6]._id)&&v(n,"data-bs-target",a),8&e&&i!==(i="1"==t[6]._display?" active nav-link":" nav-link")&&v(n,"class",i)},d(t){t&&p(e)}}}function Kn(t){let e,n,o,r,a;return{c(){e=g("img"),l(e.src,(window.inNative,n="https://s3.amazonaws.com/jigyaasa_content_static/"+t[6]._bgimg))||v(e,"src",n),v(e,"alt",o=t[6]._alt)},m(n,o){u(n,e,o),r||(a=y(e,"load",t[5]),r=!0)},p(t,r){8&r&&!l(e.src,(window.inNative,n="https://s3.amazonaws.com/jigyaasa_content_static/"+t[6]._bgimg))&&v(e,"src",n),8&r&&o!==(o=t[6]._alt)&&v(e,"alt",o)},d(t){t&&p(e),r=!1,a()}}}function Yn(t){let e,n,o,r,a,i,s,l,d,f,m,b,y,w,_,x,A,k,I,$,E,T,C,O,D,S,N=t[6]._bgimg&&Kn(t);return o=new ne({props:{modules:t[6].drag?t[6].drag:[],containerID:t[0]}}),a=new ce({props:{modules:t[6].drop?t[6].drop:[],containerID:t[0],uxml:t[1]}}),s=new Ce({props:{modules:t[6].radio?t[6].radio:[],containerID:t[0],uxml:t[1]}}),d=new _e({props:{modules:t[6].select?t[6].select:[],containerID:t[0],uxml:t[1]}}),m=new Kt({props:{modules:t[6].textbox?t[6].textbox:[],containerID:t[0],uxml:t[1]}}),y=new Fe({props:{modules:t[6].checkbox?t[6].checkbox:[],containerID:t[0],uxml:t[1]}}),_=new We({props:{modules:t[6].tabhead?t[6].tabhead:[],containerID:t[0]}}),A=new gn({props:{modules:t[6].hotspot?t[6].hotspot:[],containerID:t[0],uxml:t[1]}}),I=new En({props:{modules:t[6].menulist?t[6].menulist:[],containerID:t[0]}}),E=new Hn({props:{modules:t[6].tab?t[6].tab:[],checkImages:t[2],uxml:t[1]}}),{c(){e=g("div"),N&&N.c(),n=h(),F(o.$$.fragment),r=h(),F(a.$$.fragment),i=h(),F(s.$$.fragment),l=h(),F(d.$$.fragment),f=h(),F(m.$$.fragment),b=h(),F(y.$$.fragment),w=h(),F(_.$$.fragment),x=h(),F(A.$$.fragment),k=h(),F(I.$$.fragment),$=h(),F(E.$$.fragment),T=h(),v(e,"key",C="tab_preview_"+t[8]),v(e,"id",O="dnd"+t[6]._id),v(e,"role","tabpanel"),v(e,"type","tab"),v(e,"class",D="tab-pane "+("1"==t[6]._display?"active":"")),v(e,"data-correctans",""),v(e,"data-userans",""),v(e,"data-defaultans","")},m(t,p){u(t,e,p),N&&N.m(e,null),c(e,n),U(o,e,null),c(e,r),U(a,e,null),c(e,i),U(s,e,null),c(e,l),U(d,e,null),c(e,f),U(m,e,null),c(e,b),U(y,e,null),c(e,w),U(_,e,null),c(e,x),U(A,e,null),c(e,k),U(I,e,null),c(e,$),U(E,e,null),c(e,T),S=!0},p(t,r){t[6]._bgimg?N?N.p(t,r):(N=Kn(t),N.c(),N.m(e,n)):N&&(N.d(1),N=null);const i={};8&r&&(i.modules=t[6].drag?t[6].drag:[]),1&r&&(i.containerID=t[0]),o.$set(i);const l={};8&r&&(l.modules=t[6].drop?t[6].drop:[]),1&r&&(l.containerID=t[0]),2&r&&(l.uxml=t[1]),a.$set(l);const c={};8&r&&(c.modules=t[6].radio?t[6].radio:[]),1&r&&(c.containerID=t[0]),2&r&&(c.uxml=t[1]),s.$set(c);const u={};8&r&&(u.modules=t[6].select?t[6].select:[]),1&r&&(u.containerID=t[0]),2&r&&(u.uxml=t[1]),d.$set(u);const p={};8&r&&(p.modules=t[6].textbox?t[6].textbox:[]),1&r&&(p.containerID=t[0]),2&r&&(p.uxml=t[1]),m.$set(p);const f={};8&r&&(f.modules=t[6].checkbox?t[6].checkbox:[]),1&r&&(f.containerID=t[0]),2&r&&(f.uxml=t[1]),y.$set(f);const g={};8&r&&(g.modules=t[6].tabhead?t[6].tabhead:[]),1&r&&(g.containerID=t[0]),_.$set(g);const h={};8&r&&(h.modules=t[6].hotspot?t[6].hotspot:[]),1&r&&(h.containerID=t[0]),2&r&&(h.uxml=t[1]),A.$set(h);const b={};8&r&&(b.modules=t[6].menulist?t[6].menulist:[]),1&r&&(b.containerID=t[0]),I.$set(b);const w={};8&r&&(w.modules=t[6].tab?t[6].tab:[]),4&r&&(w.checkImages=t[2]),2&r&&(w.uxml=t[1]),E.$set(w),(!S||8&r&&O!==(O="dnd"+t[6]._id))&&v(e,"id",O),(!S||8&r&&D!==(D="tab-pane "+("1"==t[6]._display?"active":"")))&&v(e,"class",D)},i(t){S||(B(o.$$.fragment,t),B(a.$$.fragment,t),B(s.$$.fragment,t),B(d.$$.fragment,t),B(m.$$.fragment,t),B(y.$$.fragment,t),B(_.$$.fragment,t),B(A.$$.fragment,t),B(I.$$.fragment,t),B(E.$$.fragment,t),S=!0)},o(t){H(o.$$.fragment,t),H(a.$$.fragment,t),H(s.$$.fragment,t),H(d.$$.fragment,t),H(m.$$.fragment,t),H(y.$$.fragment,t),H(_.$$.fragment,t),H(A.$$.fragment,t),H(I.$$.fragment,t),H(E.$$.fragment,t),S=!1},d(t){t&&p(e),N&&N.d(),X(o),X(a),X(s),X(d),X(m),X(y),X(_),X(A),X(I),X(E)}}}function Wn(t){let e,n,o=t[3]&&t[3].length>0&&Xn(t);return{c(){e=g("div"),o&&o.c()},m(t,r){u(t,e,r),o&&o.m(e,null),n=!0},p(t,[n]){t[3]&&t[3].length>0?o?(o.p(t,n),8&n&&B(o,1)):(o=Xn(t),o.c(),B(o,1),o.m(e,null)):o&&(R(),H(o,1,1,(()=>{o=null})),q())},i(t){n||(B(o),n=!0)},o(t){H(o),n=!1},d(t){t&&p(e),o&&o.d()}}}function Vn(t,e,n){let{modules:o}=e,{containerID:r}=e,{uxml:a=""}=e,{checkImages:i}=e,s=o;return t.$$set=t=>{"modules"in t&&n(4,o=t.modules),"containerID"in t&&n(0,r=t.containerID),"uxml"in t&&n(1,a=t.uxml),"checkImages"in t&&n(2,i=t.checkImages)},t.$$.update=()=>{16&t.$$.dirty&&(o?0==Array.isArray(o)?(n(3,s=[]),n(3,s[0]=o,s)):n(3,s=o):n(3,s=[]))},[r,a,i,s,o,()=>{i(2)}]}class Qn extends Y{constructor(t){super(),K(this,t,Vn,Wn,a,{modules:4,containerID:0,uxml:1,checkImages:2})}}function Gn(t,e,n){const o=t.slice();return o[7]=e[n],o[9]=n,o}function Zn(t){let e,n,o=t[3],r=[];for(let e=0;e<o.length;e+=1)r[e]=eo(Gn(t,o,e));const a=t=>H(r[t],1,1,(()=>{r[t]=null}));return{c(){for(let t=0;t<r.length;t+=1)r[t].c();e=b()},m(t,o){for(let e=0;e<r.length;e+=1)r[e].m(t,o);u(t,e,o),n=!0},p(t,n){if(15&n){let i;for(o=t[3],i=0;i<o.length;i+=1){const a=Gn(t,o,i);r[i]?(r[i].p(a,n),B(r[i],1)):(r[i]=eo(a),r[i].c(),B(r[i],1),r[i].m(e.parentNode,e))}for(R(),i=o.length;i<r.length;i+=1)a(i);q()}},i(t){if(!n){for(let t=0;t<o.length;t+=1)B(r[t]);n=!0}},o(t){r=r.filter(Boolean);for(let t=0;t<r.length;t+=1)H(r[t]);n=!1},d(t){f(r,t),t&&p(e)}}}function to(t){let e,n,r,a,i;function s(...e){return t[6](t[7],...e)}return{c(){e=g("img"),l(e.src,n=window.inNative?"____s3.amazonaws.com__jigyaasa_content_static__"+t[7]._bgimg:"https://s3.amazonaws.com/jigyaasa_content_static/"+t[7]._bgimg)||v(e,"src",n),v(e,"alt",r=t[7]._alt)},m(n,o){u(n,e,o),a||(i=[y(e,"load",t[5]),y(e,"error",s)],a=!0)},p(o,a){t=o,8&a&&!l(e.src,n=window.inNative?"____s3.amazonaws.com__jigyaasa_content_static__"+t[7]._bgimg:"https://s3.amazonaws.com/jigyaasa_content_static/"+t[7]._bgimg)&&v(e,"src",n),8&a&&r!==(r=t[7]._alt)&&v(e,"alt",r)},d(t){t&&p(e),a=!1,o(i)}}}function eo(t){let e,n,o,r,a,i,s,l,d,f,m,b,y,w,x,A,k,I,$,E,T,C,O,D,S,N,j,L,M,P,z,R=t[7]._bgimg&&to(t);return o=new ne({props:{modules:t[7].drag?t[7].drag:[],containerID:t[0]}}),a=new ce({props:{modules:t[7].drop?t[7].drop:[],containerID:t[0],uxml:t[1]}}),s=new Ce({props:{modules:t[7].radio?t[7].radio:[],containerID:t[0],uxml:t[1]}}),d=new _e({props:{modules:t[7].select?t[7].select:[],containerID:t[0],uxml:t[1]}}),m=new Kt({props:{modules:t[7].textbox?t[7].textbox:[],containerID:t[0],uxml:t[1]}}),y=new Fe({props:{modules:t[7].checkbox?t[7].checkbox:[],containerID:t[0],uxml:t[1]}}),x=new We({props:{modules:t[7].tabhead?t[7].tabhead:[],containerID:t[0]}}),k=new gn({props:{modules:t[7].hotspot?t[7].hotspot:[],containerID:t[0],uxml:t[1]}}),$=new En({props:{modules:t[7].menulist?t[7].menulist:[],containerID:t[0]}}),T=new Le({props:{modules:t[7].multilinebox?t[7].multilinebox:[],containerID:t[0],uxml:t[1]}}),O=new Qn({props:{checkImages:t[2],modules:t[7].tab?t[7].tab:[],containerID:t[0]}}),S=new Nn({props:{modules:t[7].button?t[7].button:[],containerID:t[0]}}),j=new on({props:{modules:t[7].label?t[7].label:[],containerID:t[0]}}),{c(){e=g("div"),R&&R.c(),n=h(),F(o.$$.fragment),r=h(),F(a.$$.fragment),i=h(),F(s.$$.fragment),l=h(),F(d.$$.fragment),f=h(),F(m.$$.fragment),b=h(),F(y.$$.fragment),w=h(),F(x.$$.fragment),A=h(),F(k.$$.fragment),I=h(),F($.$$.fragment),E=h(),F(T.$$.fragment),C=h(),F(O.$$.fragment),D=h(),F(S.$$.fragment),N=h(),F(j.$$.fragment),L=h(),v(e,"key",M=t[9]),v(e,"id",P="dnd"+t[7]._id),v(e,"type","step"),v(e,"class","step dndTest"),_(e,"position","relative"),v(e,"data-ddisplay",""),v(e,"data-udisplay",""),v(e,"data-cdisplay","")},m(t,p){u(t,e,p),R&&R.m(e,null),c(e,n),U(o,e,null),c(e,r),U(a,e,null),c(e,i),U(s,e,null),c(e,l),U(d,e,null),c(e,f),U(m,e,null),c(e,b),U(y,e,null),c(e,w),U(x,e,null),c(e,A),U(k,e,null),c(e,I),U($,e,null),c(e,E),U(T,e,null),c(e,C),U(O,e,null),c(e,D),U(S,e,null),c(e,N),U(j,e,null),c(e,L),z=!0},p(t,r){t[7]._bgimg?R?R.p(t,r):(R=to(t),R.c(),R.m(e,n)):R&&(R.d(1),R=null);const i={};8&r&&(i.modules=t[7].drag?t[7].drag:[]),1&r&&(i.containerID=t[0]),o.$set(i);const l={};8&r&&(l.modules=t[7].drop?t[7].drop:[]),1&r&&(l.containerID=t[0]),2&r&&(l.uxml=t[1]),a.$set(l);const c={};8&r&&(c.modules=t[7].radio?t[7].radio:[]),1&r&&(c.containerID=t[0]),2&r&&(c.uxml=t[1]),s.$set(c);const u={};8&r&&(u.modules=t[7].select?t[7].select:[]),1&r&&(u.containerID=t[0]),2&r&&(u.uxml=t[1]),d.$set(u);const p={};8&r&&(p.modules=t[7].textbox?t[7].textbox:[]),1&r&&(p.containerID=t[0]),2&r&&(p.uxml=t[1]),m.$set(p);const f={};8&r&&(f.modules=t[7].checkbox?t[7].checkbox:[]),1&r&&(f.containerID=t[0]),2&r&&(f.uxml=t[1]),y.$set(f);const g={};8&r&&(g.modules=t[7].tabhead?t[7].tabhead:[]),1&r&&(g.containerID=t[0]),x.$set(g);const h={};8&r&&(h.modules=t[7].hotspot?t[7].hotspot:[]),1&r&&(h.containerID=t[0]),2&r&&(h.uxml=t[1]),k.$set(h);const b={};8&r&&(b.modules=t[7].menulist?t[7].menulist:[]),1&r&&(b.containerID=t[0]),$.$set(b);const w={};8&r&&(w.modules=t[7].multilinebox?t[7].multilinebox:[]),1&r&&(w.containerID=t[0]),2&r&&(w.uxml=t[1]),T.$set(w);const _={};4&r&&(_.checkImages=t[2]),8&r&&(_.modules=t[7].tab?t[7].tab:[]),1&r&&(_.containerID=t[0]),O.$set(_);const A={};8&r&&(A.modules=t[7].button?t[7].button:[]),1&r&&(A.containerID=t[0]),S.$set(A);const I={};8&r&&(I.modules=t[7].label?t[7].label:[]),1&r&&(I.containerID=t[0]),j.$set(I),(!z||8&r&&P!==(P="dnd"+t[7]._id))&&v(e,"id",P)},i(t){z||(B(o.$$.fragment,t),B(a.$$.fragment,t),B(s.$$.fragment,t),B(d.$$.fragment,t),B(m.$$.fragment,t),B(y.$$.fragment,t),B(x.$$.fragment,t),B(k.$$.fragment,t),B($.$$.fragment,t),B(T.$$.fragment,t),B(O.$$.fragment,t),B(S.$$.fragment,t),B(j.$$.fragment,t),z=!0)},o(t){H(o.$$.fragment,t),H(a.$$.fragment,t),H(s.$$.fragment,t),H(d.$$.fragment,t),H(m.$$.fragment,t),H(y.$$.fragment,t),H(x.$$.fragment,t),H(k.$$.fragment,t),H($.$$.fragment,t),H(T.$$.fragment,t),H(O.$$.fragment,t),H(S.$$.fragment,t),H(j.$$.fragment,t),z=!1},d(t){t&&p(e),R&&R.d(),X(o),X(a),X(s),X(d),X(m),X(y),X(x),X(k),X($),X(T),X(O),X(S),X(j)}}}function no(t){let e,n,o=t[3]&&t[3].length>0&&Zn(t);return{c(){e=g("div"),o&&o.c()},m(t,r){u(t,e,r),o&&o.m(e,null),n=!0},p(t,[n]){t[3]&&t[3].length>0?o?(o.p(t,n),8&n&&B(o,1)):(o=Zn(t),o.c(),B(o,1),o.m(e,null)):o&&(R(),H(o,1,1,(()=>{o=null})),q())},i(t){n||(B(o),n=!0)},o(t){H(o),n=!1},d(t){t&&p(e),o&&o.d()}}}function oo(t,e,n){let{modules:o}=e,{containerID:r}=e,{uxml:a=""}=e,{checkImages:i}=e,s=o;return t.$$set=t=>{"modules"in t&&n(4,o=t.modules),"containerID"in t&&n(0,r=t.containerID),"uxml"in t&&n(1,a=t.uxml),"checkImages"in t&&n(2,i=t.checkImages)},t.$$.update=()=>{16&t.$$.dirty&&(o?0==Array.isArray(o)?(n(3,s=[]),n(3,s[0]=o,s)):n(3,s=o):n(3,s=[]))},[r,a,i,s,o,()=>{i(2)},(t,e)=>{e.target.onerror=null,e.target.src="https://s3.amazonaws.com/jigyaasa_content_static/"+t._bgimg}]}class ro extends Y{constructor(t){super(),K(this,t,oo,no,a,{modules:4,containerID:0,uxml:1,checkImages:2})}}const ao="Correct Answer",io="Your Answer",so="Base||Steps:",lo="Sample Image";function co(t){d(t,"svelte-1n3xdnr","#dndsteps.svelte-1n3xdnr{text-align:center;border:1px solid #999999;background-color:#DDDDDD;width:100%}#sm_controller{margin-top:20px;display:none}.correct_incorrect_icon{z-index:9 !important}input.dnd_textbox{text-align:center;border-radius:4px;background-color:#fff;border:1px solid #ccc;border-radius:4px}")}function uo(t,e,n){const o=t.slice();return o[32]=e[n],o[34]=n,o}function po(t){let e,n=t[5],o=[];for(let e=0;e<n.length;e+=1)o[e]=fo(uo(t,n,e));return{c(){for(let t=0;t<o.length;t+=1)o[t].c();e=b()},m(t,n){for(let e=0;e<o.length;e+=1)o[e].m(t,n);u(t,e,n)},p(t,r){if(32&r[0]){let a;for(n=t[5],a=0;a<n.length;a+=1){const i=uo(t,n,a);o[a]?o[a].p(i,r):(o[a]=fo(i),o[a].c(),o[a].m(e.parentNode,e))}for(;a<o.length;a+=1)o[a].d(1);o.length=n.length}},d(t){f(o,t),t&&p(e)}}}function fo(t){let e,n,o,r,a,i,s,l,d,f="dnd"+t[32]._id;function b(){return t[20](t[32])}return{c(){e=g("span"),n=g("input"),r=h(),a=m(f),i=h(),v(n,"id",o="step_dnd"+t[32]._id),v(n,"type","radio"),v(n,"defaultvalue","1"),v(n,"name","rbs"),v(n,"class","baseradio dndradio svelte-1n3xdnr"),v(e,"key",s=t[34])},m(t,o){u(t,e,o),c(e,n),c(e,r),c(e,a),c(e,i),l||(d=y(n,"click",b),l=!0)},p(e,r){t=e,32&r[0]&&o!==(o="step_dnd"+t[32]._id)&&v(n,"id",o),32&r[0]&&f!==(f="dnd"+t[32]._id)&&w(a,f)},d(t){t&&p(e),l=!1,d()}}}function go(e){let n,o,r,a,i;return{c(){n=g("img"),v(n,"id","pre_sample_image"),l(n.src,o="https://s3.amazonaws.com/jigyaasa_content_static/bg_000PLn.png")||v(n,"src","https://s3.amazonaws.com/jigyaasa_content_static/bg_000PLn.png"),v(n,"alt",r=lo)},m(t,o){u(t,n,o),a||(i=y(n,"load",e[14]),a=!0)},p:t,d(t){t&&p(n),a=!1,i()}}}function mo(t){let e,n,r,a,i,s,c;return{c(){e=g("img"),v(e,"height",n=t[3]+"px"),v(e,"width",r=t[4]+"px"),l(e.src,a=window.inNative?"____s3.amazonaws.com__jigyaasa_content_static__"+t[2].replace(/\//g,"__"):"https://s3.amazonaws.com/jigyaasa_content_static/"+t[2])||v(e,"src",a),v(e,"class",t[8]),v(e,"alt",i=t[6]?t[6]:lo)},m(n,o){u(n,e,o),s||(c=[y(e,"error",t[21]),y(e,"load",t[22])],s=!0)},p(t,o){8&o[0]&&n!==(n=t[3]+"px")&&v(e,"height",n),16&o[0]&&r!==(r=t[4]+"px")&&v(e,"width",r),4&o[0]&&!l(e.src,a=window.inNative?"____s3.amazonaws.com__jigyaasa_content_static__"+t[2].replace(/\//g,"__"):"https://s3.amazonaws.com/jigyaasa_content_static/"+t[2])&&v(e,"src",a),256&o[0]&&v(e,"class",t[8]),64&o[0]&&i!==(i=t[6]?t[6]:lo)&&v(e,"alt",i)},d(t){t&&p(e),s=!1,o(c)}}}function ho(t){let e,n,o,r,a,i,s,l,c,d,f,g,m,y,v,w,_,x,A,k,I,$,E,T,C,O,D,S,N,j,L,M,P,z;e=new ne({props:{modules:t[10].data[0].drag,containerID:wo}}),o=new ne({props:{modules:t[10].data[1],containerID:wo}}),a=new ce({props:{modules:t[10].data[0].drop,containerID:wo,uxml:t[0]}}),s=new ce({props:{modules:t[10].data[2],containerID:wo,uxml:t[0]}}),c=new _e({props:{modules:t[10].data[0].select,containerID:wo,uxml:t[0]}}),f=new Kt({props:{modules:t[10].data[0].textbox,containerID:wo,uxml:t[0]}}),m=new Ce({props:{modules:t[10].data[0].radio,containerID:wo,uxml:t[0]}}),v=new Le({props:{modules:t[10].data[0].multilinebox,containerID:wo,uxml:t[0]}}),_=new Fe({props:{modules:t[10].data[0].checkbox,containerID:wo,uxml:t[0]}}),A=new We({props:{modules:t[10].data[0].tabhead,containerID:wo}}),I=new on({props:{modules:t[10].data[0].label,containerID:wo}}),E=new gn({props:{modules:t[10].data[0].hotspot,module_type:t[9],containerID:wo,uxml:t[0]}}),C=new En({props:{modules:t[10].data[0].menulist,containerID:wo}}),D=new Nn({props:{modules:t[10].data[0].button,containerID:wo}}),N=new ro({props:{modules:t[10].data[0].step,containerID:wo,checkImages:t[11],uxml:t[0]}}),L=new Qn({props:{modules:t[10].data[0].tab,containerID:wo,checkImages:t[11],uxml:t[0]}});let R=t[10].data[0].hotspot&&bo();return{c(){F(e.$$.fragment),n=h(),F(o.$$.fragment),r=h(),F(a.$$.fragment),i=h(),F(s.$$.fragment),l=h(),F(c.$$.fragment),d=h(),F(f.$$.fragment),g=h(),F(m.$$.fragment),y=h(),F(v.$$.fragment),w=h(),F(_.$$.fragment),x=h(),F(A.$$.fragment),k=h(),F(I.$$.fragment),$=h(),F(E.$$.fragment),T=h(),F(C.$$.fragment),O=h(),F(D.$$.fragment),S=h(),F(N.$$.fragment),j=h(),F(L.$$.fragment),M=h(),R&&R.c(),P=b()},m(t,p){U(e,t,p),u(t,n,p),U(o,t,p),u(t,r,p),U(a,t,p),u(t,i,p),U(s,t,p),u(t,l,p),U(c,t,p),u(t,d,p),U(f,t,p),u(t,g,p),U(m,t,p),u(t,y,p),U(v,t,p),u(t,w,p),U(_,t,p),u(t,x,p),U(A,t,p),u(t,k,p),U(I,t,p),u(t,$,p),U(E,t,p),u(t,T,p),U(C,t,p),u(t,O,p),U(D,t,p),u(t,S,p),U(N,t,p),u(t,j,p),U(L,t,p),u(t,M,p),R&&R.m(t,p),u(t,P,p),z=!0},p(t,n){const r={};1024&n[0]&&(r.modules=t[10].data[0].drag),e.$set(r);const i={};1024&n[0]&&(i.modules=t[10].data[1]),o.$set(i);const l={};1024&n[0]&&(l.modules=t[10].data[0].drop),1&n[0]&&(l.uxml=t[0]),a.$set(l);const d={};1024&n[0]&&(d.modules=t[10].data[2]),1&n[0]&&(d.uxml=t[0]),s.$set(d);const u={};1024&n[0]&&(u.modules=t[10].data[0].select),1&n[0]&&(u.uxml=t[0]),c.$set(u);const p={};1024&n[0]&&(p.modules=t[10].data[0].textbox),1&n[0]&&(p.uxml=t[0]),f.$set(p);const g={};1024&n[0]&&(g.modules=t[10].data[0].radio),1&n[0]&&(g.uxml=t[0]),m.$set(g);const h={};1024&n[0]&&(h.modules=t[10].data[0].multilinebox),1&n[0]&&(h.uxml=t[0]),v.$set(h);const b={};1024&n[0]&&(b.modules=t[10].data[0].checkbox),1&n[0]&&(b.uxml=t[0]),_.$set(b);const y={};1024&n[0]&&(y.modules=t[10].data[0].tabhead),A.$set(y);const w={};1024&n[0]&&(w.modules=t[10].data[0].label),I.$set(w);const x={};1024&n[0]&&(x.modules=t[10].data[0].hotspot),512&n[0]&&(x.module_type=t[9]),1&n[0]&&(x.uxml=t[0]),E.$set(x);const k={};1024&n[0]&&(k.modules=t[10].data[0].menulist),C.$set(k);const $={};1024&n[0]&&($.modules=t[10].data[0].button),D.$set($);const T={};1024&n[0]&&(T.modules=t[10].data[0].step),1&n[0]&&(T.uxml=t[0]),N.$set(T);const O={};1024&n[0]&&(O.modules=t[10].data[0].tab),1&n[0]&&(O.uxml=t[0]),L.$set(O),t[10].data[0].hotspot?R||(R=bo(),R.c(),R.m(P.parentNode,P)):R&&(R.d(1),R=null)},i(t){z||(B(e.$$.fragment,t),B(o.$$.fragment,t),B(a.$$.fragment,t),B(s.$$.fragment,t),B(c.$$.fragment,t),B(f.$$.fragment,t),B(m.$$.fragment,t),B(v.$$.fragment,t),B(_.$$.fragment,t),B(A.$$.fragment,t),B(I.$$.fragment,t),B(E.$$.fragment,t),B(C.$$.fragment,t),B(D.$$.fragment,t),B(N.$$.fragment,t),B(L.$$.fragment,t),z=!0)},o(t){H(e.$$.fragment,t),H(o.$$.fragment,t),H(a.$$.fragment,t),H(s.$$.fragment,t),H(c.$$.fragment,t),H(f.$$.fragment,t),H(m.$$.fragment,t),H(v.$$.fragment,t),H(_.$$.fragment,t),H(A.$$.fragment,t),H(I.$$.fragment,t),H(E.$$.fragment,t),H(C.$$.fragment,t),H(D.$$.fragment,t),H(N.$$.fragment,t),H(L.$$.fragment,t),z=!1},d(t){X(e,t),t&&p(n),X(o,t),t&&p(r),X(a,t),t&&p(i),X(s,t),t&&p(l),X(c,t),t&&p(d),X(f,t),t&&p(g),X(m,t),t&&p(y),X(v,t),t&&p(w),X(_,t),t&&p(x),X(A,t),t&&p(k),X(I,t),t&&p($),X(E,t),t&&p(T),X(C,t),t&&p(O),X(D,t),t&&p(S),X(N,t),t&&p(j),X(L,t),t&&p(M),R&&R.d(t),t&&p(P)}}}function bo(t){let e,n;return{c(){e=g("img"),v(e,"class","targetImg"),v(e,"tabindex","0"),v(e,"alt","target_img"),l(e.src,n="https://s3.amazonaws.com/jigyaasa_assets/items/target.png")||v(e,"src","https://s3.amazonaws.com/jigyaasa_assets/items/target.png"),_(e,"display","none")},m(t,n){u(t,e,n)},d(t){t&&p(e)}}}function yo(t){let e,n,o,r,a,i,s,l,d,f,b,w,x,A,k,I,$,E,T,C,O=so+"";n=new at({}),n.$on("setReview",t[12]),n.$on("unsetReview",t[13]);let D=t[5]&&t[5].length&&po(t);function S(t,e){return t[2]?mo:go}let N=S(t),j=N(t),L=t[10].data&&t[1]&&ho(t);return{c(){e=g("div"),F(n.$$.fragment),o=h(),r=g("div"),a=g("input"),i=h(),s=m(O),l=h(),D&&D.c(),d=h(),f=g("center"),b=g("div"),w=g("button"),w.textContent=""+ao,x=h(),A=g("button"),A.textContent=""+io,k=h(),I=g("div"),j.c(),$=h(),L&&L.c(),v(a,"id","base"),v(a,"type","radio"),v(a,"defaultvalue","1"),v(a,"defaultchecked",""),v(a,"name","rbs"),v(a,"class","baseradio dndradio"),v(r,"id","dndsteps"),v(r,"class","h svelte-1n3xdnr"),v(w,"type","button"),v(w,"class","btn btn-light correct-ans svelte_items_testing"),v(w,"id","reviewCorrectAns"),v(A,"type","button"),v(A,"class","btn active your-ans btn-light svelte_items_testing"),v(A,"id","reviewUserAns"),_(A,"margin-left","-4px"),v(b,"class","btn-group mb-xl clearfix review h mb-3"),v(b,"id","sm_controller"),v(I,"id",wo),v(I,"zoom",""),v(I,"totalcorrectans",t[7]),v(I,"class","container_div svelte-1n3xdnr"),v(I,"data-item","svelte_items_testing")},m(p,g){u(p,e,g),U(n,e,null),c(e,o),c(e,r),c(r,a),c(r,i),c(r,s),c(r,l),D&&D.m(r,null),c(e,d),c(e,f),c(f,b),c(b,w),c(b,x),c(b,A),c(f,k),c(f,I),j.m(I,null),c(I,$),L&&L.m(I,null),E=!0,T||(C=y(a,"click",t[19]),T=!0)},p(t,e){t[5]&&t[5].length?D?D.p(t,e):(D=po(t),D.c(),D.m(r,null)):D&&(D.d(1),D=null),N===(N=S(t))&&j?j.p(t,e):(j.d(1),j=N(t),j&&(j.c(),j.m(I,$))),t[10].data&&t[1]?L?(L.p(t,e),1026&e[0]&&B(L,1)):(L=ho(t),L.c(),B(L,1),L.m(I,null)):L&&(R(),H(L,1,1,(()=>{L=null})),q()),(!E||128&e[0])&&v(I,"totalcorrectans",t[7])},i(t){E||(B(n.$$.fragment,t),B(L),E=!0)},o(t){H(n.$$.fragment,t),H(L),E=!1},d(t){t&&p(e),X(n),D&&D.d(),j.d(),L&&L.d(),T=!1,C()}}}!function(t,e){void 0===e&&(e={});var n=e.insertAt;if(t&&"undefined"!=typeof document){var o=document.head||document.getElementsByTagName("head")[0],r=document.createElement("style");r.type="text/css","top"===n&&o.firstChild?o.insertBefore(r,o.firstChild):o.appendChild(r),r.styleSheet?r.styleSheet.cssText=t:r.appendChild(document.createTextNode(t))}}("@-webkit-keyframes rotate{to{-webkit-transform:rotate(360deg)}}[id^=dndmain]{position:relative;margin:0;padding:0;min-height:30px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;border-radius:2px;font-family:Arial,\"Helvetica Neue\",Helvetica,sans-serif;font-size:14px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}[id^=dndmain]:after,[id^=dndmain]:before{display:table;line-height:0;content:\"\"}[id^=dndmain] .nav-pills{margin-top:10px}[id^=dndmain]:after{clear:both}[id^=dndmain] :after,[id^=dndmain] :before,[id^=dndmain] :not(.ttsimg_container):not(.tts_img){-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}#steps{text-align:center;border:1px solid #999;background-color:#ddd;width:100%;margin-bottom:5px}[id^=dndmain]>img{max-width:none;width:auto!important;height:auto!important}[id^=dndmain] .drag-resize,[id^=dndmain] .only-dragable{position:absolute;left:90px;top:50px;text-align:center;line-height:20px;background-size:100% 100%;padding:0}.dragable,.dropable{padding:2px;display:inline-table}.dndlabel p,.dragable p,.dropable p{display:table-cell;vertical-align:middle;text-align:center}[id^=dndmain] .dragable{cursor:move}[id^=dndmain] .clone{z-index:0!important;border:0!important}[class*=dnd_]{height:99%!important;width:96%!important;resize:none;font-size:12px;color:#000}.dndarea.cursor_move,.dndtabhead.cursor_move,.hotspot_auth,.hotspot_auth .hs_item{opacity:1;background-color:rgba(250,250,250,.6);box-shadow:0 0 1px #000 inset}.cursor_move:hover{background-color:rgba(240,240,240,.6);box-shadow:0 0 1px #000 inset;cursor:move}.cursor_move:hover .elem{display:none}.elemActive{background-color:rgba(173,216,230,.6)!important;opacity:1!important}.detail{position:absolute;display:block;z-index:1001;max-width:150px;border:1px solid #b2b2b2;border-radius:3px;padding:5px;background-color:#c3c3c3;top:0;left:0;color:#fff}.detail .close_detail{position:absolute;cursor:pointer;top:-10px;right:-10px;font-size:25px;font-weight:bolder;background-color:rgba(0,0,0,.6);border:4px double;border-radius:15px;height:22px;width:22px;text-align:center}.dndlabel{font-size:18px;color:#000;text-align:center;background-size:100% 100%;display:inline-table;line-height:20px}.hotspot .hs_item{border:2px solid red}.dndcheckbox,.dndradio{width:14px!important;height:14px!important;margin-bottom:5px!important}.dnd_select{margin:0!important;padding:0!important}.dnd_img,.dnd_select{overflow:hidden}.dnd_textarea,.dnd_textbox{margin:0!important;padding:0!important}.dnd_textbox{overflow:hidden}.dnd_textarea{border:1px solid gray!important;-webkit-border-radius:3px!important;-moz-border-radius:3px!important;border-radius:3px!important;padding: 2px!important;}.dnd_button{-webkit-border-radius:2px!important;-moz-border-radius:2px!important;-ms-border-radius:2px!important;border-radius:2px!important;outline:0;background:#f5f5f5;background:-moz-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#f5f5f5),color-stop(100%,#ddd));background:-webkit-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-o-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-ms-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:linear-gradient(to bottom,#f5f5f5 0,#ddd 100%);border:1px solid #a4a4a4;padding:0!important;overflow:hidden}.dnd_button:hover{background:#ddd;background:-moz-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#ddd),color-stop(72%,#f5f5f5));background:-webkit-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-o-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-ms-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:linear-gradient(to bottom,#ddd 0,#f5f5f5 72%)}.dnd_button:disabled,.dnd_button:disabled:hover{background:#efefef;color:#816d95;border:1px solid #d9d9d9;cursor:not-allowed}[id^=dndmain] .off,[id^=dndmain] .on{z-index:1000;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;border-radius:2px}.dndtabhead,[id^=dndmain] .off{background:0 0;background:#000;opacity:0;cursor:pointer}[id^=dndmain] .off:hover{background-color:rgba(173,222,252,.3);border:1px solid #addefc;opacity:1!important}[id^=dndmain] .on{background-color:rgba(113,183,250,.6);border:1px solid #71b7fa}.zoom1{-webkit-transform:scale(.25);-moz-transform:scale(.25);-o-transform:scale(.25);transform:scale(.25)}.zoom1,.zoom2,.zoom3,.zoom4,.zoom5,.zoom6,.zoom7{-webkit-transform-origin:top left;-moz-transform-origin:top left;-o-transform-origin:top left;transform-origin:top left}.zoom2{-webkit-transform:scale(.5);-moz-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.zoom3{-webkit-transform:scale(.75);-moz-transform:scale(.75);-o-transform:scale(.75);transform:scale(.75)}.zoom4{-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.zoom5{-webkit-transform:scale(2);-moz-transform:scale(2);-o-transform:scale(2);transform:scale(2)}.zoom6{-webkit-transform:scale(3);-moz-transform:scale(3);-o-transform:scale(3);transform:scale(3)}.zoom7{-webkit-transform:scale(4);-moz-transform:scale(4);-o-transform:scale(4);transform:scale(4)}.c_zoom,.c_zoom input{width:70px}.c_zoom{position:absolute;top:0;right:0;z-index:1001}.zoom_container{position:relative;overflow:auto;height:100%;width:100%}.record{cursor:pointer}.tools{position:absolute;right:1px;top:2px;z-index:25}.tools .labs-btn{padding:2px 5px}.cursor_move .tools{top:-28px;right:0}.events{height:200px;overflow-x:hidden;border:1px solid #a9a9a9;-ms-border-bottom-left-radius:10px;-ms-border-top-left-radius:10px;-moz-border-bottom-left-radius:10px;-moz-border-top-left-radius:10px;border-bottom-left-radius:10px;border-top-left-radius:10px}.event-input input{position:relative;border-right:none;border-top-right-radius:0;border-bottom-right-radius:0;z-index:1;width:90%}.event-input select{position:relative;top:-34px;z-index:0;width:265px}.drop-hover{border:1px dashed red!important;box-shadow:0 0 0 2px #ff0 inset;outline:1px solid #00f}.custRad{display:none}.customRad{width:20px;height:20px;display:block;line-height:22px;text-align:center;color:#000;font-size:40pt;cursor:pointer;position:relative}.custRad:checked+.customRad:before{opacity:1}.customRad:before{position:absolute;top:1px;left:1px;height:18px;width:18px;content:'';opacity:0}.dndCenter .dnd_textbox{text-align:center}.falseitemColor:before,.tureitemColor:before{content:'\\2713';color:#fff;font-size:15px;line-height:18px}.tureitemColor:before{background:green}.falseitemColor:before{background:red}.tureitemColor{background:#aeeca7}.falseitemColor{background:#e28e96}.tureitemColor:hover{background:#6fcf64}.falseitemColor:hover{background:#f44a37}input.dnd_textbox::-webkit-input-placeholder{text-align:center}input.dnd_textbox:-moz-placeholder{text-align:center}input.dnd_textbox::-moz-placeholder{text-align:center}input.dnd_textbox:-ms-input-placeholder{text-align:center}.selmatch{border:solid 2px red!important;border-radius:2px!important}.copiedclr{background-color:#ccc!important}.bla [id^=dndmain] .dragable:focus,.bla [id^=dndmain] .dropable:focus{box-shadow:inset 0 0 0 1px transparent,inset 0 0 0 1px #fff,inset 0 0 0 2px #fff;outline:0}.dndtabhead:focus,.menu:focus{outline:-webkit-focus-ring-color auto 5px;opacity:1;background:0 0}.heading_arial,.heading_calibri,.heading_cambria,.heading_georgia,.heading_roman,.heading_verdana{text-align:center;font-size:21px;font-weight:700}.content_arial,.content_calibri,.content_cambria,.content_georgia,.content_roman,.content_verdana{text-align:left;font-size:16px;line-height:1.2!important}.content_arial p,.content_calibri p,.content_cambria p,.content_georgia p,.content_roman p,.content_verdana p{text-align:left}.content_arial,.heading_arial{font-family:Arial}.content_georgia,.heading_georgia{font-family:Georgia}.content_cambria,.heading_cambria{font-family:Cambria}.content_calibri,.heading_calibri{font-family:Calibri}.content_verdana,.heading_verdana{font-family:Verdana}.content_roman,.heading_roman{font-family:\"Times New Roman\"}.ui-radio.ui-state-disabled{opacity:1}.sql_terminal{background-color:#000;border:0!important;color:silver;box-shadow:none;font-family:Courier;font-size:13px;font-weight:800;outline:0}[id^=dndmain]>.img-bordered{margin-top:1px}.container_div{position:relative;display:block}.baseradio{vertical-align:middle;margin-bottom:3px!important;margin:0 2px}.icomoon-cancel-circles,.icomoon-checkmark-circles{display:inline-block;position:relative;background-size:100%!important}.icomoon-checkmark-circles{height:16px!important;width:17px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAVCAYAAABc6S4mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEVSURBVEhL1ZWvDoJQFId/mozMN9DNYLdAlCbN6qNoMOBD8ALwBBqpBHwCC9WEBIOzIAcPyB+vXlCD38bYvYzv2zgMOnECfkiXzz/je4Ernyt8J3ANYFtD6I6HC29lfB5I5RoWYQD3MIdRiXwWyOVH3jjWIu0DNXnGANPRGD1ePQ8IBpYjlKswjR2WE4XXtcAFnqNjaNkIRJEGcqIQILmB+cFFEC6gPYs0lBMceMjzcVUjLeQEB3oYj6bJeMrkkXM7OVH6FkX7DWbbFTxev+a9nCgNWZkssTPM5NZ3yMmJylskE5GXE7UAIY40k6fQDEScfDNW14iRHmps+ie+Is/LAHGPtJMTUn+0KIyg9Bs8lgL//ssEblMER6y4OqEyAAAAAElFTkSuQmCC) no-repeat 80%}.icomoon-cancel-circles{height:14px!important;width:18px;right:2px!important;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAUCAYAAACXtf2DAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEoSURBVEhLtZXBbQIxEEUHlANIW0BaSAfLMS2QErjSQJQjlEALySEpAZEjJeQYSiBSrpHMt/ZbDOvx2Jc8abT2zPC/zI61kwDkH5nymfOxFtl8clPjB71P+M2Je0U8Qcb7Kh5riOcDkyXO6Fmw/z6Et2/mB3IDLV410eIpbk2Q0XyF0OtmFZmJJc7od+zBls8rv8cGE098Cw22AWQMXJPXZvEIsgU8EysM8QgqDq0mBfEIqhVqJo54pHzREt2DyOOCG4NY67i2oFEBZ1p0OJcR1RKN4ikKJqhYeHO+LL8TwwTZMQ2XqOkyDiCjab+hrSajKZqJzLnU9FuR/cvttHSYnv0RNe41cyVCI8XoFJU5z07i/0UJmtTEE8nEeMn+J/MPcTcsq5i9IheZ7IOr0kv1ugAAAABJRU5ErkJggg==) no-repeat}.dnd_select{width:100%!important}.native.falseitemColor:before,.native.tureitemColor:before{content:'\\\\25CF'!important}.native.customRad:before{top:0!important}.native.radio_sim{border-radius:50%!important;left:2.5px;position:relative}#errmsg.show{display:block!important}.loading{height:0;width:0;padding:15px;border:6px solid #ccc;border-right-color:#888;border-radius:22px;-webkit-animation:rotate 1s infinite linear;position:absolute;left:50%;top:50%}.spinner{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.26);z-index:99}.tabTools{position:relative!important;top:-68px!important}.p-sm{padding:3px}.context{position:absolute;top:0;left:0;min-width:180px;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:#000;background:#f5f5f5;font-size:9pt;border:1px solid #333;box-shadow:4px 4px 3px -1px rgba(0,0,0,.5);padding:3px 0;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1061}.context .item{padding:4px 19px;cursor:default;color:inherit;text-align:left}.context .item:hover{background:#e3e3e3!important}.context .item:hover .hotkey{color:#000!important}.context .disabled,.context .disabled:hover .hotkey{color:#878b90!important}.context .disabled:hover{background:inherit!important}.context .separator{margin:4px 0;height:0;padding:0;border-top:1px solid #b3b3b3}.hotkey{color:#878b90;float:right}.resizer{width:15px;height:15px;position:absolute;right:0;bottom:0;cursor:se-resize}.img-bordered{border:4px solid #fff;outline:1px solid #ddd;box-shadow:2px 3px 5px #939393;-webkit-box-shadow:2px 3px 5px #939393;-moz-box-shadow:2px 3px 5px #939393;-ms-box-shadow:2px 3px 5px #939393}");let vo="img-bordered",wo="dndmainPreview";function _o(e,n,o){let{xml:r}=n,{uxml:i}=n,{isReview:s}=n,{showAns:l}=n,{editorState:c}=n,d="",u=0,p="",f="",g="",m=[],h="",b=0,y="",v=1,w={},_=function(e,n=t){let o;const r=new Set;function i(t){if(a(e,t)&&(e=t,o)){const t=!it.length;for(const t of r)t[1](),it.push(t,e);if(t){for(let t=0;t<it.length;t+=2)it[t][0](it[t+1]);it.length=0}}}return{set:i,update:function(t){i(t(e))},subscribe:function(a,s=t){const l=[a,s];return r.add(l),1===r.size&&(o=n(i)||t),a(e),()=>{r.delete(l),0===r.size&&(o(),o=null)}}}}({xml:"",check:"checked",totalcorrectans:"",review:!1,data:[]});_.subscribe((t=>{o(10,w=t)}));function x(){setTimeout((function(){let t=qt.checkAns("#"+wo);"undefined"!=typeof is_sm&&tt.showmsg(t.ans?"Correct":"Incorrect",3e3),c&&l(t.ans?"Correct":"Incorrect"),function(t){t&&(tt.select("#answer","checked",!!t.ans),tt.select("#special_module_user_xml","value",t.uXml),"object"==typeof window&&(window.ISSPECIALMODULEUSERXMLCHANGE=1,"undefined"!=typeof calculatePoint&&calculatePoint(t.correctPoints||1,t.ansPoint||t.ans)),globalThis.saveUserAnswerInSapper?.(t))}(t)}),100)}function I(){let t=setTimeout((function(){if(qt.readyThis("#"+wo),qt.showansdrag("#"+wo,"u"),s)x(),qt.modeOn(1),qt.showansdrag("#"+wo,"u",1),tt.selectAll("#sm_controller button","removeClass","active"),tt.addClass("#sm_controller .your-ans","active");else try{qt.modeOn(0),void 0===l&&x()}catch(t){console.warn({err:t})}clearTimeout(t)}),500)}function $(t){let e=document.querySelectorAll("#"+wo+" img");e.length>0&&e.forEach((function(t){if(t.complete){let e=t.clientHeight>t.naturalHeight?t.clientHeight:t.naturalHeight,n=t.clientWidth>t.naturalWidth?t.clientWidth:t.naturalWidth;(0!=Number(n)||0!=Number(e)||"undefined"!=typeof from_myproject&&1==from_myproject)&&tt.setCss("#"+wo,{height:(f&&f>=e?f:e)+"px",width:(g&&g>=n?g:n)+"px"})}})),1!=t&&2!=t||(o(1,u=1),window.inNative&&window.postMessage("height___"+tt.select("#"+wo+">img").naturalHeight),I())}!function(t){A().$$.on_mount.push(t)}((async function(){window.inNative&&"function"==typeof window.getHeight&&window.getHeight&&window.getHeight(),r&&tt.setCss(document.getElementById("dndsteps"),{display:"none"}),tt.listen(document,"click",".record",(function(t){t.classList.contains("lab_disable")||t.setAttribute("clicked",1)})),tt.listen("body","click","#reviewUserAns",(function(){tt.selectAll("#sm_controller button","removeClass","active"),tt.addClass("#sm_controller .your-ans","active"),qt.showansdrag("#"+wo,"u",1)})),tt.listen("body","click","#reviewCorrectAns",(function(){tt.selectAll("#sm_controller button","removeClass","active"),tt.addClass("#sm_controller .correct-ans","active"),qt.showansdrag("#"+wo,"c",1)})),tt.listen(document,"click","#"+wo,(function(){x()})),tt.listen(document,"keyup","#"+wo,(function(){x()})),tt.listen(document,"change","#"+wo,(function(){x()})),tt.listen(document,"mouseup","#"+wo,(function(){x()})),tt.bind("body","contextmenu",(function(t){t.preventDefault()}))})),k((async()=>{w.xml!=r&&function(t){let e=Z(t);(function(t){try{d=t,o(2,p=t.smxml._bgimg),o(9,v=t.smxml._type||1),o(6,h=t.smxml._alt?t.smxml._alt:""),o(3,f=t.smxml._height),o(4,g=t.smxml._width),o(8,y=1==t.smxml._borderrequired?vo:""),o(5,m=t.smxml.step),0==Array.isArray(m)&&m&&(o(5,m=[]),o(5,m[0]=d.smxml.step,m))}catch(t){console.warn({error:t,fun:"parseXMLPreview",file:"DragNDropPreview.svelte"})}})(e),o(7,b=function(t){var e=t?t.smxml:null,n=0;if(e){for(let t in e)if(0==Array.isArray(e[t])){let n=[];n.push(e[t]),e[t]=n}if(e.drop&&(n+=e.drop.length),e.select&&(n+=e.select.length),e.textbox&&(n+=e.textbox.length),e.checkbox&&(n+=e.checkbox.length),e.radio&&e.radio.map((function(t){1==parseInt(t._correctans)&&(n+=1)})),e.hotspot&&e.hotspot.map((function(t){let e=JSON.parse(t.__text?t.__text:t.__cdata);n+=Object.keys(e).length})),e.jscript)try{eval.call(window,e.jscript[0])}catch(t){console.warn(t)}return n}}(e)),_.update((n=>(n.xml=t,n.totalcorrectans=b,n.data=function(t){var e=t?t.smxml:null,n=[],o=[];if(e)return e.div&&e.div.map((function(t,e){if(""==(t=function(t){let e={};for(let n in t)e[n.toLowerCase()]=t[n];return e}(t))._anskey||null==t._anskey)t._key.indexOf("key")<=-1&&(t._id="ID"+t._key,t._key="key"+t._key),n.push(t);else{let e=t._id.split("ID");if(t._key.indexOf("key")<=-1)t._id="ID"+t._key,t._key="key"+t._key,t._anskey="ID"+t._anskey;else{let n=t._key.split("key");if(e[1]==n[1]){let e=t._anskey.split("key")[1];e&&(t._anskey="ID"+e)}else parseInt(e[1])!=parseInt(n[1])&&t._anskey.indexOf("ID")<=-1&&(t._anskey="ID"+n[1])}o.push(t)}})),[e,n,o]}(e),n))),$(),I()}(r),w.review!=s&&(_.update((t=>(t.review=s,t))),s?(x(),qt.modeOn(1),qt.showansdrag("#"+wo,"u",1),tt.selectAll("#sm_controller button","removeClass","active"),tt.addClass("#sm_controller .your-ans","active")):qt.modeOn(0))}));return e.$$set=t=>{"xml"in t&&o(16,r=t.xml),"uxml"in t&&o(0,i=t.uxml),"isReview"in t&&o(15,s=t.isReview),"showAns"in t&&o(17,l=t.showAns),"editorState"in t&&o(18,c=t.editorState)},[i,u,p,f,g,m,h,b,y,v,w,$,function(){x(),o(15,s=!0),qt.modeOn(1)},function(){o(15,s=!1),qt.modeOn(0)},function(){tt.select("#pre_sample_image").remove(),o(1,u=1)},s,r,l,c,()=>qt.setStep("base"),t=>qt.setStep("dnd"+t._id),t=>{t.target.onerror=null,t.target.src="https://s3.amazonaws.com/jigyaasa_content_static/"+p},()=>{$(1)}]}return new class extends Y{constructor(t){super(),K(this,t,_o,yo,a,{xml:16,uxml:0,isReview:15,showAns:17,editorState:18},co,[-1,-1])}}({target:document.getElementById(window.moduleContainer)||document.body,props:{xml:window.QXML||'<smxml type="1" name="DragNDrop" bgimg="lab-26_0007C9_000CsS.png" height="495" width="607"><drag id="ID0" top="442" left="307" width="120" height="25" value="Port operational"></drag><drag id="ID1" top="442" left="454" width="120" height="25" value="Layer 2 problem"></drag><drag id="ID2" top="442" left="10" width="120" height="25" value="Layer 1 problem"></drag><drag id="ID3" top="442" left="160" width="120" height="25" value="Port disabled"></drag><drop id="ID4" top="76" left="414" width="120" height="25" anskey="ID0" value="Drop Here"></drop><drop id="ID5" top="173" left="414" width="120" height="25" anskey="ID1" value="Drop Here"></drop><drop id="ID6" top="272" left="414" width="120" height="25" anskey="ID2" value="Drop Here"></drop><drop id="ID7" top="366" left="414" width="120" height="25" anskey="ID3" value="Drop Here"></drop></smxml>',uxml:window.uaXML,ansStatus:0,isReview:window.isReviewMode||!1}})}();
+
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+    function afterUpdate(fn) {
+        get_current_component().$$.after_update.push(fn);
+    }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    let flushing = false;
+    const seen_callbacks = new Set();
+    function flush() {
+        if (flushing)
+            return;
+        flushing = true;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            for (let i = 0; i < dirty_components.length; i += 1) {
+                const component = dirty_components[i];
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        flushing = false;
+        seen_callbacks.clear();
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+    }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor, customElement) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = on_mount.map(run).filter(is_function);
+                if (on_destroy) {
+                    on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            on_disconnect: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor, options.customElement);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.34.0' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev('SvelteDOMInsert', { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev('SvelteDOMRemove', { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
+        else
+            dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.wholeText === data)
+            return;
+        dispatch_dev('SvelteDOMSetData', { node: text, data });
+        text.data = data;
+    }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
+    function validate_slots(name, slot, keys) {
+        for (const slot_key of Object.keys(slot)) {
+            if (!~keys.indexOf(slot_key)) {
+                console.warn(`<${name}> received an unexpected slot "${slot_key}".`);
+            }
+        }
+    }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error("'target' is a required option");
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn('Component was already destroyed'); // eslint-disable-line no-console
+            };
+        }
+        $capture_state() { }
+        $inject_state() { }
+    }
+
+    /**
+     * File: tagsView.js
+     * Description: Create tag view on input box.
+     * Author: Pradeep Yadav
+     * className: 'tagin'
+     * @param {selected elements using class or id} el 
+     * @param {separator|duplicate|transform|placeholder} option 
+     */
+    function TagView(el, option = {}) {
+        const classElement = 'tagin';
+        const classWrapper = 'tagin-wrapper';
+        const classTag = 'tagin-tag';
+        const classRemove = 'tagin-tag-remove';
+        const classInput = 'tagin-input';
+        const classInputHidden = 'tagin-input-hidden';
+        const defaultSeparator = ',';
+        const defaultDuplicate = 'false';
+        const defaultTransform = input => input;
+        const defaultPlaceholder = '';
+        const separator = el.dataset.separator || option.separator || defaultSeparator;
+        const duplicate = el.dataset.duplicate || option.duplicate || defaultDuplicate;
+        const transform = (0, eval)(el.dataset.transform) || option.transform || defaultTransform;
+        const placeholder = el.dataset.placeholder || option.placeholder || defaultPlaceholder;
+      
+        const templateTag = value => `<span class="${classTag}">${value}<span class="${classRemove}"></span></span>`;
+      
+        const getValue = () => el.value;
+        const getValues = () => getValue().split(separator)
+      
+        // Create
+        ; (function () {
+          const className = classWrapper + ' ' + el.className.replace(classElement, '').trim();
+          const tags = getValue().trim() === '' ? '' : getValues().map(templateTag).join('');
+          const template = `<div class="${className}">${tags}<input type="text" class="${classInput}" placeholder="${placeholder}"></div>`;
+          el.insertAdjacentHTML('afterend', template); // insert template after element
+        })();
+      
+        const wrapper = el.nextElementSibling;
+        const input = wrapper.getElementsByClassName(classInput)[0];
+        const getTags = () => [...wrapper.getElementsByClassName(classTag)].map(tag => tag.textContent);
+        const getTag = () => getTags().join(separator);
+      
+        const updateValue = () => { el.value = getTag(); el.dispatchEvent(new Event('change')); };
+      
+        // Focus to input
+        wrapper.addEventListener('click', () => input.focus());
+      
+        // Toggle focus class
+        input.addEventListener('focus', () => wrapper.classList.add('focus'));
+        input.addEventListener('blur', () => wrapper.classList.remove('focus'));
+      
+        // Remove by click
+        document.addEventListener('click', e => {
+          if (e.target.closest('.' + classRemove)) {
+            e.target.closest('.' + classRemove).parentNode.remove();
+            updateValue();
+          }
+        });
+      
+        // Remove with backspace
+        input.addEventListener('keydown', e => {
+          if (input.value === '' && e.keyCode === 8 && wrapper.getElementsByClassName(classTag).length) {
+            wrapper.querySelector('.' + classTag + ':last-of-type').remove();
+            updateValue();
+          }
+        });
+      
+        // Adding tag
+        input.addEventListener('input', () => {
+          addTag();
+          autowidth();
+        });
+        input.addEventListener('blur', () => {
+          addTag(true);
+          autowidth();
+        });
+        autowidth();
+      
+        function autowidth() {
+          const fakeEl = document.createElement('div');
+          fakeEl.classList.add(classInput, classInputHidden);
+          const string = input.value || input.getAttribute('placeholder') || '';
+          fakeEl.innerHTML = string.replace(/ /g, '&nbsp;');
+          document.body.appendChild(fakeEl);
+          input.style.setProperty('width', Math.ceil(window.getComputedStyle(fakeEl).width.replace('px', '')) + 1 + 'px');
+          fakeEl.remove();
+        }
+        function addTag(force = false) {
+          const value = transform(input.value.replace(new RegExp(escapeRegex(separator), 'g'), '').trim());
+          if (value === '') { input.value = ''; }
+          if (input.value.includes(separator) || (force && input.value != '')) {
+            if (getTags().includes(value) && duplicate === 'false') {
+              alertExist(value);
+            } else {
+              input.insertAdjacentHTML('beforebegin', templateTag(value));
+              updateValue();
+            }
+            input.value = '';
+            input.removeAttribute('style');
+          }
+        }
+        function alertExist(value) {
+          for (const el of wrapper.getElementsByClassName(classTag)) {
+            if (el.textContent === value) {
+              el.style.transform = 'scale(1.09)';
+              setTimeout(() => { el.removeAttribute('style'); }, 150);
+            }
+          }
+        }
+        function updateTag() {
+          if (getValue() !== getTag()) {
+            [...wrapper.getElementsByClassName(classTag)].map(tag => tag.remove());
+            getValue().trim() !== '' && input.insertAdjacentHTML('beforebegin', getValues().map(templateTag).join(''));
+          }
+        }
+        function escapeRegex(value) {
+          return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+        }
+        el.addEventListener('change', () => updateTag());
+    }
+
+    var tagViewCss = { style: `.tagin{display:none}.tagin-wrapper{border: 1px solid #ccc;display:flex;flex-wrap:wrap;height:auto;padding:calc(.375rem - 2px) calc(.75rem - 2px);position:relative;overflow:hidden;cursor:text}.tagin-wrapper.focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.tagin.is-valid+.tagin-wrapper,.was-validated .tagin:valid+.tagin-wrapper{border-color:#28a745}.tagin.is-invalid+.tagin-wrapper,.was-validated .tagin:invalid+.tagin-wrapper{border-color:#dc3545}.tagin-tag{border-radius:.25rem;color:#fff;border:0;padding:0 4px;display:inline-flex;align-items:center;height:24px;margin:2px;font-weight:300;background-color:#6c757d;transition:transform .1s}.tagin-tag-remove{margin-left:2px;width:18px;height:18px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z'/%3E%3C/svg%3E")}.tagin-tag-remove:hover{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z'/%3E%3C/svg%3E")}.tagin-input{margin-left:2px;border-color:transparent;outline:0;border-width:1px 0;padding:0 2px 0 0;height:28px;color:#495057}.tagin-input:not(.tagin-input-hidden){width:4px;min-width:4px}.tagin-input-hidden{position:absolute;top:0;left:-9999px;overflow:hidden;visibility:hidden;white-space:nowrap` };
+
+    class API {
+        constructor(options) {
+            this._servers = [
+                'http://localhost/pe-gold3/', 
+                'https://www.ucertify.com/', 
+                'https://www.jigyaasa.info/',
+                'http://172.10.195.203/pe-gold3/',
+            ];
+            this._REMOTE_API_URL = this._servers[1] + 'pe-api/1/index.php';
+            //@Prabhat: Why is this here. Need to remove this.
+            this._client = {
+                email: "pradeep.yadav@ucertify.com",
+                password: "786pradeep",
+                isSocial: "false",
+                clientId: "040MA"
+            };
+        }
+
+        validateApp (checkExpired) {
+            return new Promise((resolve, reject) => {
+                let isExpired = checkExpired ? `&action=refresh_token&refresh_token=1` : "";
+                let isSocial = this._client.isSocial ? '&social_login=1' : "";
+                let url = `${this._REMOTE_API_URL}?func=cat2.authenticate&device_id=${this._client.clientId}&email=${this._client.email}&password=${this._client.password + isSocial + isExpired}`;
+                let request = new XMLHttpRequest();
+                request.open('POST', url, true);
+                request.onreadystatechange = (event) => {
+                    if (request.readyState == 4 && request.status === 200) {
+                        try {
+                            let responseBody = request.responseText;
+                            let responseObject = responseBody.match(/<jsonstring>(.*?)<\/jsonstring>/);
+                            resolve(JSON.parse(responseObject[1]));
+                        } catch (err) {
+                            reject(err);
+                        }
+                    } 
+                };
+                request.onerror = (requestError) => {
+                    reject(requestError);
+                };
+                if (checkExpired) {
+                    request.setRequestHeader("old-access-token", globalThis.apiAccessToken);
+                }
+                request.send();
+            });
+        }
+        
+        getAPIDataJ (func, where, callback = function(){}) {
+            let param = "";
+            let _param2 = {};
+            let str = '';
+            let ajax_info = where.ajax_info ||{};
+            where = this._assignPartial(where, {}, 'ajax_info', true);
+            // if (typeof where.redis == 'undefined') {
+            // 	_param2.redis = 0;
+            // }
+            //----------- code for acces_token based validation --------//
+            _param2.device_id = this._client.clientId;
+            //----------------------------------------------------------//
+        
+            if (typeof (where) == 'object') {
+                for (let k in where) {
+                    if (typeof where[k] != 'object') {
+                        param += "&" + k + "=" + where[k];
+                    }	
+                }
+            }
+            if (typeof (func) !== "undefined" && func != "") {
+                for (let k in _param2) {
+                    if (typeof _param2[k] != 'object') {
+                        str += "&" + k + "=" + _param2[k];
+                    }	
+                }
+                str += "&func="+func;
+            }
+            
+            this.getAPIDataJSON(this._REMOTE_API_URL + "?" + str + "&debug=0&"+param, param, ajax_info, (apidata)=> {
+                if (apidata == 'Expired'){
+                    this.getAPIDataJ(func, where, callback);
+                } else {
+                    callback(apidata);
+                }
+            }, func);
+        }
+        
+        getAPIDataJSON (url, data, ajax_info, callback = function(){}, funcName) {
+            let request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onreadystatechange = (event) => {
+                if (request.readyState == 4 && request.status === 200) {
+                    let responseBody = request.responseText;
+                    let responseData = {};
+                    try {
+                        let resStr = responseBody.match(/<jsonstring>(.*?)<\/jsonstring>/);
+                        if (resStr[1] != '') {
+                            let responseObject = JSON.parse(resStr[1]);
+                            if (responseObject.error && ['Expired', '-9'].includes(responseObject.error.error_id)) {
+                                console.log("Api Error = ", responseObject.error.error_id);
+                                this.validateApp (responseObject.error.error_id != -9).then((validRes) => {
+                                    if (validRes.status == 'Success') {
+                                        this.setAccessKey(validRes);
+                                        callback("Expired");
+                                    }
+                                }).catch((validateError)=> {
+                                    //UI.storeError('Validate Error####no1:1####' + JSON.stringify(validateError || {}), true)
+                                    console.log(validateError);
+                                });
+                                return;
+                            } else {
+                                if (responseObject['response']) {
+                                    responseData = responseObject['response'];
+                                    console.warn("Api data J reponse <-- Received -->", responseObject);
+                                } else if(responseObject['response'] == undefined && responseObject.error == undefined) {
+                                    responseData = responseObject;
+                                    console.warn("Api data J reponse <-- Received II-->", responseData);
+                                } else {
+                                    responseData = undefined;
+                                    console.warn({"Response_error":responseObject.error});
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.warn("Please check your Internet connection.");
+                        console.log("Api data error = ", responseBody);
+                        if (data.includes('must_reply_override')) {
+                            responseData = undefined;
+                        } else {
+                            return (0);
+                        }
+                    }
+                    callback(responseData);
+                }
+            };
+            if (!data.includes('no_access_token_required')) {
+                request.setRequestHeader("access-token", globalThis.apiAccessToken);
+            }
+            request.setRequestHeader("Content-type", "application/json");
+            request.setRequestHeader("Access-Control-Allow-Origin", "*");
+            request.setRequestHeader("Access-Control-Allow-Headers", "*");
+            request.send();
+        }
+
+        _assignPartial(iObj, oObj = {}, str, unsetOnly = false ) {
+            str = str.split(',');
+            if ( !unsetOnly ) {
+              for ( let i in str ) {
+                let index = str[i];
+                if ( typeof iObj[index] != 'undefined') {
+                  oObj[index] = iObj[index];
+                }
+              }
+            }
+            else {
+              for ( let i in iObj ) {
+                let index = str.indexOf( i ); 
+                if ( index === -1) {
+                  oObj[i] = iObj[i];
+                }
+              }
+            }
+            return oObj;
+        }
+        
+        setAccessKey (api) {
+            if (api.access_token && api.access_token.length > 50) {
+                globalThis.apiAccessToken = api.access_token;
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem('apiAccessToken', api.access_token);
+                }
+            }
+        }
+    }
+    class JStore {
+        constructor(options={}) {
+            this._options = options;
+            this._allowed = false;
+            /**
+             * session : true to enable sessionStorage
+             * locastorage : by default true
+             * onStore : to listen store changes
+             */
+            this._init();
+        }
+
+        _init() {
+            if (typeof(Storage) !== "undefined") {
+                this._allowed = true;
+                // Code for localStorage/sessionStorage.
+                window.onstorage = (e)=> {
+                    if (this._options.onStore) this._options.onStore(e); 
+                };
+            } else {
+                this._allowed = false;
+                console.warn("Sorry! No Web Storage support..");
+            }
+        }
+
+        //When passed a number n, this method will return the name of the nth key in the storage.
+        key(n) {
+            if (this._allowed) {
+                return this._options.session ? console.warn("Session has not key method.") : window.localStorage.key(n)
+            }
+        }
+
+        //When passed a key name, will return that key's value.
+        get(name) {
+            if (this._allowed) {
+                return this._options.session ? window.sessionStorage.getItem(name) : window.localStorage.getItem(name);
+            }
+        }
+
+        //When passed a key name and value, will add that key to the storage, or update that key's value if it already exists.
+        set(name, value) {
+            if (this._allowed) {
+                return this._options.session ? window.sessionStorage.setItem(name, value) : window.localStorage.setItem(name, value);
+            }
+        }
+
+        //When passed a key name, will remove that key from the storage.
+        remove(name) {
+            if (this._allowed) {
+                return this._options.session ? window.sessionStorage.removeItem(name) : window.localStorage.removeItem(name);
+            }
+        }
+
+        //clear all stored
+        clearAll() {
+            if (this._allowed) {
+                return this._options.session ? window.sessionStorage.clear() : window.localStorage.clear();
+            }
+        }
+    }
+    class JUI extends API{
+        constructor(options) {
+            super();
+            this.trackInf = {};
+            this.buffer = {};
+            this.bsCat1 = ['Modal', 'Tooltip', 'Collapse', 'Popover', 'ScrollSpy', 'Tab', 'Alert', 'Dropdown'];
+            this.extraSelectors = ['hidden', 'visible', 'selected', 'checked', 'enabled', 'children', 'childNodes'];
+            this.parseHtml = this.templateHtml.bind(this);
+            this.isSSDloaded = "";
+            this.loadSSD();
+        }
+
+        loadSSD() {
+            if (typeof globalThis == 'object') {
+                globalThis.eventTracker = globalThis.eventTracker || {};
+                globalThis.JUITemp = globalThis.JUITemp || {};
+            } else {
+                this.isSSDloaded = setInterval(()=> {
+                    if (typeof globalThis == 'object') {
+                        globalThis.eventTracker = globalThis.eventTracker || {};
+                        globalThis.JUITemp = globalThis.JUITemp || {};
+                        clearInterval(this.isSSDloaded);
+                    }
+                }, 500);
+            }   
+        }
+
+        validate(isExpired) {
+            return new Promise((resolve, reject) => {
+                this.validateApp(isExpired).then((tokenApi) => {
+                    if (tokenApi.status != 'Success') {
+                        reject(tokenApi);
+                    } else {
+                        try {
+                            this.setAccessKey(tokenApi);
+                            resolve(tokenApi);
+                        } catch (err) {
+                            reject(err);
+                        }
+                    }
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        }
+
+        param2Url(params) {
+            let url = [];
+            for (var i in params) {
+                var uri = i + '=' + params[i];
+                url.push(uri);
+            }
+            return url.join('&');
+        }
+
+        // Provide unique in array
+        unique(myArray) {
+            return myArray.filter((v, i, a) => a.indexOf(v) === i);
+        }
+
+        // handle json parse
+        parseJSON(obj, showErr_data) {
+            let showErr = showErr_data || false;
+            try {
+                return JSON.parse(obj);
+            } catch (e) {
+                if (showErr) {
+                    console.warn(e);
+                }
+                return {}; //Return blank object
+            }
+        }
+
+        parseDom(str) {
+            let parser = new DOMParser();
+            let html = parser.parseFromString(str, 'text/html');
+            return html;
+        }
+
+        // Add script data or url into page
+        addScript(data, url, options={}) {
+            let sc = document.createElement("script");
+            if (url) {
+                sc.src = url;
+                sc.async = true;
+                if (options.callback) {
+                    sc.onload = function() { 
+                        options.callback();
+                    };
+                }
+            } else {
+                sc.innerHTML = data;
+            }
+            let selector = options.target ? document.body : document.head;
+            selector.append(sc);
+            return sc;
+        }
+
+        // used to genrate css links
+        createLink(path, options={}) {
+            let link = document.createElement('link');
+            let selector = options.target ? document.body : document.head;
+            link.href = path;
+            if  (options.preload) {
+                link.rel = "preload";
+                link.onload = function() {
+                    this.rel= options.type || "stylesheet";
+                };
+                link.as = options.as || "style";
+                link.crossorigin = "anonymous";
+            } else {
+                link.rel = "stylesheet";
+            }
+            selector.append(link);
+            return link;
+        }
+
+        // To enable Tag view on selected inputs
+        // before use this call addTagViewCss once only
+        enableTagView(options) {
+            let selected = document.querySelectorAll('.tagin');
+            for (const el of selected) {
+                options ? TagView(el, options) : TagView(el);
+            }
+            return selected;
+        }
+
+        // Add css for tagsview inout
+        addTagViewCss() {
+            this.insert(document.head, `<style>${tagViewCss.style}</style>`, 'beforeend');
+        }
+
+        //check target selector is present in base selector/dom
+        hasInall(selector, target) {
+            let current = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
+            let result = [];
+            if (current) {
+                Array.prototype.forEach.call(current, (item)=> {
+                    if (item.contains(target)) {
+                        result.push(item);
+                    }
+                });
+            }
+            return result;
+        }
+
+        // removeAttr of jq like
+        removeDomAttr(selector, attrArray) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (current) {
+                Array.prototype.forEach.call(attrArray, (attr)=> {
+                    current.removeAttribute(attr);
+                });
+            }
+
+            return current || {};
+        }
+
+        // trigger events
+        trigger(selector, evName, options) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (current) {
+                options ? current.dispatchEvent(new Event(evName, options)) : current.dispatchEvent(new Event(evName));
+            } else {
+                console.warn("Selector not found.", selector);
+            }
+        }
+
+        // Find in childrent of selected node
+        findChild(selector, search, action) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let list = current.children || [];
+            let found = [];
+            if (search && list.length > 0) {
+                let index = 0;
+                while (list[index]) {
+                    if (list[index].matches(search)) {
+                        if (action) {
+                            found.push(list[index]);
+                        } else {
+                            found = list[index];
+                            break;
+                        }
+                    }
+                    index++;
+                }
+                return found;
+            } else {
+                return list;
+            }
+        }
+
+        closest(selector, search) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let elm = current ? current.parentElement : null;
+            let result = [];
+            if (search) {
+                while (elm) {
+                    if (this.find(elm, search)) {
+                        result = this.find(elm, search);
+                        break;
+                    }
+                    elm = elm.parentElement;
+                }
+            }
+            return result;
+        }
+
+        parent(selector, search) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let elm = current ? current.parentElement : null;
+            if (search) {
+                while(elm) {
+                    if (elm.matches(search)) {
+                        break;
+                    }
+                    elm = elm.parentElement;
+                }
+            }
+
+            return elm;
+        }
+
+        // find in sibiling or return imediate
+        siblings(selector, search) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let result = [];
+            if (current) {
+                var node = current.parentNode.firstChild;
+
+                while ( node ) {
+                    if ( node !== current && node.nodeType === Node.ELEMENT_NODE ) {
+                        if (search) {
+                                node.matches(search) ? result.push( node ) : "";
+                        } else {
+                            result.push( node );
+                        }
+                    }
+                    node = node.nextElementSibling || node.nextSibling;
+                }
+            } 
+            return result;
+        }
+
+        // find in next element or return all
+        nextAll(selector) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let nextSibling = current.nextElementSibling;
+            let result = [];
+            if (nextSibling) {
+                while(nextSibling) {
+                    nextSibling = nextSibling.nextElementSibling;
+                    result.push(nextSibling);
+                }
+            }
+
+            return result;
+        }
+
+        // find in next 
+        nextElm(selector, search) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let nextSibling = current.nextElementSibling;
+            if (search) {
+                while(nextSibling) {
+                    if (nextSibling.matches(search)) {
+                        break;
+                    }
+                    nextSibling = nextSibling.nextElementSibling;
+                }
+            }
+
+            return nextSibling;
+        }
+
+        // find in previous element
+        prevElm(selector, search) {
+            let current = (typeof selector == "object") ? selector : document.querySelector(selector);
+            let previousSibling = current.previousElementSibling;
+            if (search) {
+                while(previousSibling) {
+                    if (previousSibling.matches(search)) {
+                        break;
+                    }
+                    previousSibling = previousSibling.previousElementSibling;
+                }
+            }
+
+            return previousSibling;
+        }
+
+        // add dom loaded event
+        onReady(func) {
+            document.addEventListener('DOMContentLoaded', function(event) {
+                func.call(event);
+            });
+        }
+
+        // Create element from html string
+        create(tagName, html) {
+            let elem = document.createElement(tagName);
+            if (html) {
+                elem.innerHTML = html;
+            }
+            return elem;
+            
+        }
+
+        clone(selector) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                return selected.cloneNode(true);
+            }
+            return null;
+        }
+
+        // Setrialize form nodes
+        serialize(selector) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                return new URLSearchParams(new FormData(selected)).toString();
+            }
+            return null;
+        }
+
+        // Empty dom I.e $.empty()
+        empty(selector) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                while(selected.firstChild) selected.removeChild(selected.firstChild);
+            }
+            return selected;
+        }
+
+        // Get bootstrap5 instance accoridng to compoenent
+        getBS(target, comp, options) {
+            let selected = (typeof target == "object") ? target : document.querySelector(target);
+            if (selected && this.bsCat1.includes(comp)) {
+                let isIns = bootstrap[comp].getInstance && bootstrap[comp].getInstance(selected); // changes for php.
+                if (isIns) {
+                    return bootstrap[comp].getInstance(selected);
+                } else {
+                    let ref = new bootstrap[comp](selected, options);
+                    return ref;
+                }
+            } else {
+                return {};
+            }
+        }
+
+        // Enable all mathced node's bootstrap5 compoenent
+        enableBsAll(selector, comp, options) {
+            if (this.bsCat1.includes(comp)) {
+                let triggerList = [].slice.call(document.querySelectorAll(selector));
+                let fireList = triggerList.map(function (triggerElm) {
+                    if (options) {
+                        return new bootstrap[comp](triggerElm, options);
+                    } else {
+                        return new bootstrap[comp](triggerElm);
+                    }
+                });
+                return fireList;
+            } else {
+                console.error("Bootstrap can't enable for this component name");
+                return [];
+            }
+        }
+
+        // Hide enabled bootstrap5 compoenents
+        hideBsAll(selector, comp) {
+            let fireList = [].slice.call(document.querySelectorAll(selector));
+            if (this.bsCat1.includes(comp)) {
+                fireList.forEach(function (elm) {
+                    let ref = bootstrap[comp].getInstance(elm);
+                    ref?.hide?.();
+                });
+            } else {
+                console.error("Bootstrap can't disable for this component name");
+            }
+        }
+        initDropdown() { // Hide the dropdown click outside, when dropdown is appended in dom using ajax call.
+            let _this= this;
+            _this.enableBsAll('[data-toggle="dropdown"]', 'Dropdown');
+            _this.bind('body', 'click', function(event) {
+                if (!event.target.closest('[data-toggle="dropdown"]')) {
+                    _this.selectAll('[data-toggle="dropdown"]').forEach(function(currElem) {
+                        currElem.classList.remove('show');
+                    });
+                    _this.selectAll('.dropdown-menu').forEach(function(currElem) {
+                        currElem.classList.remove('show');
+                    });
+                }
+            });
+        }
+        // Js based ajax i.e $.ajax
+        ajax(sendData) {
+            let longData = "";
+            if (typeof (sendData.data) == 'object') {
+                if (sendData.formData) {
+                    longData = sendData.data;
+                } else if (sendData.withUrl) {
+                    let param = "?";
+                    for (let k in sendData.data) {
+                        if (typeof sendData.data[k] != 'object') {
+                            param += "&" + k + "=" + sendData.data[k];
+                        }	
+                    }
+                    sendData.url += param;
+                } else {
+                    longData = new FormData();
+                    for (let prop in sendData.data) {
+                        if (typeof sendData.data[prop] == 'object' && this.isValid(sendData.data[prop])) {
+                            longData = this.jsonFormEncode(longData, prop, sendData.data[prop]);
+                        } else {
+                            longData.append(prop, sendData.data[prop]);
+                        }	
+                    }
+                }
+            }
+            return new Promise((resolve, reject)=> {
+                const request = new XMLHttpRequest();
+                request.open(sendData.type || 'POST', sendData.url, true);
+                if (sendData.responseType) {
+                    request.responseType = sendData.responseType;
+                }
+                request.onreadystatechange = (event) => {
+                    if (request.readyState == 4 && request.status === 200) {
+                        try {
+                            resolve(request.responseText, event);
+                        } catch (err) {
+                            reject(err);
+                        }
+                    } 
+                };
+                request.onerror = (requestError) => {
+                    reject(requestError);
+                };
+                if (sendData.onStart) request.onloadstart = sendData.onStart;
+                if (sendData.onEnd) request.onloadend = sendData.onEnd;
+                request.send(longData);
+            });
+        }
+
+        jsonFormEncode(formData, prop, jsonArray) {
+            try {
+                if (Array.isArray(jsonArray)) {
+                    for (let i = 0; i < jsonArray.length; i++) {
+                        for (let key in jsonArray[i]) {
+                            formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key]);
+                        }
+                    }
+                } else {
+                    for (var key in jsonArray) {
+                        formData.append(`${prop}[${key}]`, jsonArray[key]);
+                    }
+                }
+            } catch(error) {
+                console.warn("Please provide valid JSON Object in ajax data."+ error);
+            }
+            return formData;
+        }
+
+        // get script from url
+        getJSON(url) {
+            var scr = document.createElement('script');
+            scr.src = url;
+            document.body.appendChild(scr);
+        }
+
+        // $.offset alternative
+        offset(container) {
+            let rect = (typeof container == "object") ? container : document.querySelector(container);
+            let offset = {rect};
+            if (rect) {
+                let clientRect = rect.getBoundingClientRect();
+                offset = { 
+                    target: rect,
+                    clientRect,
+                    top: clientRect.top + window.scrollY, 
+                    left: clientRect.left + window.scrollX, 
+                };
+            }
+            
+            return offset;
+        }
+
+        // find in array
+        findInArray(value, baseArray) {
+            if (value && baseArray) {
+                return baseArray.find((item)=> item == value );
+            }
+
+            return false;
+        }
+
+        // comapre two array
+        inArray(baseArray, compareArray) {
+            let matched = [];
+            if (baseArray && compareArray) {
+                baseArray.forEach((item)=> {
+                    compareArray.forEach((comp)=> {
+                        if (item == comp) {
+                            matched.includes(comp) ? "" : matched.push(comp);
+                        }
+                    });
+                });
+            }
+
+            return matched.length > 0 ? matched.length : -1;
+        }
+
+        // serialize nodes into array
+        serializeArray(nodeArr, filter) {
+            let result = [];
+            nodeArr.forEach((item)=> {
+                if (!filter || item.matches(filter)) {
+                    console.log(item.attributes.length);
+                    if (item.attributes.length > 0) {
+                        let tempData = {};
+                        for (let _attr of item.attributes) {
+                            tempData[_attr.name] = _attr.value;
+                        }
+                        result.push(tempData);
+                    }
+                }
+            });
+            return result;
+        }
+
+        // Find target node into base node and some extra selectors
+        find(baseSelector, target, data ) {
+            let base = (typeof baseSelector == "object") ? baseSelector : document.querySelector(baseSelector);
+            let typeAction = (typeof data == "object") ? "action" : data;
+            if (base) {
+                switch (typeAction) {
+                    case 'all' : return base?.querySelectorAll(target);
+                    case 'child' : return base?.querySelector(target).childNodes;
+                    case 'hidden': return Array.prototype.filter.call(base.querySelectorAll(target), (elm)=> elm.offsetWidth == 0 && elm.offsetHeight == 0);
+                    case 'visible': return Array.prototype.filter.call(base.querySelectorAll(target), (elm)=> elm.offsetWidth > 0 && elm.offsetHeight > 0);
+                    case 'checked': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.checked);
+                    case 'selected': return Array.prototype.filter.call(base.querySelectorAll(target), (elm)=> elm.selected);
+                    case 'action': {
+                        let found = base.querySelectorAll(target);
+                        if (found && found.length > 0 && data.action) {
+                            found.forEach((_elm)=> this.jsAction(_elm, {action: data.action, actionData: data.actionData}));
+                        }
+                        return found;
+                    }
+                    default: return base.querySelector(target);  
+                }
+            }
+            return [];
+        }
+
+        // Select all using query selectors and perform action both
+        selectAll(selector, action, actionData) {
+            let selected = this.isExtraSelectors(action, actionData) ? this.selectAction(selector, action) : (typeof selector == 'object' ? selector : document.querySelectorAll(selector));
+            if (selected && selected.length > 0 && action) {
+                Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action, actionData}));
+            }
+            return selected;
+        }
+
+        isExtraSelectors(action, actionData) {
+            if (this.extraSelectors.includes(action)) {
+                return (action == "checked" && typeof actionData != 'undefined') ? false : true;
+            }
+            return false;
+        }
+
+        // Select and enhance selector like jquery
+        select(selector, action, actionData) {
+            if (this.isExtraSelectors(action, actionData)) {
+                return this.selectAction(selector, action);
+            } else {
+                selector = (typeof selector == 'object') ? selector : document.querySelector(selector);
+                if (selector) {
+                    this.jsAction(selector, {action, actionData});
+                }
+                return  selector || {};
+            }
+        }
+
+        getElm(selector, type) {
+            return document.getElementById(selector) || {};
+        }
+
+        // Listen all node with events
+        listenAll(target, eventName, func) {
+            let selected = (typeof target == "object") ? target : document.querySelectorAll(target);
+            if (selected && selected.length > 0) {
+                for (let i = 0; i < selected.length; i++) {
+                    selected[i].addEventListener(eventName, func, false);
+                }
+            }
+        }
+
+        // bind event directly on nodes
+        bind(selector, eventName, handler) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                selected.addEventListener(eventName, handler);
+            }
+        }
+
+        // Listen target with in base node listner
+        listen(baseSelector, eventName, selector, handler) {
+            let base = (typeof baseSelector == "object") ? baseSelector : (typeof document !== 'undefined' ? document.querySelector(baseSelector) : false);
+            if (!base) return false;
+            if (globalThis.eventTracker[selector]) {
+                base.removeEventListener(eventName, globalThis.eventTracker[selector]);
+            }
+            globalThis.eventTracker[selector] = this.onListen.bind(this, selector, handler, base);
+            base.addEventListener(eventName, globalThis.eventTracker[selector]);
+        }
+
+        // remove node classes
+        removeClass(selector, name) {
+            let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
+            if (selected && selected?.length > 0) {
+                Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'removeClass', actionData: name}));
+            } else if (typeof selected == 'object') {
+                this.jsAction(selected, {action: 'removeClass', actionData: name});
+            }
+            return selected || {};
+        }
+        // add class for node
+        addClass(selector, name) {
+            let selected = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
+            if (selected && selected?.length > 0) {
+                Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action: 'addClass', actionData: name}));
+            } else if (typeof selected == 'object') {
+                this.jsAction(selected, {action: 'addClass', actionData: name});
+            }
+            return selected || {};
+        }
+
+        // dom visibility handle
+        toggleDom(dom, action="toggleDisplay") {
+            let selected =  typeof dom == "object" ? dom : document.querySelectorAll(dom);
+            if (selected && selected.length > 0) {
+                Array.prototype.forEach.call(selected, (elm)=> this.jsAction(elm, {action}) );
+            }
+            return selected || {};
+        }
+
+        // alterntive of $.select2
+        select2(selecor) {
+            let found = document.querySelector(`${selecor} + span > .selection > span`);
+            if (found) {
+                found.click();
+            }
+        }
+
+        // Set dataset on element
+        setData(selector, attrs) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                for (let property in attrs) {
+                    selected.dataset[property] = attrs[property];
+                }
+            }
+            return selected || {};
+        }
+
+        // Set dataset on element
+        getData(selector, attr) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            return selected?.dataset[attr] || {};
+        }
+
+        // manage attr using object
+        setAttr(selector, attrs) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                for (let property in attrs) {
+                    selected.setAttribute(property, attrs[property]);
+                }
+            }
+            return selected || {};
+        }
+
+        // add css using object
+        setCss(selector, cssList) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                for (let property in cssList) {
+                    selected.style && (selected.style[property] = cssList[property]);
+                }
+            }
+            return selected || {};
+        }
+
+        //alternative of $.remove
+        remove(dom) {
+            let selected =  document.querySelectorAll(dom);
+            if (selected.length > 0) {
+                Array.prototype.forEach.call(selected, (elm)=> elm.remove() );
+            }
+        }
+
+        // alternive of $.replaceWith
+        replaceWith(selector, domStr) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                let createdNode = this.templateHtml(domStr);
+                selected.replaceWith(createdNode);
+                return createdNode;
+            }
+            return selected;
+
+        }
+
+        wrap(selector, domStr) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                let createdNode = this.templateHtml(domStr);
+                let innerNode = this.innerChild(createdNode);
+                innerNode.innerHTML = selected.outerHTML;
+                selected.parentNode.replaceChild(createdNode, selected);
+                return innerNode.firstChild;
+            }
+            return selected;
+        }
+
+        unwrap(selector) {
+            let nodeToRemove = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
+            if (nodeToRemove && nodeToRemove.length > 0) {
+                nodeToRemove.forEach((item)=> {
+                    item.outerHTML = item.innerHTML;
+                });
+            }
+        }
+
+        insertAfter(newNode, existingNode) {
+            newNode = (typeof newNode == "object") ? newNode : document.querySelector(newNode);
+            existingNode = (typeof existingNode == "object") ? existingNode : document.querySelector(existingNode);
+            if (newNode && existingNode) {
+                existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+            }
+            return newNode;
+        }
+
+        // Insert using html string, need to provide position also
+        insert(selector, domStr, position) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                switch (position) {
+                    case 'beforebegin': selected.insertAdjacentHTML('beforebegin', domStr);
+                    break;
+                    case 'afterbegin': selected.insertAdjacentHTML('afterbegin', domStr);
+                    break;
+                    case 'beforeend': selected.insertAdjacentHTML('beforeend', domStr);
+                    break;
+                    case 'afterend': selected.insertAdjacentHTML('afterend', domStr);
+                    break;
+                }
+            }
+            return selected || {};
+        }
+
+        // provide dom index like $.index
+        domIndex(selector) {
+            let selected = (typeof selector == "object") ? selector : document.querySelector(selector);
+            if (selected) {
+                return Array.from( selected.parentNode.children ).indexOf( selected );
+            } else {
+                return -1;
+            }
+        }
+
+        // compare selector in base node
+        match(baseSelector, mathStr) {
+            let base = (typeof baseSelector == "object") ? baseSelector : document.querySelector(baseSelector);
+            let matched = [];
+            if (base && base.length > 0 ) {
+                Array.prototype.forEach.call(base, (elm)=> {
+                    if (elm.matches(mathStr)) matched.push(elm);
+                });
+            } else {
+                return base && base.matches(mathStr);
+            }
+            return matched;
+        }
+
+        // check selector in base node
+        contains(selector, text) {
+            let elements = (typeof selector == "object") ? selector : document.querySelectorAll(selector);
+            if (elements && elements.length > 0) {
+                return [].filter.call(elements, function(element) {
+                    return RegExp(text).test(element.textContent);
+                    });
+            } else {
+                return [];
+            }
+        }
+
+        // merge two object like $.extend
+        extend() {
+            //This function are alternative of $.extend which merge content of objects into first one
+            // To create deep copy pass true as first argument
+            let extended = {};
+            let deep = false;
+            let i = 0;
+            let length = arguments.length;
+            // Check if a deep merge
+            if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+                deep = arguments[0];
+                i++;
+            }
+            // Merge the object into the extended object
+            const merge = function (obj) {
+                for ( let prop in obj ) {
+                    if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+                        // If deep merge and property is an object, merge properties
+                        if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+                            extended[prop] = extend( true, extended[prop], obj[prop] );
+                        } else {
+                            extended[prop] = obj[prop];
+                        }
+                    }
+                }
+            };
+            // Loop through each object and conduct a merge
+            for ( ; i < length; i++ ) {
+                let obj = arguments[i];
+                merge(obj);
+            }
+            return extended;
+        }
+
+        // return querystring as object
+        url (url) {
+            url = url || (typeof window == 'object' ? window.location.href : "");
+            return new URLSearchParams(url);
+        }
+
+        updateEditorUrl(data) {
+            let newUrl = `?action=new&content_subtype=${data.subtype}&content_type=${data.type}&content_icon=${data.content_icon}&react_content=1`;
+            window.history.replaceState(null, '', newUrl);
+        }
+
+        getUrlVars() {
+            let vars = [], hash;
+            let hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (let i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        setApiKey(token) {
+            globalThis.apiAccessToken = token;
+        }
+
+        validateAjaxData(ajaxData, subtype) {
+            if (subtype == 0 || subtype == 8) {
+                if (ajaxData && !this.get('is_proposed')) {
+                    if (ajaxData.content_text) {
+                        try {
+                            ajaxData.content_text.answers.forEach((item,index)=> {
+                                ajaxData.content_text.answers[index].answer =  item.answer.replace(/\n/g, "");
+                            });
+                        } catch(e) {
+                            let tempAjaxData = {
+                                answers: [
+                                    {
+                                        is_correct: "0",
+                                        answer: "Option A.",
+                                        id: "01"
+                                    },
+                                    {
+                                        is_correct: "0",
+                                        answer: "Option B.",
+                                        id: "02"
+                                    },
+                                    {
+                                        is_correct: "0",
+                                        answer: "Option C.",
+                                        id: "03"
+                                    },
+                                    {
+                                        is_correct: "0",
+                                        answer: "Option D.",
+                                        id: "04"
+                                    },
+                                ],
+                                correct_ans_str: "D",
+                                total_answers: 4,
+                                correct_answers: 1
+                            };
+                            return tempAjaxData;
+                        }
+                        //console.log(ajaxData.content_text.answers);
+                        return ajaxData.content_text;
+                    }
+                    return ajaxData;
+                } else {
+                    let tempAjaxData = {
+                        answers: [
+                            {
+                                is_correct: "0",
+                                answer: "Option A.",
+                                id: "01"
+                            },
+                            {
+                                is_correct: "0",
+                                answer: "Option B.",
+                                id: "02"
+                            },
+                            {
+                                is_correct: "0",
+                                answer: "Option C.",
+                                id: "03"
+                            },
+                            {
+                                is_correct: "0",
+                                answer: "Option D.",
+                                id: "04"
+                            },
+                        ],
+                        correct_ans_str: "D",
+                        total_answers: 4,
+                        correct_answers: 1
+                    };
+                    return tempAjaxData;
+                }
+            }
+            return ajaxData;
+            
+        }
+        
+        // watch if dom changes
+        watchDom(target, func, options={childList: true}) {
+            let observer = new MutationObserver(function (mutationRecords) {
+                    //if (mutationRecords[0].addedNodes[0].nodeName === "SPAN")
+                    func && func(mutationRecords);
+                });
+            observer.observe(target, options);
+            return observer;
+        }
+
+        // revert if enity blocked by html
+        ignoreEnity(html) {
+            return html.replace(/&amp;/g,'&');
+        }
+
+        // cahce funciton to avoid repated outputs
+        cache(func) {
+            var chacheData = new Map();
+            return function(input) {
+                if(chacheData.has(input)) {
+                    return chacheData.get(input);
+                }
+
+                var newResult = func(input);
+                chacheData.set(input,newResult);
+
+                return newResult;
+            }
+        }
+
+        // store data
+        set(key, value) {
+            if (key == 'save_item') {
+                this.addInLocalstorage(key, value);
+            }
+            if (typeof globalThis == 'object') globalThis.JUITemp[key] = value;
+        }
+        
+        addInLocalstorage(key, value) {
+            window.localStorage.setItem(key, value);
+        }
+        // get data from store
+        get(key) {
+            return globalThis.JUITemp[key];
+        }
+
+        // find caller
+        caller() {
+            console.log("called from " + arguments.callee.caller.toString());
+        }
+
+        // show warnign messages
+        showmsg(msg, time = 10000) {
+            let errorAlert = document.querySelector("#showMsgAlert");
+            if (this.buffer['showmsg']) clearTimeout(this.buffer['showmsg']);
+            if (errorAlert) {
+                errorAlert.classList.add('show');
+                this.select("#showMsgBody").innerHTML = msg;
+            } else {
+                this.insert(document.body, this.getModalHtml(msg, 'Alert'), 'beforebegin');
+            }
+            setTimeout(()=> {
+                let alterRef= this.getBS(document.querySelector("#showMsgAlert"), 'Alert');
+                alterRef.close && alterRef.close();
+            }, time);
+        }
+
+        alert(msgData) {
+            if (document.getElementById('showBSModal')) {
+                this.getBS("#showBSModal", 'Modal').show();
+                this.select("#showBSBody").innerHTML = msgData|| "No msg provided...";
+            } else {
+                this.insert(document.body, this.getModalHtml(msgData, 'showBSModal'), 'beforeend');
+                this.getBS("#showBSModal", 'Modal').show();
+            }
+        }
+
+        formatXml(xml, cdata_format) {
+            let cdata = cdata_format || false;
+            let reg = /(>)(<)(\/*)/g;
+            let wsexp = / *(.*) +\n/g;
+            let contexp = /(<.+>)(.+\n)/g;
+            let old_cdata = cdata ? xml.match(/<!--\[CDATA\[[\s\S]*?\]\]-->/gim) : "";
+            xml = xml.replace(/\t/g, '').replace(reg, '$1\n$2$3').replace(wsexp, '$1\n').replace(contexp, '$1\n$2');
+            if (cdata) {
+                let new_cdata = xml.match(/<!--\[CDATA\[[\s\S]*?\]\]-->/gim);
+                xml = xml.replace(new_cdata, old_cdata);
+            }
+            let formatted = '';
+            let lines = xml.split('\n');
+            let indent = 0;
+            let lastType = 'other';
+            // 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions
+            let transitions = {
+                'single->single': 0,
+                'single->closing': -1,
+                'single->opening': 0,
+                'single->other': 0,
+                'closing->single': 0,
+                'closing->closing': -1,
+                'closing->opening': 0,
+                'closing->other': 0,
+                'opening->single': 1,
+                'opening->closing': 0,
+                'opening->opening': 1,
+                'opening->other': 1,
+                'other->single': 0,
+                'other->closing': -1,
+                'other->opening': 0,
+                'other->other': 0
+            };
+        
+            for (let i = 0; i < lines.length; i++) {
+                let ln = lines[i];
+                if (ln != '') {
+                    let single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
+                    let closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
+                    let opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
+                    let type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
+                    let fromTo = lastType + '->' + type;
+                    lastType = type;
+                    let padding = '';
+        
+                    indent += transitions[fromTo];
+                    for (let j = 0; j < indent; j++) {
+                        padding += '\t';
+                    }
+                    if (fromTo == 'opening->closing')
+                        formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'; // substr removes line break (\n) from prev loop
+                    else
+                        formatted += padding + ln + '\n';
+                }
+            }
+            return formatted;
+        }
+
+        getModalHtml(data, type) {
+            switch(type) {
+                case 'Alert' : 
+                    return (`
+                    <div id="showMsgAlert" class="alert alert-warning alert-dismissible text-center fade show" role="alert" style="z-index:99999;min-height:50px;position:fixed;width:100%;">
+                        <span id="showMsgBody">${data}</span>
+                        <button type="button" class="btn-close close" style="margin-top: -3px;" data-bs-dismiss="alert" data-dismiss="alert"  aria-label="Close"></button>
+                    </div>
+                `)
+                case 'showBSModal':
+                  return(`
+                    <div class="modal fade" id="showBSModal" tabindex="-1" aria-labelledby="Alert" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" id="showBSDialog">
+                            <div class="modal-content">
+                                <div class="modal-body text-center fs-5 pt-4" id="showBSBody">
+                                    ${data}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-light m-auto text-dark border border-secondary" data-bs-dismiss="modal" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                    );
+                default : return "<div>Nothing</div>";
+            }
+
+        }
+
+        // check data validity
+        isValid(data, filter = false) {
+            if (data && data != undefined && data != "" && data != "undefined" && data != null) {
+                return true;
+            } else {
+                if (filter && data != filter) return true;
+                return false;
+            }
+        }
+
+        // store algo
+        store(target,data) {
+        }
+
+        // convert query from objects
+        query(data) {
+            var inf = 'item_error_log=1';
+                if (typeof (data) == 'object') {
+                    for (let key in data) {
+                    if (typeof data[key] != 'object') {
+                        inf += "&" + key + "=" + data[key];
+                    }	
+                }
+            }
+            return inf;
+        }
+        
+        // show activator
+        activate(loader) {
+            document.querySelector('#activateLoaderContainer') && document.querySelector('#activateLoaderContainer').remove(); 
+            if (loader > 0) {
+                this.insert(document.body, `<div id="activateLoaderContainer" class="activateOverlay" style="z-index:9999999;"><center><div class="activator" style="height:100px; width: 100px;"></div></center></div>`, 'afterend');
+            }
+        }
+        
+        // listner callback
+        onListen(selector, handler, base, event) {
+            let target = event.target; //|| event.relatedTarget || event.toElement;
+            let closest = target.closest && target.closest(selector);
+            if (closest && base.contains(closest)) {
+                // passes the event to the handler and sets `this`
+                // in the handler as the closest parent matching the
+                // selector from the target element of the event
+                handler.call(this, closest, event);
+            }
+        }
+
+        isFocus(target) {
+            let selected = typeof target == 'object' ? target : document.querySelector(target);
+            if (selected == document.activeElement) {
+                return true;
+            }
+            return false;
+        }
+        
+        // find inner child in dom
+        innerChild(node) {
+            let currentNode = (typeof node == "object") ? node : document.querySelector(node);
+            let result = currentNode;
+            if (currentNode && currentNode.lastChild) {
+                currentNode = currentNode.lastChild;
+                while ( currentNode ) {
+                    result = currentNode;
+                    currentNode = currentNode.lastChild;
+                }
+            }
+            
+            return result;
+        }
+        
+        // parse html into template and reurn nodes
+        templateHtml(html) {
+            let t = document.createElement('template');
+            t.innerHTML = html;
+            return t.content.firstElementChild.cloneNode(true);
+        }
+        
+        // action of selector
+        selectAction(selector, type) {
+            switch (type) {
+                case 'hidden': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.offsetWidth == 0 && elm.offsetHeight == 0);
+                case 'visible': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.offsetWidth > 0 && elm.offsetHeight > 0);
+                case 'selected': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.selected);
+                case 'checked': return Array.prototype.filter.call(document.querySelectorAll(selector), (elm)=> elm.checked);
+                case 'enabled': return document.querySelectorAll(selector + ':not([disabled]');
+                case 'children': return document.querySelector(selector).children;
+                case 'childNodes': return document.querySelector(selector).childNodes;
+                default: return document.querySelector(selector);  
+            }
+        }
+        
+        // handle inline actions of js
+        jsAction(selected, data) {
+            if (selected instanceof HTMLElement || selected instanceof Node) {
+                switch(data.action) {
+                    case 'show': selected.style.display = data.actionData || "";
+                    break;
+                    case 'hide': selected.style.display = "none";
+                    break;
+                    case 'toggleDisplay': selected.style.display = (selected.style.display == "none") ? "block" : "none";
+                    break;
+                    case 'addClass': typeof data.actionData == "object" ? selected.classList.add(...data.actionData) : selected.classList.add(data.actionData);
+                    break;
+                    case 'removeClass': typeof data.actionData == "object" ? selected.classList.remove(...data.actionData) : selected.classList.remove(data.actionData);
+                    break;
+                    case 'toggleClass': selected.classList.toggle(data.actionData);
+                    break;
+                    case 'html' : selected.innerHTML = data.actionData;
+                    break;
+                    case 'value': selected.value = data.actionData;
+                    break;
+                    case 'text': selected.textContent = data.actionData;
+                    break;
+                    case 'checked':  selected.checked = data.actionData;
+                    break;
+                    case 'remove': selected.remove();
+                    break;
+                    case 'removeAttr': selected.removeAttribute(data.actionData);
+                    break;
+                    case 'css' : this.setCss(selected, data.actionData);
+                    break;
+                    case 'attr': this.setAttr(selected, data.actionData);
+                    break;
+                    case 'data': this.setData(selected, data.actionData);
+                    break;
+                    case 'getData': this.getData(selected, data.actionData);
+                    break;
+                }
+            }
+        }
+        
+        slideUp (target, duration = 500) {
+            target.style.transitionProperty = 'height, margin, padding';
+            target.style.transitionDuration = duration + 'ms';
+            target.style.boxSizing = 'border-box';
+            target.style.height = target.offsetHeight + 'px';
+            target.offsetHeight;
+            target.style.overflow = 'hidden';
+            target.style.height = 0;
+            target.style.paddingTop = 0;
+            target.style.paddingBottom = 0;
+            target.style.marginTop = 0;
+            target.style.marginBottom = 0;
+            window.setTimeout( () => {
+                target.style.display = 'none';
+                target.style.removeProperty('height');
+                target.style.removeProperty('padding-top');
+                target.style.removeProperty('padding-bottom');
+                target.style.removeProperty('margin-top');
+                target.style.removeProperty('margin-bottom');
+                target.style.removeProperty('overflow');
+                target.style.removeProperty('transition-duration');
+                target.style.removeProperty('transition-property');
+            }, duration);
+        }
+
+        slideDown (target, duration = 500) {
+            target.style.removeProperty('display');
+            let display = window.getComputedStyle(target).display;
+            if (display === 'none') display = 'block';
+            target.style.display = display;
+            let height = target.offsetHeight;
+            target.style.overflow = 'hidden';
+            target.style.height = 0;
+            target.style.paddingTop = 0;
+            target.style.paddingBottom = 0;
+            target.style.marginTop = 0;
+            target.style.marginBottom = 0;
+            target.offsetHeight;
+            target.style.boxSizing = 'border-box';
+            target.style.transitionProperty = "height, margin, padding";
+            target.style.transitionDuration = duration + 'ms';
+            target.style.height = height + 'px';
+            target.style.removeProperty('padding-top');
+            target.style.removeProperty('padding-bottom');
+            target.style.removeProperty('margin-top');
+            target.style.removeProperty('margin-bottom');
+            window.setTimeout( () => {
+                target.style.removeProperty('height');
+                target.style.removeProperty('overflow');
+                target.style.removeProperty('transition-duration');
+                target.style.removeProperty('transition-property');
+            }, duration);
+        }
+
+        slideToggle (target, duration = 500) {
+            if (window.getComputedStyle(target).display === 'none') {
+                return this.slideDown(target, duration);
+            } else {
+                return this.slideUp(target, duration);
+            }
+        }
+
+        setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    } 
+
+    const JS = new JUI();
+
+    class X2JS {
+    	config = {};
+    	VERSION = "1.2.0";
+
+    	DOMNodeTypes = {
+    		ELEMENT_NODE 	   : 1,
+    		TEXT_NODE    	   : 3,
+    		CDATA_SECTION_NODE : 4,
+    		COMMENT_NODE	   : 8,
+    		DOCUMENT_NODE 	   : 9
+    	}
+    	constructor() {
+    		this.initConfigDefaults();
+    		this.initRequiredPolyfills();
+    	}
+    	initConfigDefaults() {
+    		if(this.config.escapeMode === undefined) {
+    			this.config.escapeMode = true;
+    		}
+    		
+    		this.config.attributePrefix = this.config.attributePrefix || "_";
+    		this.config.arrayAccessForm = this.config.arrayAccessForm || "none";
+    		this.config.emptyNodeForm = this.config.emptyNodeForm || "text";		
+    		
+    		if(this.config.enableToStringFunc === undefined) {
+    			this.config.enableToStringFunc = true; 
+    		}
+    		this.config.arrayAccessFormPaths = this.config.arrayAccessFormPaths || []; 
+    		if(this.config.skipEmptyTextNodesForObj === undefined) {
+    			this.config.skipEmptyTextNodesForObj = true;
+    		}
+    		if(this.config.stripWhitespaces === undefined) {
+    			this.config.stripWhitespaces = true;
+    		}
+    		this.config.datetimeAccessFormPaths = this.config.datetimeAccessFormPaths || [];
+
+    		if(this.config.useDoubleQuotes === undefined) {
+    			this.config.useDoubleQuotes = false;
+    		}
+    		
+    		this.config.xmlElementsFilter = this.config.xmlElementsFilter || [];
+    		this.config.jsonPropertiesFilter = this.config.jsonPropertiesFilter || [];
+    		
+    		if(this.config.keepCData === undefined) {
+    			this.config.keepCData = false;
+    		}
+    	}
+
+        initRequiredPolyfills() {		
+    	}
+
+    	getNodeLocalName( node ) {
+    		var nodeLocalName = node.localName;			
+    		if(nodeLocalName == null) // Yeah, this is IE!! 
+    			nodeLocalName = node.baseName;
+    		if(nodeLocalName == null || nodeLocalName=="") // =="" is IE too
+    			nodeLocalName = node.nodeName;
+    		return nodeLocalName;
+    	}
+    	
+    	getNodePrefix(node) {
+    		return node.prefix;
+    	}
+    		
+    	escapeXmlChars(str) {
+    		if(typeof(str) == "string")
+    			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+    		else
+    			return str;
+    	}
+
+    	unescapeXmlChars(str) {
+    		return str.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+    	}
+    	
+    	checkInStdFiltersArrayForm(stdFiltersArrayForm, obj, name, path) {
+    		var idx = 0;
+    		for(; idx < stdFiltersArrayForm.length; idx++) {
+    			var filterPath = stdFiltersArrayForm[idx];
+    			if( typeof filterPath === "string" ) {
+    				if(filterPath == path)
+    					break;
+    			}
+    			else
+    			if( filterPath instanceof RegExp) {
+    				if(filterPath.test(path))
+    					break;
+    			}				
+    			else
+    			if( typeof filterPath === "function") {
+    				if(filterPath(obj, name, path))
+    					break;
+    			}
+    		}
+    		return idx!=stdFiltersArrayForm.length;
+    	}
+    	
+    	toArrayAccessForm(obj, childName, path) {
+    		switch(this.config.arrayAccessForm) {
+    			case "property":
+    				if(!(obj[childName] instanceof Array))
+    					obj[childName+"_asArray"] = [obj[childName]];
+    				else
+    					obj[childName+"_asArray"] = obj[childName];
+    				break;
+    			/*case "none":
+    				break;*/
+    		}
+    		
+    		if(!(obj[childName] instanceof Array) && this.config.arrayAccessFormPaths.length > 0) {
+    			if(this.checkInStdFiltersArrayForm(this.config.arrayAccessFormPaths, obj, childName, path)) {
+    				obj[childName] = [obj[childName]];
+    			}			
+    		}
+    	}
+    	
+    	fromXmlDateTime(prop) {
+    		// Implementation based up on http://stackoverflow.com/questions/8178598/xml-datetime-to-javascript-date-object
+    		// Improved to support full spec and optional parts
+    		var bits = prop.split(/[-T:+Z]/g);
+    		
+    		var d = new Date(bits[0], bits[1]-1, bits[2]);			
+    		var secondBits = bits[5].split("\.");
+    		d.setHours(bits[3], bits[4], secondBits[0]);
+    		if(secondBits.length>1)
+    			d.setMilliseconds(secondBits[1]);
+
+    		// Get supplied time zone offset in minutes
+    		if(bits[6] && bits[7]) {
+    			var offsetMinutes = bits[6] * 60 + Number(bits[7]);
+    			var sign = /\d\d-\d\d:\d\d$/.test(prop)? '-' : '+';
+
+    			// Apply the sign
+    			offsetMinutes = 0 + (sign == '-'? -1 * offsetMinutes : offsetMinutes);
+
+    			// Apply offset and local timezone
+    			d.setMinutes(d.getMinutes() - offsetMinutes - d.getTimezoneOffset());
+    		}
+    		else
+    			if(prop.indexOf("Z", prop.length - 1) !== -1) {
+    				d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds()));					
+    			}
+
+    		// d is now a local time equivalent to the supplied time
+    		return d;
+    	}
+    	
+    	checkFromXmlDateTimePaths(value, childName, fullPath) {
+    		if(this.config.datetimeAccessFormPaths.length > 0) {
+    			var path = fullPath.split("\.#")[0];
+    			if(this.checkInStdFiltersArrayForm(this.config.datetimeAccessFormPaths, value, childName, path)) {
+    				return this.fromXmlDateTime(value);
+    			}
+    			else
+    				return value;			
+    		}
+    		else
+    			return value;
+    	}
+    	
+    	checkXmlElementsFilter(obj, childType, childName, childPath) {
+    		if( childType == this.DOMNodeTypes.ELEMENT_NODE && this.config.xmlElementsFilter.length > 0) {
+    			return this.checkInStdFiltersArrayForm(this.config.xmlElementsFilter, obj, childName, childPath);	
+    		}
+    		else
+    			return true;
+    	}	
+
+    	parseDOMChildren( node, path ) {
+    		if(node.nodeType == this.DOMNodeTypes.DOCUMENT_NODE) {
+    			var result = new Object;
+    			var nodeChildren = node.childNodes;
+    			// Alternative for firstElementChild which is not supported in some environments
+    			for(var cidx=0; cidx <nodeChildren.length; cidx++) {
+    				var child = nodeChildren.item(cidx);
+    				if(child.nodeType == this.DOMNodeTypes.ELEMENT_NODE) {
+    					var childName = this.getNodeLocalName(child);
+    					result[childName] = this.parseDOMChildren(child, childName);
+    				}
+    			}
+    			return result;
+    		}
+    		else
+    		if(node.nodeType == this.DOMNodeTypes.ELEMENT_NODE) {
+    			var result = new Object;
+    			result.__cnt=0;
+    			
+    			var nodeChildren = node.childNodes;
+    			
+    			// Children nodes
+    			for(var cidx=0; cidx <nodeChildren.length; cidx++) {
+    				var child = nodeChildren.item(cidx); // nodeChildren[cidx];
+    				var childName = this.getNodeLocalName(child);
+    				
+    				if(child.nodeType!= this.DOMNodeTypes.COMMENT_NODE) {
+    					var childPath = path+"."+childName;
+    					if (this.checkXmlElementsFilter(result,child.nodeType,childName,childPath)) {
+    						result.__cnt++;
+    						if(result[childName] == null) {
+    							result[childName] = this.parseDOMChildren(child, childPath);
+    							this.toArrayAccessForm(result, childName, childPath);					
+    						}
+    						else {
+    							if(result[childName] != null) {
+    								if( !(result[childName] instanceof Array)) {
+    									result[childName] = [result[childName]];
+    									this.toArrayAccessForm(result, childName, childPath);
+    								}
+    							}
+    							(result[childName])[result[childName].length] = this.parseDOMChildren(child, childPath);
+    						}
+    					}
+    				}								
+    			}
+    			
+    			// Attributes
+    			for(var aidx=0; aidx <node.attributes.length; aidx++) {
+    				var attr = node.attributes.item(aidx); // [aidx];
+    				result.__cnt++;
+    				result[this.config.attributePrefix+attr.name]=attr.value;
+    			}
+    			
+    			// Node namespace prefix
+    			var nodePrefix = this.getNodePrefix(node);
+    			if(nodePrefix!=null && nodePrefix!="") {
+    				result.__cnt++;
+    				result.__prefix=nodePrefix;
+    			}
+    			
+    			if(result["#text"]!=null) {				
+    				result.__text = result["#text"];
+    				if(result.__text instanceof Array) {
+    					result.__text = result.__text.join("\n");
+    				}
+    				//if(this.config.escapeMode)
+    				//	result.__text = this.unescapeXmlChars(result.__text);
+    				if(this.config.stripWhitespaces)
+    					result.__text = result.__text.trim();
+    				delete result["#text"];
+    				if(this.config.arrayAccessForm=="property")
+    					delete result["#text_asArray"];
+    				result.__text = this.checkFromXmlDateTimePaths(result.__text, childName, path+"."+childName);
+    			}
+    			if(result["#cdata-section"]!=null) {
+    				result.__cdata = result["#cdata-section"];
+    				delete result["#cdata-section"];
+    				if(this.config.arrayAccessForm=="property")
+    					delete result["#cdata-section_asArray"];
+    			}
+    			
+    			if( result.__cnt == 0 && this.config.emptyNodeForm=="text" ) {
+    				result = '';
+    			}
+    			else
+    			if( result.__cnt == 1 && result.__text!=null  ) {
+    				result = result.__text;
+    			}
+    			else
+    			if( result.__cnt == 1 && result.__cdata!=null && !this.config.keepCData  ) {
+    				result = result.__cdata;
+    			}			
+    			else			
+    			if ( result.__cnt > 1 && result.__text!=null && this.config.skipEmptyTextNodesForObj) {
+    				if( (this.config.stripWhitespaces && result.__text=="") || (result.__text.trim()=="")) {
+    					delete result.__text;
+    				}
+    			}
+    			delete result.__cnt;			
+    			
+    			if( this.config.enableToStringFunc && (result.__text!=null || result.__cdata!=null )) {
+    				result.toString = function() {
+    					return (this.__text!=null? this.__text:'')+( this.__cdata!=null ? this.__cdata:'');
+    				};
+    			}
+    			
+    			return result;
+    		}
+    		else
+    		if(node.nodeType == this.DOMNodeTypes.TEXT_NODE || node.nodeType == this.DOMNodeTypes.CDATA_SECTION_NODE) {
+    			return node.nodeValue;
+    		}	
+    	}
+    	
+    	startTag(jsonObj, element, attrList, closed) {
+    		var resultStr = "<"+ ( (jsonObj!=null && jsonObj.__prefix!=null)? (jsonObj.__prefix+":"):"") + element;
+    		if(attrList!=null) {
+    			for(var aidx = 0; aidx < attrList.length; aidx++) {
+    				var attrName = attrList[aidx];
+    				var attrVal = jsonObj[attrName];
+    				if(this.config.escapeMode)
+    					attrVal=this.escapeXmlChars(attrVal);
+    				resultStr+=" "+attrName.substr(this.config.attributePrefix.length)+"=";
+    				if(this.config.useDoubleQuotes)
+    					resultStr+='"'+attrVal+'"';
+    				else
+    					resultStr+="'"+attrVal+"'";
+    			}
+    		}
+    		if(!closed)
+    			resultStr+=">";
+    		else
+    			resultStr+="/>";
+    		return resultStr;
+    	}
+    	
+    	endTag(jsonObj,elementName) {
+    		return "</"+ (jsonObj.__prefix!=null? (jsonObj.__prefix+":"):"")+elementName+">";
+    	}
+    	
+    	endsWith(str, suffix) {
+    		return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    	}
+    	
+    	jsonXmlSpecialElem ( jsonObj, jsonObjField ) {
+    		if((this.config.arrayAccessForm=="property" && this.endsWith(jsonObjField.toString(),("_asArray"))) 
+    				|| jsonObjField.toString().indexOf(this.config.attributePrefix)==0 
+    				|| jsonObjField.toString().indexOf("__")==0
+    				|| (jsonObj[jsonObjField] instanceof Function) )
+    			return true;
+    		else
+    			return false;
+    	}
+    	
+    	jsonXmlElemCount ( jsonObj ) {
+    		var elementsCnt = 0;
+    		if(jsonObj instanceof Object ) {
+    			for( var it in jsonObj  ) {
+    				if(this.jsonXmlSpecialElem ( jsonObj, it) )
+    					continue;			
+    				elementsCnt++;
+    			}
+    		}
+    		return elementsCnt;
+    	}
+    	
+    	checkJsonObjPropertiesFilter(jsonObj, propertyName, jsonObjPath) {
+    		return this.config.jsonPropertiesFilter.length == 0
+    			|| jsonObjPath==""
+    			|| this.checkInStdFiltersArrayForm(this.config.jsonPropertiesFilter, jsonObj, propertyName, jsonObjPath);	
+    	}
+    	
+    	parseJSONAttributes ( jsonObj ) {
+    		var attrList = [];
+    		if(jsonObj instanceof Object ) {
+    			for( var ait in jsonObj  ) {
+    				if(ait.toString().indexOf("__")== -1 && ait.toString().indexOf(this.config.attributePrefix)==0) {
+    					attrList.push(ait);
+    				}
+    			}
+    		}
+    		return attrList;
+    	}
+    	
+    	parseJSONTextAttrs ( jsonTxtObj ) {
+    		var result ="";
+    		
+    		if(jsonTxtObj.__cdata!=null) {										
+    			result+="<![CDATA["+jsonTxtObj.__cdata+"]]>";					
+    		}
+    		
+    		if(jsonTxtObj.__text!=null) {			
+    			if(this.config.escapeMode)
+    				result+=this.escapeXmlChars(jsonTxtObj.__text);
+    			else
+    				result+=jsonTxtObj.__text;
+    		}
+    		return result;
+    	}
+    	
+    	parseJSONTextObject ( jsonTxtObj ) {
+    		var result ="";
+
+    		if( jsonTxtObj instanceof Object ) {
+    			result+=this.parseJSONTextAttrs ( jsonTxtObj );
+    		}
+    		else
+    			if(jsonTxtObj!=null) {
+    				if(this.config.escapeMode)
+    					result+=this.escapeXmlChars(jsonTxtObj);
+    				else
+    					result+=jsonTxtObj;
+    			}
+    		
+    		return result;
+    	}
+    	
+    	getJsonPropertyPath(jsonObjPath, jsonPropName) {
+    		if (jsonObjPath==="") {
+    			return jsonPropName;
+    		}
+    		else
+    			return jsonObjPath+"."+jsonPropName;
+    	}
+    	
+    	parseJSONArray ( jsonArrRoot, jsonArrObj, attrList, jsonObjPath ) {
+    		var result = ""; 
+    		if(jsonArrRoot.length == 0) {
+    			result+=this.startTag(jsonArrRoot, jsonArrObj, attrList, true);
+    		}
+    		else {
+    			for(var arIdx = 0; arIdx < jsonArrRoot.length; arIdx++) {
+    				result+=this.startTag(jsonArrRoot[arIdx], jsonArrObj, this.parseJSONAttributes(jsonArrRoot[arIdx]), false);
+    				result+=this.parseJSONObject(jsonArrRoot[arIdx], this.getJsonPropertyPath(jsonObjPath,jsonArrObj));
+    				result+=this.endTag(jsonArrRoot[arIdx],jsonArrObj);
+    			}
+    		}
+    		return result;
+    	}
+    	
+    	parseJSONObject ( jsonObj, jsonObjPath ) {
+    		var result = "";	
+
+    		var elementsCnt = this.jsonXmlElemCount ( jsonObj );
+    		
+    		if(elementsCnt > 0) {
+    			for( var it in jsonObj ) {
+    				
+    				if(this.jsonXmlSpecialElem ( jsonObj, it) || (jsonObjPath!="" && !this.checkJsonObjPropertiesFilter(jsonObj, it, this.getJsonPropertyPath(jsonObjPath,it))) )
+    					continue;			
+    				
+    				var subObj = jsonObj[it];						
+    				
+    				var attrList = this.parseJSONAttributes( subObj );
+    				
+    				if(subObj == null || subObj == undefined) {
+    					result+=this.startTag(subObj, it, attrList, true);
+    				}
+    				else
+    				if(subObj instanceof Object) {
+    					
+    					if(subObj instanceof Array) {					
+    						result+=this.parseJSONArray( subObj, it, attrList, jsonObjPath );					
+    					}
+    					else if(subObj instanceof Date) {
+    						result+=this.startTag(subObj, it, attrList, false);
+    						result+=subObj.toISOString();
+    						result+=this.endTag(subObj,it);
+    					}
+    					else {
+    						var subObjElementsCnt = this.jsonXmlElemCount ( subObj );
+    						if(subObjElementsCnt > 0 || subObj.__text!=null || subObj.__cdata!=null) {
+    							result+=this.startTag(subObj, it, attrList, false);
+    							result+=this.parseJSONObject(subObj, this.getJsonPropertyPath(jsonObjPath,it));
+    							result+=this.endTag(subObj,it);
+    						}
+    						else {
+    							result+=this.startTag(subObj, it, attrList, true);
+    						}
+    					}
+    				}
+    				else {
+    					result+=this.startTag(subObj, it, attrList, false);
+    					result+=this.parseJSONTextObject(subObj);
+    					result+=this.endTag(subObj,it);
+    				}
+    			}
+    		}
+    		result+=this.parseJSONTextObject(jsonObj);
+    		
+    		return result;
+    	}
+    	
+    	parseXmlString (xmlDocStr) {
+    		var isIEParser = window.ActiveXObject || "ActiveXObject" in window;
+    		if (xmlDocStr === undefined) {
+    			return null;
+    		}
+    		var xmlDoc;
+    		if (window.DOMParser) {
+    			var parser=new window.DOMParser();			
+    			var parsererrorNS = null;
+    			// IE9+ now is here
+    			if(!isIEParser) {
+    				try {
+    					parsererrorNS = parser.parseFromString("INVALID", "text/xml").getElementsByTagName("parsererror")[0].namespaceURI;
+    				}
+    				catch(err) {					
+    					parsererrorNS = null;
+    				}
+    			}
+    			try {
+    				xmlDoc = parser.parseFromString( xmlDocStr, "text/xml" );
+    				if( parsererrorNS!= null && xmlDoc.getElementsByTagNameNS(parsererrorNS, "parsererror").length > 0) {
+    					//throw new Error('Error parsing XML: '+xmlDocStr);
+    					xmlDoc = null;
+    				}
+    			}
+    			catch(err) {
+    				xmlDoc = null;
+    			}
+    		}
+    		else {
+    			// IE :(
+    			if(xmlDocStr.indexOf("<?")==0) {
+    				xmlDocStr = xmlDocStr.substr( xmlDocStr.indexOf("?>") + 2 );
+    			}
+    			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+    			xmlDoc.async="false";
+    			xmlDoc.loadXML(xmlDocStr);
+    		}
+    		return xmlDoc;
+    	};
+    	
+    	asArray (prop) {
+    		if (prop === undefined || prop == null)
+    			return [];
+    		else
+    		if(prop instanceof Array)
+    			return prop;
+    		else
+    			return [prop];
+    	};
+    	
+    	toXmlDateTime (dt) {
+    		if(dt instanceof Date)
+    			return dt.toISOString();
+    		else
+    		if(typeof(dt) === 'number' )
+    			return new Date(dt).toISOString();
+    		else	
+    			return null;
+    	};
+    	
+    	asDateTime (prop) {
+    		if(typeof(prop) == "string") {
+    			return this.fromXmlDateTime(prop);
+    		}
+    		else
+    			return prop;
+    	};
+
+    	xml2json (xmlDoc) {
+    		return this.parseDOMChildren ( xmlDoc );
+    	};
+    	
+    	xml_str2json (xmlDocStr) {
+    		var xmlDoc = this.parseXmlString(xmlDocStr);
+    		if(xmlDoc!=null)
+    			return this.xml2json(xmlDoc);
+    		else
+    			return null;
+    	};
+
+    	json2xml_str (jsonObj) {
+    		return this.parseJSONObject ( jsonObj, "" );
+    	};
+
+    	json2xml (jsonObj) {
+    		var xmlDocStr = this.json2xml_str (jsonObj);
+    		return this.parseXmlString(xmlDocStr);
+    	};
+    	
+    	getVersion () {
+    		return this.VERSION;
+    	}
+    }
+
+    /* helper/HelperAI.svelte generated by Svelte v3.34.0 */
+
+    function XMLToJSON(myXml) {
+    	//var myXml = xml;
+    	myXml = myXml.replace(/<\!--\[CDATA\[/g, "<![CDATA[").replace(/\]\]-->/g, "]]>");
+
+    	let x2js = new X2JS({ useDoubleQuotes: true });
+    	let newXml = JSON.stringify(x2js.xml_str2json(myXml));
+    	newXml = newXml.replace("SMXML", "smxml");
+    	newXml = JSON.parse(newXml);
+    	return newXml;
+    }
+
+    function onUserAnsChange(result) {
+    	if (result) {
+    		AH$1.select("#answer", "checked", result.ans ? true : false);
+    		AH$1.select("#special_module_user_xml", "value", result.uXml);
+
+    		if (typeof window == "object") {
+    			window.ISSPECIALMODULEUSERXMLCHANGE = 1;
+
+    			if (typeof calculatePoint != "undefined") {
+    				calculatePoint(result.correctPoints || 1, result.ansPoint || result.ans);
+    			}
+    		}
+
+    		globalThis.saveUserAnswerInSapper?.(result);
+    	}
+    }
+
+    const AH$1 = new JUI();
+    const SSD = new JStore();
+
+    /* helper/ItemHelper.svelte generated by Svelte v3.34.0 */
+
+    const { document: document_1 } = globals;
+    const file = "helper/ItemHelper.svelte";
+
+    function add_css() {
+    	var style = element("style");
+    	style.id = "svelte-ri6gyf-style";
+    	style.textContent = ".smControlerBtn .btn-light:not([disabled]):not(.disabled).active{color:#fff!important;-webkit-box-shadow:inset 0 2px 0 #1266f1!important;box-shadow:inset 0 2px 0 #1266f1!important;background-color:#2572f2!important;border-color:#2572f2!important;border-top-color:#0c57d3!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSXRlbUhlbHBlci5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBNENZLGdFQUFnRSxBQUFFLENBQUEsQUFDdEUsS0FBSyxDQUFFLElBQUksVUFBVSxDQUNyQixrQkFBa0IsQ0FBRSxLQUFLLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsT0FBTyxVQUFVLENBQ25ELFVBQVUsQ0FBRSxLQUFLLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsT0FBTyxVQUFVLENBQzNDLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxDQUNuQyxZQUFZLENBQUUsT0FBTyxVQUFVLENBQy9CLGdCQUFnQixDQUFFLE9BQU8sVUFBVSxBQUN2QyxDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkl0ZW1IZWxwZXIuc3ZlbHRlIl19 */";
+    	append_dev(document_1.head, style);
+    }
+
+    // (37:0) {#if reviewMode || customReviewMode}
+    function create_if_block(ctx) {
+    	let div;
+    	let button0;
+    	let span0;
+    	let t1;
+    	let button1;
+    	let span1;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			button0 = element("button");
+    			span0 = element("span");
+    			span0.textContent = "Correct Answer";
+    			t1 = space();
+    			button1 = element("button");
+    			span1 = element("span");
+    			span1.textContent = "Your Answer";
+    			add_location(span0, file, 38, 131, 1621);
+    			attr_dev(button0, "tabindex", "0");
+    			attr_dev(button0, "type", "button");
+    			attr_dev(button0, "mode", "c");
+    			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_test");
+    			add_location(button0, file, 38, 8, 1498);
+    			add_location(span1, file, 39, 135, 1793);
+    			attr_dev(button1, "tabindex", "0");
+    			attr_dev(button1, "type", "button");
+    			attr_dev(button1, "mode", "u");
+    			attr_dev(button1, "class", "btn btn-light your-ans active svelte_items_test");
+    			add_location(button1, file, 39, 8, 1666);
+    			attr_dev(div, "class", "smControlerBtn btn-group mb-3");
+    			attr_dev(div, "role", "group");
+    			attr_dev(div, "aria-label", "Answer buttons");
+    			add_location(div, file, 37, 4, 1405);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, button0);
+    			append_dev(button0, span0);
+    			append_dev(div, t1);
+    			append_dev(div, button1);
+    			append_dev(button1, span1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button0, "click", /*handleSmClick*/ ctx[3], false, false, false),
+    					listen_dev(button1, "click", /*handleSmClick*/ ctx[3], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(37:0) {#if reviewMode || customReviewMode}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let center;
+    	let button0;
+    	let t0;
+    	let button1;
+    	let t1;
+    	let mounted;
+    	let dispose;
+    	let if_block = (/*reviewMode*/ ctx[0] || /*customReviewMode*/ ctx[1]) && create_if_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			center = element("center");
+    			button0 = element("button");
+    			t0 = space();
+    			button1 = element("button");
+    			t1 = space();
+    			if (if_block) if_block.c();
+    			attr_dev(button0, "tabindex", "0");
+    			attr_dev(button0, "type", "button");
+    			attr_dev(button0, "class", "h h-imp svelte_items_test");
+    			attr_dev(button0, "id", "set-review");
+    			add_location(button0, file, 34, 0, 1092);
+    			attr_dev(button1, "tabindex", "0");
+    			attr_dev(button1, "type", "button");
+    			attr_dev(button1, "class", "h h-imp svelte_items_test");
+    			attr_dev(button1, "id", "unset-review");
+    			add_location(button1, file, 35, 0, 1226);
+    			add_location(center, file, 33, 0, 1083);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, center, anchor);
+    			append_dev(center, button0);
+    			append_dev(center, t0);
+    			append_dev(center, button1);
+    			append_dev(center, t1);
+    			if (if_block) if_block.m(center, null);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button0, "click", /*click_handler*/ ctx[5], false, false, false),
+    					listen_dev(button1, "click", /*click_handler_1*/ ctx[6], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*reviewMode*/ ctx[0] || /*customReviewMode*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(center, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(center);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("ItemHelper", slots, []);
+    	let { reviewMode = false } = $$props;
+    	let { handleReviewClick } = $$props;
+    	let { customReviewMode } = $$props;
+
+    	AH$1.listen("body", "keydown", ".smControlerBtn .correct-ans", function (_this, e) {
+    		if (e.which === 13) {
+    			_this.click();
+    		}
+    	});
+
+    	AH$1.listen("body", "keydown", ".smControlerBtn .your-ans", function (_this, e) {
+    		if (e.which === 13) {
+    			_this.click();
+    		}
+    	});
+
+    	const dispatch = createEventDispatcher();
+
+    	function handleSmClick(event) {
+    		document.querySelectorAll(".smControlerBtn button").forEach(el => el.classList.remove("active"));
+    		event.target.classList.add("active");
+    		if (handleReviewClick) handleReviewClick(event.target.getAttribute("mode"), event);
+    	}
+
+    	const writable_props = ["reviewMode", "handleReviewClick", "customReviewMode"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<ItemHelper> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = () => dispatch("setReview");
+    	const click_handler_1 = () => dispatch("unsetReview");
+
+    	$$self.$$set = $$props => {
+    		if ("reviewMode" in $$props) $$invalidate(0, reviewMode = $$props.reviewMode);
+    		if ("handleReviewClick" in $$props) $$invalidate(4, handleReviewClick = $$props.handleReviewClick);
+    		if ("customReviewMode" in $$props) $$invalidate(1, customReviewMode = $$props.customReviewMode);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		createEventDispatcher,
+    		AH: AH$1,
+    		reviewMode,
+    		handleReviewClick,
+    		customReviewMode,
+    		dispatch,
+    		handleSmClick
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("reviewMode" in $$props) $$invalidate(0, reviewMode = $$props.reviewMode);
+    		if ("handleReviewClick" in $$props) $$invalidate(4, handleReviewClick = $$props.handleReviewClick);
+    		if ("customReviewMode" in $$props) $$invalidate(1, customReviewMode = $$props.customReviewMode);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		reviewMode,
+    		customReviewMode,
+    		dispatch,
+    		handleSmClick,
+    		handleReviewClick,
+    		click_handler,
+    		click_handler_1
+    	];
+    }
+
+    class ItemHelper extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		if (!document_1.getElementById("svelte-ri6gyf-style")) add_css();
+
+    		init(this, options, instance, create_fragment, safe_not_equal, {
+    			reviewMode: 0,
+    			handleReviewClick: 4,
+    			customReviewMode: 1
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ItemHelper",
+    			options,
+    			id: create_fragment.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*handleReviewClick*/ ctx[4] === undefined && !("handleReviewClick" in props)) {
+    			console.warn("<ItemHelper> was created without expected prop 'handleReviewClick'");
+    		}
+
+    		if (/*customReviewMode*/ ctx[1] === undefined && !("customReviewMode" in props)) {
+    			console.warn("<ItemHelper> was created without expected prop 'customReviewMode'");
+    		}
+    	}
+
+    	get reviewMode() {
+    		throw new Error("<ItemHelper>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set reviewMode(value) {
+    		throw new Error("<ItemHelper>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get handleReviewClick() {
+    		throw new Error("<ItemHelper>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set handleReviewClick(value) {
+    		throw new Error("<ItemHelper>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get customReviewMode() {
+    		throw new Error("<ItemHelper>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set customReviewMode(value) {
+    		throw new Error("<ItemHelper>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    const subscriber_queue = [];
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (let i = 0; i < subscribers.length; i += 1) {
+                        const s = subscribers[i];
+                        s[1]();
+                        subscriber_queue.push(s, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    //window.isDraggableAdded = (window.isDraggableAdded) ? window.isDraggableAdded : false;
+    //window.isDraggable = (window.isDraggable) ? window.isDraggable :false;
+
+    class Draggable {
+        /* 
+            DragNDrop class fire following events 
+                onDragStart(event, element) // when dragging is just started
+                onDrag(event, ui) // when element is dragging
+                onDrop(source, target) // when element is dropped
+                onRemove(source, target) // whene drop element is removed
+                onOver(element) // when draggable is over the doppable area
+                onOut(element) // when draggble leave the droppable area
+                isRevert() // when element is started dragging but not droppped at proper place
+                changeContainment(element) // if defined set the return element as container
+
+            Dragging:
+                onDragStart(event, element) // when dragging is just started
+                onDrag(event, ui)  // when element is dragging
+                onDragStop(event, position , ui) // when element is dropped
+                changeContainment(element) // if defined set the return element as container
+
+
+        */
+        constructor(container, drag, drop, draglist) {
+            if (typeof (container) == 'object') {
+                this.container = container.containment;
+                this.drag =  container.classes;
+                this.ignore = container.ignore;
+                this.initDraggable();
+            } else {
+                this.drag = drag;
+                this.drop = drop;
+                this.container = container;
+                this.initDnd();
+            }
+            this.lastPosition = [0, 0];
+            window.draglist = draglist;
+            this.isStart = false;
+            this.isMoving = false;
+            this.node = null;
+            this.target = null;
+            this.prenode = null;
+        }
+
+        checkPosition(event, node) {
+            let boundry = document.querySelector(this.container).getBoundingClientRect();
+            let x = event.clientX - boundry.left;
+            let y = event.clientY - boundry.top;
+            let dimension = {
+                width : node.offsetWidth / 2,
+                height: node.offsetHeight / 2,
+            };
+            if (x < dimension.width) {
+                x = dimension.width;
+            } else if (x > (boundry.width -  dimension.width) ) {
+                x = (boundry.width -  dimension.width);
+            } 
+
+            if (y < dimension.height) {
+                y = dimension.height;
+            } else if (y > (boundry.height -  dimension.height)) {
+                y = (boundry.height -  dimension.height);
+            }
+
+            if (x < 0) {
+                x = dimension.width + 10;
+            } 
+            if (y < 0) {
+                y = dimension.height + 10;
+            }
+
+            return [x, y];
+        };
+
+        binddndEvents(drag, drop) {
+            if (drag) {
+                AI.listen('body', 'mousedown', drag, (current, event) => {
+                    if (this.changeContainment) {
+                        this.container = this.changeContainment(current);
+                    }
+                    if (!(current.classList.contains('uc_drag_disable') || current.classList.contains('lab_disable') )) {
+                        if (drop) {
+                            AI.selectAll(drop).forEach(element => {
+                                if (element.getAttribute('droping') == '2') {
+                                    element.style.zIndex = 5;
+                                } else {
+                                    element.style.zIndex = 2;
+                                }
+                            });
+                        }
+
+                        this.prenode = current;
+                        this.isStart = false;
+                        this.node = null;
+
+                        if (this.onDragStart) {
+                            let clone_node = this.onDragStart(event, this.prenode);
+                            clone_node.style.zIndex= 100;
+                            this.node = clone_node;
+                            this.lastPosition = this.checkPosition(event, this.prenode);
+                            clone_node.style.top = this.lastPosition[1] + this.prenode.offsetHeight / 2 + 'px';
+                            clone_node.style.left = this.lastPosition[0]  - this.prenode.offsetWidth / 2 + 'px';
+                            document.querySelector(this.container).appendChild(clone_node);
+                            this.isStart = true;
+                        }
+                    }
+                });
+
+                AI.listen('body', 'dragstart', drag, (current, event) => {
+                    event.preventDefault();
+                });
+
+                AI.listenAll('body', 'mousemove', (event) => {
+                    if (this.isStart && this.node) {
+                        this.isMoving = true;
+                        this.lastPosition = this.checkPosition(event, this.node);
+                        this.node.style.top = this.lastPosition[1] + this.node.offsetHeight / 2 + 'px';
+                        this.node.style.left = this.lastPosition[0]  - this.node.offsetWidth / 2 + 'px';
+                        this.onDrag && this.onDrag(event, {node: this.node, top: (this.lastPosition[1] + this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )});
+                    }
+                });
+
+                AI.listenAll('body', 'mouseup', () => {
+                    if (this.isStart && this.node && this.isMoving) {
+                        this.isMoving = false;
+                        this.isStart = false;
+                        if (this.target) {
+                            if (this.target.getAttribute('droping') == '1' && this.prenode.getAttribute('droping') == '2') {
+                                this.onDropChange(this.prenode, this.target, window.draglist[this.prenode.id][0]);
+                                this.saveDetail(window.draglist[this.prenode.id][0], this.target);
+                                delete window.draglist[this.prenode.id];
+                            } else if (this.target.getAttribute('droping') == '2' && this.prenode.getAttribute('droping') == '2') {
+                                this.onDropInterchange(this.prenode, this.target, window.draglist[this.prenode.id][0], window.draglist[this.target.id][0]);
+                                let clone_draglist = Object.assign({}, window.draglist);
+                                this.saveDetail(clone_draglist[this.prenode.id][0], this.target);
+                                this.saveDetail(clone_draglist[this.target.id][0], this.prenode);
+                            } else if (this.target.getAttribute('droping') == '2' && this.prenode.getAttribute('draging') == '1') {
+                                this.onDragInterchange(this.prenode, this.target, window.draglist[this.target.id][0]);
+                                this.saveDetail(this.prenode, this.target);
+                            } else if (this.prenode.id != this.target.id) { //  if data is drop from source to target
+                                this.saveDetail(this.prenode, this.target);
+                                this.onDrop(this.prenode, this.target);
+                            } else if (this.prenode.id == this.target.id) { // if both the drop and drag are same target
+                                this.target.classList.remove('drop-hover');
+                                this.target.style.opacity = '';
+                            }
+                        } else if (this.node.getAttribute('draging') == '2') { // when element is remove from target -> source 
+                            let target =  window.draglist[this.prenode.id];
+                            this.onRemove(this.prenode, target[0]);
+                            delete window.draglist[this.prenode.id];
+                        } else {
+                            this.isRevert && this.isRevert();
+                        }
+                        if(this.node)
+                            this.node.remove();
+                    } else if (!this.isMoving && this.node) {
+                        this.node.remove();
+                    }
+            
+                    if (drop) {
+                        AI.selectAll(drop).forEach(element => {
+                            element.style.zIndex = '';
+                            // element.style.position = '';
+                        });
+                    }
+            
+                    this.node = null;
+                    this.target = null;
+                    this.prenode = null;
+                });
+            }
+            if (drop) {
+                AI.listen('body', 'mousemove', drop, (current) => {
+                    if (this.isStart && this.node && this.isMoving) {
+                        this.target = current;
+                        AI.selectAll('.dropable','removeClass','drop-hover');
+                        this.target.classList.add('drop-hover');
+                        this.target.style.opacity = '0.7';
+                        this.onOver && this.onOver(current);
+                    }
+                });
+                
+                AI.listen('body', 'mouseover', drop, (current) => {
+                    this.target = current;
+                    this.target.classList.add('drop-hover');
+                });
+
+                AI.listen('body','mouseout', drop, () => {
+                    if (this.isStart && this.node && this.isMoving && this.target) {
+                        this.onOut && this.onOut(this.target);
+                        this.target.style.opacity = '1';
+                        this.target = null;
+                    } 
+                    if (this.target != null || this.target != undefined) {
+                        this.target.classList.remove('drop-hover');
+                    }
+                });
+            }
+        };
+
+        bindDraggable(drag) {
+            AI.listen('body', 'mousedown', drag, (current, event) => {
+                if(event.which == 3){
+                    return;
+                }
+                if (this.changeContainment) {
+                    this.container = this.changeContainment(current);
+                }
+
+                if (this.ignore && Array.isArray(this.ignore) && event.target) {
+                    let revert = false;
+                    for (let index = 0; index < this.ignore.length; index++) {
+                        if (event.target.closest(this.ignore[index]) || event.target.classList.contains(this.ignore[index])) {
+                            revert = true;
+                            break;
+                        }
+                    }
+                    if (revert) {
+                        return false;
+                    }
+                }
+                this.isStart = true;
+                this.node = current;
+                this.lastPosition = this.checkPosition(event, current);
+                current.style.top = this.lastPosition[1] - current.offsetHeight / 2 + 'px';
+                current.style.left = this.lastPosition[0]  - current.offsetWidth / 2 + 'px';
+                this.onDragStart && this.onDragStart(event, current);
+            });
+
+            AI.listen('body', 'dragstart', drag, (current, event) => {
+                event.preventDefault();
+            });
+
+            AI.listenAll('body', 'mousemove', (event) => {
+                if (this.isStart && this.node) {
+                    this.isMoving = true;
+                    this.lastPosition = this.checkPosition(event, this.node);
+                    this.node.style.top = this.lastPosition[1] - this.node.offsetHeight / 2 + 'px';
+                    this.node.style.left = this.lastPosition[0]  - this.node.offsetWidth / 2 + 'px';
+                    this.node.style.zIndex = 100;
+                    this.onDrag && this.onDrag(event, {top: (this.lastPosition[1] - this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )});
+                }
+            });
+
+            AI.listenAll('body', 'mouseup', (event) => {
+                if (this.isStart && this.node && this.isMoving) {
+                    this.isMoving = false;
+                    this.isStart = false;
+                    this.lastPosition = this.checkPosition(event, this.node);
+                    this.node.style.top = this.lastPosition[1] - this.node.offsetHeight / 2 + 'px';
+                    this.node.style.left = this.lastPosition[0]  - this.node.offsetWidth / 2 + 'px';
+                    this.node.style.zIndex = '100';
+                    this.onDragStop && this.onDragStop(event, {top: (this.lastPosition[1] - this.node.offsetHeight / 2), left : (this.lastPosition[0]  - this.node.offsetWidth / 2 )}, this.node);
+                }
+                this.node = null;
+            });
+        }
+
+        initDnd() {
+            if (!window.isDraggableAdded) {
+                this.binddndEvents(this.drag, this.drop);
+                window.isDraggableAdded = true;
+            }
+        };
+
+        initDraggable() {
+            if (!window.isDraggable) {
+                this.bindDraggable(this.drag);
+                window.isDraggable = true;
+            }
+        };
+
+        saveDetail(source, target) {
+            window.draglist[target.id] = [source, target];
+            window.draglist = window.draglist;
+        };
+
+        onDrop(source, target) {
+            let copied = source.cloneNode(true);
+            target.style.backgroundColor = copied.getAttribute('data-bgcolor');
+            target.setAttribute('draging', 2);
+            target.setAttribute('droping', 2); 
+        
+            // for disabling the dragable
+            if (! (source.getAttribute("data-multi_drag") == "1") ) {
+                source.classList.add('uc_drag_disable');
+                source.style.setProperty("cursor", "no-drop", "important");
+                source.style.setProperty("opacity", "0.5", "important");
+            }
+        
+            target.classList.remove('drop-hover');
+            target.style.opacity = '1';
+            AI.find(target, 'p').innerText = AI.find(copied, 'p').innerText;
+        } 
+        
+        onRemove(source, target) {
+            source.removeAttribute('draging');
+            source.style.backgroundColor = source.getAttribute('data-bgcolor');
+            source.setAttribute('droping', 1);
+        
+            // for disabling the dragable
+            if (target) {
+                target.classList.remove('uc_drag_disable');
+                target.style.cursor = '';
+                target.style.opacity = '';
+            }
+        
+            source.classList.remove('drop-hover');
+            source.style.opacity = '1';
+            AI.find(source, 'p').innerText = source.getAttribute('data-caption');
+        } 
+        
+        onDropChange(source, target, originalSource) {
+            this.onDrop(originalSource, target);
+            this.onRemove(source);
+        }
+        
+        onDropInterchange(source, target, originalSource, originalTarget) {
+            this.onDrop(originalSource, target);
+            this.onDrop(originalTarget, source);
+        }
+        
+        onDragInterchange(source, target, originalSource) {
+            this.onRemove(target, originalSource);
+            this.onDrop(source, target);
+        }
+    }
+
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+    function getDefaultExportFromCjs (x) {
+    	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+    }
+
+    function createCommonjsModule(fn) {
+      var module = { exports: {} };
+    	return fn(module, module.exports), module.exports;
+    }
+
+    var sweetalert_min = createCommonjsModule(function (module, exports) {
+    !function(t,e){module.exports=e();}(commonjsGlobal,function(){return function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,o){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:o});},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=8)}([function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o="swal-button";e.CLASS_NAMES={MODAL:"swal-modal",OVERLAY:"swal-overlay",SHOW_MODAL:"swal-overlay--show-modal",MODAL_TITLE:"swal-title",MODAL_TEXT:"swal-text",ICON:"swal-icon",ICON_CUSTOM:"swal-icon--custom",CONTENT:"swal-content",FOOTER:"swal-footer",BUTTON_CONTAINER:"swal-button-container",BUTTON:o,CONFIRM_BUTTON:o+"--confirm",CANCEL_BUTTON:o+"--cancel",DANGER_BUTTON:o+"--danger",BUTTON_LOADING:o+"--loading",BUTTON_LOADER:o+"__loader"},e.default=e.CLASS_NAMES;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0}),e.getNode=function(t){var e="."+t;return document.querySelector(e)},e.stringToNode=function(t){var e=document.createElement("div");return e.innerHTML=t.trim(),e.firstChild},e.insertAfter=function(t,e){var n=e.nextSibling;e.parentNode.insertBefore(t,n);},e.removeNode=function(t){t.parentElement.removeChild(t);},e.throwErr=function(t){throw t=t.replace(/ +(?= )/g,""),"SweetAlert: "+(t=t.trim())},e.isPlainObject=function(t){if("[object Object]"!==Object.prototype.toString.call(t))return !1;var e=Object.getPrototypeOf(t);return null===e||e===Object.prototype},e.ordinalSuffixOf=function(t){var e=t%10,n=t%100;return 1===e&&11!==n?t+"st":2===e&&12!==n?t+"nd":3===e&&13!==n?t+"rd":t+"th"};},function(t,e,n){function o(t){for(var n in t)e.hasOwnProperty(n)||(e[n]=t[n]);}Object.defineProperty(e,"__esModule",{value:!0}),o(n(25));var r=n(26);e.overlayMarkup=r.default,o(n(27)),o(n(28)),o(n(29));var i=n(0),a=i.default.MODAL_TITLE,s=i.default.MODAL_TEXT,c=i.default.ICON,l=i.default.FOOTER;e.iconMarkup='\n  <div class="'+c+'"></div>',e.titleMarkup='\n  <div class="'+a+'"></div>\n',e.textMarkup='\n  <div class="'+s+'"></div>',e.footerMarkup='\n  <div class="'+l+'"></div>\n';},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1);e.CONFIRM_KEY="confirm",e.CANCEL_KEY="cancel";var r={visible:!0,text:null,value:null,className:"",closeModal:!0},i=Object.assign({},r,{visible:!1,text:"Cancel",value:null}),a=Object.assign({},r,{text:"OK",value:!0});e.defaultButtonList={cancel:i,confirm:a};var s=function(t){switch(t){case e.CONFIRM_KEY:return a;case e.CANCEL_KEY:return i;default:var n=t.charAt(0).toUpperCase()+t.slice(1);return Object.assign({},r,{text:n,value:t})}},c=function(t,e){var n=s(t);return !0===e?Object.assign({},n,{visible:!0}):"string"==typeof e?Object.assign({},n,{visible:!0,text:e}):o.isPlainObject(e)?Object.assign({visible:!0},n,e):Object.assign({},n,{visible:!1})},l=function(t){for(var e={},n=0,o=Object.keys(t);n<o.length;n++){var r=o[n],a=t[r],s=c(r,a);e[r]=s;}return e.cancel||(e.cancel=i),e},u=function(t){var n={};switch(t.length){case 1:n[e.CANCEL_KEY]=Object.assign({},i,{visible:!1});break;case 2:n[e.CANCEL_KEY]=c(e.CANCEL_KEY,t[0]),n[e.CONFIRM_KEY]=c(e.CONFIRM_KEY,t[1]);break;default:o.throwErr("Invalid number of 'buttons' in array ("+t.length+").\n      If you want more than 2 buttons, you need to use an object!");}return n};e.getButtonListOpts=function(t){var n=e.defaultButtonList;return "string"==typeof t?n[e.CONFIRM_KEY]=c(e.CONFIRM_KEY,t):Array.isArray(t)?n=u(t):o.isPlainObject(t)?n=l(t):!0===t?n=u([!0,!0]):!1===t?n=u([!1,!1]):void 0===t&&(n=e.defaultButtonList),n};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),i=n(0),a=i.default.MODAL,s=i.default.OVERLAY,c=n(30),l=n(31),u=n(32),f=n(33);e.injectElIntoModal=function(t){var e=o.getNode(a),n=o.stringToNode(t);return e.appendChild(n),n};var d=function(t){t.className=a,t.textContent="";},p=function(t,e){d(t);var n=e.className;n&&t.classList.add(n);};e.initModalContent=function(t){var e=o.getNode(a);p(e,t),c.default(t.icon),l.initTitle(t.title),l.initText(t.text),f.default(t.content),u.default(t.buttons,t.dangerMode);};var m=function(){var t=o.getNode(s),e=o.stringToNode(r.modalMarkup);t.appendChild(e);};e.default=m;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r={isOpen:!1,promise:null,actions:{},timer:null},i=Object.assign({},r);e.resetState=function(){i=Object.assign({},r);},e.setActionValue=function(t){if("string"==typeof t)return a(o.CONFIRM_KEY,t);for(var e in t)a(e,t[e]);};var a=function(t,e){i.actions[t]||(i.actions[t]={}),Object.assign(i.actions[t],{value:e});};e.setActionOptionsFor=function(t,e){var n=(void 0===e?{}:e).closeModal,o=void 0===n||n;Object.assign(i.actions[t],{closeModal:o});},e.default=i;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),i=n(0),a=i.default.OVERLAY,s=i.default.SHOW_MODAL,c=i.default.BUTTON,l=i.default.BUTTON_LOADING,u=n(5);e.openModal=function(){o.getNode(a).classList.add(s),u.default.isOpen=!0;};var f=function(){o.getNode(a).classList.remove(s),u.default.isOpen=!1;};e.onAction=function(t){void 0===t&&(t=r.CANCEL_KEY);var e=u.default.actions[t],n=e.value;if(!1===e.closeModal){var i=c+"--"+t;o.getNode(i).classList.add(l);}else f();u.default.promise.resolve(n);},e.getState=function(){var t=Object.assign({},u.default);return delete t.promise,delete t.timer,t},e.stopLoading=function(){for(var t=document.querySelectorAll("."+c),e=0;e<t.length;e++){t[e].classList.remove(l);}};},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this");}catch(t){"object"==typeof window&&(n=window);}t.exports=n;},function(t,e,n){(function(e){t.exports=e.sweetAlert=n(9);}).call(e,n(7));},function(t,e,n){(function(e){t.exports=e.swal=n(10);}).call(e,n(7));},function(t,e,n){"undefined"!=typeof window&&n(11),n(16);var o=n(23).default;t.exports=o;},function(t,e,n){var o=n(12);"string"==typeof o&&(o=[[t.i,o,""]]);var r={insertAt:"top"};r.transform=void 0;n(14)(o,r);o.locals&&(t.exports=o.locals);},function(t,e,n){e=t.exports=n(13)(void 0),e.push([t.i,'.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}',""]);},function(t,e){function n(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var i=o(r);return [n].concat(r.sources.map(function(t){return "/*# sourceURL="+r.sourceRoot+t+" */"})).concat([i]).join("\n")}return [n].join("\n")}function o(t){return "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var o=n(e,t);return e[2]?"@media "+e[2]+"{"+o+"}":o}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(o[i]=!0);}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&o[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a));}},e};},function(t,e,n){function o(t,e){for(var n=0;n<t.length;n++){var o=t[n],r=m[o.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](o.parts[i]);for(;i<o.parts.length;i++)r.parts.push(u(o.parts[i],e));}else {for(var a=[],i=0;i<o.parts.length;i++)a.push(u(o.parts[i],e));m[o.id]={id:o.id,refs:1,parts:a};}}}function r(t,e){for(var n=[],o={},r=0;r<t.length;r++){var i=t[r],a=e.base?i[0]+e.base:i[0],s=i[1],c=i[2],l=i[3],u={css:s,media:c,sourceMap:l};o[a]?o[a].parts.push(u):n.push(o[a]={id:a,parts:[u]});}return n}function i(t,e){var n=v(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var o=w[w.length-1];if("top"===t.insertAt)o?o.nextSibling?n.insertBefore(e,o.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),w.push(e);else {if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e);}}function a(t){if(null===t.parentNode)return !1;t.parentNode.removeChild(t);var e=w.indexOf(t);e>=0&&w.splice(e,1);}function s(t){var e=document.createElement("style");return t.attrs.type="text/css",l(e,t.attrs),i(t,e),e}function c(t){var e=document.createElement("link");return t.attrs.type="text/css",t.attrs.rel="stylesheet",l(e,t.attrs),i(t,e),e}function l(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n]);});}function u(t,e){var n,o,r,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i;}if(e.singleton){var l=h++;n=g||(g=s(e)),o=f.bind(null,n,l,!1),r=f.bind(null,n,l,!0);}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=c(e),o=p.bind(null,n,e),r=function(){a(n),n.href&&URL.revokeObjectURL(n.href);}):(n=s(e),o=d.bind(null,n),r=function(){a(n);});return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e);}else r();}}function f(t,e,n,o){var r=n?"":o.css;if(t.styleSheet)t.styleSheet.cssText=x(e,r);else {var i=document.createTextNode(r),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i);}}function d(t,e){var n=e.css,o=e.media;if(o&&t.setAttribute("media",o),t.styleSheet)t.styleSheet.cssText=n;else {for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n));}}function p(t,e,n){var o=n.css,r=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&r;(e.convertToAbsoluteUrls||i)&&(o=y(o)),r&&(o+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var a=new Blob([o],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s);}var m={},b=function(t){var e;return function(){return void 0===e&&(e=t.apply(this,arguments)),e}}(function(){return window&&document&&document.all&&!window.atob}),v=function(t){var e={};return function(n){return void 0===e[n]&&(e[n]=t.call(this,n)),e[n]}}(function(t){return document.querySelector(t)}),g=null,h=0,w=[],y=n(15);t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");e=e||{},e.attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||(e.singleton=b()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=r(t,e);return o(n,e),function(t){for(var i=[],a=0;a<n.length;a++){var s=n[a],c=m[s.id];c.refs--,i.push(c);}if(t){o(r(t,e),e);}for(var a=0;a<i.length;a++){var c=i[a];if(0===c.refs){for(var l=0;l<c.parts.length;l++)c.parts[l]();delete m[c.id];}}}};var x=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}();},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,o=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var r=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});if(/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(r))return t;var i;return i=0===r.indexOf("//")?r:0===r.indexOf("/")?n+r:o+r.replace(/^\.\//,""),"url("+JSON.stringify(i)+")"})};},function(t,e,n){var o=n(17);"undefined"==typeof window||window.Promise||(window.Promise=o),n(21),String.prototype.includes||(String.prototype.includes=function(t,e){return "number"!=typeof e&&(e=0),!(e+t.length>this.length)&&-1!==this.indexOf(t,e)}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{value:function(t,e){if(null==this)throw new TypeError('"this" is null or not defined');var n=Object(this),o=n.length>>>0;if(0===o)return !1;for(var r=0|e,i=Math.max(r>=0?r:o-Math.abs(r),0);i<o;){if(function(t,e){return t===e||"number"==typeof t&&"number"==typeof e&&isNaN(t)&&isNaN(e)}(n[i],t))return !0;i++;}return !1}}),"undefined"!=typeof window&&function(t){t.forEach(function(t){t.hasOwnProperty("remove")||Object.defineProperty(t,"remove",{configurable:!0,enumerable:!0,writable:!0,value:function(){this.parentNode.removeChild(this);}});});}([Element.prototype,CharacterData.prototype,DocumentType.prototype]);},function(t,e,n){(function(e){!function(n){function o(){}function r(t,e){return function(){t.apply(e,arguments);}}function i(t){if("object"!=typeof this)throw new TypeError("Promises must be constructed via new");if("function"!=typeof t)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],f(t,this);}function a(t,e){for(;3===t._state;)t=t._value;if(0===t._state)return void t._deferreds.push(e);t._handled=!0,i._immediateFn(function(){var n=1===t._state?e.onFulfilled:e.onRejected;if(null===n)return void(1===t._state?s:c)(e.promise,t._value);var o;try{o=n(t._value);}catch(t){return void c(e.promise,t)}s(e.promise,o);});}function s(t,e){try{if(e===t)throw new TypeError("A promise cannot be resolved with itself.");if(e&&("object"==typeof e||"function"==typeof e)){var n=e.then;if(e instanceof i)return t._state=3,t._value=e,void l(t);if("function"==typeof n)return void f(r(n,e),t)}t._state=1,t._value=e,l(t);}catch(e){c(t,e);}}function c(t,e){t._state=2,t._value=e,l(t);}function l(t){2===t._state&&0===t._deferreds.length&&i._immediateFn(function(){t._handled||i._unhandledRejectionFn(t._value);});for(var e=0,n=t._deferreds.length;e<n;e++)a(t,t._deferreds[e]);t._deferreds=null;}function u(t,e,n){this.onFulfilled="function"==typeof t?t:null,this.onRejected="function"==typeof e?e:null,this.promise=n;}function f(t,e){var n=!1;try{t(function(t){n||(n=!0,s(e,t));},function(t){n||(n=!0,c(e,t));});}catch(t){if(n)return;n=!0,c(e,t);}}var d=setTimeout;i.prototype.catch=function(t){return this.then(null,t)},i.prototype.then=function(t,e){var n=new this.constructor(o);return a(this,new u(t,e,n)),n},i.all=function(t){var e=Array.prototype.slice.call(t);return new i(function(t,n){function o(i,a){try{if(a&&("object"==typeof a||"function"==typeof a)){var s=a.then;if("function"==typeof s)return void s.call(a,function(t){o(i,t);},n)}e[i]=a,0==--r&&t(e);}catch(t){n(t);}}if(0===e.length)return t([]);for(var r=e.length,i=0;i<e.length;i++)o(i,e[i]);})},i.resolve=function(t){return t&&"object"==typeof t&&t.constructor===i?t:new i(function(e){e(t);})},i.reject=function(t){return new i(function(e,n){n(t);})},i.race=function(t){return new i(function(e,n){for(var o=0,r=t.length;o<r;o++)t[o].then(e,n);})},i._immediateFn="function"==typeof e&&function(t){e(t);}||function(t){d(t,0);},i._unhandledRejectionFn=function(t){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",t);},i._setImmediateFn=function(t){i._immediateFn=t;},i._setUnhandledRejectionFn=function(t){i._unhandledRejectionFn=t;},void 0!==t&&t.exports?t.exports=i:n.Promise||(n.Promise=i);}(this);}).call(e,n(18).setImmediate);},function(t,e,n){function o(t,e){this._id=t,this._clearFn=e;}var r=Function.prototype.apply;e.setTimeout=function(){return new o(r.call(setTimeout,window,arguments),clearTimeout)},e.setInterval=function(){return new o(r.call(setInterval,window,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t&&t.close();},o.prototype.unref=o.prototype.ref=function(){},o.prototype.close=function(){this._clearFn.call(window,this._id);},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e;},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1;},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout(function(){t._onTimeout&&t._onTimeout();},e));},n(19),e.setImmediate=setImmediate,e.clearImmediate=clearImmediate;},function(t,e,n){(function(t,e){!function(t,n){function o(t){"function"!=typeof t&&(t=new Function(""+t));for(var e=new Array(arguments.length-1),n=0;n<e.length;n++)e[n]=arguments[n+1];var o={callback:t,args:e};return l[c]=o,s(c),c++}function r(t){delete l[t];}function i(t){var e=t.callback,o=t.args;switch(o.length){case 0:e();break;case 1:e(o[0]);break;case 2:e(o[0],o[1]);break;case 3:e(o[0],o[1],o[2]);break;default:e.apply(n,o);}}function a(t){if(u)setTimeout(a,0,t);else {var e=l[t];if(e){u=!0;try{i(e);}finally{r(t),u=!1;}}}}if(!t.setImmediate){var s,c=1,l={},u=!1,f=t.document,d=Object.getPrototypeOf&&Object.getPrototypeOf(t);d=d&&d.setTimeout?d:t,"[object process]"==={}.toString.call(t.process)?function(){s=function(t){e.nextTick(function(){a(t);});};}():function(){if(t.postMessage&&!t.importScripts){var e=!0,n=t.onmessage;return t.onmessage=function(){e=!1;},t.postMessage("","*"),t.onmessage=n,e}}()?function(){var e="setImmediate$"+Math.random()+"$",n=function(n){n.source===t&&"string"==typeof n.data&&0===n.data.indexOf(e)&&a(+n.data.slice(e.length));};t.addEventListener?t.addEventListener("message",n,!1):t.attachEvent("onmessage",n),s=function(n){t.postMessage(e+n,"*");};}():t.MessageChannel?function(){var t=new MessageChannel;t.port1.onmessage=function(t){a(t.data);},s=function(e){t.port2.postMessage(e);};}():f&&"onreadystatechange"in f.createElement("script")?function(){var t=f.documentElement;s=function(e){var n=f.createElement("script");n.onreadystatechange=function(){a(e),n.onreadystatechange=null,t.removeChild(n),n=null;},t.appendChild(n);};}():function(){s=function(t){setTimeout(a,0,t);};}(),d.setImmediate=o,d.clearImmediate=r;}}("undefined"==typeof self?void 0===t?this:t:self);}).call(e,n(7),n(20));},function(t,e){function n(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function r(t){if(u===setTimeout)return setTimeout(t,0);if((u===n||!u)&&setTimeout)return u=setTimeout,setTimeout(t,0);try{return u(t,0)}catch(e){try{return u.call(null,t,0)}catch(e){return u.call(this,t,0)}}}function i(t){if(f===clearTimeout)return clearTimeout(t);if((f===o||!f)&&clearTimeout)return f=clearTimeout,clearTimeout(t);try{return f(t)}catch(e){try{return f.call(null,t)}catch(e){return f.call(this,t)}}}function a(){b&&p&&(b=!1,p.length?m=p.concat(m):v=-1,m.length&&s());}function s(){if(!b){var t=r(a);b=!0;for(var e=m.length;e;){for(p=m,m=[];++v<e;)p&&p[v].run();v=-1,e=m.length;}p=null,b=!1,i(t);}}function c(t,e){this.fun=t,this.array=e;}function l(){}var u,f,d=t.exports={};!function(){try{u="function"==typeof setTimeout?setTimeout:n;}catch(t){u=n;}try{f="function"==typeof clearTimeout?clearTimeout:o;}catch(t){f=o;}}();var p,m=[],b=!1,v=-1;d.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];m.push(new c(t,e)),1!==m.length||b||r(s);},c.prototype.run=function(){this.fun.apply(null,this.array);},d.title="browser",d.browser=!0,d.env={},d.argv=[],d.version="",d.versions={},d.on=l,d.addListener=l,d.once=l,d.off=l,d.removeListener=l,d.removeAllListeners=l,d.emit=l,d.prependListener=l,d.prependOnceListener=l,d.listeners=function(t){return []},d.binding=function(t){throw new Error("process.binding is not supported")},d.cwd=function(){return "/"},d.chdir=function(t){throw new Error("process.chdir is not supported")},d.umask=function(){return 0};},function(t,e,n){n(22).polyfill();},function(t,e,n){function o(t,e){if(void 0===t||null===t)throw new TypeError("Cannot convert first argument to object");for(var n=Object(t),o=1;o<arguments.length;o++){var r=arguments[o];if(void 0!==r&&null!==r)for(var i=Object.keys(Object(r)),a=0,s=i.length;a<s;a++){var c=i[a],l=Object.getOwnPropertyDescriptor(r,c);void 0!==l&&l.enumerable&&(n[c]=r[c]);}}return n}function r(){Object.assign||Object.defineProperty(Object,"assign",{enumerable:!1,configurable:!0,writable:!0,value:o});}t.exports={assign:o,polyfill:r};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(24),r=n(6),i=n(5),a=n(36),s=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];if("undefined"!=typeof window){var n=a.getOpts.apply(void 0,t);return new Promise(function(t,e){i.default.promise={resolve:t,reject:e},o.default(n),setTimeout(function(){r.openModal();});})}};s.close=r.onAction,s.getState=r.getState,s.setActionValue=i.setActionValue,s.stopLoading=r.stopLoading,s.setDefaults=a.setDefaults,e.default=s;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(0),i=r.default.MODAL,a=n(4),s=n(34),c=n(35),l=n(1);e.init=function(t){o.getNode(i)||(document.body||l.throwErr("You can only use SweetAlert AFTER the DOM has loaded!"),s.default(),a.default()),a.initModalContent(t),c.default(t);},e.default=e.init;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.MODAL;e.modalMarkup='\n  <div class="'+r+'" role="dialog" aria-modal="true"></div>',e.default=e.modalMarkup;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.OVERLAY,i='<div \n    class="'+r+'"\n    tabIndex="-1">\n  </div>';e.default=i;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.ICON;e.errorIconMarkup=function(){var t=r+"--error",e=t+"__line";return '\n    <div class="'+t+'__x-mark">\n      <span class="'+e+" "+e+'--left"></span>\n      <span class="'+e+" "+e+'--right"></span>\n    </div>\n  '},e.warningIconMarkup=function(){var t=r+"--warning";return '\n    <span class="'+t+'__body">\n      <span class="'+t+'__dot"></span>\n    </span>\n  '},e.successIconMarkup=function(){var t=r+"--success";return '\n    <span class="'+t+"__line "+t+'__line--long"></span>\n    <span class="'+t+"__line "+t+'__line--tip"></span>\n\n    <div class="'+t+'__ring"></div>\n    <div class="'+t+'__hide-corners"></div>\n  '};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.CONTENT;e.contentMarkup='\n  <div class="'+r+'">\n\n  </div>\n';},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.BUTTON_CONTAINER,i=o.default.BUTTON,a=o.default.BUTTON_LOADER;e.buttonMarkup='\n  <div class="'+r+'">\n\n    <button\n      class="'+i+'"\n    ></button>\n\n    <div class="'+a+'">\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n\n  </div>\n';},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(4),r=n(2),i=n(0),a=i.default.ICON,s=i.default.ICON_CUSTOM,c=["error","warning","success","info"],l={error:r.errorIconMarkup(),warning:r.warningIconMarkup(),success:r.successIconMarkup()},u=function(t,e){var n=a+"--"+t;e.classList.add(n);var o=l[t];o&&(e.innerHTML=o);},f=function(t,e){e.classList.add(s);var n=document.createElement("img");n.src=t,e.appendChild(n);},d=function(t){if(t){var e=o.injectElIntoModal(r.iconMarkup);c.includes(t)?u(t,e):f(t,e);}};e.default=d;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(2),r=n(4),i=function(t){navigator.userAgent.includes("AppleWebKit")&&(t.style.display="none",t.offsetHeight,t.style.display="");};e.initTitle=function(t){if(t){var e=r.injectElIntoModal(o.titleMarkup);e.textContent=t,i(e);}},e.initText=function(t){if(t){var e=document.createDocumentFragment();t.split("\n").forEach(function(t,n,o){e.appendChild(document.createTextNode(t)),n<o.length-1&&e.appendChild(document.createElement("br"));});var n=r.injectElIntoModal(o.textMarkup);n.appendChild(e),i(n);}};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(4),i=n(0),a=i.default.BUTTON,s=i.default.DANGER_BUTTON,c=n(3),l=n(2),u=n(6),f=n(5),d=function(t,e,n){var r=e.text,i=e.value,d=e.className,p=e.closeModal,m=o.stringToNode(l.buttonMarkup),b=m.querySelector("."+a),v=a+"--"+t;if(b.classList.add(v),d){(Array.isArray(d)?d:d.split(" ")).filter(function(t){return t.length>0}).forEach(function(t){b.classList.add(t);});}n&&t===c.CONFIRM_KEY&&b.classList.add(s),b.textContent=r;var g={};return g[t]=i,f.setActionValue(g),f.setActionOptionsFor(t,{closeModal:p}),b.addEventListener("click",function(){return u.onAction(t)}),m},p=function(t,e){var n=r.injectElIntoModal(l.footerMarkup);for(var o in t){var i=t[o],a=d(o,i,e);i.visible&&n.appendChild(a);}0===n.children.length&&n.remove();};e.default=p;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r=n(4),i=n(2),a=n(5),s=n(6),c=n(0),l=c.default.CONTENT,u=function(t){t.addEventListener("input",function(t){var e=t.target,n=e.value;a.setActionValue(n);}),t.addEventListener("keyup",function(t){if("Enter"===t.key)return s.onAction(o.CONFIRM_KEY)}),setTimeout(function(){t.focus(),a.setActionValue("");},0);},f=function(t,e,n){var o=document.createElement(e),r=l+"__"+e;o.classList.add(r);for(var i in n){var a=n[i];o[i]=a;}"input"===e&&u(o),t.appendChild(o);},d=function(t){if(t){var e=r.injectElIntoModal(i.contentMarkup),n=t.element,o=t.attributes;"string"==typeof n?f(e,n,o):e.appendChild(n);}};e.default=d;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),i=function(){var t=o.stringToNode(r.overlayMarkup);document.body.appendChild(t);};e.default=i;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(5),r=n(6),i=n(1),a=n(3),s=n(0),c=s.default.MODAL,l=s.default.BUTTON,u=s.default.OVERLAY,f=function(t){t.preventDefault(),v();},d=function(t){t.preventDefault(),g();},p=function(t){if(o.default.isOpen)switch(t.key){case"Escape":return r.onAction(a.CANCEL_KEY)}},m=function(t){if(o.default.isOpen)switch(t.key){case"Tab":return f(t)}},b=function(t){if(o.default.isOpen)return "Tab"===t.key&&t.shiftKey?d(t):void 0},v=function(){var t=i.getNode(l);t&&(t.tabIndex=0,t.focus());},g=function(){var t=i.getNode(c),e=t.querySelectorAll("."+l),n=e.length-1,o=e[n];o&&o.focus();},h=function(t){t[t.length-1].addEventListener("keydown",m);},w=function(t){t[0].addEventListener("keydown",b);},y=function(){var t=i.getNode(c),e=t.querySelectorAll("."+l);e.length&&(h(e),w(e));},x=function(t){if(i.getNode(u)===t.target)return r.onAction(a.CANCEL_KEY)},_=function(t){var e=i.getNode(u);e.removeEventListener("click",x),t&&e.addEventListener("click",x);},k=function(t){o.default.timer&&clearTimeout(o.default.timer),t&&(o.default.timer=window.setTimeout(function(){return r.onAction(a.CANCEL_KEY)},t));},O=function(t){t.closeOnEsc?document.addEventListener("keyup",p):document.removeEventListener("keyup",p),t.dangerMode?v():g(),y(),_(t.closeOnClickOutside),k(t.timer);};e.default=O;},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),i=n(37),a=n(38),s={title:null,text:null,icon:null,buttons:r.defaultButtonList,content:null,className:null,closeOnClickOutside:!0,closeOnEsc:!0,dangerMode:!1,timer:null},c=Object.assign({},s);e.setDefaults=function(t){c=Object.assign({},s,t);};var l=function(t){var e=t&&t.button,n=t&&t.buttons;return void 0!==e&&void 0!==n&&o.throwErr("Cannot set both 'button' and 'buttons' options!"),void 0!==e?{confirm:e}:n},u=function(t){return o.ordinalSuffixOf(t+1)},f=function(t,e){o.throwErr(u(e)+" argument ('"+t+"') is invalid");},d=function(t,e){var n=t+1,r=e[n];o.isPlainObject(r)||void 0===r||o.throwErr("Expected "+u(n)+" argument ('"+r+"') to be a plain object");},p=function(t,e){var n=t+1,r=e[n];void 0!==r&&o.throwErr("Unexpected "+u(n)+" argument ("+r+")");},m=function(t,e,n,r){var i=typeof e,a="string"===i,s=e instanceof Element;if(a){if(0===n)return {text:e};if(1===n)return {text:e,title:r[0]};if(2===n)return d(n,r),{icon:e};f(e,n);}else {if(s&&0===n)return d(n,r),{content:e};if(o.isPlainObject(e))return p(n,r),e;f(e,n);}};e.getOpts=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];var n={};t.forEach(function(e,o){var r=m(0,e,o,t);Object.assign(n,r);});var o=l(n);n.buttons=r.getButtonListOpts(o),delete n.button,n.content=i.getContentOpts(n.content);var u=Object.assign({},s,c,n);return Object.keys(u).forEach(function(t){a.DEPRECATED_OPTS[t]&&a.logDeprecation(t);}),u};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r={element:"input",attributes:{placeholder:""}};e.getContentOpts=function(t){var e={};return o.isPlainObject(t)?Object.assign(e,t):t instanceof Element?{element:t}:"input"===t?r:null};},function(t,e,n){Object.defineProperty(e,"__esModule",{value:!0}),e.logDeprecation=function(t){var n=e.DEPRECATED_OPTS[t],o=n.onlyRename,r=n.replacement,i=n.subOption,a=n.link,s=o?"renamed":"deprecated",c='SweetAlert warning: "'+t+'" option has been '+s+".";if(r){c+=" Please use"+(i?' "'+i+'" in ':" ")+'"'+r+'" instead.';}var l="https://sweetalert.js.org";c+=a?" More details: "+l+a:" More details: "+l+"/guides/#upgrading-from-1x",console.warn(c);},e.DEPRECATED_OPTS={type:{replacement:"icon",link:"/docs/#icon"},imageUrl:{replacement:"icon",link:"/docs/#icon"},customClass:{replacement:"className",onlyRename:!0,link:"/docs/#classname"},imageSize:{},showCancelButton:{replacement:"buttons",link:"/docs/#buttons"},showConfirmButton:{replacement:"button",link:"/docs/#button"},confirmButtonText:{replacement:"button",link:"/docs/#button"},confirmButtonColor:{},cancelButtonText:{replacement:"buttons",link:"/docs/#buttons"},closeOnConfirm:{replacement:"button",subOption:"closeModal",link:"/docs/#button"},closeOnCancel:{replacement:"buttons",subOption:"closeModal",link:"/docs/#buttons"},showLoaderOnConfirm:{replacement:"buttons"},animation:{},inputType:{replacement:"content",link:"/docs/#content"},inputValue:{replacement:"content",link:"/docs/#content"},inputPlaceholder:{replacement:"content",link:"/docs/#content"},html:{replacement:"content",link:"/docs/#content"},allowEscapeKey:{replacement:"closeOnEsc",onlyRename:!0,link:"/docs/#closeonesc"},allowClickOutside:{replacement:"closeOnClickOutside",onlyRename:!0,link:"/docs/#closeonclickoutside"}};}])});
+    });
+
+    var swal = /*@__PURE__*/getDefaultExportFromCjs(sweetalert_min);
+
+    /*!
+     * hotkeys-js v3.8.1
+     * A simple micro-library for defining and dispatching keyboard shortcuts. It has no dependencies.
+     * 
+     * Copyright (c) 2020 kenny wong <wowohoo@qq.com>
+     * http://jaywcjlove.github.io/hotkeys
+     * 
+     * Licensed under the MIT license.
+     */
+
+    var isff = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase().indexOf('firefox') > 0 : false; // 绑定事件
+
+    function addEvent(object, event, method) {
+      if (object.addEventListener) {
+        object.addEventListener(event, method, false);
+      } else if (object.attachEvent) {
+        object.attachEvent("on".concat(event), function () {
+          method(window.event);
+        });
+      }
+    } // 修饰键转换成对应的键码
+
+
+    function getMods(modifier, key) {
+      var mods = key.slice(0, key.length - 1);
+
+      for (var i = 0; i < mods.length; i++) {
+        mods[i] = modifier[mods[i].toLowerCase()];
+      }
+
+      return mods;
+    } // 处理传的key字符串转换成数组
+
+
+    function getKeys(key) {
+      if (typeof key !== 'string') key = '';
+      key = key.replace(/\s/g, ''); // 匹配任何空白字符,包括空格、制表符、换页符等等
+
+      var keys = key.split(','); // 同时设置多个快捷键，以','分割
+
+      var index = keys.lastIndexOf(''); // 快捷键可能包含','，需特殊处理
+
+      for (; index >= 0;) {
+        keys[index - 1] += ',';
+        keys.splice(index, 1);
+        index = keys.lastIndexOf('');
+      }
+
+      return keys;
+    } // 比较修饰键的数组
+
+
+    function compareArray(a1, a2) {
+      var arr1 = a1.length >= a2.length ? a1 : a2;
+      var arr2 = a1.length >= a2.length ? a2 : a1;
+      var isIndex = true;
+
+      for (var i = 0; i < arr1.length; i++) {
+        if (arr2.indexOf(arr1[i]) === -1) isIndex = false;
+      }
+
+      return isIndex;
+    }
+
+    var _keyMap = {
+      backspace: 8,
+      tab: 9,
+      clear: 12,
+      enter: 13,
+      return: 13,
+      esc: 27,
+      escape: 27,
+      space: 32,
+      left: 37,
+      up: 38,
+      right: 39,
+      down: 40,
+      del: 46,
+      delete: 46,
+      ins: 45,
+      insert: 45,
+      home: 36,
+      end: 35,
+      pageup: 33,
+      pagedown: 34,
+      capslock: 20,
+      '⇪': 20,
+      ',': 188,
+      '.': 190,
+      '/': 191,
+      '`': 192,
+      '-': isff ? 173 : 189,
+      '=': isff ? 61 : 187,
+      ';': isff ? 59 : 186,
+      '\'': 222,
+      '[': 219,
+      ']': 221,
+      '\\': 220
+    }; // Modifier Keys
+
+    var _modifier = {
+      // shiftKey
+      '⇧': 16,
+      shift: 16,
+      // altKey
+      '⌥': 18,
+      alt: 18,
+      option: 18,
+      // ctrlKey
+      '⌃': 17,
+      ctrl: 17,
+      control: 17,
+      // metaKey
+      '⌘': 91,
+      cmd: 91,
+      command: 91
+    };
+    var modifierMap = {
+      16: 'shiftKey',
+      18: 'altKey',
+      17: 'ctrlKey',
+      91: 'metaKey',
+      shiftKey: 16,
+      ctrlKey: 17,
+      altKey: 18,
+      metaKey: 91
+    };
+    var _mods = {
+      16: false,
+      18: false,
+      17: false,
+      91: false
+    };
+    var _handlers = {}; // F1~F12 special key
+
+    for (var k = 1; k < 20; k++) {
+      _keyMap["f".concat(k)] = 111 + k;
+    }
+
+    var _downKeys = []; // 记录摁下的绑定键
+
+    var _scope = 'all'; // 默认热键范围
+
+    var elementHasBindEvent = []; // 已绑定事件的节点记录
+    // 返回键码
+
+    var code = function code(x) {
+      return _keyMap[x.toLowerCase()] || _modifier[x.toLowerCase()] || x.toUpperCase().charCodeAt(0);
+    }; // 设置获取当前范围（默认为'所有'）
+
+
+    function setScope(scope) {
+      _scope = scope || 'all';
+    } // 获取当前范围
+
+
+    function getScope() {
+      return _scope || 'all';
+    } // 获取摁下绑定键的键值
+
+
+    function getPressedKeyCodes() {
+      return _downKeys.slice(0);
+    } // 表单控件控件判断 返回 Boolean
+    // hotkey is effective only when filter return true
+
+
+    function filter(event) {
+      var target = event.target || event.srcElement;
+      var tagName = target.tagName;
+      var flag = true; // ignore: isContentEditable === 'true', <input> and <textarea> when readOnly state is false, <select>
+
+      if (target.isContentEditable || (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT') && !target.readOnly) {
+        flag = false;
+      }
+
+      return flag;
+    } // 判断摁下的键是否为某个键，返回true或者false
+
+
+    function isPressed(keyCode) {
+      if (typeof keyCode === 'string') {
+        keyCode = code(keyCode); // 转换成键码
+      }
+
+      return _downKeys.indexOf(keyCode) !== -1;
+    } // 循环删除handlers中的所有 scope(范围)
+
+
+    function deleteScope(scope, newScope) {
+      var handlers;
+      var i; // 没有指定scope，获取scope
+
+      if (!scope) scope = getScope();
+
+      for (var key in _handlers) {
+        if (Object.prototype.hasOwnProperty.call(_handlers, key)) {
+          handlers = _handlers[key];
+
+          for (i = 0; i < handlers.length;) {
+            if (handlers[i].scope === scope) handlers.splice(i, 1);else i++;
+          }
+        }
+      } // 如果scope被删除，将scope重置为all
+
+
+      if (getScope() === scope) setScope(newScope || 'all');
+    } // 清除修饰键
+
+
+    function clearModifier(event) {
+      var key = event.keyCode || event.which || event.charCode;
+
+      var i = _downKeys.indexOf(key); // 从列表中清除按压过的键
+
+
+      if (i >= 0) {
+        _downKeys.splice(i, 1);
+      } // 特殊处理 cmmand 键，在 cmmand 组合快捷键 keyup 只执行一次的问题
+
+
+      if (event.key && event.key.toLowerCase() === 'meta') {
+        _downKeys.splice(0, _downKeys.length);
+      } // 修饰键 shiftKey altKey ctrlKey (command||metaKey) 清除
+
+
+      if (key === 93 || key === 224) key = 91;
+
+      if (key in _mods) {
+        _mods[key] = false; // 将修饰键重置为false
+
+        for (var k in _modifier) {
+          if (_modifier[k] === key) hotkeys[k] = false;
+        }
+      }
+    }
+
+    function unbind(keysInfo) {
+      // unbind(), unbind all keys
+      if (!keysInfo) {
+        Object.keys(_handlers).forEach(function (key) {
+          return delete _handlers[key];
+        });
+      } else if (Array.isArray(keysInfo)) {
+        // support like : unbind([{key: 'ctrl+a', scope: 's1'}, {key: 'ctrl-a', scope: 's2', splitKey: '-'}])
+        keysInfo.forEach(function (info) {
+          if (info.key) eachUnbind(info);
+        });
+      } else if (typeof keysInfo === 'object') {
+        // support like unbind({key: 'ctrl+a, ctrl+b', scope:'abc'})
+        if (keysInfo.key) eachUnbind(keysInfo);
+      } else if (typeof keysInfo === 'string') {
+        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          args[_key - 1] = arguments[_key];
+        }
+
+        // support old method
+        // eslint-disable-line
+        var scope = args[0],
+            method = args[1];
+
+        if (typeof scope === 'function') {
+          method = scope;
+          scope = '';
+        }
+
+        eachUnbind({
+          key: keysInfo,
+          scope: scope,
+          method: method,
+          splitKey: '+'
+        });
+      }
+    } // 解除绑定某个范围的快捷键
+
+
+    var eachUnbind = function eachUnbind(_ref) {
+      var key = _ref.key,
+          scope = _ref.scope,
+          method = _ref.method,
+          _ref$splitKey = _ref.splitKey,
+          splitKey = _ref$splitKey === void 0 ? '+' : _ref$splitKey;
+      var multipleKeys = getKeys(key);
+      multipleKeys.forEach(function (originKey) {
+        var unbindKeys = originKey.split(splitKey);
+        var len = unbindKeys.length;
+        var lastKey = unbindKeys[len - 1];
+        var keyCode = lastKey === '*' ? '*' : code(lastKey);
+        if (!_handlers[keyCode]) return; // 判断是否传入范围，没有就获取范围
+
+        if (!scope) scope = getScope();
+        var mods = len > 1 ? getMods(_modifier, unbindKeys) : [];
+        _handlers[keyCode] = _handlers[keyCode].map(function (record) {
+          // 通过函数判断，是否解除绑定，函数相等直接返回
+          var isMatchingMethod = method ? record.method === method : true;
+
+          if (isMatchingMethod && record.scope === scope && compareArray(record.mods, mods)) {
+            return {};
+          }
+
+          return record;
+        });
+      });
+    }; // 对监听对应快捷键的回调函数进行处理
+
+
+    function eventHandler(event, handler, scope) {
+      var modifiersMatch; // 看它是否在当前范围
+
+      if (handler.scope === scope || handler.scope === 'all') {
+        // 检查是否匹配修饰符（如果有返回true）
+        modifiersMatch = handler.mods.length > 0;
+
+        for (var y in _mods) {
+          if (Object.prototype.hasOwnProperty.call(_mods, y)) {
+            if (!_mods[y] && handler.mods.indexOf(+y) > -1 || _mods[y] && handler.mods.indexOf(+y) === -1) {
+              modifiersMatch = false;
+            }
+          }
+        } // 调用处理程序，如果是修饰键不做处理
+
+
+        if (handler.mods.length === 0 && !_mods[16] && !_mods[18] && !_mods[17] && !_mods[91] || modifiersMatch || handler.shortcut === '*') {
+          if (handler.method(event, handler) === false) {
+            if (event.preventDefault) event.preventDefault();else event.returnValue = false;
+            if (event.stopPropagation) event.stopPropagation();
+            if (event.cancelBubble) event.cancelBubble = true;
+          }
+        }
+      }
+    } // 处理keydown事件
+
+
+    function dispatch(event) {
+      var asterisk = _handlers['*'];
+      var key = event.keyCode || event.which || event.charCode; // 表单控件过滤 默认表单控件不触发快捷键
+
+      if (!hotkeys.filter.call(this, event)) return; // Gecko(Firefox)的command键值224，在Webkit(Chrome)中保持一致
+      // Webkit左右 command 键值不一样
+
+      if (key === 93 || key === 224) key = 91;
+      /**
+       * Collect bound keys
+       * If an Input Method Editor is processing key input and the event is keydown, return 229.
+       * https://stackoverflow.com/questions/25043934/is-it-ok-to-ignore-keydown-events-with-keycode-229
+       * http://lists.w3.org/Archives/Public/www-dom/2010JulSep/att-0182/keyCode-spec.html
+       */
+
+      if (_downKeys.indexOf(key) === -1 && key !== 229) _downKeys.push(key);
+      /**
+       * Jest test cases are required.
+       * ===============================
+       */
+
+      ['ctrlKey', 'altKey', 'shiftKey', 'metaKey'].forEach(function (keyName) {
+        var keyNum = modifierMap[keyName];
+
+        if (event[keyName] && _downKeys.indexOf(keyNum) === -1) {
+          _downKeys.push(keyNum);
+        } else if (!event[keyName] && _downKeys.indexOf(keyNum) > -1) {
+          _downKeys.splice(_downKeys.indexOf(keyNum), 1);
+        } else if (keyName === 'metaKey' && event[keyName] && _downKeys.length === 3) {
+          /**
+           * Fix if Command is pressed:
+           * ===============================
+           */
+          if (!(event.ctrlKey || event.shiftKey || event.altKey)) {
+            _downKeys = _downKeys.slice(_downKeys.indexOf(keyNum));
+          }
+        }
+      });
+      /**
+       * -------------------------------
+       */
+
+      if (key in _mods) {
+        _mods[key] = true; // 将特殊字符的key注册到 hotkeys 上
+
+        for (var k in _modifier) {
+          if (_modifier[k] === key) hotkeys[k] = true;
+        }
+
+        if (!asterisk) return;
+      } // 将 modifierMap 里面的修饰键绑定到 event 中
+
+
+      for (var e in _mods) {
+        if (Object.prototype.hasOwnProperty.call(_mods, e)) {
+          _mods[e] = event[modifierMap[e]];
+        }
+      }
+      /**
+       * https://github.com/jaywcjlove/hotkeys/pull/129
+       * This solves the issue in Firefox on Windows where hotkeys corresponding to special characters would not trigger.
+       * An example of this is ctrl+alt+m on a Swedish keyboard which is used to type μ.
+       * Browser support: https://caniuse.com/#feat=keyboardevent-getmodifierstate
+       */
+
+
+      if (event.getModifierState && !(event.altKey && !event.ctrlKey) && event.getModifierState('AltGraph')) {
+        if (_downKeys.indexOf(17) === -1) {
+          _downKeys.push(17);
+        }
+
+        if (_downKeys.indexOf(18) === -1) {
+          _downKeys.push(18);
+        }
+
+        _mods[17] = true;
+        _mods[18] = true;
+      } // 获取范围 默认为 `all`
+
+
+      var scope = getScope(); // 对任何快捷键都需要做的处理
+
+      if (asterisk) {
+        for (var i = 0; i < asterisk.length; i++) {
+          if (asterisk[i].scope === scope && (event.type === 'keydown' && asterisk[i].keydown || event.type === 'keyup' && asterisk[i].keyup)) {
+            eventHandler(event, asterisk[i], scope);
+          }
+        }
+      } // key 不在 _handlers 中返回
+
+
+      if (!(key in _handlers)) return;
+
+      for (var _i = 0; _i < _handlers[key].length; _i++) {
+        if (event.type === 'keydown' && _handlers[key][_i].keydown || event.type === 'keyup' && _handlers[key][_i].keyup) {
+          if (_handlers[key][_i].key) {
+            var record = _handlers[key][_i];
+            var splitKey = record.splitKey;
+            var keyShortcut = record.key.split(splitKey);
+            var _downKeysCurrent = []; // 记录当前按键键值
+
+            for (var a = 0; a < keyShortcut.length; a++) {
+              _downKeysCurrent.push(code(keyShortcut[a]));
+            }
+
+            if (_downKeysCurrent.sort().join('') === _downKeys.sort().join('')) {
+              // 找到处理内容
+              eventHandler(event, record, scope);
+            }
+          }
+        }
+      }
+    } // 判断 element 是否已经绑定事件
+
+
+    function isElementBind(element) {
+      return elementHasBindEvent.indexOf(element) > -1;
+    }
+
+    function hotkeys(key, option, method) {
+      _downKeys = [];
+      var keys = getKeys(key); // 需要处理的快捷键列表
+
+      var mods = [];
+      var scope = 'all'; // scope默认为all，所有范围都有效
+
+      var element = document; // 快捷键事件绑定节点
+
+      var i = 0;
+      var keyup = false;
+      var keydown = true;
+      var splitKey = '+'; // 对为设定范围的判断
+
+      if (method === undefined && typeof option === 'function') {
+        method = option;
+      }
+
+      if (Object.prototype.toString.call(option) === '[object Object]') {
+        if (option.scope) scope = option.scope; // eslint-disable-line
+
+        if (option.element) element = option.element; // eslint-disable-line
+
+        if (option.keyup) keyup = option.keyup; // eslint-disable-line
+
+        if (option.keydown !== undefined) keydown = option.keydown; // eslint-disable-line
+
+        if (typeof option.splitKey === 'string') splitKey = option.splitKey; // eslint-disable-line
+      }
+
+      if (typeof option === 'string') scope = option; // 对于每个快捷键进行处理
+
+      for (; i < keys.length; i++) {
+        key = keys[i].split(splitKey); // 按键列表
+
+        mods = []; // 如果是组合快捷键取得组合快捷键
+
+        if (key.length > 1) mods = getMods(_modifier, key); // 将非修饰键转化为键码
+
+        key = key[key.length - 1];
+        key = key === '*' ? '*' : code(key); // *表示匹配所有快捷键
+        // 判断key是否在_handlers中，不在就赋一个空数组
+
+        if (!(key in _handlers)) _handlers[key] = [];
+
+        _handlers[key].push({
+          keyup: keyup,
+          keydown: keydown,
+          scope: scope,
+          mods: mods,
+          shortcut: keys[i],
+          method: method,
+          key: keys[i],
+          splitKey: splitKey
+        });
+      } // 在全局document上设置快捷键
+
+
+      if (typeof element !== 'undefined' && !isElementBind(element) && window) {
+        elementHasBindEvent.push(element);
+        addEvent(element, 'keydown', function (e) {
+          dispatch(e);
+        });
+        addEvent(window, 'focus', function () {
+          _downKeys = [];
+        });
+        addEvent(element, 'keyup', function (e) {
+          dispatch(e);
+          clearModifier(e);
+        });
+      }
+    }
+
+    var _api = {
+      setScope: setScope,
+      getScope: getScope,
+      deleteScope: deleteScope,
+      getPressedKeyCodes: getPressedKeyCodes,
+      isPressed: isPressed,
+      filter: filter,
+      unbind: unbind
+    };
+
+    for (var a in _api) {
+      if (Object.prototype.hasOwnProperty.call(_api, a)) {
+        hotkeys[a] = _api[a];
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      var _hotkeys = window.hotkeys;
+
+      hotkeys.noConflict = function (deep) {
+        if (deep && window.hotkeys === hotkeys) {
+          window.hotkeys = _hotkeys;
+        }
+
+        return hotkeys;
+      };
+
+      window.hotkeys = hotkeys;
+    }
+
+    /**
+     *  File Name   : dndString.js
+     *  Author      : Ayush Srivastava
+     *  Function    : DND
+     *  Version     : 1.0
+     *  Packege     : Drag and Drop (prev)
+     *  Last update : 19 Jan 2021
+     *  Dependency  : Draggable, Sweetalert, Hotkeys-js
+     */
+    let jsSwal = swal;
+
+    // declaring gloabl variable for use
+    let elemId = "#dndmainPreview";
+    let result = true;
+    let stepsPreview = null;
+    let dragstore = {};
+    let user_points = 0;
+    const DND = {};
+    let is_all_correct = true;
+
+    // for storing to prevent dialog
+    DND.prevent_dialog = false;
+    //window.DND = DND;
+    // for storing the storage data
+    DND.storage = {
+        store: function(obj, key, val) {
+            if (!obj) {
+                return this.state;
+            } else if (!key) {
+                if (!(obj in this.state)) {
+                    return {};
+                }
+                return this.state[obj];
+            } else if (arguments.length < 3) {
+                if (!(obj in this.state)) {
+                    return undefined;
+                }
+                return this.state[obj][key];
+            } else {
+                if (!(obj in this.state)) {
+                    this.state[obj] = {};
+                }
+                this.state[obj][key] = val;
+            }
+        },
+        remove: function(obj) {
+            if (this.state[obj]) {
+                delete this.state[obj];
+            }
+        },
+        state: {}
+    };
+
+    // for setting the browser version
+    DND.browser = {};
+    DND.browser.msie = false;
+    DND.browser.version = 0;
+    if (typeof navigator !== 'undefined' && navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        DND.browser.msie = true;
+        DND.browser.version = RegExp.$1;
+    }
+
+
+    // function responsible for parsing the sql queries
+    DND.sqlparser = function(sql, type) {
+        if (typeof(type) !== "boolean") {
+            type = false;
+        }
+        let ret = [];
+        if (type) {
+            ret['optional'] = [], ret['mustbeone'] = [];
+            let matches = sql.match(/{.*?}/g);
+            if (matches != null) {
+                for (let i = 0; i < matches.length; i++) {
+                    sql = sql.replace(matches[i], "");
+                    opt = matches[i].trim();
+                    let opt = opt.substr(1, (opt.length - 2));
+                    if (opt.indexOf('|') != -1) {
+                        opt = opt.split('|');
+                        ret['mustbeone'].push(opt);
+                    } else {
+                        ret['optional'].push(opt);
+                    }
+                }
+            }
+        }
+        ret['sql'] = sql.toLowerCase().replace(/([?~!@#$%^&*()_+\-=\[\]{};':",\./\<>%])/g, ' $1 ').replace(/[;]/g, ' ').trim().replace(/(,|`|\n)/g, " ").replace(/\s{2,}/g, " ").split(' ');
+        return ret;
+    };
+
+    // modifying string prototype
+    String.prototype.sqlparser = function(type) {
+        return DND.sqlparser(this.toString(), type);
+    };
+
+    // function responsible for setting/changing the steps
+    DND.setStep = function(tabname) {
+        tabname = tabname.match(/dnd/g) || (tabname == "base") ? tabname : "dnd" + tabname;
+        if (tabname && tabname.trim() != '') {
+            let dndid;
+            let tabname_element = document.querySelector('#' + tabname);
+            let tabname_closest = (tabname_element) ? tabname_element.closest('[id^="dndmainPreview"]') : false;
+            if (tabname_closest) {
+                dndid = '#' + tabname_closest.getAttribute('id');
+            }
+            if (dndid) {
+                let element = document.querySelector(elemId);
+                if (element) {
+                    let new_element = AI.find(element, "[type='step']", 'all');
+                    for (let index = 0; index < new_element.length; index++) {
+                        AI.setCss(new_element[index], {
+                            display: "none",
+                        });
+                    }
+                }
+                let dnd_element = AI.select(dndid);
+
+                if (tabname == "base") {
+                    let dnd_find_element = AI.find(dnd_element, '#base');
+                    AI.selectAll(dnd_find_element, 'checked', true);
+                } else {
+                    AI.select("#step_" + tabname, 'checked', true);
+                    let element_list = AI.find(dnd_element, "#" + tabname);
+                    AI.setCss(element_list.parentElement, {
+                        display: 'block',
+                    });
+                    AI.setCss(element_list, {
+                        display: 'block',
+                    });
+                }
+            }
+        }
+    };
+
+    // making this global as it is used outside the code
+    if (typeof window !== 'undefined') {
+        window.setStep = DND.setStep;
+    }
+
+    // function for wrapping the element into other element
+    DND.wrapInner = function(parent, wrapper, attribute, attributevalue) {
+        try {
+            if (typeof wrapper === "string") {
+                wrapper = document.createElement(wrapper);
+            }
+            parent.appendChild(wrapper).setAttribute(attribute, attributevalue);
+            while (parent.firstChild !== wrapper) {
+                wrapper.appendChild(parent.firstChild);
+            }
+        } catch (error) {
+            console.warn(error);
+        }
+    };
+
+    // function for activator in preview side
+    DND.activate = function(type = 0) {
+        if (type != 0 && document.querySelectorAll('.spinner').length == 0) {
+            let spinner = document.createElement("div");
+            spinner.className = "spinner";
+            let loading = document.createElement("div");
+            loading.className = "loading";
+            spinner.appendChild(loading);
+            if (document.body != null) {
+                document.body.appendChild(spinner);
+            }
+        } else {
+            !!document.getElementsByClassName('spinner')[0] && document.getElementsByClassName('spinner')[0].remove();
+        }
+    };
+
+    // function responsible for binding all the events to the elments
+    DND.readyThis = function(dndid) {
+        let dndid_element = AI.select(dndid);
+        let elements_list = AI.find(dndid, '[zoom="1"]', 'all');
+        if (elements_list.length > 0) {
+            elements_list.forEach(function(value) {
+                DND.wrapInner(value, 'div', 'class', 'zoom_wrap');
+                DND.wrapInner(value, 'div', 'class', 'zoom_container');
+
+                let div = document.createElement("div");
+                div.class = 'c_zoom';
+                let input = document.createElement("input");
+                input.type = 'range';
+                input.id = 'c_zoom';
+                input.min = "1";
+                input.max = "7";
+                div.append(input);
+                value.appendChild(div);
+                value.insertBefore(div, value.firstChild);
+            });
+        }
+
+        // nee to check I think we have to use listen all
+        AI.listen('body', 'change', '.c_zoom', function(element) {
+            let zoom_element = AI.find(element.parentElement.parentElement, '.zoom_wrap');
+            if (zoom_element) {
+                switch (element.value) {
+                    case "1": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom2");
+                        break;
+                    }
+                    case "2": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom2");
+                        break;
+                    }
+                    case "3": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom3");
+                        break;
+                    }
+                    case "4": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom4");
+                        break;
+                    }
+                    case "5": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom5");
+                        break;
+                    }
+                    case "6": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom6");
+                        break;
+                    }
+                    case "7": {
+                        zoom_element.setAttribute("class", "zoom_wrap zoom7");
+                        break;
+                    }
+                }
+            }
+        });
+
+        AI.listen('body', 'click', '.hotspot_test', function(element, event) {
+            if (element.classList.contains('lab_disable')) {
+                return;
+            }
+            let targetimg_element = AI.find(dndid_element, '.targetImg');
+            if (!event.target.classList.contains('tmpTarget') && AI.find(element, '.hs_item', 'all').length > AI.find(element, '.tmpTarget', 'all').length) {
+                let top = Math.round(event.pageY - DND.offset(element).top - ((targetimg_element) ? (targetimg_element.offsetHeight ? targetimg_element.offsetHeight : 32) : 0) / 2) - window.pageYOffset;
+                let left = Math.round(event.pageX - DND.offset(element).left - ((targetimg_element) ? (targetimg_element.offsetHeight ? targetimg_element.offsetHeight : 32) : 0) / 2) - window.pageXOffset;
+                if (event.target.getAttribute('id') != "c_zoom") {
+                    if (event.target.classList.contains('hs_item')) {
+                        event.target.setAttribute("data-correctans", "1");
+                    }
+
+                    let clone_element = AI.clone(targetimg_element);
+                    clone_element.classList.remove('targetImg');
+                    clone_element.classList.add('tmpTarget');
+                    clone_element.id = element.id + "_" + (AI.find(element, '.tmpTarget', 'all').length + 1);
+                    AI.setCss(clone_element, {
+                        position: 'absolute',
+                        top: top + 'px',
+                        left: left + 'px',
+                        display: 'block',
+                    });
+                    DND.storage.store(clone_element.id, 'tgElem', event.target.id);
+                    AI.insertAfter(clone_element, AI.find(element, '.hs_item', 'all')[AI.find(element, '.hs_item', 'all').length - 1]);
+                }
+            } else if (event.target.classList.contains('tmpTarget')) {
+                let last_id = event.target.id.split('_')[1];
+                let tgElem = DND.storage.store(event.target.id, 'tgElem');
+                event.target.remove();
+
+                if (last_id) {
+                    for (let index = (last_id - 1); index < AI.find(element, '.tmpTarget', 'all').length; index++) {
+                        let current_id = element.id + "_" + (index + 1);
+                        let next_elem_id = element.id + "_" + (index + 2);
+                        let next_elem_store = DND.storage.store(next_elem_id, 'tgElem');
+                        DND.storage.store(current_id, 'tgElem', next_elem_store);
+                        DND.storage.remove(next_elem_id);
+                        AI.select('#' + next_elem_id).id = current_id;
+                    }
+                }
+
+                if (typeof(tgElem) !== "undefined") {
+                    let rmTg = true;
+                    let tmp_target = AI.find(dndid_element, '.tmpTarget', 'all');
+
+                    for (let index = 0; index < tmp_target.length; index++) {
+                        if (DND.storage.store(tmp_target[index].id, 'tgElem') == tgElem) {
+                            rmTg = false;
+                            break;
+                        }
+                    }
+                    if (rmTg) {
+                        AI.select('#dndmainPreview #' + tgElem).setAttribute("data-correctans", "0");
+                    }
+                }
+            }
+
+            let hustr = "";
+            let hId = 1;
+
+            let tmp_target = AI.find(dndid_element, '.tmpTarget', 'all');
+
+            for (let index = 0; index < tmp_target.length; index++) {
+                hustr += '"' + hId + '":[' + tmp_target[index].offsetTop + ',' + tmp_target[index].offsetLeft + ',' + tmp_target[index].offsetWidth + ',' + tmp_target[index].offsetHeight + '],';
+                hId++;
+            }
+            element.setAttribute("data-userans", "{" + hustr.substr(0, hustr.length - 1) + "}");
+            DND.checkAns(dndid);
+        });
+
+        let drop_image = AI.find(dndid_element, '[data-dragimage]', 'all');
+
+        for (let index = 0; index < drop_image.length; index++) {
+            if (drop_image[index].getAttribute('data-dragimage') != 'undefined' && drop_image[index].getAttribute('data-dragimage') != '') {
+                let bgimage = drop_image[index].getAttribute("data-path") + drop_image[index].getAttribute("data-dragimage");
+                AI.insert('body', '<img src="' + bgimage + '" style="display:none"/>', 'beforeend');
+            }
+        }
+
+        let droppable = AI.selectAll('.dropable');
+        for (let index = 0; index < droppable.length; index++) {
+            let target = droppable[index].id;
+            let source = droppable[index].dataset.droped;
+            if (target && source) {
+                dragstore[target] = [AI.select('#' + source), AI.select('#' + target)];
+            }
+        }
+
+        let draggable = new Draggable('#dndmainPreview', '[draging]', '[droping]', dragstore);
+        let distance = 80, step = 5;
+        draggable.onDrag = function(event) {
+            if (event.clientY <= distance) {
+                window.scrollTo(0, window.scrollY - step);
+            } else if (event.clientY >= (window.innerHeight + 20)) {
+                window.scrollTo(0, window.scrollY + step);
+            }
+            if (AI.selectAll('#external_lab').length == 1) {
+                AI.select('#external_lab').scrollTo(event.clientX, event.clientY);
+            }
+            if (AI.selectAll('#user_answer').length == 1) {
+                AI.select('#user_answer').scrollTo(event.clientX, event.clientY);
+            }
+        };
+
+        draggable.onDragStart = function(event, element) {
+            let target = element;
+            let img, bgimage;
+            if (element.classList.contains('dropable') && target.getAttribute('data-droped') && target.getAttribute('data-droped').trim() != '') {
+                target = AI.find(dndid, '#' + target.getAttribute('data-droped'));
+            }
+
+            if (typeof(target.getAttribute('data-dragimage')) != 'undefined' && target.getAttribute('data-dragimage') != '') {
+                bgimage = "url(" + target.getAttribute("data-path") + target.getAttribute("data-dragimage") + ")";
+            } else {
+                bgimage = target.style.backgroundImage;
+            }
+            if (bgimage == "none" || bgimage == "") {
+                img = {
+                    "width": target.offsetWidth,
+                    "height": target.offsetHeight,
+                };
+            } else {
+                img = new Image();
+                img.src = bgimage.substr(4, (bgimage.length - 5));
+            }
+
+            let copied_node = element.cloneNode(true);
+            copied_node.removeAttribute('droping');
+            copied_node.style.position = 'absolute';
+            copied_node.style.zIndex = 0;
+            copied_node.backgroundImage = bgimage;
+            copied_node.style.width = img.width + "px";
+            copied_node.style.height = img.height + "px";
+            return copied_node;
+        };
+
+        draggable.onDrop = function(source, target) {
+            let copied = source.cloneNode(true);
+            target.style.backgroundColor = copied.getAttribute('data-bgcolor');
+            target.setAttribute('draging', 2);
+            target.setAttribute('droping', 2);
+
+            // for disabling the dragable
+            if (source.getAttribute("data-multi_drag") == "0") {
+                source.classList.add('uc_drag_disable');
+                source.style.setProperty("cursor", "no-drop", "important");
+                source.style.setProperty("opacity", "0.5", "important");
+            }
+
+            target.classList.remove('drop-hover');
+            target.style.opacity = '1';
+
+            let drop_id = source.getAttribute('data-droped') ? source.getAttribute('data-droped') : source.getAttribute('id');
+            let bgimage = '';
+            if (source.getAttribute('data-dropimage') && source.getAttribute('data-dropimage') != '') {
+                bgimage = "url(" + source.getAttribute('data-path') + source.getAttribute('data-dropimage') + ")";
+            } else {
+                bgimage = source.style.backgroundImage;
+            }
+
+            if (DND.browser.msie && drop_id && AI.find(AI.select(dndid), '#' + drop_id).innerText.trim() == "") {
+                source.style.backgroundColor = "transparent";
+            }
+
+            target.setAttribute('data-userans', drop_id);
+            target.setAttribute('data-droped', drop_id);
+            target.setAttribute('data-path', source.getAttribute('data-path'));
+            target.setAttribute('data-dropimage', source.getAttribute('data-dropimage'));
+            target.setAttribute('data-dragimage', source.getAttribute('data-dragimage'));
+
+            AI.setCss(target, {
+                backgroundColor: source.style.backgroundColor,
+                backgroundImage: bgimage
+            });
+            // changes for php
+            if(AI.select(copied) != undefined) { 
+                AI.find(target, 'p').innerText = AI.select(copied).innerText.trim();
+            } else {
+                AI.find(target, 'p').innerText = copied.innerText.trim();
+            }
+           
+
+            setTimeout(function() {
+                DND.checkAns(dndid);
+            }, 500);
+
+        };
+
+        draggable.isRevert = function() {
+            if (DND.prevent_dialog) {
+                return false;
+            }
+            AI.showmsg('While dropping a component, keep your mouse pointer on the drop area. Drop area must be compatible with the component you are dropping.', 3000);
+            let img = document.createElement('img');
+            img.src = '//s3.amazonaws.com/jigyaasa_content_static/how-to-drop-final_000BeI.gif';
+            img.alt = 'How to Drop?';
+            let div = document.createElement('div');
+            let content = document.createElement('div');
+            let input = document.createElement('input');
+            input.type = 'checkbox';
+            input.id = 'prevent_dialog';
+            //AI.select('#prevent_dialog').parentElement.classList.add('check');
+            input.classList.add('mr-1');
+            input.onchange = function() {
+                DND.prevent_dialog = this.checked;
+                if (this.checked) {
+                    jsSwal.close();
+                }
+
+            };
+            let label = document.createElement('label');
+            label.setAttribute('for', 'prevent_dialog');
+            label.innerText = "Don't show me message again!";
+
+            content.append(img);
+            div.append(input);
+            div.append(label);
+            content.append(div);
+            // Added the close button (X) at the top right side in sweetalert modal.
+            jsSwal = function() {
+                swal(arguments[0]);
+                if (arguments[0].showCloseButton) {
+                    let closeButton = document.createElement('button');
+                    closeButton.className = 'swal2-close close';
+                    closeButton.onclick = function() { swal.close(); };
+                    closeButton.textContent = '×';
+                    closeButton.classList.add('position-relative');
+                    closeButton.style.bottom = '220px';
+                    closeButton.style.right = '10px';
+                    let modal = document.querySelector('.swal-modal');
+                    AI.select('.swal-text').style.marginTop='23px';
+                    AI.select('.swal-text').style.marginBottom='10px';
+                    AI.select('.swal-text').style.float = 'left';
+                    modal.appendChild(closeButton);
+                }
+            };
+
+            jsSwal({
+                text: "How to Drop?",
+                content: content,
+                //timer: 10000,
+                buttons: false,
+                showCloseButton: true
+            });
+
+        };
+
+        draggable.onRemove = function(source, target) {
+            source.removeAttribute('draging');
+            source.setAttribute('droping', 1);
+
+            // for disabling the dragable
+            if (target) {
+                target.classList.remove('uc_drag_disable');
+                target.style.cursor = '';
+                target.style.opacity = '';
+            }
+
+            source.classList.remove('drop-hover');
+            source.style.opacity = '1';
+
+            source.setAttribute('data-userans', '');
+            source.setAttribute('data-droped', '');
+            source.style.backgroundColor = source.getAttribute('data-bgcolor');
+            source.style.backgroundImage = source.getAttribute('data-bgimage');
+            AI.find(source, 'p').innerText = source.getAttribute('data-caption');
+            setTimeout(function() {
+                DND.checkAns(dndid);
+            }, 500);
+        };
+
+        draggable.onOver = function(element) {
+            try {
+                let hoverImg = "";
+                if (element.getAttribute("hoverimage")) {
+                    hoverImg = element.getAttribute("data-path") + element.getAttribute("hoverimage");
+                }
+                if (element.style.backgroundImage.match(/undefined/) || element.style.backgroundImage.match(/none/)) {
+                    element.style.backgroundImage = "url(" + hoverImg + ")";
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+        };
+
+        draggable.onOut = function(element) {
+            try {
+                let hoverImg = "none";
+                if (element.getAttribute("hoverimage")) {
+                    hoverImg = element.getAttribute("hoverimage");
+                }
+                if (element.style.backgroundImage.search(hoverImg) != -1) {
+                    element.style.backgroundImage = "";
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+        };
+
+        AI.listen('body', 'dblclick', dndid + ' [detail]', function(element, event) {
+            try {
+                if (element.closest(dndid)) {
+                    if (element.getAttribute('data-detail').length == 5) {
+                        DND.activate(1);
+                        AI.ajax({
+                            url: baseUrl + 'index.php',
+                            data: {
+                                "lab_detail": element.getAttribute('data-detail'),
+                                "ajax": "1"
+                            },
+                            longUrl: true
+                        }).then(function(response) {
+                            DND.activate(0);
+                            if (AI.selectAll('.detail-modal').length < 1) {
+                                AI.insert('#main-page', '<div id="modal-from-detail" class="detail-modal modal fade" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content no-padding"><span class="close-icon" data-dismiss="modal" aria-hidden="true"></span><div class="detail_data">' + response + '</div></div></div></div>', 'beforeend');
+                            } else {
+                                AI.select('.detail-modal .detail_data').innerHTML = response;
+                            }
+                            AI.getBS('#modal-from-detail', 'Modal').show();
+                        });
+                    } else if (element.getAttribute('data-detail') != '') {
+                        if (AI.select('.detail').length < 1) {
+                            AI.insert('body', '<div class="detail"><span class="close_detail">&times;</span><div class="detail_data">' + element.getAttribute('data-detail') + '</div></div>', 'beforeend');
+                            AI.setCss(AI.select('.detail'), {
+                                "top": event.pageY + "px",
+                                "left": event.pageX + "px",
+                                'display': 'block',
+                            });
+                        } else {
+                            AI.select('.detail .detail_data').innerText = element.getAttribute('data-detail');
+                            AI.setCss(AI.select('.detail .detail_data'), {
+                                "top": event.pageY + "px",
+                                "left": event.pageX + "px",
+                                'display': 'block',
+                            });
+                        }
+                    }
+                }
+            } catch (error) {
+                console.warn(error);
+            }
+        });
+
+        AI.listen('body', 'click', '.close_detail', function() {
+            AI.select('.detail').nodeName && AI.select('.detail').remove();
+        });
+
+        let index = 1;
+
+        AI.listen('body', 'click', dndid + ' [image]', function(element) {
+            try {
+                let toggleImg = element.getAttribute('image').split(',');
+                element.style.backgroundImage = "url(" + element.getAttribute('data-path') + toggleImg[index] + ")";
+                index++;
+                if (toggleImg.length == index) index = 0;
+            } catch (error) {
+                console.warn(error);
+            }
+        });
+    };
+
+    // for changing the draggable state
+    DND.draggable = function(element, enable) {
+        if (enable) {
+            element.classList.remove('uc_drag_disable');
+            element.style.cursor = '';
+            element.style.opacity = 1;
+        } else {
+            element.classList.add('uc_drag_disable');
+            element.style.setProperty("cursor", "no-drop", "important");
+            element.style.setProperty("opacity", "0.7", "important");
+        }
+    };
+
+    // function for moving the focus to the next or previous elements
+    DND.tabMove = function(element, type = 1) {
+        if (element.id) {
+            let ks_element = AI.selectAll('.ks');
+            let focus_index = -1;
+            for (let index = 0; index < ks_element.length; index++) {
+                if (element.id == ks_element[index].id) {
+                    if (type) {
+                        if (index == (ks_element.length - 1)) {
+                            focus_index = 0;
+                        } else {
+                            focus_index = index + 1;
+                        }
+                    } else {
+                        if (index == 0) {
+                            focus_index = ks_element.length - 1;
+                        } else {
+                            focus_index = index - 1;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            if (focus_index != -1) {
+                ks_element[focus_index].focus();
+            }
+        }
+    };
+
+    // fucntion for checking the containment of hotspot area, it runs in case of keyboard
+    DND.checkContainment = function(element, extra_top = 0, extra_left = 0) {
+        let top = parseInt(element.style.top.replace("px", "")) + extra_top;
+        let left = parseInt(element.style.left.replace("px", "")) + extra_left;
+        let width = parseInt(element.parentElement.style.width.replace("px", ""));
+        let height = parseInt(element.parentElement.style.height.replace("px", ""));
+
+        if (left > (width - element.offsetWidth)) {
+            left = width - element.offsetWidth;
+        } else if (left < 0) {
+            left = 0;
+        }
+
+        if (top > (height - element.offsetHeight)) {
+            top = height - element.offsetHeight;
+        } else if (top < 0) {
+            top = 0;
+        }
+        return {
+            top: top,
+            left: left
+        };
+    };
+
+    // function reponisble for binding the key up events (keyboard related events)
+    DND.bindKeyUp = function(dndid) {
+        let dndid_elements = AI.find(dndid, "[id^=dndID]", 'all');
+        for (let index = 0; index < dndid_elements.length; index++) {
+            if (dndid_elements[index].getAttribute('type') != 'tab' && !(dndid_elements[index].classList.contains("dndlabel"))) {
+                dndid_elements[index].classList.add('ks');
+            }
+        }
+
+        let count = 0;
+        let copied_id = "";
+        let ee = {
+            clientX: 16,
+            clientY: 16
+        };
+
+        AI.find(dndid, ".selmatch", {
+            action: 'removeClass',
+            actionData: 'selmatch'
+        });
+
+        let elements = AI.selectAll('.ks');
+
+
+        function sortBy(prop, prop2) {
+            return function(a, b) {
+                let filter_a = parseInt(a.style[prop]);
+                let filter_b = parseInt(b.style[prop]);
+                if (filter_a == filter_b) {
+                    let filter_c = parseInt(a.style[prop2]);
+                    let filter_d = parseInt(b.style[prop2]);
+                    return filter_c < filter_d ? -1 : (filter_c > filter_d ? 1 : 0);
+                }
+                return filter_a < filter_b ? -1 : (filter_a > filter_b ? 1 : 0);
+            }
+        }
+
+        function sortDom(filter, second_filter) {
+            //Transform our nodeList into array and apply sort function
+            return [].map.call(elements, function(elm) {
+                return elm;
+            }).sort(sortBy(filter, second_filter))
+        }
+        
+        //Sort by top style property
+        let byTop = sortDom('top', "left");
+
+        for (let index = 0; index < byTop.length; index++) {
+            let id = byTop[index].getAttribute('id');
+            let parent = byTop[index].parentElement;
+            if (id) {
+                AI.find(dndid, "#" + id, {
+                    action: 'remove'
+                });
+            }
+            if (parent) {
+                parent.append(byTop[index]);
+            }
+        }
+
+        // function for focusing first element
+        function focusFirst() {
+            let ks_element = AI.selectAll('.ks');
+            if (ks_element.length > 0) {
+                let elem = AI.select('.ks');
+                let first_child = elem.children[0];
+                if (first_child && (first_child.classList.contains("dnd_textbox") || first_child.classList.contains("dndcheckbox") || first_child.classList.contains("dnd_select"))) {
+                    first_child.focus();
+                } else if (AI.find(elem, ".customRad", 'all').length != 0) {
+                    AI.find(elem, ".customRad").focus();
+                } else {
+                    elem.focus();
+                }
+            }
+        }
+
+        // function for focusing last element
+        function focusLast() {
+            let ks_element = AI.selectAll('.ks');
+            if (ks_element.length > 0) {
+                let elem = AI.selectAll('.ks')[AI.selectAll('.ks').length - 1];
+                let last_child = elem.children[0];
+                if (last_child && (last_child.classList.contains("dnd_textbox") || last_child.classList.contains("dndcheckbox") || last_child.classList.contains("dnd_select"))) {
+                    last_child.focus();
+                } else if (AI.find(elem, ".customRad", 'all').length != 0) {
+                    AI.find(elem, ".customRad").focus();
+                } else {
+                    elem.focus();
+                }
+            }
+        }
+
+        // function for checking the focus
+        function checkFocus(list, img = 0) {
+            let is_focus = false;
+            let elements = AI.find(dndid, "." + list, 'all');
+            let focus_el = (img) ? AI.select('.tmpTarget:focus') : AI.select('.ks:focus');
+            if (focus_el.nodeName) {
+                let focus_id = focus_el.getAttribute('id');
+                for (let index = 0; index < elements.length; index++) {
+                    if (focus_id == elements[index].getAttribute('id')) {
+                        is_focus = true;
+                        break;
+                    }
+                }
+            }
+            return is_focus;
+        }
+
+        // function for removing the draggable using keyboard
+        function removeDraggable(event) {
+            let removethis = event.target;
+            let dropedNode = removethis.getAttribute('data-droped');
+            if (removethis.classList.contains('dropable') && dropedNode != "") {
+                AI.setCss(removethis, {
+                    backgroundColor: removethis.getAttribute('data-bgcolor'),
+                    backgroundImage: removethis.getAttribute('data-bgimage'),
+                });
+
+                removethis.setAttribute('data-droped', "");
+                removethis.setAttribute('data-userans', "");
+                removethis.setAttribute('droping', "1");
+                removethis.removeAttribute('draging');
+
+                if (AI.select('#' + dropedNode).getAttribute('data-multi_drag') == '0') {
+                    DND.draggable(AI.select('#' + dropedNode), 1);
+                }
+
+                if (dragstore && dragstore[removethis.id]) {
+                    delete dragstore[removethis.id];
+                }
+
+                AI.find(removethis, 'p').innerText = removethis.getAttribute('data-caption');
+            }
+            let check_ans_timer = setTimeout(function() {
+                DND.checkAns(dndid);
+                clearTimeout(check_ans_timer);
+            }, 100);
+        }
+
+        // function for navigating down
+        function navigateDown() {
+            AI.find(dndid, ".selmatch", {
+                action: 'removeClass',
+                actionData: 'selmatch'
+            });
+            let ks_element = AI.selectAll(".ks");
+            let ks_length = ks_element.length;
+
+            let ks_fill = ks_element[count];
+
+            if (ks_fill) {
+                if (ks_fill.children[0] && (ks_fill.children[0].classList.contains("dnd_textbox") || ks_fill.children[0].classList.contains("dndcheckbox") || ks_fill.children[0].classList.contains("dnd_select"))) {
+                    ks_fill.children[0].focus();
+                } else if (AI.find(ks_fill, '.customRad', 'all').length != 0) {
+                    AI.find(ks_fill, '.customRad').focus();
+                } else {
+                    ks_fill.focus();
+                }
+            }
+
+
+            if (count == (ks_length - 1)) {
+                count = 0;
+            } else {
+                count++;
+            }
+        }
+
+
+        // function for enabling the hotspot using keyboard
+        function hotSpotKeyboard() {
+            let ks = AI.selectAll('.ks');
+            for (let index = 0; index < ks.length; index++) {
+                if (ks[index].classList.contains('hotspot_test')) {
+                    let hotspot_this = ks[index];
+                    let child = hotspot_this.children;
+                    for (let sub_index = 0; sub_index < child.length; sub_index++) {
+                        if (child[sub_index].classList.contains("drag-resize") && (AI.find(hotspot_this, '.hs_item', 'all').length > AI.find(hotspot_this, '.tmpTarget', 'all').length)) {
+                            let top = Math.round(ee.clientY - (AI.find(dndid, '.targetImg').offsetHeight / 2));
+                            let left = Math.round(ee.clientX - (AI.find(dndid, '.targetImg').offsetWidth / 2));
+                            if (hotspot_this.getAttribute('id') != 'c_zoom') {
+                                if (AI.find(dndid, '.targetImg')) {
+                                    let clonenode = AI.find(dndid, '.targetImg').cloneNode(true);
+                                    clonenode.classList.remove('targetImg');
+                                    clonenode.classList.add('tmpTarget');
+                                    clonenode.id = hotspot_this.id + "_" + (AI.find(hotspot_this, '.tmpTarget', 'all').length + 1);
+
+                                    AI.setCss(clonenode, {
+                                        position: 'absolute',
+                                        top: top + "px",
+                                        left: left + "px",
+                                        display: 'block'
+                                    });
+
+                                    // need to check here
+                                    DND.storage.store(clonenode.id, 'tgElem', hotspot_this.id);
+                                    AI.insertAfter(clonenode, AI.find(hotspot_this, '.hs_item', 'all')[AI.find(hotspot_this, '.hs_item', 'all').length - 1]);
+                                }
+                            }
+                            let tmp_target = AI.find(dndid, '.tmpTarget', 'all');
+
+                            let hustr = "";
+                            let hId = 1;
+                            for (let tmp_index = 0; tmp_index < tmp_target.length; tmp_index++) {
+                                hustr += '"' + hId + '":[' + tmp_target[tmp_index].offsetTop + ',' + tmp_target[tmp_index].offsetLeft + ',' + tmp_target[tmp_index].offsetWidth + ',' + tmp_target[tmp_index].offsetHeight + '],';
+                                hId++;
+                            }
+                            hotspot_this.setAttribute("data-userans", "{" + hustr.substr(0, hustr.length - 1) + "}");
+                            DND.checkAns(dndid);
+                            ee.clientX += 35;
+                        }
+                    }
+                    DND.setHotspotans(hotspot_this);
+                }
+            }
+        }
+
+        // function for moving the hotspot image
+        function moveTargetImg(top, left) {
+            let hotspot_test = AI.select(".hotspot_test");
+
+            if (hotspot_test.getAttribute('id') != "c_zoom") {
+                AI.setCss(AI.find(dndid, '.tmpTarget:focus'), {
+                    position: "absolute",
+                    top: top + "px",
+                    left: left + "px"
+                });
+            }
+
+            let tmp_target = AI.find(dndid, '.tmpTarget', 'all');
+            let hustr = "";
+            let hId = 1;
+            for (let tmp_index = 0; tmp_index < tmp_target.length; tmp_index++) {
+                hustr += '"' + hId + '":[' + tmp_target[tmp_index].offsetTop + ',' + tmp_target[tmp_index].offsetLeft + ',' + tmp_target[tmp_index].offsetWidth + ',' + tmp_target[tmp_index].offsetHeight + '],';
+                hId++;
+            }
+            hotspot_test.setAttribute("data-userans", "{" + hustr.substr(0, hustr.length - 1) + "}");
+            DND.setHotspotans(hotspot_test);
+            DND.checkAns(dndid);
+        }
+
+        // function for activating keyboard activity
+        function activateKs() {
+            hotSpotKeyboard();
+            count = 0;
+            navigateDown();
+        }
+
+        // function responsible for copy Draggable using keyboard
+        function copyDraggable() {
+            let copy_drag = AI.select(".ks:focus");
+            if (copy_drag) {
+                if (copy_drag.classList.contains('ui-draggable') && !copy_drag.classList.contains('uc_drag_disable')) {
+                    AI.find(dndid, '.dragable', {
+                        action: 'removeClass',
+                        actionData: 'copiedclr'
+                    });
+                    copied_id = copy_drag.id;
+                    copy_drag.classList.add('copiedclr');
+                } else {
+                    AH.showmsg('You cannot drag this');
+                }
+            }
+        }
+
+        // function responsible for pasteDraggable using keyboard
+        function pasteDraggable() {
+            let dropthis = AI.select(".ks:focus");
+            if (dropthis && copied_id != "" && dropthis.classList.contains('ui-droppable')) {
+                let ui_drag = AI.find(dndid, "#" + copied_id);
+                ui_drag.classList.remove('copiedclr');
+                let bgimage = '';
+                let drop_id = ui_drag.getAttribute('data-droped') ? ui_drag.getAttribute('data-droped') : ui_drag.getAttribute('id');
+                if (ui_drag.getAttribute('data-dropimage') && ui_drag.getAttribute('data-dropimage') != '') {
+                    bgimage = "url(" + ui_drag.getAttribute('data-path') + ui_drag.getAttribute('data-dropimage') + ")";
+                } else {
+                    bgimage = ui_drag.style.backgroundImage;
+                }
+
+                if (dropthis.getAttribute('data-droped') && dropthis.getAttribute('data-droped').trim() != '') {
+                    DND.draggable(AI.find(dndid, '#' + dropthis.getAttribute("data-droped")), 1);
+                }
+
+                if (DND.browser.msie && AI.find(dndid, '#' + drop_id) && AI.find(dndid, '#' + drop_id).innerText.trim() == '') {
+                    ui_drag.style.backgroundColor = 'transparent';
+                }
+
+                AI.setAttr(dropthis, {
+                    'userans': drop_id,
+                    'data-droped': drop_id,
+                    'data-userans': drop_id,
+                    'data-path': ui_drag.getAttribute('path'),
+                    'data-dropimage': ui_drag.getAttribute('dropimage'),
+                    'data-dragimage': ui_drag.getAttribute('dragimage'),
+                    'draging': '2',
+                    'droping': '2'
+                });
+
+                dragstore[dropthis.id] = [ui_drag, dropthis];
+
+                AI.find(dropthis, 'p').innerText = ui_drag.innerText.trim();
+
+                AI.setCss(dropthis, {
+                    backgroundColor: ui_drag.style.backgroundColor,
+                    backgroundImage: bgimage
+                });
+
+                if (AI.find(dndid, "#" + drop_id).getAttribute('data-multi_drag') == "0") {
+                    if (!(ui_drag.classList.contains('dropable'))) {
+                        DND.draggable(ui_drag, 0);
+                    } else {
+                        DND.draggable(AI.find(dndid, '#' + drop_id), 0);
+                    }
+                }
+                DND.checkAns(dndid);
+                copied_id = "";
+            }
+        }
+
+        // function for the key events
+        if (typeof(hotkeys) == 'function') {
+            hotkeys.unbind('alt+down,down,up,left,right,enter,delete', 'dragndrop');
+            hotkeys("alt+down,down,up,left,right,enter,delete", 'dragndrop', function(event, handler) {
+                switch (handler.key) {
+                    case 'alt+down':
+                        activateKs();
+                        break;
+                    case 'down':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("tmpTarget", 1)) {
+                                event.preventDefault();
+                                let position = DND.checkContainment(AI.select(".tmpTarget:focus"), 4, 0);
+                                moveTargetImg(position.top, position.left);
+                            } else if (checkFocus('dragable') || checkFocus('dropable')) {
+                                let focus_element = AI.select('.ks:focus');
+                                let ks_last_element = AI.selectAll('.ks')[AI.selectAll('.ks').length - 1];
+
+                                if (focus_element && ((focus_element.id == ks_last_element.id) || (ks_last_element.children[0] && (ks_last_element.children[0].id == focus_element.id)) || (AI.find(ks_last_element, '.customRad') && (AI.find(ks_last_element, '.customRad').id == focus_element.id)))) {
+                                    focusFirst();
+                                } else {
+                                    DND.tabMove(focus_element, 1);
+                                }
+                                event.preventDefault();
+                            }
+                        }
+                        break;
+                    case 'up':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("tmpTarget", 1)) {
+                                event.preventDefault();
+                                let position = DND.checkContainment(AI.select(".tmpTarget:focus"), -4, 0);
+                                moveTargetImg(position.top, position.left);
+                            } else if (checkFocus('dragable') || checkFocus('dropable')) {
+                                let focus_element = AI.select('.ks:focus');
+                                let ks_element = AI.selectAll('.ks')[0];
+
+                                if (focus_element && ((focus_element.id == ks_element.id) || (ks_element.children[0] && (ks_element.children[0].id == focus_element.id)) || (AI.find(ks_element, '.customRad') && (AI.find(ks_element, '.customRad').id == focus_element.id)))) {
+                                    focusLast();
+                                } else {
+                                    DND.tabMove(focus_element, 0);
+                                }
+                                event.preventDefault();
+                            }
+                        }
+                        break;
+                    case 'left':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("tmpTarget", 1)) {
+                                event.preventDefault();
+                                let position = DND.checkContainment(AI.select(".tmpTarget:focus"), 0, -4);
+                                moveTargetImg(position.top, position.left);
+                            } else if (checkFocus('dragable') || checkFocus('dropable')) {
+                                let focus_element = AI.select('.ks:focus');
+                                let ks_element = AI.selectAll('.ks')[0];
+
+                                if (focus_element && ((focus_element.id == ks_element.id) || (ks_element.children[0] && (ks_element.children[0].id == focus_element.id)) || (AI.find(ks_element, '.customRad') && (AI.find(ks_element, '.customRad').id == focus_element.id)))) {
+                                    focusLast();
+                                } else {
+                                    DND.tabMove(focus_element, 0);
+                                }
+                            }
+                        }
+                        break;
+                    case 'right':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("tmpTarget", 1)) {
+                                event.preventDefault();
+                                let position = DND.checkContainment(AI.select(".tmpTarget:focus"), 0, 4);
+                                moveTargetImg(position.top, position.left);
+                            } else if (checkFocus('dragable') || checkFocus('dropable')) {
+                                let focus_element = AI.select('.ks:focus');
+                                let ks_last_element = AI.selectAll('.ks')[AI.selectAll('.ks').length - 1];
+
+                                if (focus_element && ((focus_element.id == ks_last_element.id) || (ks_last_element.children[0] && (ks_last_element.children[0].id == focus_element.id)) || (AI.find(ks_last_element, '.customRad') && (AI.find(ks_last_element, '.customRad').id == focus_element.id)))) {
+                                    focusFirst();
+                                } else {
+                                    DND.tabMove(focus_element, 1);
+                                }
+                            }
+                        }
+                        break;
+                    case 'enter':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("dragable")) {
+                                copyDraggable();
+                            } else if (checkFocus("dropable")) {
+                                pasteDraggable();
+                            }
+                        }
+                        break;
+                    case 'delete':
+                        if (AI.select("#sm_controller").offsetHeight == 0) {
+                            if (checkFocus("dropable")) {
+                                removeDraggable(event);
+                            }
+                        }
+                        break;
+                }
+            });
+            hotkeys.setScope('dragndrop');
+            hotkeys.filter = function() {
+                return true;
+            };
+        }
+
+        /* events for keyboard binding */
+        AI.listen('body', 'keyup', '.ks', function(current, event) {
+            if (event.keyCode == 13 && !current.classList.contains('lab_disable')) {
+                current.focus();
+                if (current.classList.contains('dragable')) {
+                    copyDraggable();
+                } else if (current.classList.contains('dropable')) {
+                    pasteDraggable();
+                }
+            }
+        });
+
+        AI.listen('body', 'keydown', '#dndmainPreview', function(current, event) {
+            let last_element = AI.selectAll('.ks')[AI.selectAll('.ks').length - 1];
+            let first_element = AI.select('.ks');
+            if (AI.select('.ks:focus').nodeName) {
+                if (((AI.select('.ks:focus').getAttribute('id') == last_element.getAttribute('id')) || (last_element.children[0] && AI.find(last_element.children[0], '.customRad') && (AI.select('.ks:focus').getAttribute('id') == AI.find(last_element.children[0], '.customRad').getAttribute('id')))) && (event.which || event.keyCode) == 9 && (event.shiftKey == false)) {
+                    event.preventDefault();
+                    focusFirst();
+                }
+
+                if (((AI.select('.ks:focus').getAttribute('id') == first_element.getAttribute('id')) || (first_element.children[0] && AI.find(first_element.children[0], '.customRad') && (AI.select('.ks:focus').getAttribute('id') == AI.find(first_element.children[0], '.customRad')))) && event.shiftKey == true && (event.which || event.keyCode) == 9) {
+                    event.preventDefault();
+                    focusLast();
+                }
+            }
+
+            if (event.which == 27) {
+                AI.find(dndid, '.copiedclr', {
+                    action: 'removeClass',
+                    actionData: 'copiedclr'
+                });
+                count = 0;
+                copied_id = "";
+
+                if (last_element.children[0] && (last_element.children[0].classList.contains("dnd_textbox") || last_element.children[0].classList.contains("dndcheckbox") || last_element.children[0].classList.contains("dnd_select"))) {
+                    last_element.children[0].focus();
+                    last_element.children[0].blur();
+                } else if (AI.find(last_element, ".customRad", 'all').length != 0) {
+                    AI.find(last_element, ".customRad").focus();
+                    AI.find(last_element, ".customRad").blur();
+                } else {
+                    last_element.focus();
+                    last_element.blur();
+                }
+            }
+        });
+
+        AI.listenAll('body', 'click', function() {
+            if (!checkFocus("dragable") && !checkFocus("dropable")) {
+                AI.find(dndid, '.copiedclr', {
+                    action: 'removeClass',
+                    actionData: 'copiedclr'
+                });
+                copied_id = "";
+            }
+        });
+
+        AI.listen('body', 'keypress', '#dndmainPreview input', function(current, event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        /* end of events for keyboard binding */
+
+    };
+
+
+    // function responsible for calculating the area
+    DND.calcArea = function(coords) {
+        let i = 0,
+            maxX = 0,
+            minX = Infinity,
+            maxY = 0,
+            minY = Infinity;
+
+        while (i < coords.length) {
+            let x = parseInt(coords[i++], 10),
+                y = parseInt(coords[i++], 10);
+
+            if (x < minX) minX = x;
+            else if (x > maxX) maxX = x;
+
+            if (y < minY) minY = y;
+            else if (y > maxY) maxY = y;
+        }
+        return {
+            top: minY,
+            left: minX,
+            width: (maxX - minX),
+            height: (maxY - minY)
+        }
+    };
+
+    // function for responsible the correct data
+    DND.getCorrect = function(pElem) {
+        let is_correct = -1;
+        let cans = pElem.getAttribute('data-anskey');
+        let uans = pElem.getAttribute('data-userans');
+
+        if ((cans == uans) || (uans != "" && cans.split(",").includes(uans))) {
+            is_correct = 1;
+        }
+        if (cans == "" && uans == "") {
+            is_correct = -2;
+        }
+        return is_correct;
+    };
+
+    // function reponsible for showing the drag & drop module answers
+    DND.showansdrag = function(dndid, ansType, review) {
+
+        let element = AI.select(dndid);
+        let tab_pane_div = AI.find(dndid, '.tab-pane', 'all');
+        if (DND.browser.msie && tab_pane_div.length > 0) {
+            for (let index = 0; index < tab_pane_div.length; index++) {
+                let cur_element = tab_pane_div[index];
+
+                if (cur_element.offsetHeight <= 0 && AI.selectAll(dndid + '>.tab-content,' + dndid + '>img').length < 1) {
+                    let top = 0,
+                        height = 0;
+                    let drag_resize = AI.find(cur_element, '.drag-resize', 'all');
+                    for (let drag_index = 0; drag_index < drag_resize.length; drag_index++) {
+                        let drag_element = drag_resize[index];
+                        if (drag_element.offsetHeight > height) {
+                            height = drag_element.offsetHeight;
+                        }
+                        if (DND.offset(drag_element).top > top) {
+                            height = DND.offset(drag_element).top;
+                        }
+
+                        if (drag_element.classList.contains('dragable') > -1 && drag_element.style.backgroundColor == "transparent" && drag_element.style.backgroundImage == "none" && drag_element.innerText.trim() == "") {
+                            AI.setCss(drag_element, {
+                                backgroundColor: 'white',
+                                opacity: '0',
+                                filter: 'alpha(opacity=0)'
+                            });
+                        }
+                    }
+
+                    cur_element.style.height = (height + top) + 'px';
+                    AI.setCss(cur_element, {
+                        height: (height + top) + 'px',
+                        overflow: 'hidden',
+                    });
+
+                    AI.setCss(drag_element.parentElement, {
+                        overflow: 'hidden',
+                    });
+                }
+            }
+        }
+
+        if (typeof review === "undefined") review = 0;
+
+        let dnd_test = AI.find(element, '.dndTest', 'all');
+        for (let test_index = 0; test_index < dnd_test.length; test_index++) {
+            DND.showchildansdrag(dndid, dnd_test[test_index], ansType, review);
+        }
+
+        let dropables = document.querySelectorAll(".dropable.ui-droppable");
+        for (let i = 0; i < dropables.length; i++) {
+            let droppedElem = dropables[i];
+            if (droppedElem.getAttribute("data-droped") || ansType == "c") {
+                droppedElem.innerHTML = (droppedElem.innerHTML).replace("Drop Here", "").replace("Place Here", "");
+            }
+        }
+    };
+
+    // for getting the offset
+    DND.offset = function(element) {
+        let rect = element.getBoundingClientRect();
+        return {
+            top: rect.top + document.body.scrollTop,
+            left: rect.left + document.body.scrollLeft
+        }
+    };
+    // for getting the position
+    DND.position = function(element) {
+        return {
+            left: element.offsetLeft,
+            top: element.offsetTop
+        }
+    };
+
+    // for setting the hotspot ans in case of keyboard
+    DND.setHotspotans = function(element) {
+        let userans = element.getAttribute('data-userans');
+        if (userans) {
+            userans = JSON.parse(userans);
+            let hs_item = AI.find(element, '.hs_item', 'all');
+            for (let index = 0; index < hs_item.length; index++) {
+                let cur_element = hs_item[index];
+                let position = DND.position(cur_element);
+                position.width = cur_element.offsetWidth;
+                position.height = cur_element.offsetHeight;
+                for (let sub_index = 0; sub_index < Object.keys(userans).length; sub_index++) {
+                    let user_ans_index = Object.keys(userans)[sub_index];
+                    if (position.top <= (userans[user_ans_index][0] + userans[user_ans_index][3] / 2) && (userans[user_ans_index][0] + userans[user_ans_index][3] / 2) <= (position.top + position.height)) {
+                        if (position.left <= (userans[user_ans_index][1] + userans[user_ans_index][2] / 2) && (userans[user_ans_index][1] + userans[user_ans_index][2] / 2) <= (position.left + position.width)) {
+                            cur_element.setAttribute("data-correctans", "1");
+                            break;
+                        }
+                    } else {
+                        cur_element.setAttribute("data-correctans", "0");
+                    }
+                }
+            }
+
+        }
+    };
+
+    // function responsible for showing the dnd ans by traversing each element passing for DND.showansdrag
+    DND.showchildansdrag = function(dndid, pElem, ansType, review) {
+        let is_correct = -2;
+        let dnd_element = AI.select(dndid);
+        if (pElem.classList.contains('hotspot') || pElem.classList.contains('hotspot_test')) {
+            let selected = AI.find(pElem, '.tmpTarget:not([showtarget])', 'all');
+            if (selected.length > 0) {
+                selected.forEach((elm) => elm.remove());
+            }
+            let hs_item = AI.find(pElem, '.hs_item', 'all');
+            if (ansType == 'c') {
+                let targetimg = {
+                    height: (AI.find(dnd_element, '.targetImg').offsetHeight) ? AI.find(dnd_element, '.targetImg').offsetHeight : 32,
+                    width: (AI.find(dnd_element, '.targetImg').offsetWidth) ? AI.find(dnd_element, '.targetImg').offsetWidth : 32,
+                };
+                for (let index = 0; index < hs_item.length; index++) {
+                    let hcpos = DND.position(hs_item[index]);
+                    let top = hcpos.top + hs_item[index].offsetHeight / 2 - targetimg.height / 2;
+                    let left = hcpos.left + hs_item[index].offsetWidth / 2 - targetimg.width / 2;
+                    if (hs_item[index].nodeName.toLowerCase() == 'area') {
+                        let height = DND.calcArea(hs_item[index].getAttribute('coords').split(','));
+                        top = height.top + height.height / 2 - targetimg.height / 2;
+                        left = height.left + height.width / 2 - targetimg.width / 2;
+                    }
+                    let clone_element = AI.clone(AI.find(dnd_element, '.targetImg'));
+                    clone_element.classList.remove('targetImg');
+                    clone_element.classList.add('tmpTarget');
+                    clone_element.id = pElem.id + "_" + (index + 1);
+                    AI.setCss(clone_element, {
+                        position: 'absolute',
+                        top: top + 'px',
+                        left: left + 'px',
+                        display: 'block'
+                    });
+                    pElem.append(clone_element);
+                }
+            } else if (ansType == 'u') {
+                let ans_attr = pElem.getAttribute('data-userans');
+                let userans = null;
+                if (ans_attr) {
+                    userans = JSON.parse(ans_attr);
+                }
+                if (userans != null && Object.keys(userans).length > 0) {
+                    let already_filled_ans = [];
+                    let matched_ans = [];
+                    for (let index = 0; index < hs_item.length; index++) {
+                        let cur_element = hs_item[index];
+                        let position = DND.position(cur_element);
+                        let tgElem = "";
+                        Object.keys(userans).forEach(function(user_ans_index) {
+                            if (typeof(tgElem) == 'string' && !already_filled_ans.includes(user_ans_index)) {
+                                position.width = cur_element.offsetWidth;
+                                position.height = cur_element.offsetHeight;
+                                if (cur_element.nodeName.toLowerCase() == "area") {
+                                    position = DND.calcArea(cur_element.getAttribute('coords').split(','));
+                                }
+                                if (position.top <= (userans[user_ans_index][0] + userans[user_ans_index][3] / 2) && (userans[user_ans_index][0] + userans[user_ans_index][3] / 2) <= (position.top + position.height)) {
+                                    if (position.left <= (userans[user_ans_index][1] + userans[user_ans_index][2] / 2) && (userans[user_ans_index][1] + userans[user_ans_index][2] / 2) <= (position.left + position.width)) {
+                                        tgElem = cur_element;
+                                        already_filled_ans.push(user_ans_index);
+                                        matched_ans[user_ans_index] = {
+                                            tgElem: tgElem.id,
+                                            userans: userans[user_ans_index],
+                                        };
+                                    }
+                                }
+                            }
+                        });
+
+                        if (tgElem != '') {
+                            cur_element.setAttribute("data-correctans", "1");
+                            is_correct = true;
+                        }else {
+                            is_correct = false;
+                            break;
+                        }
+                    }
+
+                    Object.keys(matched_ans).forEach(function(index) {
+                        let clone_element = AI.clone(AI.find(dnd_element, '.targetImg'));
+                        clone_element.classList.remove('targetImg');
+                        clone_element.classList.add('tmpTarget');
+                        clone_element.id = pElem.id + "_" + index;
+                        AI.setCss(clone_element, {
+                            position: 'absolute',
+                            top: matched_ans[index]['userans'][0] + 'px',
+                            left: matched_ans[index]['userans'][1] + 'px',
+                            display: 'block',
+                        });
+                        DND.storage.store(clone_element.id, 'tgElem', matched_ans[index]['tgElem']);
+                        pElem.append(clone_element);
+                    });
+
+                    Object.keys(userans).forEach(function(index) {
+                        if (!already_filled_ans.includes(index)) {
+                            let clone_element = AI.clone(AI.find(dnd_element, '.targetImg'));
+                            clone_element.classList.remove('targetImg');
+                            clone_element.classList.add('tmpTarget');
+                            clone_element.id = pElem.id + "_" + index;
+                            AI.setCss(clone_element, {
+                                position: 'absolute',
+                                top: userans[index][0] + 'px',
+                                left: userans[index][1] + 'px',
+                                display: 'block',
+                            });
+                            DND.storage.store(clone_element.id, 'tgElem', pElem.id);
+                            pElem.append(clone_element);
+                        }
+                    });
+                }
+            }
+        }
+
+        if (pElem.classList.contains('dropable')) {
+            let user_pointsBgDropUrl = "none";
+            if (pElem.getAttribute('data-bgimage')) {
+                user_pointsBgDropUrl = "url(" + (pElem.getAttribute('data-path') + pElem.getAttribute('data-bgimage')) + ")";
+            }
+
+            AI.setCss(pElem, {
+                backgroundColor: pElem.getAttribute("data-bgcolor"),
+                backgroundImage: user_pointsBgDropUrl
+            });
+
+            AI.find(pElem, 'p').innerHTML = pElem.getAttribute('data-caption');
+            if (ansType == 'c') {
+                let anskey = pElem.getAttribute('data-anskey').split(',');
+                if (anskey.length) {
+                    anskey.forEach(function(value, index) {
+                        if (value.trim() != "") {
+                            let anskey_element = AI.find(dnd_element, '#' + value);
+
+                            let selector;
+                            if (anskey.length > 1) {
+                                selector = AI.selectAll('.dropable[data-anskey="' + pElem.getAttribute("data-anskey") + '"]')[index];
+                            } else {
+                                selector = pElem;
+                            }
+
+                            if (anskey_element) {
+                                AI.setCss(selector, {
+                                    backgroundColor: anskey_element.getAttribute("data-bgcolor"),
+                                    backgroundImage: (anskey_element.getAttribute('data-dropimage') || anskey_element.getAttribute('data-bgimage')) ? "url(" + (anskey_element.getAttribute('data-path') + (anskey_element.getAttribute('data-dropimage') ? anskey_element.getAttribute('data-dropimage') : anskey_element.getAttribute('data-bgimage'))) + ")" : 'none'
+                                });
+
+                                AI.find(selector, 'p').innerHTML = anskey_element.getAttribute('data-caption');
+                            }
+                        }
+                    });
+                }
+            } else if (ansType == 'u') {
+                if (pElem.getAttribute('data-userans').trim() != '') {
+                    try {
+                        let user_ans = AI.find(dnd_element, '#' + pElem.getAttribute('data-userans'));
+                        if (user_ans) {
+                            AI.setCss(pElem, {
+                                backgroundColor: user_ans.getAttribute("data-bgcolor"),
+                                backgroundImage: (user_ans.getAttribute('data-dropimage') ||  user_ans.getAttribute('data-bgimage')) ? "url(" + (user_ans.getAttribute('data-path') + (user_ans.getAttribute('data-dropimage') ? user_ans.getAttribute('data-dropimage') : user_ans.getAttribute('data-bgimage'))) + ")" : ''
+                            });
+
+                            AI.find(pElem, 'p').innerHTML = user_ans.getAttribute('data-caption');
+                            pElem.setAttribute('droping', 2);
+                            pElem.setAttribute('draging', 2);
+                            if (user_ans.getAttribute("data-multi_drag") == "0") {
+                                user_ans.classList.add('uc_drag_disable');
+                                user_ans.style.setProperty("cursor", "no-drop", "important");
+                                user_ans.style.setProperty("opacity", "0.5", "important");
+                            }
+                        } else {
+                            pElem.setAttribute('droping', 1);
+                            pElem.removeAttribute('draging');
+                        }
+                    } catch (error) {
+                        console.warn('User ans xml destroyed', pElem.getAttribute('data-userans'));
+                    }
+                }
+                if (typeof(pElem.getAttribute("name")) !== "undefined" && pElem.getAttribute("name") != "") {
+                    let ansKey = pElem.getAttribute('data-anskey').split(',');
+                    let userans = [];
+
+                    let droppable_element = AI.find(dnd_element, '.dropable[name="' + pElem.getAttribute("name") + '"]', 'all');
+
+                    for (let index = 0; index < droppable_element.length; index++) {
+                        if (typeof(droppable_element[index].getAttribute('data-userans')) != 'undefined' && droppable_element[index].getAttribute('data-userans') != '' || AI.find(droppable_element[index], '.correct_incorrect_icon', 'all').length > 0) {
+                            userans.push(droppable_element[index].getAttribute('data-userans'));
+                        }
+                    }
+
+                    if (typeof(pElem.getAttribute('data-userans')) != 'undefined' && pElem.getAttribute('data-userans') != '') {
+                        is_correct = DND.getCorrect(pElem);
+                    } else if ((ansKey.length - userans.length) > 0) {
+                        is_correct = -1;
+                    }
+                } else {
+                    is_correct = DND.getCorrect(pElem);
+                }
+            }
+        }
+
+        if (pElem.getAttribute('type') == 'step') {
+            if (typeof(pElem.getAttribute('data-udisplay')) != 'undefined') {
+                if ((stepsPreview == null) || pElem.getAttribute('id').match(stepsPreview + '_0')) {
+                    stepsPreview = pElem.getAttribute('id');
+                }
+
+                let step_display = true;
+
+                if (ansType == 'c') {
+                    step_display = (pElem.getAttribute('data-cdisplay')) ? true : false;
+                } else if (ansType == 'u') {
+                    step_display = (pElem.getAttribute('data-udisplay')) ? true : false;
+                }
+
+                if (step_display) {
+                    DND.setStep(pElem.getAttribute('id'));
+                } else {
+                    DND.setStep(stepsPreview);
+                }
+            }
+        }
+
+        if (pElem.nodeName == 'SPAN') {
+            if (pElem.classList.contains('menu')) {
+                if (pElem.getAttribute('data-correctans') > 0) {
+                    is_correct = -1;
+                    if (pElem.getAttribute('data-userans') > 0) {
+                        pElem.setAttribute('clicked', '1');
+                        is_correct = 1;
+                    }
+                }
+            } else {
+                AI.setAttr(pElem, {
+                    sel: '0',
+                    class: 'off'
+                });
+
+                if (ansType == 'c' && Nmuber(pElem.getAttribute('data-correctans')) > 0) {
+                    AI.setAttr(pElem, {
+                        sel: '1',
+                        class: 'on'
+                    });
+                }
+
+                if (ansType == 'u') {
+                    is_correct = -1;
+                    if (Number(pElem.getAttribute('data-userans')) > 0) {
+                        AI.setAttr(pElem, {
+                            sel: '1',
+                            class: 'on'
+                        });
+                    }
+
+                    if (review == 1) {
+                        if (Number(pElem.getAttribute('data-userans')) > 0 && Number(pElem.getAttribute('data-correctans')) > 0) {
+                            is_correct = 1;
+                        } else {
+                            if (Number(pElem.getAttribute('data-userans')) < 1 && Number(pElem.getAttribute('data-correctans')) > 0) {
+                                pElem.classList.remove('off');
+                                pElem.classList.add('off');
+                            }
+                            if (Number(pElem.getAttribute('data-correctans')) < 1 && Number(pElem.getAttribute('data-defaultans')) < 1 && Number(pElem.getAttribute('data-userans')) < 1) {
+                                is_correct = -2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (AI.find(pElem, '[class*="dnd_"],.dndradio,.dndcheckbox,.dropable,.hotspot,.hotspot_test,[type="step"],[type="tab"]', 'all').length > 0) {
+            let childrens = pElem.children;
+            if (childrens.length > 0) {
+                for (let index = 0; index < childrens.length; index++) {
+                    let element = childrens[index];
+                    if (typeof(pElem.getAttribute("type")) !== "undefined" && ["step", "tab"].includes(pElem.getAttribute("type"))) {
+                        DND.showchildansdrag(dndid, element, ansType, review);
+                    }
+                    if (element.getAttribute("data-correctans") == null) element.setAttribute("data-correctans", "");
+                    if (element.getAttribute("data-userans") == null) element.setAttribute("data-userans", "");
+                    if (element.getAttribute("data-defaultans") == null) element.setAttribute("data-defaultans", "");
+
+                    // SELECT ANS SHOWING IS STARTED FROM HERE //
+                    if (element.nodeName == 'SELECT') {
+                        is_correct = -1;
+                        let total_correct = AI.find(element, "[data-correctans='1']", 'all').length;
+                        let compare_index = 0;
+                        let options = AI.find(element, 'option', 'all');
+                        let default_value = '0';
+                        element.value = '';
+                        for (let sub_index = 0; sub_index < options.length; sub_index++) {
+                            if (ansType == 'c') {
+                                if (Number(options[sub_index].getAttribute('data-correctans')) > 0) {
+                                    options[sub_index].parentElement.value = options[sub_index].value;
+                                }
+                            } else if (ansType == 'u') {
+                                if (Number(options[sub_index].getAttribute('data-userans')) > 0) {
+                                    options[sub_index].parentElement.value = options[sub_index].value;
+                                }
+                                if (options[sub_index].selected && Number(options[sub_index].getAttribute('data-correctans')) == 1) {
+                                    compare_index++;
+                                }
+
+                                if (Number(options[sub_index].getAttribute('data-defaultans')) > 0) {
+                                    default_value = options[sub_index].value;
+                                }
+                            }
+                        }
+                        if (total_correct == compare_index) {
+                            is_correct = 1;
+                        }
+                        if (element.value.trim() == '' && AI.find(element, 'option')) {
+                            element.value = default_value;
+                        }
+                    }
+                    if (element.nodeName == "INPUT") {
+                        is_correct = -1;
+                        if (element.getAttribute('data-correctans') == "") {
+                            element.getAttribute('data-correctans', "0");
+                        }
+                        if (element.getAttribute("type") == "radio" || element.getAttribute("type") == "checkbox") {
+                            element.checked = false;
+                            if (ansType == 'c') {
+                                if (Number(element.getAttribute("data-correctans")) > 0) {
+                                    element.checked = true;
+                                }
+                            } else if (ansType == 'u') {
+                                if (Number(element.getAttribute("data-userans")) > 0) {
+                                    element.checked = true;
+                                }
+                                if (Number(element.getAttribute('data-userans')) == Number(element.getAttribute('data-correctans'))) {
+                                    is_correct = 1;
+                                }
+                            }
+                        }
+                        if (element.getAttribute("type") == "text" || element.getAttribute("type") == "password") {
+
+                            // I don't think this is needed here , NEED TO REVEIW
+                            if (typeof(element.type) == "undefined") {
+                                element.type = 'text';
+                            }
+                            if (ansType == 'c') {
+                                element.value = element.getAttribute("data-correctans");
+                            } else if (ansType == 'u') {
+                                element.value = element.getAttribute("data-userans");
+                                is_correct = DND.testText(element);
+                            }
+                        }
+                    } else if (element.nodeName == "TEXTAREA") {
+                        is_correct = -1;
+                        if (ansType == 'c') {
+                            element.value = element.getAttribute("data-correctans");
+                        } else if (ansType == 'u') {
+                            element.value = element.getAttribute("data-userans");
+                            is_correct = DND.testText(element);
+                        }
+                    }
+                }
+            }
+        }
+
+        let anstest = false;
+        if (AI.find(pElem, '.choicematrixradio', 'all').length) {
+            anstest = AI.find(pElem, '.choicematrixradio').checked;
+        } else if (AI.find(pElem, '.custRad', 'all').length) {
+            anstest = AI.find(pElem, '.custRad').checked;
+        }
+
+        if (ansType == 'u' && review == 1) {
+            if (is_correct != -2) {
+                let correct_incorrect_mark = '';
+                if (AI.find(pElem, '.custRad', 'all').length || AI.find(pElem, '.choicematrixradio', 'all').length) {
+                    if (AI.find(pElem, '.choicematrixradio')) {
+                        AI.find(pElem, '.choicematrixradio').disabled = true;
+                    }
+                    if (AI.find(pElem, '.custRad')) {
+                        AI.find(pElem, '.custRad').disabled = true;
+                    }
+                    correct_incorrect_mark = DND.markUserAnswerChoiceMatrix(is_correct, anstest);
+                } else {
+                    correct_incorrect_mark = DND.markUserAnswer(is_correct);
+                }
+                pElem.setAttribute('as', is_correct);
+                pElem.insertAdjacentHTML('beforeend', correct_incorrect_mark);
+            }
+        } else if (ansType == 'u' && review == 0) {
+            if (AI.find(pElem, '.custRad', 'all').length || AI.find(pElem, '.choicematrixradio', 'all').length) {
+                if (AI.find(pElem, '.choicematrixradio')) {
+                    AI.find(pElem, '.choicematrixradio').disabled = false;
+                }
+                if (AI.find(pElem, '.custRad')) {
+                    AI.find(pElem, '.custRad').disabled = false;
+                }
+            }
+            AI.remove('.correct_incorrect_icon');
+        } else {
+            AI.remove('.correct_incorrect_icon');
+        }
+    };
+
+    // function for marking correct incorrect
+    DND.markUserAnswer = function(is_correct) {
+        let droped_value_indicator_html = '';
+        if (is_correct == 1) {
+            if (window.inNative) {
+                droped_value_indicator_html = '<span class="icomoon-checkmark-circles" style="color:green;">';
+            } else {
+                droped_value_indicator_html = '<span class="icomoon-checkmark-circle" style="color:green;">';
+            }
+        } else {
+            if (window.inNative) {
+                droped_value_indicator_html = '<span class="icomoon-cancel-circles" style="color:red;">';
+            } else {
+                droped_value_indicator_html = '<span class="icomoon-cancel-circle" style="color:red;">';
+            }
+        }
+        let correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:18px;height:18px;right:-9px;top:-9px;background:white;border-radius:15px 12px 12px;font-size:21px;"> ' + droped_value_indicator_html + '</span></span>';
+        return correct_incorrect_mark;
+    };
+
+    // function for marking choice matrix answers
+    DND.markUserAnswerChoiceMatrix = function(is_correct, anstest) {
+        let correct_incorrect_mark = '', droped_value_indicator_html = '';
+        if (is_correct == 1 && anstest == true) {
+            if (window.inNative) {
+                droped_value_indicator_html = '<span class="icomoon-checkmark-circles" style="color:green;">';
+            } else {
+                droped_value_indicator_html = '<span class="icomoon-checkmark-circle" style="color:green;">';
+            }
+
+            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
+        } else if (is_correct != 1 && anstest == true) {
+            if (window.inNative) {
+                droped_value_indicator_html = '<span class="icomoon-cancel-circles" style="color:red;">';
+            } else {
+                droped_value_indicator_html = '<span class="icomoon-cancel-circle style="color:red;">';
+            }
+
+            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
+        }
+        return correct_incorrect_mark;
+    };
+    // function for cheking module answers
+    DND.checkAns = function(dndid) {
+        let userAnsXML = "<smans type='15'>\n";
+        result = true;
+        user_points = 0;
+        is_all_correct = true;
+        let dnd_element = AI.select(dndid);
+        let dnd_test = AI.find(dnd_element, '.dndTest', 'all');
+
+        for (let index = 0; index < dnd_test.length; index++) {
+            userAnsXML = DND.checkChildAnswer(dndid, dnd_test[index], userAnsXML);
+        }
+        userAnsXML += "</smans>";
+
+        result = is_all_correct;
+        if (window.inNative) {
+            if (typeof window.getHeight == "function") {
+                window.getHeight();
+            }
+        }
+        DND.calculatePoint(dnd_element.getAttribute('totalcorrectans'), user_points);
+
+        if (window.inNative) {
+            window.postMessage(JSON.stringify({
+                userAnswers: userAnsXML,
+                inNativeIsCorrect: result
+            }), '*');
+        }
+        return {uXml: userAnsXML, ans: result};
+    };
+
+    // function for changing the user and ans points
+    DND.calculatePoint = function(answer_points, user_points) {
+        //changes for php
+        AI.selectAll('#answer_points', 'value', answer_points);
+        AI.selectAll('#user_points', 'value', user_points);
+    };
+
+    // function for cheking module by traversing the child
+    DND.checkChildAnswer = function(dndid, pElem, userAnsXML) {
+        let dnd_element = AI.select(dndid);
+
+        if (pElem.classList.contains('hotspot_test')) {
+            let hs_item = AI.find(pElem, '.hs_item', 'all');
+            let result_array = [];
+            for (let index = 0; index < hs_item.length; index++) {
+                if (hs_item[index].getAttribute('data-correctans') == '0') {
+                    result_array.push(0);
+                } else {
+                    result_array.push(1);
+                    user_points++;
+                }
+            }
+            result = !(result_array.includes(0));
+            userAnsXML += "<div id='" + pElem.getAttribute("id") + "' userAns='" + pElem.getAttribute('data-userans') + "'></div>\n";
+        } else if (pElem.classList.contains('dropable')) {
+            let ansKey = pElem.getAttribute('data-anskey').split(',');
+
+            if (pElem.getAttribute("name") == '' && !ansKey.includes(pElem.getAttribute("data-userans"))) {
+                result = false;
+            } else if (typeof(pElem.getAttribute("name")) !== "undefined" && pElem.getAttribute("name") != "") {
+                let userans = [];
+                let dnd_element_dropable = AI.find(dnd_element, '.dropable[name="' + pElem.getAttribute("name") + '"]', 'all');
+                for (let index = 0; index < dnd_element_dropable.length; index++) {
+                    if (typeof(dnd_element_dropable[index].getAttribute('data-userans')) != "undefined" && dnd_element_dropable[index].getAttribute('data-userans') != "") {
+                        userans.push(dnd_element_dropable[index].getAttribute('data-userans'));
+                    }
+                }
+                if (DND.compareArray(ansKey, userans) != 0) {
+                    result = false;
+                } else {
+                    user_points++;
+                }
+            } else {
+                user_points++;
+            }
+            userAnsXML += "<div id='" + pElem.getAttribute("id") + "' userAns='" + pElem.getAttribute('data-userans') + "'></div>\n";
+        } else if (pElem.classList.contains('menulist') && !pElem.classList.contains("menu")) {
+            if (pElem.getAttribute('data-correctans') != pElem.getAttribute('sel')) {
+                result = false;
+            } else {
+                user_points++;
+            }
+            userAnsXML += "<div id='" + pElem.getAttribute("id") + "' userAns='" + pElem.getAttribute("sel") + "'></div>\n";
+        } else if (pElem.classList.contains("record")) {
+            if (pElem.getAttribute("clicked") == null || pElem.getAttribute("clicked") == '') {
+                pElem.setAttribute("clicked", "0");
+            }
+            if (Number(pElem.getAttribute('clicked')) != 1) {
+                result = false;
+            } else {
+                user_points++;
+            }
+            userAnsXML += "<div id='" + pElem.getAttribute("id") + "' userAns='" + pElem.getAttribute("clicked") + "'></div>\n";
+        } else if (AI.find(pElem, '[class*="dnd_"],.dndradio,.dndcheckbox,.dropable,.record,.hotspot_test,[type="step"],[type="tab"]', 'all').length > 0) {
+            let disabledstring = "";
+            let childrens = pElem.children;
+            for (let index = 0; index < childrens.length; index++) {
+                let current_element = childrens[index];
+                if (typeof(pElem.getAttribute('type')) != 'undefined' && ['step', 'tab'].includes(pElem.getAttribute('type'))) {
+                    userAnsXML = DND.checkChildAnswer(dndid, current_element, userAnsXML);
+                }
+                if (current_element.getAttribute("data-correctans") == null) current_element.setAttribute("data-correctans", "");
+                if (current_element.getAttribute("data-userans") == null) current_element.setAttribute("data-userans", "");
+                if (current_element.getAttribute("data-defaultans") == null) current_element.setAttribute("data-defaultans", "");
+                if (current_element.disabled) disabledstring = " udisabled='1'";
+
+                if (current_element.nodeName == "SELECT") {
+                    let uAnsSel = "";
+                    let compare_index = 0;
+                    let totalcorrect = AI.find(current_element, "[data-correctans='1']", 'all').length;
+                    let options = AI.find(current_element, 'option', 'all');
+                    for (let sub_index = 0; sub_index < options.length; sub_index++) {
+                        if (options[sub_index].selected) {
+                            compare_index++;
+                            if (Number(options[sub_index].getAttribute("data-correctans")) != 1) {
+                                result = false;
+                            } else {
+                                user_points++;
+                            }
+                            uAnsSel = uAnsSel + (sub_index + 1) + ",";
+                        }
+                    }
+                    if (compare_index != totalcorrect) result = false;
+                    userAnsXML += '<div id="' + current_element.parentElement.getAttribute("id") + '" userAns="' + uAnsSel + '" ' + disabledstring + '></div>\n';
+                } else if (current_element.nodeName == 'INPUT') {
+                    if (current_element.getAttribute('type') == 'radio' || current_element.getAttribute('type') == 'checkbox') {
+                        if ((Number(current_element.getAttribute("data-correctans")) == 1 && !current_element.checked) || ((Number(current_element.getAttribute("data-correctans")) != 1 && current_element.checked))) {
+                            result = false;
+                        } else {
+                            user_points++;
+                        }
+
+                        if (current_element.checked) {
+                            userAnsXML += "<div id='" + current_element.parentElement.getAttribute("id") + "' userAns='1' " + disabledstring + "></div>\n";
+                        } else {
+                            userAnsXML += "<div id='" + current_element.parentElement.getAttribute("id") + "' userAns='0' " + disabledstring + "></div>\n";
+                        }
+                    } else if (current_element.getAttribute('type') == 'text' || current_element.getAttribute('type') == 'password') {
+                        let correctansarray = [];
+                        let givenanswer;
+                        if (Number(current_element.getAttribute("data-ismultipleanswer")) == 1) {
+                            correctansarray = current_element.getAttribute("data-correctans").split(",");
+                        }
+                        correctansarray.push(current_element.getAttribute("data-correctans"));
+
+                        if (Number(current_element.getAttribute('data-nocase')) == 1) {
+                            correctansarray = correctansarray.map(function(values) {
+                                return values.toLowerCase();
+                            });
+                            givenanswer = current_element.value.toLowerCase();
+                        } else {
+                            givenanswer = current_element.value;
+                        }
+
+                        if (correctansarray.indexOf(givenanswer) < 0) {
+                            result = false;
+                        } else {
+                            user_points++;
+                        }
+                        userAnsXML += "<div id='" + current_element.parentElement.getAttribute("id") + "' userAns='" + current_element.value + "' " + disabledstring + "></div>\n";
+                    }
+                } else if (current_element.nodeName == 'BUTTON') {
+                    if (typeof(current_element.getAttribute("data-userans")) !== "undefined") {
+                        userAnsXML += "<div id='" + current_element.parentElement.getAttribute("id") + "' userAns='" + current_element.getAttribute("data-userans") + "' " + disabledstring + "></div>\n";
+                    }
+                } else if (current_element.nodeName == 'TEXTAREA') {
+                    let parser = ((current_element.getAttribute('data-parser')) ? current_element.getAttribute('data-parser').trim() : "");
+                    if (parser != '') {
+                        let correct_val = current_element.getAttribute("data-correctans").sqlparser(true);
+                        let text_val = current_element.value.replace(/"/g, "'");
+                        text_val = text_val.sqlparser();
+                        if (DND.compareArray(correct_val['sql'], text_val['sql']) == 0) {
+                            if (correct_val['mustbeone'].length > 0) {
+                                for (let sub_index = 0; sub_index < correct_val['mustbeone'].length; sub_index++) {
+                                    if (DND.compareArray(correct_val['mustbeone'][sub_index], text_val['sql']).length >= correct_val['mustbeone'][sub_index].length) {
+                                        result = false;
+                                    }
+                                }
+                            }
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        let correctansarray = [];
+                        let givenanswer;
+                        if (Number(current_element.getAttribute("data-ismultipleanswer")) == 1) {
+                            correctansarray = current_element.getAttribute("data-correctans").split(",");
+                        }
+                        correctansarray.push(current_element.getAttribute("data-correctans"));
+                        if (Number(current_element.getAttribute('data-nocase')) == 1) {
+                            correctansarray = correctansarray.map(function(values) {
+                                return values.toLowerCase();
+                            });
+                            givenanswer = current_element.value.toLowerCase();
+                        } else {
+                            givenanswer = current_element.value;
+                        }
+                        if (correctansarray.indexOf(givenanswer) < 0) {
+                            result = false;
+                        } else {
+                            user_points++;
+                        }
+                    }
+                    userAnsXML += "<div id='" + current_element.parentElement.getAttribute("id") + "' userAns='" + current_element.value + "' " + disabledstring + "></div>\n";
+                }
+            }
+        }
+
+        if (result == false) {
+            is_all_correct = false;
+        }
+        return userAnsXML;
+    };
+
+    // function for areaToggle
+    DND.areaToggle = function(obj) {
+        if (obj.classList.contains('off')) {
+            AI.setAttr(AI.select(obj), {
+                "sel": "1",
+                "class": "on"
+            });
+        } else {
+            AI.setAttr(AI.select(obj), {
+                "sel": "0",
+                "class": "off"
+            });
+        }
+    };
+
+    // function for checking the sql text
+    DND.testText = function(element) {
+        let is_correct = -1,
+            parser = ((element.getAttribute('data-parser')) ? element.getAttribute('data-parser').trim() : ""),
+            correct_val = element.getAttribute("data-correctans"),
+            text_val = element.value.replace(/"/g, "'").trim();
+        let correctansarray = [];
+        let givenanswer;
+        if (parser != "") {
+            correct_val = correct_val.sqlparser(true);
+            text_val = text_val.sqlparser();
+            if (DND.compareArray(correct_val['sql'], text_val['sql']) == 0) {
+                is_correct = 1;
+            }
+        } else {
+            if (Number(element.getAttribute("data-ismultipleanswer")) == 1) {
+                correctansarray = element.getAttribute("data-correctans").split(",");
+            }
+            correctansarray.push(element.getAttribute("data-correctans"));
+
+            if (Number(element.getAttribute('data-nocase')) == 1) {
+                correctansarray = correctansarray.map(function(v) {
+                    return v.toLowerCase();
+                });
+                givenanswer = element.value.toLowerCase();
+            } else {
+                givenanswer = element.value;
+            }
+            if (correctansarray.indexOf(givenanswer) > -1) {
+                is_correct = 1;
+            }
+        }
+        return is_correct;
+    };
+
+    // function for comparing the array and return if the parent one is not in child one
+    DND.compareArray = function(tree, branch) {
+        let matchedBranch = [];
+        for (let i = 0; i < tree.length; i++) {
+            for (let j = 0; j < branch.length; j++) {
+                if (branch[j] == tree[i]) {
+                    matchedBranch.push(branch[j]);
+                    continue;
+                }
+            }
+        }
+        let result = (tree.length - matchedBranch.length);
+        return result < 0 ? 0 : result;
+    };
+
+    // function call whenever the the review mode is changes
+    DND.modeOn = function(modeType) {
+        AI.selectAll('.test', 'addClass', 'h');
+        AI.selectAll('.review', 'addClass', 'h');
+
+        if (modeType) {
+            AI.selectAll('.review', 'removeClass', 'h');
+
+            if (typeof(hotkeys) == 'function') {
+                hotkeys.unbind('alt+down,down,up,left,right,enter,delete', 'dragndrop');
+            }
+
+            DND.unBindLab();
+            DND.showansdrag(elemId, 'u', 1);
+            AI.setCss('#sm_controller', {
+                display: 'block',
+            });
+            AI.selectAll('#sm_controller button', 'removeClass', 'active');
+            AI.addClass('#sm_controller .your-ans', 'active');
+        } else {
+            AI.selectAll('.test', 'removeClass', 'h');
+            DND.bindKeyUp(elemId);
+            AI.setCss('#sm_controller', {
+                display: 'none',
+            });
+            DND.bindLab();
+            DND.showansdrag(elemId, 'u');
+        }
+    };
+
+    // function for unbinding the events
+    DND.unBindLab = function() {
+        let element = AI.select(elemId);
+        let select_elements = AI.find(element, 'select,input,textarea', 'all');
+
+        for (let index = 0; index < select_elements.length; index++) {
+            if (select_elements[index].nodeName == 'INPUT') {
+                let input_type = select_elements[index].getAttribute('type');
+                if (input_type == 'text' || input_type == 'password') {
+                    select_elements[index].setAttribute('data-userans', select_elements[index].value);
+                } else if (input_type == 'radio' || input_type == 'checkbox') {
+                    select_elements[index].setAttribute('data-userans', (select_elements[index].checked) ? 1 : 0);
+                }
+            } else if (select_elements[index].nodeName == 'SELECT') {
+                let options = AI.find(select_elements[index], 'option', 'all');
+                for (let opt_index = 0; opt_index < options.length; opt_index++) {
+                    options[opt_index].setAttribute('data-userans', (options[opt_index].selected) ? 1 : 0);
+                }
+            } else if (select_elements[index].nodeName == 'TEXTAREA') {
+                select_elements[index].setAttribute('data-userans', select_elements[index].value);
+            }
+            select_elements[index].style.pointerEvents = 'none';
+        }
+        AI.find(elemId, '.dragable, .dropable, .hotspot_test, .tmpTarget, .record,  [data-droped*=dndID]', {
+            action: 'addClass',
+            actionData: 'lab_disable'
+        });
+
+        AI.find(element, '.hs_item', {
+            action: 'addClass',
+            actionData: 'ajax_hs_item'
+        });
+
+    };
+
+    // function for binding the events
+    DND.bindLab = function() {
+        let element = AI.select(elemId);
+        let select_items = AI.find(element, 'select,input,textarea', 'all');
+
+        AI.find(element, '.hs_item', {
+            action: 'removeClass',
+            actionData: 'ajax_hs_item'
+        });
+
+        AI.find(elemId, '.dragable, .dropable, .hotspot_test, .tmpTarget, .record,  [data-droped*=dndID]', {
+            action: 'removeClass',
+            actionData: 'lab_disable'
+        });
+
+        if (select_items) {
+            for (let index = 0; index < select_items.length; index++) {
+                select_items[index].style.pointerEvents = 'all';
+            }
+        }
+
+        DND.readyThis(elemId);
+    };
+
+    // function for textbox alingment setting
+    DND.textBoxAlignment = function(element) {
+        element.style.textAlign = (!isNaN(element.value)) ? 'center' : 'left';
+    };
+
+    // funciton for cleartext
+    DND.clearText = function(id) {
+        try {
+            let element = AI.select(elemId);
+            let find_element = AI.find(element, '.dnd' + id, 'all');
+
+            if (find_element) {
+                for (let index = 0; index < find_element.length; index++) {
+                    find_element[index].value = '';
+                }
+            }
+        } catch (err) {
+            console.warn("ID does not exist for clearing text ", err);
+        }
+    };
+
+
+    // function calling on the window load
+    if (typeof document !== 'undefined') {
+        document.addEventListener("DOMContentLoaded", function() {
+            let dnd_textbox = AI.selectAll('.dnd_textbox');
+            for (let index = 0; index < dnd_textbox.length; index++) {
+                DND.textBoxAlignment(dnd_textbox[index]);
+            }
+            AI.listen('body', 'change', '.dnd_textbox', function(_this) {
+                DND.textBoxAlignment(_this);
+            });
+        });
+    }
+
+    /* clsSMDragNDrop/libs/preview/TextboxPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1 } = globals;
+    const file$1 = "clsSMDragNDrop/libs/preview/TextboxPreview.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (85:4) {#if textbox_data && textbox_data.length > 0}
+    function create_if_block$1(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*textbox_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*textbox_data*/ 1) {
+    				each_value = /*textbox_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(85:4) {#if textbox_data && textbox_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (86:8) {#each textbox_data as data, index}
+    function create_each_block(ctx) {
+    	let div;
+    	let input;
+    	let input_type_value;
+    	let input_class_value;
+    	let input_data_correctans_value;
+    	let input_data_userans_value;
+    	let input_data_defaultans_value;
+    	let input_placeholder_value;
+    	let input_data_nocase_value;
+    	let input_data_ismultipleanswer_value;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			input = element("input");
+    			t = space();
+    			attr_dev(input, "type", input_type_value = /*data*/ ctx[5]._type);
+    			attr_dev(input, "class", input_class_value = "dnd" + /*data*/ ctx[5]._id + " dnd_textbox " + /*data*/ ctx[5]._custom_class);
+    			attr_dev(input, "name", "");
+
+    			attr_dev(input, "data-correctans", input_data_correctans_value = /*data*/ ctx[5]._correctans
+    			? /*data*/ ctx[5]._correctans
+    			: "");
+
+    			attr_dev(input, "data-userans", input_data_userans_value = /*data*/ ctx[5]._userans ? /*data*/ ctx[5]._userans : "");
+    			attr_dev(input, "data-udisplay", "");
+    			attr_dev(input, "data-udisabled", "");
+
+    			attr_dev(input, "data-defaultans", input_data_defaultans_value = /*data*/ ctx[5]._defaultans
+    			? /*data*/ ctx[5]._defaultans
+    			: "");
+
+    			attr_dev(input, "placeholder", input_placeholder_value = /*data*/ ctx[5]._placeholder
+    			? /*data*/ ctx[5]._placeholder
+    			: "");
+
+    			attr_dev(input, "data-nocase", input_data_nocase_value = /*data*/ ctx[5]._nocase ? /*data*/ ctx[5]._nocase : "");
+
+    			attr_dev(input, "data-ismultipleanswer", input_data_ismultipleanswer_value = /*data*/ ctx[5]._ismultipleanswer
+    			? /*data*/ ctx[5]._ismultipleanswer
+    			: "");
+
+    			add_location(input, file$1, 99, 20, 3646);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[7]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[5]._id);
+    			attr_dev(div, "class", "drag-resize dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[5]._top + "px");
+    			set_style(div, "left", /*data*/ ctx[5]._left + "px");
+    			set_style(div, "height", /*data*/ ctx[5]._height + "px");
+    			set_style(div, "width", /*data*/ ctx[5]._width + "px");
+    			set_style(div, "z-index", "1");
+    			add_location(div, file$1, 86, 16, 3160);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, input);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*textbox_data*/ 1 && input_type_value !== (input_type_value = /*data*/ ctx[5]._type)) {
+    				attr_dev(input, "type", input_type_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_class_value !== (input_class_value = "dnd" + /*data*/ ctx[5]._id + " dnd_textbox " + /*data*/ ctx[5]._custom_class)) {
+    				attr_dev(input, "class", input_class_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_data_correctans_value !== (input_data_correctans_value = /*data*/ ctx[5]._correctans
+    			? /*data*/ ctx[5]._correctans
+    			: "")) {
+    				attr_dev(input, "data-correctans", input_data_correctans_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_data_userans_value !== (input_data_userans_value = /*data*/ ctx[5]._userans ? /*data*/ ctx[5]._userans : "")) {
+    				attr_dev(input, "data-userans", input_data_userans_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_data_defaultans_value !== (input_data_defaultans_value = /*data*/ ctx[5]._defaultans
+    			? /*data*/ ctx[5]._defaultans
+    			: "")) {
+    				attr_dev(input, "data-defaultans", input_data_defaultans_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_placeholder_value !== (input_placeholder_value = /*data*/ ctx[5]._placeholder
+    			? /*data*/ ctx[5]._placeholder
+    			: "")) {
+    				attr_dev(input, "placeholder", input_placeholder_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_data_nocase_value !== (input_data_nocase_value = /*data*/ ctx[5]._nocase ? /*data*/ ctx[5]._nocase : "")) {
+    				attr_dev(input, "data-nocase", input_data_nocase_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && input_data_ismultipleanswer_value !== (input_data_ismultipleanswer_value = /*data*/ ctx[5]._ismultipleanswer
+    			? /*data*/ ctx[5]._ismultipleanswer
+    			: "")) {
+    				attr_dev(input, "data-ismultipleanswer", input_data_ismultipleanswer_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[5]._id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*textbox_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[5]._top + "px");
+    			}
+
+    			if (dirty & /*textbox_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[5]._left + "px");
+    			}
+
+    			if (dirty & /*textbox_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[5]._height + "px");
+    			}
+
+    			if (dirty & /*textbox_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[5]._width + "px");
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(86:8) {#each textbox_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$1(ctx) {
+    	let div;
+    	let if_block = /*textbox_data*/ ctx[0] && /*textbox_data*/ ctx[0].length > 0 && create_if_block$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$1, 83, 0, 3044);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*textbox_data*/ ctx[0] && /*textbox_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$1(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("TextboxPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let textbox_data = [];
+    	let textbox = modules;
+
+    	afterUpdate(() => {
+    		if (textbox_data.length > 0 && containerID != "") {
+    			textbox.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<TextboxPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		XMLToJSON,
+    		afterUpdate,
+    		modules,
+    		containerID,
+    		uxml,
+    		textbox_data,
+    		textbox
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("textbox_data" in $$props) $$invalidate(0, textbox_data = $$props.textbox_data);
+    		if ("textbox" in $$props) $$invalidate(4, textbox = $$props.textbox);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, textbox, uxml, textbox_data*/ 27) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(4, textbox = []);
+    					$$invalidate(4, textbox[0] = modules, textbox);
+    				} else {
+    					$$invalidate(4, textbox = modules);
+    				}
+
+    				$$invalidate(0, textbox_data = []);
+
+    				textbox.map(function (data) {
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, textbox_data = [...textbox_data, data]);
+    				});
+    			} else {
+    				$$invalidate(0, textbox_data = []);
+    			}
+    		}
+    	};
+
+    	return [textbox_data, modules, containerID, uxml, textbox];
+    }
+
+    class TextboxPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "TextboxPreview",
+    			options,
+    			id: create_fragment$1.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<TextboxPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<TextboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<TextboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<TextboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<TextboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<TextboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<TextboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/DragPreview.svelte generated by Svelte v3.34.0 */
+
+    const file$2 = "clsSMDragNDrop/libs/preview/DragPreview.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
+    	return child_ctx;
+    }
+
+    // (80:4) {#if drag_value && drag_value.length > 0}
+    function create_if_block$2(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*drag_value*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*drag_value, window*/ 1) {
+    				each_value = /*drag_value*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(80:4) {#if drag_value && drag_value.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (109:16) {#if data.value}
+    function create_if_block_1(ctx) {
+    	let p;
+    	let raw_value = /*data*/ ctx[4].value + "";
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			add_location(p, file$2, 108, 32, 3519);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			p.innerHTML = raw_value;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*drag_value*/ 1 && raw_value !== (raw_value = /*data*/ ctx[4].value + "")) p.innerHTML = raw_value;		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(109:16) {#if data.value}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (81:8) {#each drag_value as data, index}
+    function create_each_block$1(ctx) {
+    	let div;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_data_caption_value;
+    	let div_data_bgcolor_value;
+    	let div_data_multi_drag_value;
+    	let div_data_dragimage_value;
+    	let div_data_dropimage_value;
+    	let div_data_bgimage_value;
+    	let div_data_path_value;
+    	let if_block = /*data*/ ctx[4].value && create_if_block_1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t = space();
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[6]);
+    			attr_dev(div, "id", div_id_value = /*data*/ ctx[4].id);
+    			attr_dev(div, "draging", "1");
+    			attr_dev(div, "name", "");
+    			attr_dev(div, "class", "drag-resize dragable ui-draggable dndTest");
+    			attr_dev(div, "data-caption", div_data_caption_value = /*data*/ ctx[4].caption);
+    			attr_dev(div, "data-bgcolor", div_data_bgcolor_value = /*data*/ ctx[4].bgcolor);
+    			attr_dev(div, "data-multi_drag", div_data_multi_drag_value = /*data*/ ctx[4].multi_drag);
+    			attr_dev(div, "data-dragimage", div_data_dragimage_value = /*data*/ ctx[4].dragimage);
+    			attr_dev(div, "data-dropimage", div_data_dropimage_value = /*data*/ ctx[4].dropimage);
+    			attr_dev(div, "data-bgimage", div_data_bgimage_value = /*data*/ ctx[4].bgimage);
+    			attr_dev(div, "data-detail", "");
+    			attr_dev(div, "tabindex", "0");
+
+    			attr_dev(div, "data-path", div_data_path_value = window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/");
+
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[4].top);
+    			set_style(div, "left", /*data*/ ctx[4].left);
+    			set_style(div, "height", /*data*/ ctx[4].height);
+    			set_style(div, "width", /*data*/ ctx[4].width);
+    			set_style(div, "border", /*data*/ ctx[4].border);
+    			set_style(div, "background-color", /*data*/ ctx[4].backgroundColor);
+    			set_style(div, "background-image", /*data*/ ctx[4].backgroundImage);
+    			attr_dev(div, "aria-disabled", "false");
+    			add_location(div, file$2, 81, 12, 2353);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[4].value) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1(ctx);
+    					if_block.c();
+    					if_block.m(div, t);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_id_value !== (div_id_value = /*data*/ ctx[4].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_caption_value !== (div_data_caption_value = /*data*/ ctx[4].caption)) {
+    				attr_dev(div, "data-caption", div_data_caption_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_bgcolor_value !== (div_data_bgcolor_value = /*data*/ ctx[4].bgcolor)) {
+    				attr_dev(div, "data-bgcolor", div_data_bgcolor_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_multi_drag_value !== (div_data_multi_drag_value = /*data*/ ctx[4].multi_drag)) {
+    				attr_dev(div, "data-multi_drag", div_data_multi_drag_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_dragimage_value !== (div_data_dragimage_value = /*data*/ ctx[4].dragimage)) {
+    				attr_dev(div, "data-dragimage", div_data_dragimage_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_dropimage_value !== (div_data_dropimage_value = /*data*/ ctx[4].dropimage)) {
+    				attr_dev(div, "data-dropimage", div_data_dropimage_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1 && div_data_bgimage_value !== (div_data_bgimage_value = /*data*/ ctx[4].bgimage)) {
+    				attr_dev(div, "data-bgimage", div_data_bgimage_value);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[4].top);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[4].left);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[4].height);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[4].width);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "border", /*data*/ ctx[4].border);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "background-color", /*data*/ ctx[4].backgroundColor);
+    			}
+
+    			if (dirty & /*drag_value*/ 1) {
+    				set_style(div, "background-image", /*data*/ ctx[4].backgroundImage);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(81:8) {#each drag_value as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$2(ctx) {
+    	let div;
+    	let if_block = /*drag_value*/ ctx[0] && /*drag_value*/ ctx[0].length > 0 && create_if_block$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$2, 78, 0, 2247);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*drag_value*/ ctx[0] && /*drag_value*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function validColor(_bgcolor, _invisible) {
+    	if (_invisible == "1") {
+    		return "";
+    	} else if (_bgcolor) {
+    		return _bgcolor;
+    	} else {
+    		return "#CCFFCC";
+    	}
+    }
+
+    function validBorderColor(_bordercolor) {
+    	if (_bordercolor) {
+    		return "1px solid " + _bordercolor;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function bgImage(img) {
+    	if (img) {
+    		let str = img.split(",")[0];
+
+    		return (window.inNative
+    		? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    		: "https://s3.amazonaws.com/jigyaasa_content_static/") + str;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("DragPreview", slots, []);
+    	let { modules } = $$props;
+    	let drag = modules;
+    	let drag_value = [];
+
+    	// for initializing the drag
+    	function init() {
+    		if (Array.isArray(modules) == false) {
+    			drag = [];
+    			drag[0] = modules;
+    		} else {
+    			drag = modules;
+    		}
+
+    		$$invalidate(0, drag_value = []);
+
+    		drag.map(function (data) {
+    			$$invalidate(0, drag_value = [
+    				...drag_value,
+    				{
+    					id: "dnd" + data._id,
+    					caption: data._value,
+    					bgcolor: validColor(data._bgcolor, data._invisible),
+    					multi_drag: data._multi_drag,
+    					dragimage: data._image ? data._image.split(",")[1] : "",
+    					dropimage: data._image ? data._image.split(",")[2] : "",
+    					bgimage: data._image ? data._image.split(",")[0] : "",
+    					top: data._top + "px",
+    					left: data._left + "px",
+    					height: data._height + "px",
+    					width: data._width + "px",
+    					border: validBorderColor(data._border_color),
+    					backgroundColor: validColor(data._bgcolor, data._invisible),
+    					backgroundImage: data._image
+    					? "url('" + bgImage(data._image) + "')"
+    					: "none",
+    					value: data._value
+    				}
+    			]);
+    		});
+    	}
+
+    	const writable_props = ["modules"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<DragPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		modules,
+    		drag,
+    		drag_value,
+    		init,
+    		validColor,
+    		validBorderColor,
+    		bgImage
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("drag" in $$props) drag = $$props.drag;
+    		if ("drag_value" in $$props) $$invalidate(0, drag_value = $$props.drag_value);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules*/ 2) {
+    			 if (modules) {
+    				init();
+    			} else {
+    				$$invalidate(0, drag_value = []);
+    			}
+    		}
+    	};
+
+    	return [drag_value, modules];
+    }
+
+    class DragPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { modules: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "DragPreview",
+    			options,
+    			id: create_fragment$2.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<DragPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<DragPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<DragPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/DropPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$1 } = globals;
+    const file$3 = "clsSMDragNDrop/libs/preview/DropPreview.svelte";
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (135:4) {#if drop_data && drop_data.length > 0}
+    function create_if_block$3(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*drop_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*drop_data, window*/ 1) {
+    				each_value = /*drop_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$3.name,
+    		type: "if",
+    		source: "(135:4) {#if drop_data && drop_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (136:8) {#each drop_data as data, index}
+    function create_each_block$2(ctx) {
+    	let div;
+    	let p;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_data_anskey_value;
+    	let div_data_caption_value;
+    	let div_data_userans_value;
+    	let div_data_droped_value;
+    	let div_data_bgcolor_value;
+    	let div_data_path_value;
+    	let div_droping_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			p = element("p");
+    			t = space();
+    			add_location(p, file$3, 162, 16, 5652);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[7]);
+    			attr_dev(div, "id", div_id_value = /*data*/ ctx[5].id);
+    			attr_dev(div, "name", "");
+    			attr_dev(div, "tabindex", "0");
+    			attr_dev(div, "data-anskey", div_data_anskey_value = /*data*/ ctx[5].anskey);
+    			attr_dev(div, "data-caption", div_data_caption_value = /*data*/ ctx[5].caption);
+    			attr_dev(div, "data-userans", div_data_userans_value = /*data*/ ctx[5].userans);
+    			attr_dev(div, "data-droped", div_data_droped_value = /*data*/ ctx[5].droped);
+    			attr_dev(div, "data-bgcolor", div_data_bgcolor_value = /*data*/ ctx[5].bgcolor);
+
+    			attr_dev(div, "data-path", div_data_path_value = window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/");
+
+    			attr_dev(div, "data-dragimage", "");
+    			attr_dev(div, "data-dropimage", "");
+    			attr_dev(div, "data-bgimage", "");
+    			attr_dev(div, "class", "drag-resize dropable ui-droppable dndTest");
+    			attr_dev(div, "droping", div_droping_value = /*data*/ ctx[5].userans ? "2" : "1");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[5].top);
+    			set_style(div, "left", /*data*/ ctx[5].left);
+    			set_style(div, "height", /*data*/ ctx[5].height);
+    			set_style(div, "width", /*data*/ ctx[5].width);
+    			set_style(div, "border", /*data*/ ctx[5].border);
+    			set_style(div, "z-index", "1 \n                ");
+    			add_location(div, file$3, 136, 12, 4601);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, p);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*drop_data*/ 1 && div_id_value !== (div_id_value = /*data*/ ctx[5].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_data_anskey_value !== (div_data_anskey_value = /*data*/ ctx[5].anskey)) {
+    				attr_dev(div, "data-anskey", div_data_anskey_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_data_caption_value !== (div_data_caption_value = /*data*/ ctx[5].caption)) {
+    				attr_dev(div, "data-caption", div_data_caption_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_data_userans_value !== (div_data_userans_value = /*data*/ ctx[5].userans)) {
+    				attr_dev(div, "data-userans", div_data_userans_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_data_droped_value !== (div_data_droped_value = /*data*/ ctx[5].droped)) {
+    				attr_dev(div, "data-droped", div_data_droped_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_data_bgcolor_value !== (div_data_bgcolor_value = /*data*/ ctx[5].bgcolor)) {
+    				attr_dev(div, "data-bgcolor", div_data_bgcolor_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1 && div_droping_value !== (div_droping_value = /*data*/ ctx[5].userans ? "2" : "1")) {
+    				attr_dev(div, "droping", div_droping_value);
+    			}
+
+    			if (dirty & /*drop_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[5].top);
+    			}
+
+    			if (dirty & /*drop_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[5].left);
+    			}
+
+    			if (dirty & /*drop_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[5].height);
+    			}
+
+    			if (dirty & /*drop_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[5].width);
+    			}
+
+    			if (dirty & /*drop_data*/ 1) {
+    				set_style(div, "border", /*data*/ ctx[5].border);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(136:8) {#each drop_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$3(ctx) {
+    	let div;
+    	let if_block = /*drop_data*/ ctx[0] && /*drop_data*/ ctx[0].length > 0 && create_if_block$3(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$3, 133, 0, 4498);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*drop_data*/ ctx[0] && /*drop_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$3(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function validColor$1(_bgcolor, _invisible) {
+    	if (_invisible == "1") {
+    		return "";
+    	} else if (_bgcolor) {
+    		return _bgcolor;
+    	} else {
+    		return "#FFFFCC";
+    	}
+    }
+
+    function validBorderColor$1(_bordercolor) {
+    	if (_bordercolor) {
+    		return "1px solid " + _bordercolor;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function setUserAns(uans, defaultans) {
+    	if (uans) {
+    		return uans;
+    	} else if (defaultans) {
+    		return defaultans;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("DropPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let dropPreview = modules;
+    	let drop_data = [];
+
+    	afterUpdate(() => {
+    		if (dropPreview && drop_data.length > 0 && containerID != "") {
+    			dropPreview.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1$1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<DropPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		XMLToJSON,
+    		afterUpdate,
+    		modules,
+    		containerID,
+    		uxml,
+    		dropPreview,
+    		drop_data,
+    		validColor: validColor$1,
+    		validBorderColor: validBorderColor$1,
+    		setUserAns
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("dropPreview" in $$props) $$invalidate(4, dropPreview = $$props.dropPreview);
+    		if ("drop_data" in $$props) $$invalidate(0, drop_data = $$props.drop_data);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, dropPreview, uxml, drop_data*/ 27) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(4, dropPreview = []);
+    					$$invalidate(4, dropPreview[0] = modules, dropPreview);
+    				} else {
+    					$$invalidate(4, dropPreview = modules);
+    				}
+
+    				$$invalidate(0, drop_data = []);
+
+    				dropPreview.map(function (data) {
+    					let ansKey = "";
+
+    					if (data._anskey) {
+    						let allAnsKey = data._anskey.split(",");
+
+    						allAnsKey.forEach(function (value) {
+    							ansKey += "dnd" + value + ",";
+    						});
+
+    						ansKey = ansKey.slice(0, -1);
+    					}
+
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, drop_data = [
+    						...drop_data,
+    						{
+    							id: "dnd" + data._id,
+    							anskey: data._anskey ? ansKey : "",
+    							caption: data._value,
+    							userans: setUserAns(data._userans, data._defaultans),
+    							droped: setUserAns(data._userans, data._defaultans),
+    							bgcolor: validColor$1(data._bgcolor, data._invisible),
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							border: validBorderColor$1(data._border)
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(4, dropPreview = []);
+    				$$invalidate(0, drop_data = []);
+    			}
+    		}
+    	};
+
+    	return [drop_data, modules, containerID, uxml, dropPreview];
+    }
+
+    class DropPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "DropPreview",
+    			options,
+    			id: create_fragment$3.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<DropPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<DropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<DropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<DropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<DropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<DropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<DropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/SelectPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$2 } = globals;
+    const file$4 = "clsSMDragNDrop/libs/preview/SelectPreview.svelte";
+
+    function get_each_context$3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[6] = list[i];
+    	child_ctx[8] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[9] = list[i];
+    	return child_ctx;
+    }
+
+    // (129:4) {#if select_data && select_data.length > 0}
+    function create_if_block$4(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*select_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$3(get_each_context$3(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*select_data*/ 1) {
+    				each_value = /*select_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$3(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$3(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$4.name,
+    		type: "if",
+    		source: "(129:4) {#if select_data && select_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (163:20) {:else}
+    function create_else_block_1(ctx) {
+    	let option;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			option.textContent = "Please Select";
+    			option.__value = "Please Select";
+    			option.value = option.__value;
+    			add_location(option, file$4, 163, 24, 6139);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block_1.name,
+    		type: "else",
+    		source: "(163:20) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (155:20) {#if data.select.length}
+    function create_if_block_1$1(ctx) {
+    	let each_1_anchor;
+    	let each_value_1 = /*data*/ ctx[6].select;
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*select_data*/ 1) {
+    				each_value_1 = /*data*/ ctx[6].select;
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(155:20) {#if data.select.length}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (159:28) {:else}
+    function create_else_block(ctx) {
+    	let option;
+    	let t_value = /*option*/ ctx[9].text + "";
+    	let t;
+    	let option_key_value;
+    	let option_data_correctans_value;
+    	let option_data_defaultans_value;
+    	let option_data_userans_value;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			attr_dev(option, "key", option_key_value = /*option*/ ctx[9].key);
+    			attr_dev(option, "data-correctans", option_data_correctans_value = /*option*/ ctx[9].correctans);
+    			attr_dev(option, "data-defaultans", option_data_defaultans_value = /*option*/ ctx[9].defaultans);
+    			attr_dev(option, "data-userans", option_data_userans_value = /*option*/ ctx[9].userans);
+    			option.__value = option_value_value = /*option*/ ctx[9].key;
+    			option.value = option.__value;
+    			add_location(option, file$4, 159, 32, 5852);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*select_data*/ 1 && t_value !== (t_value = /*option*/ ctx[9].text + "")) set_data_dev(t, t_value);
+
+    			if (dirty & /*select_data*/ 1 && option_key_value !== (option_key_value = /*option*/ ctx[9].key)) {
+    				attr_dev(option, "key", option_key_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_correctans_value !== (option_data_correctans_value = /*option*/ ctx[9].correctans)) {
+    				attr_dev(option, "data-correctans", option_data_correctans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_defaultans_value !== (option_data_defaultans_value = /*option*/ ctx[9].defaultans)) {
+    				attr_dev(option, "data-defaultans", option_data_defaultans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_userans_value !== (option_data_userans_value = /*option*/ ctx[9].userans)) {
+    				attr_dev(option, "data-userans", option_data_userans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key)) {
+    				prop_dev(option, "__value", option_value_value);
+    				option.value = option.__value;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(159:28) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (157:28) {#if option.selected == 1}
+    function create_if_block_2(ctx) {
+    	let option;
+    	let t_value = /*option*/ ctx[9].text + "";
+    	let t;
+    	let option_key_value;
+    	let option_data_correctans_value;
+    	let option_data_defaultans_value;
+    	let option_data_userans_value;
+    	let option_value_value;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.selected = "selected";
+    			attr_dev(option, "key", option_key_value = /*option*/ ctx[9].key);
+    			attr_dev(option, "data-correctans", option_data_correctans_value = /*option*/ ctx[9].correctans);
+    			attr_dev(option, "data-defaultans", option_data_defaultans_value = /*option*/ ctx[9].defaultans);
+    			attr_dev(option, "data-userans", option_data_userans_value = /*option*/ ctx[9].userans);
+    			option.__value = option_value_value = /*option*/ ctx[9].key + 1;
+    			option.value = option.__value;
+    			add_location(option, file$4, 157, 32, 5591);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*select_data*/ 1 && t_value !== (t_value = /*option*/ ctx[9].text + "")) set_data_dev(t, t_value);
+
+    			if (dirty & /*select_data*/ 1 && option_key_value !== (option_key_value = /*option*/ ctx[9].key)) {
+    				attr_dev(option, "key", option_key_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_correctans_value !== (option_data_correctans_value = /*option*/ ctx[9].correctans)) {
+    				attr_dev(option, "data-correctans", option_data_correctans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_defaultans_value !== (option_data_defaultans_value = /*option*/ ctx[9].defaultans)) {
+    				attr_dev(option, "data-defaultans", option_data_defaultans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_data_userans_value !== (option_data_userans_value = /*option*/ ctx[9].userans)) {
+    				attr_dev(option, "data-userans", option_data_userans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key + 1)) {
+    				prop_dev(option, "__value", option_value_value);
+    				option.value = option.__value;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(157:28) {#if option.selected == 1}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (156:24) {#each data.select as option}
+    function create_each_block_1(ctx) {
+    	let if_block_anchor;
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (/*option*/ ctx[9].selected == 1) return create_if_block_2;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type_1(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type_1(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(156:24) {#each data.select as option}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (130:8) {#each select_data as data, index}
+    function create_each_block$3(ctx) {
+    	let div;
+    	let select_1;
+    	let select_1_class_value;
+    	let select_1_data_userans_value;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*data*/ ctx[6].select.length) return create_if_block_1$1;
+    		return create_else_block_1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			select_1 = element("select");
+    			if_block.c();
+    			t = space();
+    			attr_dev(select_1, "class", select_1_class_value = /*data*/ ctx[6].id + " dnd_select align_baseline_middle");
+    			attr_dev(select_1, "name", "");
+    			attr_dev(select_1, "size", "0");
+    			attr_dev(select_1, "data-userans", select_1_data_userans_value = /*data*/ ctx[6].userans);
+    			attr_dev(select_1, "data-udisplay", "");
+    			attr_dev(select_1, "data-udisabled", "");
+    			attr_dev(select_1, "data-correctans", "");
+    			attr_dev(select_1, "data-defaultans", "");
+    			add_location(select_1, file$4, 144, 16, 5044);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[8]);
+    			attr_dev(div, "as", "-1");
+    			attr_dev(div, "id", div_id_value = /*data*/ ctx[6].id);
+    			attr_dev(div, "class", "drag-resize dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[6].top);
+    			set_style(div, "left", /*data*/ ctx[6].left);
+    			set_style(div, "height", /*data*/ ctx[6].height);
+    			set_style(div, "width", /*data*/ ctx[6].width);
+    			set_style(div, "z-index", "1");
+    			add_location(div, file$4, 130, 12, 4609);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, select_1);
+    			if_block.m(select_1, null);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(select_1, null);
+    				}
+    			}
+
+    			if (dirty & /*select_data*/ 1 && select_1_class_value !== (select_1_class_value = /*data*/ ctx[6].id + " dnd_select align_baseline_middle")) {
+    				attr_dev(select_1, "class", select_1_class_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && select_1_data_userans_value !== (select_1_data_userans_value = /*data*/ ctx[6].userans)) {
+    				attr_dev(select_1, "data-userans", select_1_data_userans_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1 && div_id_value !== (div_id_value = /*data*/ ctx[6].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*select_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[6].top);
+    			}
+
+    			if (dirty & /*select_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[6].left);
+    			}
+
+    			if (dirty & /*select_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[6].height);
+    			}
+
+    			if (dirty & /*select_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[6].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$3.name,
+    		type: "each",
+    		source: "(130:8) {#each select_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$4(ctx) {
+    	let div;
+    	let if_block = /*select_data*/ ctx[0] && /*select_data*/ ctx[0].length > 0 && create_if_block$4(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$4, 127, 0, 4500);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*select_data*/ ctx[0] && /*select_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$4(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("SelectPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let user_ans = 0;
+    	let select_data = [];
+    	let select = modules;
+
+    	afterUpdate(() => {
+    		if (select_data.length > 0 && containerID != "") {
+    			select.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1$2.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<SelectPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		XMLToJSON,
+    		modules,
+    		containerID,
+    		uxml,
+    		user_ans,
+    		select_data,
+    		select
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("user_ans" in $$props) $$invalidate(4, user_ans = $$props.user_ans);
+    		if ("select_data" in $$props) $$invalidate(0, select_data = $$props.select_data);
+    		if ("select" in $$props) $$invalidate(5, select = $$props.select);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, select, uxml, user_ans, select_data*/ 59) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(5, select = []);
+    					$$invalidate(5, select[0] = modules, select);
+    				} else {
+    					$$invalidate(5, select = modules);
+    				}
+
+    				$$invalidate(0, select_data = []);
+
+    				select.map(function (data) {
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					let option = [];
+
+    					if (data.__text) {
+    						data.__text.split("\n").map(function (option_data, index) {
+    							if (data._userans == index + 1 + ",") {
+    								$$invalidate(4, user_ans = 1);
+    							} else {
+    								$$invalidate(4, user_ans = 0);
+    							}
+
+    							if (option_data.trim().charAt(0) == "+") {
+    								option.push({
+    									key: index,
+    									correctans: 0,
+    									defaultans: 1,
+    									userans: user_ans ? user_ans : "",
+    									text: option_data.trim().slice(1),
+    									selected: 1
+    								});
+    							} else if (option_data.trim().charAt(0) == "*") {
+    								option.push({
+    									key: index,
+    									correctans: 1,
+    									defaultans: 0,
+    									userans: user_ans ? user_ans : "",
+    									text: option_data.trim().slice(1)
+    								});
+    							} else {
+    								option.push({
+    									key: index,
+    									correctans: 0,
+    									defaultans: 0,
+    									userans: user_ans ? user_ans : "",
+    									text: option_data.trim()
+    								});
+    							}
+    						});
+    					}
+
+    					$$invalidate(0, select_data = [
+    						...select_data,
+    						{
+    							id: "dnd" + data._id,
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							userans: data._userans ? data._userans : "",
+    							select: option
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, select_data = []);
+    			}
+    		}
+    	};
+
+    	return [select_data, modules, containerID, uxml, user_ans, select];
+    }
+
+    class SelectPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "SelectPreview",
+    			options,
+    			id: create_fragment$4.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<SelectPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<SelectPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<SelectPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<SelectPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<SelectPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<SelectPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<SelectPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/RadioPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$3 } = globals;
+    const file$5 = "clsSMDragNDrop/libs/preview/RadioPreview.svelte";
+
+    function get_each_context$4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (98:4) {#if radio_data && radio_data.length > 0}
+    function create_if_block$5(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*radio_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$4(get_each_context$4(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*radio_data, window*/ 1) {
+    				each_value = /*radio_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$4(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$4(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$5.name,
+    		type: "if",
+    		source: "(98:4) {#if radio_data && radio_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (130:16) {:else}
+    function create_else_block$1(ctx) {
+    	let input;
+    	let input_id_value;
+    	let input_class_value;
+    	let input_data_title_value;
+    	let input_data_correctans_value;
+    	let input_data_defaultans_value;
+    	let input_data_userans_value;
+    	let input_data_checktype_value;
+    	let input_name_value;
+
+    	const block = {
+    		c: function create() {
+    			input = element("input");
+    			attr_dev(input, "type", "radio");
+    			attr_dev(input, "id", input_id_value = "rad" + /*data*/ ctx[5].id);
+    			attr_dev(input, "class", input_class_value = "dnd" + /*data*/ ctx[5].id + " custRad dndradio");
+    			attr_dev(input, "data-title", input_data_title_value = /*data*/ ctx[5].id);
+    			attr_dev(input, "data-correctans", input_data_correctans_value = /*data*/ ctx[5].correctans);
+    			attr_dev(input, "data-defaultans", input_data_defaultans_value = /*data*/ ctx[5].defaultans);
+    			attr_dev(input, "data-userans", input_data_userans_value = /*data*/ ctx[5].userans);
+    			attr_dev(input, "data-udisplay", "");
+    			attr_dev(input, "data-udisabled", "");
+    			attr_dev(input, "data-checktype", input_data_checktype_value = /*data*/ ctx[5].checktype);
+    			attr_dev(input, "name", input_name_value = /*data*/ ctx[5].name);
+    			input.value = "0";
+    			add_location(input, file$5, 130, 20, 4842);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, input, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*radio_data*/ 1 && input_id_value !== (input_id_value = "rad" + /*data*/ ctx[5].id)) {
+    				attr_dev(input, "id", input_id_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_class_value !== (input_class_value = "dnd" + /*data*/ ctx[5].id + " custRad dndradio")) {
+    				attr_dev(input, "class", input_class_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_title_value !== (input_data_title_value = /*data*/ ctx[5].id)) {
+    				attr_dev(input, "data-title", input_data_title_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_correctans_value !== (input_data_correctans_value = /*data*/ ctx[5].correctans)) {
+    				attr_dev(input, "data-correctans", input_data_correctans_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_defaultans_value !== (input_data_defaultans_value = /*data*/ ctx[5].defaultans)) {
+    				attr_dev(input, "data-defaultans", input_data_defaultans_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_userans_value !== (input_data_userans_value = /*data*/ ctx[5].userans)) {
+    				attr_dev(input, "data-userans", input_data_userans_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_checktype_value !== (input_data_checktype_value = /*data*/ ctx[5].checktype)) {
+    				attr_dev(input, "data-checktype", input_data_checktype_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_name_value !== (input_name_value = /*data*/ ctx[5].name)) {
+    				attr_dev(input, "name", input_name_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(input);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(130:16) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (114:16) {#if data.defaultans == "1" && data.userans == ''}
+    function create_if_block_1$2(ctx) {
+    	let input;
+    	let input_id_value;
+    	let input_class_value;
+    	let input_data_title_value;
+    	let input_data_correctans_value;
+    	let input_data_defaultans_value;
+    	let input_data_userans_value;
+    	let input_data_checktype_value;
+    	let input_name_value;
+
+    	const block = {
+    		c: function create() {
+    			input = element("input");
+    			attr_dev(input, "type", "radio");
+    			attr_dev(input, "id", input_id_value = "rad" + /*data*/ ctx[5].id);
+    			attr_dev(input, "class", input_class_value = "dnd" + /*data*/ ctx[5].id + " custRad dndradio");
+    			attr_dev(input, "data-title", input_data_title_value = /*data*/ ctx[5].id);
+    			attr_dev(input, "data-correctans", input_data_correctans_value = /*data*/ ctx[5].correctans);
+    			attr_dev(input, "data-defaultans", input_data_defaultans_value = /*data*/ ctx[5].defaultans);
+    			attr_dev(input, "data-userans", input_data_userans_value = 1);
+    			input.checked = "checked";
+    			attr_dev(input, "data-udisplay", "");
+    			attr_dev(input, "data-udisabled", "");
+    			attr_dev(input, "data-checktype", input_data_checktype_value = /*data*/ ctx[5].checktype);
+    			attr_dev(input, "name", input_name_value = /*data*/ ctx[5].name);
+    			input.value = "1";
+    			add_location(input, file$5, 114, 20, 4155);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, input, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*radio_data*/ 1 && input_id_value !== (input_id_value = "rad" + /*data*/ ctx[5].id)) {
+    				attr_dev(input, "id", input_id_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_class_value !== (input_class_value = "dnd" + /*data*/ ctx[5].id + " custRad dndradio")) {
+    				attr_dev(input, "class", input_class_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_title_value !== (input_data_title_value = /*data*/ ctx[5].id)) {
+    				attr_dev(input, "data-title", input_data_title_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_correctans_value !== (input_data_correctans_value = /*data*/ ctx[5].correctans)) {
+    				attr_dev(input, "data-correctans", input_data_correctans_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_defaultans_value !== (input_data_defaultans_value = /*data*/ ctx[5].defaultans)) {
+    				attr_dev(input, "data-defaultans", input_data_defaultans_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_data_checktype_value !== (input_data_checktype_value = /*data*/ ctx[5].checktype)) {
+    				attr_dev(input, "data-checktype", input_data_checktype_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && input_name_value !== (input_name_value = /*data*/ ctx[5].name)) {
+    				attr_dev(input, "name", input_name_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(input);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$2.name,
+    		type: "if",
+    		source: "(114:16) {#if data.defaultans == \\\"1\\\" && data.userans == ''}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (99:8) {#each radio_data as data, index}
+    function create_each_block$4(ctx) {
+    	let div;
+    	let t0;
+    	let label;
+    	let label_for_value;
+    	let label_class_value;
+    	let t1;
+    	let div_key_value;
+    	let div_id_value;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*data*/ ctx[5].defaultans == "1" && /*data*/ ctx[5].userans == "") return create_if_block_1$2;
+    		return create_else_block$1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if_block.c();
+    			t0 = space();
+    			label = element("label");
+    			t1 = space();
+    			attr_dev(label, "for", label_for_value = "rad" + /*data*/ ctx[5].id);
+
+    			attr_dev(label, "class", label_class_value = (/*data*/ ctx[5].checktype == "true"
+    			? "tureitemColor"
+    			: "falseitemColor") + " customRad radio_sim " + (window.inNative ? "native" : ""));
+
+    			attr_dev(label, "data-correctans", "");
+    			attr_dev(label, "data-userans", "");
+    			attr_dev(label, "data-defaultans", "");
+    			add_location(label, file$5, 145, 16, 5492);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[7]);
+    			attr_dev(div, "as", "-1");
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[5].id);
+    			attr_dev(div, "class", "only-dragable dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[5].top);
+    			set_style(div, "left", /*data*/ ctx[5].left);
+    			set_style(div, "height", /*data*/ ctx[5].height);
+    			set_style(div, "width", /*data*/ ctx[5].width);
+    			set_style(div, "z-index", "1");
+    			add_location(div, file$5, 99, 12, 3639);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if_block.m(div, null);
+    			append_dev(div, t0);
+    			append_dev(div, label);
+    			append_dev(div, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && label_for_value !== (label_for_value = "rad" + /*data*/ ctx[5].id)) {
+    				attr_dev(label, "for", label_for_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && label_class_value !== (label_class_value = (/*data*/ ctx[5].checktype == "true"
+    			? "tureitemColor"
+    			: "falseitemColor") + " customRad radio_sim " + (window.inNative ? "native" : ""))) {
+    				attr_dev(label, "class", label_class_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[5].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*radio_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[5].top);
+    			}
+
+    			if (dirty & /*radio_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[5].left);
+    			}
+
+    			if (dirty & /*radio_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[5].height);
+    			}
+
+    			if (dirty & /*radio_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[5].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$4.name,
+    		type: "each",
+    		source: "(99:8) {#each radio_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$5(ctx) {
+    	let div;
+    	let if_block = /*radio_data*/ ctx[0] && /*radio_data*/ ctx[0].length > 0 && create_if_block$5(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$5, 96, 0, 3533);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*radio_data*/ ctx[0] && /*radio_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$5(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$5.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("RadioPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let radio_data = [];
+    	let radio = modules;
+
+    	afterUpdate(() => {
+    		if (radio_data.length > 0 && containerID != "") {
+    			radio.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1$3.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<RadioPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		XMLToJSON,
+    		modules,
+    		containerID,
+    		uxml,
+    		radio_data,
+    		radio
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("radio_data" in $$props) $$invalidate(0, radio_data = $$props.radio_data);
+    		if ("radio" in $$props) $$invalidate(4, radio = $$props.radio);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, radio, uxml, radio_data*/ 27) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(4, radio = []);
+    					$$invalidate(4, radio[0] = modules, radio);
+    				} else {
+    					$$invalidate(4, radio = modules);
+    				}
+
+    				$$invalidate(0, radio_data = []);
+
+    				radio.map(function (data) {
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, radio_data = [
+    						...radio_data,
+    						{
+    							id: data._id,
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							userans: data._userans ? data._userans : "",
+    							correctans: data._correctans,
+    							defaultans: data._defaultans,
+    							checktype: data._checktype,
+    							name: data._name
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, radio_data = []);
+    			}
+    		}
+    	};
+
+    	return [radio_data, modules, containerID, uxml, radio];
+    }
+
+    class RadioPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "RadioPreview",
+    			options,
+    			id: create_fragment$5.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<RadioPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<RadioPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<RadioPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<RadioPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<RadioPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<RadioPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<RadioPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/MultilineboxPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$4 } = globals;
+    const file$6 = "clsSMDragNDrop/libs/preview/MultilineboxPreview.svelte";
+
+    function get_each_context$5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (117:4) {#if multilinebox_data && multilinebox_data.length > 0}
+    function create_if_block$6(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*multilinebox_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$5(get_each_context$5(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*multilinebox_data*/ 1) {
+    				each_value = /*multilinebox_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$5(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$5(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$6.name,
+    		type: "if",
+    		source: "(117:4) {#if multilinebox_data && multilinebox_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (118:8) {#each multilinebox_data as data, index}
+    function create_each_block$5(ctx) {
+    	let div;
+    	let textarea;
+    	let textarea_class_value;
+    	let textarea_data_title_value;
+    	let textarea_data_correctans_value;
+    	let textarea_data_defaultans_value;
+    	let textarea_data_parser_value;
+    	let textarea_placeholder_value;
+    	let textarea_data_nocase_value;
+    	let textarea_data_userans_value;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			textarea = element("textarea");
+    			t = space();
+    			attr_dev(textarea, "class", textarea_class_value = /*data*/ ctx[5].classes);
+    			attr_dev(textarea, "data-title", textarea_data_title_value = /*data*/ ctx[5].id);
+    			attr_dev(textarea, "data-correctans", textarea_data_correctans_value = /*data*/ ctx[5].correctans);
+
+    			attr_dev(textarea, "data-defaultans", textarea_data_defaultans_value = /*data*/ ctx[5].defaultans
+    			? /*data*/ ctx[5].defaultans.__cdata
+    			: "");
+
+    			attr_dev(textarea, "data-parser", textarea_data_parser_value = /*data*/ ctx[5].parser);
+    			attr_dev(textarea, "placeholder", textarea_placeholder_value = /*data*/ ctx[5].placeholder);
+    			attr_dev(textarea, "data-nocase", textarea_data_nocase_value = /*data*/ ctx[5].nocase);
+    			attr_dev(textarea, "data-userans", textarea_data_userans_value = /*data*/ ctx[5].userans);
+    			add_location(textarea, file$6, 131, 16, 4948);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[7]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[5].id);
+    			attr_dev(div, "class", "drag-resize dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[5].top);
+    			set_style(div, "left", /*data*/ ctx[5].left);
+    			set_style(div, "height", /*data*/ ctx[5].height);
+    			set_style(div, "width", /*data*/ ctx[5].width);
+    			set_style(div, "z-index", "1");
+    			add_location(div, file$6, 118, 16, 4516);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, textarea);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_class_value !== (textarea_class_value = /*data*/ ctx[5].classes)) {
+    				attr_dev(textarea, "class", textarea_class_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_title_value !== (textarea_data_title_value = /*data*/ ctx[5].id)) {
+    				attr_dev(textarea, "data-title", textarea_data_title_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_correctans_value !== (textarea_data_correctans_value = /*data*/ ctx[5].correctans)) {
+    				attr_dev(textarea, "data-correctans", textarea_data_correctans_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_defaultans_value !== (textarea_data_defaultans_value = /*data*/ ctx[5].defaultans
+    			? /*data*/ ctx[5].defaultans.__cdata
+    			: "")) {
+    				attr_dev(textarea, "data-defaultans", textarea_data_defaultans_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_parser_value !== (textarea_data_parser_value = /*data*/ ctx[5].parser)) {
+    				attr_dev(textarea, "data-parser", textarea_data_parser_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_placeholder_value !== (textarea_placeholder_value = /*data*/ ctx[5].placeholder)) {
+    				attr_dev(textarea, "placeholder", textarea_placeholder_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_nocase_value !== (textarea_data_nocase_value = /*data*/ ctx[5].nocase)) {
+    				attr_dev(textarea, "data-nocase", textarea_data_nocase_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && textarea_data_userans_value !== (textarea_data_userans_value = /*data*/ ctx[5].userans)) {
+    				attr_dev(textarea, "data-userans", textarea_data_userans_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[5].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[5].top);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[5].left);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[5].height);
+    			}
+
+    			if (dirty & /*multilinebox_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[5].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$5.name,
+    		type: "each",
+    		source: "(118:8) {#each multilinebox_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$6(ctx) {
+    	let div;
+    	let if_block = /*multilinebox_data*/ ctx[0] && /*multilinebox_data*/ ctx[0].length > 0 && create_if_block$6(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$6, 115, 0, 4385);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*multilinebox_data*/ ctx[0] && /*multilinebox_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$6(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$6.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function setCorrect(crt) {
+    	if (crt.__cdata) {
+    		return crt.__cdata;
+    	} else if (typeof crt == "object" && crt[0]) {
+    		return crt[0].__cdata ? crt[0].__cdata : crt[0];
+    	} else if (typeof crt == "string" && crt.length > 1) {
+    		return crt;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function instance$6($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("MultilineboxPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let multilinebox_data = [];
+    	let multilinebox_preview = modules;
+
+    	// was created in js unused function for now but keeping it fot future reference
+    	// function changeStep(data) {
+    	// 	let id = data.match(/('.*?')/gm);
+    	// 	id = id[0].replace(/'|"/gm,'');
+    	// 	setStep(id);
+    	// }
+    	afterUpdate(() => {
+    		if (multilinebox_data.length > 0 && containerID != "") {
+    			multilinebox_preview.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1$4.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<MultilineboxPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		XMLToJSON,
+    		modules,
+    		containerID,
+    		uxml,
+    		multilinebox_data,
+    		multilinebox_preview,
+    		setCorrect
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("multilinebox_data" in $$props) $$invalidate(0, multilinebox_data = $$props.multilinebox_data);
+    		if ("multilinebox_preview" in $$props) $$invalidate(4, multilinebox_preview = $$props.multilinebox_preview);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, multilinebox_preview, uxml, multilinebox_data*/ 27) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(4, multilinebox_preview = []);
+    					$$invalidate(4, multilinebox_preview[0] = modules, multilinebox_preview);
+    				} else {
+    					$$invalidate(4, multilinebox_preview = modules);
+    				}
+
+    				$$invalidate(0, multilinebox_data = []);
+
+    				multilinebox_preview.map(function (data) {
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, multilinebox_data = [
+    						...multilinebox_data,
+    						{
+    							id: data._id,
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							correctans: data.correctans ? setCorrect(data.correctans) : "",
+    							defaultans: data.defaultans ? data.defaultans.__cdata : "",
+    							parser: data._parser ? data._parser : "",
+    							placeholder: data._placeholder ? data._placeholder : "",
+    							nocase: data._nocase,
+    							userans: data._userans ? data._userans : "",
+    							classes: "dnd" + data._id + " dnd_textarea " + data._custom_class
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, multilinebox_data = []);
+    			}
+    		}
+    	};
+
+    	return [multilinebox_data, modules, containerID, uxml, multilinebox_preview];
+    }
+
+    class MultilineboxPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "MultilineboxPreview",
+    			options,
+    			id: create_fragment$6.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<MultilineboxPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<MultilineboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<MultilineboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<MultilineboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<MultilineboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<MultilineboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<MultilineboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/CheckboxPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$5 } = globals;
+    const file$7 = "clsSMDragNDrop/libs/preview/CheckboxPreview.svelte";
+
+    function get_each_context$6(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (97:4) {#if checkbox_data.length > 0}
+    function create_if_block$7(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*checkbox_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$6(get_each_context$6(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*checkbox_data*/ 1) {
+    				each_value = /*checkbox_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$6(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$6(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$7.name,
+    		type: "if",
+    		source: "(97:4) {#if checkbox_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (124:16) {:else}
+    function create_else_block$2(ctx) {
+    	let input;
+    	let input_class_value;
+    	let input_data_correctans_value;
+    	let input_data_defaultans_value;
+    	let input_data_userans_value;
+
+    	const block = {
+    		c: function create() {
+    			input = element("input");
+    			attr_dev(input, "type", "checkbox");
+    			attr_dev(input, "class", input_class_value = "dnd" + /*data*/ ctx[5].id + " dndcheckbox");
+    			attr_dev(input, "data-correctans", input_data_correctans_value = /*data*/ ctx[5].correctans);
+    			attr_dev(input, "data-defaultans", input_data_defaultans_value = /*data*/ ctx[5].defaultans);
+    			attr_dev(input, "data-userans", input_data_userans_value = /*data*/ ctx[5].userans);
+    			attr_dev(input, "data-udisplay", "");
+    			attr_dev(input, "data-udisabled", "");
+    			attr_dev(input, "name", "");
+    			input.value = "";
+    			add_location(input, file$7, 124, 20, 4649);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, input, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*checkbox_data*/ 1 && input_class_value !== (input_class_value = "dnd" + /*data*/ ctx[5].id + " dndcheckbox")) {
+    				attr_dev(input, "class", input_class_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && input_data_correctans_value !== (input_data_correctans_value = /*data*/ ctx[5].correctans)) {
+    				attr_dev(input, "data-correctans", input_data_correctans_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && input_data_defaultans_value !== (input_data_defaultans_value = /*data*/ ctx[5].defaultans)) {
+    				attr_dev(input, "data-defaultans", input_data_defaultans_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && input_data_userans_value !== (input_data_userans_value = /*data*/ ctx[5].userans)) {
+    				attr_dev(input, "data-userans", input_data_userans_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(input);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$2.name,
+    		type: "else",
+    		source: "(124:16) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (111:16) {#if data.defaultans == "1" && data.userans == ''}
+    function create_if_block_1$3(ctx) {
+    	let input;
+    	let input_class_value;
+    	let input_data_correctans_value;
+    	let input_data_defaultans_value;
+    	let input_checked_value;
+
+    	const block = {
+    		c: function create() {
+    			input = element("input");
+    			attr_dev(input, "type", "checkbox");
+    			attr_dev(input, "class", input_class_value = "dnd" + /*data*/ ctx[5].id + " dndcheckbox");
+    			attr_dev(input, "data-correctans", input_data_correctans_value = /*data*/ ctx[5].correctans);
+    			attr_dev(input, "data-defaultans", input_data_defaultans_value = /*data*/ ctx[5].defaultans);
+    			attr_dev(input, "data-userans", "1");
+    			attr_dev(input, "data-udisplay", "");
+    			attr_dev(input, "data-udisabled", "");
+    			attr_dev(input, "name", "");
+    			input.value = "";
+    			input.checked = input_checked_value = true;
+    			add_location(input, file$7, 111, 20, 4122);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, input, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*checkbox_data*/ 1 && input_class_value !== (input_class_value = "dnd" + /*data*/ ctx[5].id + " dndcheckbox")) {
+    				attr_dev(input, "class", input_class_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && input_data_correctans_value !== (input_data_correctans_value = /*data*/ ctx[5].correctans)) {
+    				attr_dev(input, "data-correctans", input_data_correctans_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && input_data_defaultans_value !== (input_data_defaultans_value = /*data*/ ctx[5].defaultans)) {
+    				attr_dev(input, "data-defaultans", input_data_defaultans_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(input);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$3.name,
+    		type: "if",
+    		source: "(111:16) {#if data.defaultans == \\\"1\\\" && data.userans == ''}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (98:8) {#each checkbox_data as data, index}
+    function create_each_block$6(ctx) {
+    	let div;
+    	let t;
+    	let div_key_value;
+    	let div_id_value;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*data*/ ctx[5].defaultans == "1" && /*data*/ ctx[5].userans == "") return create_if_block_1$3;
+    		return create_else_block$2;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if_block.c();
+    			t = space();
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[7]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[5].id);
+    			attr_dev(div, "class", "only-dragable dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[5].top);
+    			set_style(div, "left", /*data*/ ctx[5].left);
+    			set_style(div, "height", /*data*/ ctx[5].height);
+    			set_style(div, "width", /*data*/ ctx[5].width);
+    			add_location(div, file$7, 98, 12, 3664);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if_block.m(div, null);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t);
+    				}
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[5].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[5].top);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[5].left);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[5].height);
+    			}
+
+    			if (dirty & /*checkbox_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[5].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$6.name,
+    		type: "each",
+    		source: "(98:8) {#each checkbox_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$7(ctx) {
+    	let div;
+    	let if_block = /*checkbox_data*/ ctx[0].length > 0 && create_if_block$7(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$7, 95, 0, 3566);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*checkbox_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$7(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("CheckboxPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let { uxml = "" } = $$props;
+    	let checkbox_data = [];
+    	let checkbox = modules;
+
+    	afterUpdate(() => {
+    		if (checkbox_data && checkbox_data.length > 0 && containerID != "") {
+    			checkbox.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID", "uxml"];
+
+    	Object_1$5.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<CheckboxPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		XMLToJSON,
+    		afterUpdate,
+    		modules,
+    		containerID,
+    		uxml,
+    		checkbox_data,
+    		checkbox
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("checkbox_data" in $$props) $$invalidate(0, checkbox_data = $$props.checkbox_data);
+    		if ("checkbox" in $$props) $$invalidate(4, checkbox = $$props.checkbox);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, checkbox, uxml, checkbox_data*/ 27) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(4, checkbox = []);
+    					$$invalidate(4, checkbox[0] = modules, checkbox);
+    				} else {
+    					$$invalidate(4, checkbox = modules);
+    				}
+
+    				$$invalidate(0, checkbox_data = []);
+
+    				checkbox.map(function (data) {
+    					if (uxml != "") {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, checkbox_data = [
+    						...checkbox_data,
+    						{
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							id: data._id,
+    							userans: data._userans ? data._userans : "",
+    							correctans: data._correctans ? data._correctans : "",
+    							defaultans: data._defaultans ? data._defaultans : ""
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, checkbox_data = []);
+    			}
+    		}
+    	};
+
+    	return [checkbox_data, modules, containerID, uxml, checkbox];
+    }
+
+    class CheckboxPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { modules: 1, containerID: 2, uxml: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "CheckboxPreview",
+    			options,
+    			id: create_fragment$7.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<CheckboxPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<CheckboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<CheckboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<CheckboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<CheckboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<CheckboxPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<CheckboxPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/TabheadPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$6, console: console_1 } = globals;
+    const file$8 = "clsSMDragNDrop/libs/preview/TabheadPreview.svelte";
+
+    function get_each_context$7(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
+    	return child_ctx;
+    }
+
+    // (111:4) {#if tabhead_data && tabhead_data.length > 0}
+    function create_if_block$8(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*tabhead_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$7(get_each_context$7(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tabhead_data*/ 1) {
+    				each_value = /*tabhead_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$7(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$7(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$8.name,
+    		type: "if",
+    		source: "(111:4) {#if tabhead_data && tabhead_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (112:8) {#each tabhead_data as data, index}
+    function create_each_block$7(ctx) {
+    	let div;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_class_value;
+    	let div_style_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[6]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[4].id);
+    			attr_dev(div, "data-type", "tabhead");
+    			attr_dev(div, "class", div_class_value = /*data*/ ctx[4].classes);
+    			attr_dev(div, "style", div_style_value = /*data*/ ctx[4].styles);
+    			attr_dev(div, "name", "");
+    			attr_dev(div, "data-userans", "");
+    			attr_dev(div, "data-udisplay", "");
+    			attr_dev(div, "data-udisabled", "");
+    			add_location(div, file$8, 112, 12, 3794);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tabhead_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[4].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*tabhead_data*/ 1 && div_class_value !== (div_class_value = /*data*/ ctx[4].classes)) {
+    				attr_dev(div, "class", div_class_value);
+    			}
+
+    			if (dirty & /*tabhead_data*/ 1 && div_style_value !== (div_style_value = /*data*/ ctx[4].styles)) {
+    				attr_dev(div, "style", div_style_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$7.name,
+    		type: "each",
+    		source: "(112:8) {#each tabhead_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$8(ctx) {
+    	let div;
+    	let if_block = /*tabhead_data*/ ctx[0] && /*tabhead_data*/ ctx[0].length > 0 && create_if_block$8(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$8, 109, 0, 3682);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*tabhead_data*/ ctx[0] && /*tabhead_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$8(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$8.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function changeStyletoString(data) {
+    	let style = "";
+
+    	for (let key in data) {
+    		style += key.replace(/_/g, "-") + ":" + data[key] + ";";
+    	}
+
+    	return style;
+    }
+
+    // function for adding inline style from the object
+    function addInlineStyle(stylesheet) {
+    	if (typeof stylesheet != "undefined") {
+    		let style = {};
+    		let inlineStyle = stylesheet.split(";");
+
+    		inlineStyle.map(function (value) {
+    			try {
+    				let new_property = value.split(":");
+    				style[new_property[0]] = new_property[1];
+    			} catch(err) {
+    				console.warn(err);
+    			}
+    		});
+
+    		return style;
+    	}
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("TabheadPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let tabhead_data = [];
+    	let tabhead = modules;
+
+    	afterUpdate(() => {
+    		if (tabhead_data.length > 0 && containerID != "") {
+    			tabhead.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID"];
+
+    	Object_1$6.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<TabheadPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		modules,
+    		containerID,
+    		tabhead_data,
+    		tabhead,
+    		changeStyletoString,
+    		addInlineStyle
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("tabhead_data" in $$props) $$invalidate(0, tabhead_data = $$props.tabhead_data);
+    		if ("tabhead" in $$props) $$invalidate(3, tabhead = $$props.tabhead);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, tabhead, tabhead_data*/ 11) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(3, tabhead = []);
+    					$$invalidate(3, tabhead[0] = modules, tabhead);
+    				} else {
+    					$$invalidate(3, tabhead = modules);
+    				}
+
+    				$$invalidate(0, tabhead_data = []);
+
+    				tabhead.map(function (data) {
+    					let styling = changeStyletoString(Object.assign(
+    						{
+    							position: "absolute",
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px"
+    						},
+    						addInlineStyle(data._style)
+    					));
+
+    					$$invalidate(0, tabhead_data = [
+    						...tabhead_data,
+    						{
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							styles: styling,
+    							id: data._id,
+    							classes: "drag-resize dndtabhead dndTest " + data._class
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, tabhead_data = []);
+    			}
+    		}
+    	};
+
+    	return [tabhead_data, modules, containerID, tabhead];
+    }
+
+    class TabheadPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, { modules: 1, containerID: 2 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "TabheadPreview",
+    			options,
+    			id: create_fragment$8.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console_1.warn("<TabheadPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<TabheadPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<TabheadPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<TabheadPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<TabheadPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/LabelPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$7, console: console_1$1 } = globals;
+    const file$9 = "clsSMDragNDrop/libs/preview/LabelPreview.svelte";
+
+    function get_each_context$8(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
+    	return child_ctx;
+    }
+
+    // (124:4) {#if label_preview_data && label_preview_data.length}
+    function create_if_block$9(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*label_preview_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$8(get_each_context$8(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*label_preview_data*/ 1) {
+    				each_value = /*label_preview_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$8(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$8(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$9.name,
+    		type: "if",
+    		source: "(124:4) {#if label_preview_data && label_preview_data.length}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (125:8) {#each label_preview_data as data, index}
+    function create_each_block$8(ctx) {
+    	let div;
+    	let p;
+    	let t0_value = /*data*/ ctx[4].parahtml + "";
+    	let t0;
+    	let p_style_value;
+    	let t1;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_class_value;
+    	let div_style_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			p = element("p");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(p, "class", "pl_7");
+    			attr_dev(p, "style", p_style_value = /*data*/ ctx[4].paraStyle);
+    			add_location(p, file$9, 133, 16, 4778);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[6]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[4].id);
+    			attr_dev(div, "class", div_class_value = /*data*/ ctx[4].classes);
+    			attr_dev(div, "tabindex", "1");
+    			attr_dev(div, "style", div_style_value = /*data*/ ctx[4].style);
+    			add_location(div, file$9, 126, 12, 4579);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, p);
+    			append_dev(p, t0);
+    			append_dev(div, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*label_preview_data*/ 1 && t0_value !== (t0_value = /*data*/ ctx[4].parahtml + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*label_preview_data*/ 1 && p_style_value !== (p_style_value = /*data*/ ctx[4].paraStyle)) {
+    				attr_dev(p, "style", p_style_value);
+    			}
+
+    			if (dirty & /*label_preview_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[4].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*label_preview_data*/ 1 && div_class_value !== (div_class_value = /*data*/ ctx[4].classes)) {
+    				attr_dev(div, "class", div_class_value);
+    			}
+
+    			if (dirty & /*label_preview_data*/ 1 && div_style_value !== (div_style_value = /*data*/ ctx[4].style)) {
+    				attr_dev(div, "style", div_style_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$8.name,
+    		type: "each",
+    		source: "(125:8) {#each label_preview_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$9(ctx) {
+    	let div;
+    	let if_block = /*label_preview_data*/ ctx[0] && /*label_preview_data*/ ctx[0].length && create_if_block$9(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$9, 122, 0, 4395);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*label_preview_data*/ ctx[0] && /*label_preview_data*/ ctx[0].length) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$9(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function changeStyletoString$1(data) {
+    	let style = "";
+
+    	for (let key in data) {
+    		style += key.replace(/_/g, "-") + ":" + data[key] + ";";
+    	}
+
+    	return style;
+    }
+
+    // for adding inline paragraph style
+    function addParaStyle(data) {
+    	if (typeof data._label_class != "undefined") {
+    		return addInlineStyle$1(data._style);
+    	}
+    }
+
+    // function for setting inner html
+    function setInnerHtml(htmlEnt) {
+    	return htmlEnt
+    	? htmlEnt.replace(/&#(\d+);/g, function (match, dec) {
+    			return String.fromCharCode(dec);
+    		})
+    	: "";
+    }
+
+    // function for adding inline style from the object
+    function addInlineStyle$1(stylesheet) {
+    	if (typeof stylesheet != "undefined") {
+    		let style = {};
+    		let inlineStyle = stylesheet.split(",");
+
+    		inlineStyle.map(function (value) {
+    			try {
+    				let new_property = value.split(":");
+    				style[new_property[0]] = new_property[1];
+    			} catch(err) {
+    				console.warn(err);
+    			}
+    		});
+
+    		return style;
+    	}
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("LabelPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let label_preview_data = [];
+    	let labelPreview = modules;
+
+    	afterUpdate(() => {
+    		if (label_preview_data.length > 0 && containerID != "") {
+    			labelPreview.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll("#dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID"];
+
+    	Object_1$7.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<LabelPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		AH: AH$1,
+    		modules,
+    		containerID,
+    		label_preview_data,
+    		labelPreview,
+    		changeStyletoString: changeStyletoString$1,
+    		addParaStyle,
+    		setInnerHtml,
+    		addInlineStyle: addInlineStyle$1
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("label_preview_data" in $$props) $$invalidate(0, label_preview_data = $$props.label_preview_data);
+    		if ("labelPreview" in $$props) $$invalidate(3, labelPreview = $$props.labelPreview);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, labelPreview, label_preview_data*/ 11) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(3, labelPreview = []);
+    					$$invalidate(3, labelPreview[0] = modules, labelPreview);
+    				} else {
+    					$$invalidate(3, labelPreview = modules);
+    				}
+
+    				$$invalidate(0, label_preview_data = []);
+
+    				labelPreview.map(function (data) {
+    					let styling = changeStyletoString$1(Object.assign(
+    						{
+    							position: "absolute",
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							border: data._border_size + "px solid " + data._border_color,
+    							background_color: data._background_color
+    						},
+    						addInlineStyle$1(data._style)
+    					));
+
+    					let para_styling = changeStyletoString$1(addParaStyle(data));
+
+    					$$invalidate(0, label_preview_data = [
+    						...label_preview_data,
+    						{
+    							id: data._id,
+    							style: styling,
+    							classes: "dndlabel dndTest " + (data._label_class ? data._label_class : ""),
+    							paraStyle: para_styling,
+    							parahtml: setInnerHtml(data._richtext
+    							? data.__cdata
+    							: data._title != undefined
+    								? AH$1.ignoreEnity(data._title)
+    								: "")
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, label_preview_data = []);
+    			}
+    		}
+    	};
+
+    	return [label_preview_data, modules, containerID, labelPreview];
+    }
+
+    class LabelPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { modules: 1, containerID: 2 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "LabelPreview",
+    			options,
+    			id: create_fragment$9.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console_1$1.warn("<LabelPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<LabelPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<LabelPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<LabelPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<LabelPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/HotspotPreview.svelte generated by Svelte v3.34.0 */
+    const file$a = "clsSMDragNDrop/libs/preview/HotspotPreview.svelte";
+
+    function get_each_context$9(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[7] = list[i];
+    	child_ctx[9] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[10] = list[i];
+    	child_ctx[12] = i;
+    	return child_ctx;
+    }
+
+    // (99:8) {#if hotspot_data && hotspot_data.length > 0}
+    function create_if_block$a(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*hotspot_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$9(get_each_context$9(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*hotspot_data, window, Date*/ 1) {
+    				each_value = /*hotspot_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$9(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$9(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$a.name,
+    		type: "if",
+    		source: "(99:8) {#if hotspot_data && hotspot_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (117:20) {#if data.bgimg}
+    function create_if_block_2$1(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			set_style(img, "display", "none");
+    			attr_dev(img, "alt", "hotspot");
+
+    			if (img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[7].bgimg + "?" + Date.now())) attr_dev(img, "src", img_src_value);
+
+    			add_location(img, file$a, 118, 28, 3936);
+    			add_location(div, file$a, 117, 24, 3902);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*hotspot_data*/ 1 && img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[7].bgimg + "?" + Date.now())) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$1.name,
+    		type: "if",
+    		source: "(117:20) {#if data.bgimg}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (123:20) {#if data.child.length > 0}
+    function create_if_block_1$4(ctx) {
+    	let each_1_anchor;
+    	let each_value_1 = /*data*/ ctx[7].child;
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*hotspot_data*/ 1) {
+    				each_value_1 = /*data*/ ctx[7].child;
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$4.name,
+    		type: "if",
+    		source: "(123:20) {#if data.child.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (124:24) {#each data.child as child_data, child_index}
+    function create_each_block_1$1(ctx) {
+    	let div;
+    	let div_key_value;
+    	let div_id_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			attr_dev(div, "key", div_key_value = /*child_index*/ ctx[12]);
+    			attr_dev(div, "id", div_id_value = /*data*/ ctx[7].id + "_" + (/*child_index*/ ctx[12] + 1));
+    			attr_dev(div, "data-correctans", "0");
+    			attr_dev(div, "class", "drag-resize hs_item ui-droppable");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*child_data*/ ctx[10].top);
+    			set_style(div, "left", /*child_data*/ ctx[10].left);
+    			set_style(div, "height", /*child_data*/ ctx[10].height);
+    			set_style(div, "width", /*child_data*/ ctx[10].width);
+    			add_location(div, file$a, 124, 28, 4352);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*hotspot_data*/ 1 && div_id_value !== (div_id_value = /*data*/ ctx[7].id + "_" + (/*child_index*/ ctx[12] + 1))) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "top", /*child_data*/ ctx[10].top);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "left", /*child_data*/ ctx[10].left);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "height", /*child_data*/ ctx[10].height);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "width", /*child_data*/ ctx[10].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$1.name,
+    		type: "each",
+    		source: "(124:24) {#each data.child as child_data, child_index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (100:12) {#each hotspot_data as data, index}
+    function create_each_block$9(ctx) {
+    	let div;
+    	let t0;
+    	let t1;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_data_userans_value;
+    	let if_block0 = /*data*/ ctx[7].bgimg && create_if_block_2$1(ctx);
+    	let if_block1 = /*data*/ ctx[7].child.length > 0 && create_if_block_1$4(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			if (if_block1) if_block1.c();
+    			t1 = space();
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[9]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[7].id);
+    			attr_dev(div, "class", "drag-resize hotspot_test dndTest");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[7].top);
+    			set_style(div, "left", /*data*/ ctx[7].left);
+    			set_style(div, "height", /*data*/ ctx[7].height);
+    			set_style(div, "width", /*data*/ ctx[7].width);
+    			set_style(div, "border", /*data*/ ctx[7].border);
+    			set_style(div, "background-image", /*data*/ ctx[7].backgroundImage + "\n                        z-index: 1\n                    ");
+    			attr_dev(div, "data-userans", div_data_userans_value = /*data*/ ctx[7].userans);
+    			add_location(div, file$a, 100, 16, 3218);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block0) if_block0.m(div, null);
+    			append_dev(div, t0);
+    			if (if_block1) if_block1.m(div, null);
+    			append_dev(div, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[7].bgimg) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_2$1(ctx);
+    					if_block0.c();
+    					if_block0.m(div, t0);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (/*data*/ ctx[7].child.length > 0) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block_1$4(ctx);
+    					if_block1.c();
+    					if_block1.m(div, t1);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[7].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[7].top);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[7].left);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[7].height);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[7].width);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "border", /*data*/ ctx[7].border);
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1) {
+    				set_style(div, "background-image", /*data*/ ctx[7].backgroundImage + "\n                        z-index: 1\n                    ");
+    			}
+
+    			if (dirty & /*hotspot_data*/ 1 && div_data_userans_value !== (div_data_userans_value = /*data*/ ctx[7].userans)) {
+    				attr_dev(div, "data-userans", div_data_userans_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$9.name,
+    		type: "each",
+    		source: "(100:12) {#each hotspot_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$a(ctx) {
+    	let div1;
+    	let div0;
+    	let div0_style_value;
+    	let if_block = /*hotspot_data*/ ctx[0] && /*hotspot_data*/ ctx[0].length > 0 && create_if_block$a(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			if (if_block) if_block.c();
+    			attr_dev(div0, "class", "hotspotContainer");
+    			attr_dev(div0, "style", div0_style_value = "height:" + /*div_height*/ ctx[1]);
+    			add_location(div0, file$a, 97, 4, 3035);
+    			add_location(div1, file$a, 96, 0, 3025);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			if (if_block) if_block.m(div0, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*hotspot_data*/ ctx[0] && /*hotspot_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$a(ctx);
+    					if_block.c();
+    					if_block.m(div0, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*div_height*/ 2 && div0_style_value !== (div0_style_value = "height:" + /*div_height*/ ctx[1])) {
+    				attr_dev(div0, "style", div0_style_value);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function bgImage$1(img) {
+    	if (img) {
+    		return (window.inNative
+    		? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    		: "https://s3.amazonaws.com/jigyaasa_content_static/") + img;
+    	} else {
+    		return "";
+    	}
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("HotspotPreview", slots, []);
+    	let { modules } = $$props;
+    	let { uxml } = $$props;
+    	let { module_type } = $$props;
+    	let hotspot_data = [];
+    	let hotspot = modules;
+    	let module_height = 0;
+    	let div_height = "auto";
+    	const writable_props = ["modules", "uxml", "module_type"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<HotspotPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(2, modules = $$props.modules);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("module_type" in $$props) $$invalidate(4, module_type = $$props.module_type);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		XMLToJSON,
+    		modules,
+    		uxml,
+    		module_type,
+    		hotspot_data,
+    		hotspot,
+    		module_height,
+    		div_height,
+    		bgImage: bgImage$1
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(2, modules = $$props.modules);
+    		if ("uxml" in $$props) $$invalidate(3, uxml = $$props.uxml);
+    		if ("module_type" in $$props) $$invalidate(4, module_type = $$props.module_type);
+    		if ("hotspot_data" in $$props) $$invalidate(0, hotspot_data = $$props.hotspot_data);
+    		if ("hotspot" in $$props) $$invalidate(5, hotspot = $$props.hotspot);
+    		if ("module_height" in $$props) $$invalidate(6, module_height = $$props.module_height);
+    		if ("div_height" in $$props) $$invalidate(1, div_height = $$props.div_height);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, module_type, hotspot, module_height, uxml, hotspot_data*/ 125) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(5, hotspot = []);
+    					$$invalidate(5, hotspot[0] = modules, hotspot);
+    				} else {
+    					$$invalidate(5, hotspot = modules);
+    				}
+
+    				$$invalidate(0, hotspot_data = []);
+
+    				if (module_type == "15") {
+    					try {
+    						hotspot.map(data => {
+    							$$invalidate(6, module_height = data._height);
+
+    							if (module_height < data._height) {
+    								$$invalidate(6, module_height = data._height);
+    							}
+    						});
+    					} catch(e) {
+    						$$invalidate(6, module_height = 350);
+    					}
+    				}
+
+    				$$invalidate(1, div_height = module_height == 0 ? "auto" : module_height + 100 + "px");
+
+    				hotspot.map(function (data, index) {
+    					let inner_component = [];
+    					let innerText = JSON.parse(data.__text ? data.__text : data.__cdata);
+
+    					for (let key in innerText) {
+    						inner_component.push({
+    							top: innerText[key][0] + "px",
+    							left: innerText[key][1] + "px",
+    							width: innerText[key][2] + "px",
+    							height: innerText[key][3] + "px"
+    						});
+    					}
+
+    					if (uxml) {
+    						let uaXML = XMLToJSON(uxml);
+
+    						if (uaXML && uaXML.smans) {
+    							if (uaXML.smans.div) {
+    								let uans = uaXML.smans.div;
+
+    								if (Array.isArray(uans) == false) {
+    									uans = [];
+    									uans[0] = uaXML.smans.div;
+    								}
+
+    								for (let j in uans) {
+    									if (uans[j]._id == "dnd" + data._id) {
+    										data._userans = uans[j]._userAns;
+    									}
+    								}
+    							}
+    						}
+    					}
+
+    					$$invalidate(0, hotspot_data = [
+    						...hotspot_data,
+    						{
+    							id: data._id,
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							backgroundImage: "url('" + bgImage$1(data._bgimg) + "')",
+    							userans: data._userans ? data._userans : "",
+    							bgimg: data._bgimg,
+    							child: inner_component
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, hotspot_data = []);
+    			}
+    		}
+    	};
+
+    	return [hotspot_data, div_height, modules, uxml, module_type, hotspot, module_height];
+    }
+
+    class HotspotPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, { modules: 2, uxml: 3, module_type: 4 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "HotspotPreview",
+    			options,
+    			id: create_fragment$a.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[2] === undefined && !("modules" in props)) {
+    			console.warn("<HotspotPreview> was created without expected prop 'modules'");
+    		}
+
+    		if (/*uxml*/ ctx[3] === undefined && !("uxml" in props)) {
+    			console.warn("<HotspotPreview> was created without expected prop 'uxml'");
+    		}
+
+    		if (/*module_type*/ ctx[4] === undefined && !("module_type" in props)) {
+    			console.warn("<HotspotPreview> was created without expected prop 'module_type'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<HotspotPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<HotspotPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<HotspotPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<HotspotPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get module_type() {
+    		throw new Error("<HotspotPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set module_type(value) {
+    		throw new Error("<HotspotPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/MenulistPreview.svelte generated by Svelte v3.34.0 */
+
+    const file$b = "clsSMDragNDrop/libs/preview/MenulistPreview.svelte";
+
+    function get_each_context$a(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[8] = list[i];
+    	child_ctx[10] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[11] = list[i];
+    	child_ctx[13] = i;
+    	return child_ctx;
+    }
+
+    // (129:4) {#if menulist_data && menulist_data.length > 0}
+    function create_if_block$b(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*menulist_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$a(get_each_context$a(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*menulist_data, window*/ 1) {
+    				each_value = /*menulist_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$a(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$a(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$b.name,
+    		type: "if",
+    		source: "(129:4) {#if menulist_data && menulist_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (146:16) {#if data.menulist_item.length > 0}
+    function create_if_block_1$5(ctx) {
+    	let each_1_anchor;
+    	let each_value_1 = /*data*/ ctx[8].menulist_item;
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1$2(get_each_context_1$2(ctx, each_value_1, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*menulist_data, window*/ 1) {
+    				each_value_1 = /*data*/ ctx[8].menulist_item;
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$2(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$5.name,
+    		type: "if",
+    		source: "(146:16) {#if data.menulist_item.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (147:20) {#each data.menulist_item as menu_data, subindex}
+    function create_each_block_1$2(ctx) {
+    	let span;
+    	let span_key_value;
+    	let span_id_value;
+    	let span_class_value;
+    	let span_data_correctans_value;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler() {
+    		return /*click_handler*/ ctx[4](/*menu_data*/ ctx[11]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			attr_dev(span, "key", span_key_value = "menu_" + /*subindex*/ ctx[13]);
+    			attr_dev(span, "id", span_id_value = /*menu_data*/ ctx[11].id);
+    			attr_dev(span, "class", span_class_value = /*menu_data*/ ctx[11].classes);
+    			attr_dev(span, "data-correctans", span_data_correctans_value = /*menu_data*/ ctx[11].correctans);
+    			attr_dev(span, "data-defaultans", "");
+    			attr_dev(span, "data-userans", "");
+    			set_style(span, "position", "absolute");
+    			set_style(span, "top", /*menu_data*/ ctx[11].top);
+    			set_style(span, "left", /*menu_data*/ ctx[11].left);
+    			set_style(span, "height", /*menu_data*/ ctx[11].height);
+    			set_style(span, "width", /*menu_data*/ ctx[11].width);
+    			add_location(span, file$b, 147, 24, 4853);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(span, "click", click_handler, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*menulist_data*/ 1 && span_id_value !== (span_id_value = /*menu_data*/ ctx[11].id)) {
+    				attr_dev(span, "id", span_id_value);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1 && span_class_value !== (span_class_value = /*menu_data*/ ctx[11].classes)) {
+    				attr_dev(span, "class", span_class_value);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1 && span_data_correctans_value !== (span_data_correctans_value = /*menu_data*/ ctx[11].correctans)) {
+    				attr_dev(span, "data-correctans", span_data_correctans_value);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(span, "top", /*menu_data*/ ctx[11].top);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(span, "left", /*menu_data*/ ctx[11].left);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(span, "height", /*menu_data*/ ctx[11].height);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(span, "width", /*menu_data*/ ctx[11].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$2.name,
+    		type: "each",
+    		source: "(147:20) {#each data.menulist_item as menu_data, subindex}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (130:8) {#each menulist_data as data, index}
+    function create_each_block$a(ctx) {
+    	let div;
+    	let t;
+    	let div_key_value;
+    	let if_block = /*data*/ ctx[8].menulist_item.length > 0 && create_if_block_1$5(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t = space();
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[10]);
+    			attr_dev(div, "class", "drag-resize");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[8].top);
+    			set_style(div, "left", /*data*/ ctx[8].left);
+    			set_style(div, "height", /*data*/ ctx[8].height);
+    			set_style(div, "width", /*data*/ ctx[8].width);
+    			set_style(div, "z-index", "1");
+    			attr_dev(div, "data-correctans", "");
+    			attr_dev(div, "data-userans", "");
+    			attr_dev(div, "data-defaultans", "");
+    			add_location(div, file$b, 130, 12, 4252);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[8].menulist_item.length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$5(ctx);
+    					if_block.c();
+    					if_block.m(div, t);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[8].top);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[8].left);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[8].height);
+    			}
+
+    			if (dirty & /*menulist_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[8].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$a.name,
+    		type: "each",
+    		source: "(130:8) {#each menulist_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$b(ctx) {
+    	let div;
+    	let if_block = /*menulist_data*/ ctx[0] && /*menulist_data*/ ctx[0].length > 0 && create_if_block$b(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$b, 127, 0, 4137);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*menulist_data*/ ctx[0] && /*menulist_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$b(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$b.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function getTop(rowCount, row, list) {
+    	let top = (parseFloat(list._height) / parseFloat(row) - 0) * (parseFloat(rowCount) - 1) + (parseFloat(rowCount) - 1) * 0 + 0 / 2;
+    	return top;
+    }
+
+    function getLeft(colCount, col, list) {
+    	let left = (parseFloat(list._width) / parseFloat(col) - 0) * (parseFloat(colCount) - 1) + (parseFloat(colCount) - 1) * 0 + 0 / 2;
+    	return left;
+    }
+
+    function getHeight(row, list) {
+    	let height = parseFloat(list._height) / parseFloat(row) - 0;
+    	return height;
+    }
+
+    function getWidth(col, list) {
+    	let width = parseFloat(list._width) / parseFloat(col) - 0;
+    	return width;
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("MenulistPreview", slots, []);
+    	let { modules } = $$props;
+    	let menulist_data = [];
+    	let menulist_preview = modules;
+    	let menuEvent = [];
+    	let correctSelect = "";
+
+    	function getClick(text) {
+    		let data = text.split("|");
+
+    		for (let i = 0; i < data.length; i++) {
+    			let clck = data[i].match(/\(.*?\)/gi);
+
+    			if (clck) {
+    				$$invalidate(3, menuEvent[i] = clck[0].replace("(", "").replace(")", "").replace(/"/g, "").replace(/'/g, ""), menuEvent);
+    			} else {
+    				$$invalidate(3, menuEvent[i] = "", menuEvent);
+    			}
+    		}
+    	}
+
+    	// @ayush : I don't find the function used for now will look it later on it
+    	function getCorrect(r, c, row, col, data) {
+    		correctSelect = "," + (data._correctans
+    		? data._correctans.replace(" ", "")
+    		: "") + ",";
+
+    		let cans = "menu off dndTest menulist";
+
+    		if (row > 1 && col <= 1) {
+    			let srch1 = "," + r + ",";
+
+    			if (correctSelect.indexOf(srch1) !== false) {
+    				cans = "menu off menulist dndTest record";
+    			}
+    		} else if (row <= 1 && col > 1) {
+    			let srch2 = "," + c + ",";
+
+    			if (correctSelect.indexOf(srch2) !== false) {
+    				cans = "menu off menulist dndTest record";
+    			}
+    		} else if (row > 1 && col > 1) {
+    			let srch3 = r + "x" + c + ",";
+
+    			if (correctSelect.indexOf(srch3) !== false) {
+    				cans = "menu off menulist dndTest record";
+    			}
+    		} else {
+    			let srch4 = "," + r + ",";
+
+    			if (correctSelect.indexOf(srch4) !== false) {
+    				cans = "menu off menulist dndTest record";
+    			}
+    		}
+
+    		return cans;
+    	}
+
+    	const writable_props = ["modules"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<MenulistPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = menu_data => window.setStep(menu_data.click_event);
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		modules,
+    		menulist_data,
+    		menulist_preview,
+    		menuEvent,
+    		correctSelect,
+    		getTop,
+    		getLeft,
+    		getHeight,
+    		getWidth,
+    		getClick,
+    		getCorrect
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("menulist_data" in $$props) $$invalidate(0, menulist_data = $$props.menulist_data);
+    		if ("menulist_preview" in $$props) $$invalidate(2, menulist_preview = $$props.menulist_preview);
+    		if ("menuEvent" in $$props) $$invalidate(3, menuEvent = $$props.menuEvent);
+    		if ("correctSelect" in $$props) correctSelect = $$props.correctSelect;
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, menulist_preview, menuEvent, menulist_data*/ 15) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(2, menulist_preview = []);
+    					$$invalidate(2, menulist_preview[0] = modules, menulist_preview);
+    				} else {
+    					$$invalidate(2, menulist_preview = modules);
+    				}
+
+    				$$invalidate(0, menulist_data = []);
+
+    				menulist_preview.map(function (data) {
+    					let row, col, matrix;
+    					let count = 0;
+    					let menulist_item = [];
+    					$$invalidate(3, menuEvent = []);
+
+    					if (data.__text) {
+    						getClick(data.__text);
+    					}
+
+    					matrix = data._matrix ? data._matrix.split("x") : [];
+    					row = matrix[0];
+    					col = matrix[1];
+
+    					for (let row_loop = 1; row_loop <= row; row_loop++) {
+    						for (let col_loop = 1; col_loop <= col; col_loop++) {
+    							menulist_item.push({
+    								id: data._id + "_" + row_loop + "_" + col_loop,
+    								classes: data._correctans && menuEvent[count]
+    								? "menu off menulist dndTest record"
+    								: "menu off menulist dndTest",
+    								correctans: menuEvent[count] ? "1" : "0",
+    								top: getTop(row_loop, row, data) + "px",
+    								left: getLeft(col_loop, col, data) + "px",
+    								height: getHeight(row, data) + "px",
+    								width: getWidth(col, data) + "px",
+    								click_event: menuEvent[count] ? menuEvent[count] : ""
+    							});
+
+    							count++;
+    						}
+    					}
+
+    					$$invalidate(0, menulist_data = [
+    						...menulist_data,
+    						{
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							menulist_item
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, menulist_data = []);
+    			}
+    		}
+    	};
+
+    	return [menulist_data, modules, menulist_preview, menuEvent, click_handler];
+    }
+
+    class MenulistPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, { modules: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "MenulistPreview",
+    			options,
+    			id: create_fragment$b.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<MenulistPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<MenulistPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<MenulistPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/ButtonPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$8 } = globals;
+    const file$c = "clsSMDragNDrop/libs/preview/ButtonPreview.svelte";
+
+    function get_each_context$b(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
+    	return child_ctx;
+    }
+
+    // (76:4) {#if button_preview_data && button_preview_data.length > 0}
+    function create_if_block$c(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*button_preview_data*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$b(get_each_context$b(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*button_preview_data*/ 1) {
+    				each_value = /*button_preview_data*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$b(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$b(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$c.name,
+    		type: "if",
+    		source: "(76:4) {#if button_preview_data && button_preview_data.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (77:8) {#each button_preview_data as data, index}
+    function create_each_block$b(ctx) {
+    	let div;
+    	let button;
+    	let t0_value = (/*data*/ ctx[4].value ? /*data*/ ctx[4].value : "") + "";
+    	let t0;
+    	let button_class_value;
+    	let button_value_value;
+    	let t1;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_class_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			button = element("button");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(button, "type", "button");
+    			attr_dev(button, "class", button_class_value = "dnd" + /*data*/ ctx[4].id + " dnd_button");
+    			attr_dev(button, "name", "");
+    			attr_dev(button, "tabindex", "-1");
+    			button.value = button_value_value = /*data*/ ctx[4].value ? /*data*/ ctx[4].value : "";
+    			attr_dev(button, "data-correctans", "");
+    			attr_dev(button, "data-defaultans", "");
+    			attr_dev(button, "data-userans", "");
+    			add_location(button, file$c, 93, 16, 3365);
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[6]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[4].id);
+    			attr_dev(div, "class", div_class_value = /*data*/ ctx[4].classes);
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", /*data*/ ctx[4].top);
+    			set_style(div, "left", /*data*/ ctx[4].left);
+    			set_style(div, "height", /*data*/ ctx[4].height);
+    			set_style(div, "width", /*data*/ ctx[4].width);
+    			attr_dev(div, "data-correctans", "");
+    			attr_dev(div, "data-defaultans", "");
+    			attr_dev(div, "data-userans", "");
+    			attr_dev(div, "tabindex", "0");
+    			add_location(div, file$c, 77, 12, 2857);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, button);
+    			append_dev(button, t0);
+    			append_dev(div, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*button_preview_data*/ 1 && t0_value !== (t0_value = (/*data*/ ctx[4].value ? /*data*/ ctx[4].value : "") + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*button_preview_data*/ 1 && button_class_value !== (button_class_value = "dnd" + /*data*/ ctx[4].id + " dnd_button")) {
+    				attr_dev(button, "class", button_class_value);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1 && button_value_value !== (button_value_value = /*data*/ ctx[4].value ? /*data*/ ctx[4].value : "")) {
+    				prop_dev(button, "value", button_value_value);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[4].id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1 && div_class_value !== (div_class_value = /*data*/ ctx[4].classes)) {
+    				attr_dev(div, "class", div_class_value);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1) {
+    				set_style(div, "top", /*data*/ ctx[4].top);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1) {
+    				set_style(div, "left", /*data*/ ctx[4].left);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1) {
+    				set_style(div, "height", /*data*/ ctx[4].height);
+    			}
+
+    			if (dirty & /*button_preview_data*/ 1) {
+    				set_style(div, "width", /*data*/ ctx[4].width);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$b.name,
+    		type: "each",
+    		source: "(77:8) {#each button_preview_data as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$c(ctx) {
+    	let div;
+    	let if_block = /*button_preview_data*/ ctx[0] && /*button_preview_data*/ ctx[0].length > 0 && create_if_block$c(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$c, 74, 0, 2724);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*button_preview_data*/ ctx[0] && /*button_preview_data*/ ctx[0].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$c(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$c.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$c($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("ButtonPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID = "" } = $$props;
+    	let button_preview_data = [];
+    	let button_preview = modules;
+
+    	afterUpdate(() => {
+    		if (button_preview_data.length > 0 && containerID != "") {
+    			button_preview.map(function (data) {
+    				let eventArr = [
+    					"onclick",
+    					"ondblclick",
+    					"oncontextmenu",
+    					"ondragstart",
+    					"ondrag",
+    					"ondragend",
+    					"ondrop",
+    					"onmouseover",
+    					"onmouseup",
+    					"onmousedown",
+    					"onchange",
+    					"onfocus",
+    					"onblur",
+    					"onkeyup",
+    					"onkeypress",
+    					"onkeydown"
+    				];
+
+    				let container = document.querySelector("#" + containerID);
+
+    				eventArr.forEach(function (value, index) {
+    					if (!!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.removeAttribute(eventArr[index]);
+    							});
+    						}
+    					}
+    				});
+
+    				Object.keys(data).forEach(function (key) {
+    					let evt = key.replace("_", "").trim();
+
+    					if (eventArr.includes(evt) && !!container) {
+    						let new_container = container.querySelectorAll(".dnd" + data._id);
+
+    						if (!!new_container) {
+    							new_container.forEach(function (element) {
+    								element.setAttribute(evt, data[key]);
+    							});
+    						}
+    					}
+    				});
+    			});
+    		}
+    	});
+
+    	const writable_props = ["modules", "containerID"];
+
+    	Object_1$8.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<ButtonPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		modules,
+    		containerID,
+    		button_preview_data,
+    		button_preview
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(1, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(2, containerID = $$props.containerID);
+    		if ("button_preview_data" in $$props) $$invalidate(0, button_preview_data = $$props.button_preview_data);
+    		if ("button_preview" in $$props) $$invalidate(3, button_preview = $$props.button_preview);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules, button_preview, button_preview_data*/ 11) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(3, button_preview = []);
+    					$$invalidate(3, button_preview[0] = modules, button_preview);
+    				} else {
+    					$$invalidate(3, button_preview = modules);
+    				}
+
+    				$$invalidate(0, button_preview_data = []);
+
+    				button_preview.map(function (data) {
+    					$$invalidate(0, button_preview_data = [
+    						...button_preview_data,
+    						{
+    							top: data._top + "px",
+    							left: data._left + "px",
+    							height: data._height + "px",
+    							width: data._width + "px",
+    							id: data._id,
+    							classes: "drag-resize dndTest " + data._class,
+    							value: data._value
+    						}
+    					]);
+    				});
+    			} else {
+    				$$invalidate(0, button_preview_data = []);
+    			}
+    		}
+    	};
+
+    	return [button_preview_data, modules, containerID, button_preview];
+    }
+
+    class ButtonPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, { modules: 1, containerID: 2 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ButtonPreview",
+    			options,
+    			id: create_fragment$c.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[1] === undefined && !("modules" in props)) {
+    			console.warn("<ButtonPreview> was created without expected prop 'modules'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<ButtonPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<ButtonPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<ButtonPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<ButtonPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/TabPillsPreview.svelte generated by Svelte v3.34.0 */
+    const file$d = "clsSMDragNDrop/libs/preview/TabPillsPreview.svelte";
+
+    function get_each_context$c(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1$3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (38:4) {#if tab_pills_preview && tab_pills_preview.length > 0}
+    function create_if_block$d(ctx) {
+    	let ul;
+    	let t;
+    	let div;
+    	let current;
+    	let each_value_1 = /*tab_pills_preview*/ ctx[2];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1$3(get_each_context_1$3(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*tab_pills_preview*/ ctx[2];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$c(get_each_context$c(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			ul = element("ul");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t = space();
+    			div = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(ul, "class", "nav nav-pills margin-bottom dndTest");
+    			attr_dev(ul, "data-correctans", "");
+    			attr_dev(ul, "data-userans", "");
+    			attr_dev(ul, "data-defaultans", "");
+    			attr_dev(ul, "role", "tablist");
+    			add_location(ul, file$d, 38, 8, 1234);
+    			attr_dev(div, "class", "tab-content dndTest");
+    			attr_dev(div, "type", "tab");
+    			set_style(div, "position", "relative");
+    			add_location(div, file$d, 45, 8, 1721);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, ul, anchor);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(ul, null);
+    			}
+
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_pills_preview*/ 4) {
+    				each_value_1 = /*tab_pills_preview*/ ctx[2];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$3(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1$3(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(ul, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*tab_pills_preview, uxml, window, checkImages*/ 7) {
+    				each_value = /*tab_pills_preview*/ ctx[2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$c(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$c(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(ul);
+    			destroy_each(each_blocks_1, detaching);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$d.name,
+    		type: "if",
+    		source: "(38:4) {#if tab_pills_preview && tab_pills_preview.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (40:12) {#each tab_pills_preview as data, index}
+    function create_each_block_1$3(ctx) {
+    	let li;
+    	let a;
+    	let t0_value = /*data*/ ctx[5]._value + "";
+    	let t0;
+    	let a_class_value;
+    	let a_href_value;
+    	let a_data_bs_target_value;
+    	let t1;
+    	let li_key_value;
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			a = element("a");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(a, "class", a_class_value = "nav-link" + (/*data*/ ctx[5]._display == "1" ? " active" : ""));
+    			attr_dev(a, "href", a_href_value = "#dnd" + /*data*/ ctx[5]._id);
+    			attr_dev(a, "data-bs-toggle", "pill");
+    			attr_dev(a, "data-bs-target", a_data_bs_target_value = "#dnd" + /*data*/ ctx[5]._id);
+    			add_location(a, file$d, 41, 20, 1495);
+    			attr_dev(li, "key", li_key_value = "tab_pills_list_" + /*index*/ ctx[7]);
+    			attr_dev(li, "class", "nav-item");
+    			add_location(li, file$d, 40, 16, 1421);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, a);
+    			append_dev(a, t0);
+    			append_dev(li, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_pills_preview*/ 4 && t0_value !== (t0_value = /*data*/ ctx[5]._value + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*tab_pills_preview*/ 4 && a_class_value !== (a_class_value = "nav-link" + (/*data*/ ctx[5]._display == "1" ? " active" : ""))) {
+    				attr_dev(a, "class", a_class_value);
+    			}
+
+    			if (dirty & /*tab_pills_preview*/ 4 && a_href_value !== (a_href_value = "#dnd" + /*data*/ ctx[5]._id)) {
+    				attr_dev(a, "href", a_href_value);
+    			}
+
+    			if (dirty & /*tab_pills_preview*/ 4 && a_data_bs_target_value !== (a_data_bs_target_value = "#dnd" + /*data*/ ctx[5]._id)) {
+    				attr_dev(a, "data-bs-target", a_data_bs_target_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$3.name,
+    		type: "each",
+    		source: "(40:12) {#each tab_pills_preview as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (58:20) {#if data._bgimg}
+    function create_if_block_1$6(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+
+    			if (img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[5]._bgimg)) attr_dev(img, "src", img_src_value);
+
+    			attr_dev(img, "alt", img_alt_value = /*data*/ ctx[5]._alt);
+    			add_location(img, file$d, 58, 24, 2307);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(img, "load", /*load_handler*/ ctx[4], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_pills_preview*/ 4 && img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[5]._bgimg)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*tab_pills_preview*/ 4 && img_alt_value !== (img_alt_value = /*data*/ ctx[5]._alt)) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$6.name,
+    		type: "if",
+    		source: "(58:20) {#if data._bgimg}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (47:12) {#each tab_pills_preview as data, index}
+    function create_each_block$c(ctx) {
+    	let div;
+    	let t0;
+    	let dragpreview;
+    	let t1;
+    	let droppreview;
+    	let t2;
+    	let radiopreview;
+    	let t3;
+    	let selectpreview;
+    	let t4;
+    	let textboxpreview;
+    	let t5;
+    	let checkboxpreview;
+    	let t6;
+    	let tabheadpreview;
+    	let t7;
+    	let hotspotpreview;
+    	let t8;
+    	let menulistpreview;
+    	let t9;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_class_value;
+    	let current;
+    	let if_block = /*data*/ ctx[5]._bgimg && create_if_block_1$6(ctx);
+
+    	dragpreview = new DragPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].drag ? /*data*/ ctx[5].drag : []
+    			},
+    			$$inline: true
+    		});
+
+    	droppreview = new DropPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].drop ? /*data*/ ctx[5].drop : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	radiopreview = new RadioPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].radio ? /*data*/ ctx[5].radio : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	selectpreview = new SelectPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].select ? /*data*/ ctx[5].select : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	textboxpreview = new TextboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].textbox ? /*data*/ ctx[5].textbox : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	checkboxpreview = new CheckboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].checkbox ? /*data*/ ctx[5].checkbox : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	tabheadpreview = new TabheadPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].tabhead ? /*data*/ ctx[5].tabhead : []
+    			},
+    			$$inline: true
+    		});
+
+    	hotspotpreview = new HotspotPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].hotspot ? /*data*/ ctx[5].hotspot : [],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	menulistpreview = new MenulistPreview({
+    			props: {
+    				modules: /*data*/ ctx[5].menulist ? /*data*/ ctx[5].menulist : []
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			create_component(dragpreview.$$.fragment);
+    			t1 = space();
+    			create_component(droppreview.$$.fragment);
+    			t2 = space();
+    			create_component(radiopreview.$$.fragment);
+    			t3 = space();
+    			create_component(selectpreview.$$.fragment);
+    			t4 = space();
+    			create_component(textboxpreview.$$.fragment);
+    			t5 = space();
+    			create_component(checkboxpreview.$$.fragment);
+    			t6 = space();
+    			create_component(tabheadpreview.$$.fragment);
+    			t7 = space();
+    			create_component(hotspotpreview.$$.fragment);
+    			t8 = space();
+    			create_component(menulistpreview.$$.fragment);
+    			t9 = space();
+    			attr_dev(div, "key", div_key_value = "tab_pills_preview_" + /*index*/ ctx[7]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[5]._id);
+    			attr_dev(div, "type", "tab");
+    			attr_dev(div, "role", "tabpanel");
+    			attr_dev(div, "class", div_class_value = "tab-pane " + (/*data*/ ctx[5]._display == "1" ? "active" : ""));
+    			attr_dev(div, "data-correctans", "");
+    			attr_dev(div, "data-userans", "");
+    			attr_dev(div, "data-defaultans", "");
+    			add_location(div, file$d, 47, 16, 1861);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(div, t0);
+    			mount_component(dragpreview, div, null);
+    			append_dev(div, t1);
+    			mount_component(droppreview, div, null);
+    			append_dev(div, t2);
+    			mount_component(radiopreview, div, null);
+    			append_dev(div, t3);
+    			mount_component(selectpreview, div, null);
+    			append_dev(div, t4);
+    			mount_component(textboxpreview, div, null);
+    			append_dev(div, t5);
+    			mount_component(checkboxpreview, div, null);
+    			append_dev(div, t6);
+    			mount_component(tabheadpreview, div, null);
+    			append_dev(div, t7);
+    			mount_component(hotspotpreview, div, null);
+    			append_dev(div, t8);
+    			mount_component(menulistpreview, div, null);
+    			append_dev(div, t9);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[5]._bgimg) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$6(ctx);
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			const dragpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) dragpreview_changes.modules = /*data*/ ctx[5].drag ? /*data*/ ctx[5].drag : [];
+    			dragpreview.$set(dragpreview_changes);
+    			const droppreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) droppreview_changes.modules = /*data*/ ctx[5].drop ? /*data*/ ctx[5].drop : [];
+    			if (dirty & /*uxml*/ 1) droppreview_changes.uxml = /*uxml*/ ctx[0];
+    			droppreview.$set(droppreview_changes);
+    			const radiopreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) radiopreview_changes.modules = /*data*/ ctx[5].radio ? /*data*/ ctx[5].radio : [];
+    			if (dirty & /*uxml*/ 1) radiopreview_changes.uxml = /*uxml*/ ctx[0];
+    			radiopreview.$set(radiopreview_changes);
+    			const selectpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) selectpreview_changes.modules = /*data*/ ctx[5].select ? /*data*/ ctx[5].select : [];
+    			if (dirty & /*uxml*/ 1) selectpreview_changes.uxml = /*uxml*/ ctx[0];
+    			selectpreview.$set(selectpreview_changes);
+    			const textboxpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) textboxpreview_changes.modules = /*data*/ ctx[5].textbox ? /*data*/ ctx[5].textbox : [];
+    			if (dirty & /*uxml*/ 1) textboxpreview_changes.uxml = /*uxml*/ ctx[0];
+    			textboxpreview.$set(textboxpreview_changes);
+    			const checkboxpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) checkboxpreview_changes.modules = /*data*/ ctx[5].checkbox ? /*data*/ ctx[5].checkbox : [];
+    			if (dirty & /*uxml*/ 1) checkboxpreview_changes.uxml = /*uxml*/ ctx[0];
+    			checkboxpreview.$set(checkboxpreview_changes);
+    			const tabheadpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) tabheadpreview_changes.modules = /*data*/ ctx[5].tabhead ? /*data*/ ctx[5].tabhead : [];
+    			tabheadpreview.$set(tabheadpreview_changes);
+    			const hotspotpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) hotspotpreview_changes.modules = /*data*/ ctx[5].hotspot ? /*data*/ ctx[5].hotspot : [];
+    			if (dirty & /*uxml*/ 1) hotspotpreview_changes.uxml = /*uxml*/ ctx[0];
+    			hotspotpreview.$set(hotspotpreview_changes);
+    			const menulistpreview_changes = {};
+    			if (dirty & /*tab_pills_preview*/ 4) menulistpreview_changes.modules = /*data*/ ctx[5].menulist ? /*data*/ ctx[5].menulist : [];
+    			menulistpreview.$set(menulistpreview_changes);
+
+    			if (!current || dirty & /*tab_pills_preview*/ 4 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[5]._id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (!current || dirty & /*tab_pills_preview*/ 4 && div_class_value !== (div_class_value = "tab-pane " + (/*data*/ ctx[5]._display == "1" ? "active" : ""))) {
+    				attr_dev(div, "class", div_class_value);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(dragpreview.$$.fragment, local);
+    			transition_in(droppreview.$$.fragment, local);
+    			transition_in(radiopreview.$$.fragment, local);
+    			transition_in(selectpreview.$$.fragment, local);
+    			transition_in(textboxpreview.$$.fragment, local);
+    			transition_in(checkboxpreview.$$.fragment, local);
+    			transition_in(tabheadpreview.$$.fragment, local);
+    			transition_in(hotspotpreview.$$.fragment, local);
+    			transition_in(menulistpreview.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(dragpreview.$$.fragment, local);
+    			transition_out(droppreview.$$.fragment, local);
+    			transition_out(radiopreview.$$.fragment, local);
+    			transition_out(selectpreview.$$.fragment, local);
+    			transition_out(textboxpreview.$$.fragment, local);
+    			transition_out(checkboxpreview.$$.fragment, local);
+    			transition_out(tabheadpreview.$$.fragment, local);
+    			transition_out(hotspotpreview.$$.fragment, local);
+    			transition_out(menulistpreview.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			destroy_component(dragpreview);
+    			destroy_component(droppreview);
+    			destroy_component(radiopreview);
+    			destroy_component(selectpreview);
+    			destroy_component(textboxpreview);
+    			destroy_component(checkboxpreview);
+    			destroy_component(tabheadpreview);
+    			destroy_component(hotspotpreview);
+    			destroy_component(menulistpreview);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$c.name,
+    		type: "each",
+    		source: "(47:12) {#each tab_pills_preview as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$d(ctx) {
+    	let div;
+    	let current;
+    	let if_block = /*tab_pills_preview*/ ctx[2] && /*tab_pills_preview*/ ctx[2].length > 0 && create_if_block$d(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$d, 36, 0, 1160);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*tab_pills_preview*/ ctx[2] && /*tab_pills_preview*/ ctx[2].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*tab_pills_preview*/ 4) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$d(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$d.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("TabPillsPreview", slots, []);
+    	let { modules } = $$props;
+    	let { uxml = "" } = $$props;
+    	let { checkImages } = $$props;
+    	let tab_pills_preview = modules;
+    	const writable_props = ["modules", "uxml", "checkImages"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<TabPillsPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	const load_handler = () => {
+    		checkImages(2);
+    	};
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(3, modules = $$props.modules);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(1, checkImages = $$props.checkImages);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		DragPreview,
+    		DropPreview,
+    		RadioPreview,
+    		SelectPreview,
+    		TextboxPreview,
+    		CheckboxPreview,
+    		TabheadPreview,
+    		HotspotPreview,
+    		MenulistPreview,
+    		modules,
+    		uxml,
+    		checkImages,
+    		tab_pills_preview
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(3, modules = $$props.modules);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(1, checkImages = $$props.checkImages);
+    		if ("tab_pills_preview" in $$props) $$invalidate(2, tab_pills_preview = $$props.tab_pills_preview);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules*/ 8) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(2, tab_pills_preview = []);
+    					$$invalidate(2, tab_pills_preview[0] = modules, tab_pills_preview);
+    				} else {
+    					$$invalidate(2, tab_pills_preview = modules);
+    				}
+    			} else {
+    				$$invalidate(2, tab_pills_preview = []);
+    			}
+    		}
+    	};
+
+    	return [uxml, checkImages, tab_pills_preview, modules, load_handler];
+    }
+
+    class TabPillsPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$d, create_fragment$d, safe_not_equal, { modules: 3, uxml: 0, checkImages: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "TabPillsPreview",
+    			options,
+    			id: create_fragment$d.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[3] === undefined && !("modules" in props)) {
+    			console.warn("<TabPillsPreview> was created without expected prop 'modules'");
+    		}
+
+    		if (/*checkImages*/ ctx[1] === undefined && !("checkImages" in props)) {
+    			console.warn("<TabPillsPreview> was created without expected prop 'checkImages'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<TabPillsPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<TabPillsPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<TabPillsPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<TabPillsPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checkImages() {
+    		throw new Error("<TabPillsPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checkImages(value) {
+    		throw new Error("<TabPillsPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/TabPreview.svelte generated by Svelte v3.34.0 */
+    const file$e = "clsSMDragNDrop/libs/preview/TabPreview.svelte";
+
+    function get_each_context$d(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[6] = list[i];
+    	child_ctx[8] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1$4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[6] = list[i];
+    	child_ctx[8] = i;
+    	return child_ctx;
+    }
+
+    // (40:4) {#if tab_preview && tab_preview.length > 0}
+    function create_if_block$e(ctx) {
+    	let ul;
+    	let t;
+    	let div;
+    	let current;
+    	let each_value_1 = /*tab_preview*/ ctx[3];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1$4(get_each_context_1$4(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*tab_preview*/ ctx[3];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$d(get_each_context$d(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			ul = element("ul");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t = space();
+    			div = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(ul, "class", "nav nav-tabs margin-bottom dndTest mt-3");
+    			attr_dev(ul, "data-correctans", "");
+    			attr_dev(ul, "data-userans", "");
+    			attr_dev(ul, "data-defaultans", "");
+    			add_location(ul, file$e, 40, 8, 1271);
+    			attr_dev(div, "class", "tab-content dndTest");
+    			attr_dev(div, "type", "tab");
+    			set_style(div, "position", "relative");
+    			add_location(div, file$e, 47, 8, 1737);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, ul, anchor);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(ul, null);
+    			}
+
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_preview*/ 8) {
+    				each_value_1 = /*tab_preview*/ ctx[3];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$4(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1$4(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(ul, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*tab_preview, checkImages, uxml, containerID, window*/ 15) {
+    				each_value = /*tab_preview*/ ctx[3];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$d(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$d(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(ul);
+    			destroy_each(each_blocks_1, detaching);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$e.name,
+    		type: "if",
+    		source: "(40:4) {#if tab_preview && tab_preview.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (42:12) {#each tab_preview as data, index}
+    function create_each_block_1$4(ctx) {
+    	let li;
+    	let a;
+    	let t0_value = /*data*/ ctx[6]._value + "";
+    	let t0;
+    	let a_href_value;
+    	let a_data_bs_target_value;
+    	let a_class_value;
+    	let t1;
+    	let li_key_value;
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			a = element("a");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(a, "href", a_href_value = "#dnd" + /*data*/ ctx[6]._id);
+    			attr_dev(a, "data-bs-target", a_data_bs_target_value = "#dnd" + /*data*/ ctx[6]._id);
+    			attr_dev(a, "data-bs-toggle", "tab");
+
+    			attr_dev(a, "class", a_class_value = /*data*/ ctx[6]._display == "1"
+    			? " active nav-link"
+    			: " nav-link");
+
+    			add_location(a, file$e, 43, 20, 1509);
+    			attr_dev(li, "key", li_key_value = "tab_list_" + /*index*/ ctx[8]);
+    			attr_dev(li, "class", "nav-item");
+    			add_location(li, file$e, 42, 16, 1441);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, a);
+    			append_dev(a, t0);
+    			append_dev(li, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_preview*/ 8 && t0_value !== (t0_value = /*data*/ ctx[6]._value + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*tab_preview*/ 8 && a_href_value !== (a_href_value = "#dnd" + /*data*/ ctx[6]._id)) {
+    				attr_dev(a, "href", a_href_value);
+    			}
+
+    			if (dirty & /*tab_preview*/ 8 && a_data_bs_target_value !== (a_data_bs_target_value = "#dnd" + /*data*/ ctx[6]._id)) {
+    				attr_dev(a, "data-bs-target", a_data_bs_target_value);
+    			}
+
+    			if (dirty & /*tab_preview*/ 8 && a_class_value !== (a_class_value = /*data*/ ctx[6]._display == "1"
+    			? " active nav-link"
+    			: " nav-link")) {
+    				attr_dev(a, "class", a_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$4.name,
+    		type: "each",
+    		source: "(42:12) {#each tab_preview as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (60:20) {#if data._bgimg}
+    function create_if_block_1$7(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+
+    			if (img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[6]._bgimg)) attr_dev(img, "src", img_src_value);
+
+    			attr_dev(img, "alt", img_alt_value = /*data*/ ctx[6]._alt);
+    			add_location(img, file$e, 60, 24, 2311);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(img, "load", /*load_handler*/ ctx[5], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*tab_preview*/ 8 && img.src !== (img_src_value = (window.inNative
+    			? "https://s3.amazonaws.com/jigyaasa_content_static/"
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[6]._bgimg)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*tab_preview*/ 8 && img_alt_value !== (img_alt_value = /*data*/ ctx[6]._alt)) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$7.name,
+    		type: "if",
+    		source: "(60:20) {#if data._bgimg}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (49:12) {#each tab_preview as data, index}
+    function create_each_block$d(ctx) {
+    	let div;
+    	let t0;
+    	let dragpreview;
+    	let t1;
+    	let droppreview;
+    	let t2;
+    	let radiopreview;
+    	let t3;
+    	let selectpreview;
+    	let t4;
+    	let textboxpreview;
+    	let t5;
+    	let checkboxpreview;
+    	let t6;
+    	let tabheadpreview;
+    	let t7;
+    	let hotspotpreview;
+    	let t8;
+    	let menulistpreview;
+    	let t9;
+    	let tabpillspreview;
+    	let t10;
+    	let div_key_value;
+    	let div_id_value;
+    	let div_class_value;
+    	let current;
+    	let if_block = /*data*/ ctx[6]._bgimg && create_if_block_1$7(ctx);
+
+    	dragpreview = new DragPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].drag ? /*data*/ ctx[6].drag : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	droppreview = new DropPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].drop ? /*data*/ ctx[6].drop : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	radiopreview = new RadioPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].radio ? /*data*/ ctx[6].radio : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	selectpreview = new SelectPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].select ? /*data*/ ctx[6].select : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	textboxpreview = new TextboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].textbox ? /*data*/ ctx[6].textbox : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	checkboxpreview = new CheckboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].checkbox ? /*data*/ ctx[6].checkbox : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	tabheadpreview = new TabheadPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].tabhead ? /*data*/ ctx[6].tabhead : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	hotspotpreview = new HotspotPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].hotspot ? /*data*/ ctx[6].hotspot : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	menulistpreview = new MenulistPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].menulist ? /*data*/ ctx[6].menulist : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	tabpillspreview = new TabPillsPreview({
+    			props: {
+    				modules: /*data*/ ctx[6].tab ? /*data*/ ctx[6].tab : [],
+    				checkImages: /*checkImages*/ ctx[2],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			create_component(dragpreview.$$.fragment);
+    			t1 = space();
+    			create_component(droppreview.$$.fragment);
+    			t2 = space();
+    			create_component(radiopreview.$$.fragment);
+    			t3 = space();
+    			create_component(selectpreview.$$.fragment);
+    			t4 = space();
+    			create_component(textboxpreview.$$.fragment);
+    			t5 = space();
+    			create_component(checkboxpreview.$$.fragment);
+    			t6 = space();
+    			create_component(tabheadpreview.$$.fragment);
+    			t7 = space();
+    			create_component(hotspotpreview.$$.fragment);
+    			t8 = space();
+    			create_component(menulistpreview.$$.fragment);
+    			t9 = space();
+    			create_component(tabpillspreview.$$.fragment);
+    			t10 = space();
+    			attr_dev(div, "key", div_key_value = "tab_preview_" + /*index*/ ctx[8]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[6]._id);
+    			attr_dev(div, "role", "tabpanel");
+    			attr_dev(div, "type", "tab");
+    			attr_dev(div, "class", div_class_value = "tab-pane " + (/*data*/ ctx[6]._display == "1" ? "active" : ""));
+    			attr_dev(div, "data-correctans", "");
+    			attr_dev(div, "data-userans", "");
+    			attr_dev(div, "data-defaultans", "");
+    			add_location(div, file$e, 49, 16, 1871);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(div, t0);
+    			mount_component(dragpreview, div, null);
+    			append_dev(div, t1);
+    			mount_component(droppreview, div, null);
+    			append_dev(div, t2);
+    			mount_component(radiopreview, div, null);
+    			append_dev(div, t3);
+    			mount_component(selectpreview, div, null);
+    			append_dev(div, t4);
+    			mount_component(textboxpreview, div, null);
+    			append_dev(div, t5);
+    			mount_component(checkboxpreview, div, null);
+    			append_dev(div, t6);
+    			mount_component(tabheadpreview, div, null);
+    			append_dev(div, t7);
+    			mount_component(hotspotpreview, div, null);
+    			append_dev(div, t8);
+    			mount_component(menulistpreview, div, null);
+    			append_dev(div, t9);
+    			mount_component(tabpillspreview, div, null);
+    			append_dev(div, t10);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[6]._bgimg) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$7(ctx);
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			const dragpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) dragpreview_changes.modules = /*data*/ ctx[6].drag ? /*data*/ ctx[6].drag : [];
+    			if (dirty & /*containerID*/ 1) dragpreview_changes.containerID = /*containerID*/ ctx[0];
+    			dragpreview.$set(dragpreview_changes);
+    			const droppreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) droppreview_changes.modules = /*data*/ ctx[6].drop ? /*data*/ ctx[6].drop : [];
+    			if (dirty & /*containerID*/ 1) droppreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) droppreview_changes.uxml = /*uxml*/ ctx[1];
+    			droppreview.$set(droppreview_changes);
+    			const radiopreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) radiopreview_changes.modules = /*data*/ ctx[6].radio ? /*data*/ ctx[6].radio : [];
+    			if (dirty & /*containerID*/ 1) radiopreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) radiopreview_changes.uxml = /*uxml*/ ctx[1];
+    			radiopreview.$set(radiopreview_changes);
+    			const selectpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) selectpreview_changes.modules = /*data*/ ctx[6].select ? /*data*/ ctx[6].select : [];
+    			if (dirty & /*containerID*/ 1) selectpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) selectpreview_changes.uxml = /*uxml*/ ctx[1];
+    			selectpreview.$set(selectpreview_changes);
+    			const textboxpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) textboxpreview_changes.modules = /*data*/ ctx[6].textbox ? /*data*/ ctx[6].textbox : [];
+    			if (dirty & /*containerID*/ 1) textboxpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) textboxpreview_changes.uxml = /*uxml*/ ctx[1];
+    			textboxpreview.$set(textboxpreview_changes);
+    			const checkboxpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) checkboxpreview_changes.modules = /*data*/ ctx[6].checkbox ? /*data*/ ctx[6].checkbox : [];
+    			if (dirty & /*containerID*/ 1) checkboxpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) checkboxpreview_changes.uxml = /*uxml*/ ctx[1];
+    			checkboxpreview.$set(checkboxpreview_changes);
+    			const tabheadpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) tabheadpreview_changes.modules = /*data*/ ctx[6].tabhead ? /*data*/ ctx[6].tabhead : [];
+    			if (dirty & /*containerID*/ 1) tabheadpreview_changes.containerID = /*containerID*/ ctx[0];
+    			tabheadpreview.$set(tabheadpreview_changes);
+    			const hotspotpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) hotspotpreview_changes.modules = /*data*/ ctx[6].hotspot ? /*data*/ ctx[6].hotspot : [];
+    			if (dirty & /*containerID*/ 1) hotspotpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) hotspotpreview_changes.uxml = /*uxml*/ ctx[1];
+    			hotspotpreview.$set(hotspotpreview_changes);
+    			const menulistpreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) menulistpreview_changes.modules = /*data*/ ctx[6].menulist ? /*data*/ ctx[6].menulist : [];
+    			if (dirty & /*containerID*/ 1) menulistpreview_changes.containerID = /*containerID*/ ctx[0];
+    			menulistpreview.$set(menulistpreview_changes);
+    			const tabpillspreview_changes = {};
+    			if (dirty & /*tab_preview*/ 8) tabpillspreview_changes.modules = /*data*/ ctx[6].tab ? /*data*/ ctx[6].tab : [];
+    			if (dirty & /*checkImages*/ 4) tabpillspreview_changes.checkImages = /*checkImages*/ ctx[2];
+    			if (dirty & /*uxml*/ 2) tabpillspreview_changes.uxml = /*uxml*/ ctx[1];
+    			tabpillspreview.$set(tabpillspreview_changes);
+
+    			if (!current || dirty & /*tab_preview*/ 8 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[6]._id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (!current || dirty & /*tab_preview*/ 8 && div_class_value !== (div_class_value = "tab-pane " + (/*data*/ ctx[6]._display == "1" ? "active" : ""))) {
+    				attr_dev(div, "class", div_class_value);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(dragpreview.$$.fragment, local);
+    			transition_in(droppreview.$$.fragment, local);
+    			transition_in(radiopreview.$$.fragment, local);
+    			transition_in(selectpreview.$$.fragment, local);
+    			transition_in(textboxpreview.$$.fragment, local);
+    			transition_in(checkboxpreview.$$.fragment, local);
+    			transition_in(tabheadpreview.$$.fragment, local);
+    			transition_in(hotspotpreview.$$.fragment, local);
+    			transition_in(menulistpreview.$$.fragment, local);
+    			transition_in(tabpillspreview.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(dragpreview.$$.fragment, local);
+    			transition_out(droppreview.$$.fragment, local);
+    			transition_out(radiopreview.$$.fragment, local);
+    			transition_out(selectpreview.$$.fragment, local);
+    			transition_out(textboxpreview.$$.fragment, local);
+    			transition_out(checkboxpreview.$$.fragment, local);
+    			transition_out(tabheadpreview.$$.fragment, local);
+    			transition_out(hotspotpreview.$$.fragment, local);
+    			transition_out(menulistpreview.$$.fragment, local);
+    			transition_out(tabpillspreview.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			destroy_component(dragpreview);
+    			destroy_component(droppreview);
+    			destroy_component(radiopreview);
+    			destroy_component(selectpreview);
+    			destroy_component(textboxpreview);
+    			destroy_component(checkboxpreview);
+    			destroy_component(tabheadpreview);
+    			destroy_component(hotspotpreview);
+    			destroy_component(menulistpreview);
+    			destroy_component(tabpillspreview);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$d.name,
+    		type: "each",
+    		source: "(49:12) {#each tab_preview as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$e(ctx) {
+    	let div;
+    	let current;
+    	let if_block = /*tab_preview*/ ctx[3] && /*tab_preview*/ ctx[3].length > 0 && create_if_block$e(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$e, 38, 0, 1209);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*tab_preview*/ ctx[3] && /*tab_preview*/ ctx[3].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*tab_preview*/ 8) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$e(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$e.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$e($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("TabPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID } = $$props;
+    	let { uxml = "" } = $$props;
+    	let { checkImages } = $$props;
+    	let tab_preview = modules;
+    	const writable_props = ["modules", "containerID", "uxml", "checkImages"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<TabPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	const load_handler = () => {
+    		checkImages(2);
+    	};
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(4, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(0, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(1, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(2, checkImages = $$props.checkImages);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		DragPreview,
+    		DropPreview,
+    		RadioPreview,
+    		SelectPreview,
+    		TextboxPreview,
+    		CheckboxPreview,
+    		TabheadPreview,
+    		HotspotPreview,
+    		MenulistPreview,
+    		TabPillsPreview,
+    		modules,
+    		containerID,
+    		uxml,
+    		checkImages,
+    		tab_preview
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(4, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(0, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(1, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(2, checkImages = $$props.checkImages);
+    		if ("tab_preview" in $$props) $$invalidate(3, tab_preview = $$props.tab_preview);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules*/ 16) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(3, tab_preview = []);
+    					$$invalidate(3, tab_preview[0] = modules, tab_preview);
+    				} else {
+    					$$invalidate(3, tab_preview = modules);
+    				}
+    			} else {
+    				$$invalidate(3, tab_preview = []);
+    			}
+    		}
+    	};
+
+    	return [containerID, uxml, checkImages, tab_preview, modules, load_handler];
+    }
+
+    class TabPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, {
+    			modules: 4,
+    			containerID: 0,
+    			uxml: 1,
+    			checkImages: 2
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "TabPreview",
+    			options,
+    			id: create_fragment$e.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[4] === undefined && !("modules" in props)) {
+    			console.warn("<TabPreview> was created without expected prop 'modules'");
+    		}
+
+    		if (/*containerID*/ ctx[0] === undefined && !("containerID" in props)) {
+    			console.warn("<TabPreview> was created without expected prop 'containerID'");
+    		}
+
+    		if (/*checkImages*/ ctx[2] === undefined && !("checkImages" in props)) {
+    			console.warn("<TabPreview> was created without expected prop 'checkImages'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<TabPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<TabPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<TabPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<TabPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<TabPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<TabPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checkImages() {
+    		throw new Error("<TabPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checkImages(value) {
+    		throw new Error("<TabPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* clsSMDragNDrop/libs/preview/StepPreview.svelte generated by Svelte v3.34.0 */
+    const file$f = "clsSMDragNDrop/libs/preview/StepPreview.svelte";
+
+    function get_each_context$e(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[7] = list[i];
+    	child_ctx[9] = i;
+    	return child_ctx;
+    }
+
+    // (42:4) {#if step && step.length > 0}
+    function create_if_block$f(ctx) {
+    	let each_1_anchor;
+    	let current;
+    	let each_value = /*step*/ ctx[3];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$e(get_each_context$e(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*step, containerID, checkImages, uxml, window*/ 15) {
+    				each_value = /*step*/ ctx[3];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$e(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$e(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$f.name,
+    		type: "if",
+    		source: "(42:4) {#if step && step.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (54:16) {#if data._bgimg}
+    function create_if_block_1$8(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	function error_handler(...args) {
+    		return /*error_handler*/ ctx[6](/*data*/ ctx[7], ...args);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+
+    			if (img.src !== (img_src_value = window.inNative
+    			? "____s3.amazonaws.com__jigyaasa_content_static__" + /*data*/ ctx[7]._bgimg
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/" + /*data*/ ctx[7]._bgimg)) attr_dev(img, "src", img_src_value);
+
+    			attr_dev(img, "alt", img_alt_value = /*data*/ ctx[7]._alt);
+    			add_location(img, file$f, 54, 5, 1765);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(img, "load", /*load_handler*/ ctx[5], false, false, false),
+    					listen_dev(img, "error", error_handler, false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty & /*step*/ 8 && img.src !== (img_src_value = window.inNative
+    			? "____s3.amazonaws.com__jigyaasa_content_static__" + /*data*/ ctx[7]._bgimg
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/" + /*data*/ ctx[7]._bgimg)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*step*/ 8 && img_alt_value !== (img_alt_value = /*data*/ ctx[7]._alt)) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$8.name,
+    		type: "if",
+    		source: "(54:16) {#if data._bgimg}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (43:8) {#each step as data, index}
+    function create_each_block$e(ctx) {
+    	let div;
+    	let t0;
+    	let dragpreview;
+    	let t1;
+    	let droppreview;
+    	let t2;
+    	let radiopreview;
+    	let t3;
+    	let selectpreview;
+    	let t4;
+    	let textboxpreview;
+    	let t5;
+    	let checkboxpreview;
+    	let t6;
+    	let tabheadpreview;
+    	let t7;
+    	let hotspotpreview;
+    	let t8;
+    	let menulistpreview;
+    	let t9;
+    	let multilineboxpreview;
+    	let t10;
+    	let tabpreview;
+    	let t11;
+    	let buttonpreview;
+    	let t12;
+    	let labelpreview;
+    	let t13;
+    	let div_key_value;
+    	let div_id_value;
+    	let current;
+    	let if_block = /*data*/ ctx[7]._bgimg && create_if_block_1$8(ctx);
+
+    	dragpreview = new DragPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].drag ? /*data*/ ctx[7].drag : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	droppreview = new DropPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].drop ? /*data*/ ctx[7].drop : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	radiopreview = new RadioPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].radio ? /*data*/ ctx[7].radio : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	selectpreview = new SelectPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].select ? /*data*/ ctx[7].select : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	textboxpreview = new TextboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].textbox ? /*data*/ ctx[7].textbox : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	checkboxpreview = new CheckboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].checkbox ? /*data*/ ctx[7].checkbox : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	tabheadpreview = new TabheadPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].tabhead ? /*data*/ ctx[7].tabhead : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	hotspotpreview = new HotspotPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].hotspot ? /*data*/ ctx[7].hotspot : [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	menulistpreview = new MenulistPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].menulist ? /*data*/ ctx[7].menulist : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	multilineboxpreview = new MultilineboxPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].multilinebox
+    				? /*data*/ ctx[7].multilinebox
+    				: [],
+    				containerID: /*containerID*/ ctx[0],
+    				uxml: /*uxml*/ ctx[1]
+    			},
+    			$$inline: true
+    		});
+
+    	tabpreview = new TabPreview({
+    			props: {
+    				checkImages: /*checkImages*/ ctx[2],
+    				modules: /*data*/ ctx[7].tab ? /*data*/ ctx[7].tab : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	buttonpreview = new ButtonPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].button ? /*data*/ ctx[7].button : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	labelpreview = new LabelPreview({
+    			props: {
+    				modules: /*data*/ ctx[7].label ? /*data*/ ctx[7].label : [],
+    				containerID: /*containerID*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			create_component(dragpreview.$$.fragment);
+    			t1 = space();
+    			create_component(droppreview.$$.fragment);
+    			t2 = space();
+    			create_component(radiopreview.$$.fragment);
+    			t3 = space();
+    			create_component(selectpreview.$$.fragment);
+    			t4 = space();
+    			create_component(textboxpreview.$$.fragment);
+    			t5 = space();
+    			create_component(checkboxpreview.$$.fragment);
+    			t6 = space();
+    			create_component(tabheadpreview.$$.fragment);
+    			t7 = space();
+    			create_component(hotspotpreview.$$.fragment);
+    			t8 = space();
+    			create_component(menulistpreview.$$.fragment);
+    			t9 = space();
+    			create_component(multilineboxpreview.$$.fragment);
+    			t10 = space();
+    			create_component(tabpreview.$$.fragment);
+    			t11 = space();
+    			create_component(buttonpreview.$$.fragment);
+    			t12 = space();
+    			create_component(labelpreview.$$.fragment);
+    			t13 = space();
+    			attr_dev(div, "key", div_key_value = /*index*/ ctx[9]);
+    			attr_dev(div, "id", div_id_value = "dnd" + /*data*/ ctx[7]._id);
+    			attr_dev(div, "type", "step");
+    			attr_dev(div, "class", "step dndTest");
+    			set_style(div, "position", "relative");
+    			attr_dev(div, "data-ddisplay", "");
+    			attr_dev(div, "data-udisplay", "");
+    			attr_dev(div, "data-cdisplay", "");
+    			add_location(div, file$f, 43, 12, 1434);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append_dev(div, t0);
+    			mount_component(dragpreview, div, null);
+    			append_dev(div, t1);
+    			mount_component(droppreview, div, null);
+    			append_dev(div, t2);
+    			mount_component(radiopreview, div, null);
+    			append_dev(div, t3);
+    			mount_component(selectpreview, div, null);
+    			append_dev(div, t4);
+    			mount_component(textboxpreview, div, null);
+    			append_dev(div, t5);
+    			mount_component(checkboxpreview, div, null);
+    			append_dev(div, t6);
+    			mount_component(tabheadpreview, div, null);
+    			append_dev(div, t7);
+    			mount_component(hotspotpreview, div, null);
+    			append_dev(div, t8);
+    			mount_component(menulistpreview, div, null);
+    			append_dev(div, t9);
+    			mount_component(multilineboxpreview, div, null);
+    			append_dev(div, t10);
+    			mount_component(tabpreview, div, null);
+    			append_dev(div, t11);
+    			mount_component(buttonpreview, div, null);
+    			append_dev(div, t12);
+    			mount_component(labelpreview, div, null);
+    			append_dev(div, t13);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*data*/ ctx[7]._bgimg) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_1$8(ctx);
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			const dragpreview_changes = {};
+    			if (dirty & /*step*/ 8) dragpreview_changes.modules = /*data*/ ctx[7].drag ? /*data*/ ctx[7].drag : [];
+    			if (dirty & /*containerID*/ 1) dragpreview_changes.containerID = /*containerID*/ ctx[0];
+    			dragpreview.$set(dragpreview_changes);
+    			const droppreview_changes = {};
+    			if (dirty & /*step*/ 8) droppreview_changes.modules = /*data*/ ctx[7].drop ? /*data*/ ctx[7].drop : [];
+    			if (dirty & /*containerID*/ 1) droppreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) droppreview_changes.uxml = /*uxml*/ ctx[1];
+    			droppreview.$set(droppreview_changes);
+    			const radiopreview_changes = {};
+    			if (dirty & /*step*/ 8) radiopreview_changes.modules = /*data*/ ctx[7].radio ? /*data*/ ctx[7].radio : [];
+    			if (dirty & /*containerID*/ 1) radiopreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) radiopreview_changes.uxml = /*uxml*/ ctx[1];
+    			radiopreview.$set(radiopreview_changes);
+    			const selectpreview_changes = {};
+    			if (dirty & /*step*/ 8) selectpreview_changes.modules = /*data*/ ctx[7].select ? /*data*/ ctx[7].select : [];
+    			if (dirty & /*containerID*/ 1) selectpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) selectpreview_changes.uxml = /*uxml*/ ctx[1];
+    			selectpreview.$set(selectpreview_changes);
+    			const textboxpreview_changes = {};
+    			if (dirty & /*step*/ 8) textboxpreview_changes.modules = /*data*/ ctx[7].textbox ? /*data*/ ctx[7].textbox : [];
+    			if (dirty & /*containerID*/ 1) textboxpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) textboxpreview_changes.uxml = /*uxml*/ ctx[1];
+    			textboxpreview.$set(textboxpreview_changes);
+    			const checkboxpreview_changes = {};
+    			if (dirty & /*step*/ 8) checkboxpreview_changes.modules = /*data*/ ctx[7].checkbox ? /*data*/ ctx[7].checkbox : [];
+    			if (dirty & /*containerID*/ 1) checkboxpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) checkboxpreview_changes.uxml = /*uxml*/ ctx[1];
+    			checkboxpreview.$set(checkboxpreview_changes);
+    			const tabheadpreview_changes = {};
+    			if (dirty & /*step*/ 8) tabheadpreview_changes.modules = /*data*/ ctx[7].tabhead ? /*data*/ ctx[7].tabhead : [];
+    			if (dirty & /*containerID*/ 1) tabheadpreview_changes.containerID = /*containerID*/ ctx[0];
+    			tabheadpreview.$set(tabheadpreview_changes);
+    			const hotspotpreview_changes = {};
+    			if (dirty & /*step*/ 8) hotspotpreview_changes.modules = /*data*/ ctx[7].hotspot ? /*data*/ ctx[7].hotspot : [];
+    			if (dirty & /*containerID*/ 1) hotspotpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) hotspotpreview_changes.uxml = /*uxml*/ ctx[1];
+    			hotspotpreview.$set(hotspotpreview_changes);
+    			const menulistpreview_changes = {};
+    			if (dirty & /*step*/ 8) menulistpreview_changes.modules = /*data*/ ctx[7].menulist ? /*data*/ ctx[7].menulist : [];
+    			if (dirty & /*containerID*/ 1) menulistpreview_changes.containerID = /*containerID*/ ctx[0];
+    			menulistpreview.$set(menulistpreview_changes);
+    			const multilineboxpreview_changes = {};
+
+    			if (dirty & /*step*/ 8) multilineboxpreview_changes.modules = /*data*/ ctx[7].multilinebox
+    			? /*data*/ ctx[7].multilinebox
+    			: [];
+
+    			if (dirty & /*containerID*/ 1) multilineboxpreview_changes.containerID = /*containerID*/ ctx[0];
+    			if (dirty & /*uxml*/ 2) multilineboxpreview_changes.uxml = /*uxml*/ ctx[1];
+    			multilineboxpreview.$set(multilineboxpreview_changes);
+    			const tabpreview_changes = {};
+    			if (dirty & /*checkImages*/ 4) tabpreview_changes.checkImages = /*checkImages*/ ctx[2];
+    			if (dirty & /*step*/ 8) tabpreview_changes.modules = /*data*/ ctx[7].tab ? /*data*/ ctx[7].tab : [];
+    			if (dirty & /*containerID*/ 1) tabpreview_changes.containerID = /*containerID*/ ctx[0];
+    			tabpreview.$set(tabpreview_changes);
+    			const buttonpreview_changes = {};
+    			if (dirty & /*step*/ 8) buttonpreview_changes.modules = /*data*/ ctx[7].button ? /*data*/ ctx[7].button : [];
+    			if (dirty & /*containerID*/ 1) buttonpreview_changes.containerID = /*containerID*/ ctx[0];
+    			buttonpreview.$set(buttonpreview_changes);
+    			const labelpreview_changes = {};
+    			if (dirty & /*step*/ 8) labelpreview_changes.modules = /*data*/ ctx[7].label ? /*data*/ ctx[7].label : [];
+    			if (dirty & /*containerID*/ 1) labelpreview_changes.containerID = /*containerID*/ ctx[0];
+    			labelpreview.$set(labelpreview_changes);
+
+    			if (!current || dirty & /*step*/ 8 && div_id_value !== (div_id_value = "dnd" + /*data*/ ctx[7]._id)) {
+    				attr_dev(div, "id", div_id_value);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(dragpreview.$$.fragment, local);
+    			transition_in(droppreview.$$.fragment, local);
+    			transition_in(radiopreview.$$.fragment, local);
+    			transition_in(selectpreview.$$.fragment, local);
+    			transition_in(textboxpreview.$$.fragment, local);
+    			transition_in(checkboxpreview.$$.fragment, local);
+    			transition_in(tabheadpreview.$$.fragment, local);
+    			transition_in(hotspotpreview.$$.fragment, local);
+    			transition_in(menulistpreview.$$.fragment, local);
+    			transition_in(multilineboxpreview.$$.fragment, local);
+    			transition_in(tabpreview.$$.fragment, local);
+    			transition_in(buttonpreview.$$.fragment, local);
+    			transition_in(labelpreview.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(dragpreview.$$.fragment, local);
+    			transition_out(droppreview.$$.fragment, local);
+    			transition_out(radiopreview.$$.fragment, local);
+    			transition_out(selectpreview.$$.fragment, local);
+    			transition_out(textboxpreview.$$.fragment, local);
+    			transition_out(checkboxpreview.$$.fragment, local);
+    			transition_out(tabheadpreview.$$.fragment, local);
+    			transition_out(hotspotpreview.$$.fragment, local);
+    			transition_out(menulistpreview.$$.fragment, local);
+    			transition_out(multilineboxpreview.$$.fragment, local);
+    			transition_out(tabpreview.$$.fragment, local);
+    			transition_out(buttonpreview.$$.fragment, local);
+    			transition_out(labelpreview.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			destroy_component(dragpreview);
+    			destroy_component(droppreview);
+    			destroy_component(radiopreview);
+    			destroy_component(selectpreview);
+    			destroy_component(textboxpreview);
+    			destroy_component(checkboxpreview);
+    			destroy_component(tabheadpreview);
+    			destroy_component(hotspotpreview);
+    			destroy_component(menulistpreview);
+    			destroy_component(multilineboxpreview);
+    			destroy_component(tabpreview);
+    			destroy_component(buttonpreview);
+    			destroy_component(labelpreview);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$e.name,
+    		type: "each",
+    		source: "(43:8) {#each step as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$f(ctx) {
+    	let div;
+    	let current;
+    	let if_block = /*step*/ ctx[3] && /*step*/ ctx[3].length > 0 && create_if_block$f(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			add_location(div, file$f, 40, 0, 1346);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*step*/ ctx[3] && /*step*/ ctx[3].length > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*step*/ 8) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$f(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$f.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$f($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("StepPreview", slots, []);
+    	let { modules } = $$props;
+    	let { containerID } = $$props;
+    	let { uxml = "" } = $$props;
+    	let { checkImages } = $$props;
+    	let step = modules;
+    	const writable_props = ["modules", "containerID", "uxml", "checkImages"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<StepPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	const load_handler = () => {
+    		checkImages(2);
+    	};
+
+    	const error_handler = (data, e) => {
+    		e.target.onerror = null;
+    		e.target.src = "https://s3.amazonaws.com/jigyaasa_content_static/" + data._bgimg;
+    	};
+
+    	$$self.$$set = $$props => {
+    		if ("modules" in $$props) $$invalidate(4, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(0, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(1, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(2, checkImages = $$props.checkImages);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		DragPreview,
+    		DropPreview,
+    		RadioPreview,
+    		SelectPreview,
+    		TextboxPreview,
+    		CheckboxPreview,
+    		TabheadPreview,
+    		HotspotPreview,
+    		MenulistPreview,
+    		MultilineboxPreview,
+    		TabPreview,
+    		ButtonPreview,
+    		LabelPreview,
+    		modules,
+    		containerID,
+    		uxml,
+    		checkImages,
+    		step
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("modules" in $$props) $$invalidate(4, modules = $$props.modules);
+    		if ("containerID" in $$props) $$invalidate(0, containerID = $$props.containerID);
+    		if ("uxml" in $$props) $$invalidate(1, uxml = $$props.uxml);
+    		if ("checkImages" in $$props) $$invalidate(2, checkImages = $$props.checkImages);
+    		if ("step" in $$props) $$invalidate(3, step = $$props.step);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*modules*/ 16) {
+    			 if (modules) {
+    				if (Array.isArray(modules) == false) {
+    					$$invalidate(3, step = []);
+    					$$invalidate(3, step[0] = modules, step);
+    				} else {
+    					$$invalidate(3, step = modules);
+    				}
+    			} else {
+    				$$invalidate(3, step = []);
+    			}
+    		}
+    	};
+
+    	return [containerID, uxml, checkImages, step, modules, load_handler, error_handler];
+    }
+
+    class StepPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$f, create_fragment$f, safe_not_equal, {
+    			modules: 4,
+    			containerID: 0,
+    			uxml: 1,
+    			checkImages: 2
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "StepPreview",
+    			options,
+    			id: create_fragment$f.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*modules*/ ctx[4] === undefined && !("modules" in props)) {
+    			console.warn("<StepPreview> was created without expected prop 'modules'");
+    		}
+
+    		if (/*containerID*/ ctx[0] === undefined && !("containerID" in props)) {
+    			console.warn("<StepPreview> was created without expected prop 'containerID'");
+    		}
+
+    		if (/*checkImages*/ ctx[2] === undefined && !("checkImages" in props)) {
+    			console.warn("<StepPreview> was created without expected prop 'checkImages'");
+    		}
+    	}
+
+    	get modules() {
+    		throw new Error("<StepPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set modules(value) {
+    		throw new Error("<StepPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get containerID() {
+    		throw new Error("<StepPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set containerID(value) {
+    		throw new Error("<StepPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<StepPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<StepPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checkImages() {
+    		throw new Error("<StepPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checkImages(value) {
+    		throw new Error("<StepPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    const l = {
+        add_new_task : "Add new task",
+        edit_task : "Edit task",
+        you_cant_add_task_from_chapter : "You can't add task from chapter",
+        status_update_success_txt : "Status has been updated successfully.",
+        deleting_multiple_contents_will_also_delete_the_nested_contents: "If this item has nested sub-items, then deleting this will also delete sub-items.",
+        viewer_error_msg_js: "You are participating as a viewer, You don't have permission to save.",
+        add_new_part: "Add New Part",
+        cut_js: "Cut",
+        paste_js: "Paste",
+        eng: "English",
+        deleted: "Deleted",
+        donot_select_multiseat: "Please do not select multi seat vouchers.",
+        select_used_voucher: "Please select used voucher only.",
+        edit_js: "Edit ",
+        delete_js: "Delete ",
+        add_existing_content: "Add Existing Content",
+        duplicate_row: "Duplicate Row",
+        author_lesson: "Author as Lesson",
+        draft_js: "Draft",
+        publish_js: "Publish",
+        edit_mode: "Lesson Preview",
+        import_from_epub: "Import a Lesson Below",
+        select_new_content_type: "Select new content type",
+        change_type_js: "Change type",
+        objective_js: "Objective",
+        fact_js: "Fact",
+        embeded_content_js: "Embeded content",
+        glossary_js: "Glossary",
+        customize_saved: "Saved Successfully.",
+        unable_save: "Error. Unable to save",
+        add_txt : "Add",
+        actions_txt : "Actions",
+        bug_update : "Bug updated successfully.",
+        org_url_exist : "Org Ucertify Url already exists!!",
+        logo_validate : "logo must be less than 1MB.",
+        logo_res : "logo size must be of maximum 300x100 pixel resolution.",
+        image_validate : "Only jpeg, jpg, png, gif, bmp file types are supported.",
+        country_update : "Country updated successfully.",
+        country_not_updated : "Country not updated.",
+        post_update : "Post updated successfully.",
+        post_not_updated : "Post not updated.",
+        user_deleted  : "The user has been deleted successfully! ",
+        user_not_deleted  : "The user cannot be deleted.Please try after some time!",
+        first_js_lang : "Js Testing",
+        error_while_saving_please_try_again : "Error while saving, please try again",
+        do_you_really_want_to_save : "Do you really want to Save?",
+        off: "Off",
+        lti_success: "Your score has been updated on your LMS.",
+        lti_fail: "Score is not updated due to some technical issue.",
+        select_an_option_txt : "Select an option",
+        updated_please_reload : "Updated, please reload.",
+        content_not_deleted_please_try_again : "Unable to delete the content. Please try again.",
+        delete_content_with_child : "Item is deleted successfully with its child.",
+        error_unable_to_delete : "Error. Unable to delete",
+        no_changes_txt : "No changes.",
+        content_has_been_added_successfully : "Content has been added successfully.",
+        content_has_not_been_added_successfully : "Content has not been added successfully.",
+        part_has_been_deleted_successfully : "Part has been deleted successfully.",
+        content_has_been_moved_successfully : "Content has been moved successfully.",
+        content_has_not_been_moved_successfully : "Content has not been moved successfully.",
+        error_unable_to_move : "Error. Unable to move",
+        content_level_has_been_changed_successfully : "Content level has been changed successfully.",
+        content_level_has_not_been_changed_successfully : "Content level has not been changed successfully.",
+        error_unable_to_changed_level : "Error. Unable to changed the level",
+        taglist: "Tag List",
+        formats: "Formats",
+        bits: "bold",
+        italics: "italic",
+        underlines: "underline",
+        strikethrough: "Strikethrough",
+        strikethroughs: "strikethrough",
+        superscripts: "superscript",
+        subscripts: "subscript",
+        small: "Small",
+        smalls: "small",
+        heading: "Heading",
+        heading1: "Heading 1",
+        heading2: "Heading 2",
+        heading3: "Heading 3",
+        heading4: "Heading 4",
+        heading5: "Heading 5",
+        heading6: "Heading 6",
+        newspaper: "Newspaper Font",
+        blocks: "Blocks",
+        para: "Paragraph",
+        div: "Div",
+        block: "Blockquote",
+        span: "Span",
+        code: "Code",
+        insnote: "Instructor Note",
+        insans: "Instructor Answer",
+        left: "Left",
+        alignleft: "alignleft",
+        center: "Center",
+        aligncenter: "aligncenter",
+        right: "Right",
+        alignright: "alignright",
+        justify: "Justify",
+        alignjustify: "alignjustify",
+        cases: "Cases",
+        uppercase: "Uppercase",
+        lowercase: "Lowercase",
+        titlecase: "Titlecase",
+        sentence_case: "Sentence Case",
+        toggle_case: "Toggle Case",
+        color: "Color",
+        success: "Success",
+        bsuccess: "b-success",
+        warning: "Warning",
+        bwarning: "b-warning",
+        danger: "Danger",
+        bdanger: "b-danger",
+        white: "White",
+        bwhite: "b-white",
+        bgreen: "b-green",
+        objref: "objref(italic)",
+        borange: "b-orange",
+        binfo: "b-info",
+        bprimary: "b-primary",
+        bgcolor: "Background color",
+        lsuccess: "Label-Success",
+        linfo: "Label-Info",
+        lprimary: "Label-Primary",
+        ldanger: "Label-Danger",
+        lwarning: "Label-Warning",
+        list: "List",
+        withoutBullet: "Without Bullet",
+        numlist: "Numbered list",
+        alphlist: "Alphabetical list",
+        romanlist: "Roman list",
+        numalphlist: "Numeric alpha list",
+        bullist: "Bullet list",
+        blarlist: "Black arrow bullets",
+        bluearlist: "Blue arrow bullets",
+        blarbullet: "Blue arrow bullets with gray background",
+        blcrcbbullet: "Blue circle bullets",
+        bcbwbt: "Blue circle bullet with black text",
+        redcrlist: "Red circle list",
+        whcrclist: "White circle list",
+        tickbull: "Tick Bullet",
+        listtype1: "List type 1",
+        listtype2: "List type 2",
+        listtype3: "List type 3",
+        listtype4: "List type 4",
+        listtype5: "List type 5",
+        listtype6: "List type 6",
+        table: "Table",
+        deftable: "Default Table",
+        smplbortab: "Simple Bordered Table",
+        unbortab: "Unbordered Table",
+        borbacktab: "Bordered Background Table",
+        hrowsbor: "Highlighted Rows Bordered",
+        strptab: "Striped Table",
+        tabhovdes: "Table Hover Design",
+        mulstrp: "Multiple Stripes",
+        separate: "Separate",
+        grycolor: "Gray color column",
+        blueshade: "Blue header with shading table",
+        box: "Box",
+        panelblue: "Panel Box Blue",
+        panelgreen: "Panel Box Green",
+        panelsky: "Panel Box Sky-blue",
+        panelgrad: "Panel Box gradient",
+        block_with_border: "Panel Box with Border",
+        blockgrey: "Block in grey background",
+        symbols: "Symbols",
+        ucsyntax: "UC Syntax",
+        indentation: "Indentation",
+        clear_formatting: "Clear Formatting",
+        wrap_text: "Wrap your text in block element to indent",
+        outdent: "outdent",
+        removeformat: "removeformat",
+        align_content_message: "Wrap your text in block element to align content",
+        blue_color:"Blue",
+        orange_color:"Orange",
+        red_color: "Red",
+        golden_brown_color: "Golden Brown",
+        black_color: "Black",
+        green_color: "Green",
+        cyan_color:  "Cyan",
+        uc_syntax_format1: "White with number",
+        uc_syntax_format2: "White without number",
+        uc_syntax_format3: "Black with number",
+        uc_syntax_format4: "Black without number",
+        line_break1: "Single line Break",
+        line_break2: "Double line Break",
+        quotes: "Quotes(Sayings)",
+        code_block1: "Syntax",
+        code_block2: "Black with number",
+        code_block3: "Black without number",
+        code_block4: "White with number",
+        code_block5: "White without number",
+        timeline: "Timeline",
+        slideshow :"Slideshow",
+        panel_success: "Panel Success",
+        panel_info: "Panel Info",
+        panel_primary: "Panel Primary",
+        panel_danger: "Panel Danger",
+        panel_warning: "Panel Warning",
+        acc_list1: "Accordion List 1",
+        acc_list2: "Accordion List 2",
+        acc_list3: "Accordion List 3",
+        acc_list4: "Accordion List 4",
+        inlineAlign: "icomoon-inline",
+        headings: "icomoon-heading",
+        block_ico: "icomoon-blocks",
+        alginments: "icomoon-align",
+        case: "icomoon-cases",
+        colors: "icomoon-color",
+        background: "icomoon-background-color",
+        lists: "icomoon-list",
+        tables: "icomoon-table",
+        boxes: "icomoon-24-px-box",
+        symbol: "icomoon-symbols",
+        ucsyntaxes: "icomoon-uC-syntax",
+        ucfeed: "icomoon-uC-feedback",
+        dummyText: "Enter Your Text Here",
+        authoring : "Authoring",
+        change_view : "Change View",
+        render_tag : "Render Tags",
+        version_control : "Revision History",
+        preview : "Preview",
+        remediation : "Remediation",
+        back : "Back",
+        save_header : "Confirmation",
+        save_process : "Please, be patient. We are saving your data...",
+        save_confirmation : "Do you want to save this content?",
+        cancel : "Cancel",
+        done : "Done",
+        save_new : "Save as new",
+        save : "Save",
+        save_success : "Data saved successfully",
+        save_success_owner : "Content is successfully saved. Get it published by the Reviewer/Owner to make it visible in the course.",
+        save_error : "It seems that the course is not loaded. Please load the course before you save.",
+        setting : "Settings",
+        add_response : "Add Response",
+        add_editable : "Add Editable",
+        case_sensetive : "Case Sensitive",
+        ignore_spcl_char : "Ignore Special Character",
+        multi : "Multiple Correct Answer",
+        fill_header : "Fill in the blanks - type",
+        fill_text_title : "Fill in the blanks (with text)",
+        fill_dropdown_title : "Fill in the blanks (with drop downs)",
+        fill_dragdrop_title : "Fill in the blanks (with drag & drop)",
+        short_text : "Short Text",
+        fill_multiline_title : "Fill in the blanks (with multiline)",
+        fill_math_title : "Fill in the blanks (with mathematical equations)",
+        math_eq         : 'Mathematical Equation',
+        fill_text_placeholder : "Write correct answer here",
+        fill_text_help1 : "1. To include multiple correct answers, type the answers and separate them with a comma (,).",
+        fill_text_help2 : "2. Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down.",
+        fill_text_help3 : "3. Use #cm for comma (e.g., 5,000 as 5#cm000, function(a,b) as function(a#cmb)).",
+        fill_math_help1 : "1. To make math equation initially, Click f(x) and then insert the equation.",
+        fill_math_help2 : "2. To add user Response, place cursor before{*} and Click Add Response.",
+        fill_math_help3 : "3. To edit the existing equation, Click Edit.",
+        fill_help1_help2: "1. To include multiple correct answers, type the answers and separate them with a comma (,). Please do not include any space. Now, go back to the Settings and select Multiple Correct Answers from the drop-down",
+        fill_text_help2 : "2. Use #cm for comma (e.g., 5,000 as 5#cm000, function(a,b) as function(a#cmb)).",
+        star_note : '* Note:',
+        do_not_include_space : '2. Please do not include space.',
+        //fill_text_help3 : "Now, go back to Settings and select Multi from the drop-down.",
+        fill_dropdown_placeholder : "Write Option here",
+        fill_dropdown_help1 : "1. To choose correct answer, select any one radio button from the given options.",
+        fill_dropdown_help2 : "2. To choose the display answer, put ‘+’ sign before it. For eg: (+value).",
+        fill_dropdown_help3 : "3. To give comma (,) between the text use #cm symbol.",
+        drag_single : "Allow single dragging",
+        fill_dragdrop_help1 : "1. By default, all answer option is correct.",
+        fill_dragdrop_help2 : "2. To make an option incorrect, uncheck the corresponding checkbox.",
+        fill_dragdrop_help3 : "3. To give comma (,) between the text use #cm symbol.",
+        fill_dragdrop_help4 : "4. To give Vertical bar (|) use #pipe symbol.",
+        default_answer : "Default Answer",
+        rows : "Rows",
+        cols : "Cols",
+        fill_multiline_help1 : "By default, all the options provided are correct.",
+        matchlist_heading1 : "List 1 heading",
+        matchlist_heading2 : "List 2 heading",
+        matchlist_normal : "Normal",
+        matchlist_dnd : "Drag & Drop",
+        shuffle : "Click here to Shuffle",
+        add_item : "Add item",
+        allow_sort : "Sequence", //"Allow User to Sort",
+        in_sentence : "Sentence",
+        in_paragraph : "Paragraph",
+        go_back : "Go Back",
+        goback_header : "Confirmation",
+        goback_confirmation : "Do you really want to go to item list?",
+        sceneChange_confirmation: "Your changes will be lost. Do you want to save this content ? ",
+        show_preview : "Preview",
+        xml : "XML",
+        back_authoring : "Back to Authoring",
+        title : "Title",
+        stem : "Stem",
+        content : "Content",
+        error : "Error",
+        playertag : "Player Tag",
+        equationeditor : "Equation Editor",
+        error_occured : "Something went wrong, Please try again.",
+        click_preview : "Click To Preview",
+        loading_module : "Loading Module",
+        something_wrong : "Something went wrong, Please try again.",
+        reload : "Reload",
+        search_here : "Search here...",
+        all_item : "All Items",
+        max_error : "More than 6 options may cause this item to not render properly on a smartphone.",
+        reset : "Reset",
+        resetDB : "Reset DB",
+        calculate_answer : "Calculating Answer",
+        add : "Add",
+        remove : "Remove",
+        correct_answer : "Correct Answer",
+        your_answer : "Your Answer",
+        correct : "Correct",
+        incorrect : "Incorrect",
+        select_language : "Language",
+        please_wait : "Please, be patient. We are working things up for you. ",
+        sequence : "Sequence",
+        multi_check : "Multi Check",
+        default : "Default",
+        heading_correct : "Heading for correct list item",
+        heading_all : "Heading for all list item",
+        open_doc : "uCertify Team has open this content for editing. Your changes might be lost.",
+        getting_diff : "Please, be patient. We are calculating the differences for you.",
+        getting_list : "Please, be patient. We are generating the list for you.",
+        restore_currect : "Restore Current Version",
+        submit : "Submit",
+        getting_webpage : "Please, be patient. We are generating the Webpage list for you.",
+        getting_docx : "Please, be patient. We are generating the Content in Docx Formatting for you.",
+        getting_help : "Please, be patient. We are generating the help for you.",
+        row_limit : "You have reached the minimum number of rows you can delete.",
+        col_limit : "You have reached the minimum number of columns you can delete.",
+        del_confirmation : "Are you sure you want to delete it?",
+        wrong_value_information : "Values of the row and column should always be multiples of ",
+        min_row_col_value : "Insufficient value to make a table; there should be atleast four values.",
+        provide_value_suggestion : "Insufficient value to make a table; please increase or decrease the value by 1.",
+        totaloption : 'Total number of values available : ',
+        max_row_col_error : "More than five rows and five columns may not render properly on a smartphone.",
+        create_existing_variable : "Create Existing Variable",
+        create_new_variable : "Create New variable",
+        update_variable : "Update Variable",
+        use_existing_variable : "Use existing variable",
+        help : "Help",
+        create_variable : "Create Variable",
+        all_function_help : "* Do not give a variable name containing space.",
+        randInt_function_help : "* Default value will be 1.",
+        randint_randfloat_function_help1 : "* This function is used to find a random number between two given numbers.",
+        randint_randfloat_function_help2 : "* Do not provide the non-integer value in the minimum and maximum fields.",
+        randint_randfloat_function_help3 : "* Minimum value should always be less than the maximum value.",
+        randobj_function_help1 : "* This function is used to find a random character or string separated by "+"\",\" (comma).",
+        randobj_function_help2 : "* Provide the value like Java, React, Php, and C.",
+        custom_function_help1 : "* This function is used to solve any expression.",
+        custom_function_help2 : "* Some of the functions take a character/word as an argument so the argument must be passed between the # (hash) symbol.",
+        custom_function_help3 : "* If you want to find Intersection, then the argument must be passed like this: math.setIntersect([#a#,#b#],[#a#,#b#,#c#]).",
+        custom_function_help4 : "* If you want to find Differentiation, then the argument must be passed like this: math.derivative(#var1*obj1<sup>var2</sup>-var3*obj1+var4#,#obj1#).",
+        edit_token: "Highlight correct token",
+        edit_template: "Enter text",
+        word: "Word",
+        sentance: "Sentence",
+        paragraph: "Paragraph",
+        clear: "Clear",
+        no_of_token: "Selected",
+        token_highlight: "Token Highlight",
+        direction: "Direction:",
+        enableline : "Enable-line",
+        language: "Language",
+        add_testcase: "Add Testcase",
+        is_graph : "Is Graph",
+        ignore_error: "Ignore Error",
+        ignore_formatting: "Ignore Formatting",
+        ignore_reset_db: 'Ignore Reset DB',
+        pre_tag: "Pre Tag",
+        run: "Run",
+        run_code: "Run Code",
+        html_css_js: "HTML/ CSS/ JS",
+        input: "Input",
+        output: "Output",
+        testcases: "Testcases",
+        close: "Close",
+        pre: "Pre",
+        post: "Post",
+        editor: "Editor",
+        save_variable : "Save Variables",
+        create_steps : "Create Steps",
+        plain_text : "Plain text",
+        interactive : "Interactive",
+        no_validation : "No validation",
+        sticky : "Sticky",
+        "delete" : "Delete",
+        confirm_delete_variable : "If this variable is used in steps it will be treated as text. Are you sure you want to delete it?",
+        next : "Next",
+        solve : "Solve",
+        functions: "Functions",
+        Allsymbols: "All Symbols",
+        Basic: "Basic",
+        xvariables: "x",
+        sin: "sin",
+        Misc: "Misc",
+        Discrete: "Discrete",
+        kg: "kg",
+        lb: "lb",
+        brackets: "Brackets",
+        algo_xml: "Algo XML",
+        val_variations: "Values variations",
+        chem: "Chem",
+        tools: "Tools",
+        domain: "Domain",
+        exam_objective: "Exam Objective",
+        web_pages: "Web pages",
+        docx_formatting: "Docx Formatting",
+        analyze_ebook: "Analyze Ebook Item",
+        inline: "Inline",
+        bold: "Bold",
+        italic: "Italic",
+        underline: "Underline",
+        superscript: "Superscript",
+        subscript: "Subscript",
+        subtype: "Tag SubType:",
+        showangle: "Show Angle",
+        alignment: "Alignment:",
+        raw: "RAW",
+        html: "HTML",
+        css: "CSS",
+        js: "JS",
+        result: "Result",
+        autograde: "Autograde",
+        disable: "Disable/Hide",
+        editable: "Editable",
+        hidden: "Hidden",
+        disabled: "Disabled",
+        internalScript: "Internal Script",
+        externalScript: "External Script",
+        detail: "Detail",
+        element_name: "Element Name",
+        convert: "Convert",
+        analyze_content: "Analyze Content",
+        analyzing: "Analyzing",
+        show_more: "Show more",
+        show_less: "Show less",
+        task:"Task",
+        task_objective:"Task Objective",
+        textsnippet:"Text Snippet",
+        sectiondetail:"Section Details",
+        tags:"Tags",
+        item:"Item",
+        itemType:"Item Type",
+        type:"Type",
+        comments:"Comments",
+        cognitive_level:"Cognitive Level",
+        refer_content:"Refer Content",
+        create_equation:"Create Equation",
+        help_video:"Help Video",
+        diagnostic:"Diagnostic",
+        keyboard_shortcut:"Keyboard Shortcut",
+        delete_exist_element: "Are you sure you want to delete existing elements?",
+        edit_dialog: "Edit Dialog",
+        update: "Update",
+        add_category: "Add Category",
+        import_csv: "Import CSV",
+        create_new_question: "Create New Question",
+        max: "Max",
+        min: "Min",
+        step: "step",
+        slider: "Slider",
+        oops_msg: "Oops! Something went wrong please check your ParseXML Function.",
+        minimum: "Minimum",
+        maximum: "Maximum",
+        ignore_grading: "Ignore grading",
+        eval_ada1_msg: "1. Press 'CTRL+SHIFT+Enter key' to RUN the code",
+        eval_ada2_msg: "2. Press 'CTRL+SHIFT+SPACE key' to goto Input/Output side",
+        eval_ada_info: "ADA Information",
+        annotationId: "Enter image annotation item ID here",
+        annotationPlaceholder: "Enter image annotation title here",
+        imageAnnotation: "An annotation player is used to add the image annotation in the middle of the e-book lessons.",
+        select_lang: "Please select language",
+        show_transcript: "Show transcript",
+        audio_recorder: "Audio Recorder",
+        starting_message: "Click on record to start recording",
+        spoken_label: "What we heard",
+        note_label: "Note: ",
+        insensitive_message: "Matching is case insensitive.",
+        recording_warning: "Recording will end automatically after 15 sec.",
+        english_us: "English (United States)",
+        english_in: "English (U.K.)",
+        italiano: "Italian",
+        suomi: "Finnish",
+        svenska: "Swedish",
+        confirm_label: "Confirm",
+        modal_data: "It will override the previous recording. Do you want to continue?",
+        no_label: "No",
+        yes_label: "Yes",
+        browser_support_msg: "Your browser does not support this feature. Please use latest version of chrome browser to use this feature.",
+        recording_ended: "Recording ended.",
+        no_data_msg: "No recorded data found.",
+        matching_msg: "No matching data is found.",
+        space_warning: "Do not use more than one space unnecessary.",
+        separate_by_quote: "separate with &quot; , &quot",
+        pre_code: "pre code",
+        write_function_here: "Write your function here...",
+        postcode: "post code",
+        seperate_by_enter_key: "Separate input by 'enter' key",
+        minus_1: "-1",
+        case_insensitive: "Case Insensitive",
+        partial_matching: "Partial Matching",
+        partial_match: "Partial Match",
+        special_char: "Special Char",
+        input_seperated_comma: "Input seperated by ','",
+        ignore_special_char: "Ignore Special Char",
+        testcase: "TestCase",
+        markPointColor: "Point Color",
+        lightGreen: "Light Green",
+        orange : "Orange",
+        select_case_match: "Select case match",
+        decimal_position: "please enter the decimal position between 1 to ",
+        grid_one_to_ten: "Number Must be between 1 to 10",
+        col_less_one : "Column Not allowed less then 1",
+        type_one_to_seven: "Please type between 1 to 7",
+        row_less_one: "Row Not allowed less then 1",
+        type_one_to_ten: "Please type between 1 to 10",
+        double_digit: "Double digit not accepted",
+        less_one : "Less then 1 not accepted",
+        number_from: "Insert number between 0 to ",
+        another_option: "Select another option",
+        layout_options: "Layout Options",
+        row_count: "Row Count",
+        col_count: "Column Count",
+        empty_field: "Field value can not be empty",
+        lock_author_cell: "To lock author shaded cells, it should be part of correct answer",
+        delete_graph: 'Click on this button to delete the graph',
+        delete_chart: 'Click on this button to delete the last point of the chart',
+        ada_graph_msg: 'Press any key on this button to open modalbox to set the point for draw the graph without click on the graph board',
+        ada_chart_msg: 'Press any key on this button to open modalbox to set the point for draw the chart without click on the chart board',
+        add_chart_msg: 'Click on this button to add the point on the chart',
+        edit_graph: 'Click on this button to open modalbox for change the graph view',
+        edit_chart: 'Click on this button to open modalbox for change the chart view',
+        validate_dialog: 'You have to put the image name',
+        ada_message: "use control plus alt plus 1 to open the dialog for perform the task",
+        token_message: "Please use ##pt for dot (.) and #cm for comma (,).",
+        button_text: 'Shown on the button at the bottom of the intro screen.',
+        level_text: 'Level',
+        insert_note: 'Insert Note',
+        load_more: 'Load More',
+        placeholder_text: 'Enter the name of button',
+        name_text: 'Name',
+        note_placeholder: 'Insert text here',
+        level_placeholder: 'Enter the label message',
+        knowledge_check: 'This player tag is used to add questions in the middle of the ebook lessons.',
+        enter_title: 'Enter the title',
+        multi_item_id: 'Enter the comma-separated item id(s)',
+        item_id: 'Item ID',
+        graded: 'Graded Item(s)',
+        coding: 'This player tag is used to test the web module’s XML and display its preview simultaneously in the ebook lessons.',
+        simulation: 'This player tag is used to create menu-based questions in Word or Excel, in which only the tabs are working.',
+        terminal: 'This player tag is used to add the Linux, DOS, or Java module questions in the middle of the ebook lessons.',
+        lablink: 'This player tag is used to add live labs in the mid of ebook lessons which can then be clicked and opened in a new tab.',
+        insight: 'This player tag is used to add the 3D chat questions in the middle of the ebook lessons.',
+        playground: 'Coding Lab',
+        simulation_txt: 'Simulation',
+        terminal_txt: 'Terminal',
+        livelab: 'Live Lab',
+        lab3d: '3D Lab',
+        java_txt: 'Java',
+        linux_txt: 'Linux',
+        dos_txt: 'DOS',
+        default_val: 'Enter the default value. Example: dialog_name=options',
+        enter_xml: 'Enter the XML',
+        simulator_name: 'Simulator Name',
+        simulator_place: 'Enter the simulator name. Example: msoffice-msword-2013',
+        enter_item: 'Enter the item id',
+        embed: 'Embed',
+        new_tab: 'New Tab',
+        overlay: 'Overlay',
+        btn_name: 'Button Name',
+        enter_btn_name: 'Enter the button name',
+        correct_val: 'Enter the correct value. Example: dialog=fileoptionsdvanced',
+        learn_mode: 'Learn Mode',
+        audio_des: 'This player tag is used to add audios in the ebook lessons.',
+        video_des: 'This player tag is used to add videos in the ebook lessons.',
+        audio_txt: 'Audio',
+        video_txt: 'Video',
+        url_txt: 'URL',
+        media_url: 'Enter the media url',
+        transcript_id: 'Transcript ID',
+        enter_id: 'Enter the transcript id',
+        preview_img: 'Image Preview',
+        preview_url: 'Enter the image preview url',
+        security_info: 'This is required security configuration',
+        security_txt: 'Security',
+        security_place: "Enter the security data in json format {'token': '45674', 'wID': '89765'}",
+        security_title: "Put the security data in json for example {'token': '45674', 'wID': '89765'}.",
+        multiple_video: 'Multiple Videos',
+        multiple_info: 'All media on this page will be grouped together in a single carousel.',
+        add_interval: 'Add Interval',
+        interval_txt: 'Interval',
+        in_sec: '(In seconds)',
+        action_txt: 'Action',
+        caption_txt: 'Caption',
+        one_num: '1',
+        download_info: 'This player tag is used to attach pdf files, word documents, excel files, powerpoint presentations, or any kind of attachment in the ebook lessons.',
+        pdf_info: 'This player tag is used to add the pdf files in the ebook lessons.',
+        exhibit_info: 'This player tag is used to add an image or a table in a modal box in quizzes or questions.',
+        weblink_info: 'This player tag is used to add the “Click to read” link, having an image in its background, in the middle of the ebook lessons, which redirects a user to the new link or web page.',
+        download_txt: 'Download',
+        exhibit_txt: 'Exhibit',
+        pdf_txt: 'PDF',
+        weblink_txt: 'Web Link',
+        image_txt: 'Image',
+        text: 'Text',
+        select_img: 'Select an image',
+        ms_access: 'MS Access',
+        ms_excel: 'MS Excel',
+        ms_word: 'MS Word',
+        sas_txt: 'SAS',
+        zip_txt: 'Zip',
+        show_caption: 'Show Button Caption',
+        img_show: 'When image will be shown',
+        hide_caption: 'Hide Button Caption',
+        img_hide: 'When image will be hide',
+        btn_txt: 'Button',
+        link_txt: 'Link',
+        enter_url: 'Enter the url',
+        enter_img_url: 'Enter the image url',
+        enter_icon_url: 'Enter the image icon url',
+        insert_img: 'Insert Image',
+        img_alt: 'Image Alt',
+        img_desc: "Enter the image's description in brief",
+        img_height: 'Enter the image height. Example: 500px',
+        frame_height: 'Enter the frame height. Example: 500px',
+        frame_ht: 'Frame Height',
+        imgage_ht: 'Image Height',
+        img_width: 'Image Width',
+        enter_img_width: 'Enter the image width. Example: 500px',
+        enter_txt: 'Enter the text',
+        border_txt: 'Bordered',
+        player3d_des: 'A 3D Player tag is used to add images with their descriptions in a 3D structure in the middle of the e-book lessons.',
+        snt_des: 'A UC Snt tag is used to add a statement notifying students that more than one option is correct for the given quiz or question.',
+        snt_41: 'Each correct answer represents a complete solution. Choose all that apply.',
+        snt_40: 'Each correct answer represents a part of the solution. Choose all that apply.',
+        snt_39: 'Each correct answer represents a complete solution. Choose three.',
+        snt_38: 'Each correct answer represents a part of the solution. Choose three.',
+        snt_37: 'Each correct answer represents a complete solution. Choose two.',
+        snt_36: 'Each correct answer represents a part of the solution. Choose two.',
+        des_txt: 'Description',
+        seq_des: 'A UC Seq tag is used to refer the correct and incorrect options in the single/multiple choice questions.',
+        enter_seq_title: 'Enter the sequence letter',
+        seq_lable: 'Sequence Letter: use a, b, c, d etc. as per the option',
+        can_not_del: 'You can not Delete Default Node',
+        unable_to_get: 'Unable to get data due to some error.',
+        multi_err: 'Multiple item ids are not allowed.',
+        invalid_id: 'Invalid Item id.',
+        know_check_txt: 'Knowledge Check',
+        lab_txt: 'Lab',
+        media_txt: 'Media',
+        obj3d_txt: '3D Object',
+        instruction_txt: 'Instruction',
+        opt_ref: 'Option Reference',
+        edit_txt: 'Edit',
+        list_content: 'List Contents',
+        create_new_txt: 'Create New',
+        search_item_txt: 'Search Item ID or text',
+        no_record: 'No Record Found.',
+        scorm_txt: 'Scorm',
+        scorm_id: 'Scorm ID',
+        scorm_place: 'Enter the scorm transcript id',
+        mobile_url: 'Mobile URL',
+        mobile_url_place: 'Enter the scorm URL for mobile devices',
+        scorm_url: 'Enter the scorm URL',
+        width_warning: 'The image width must be in between 100px to 1000px',
+        height_warning: 'The image height must be in between 80px to 550px',
+        valid_link: 'Please add a valid video link or Check the format for adding the transcript!',
+        required_field: 'Please enter all the required fields!',
+        vtt_unvalid: 'VTT format is Not valid!',
+        vtt_added: 'Transcript ID is added!',
+        load_course : 'Please load a course first!',
+        asset_not_empty: 'URL can\'t be empty!',
+        vtt_exists: 'Transcript is present for this video. ID added!',
+        no_title: 'Do not show video title',
+        normal_mode: 'Light Mode',
+        dark_mode: 'Dark Mode',
+        figure_caption_text: 'Figure caption',
+        edit_marker_text: 'Edit Marker',
+        markers_text: 'Markers',
+        upload_media_text: 'Upload Media',
+        image_alt_type: 'Image Alt Text',
+        are_you_sure_you_want_to_delete_marker: 'Are you sure you want to delete the marker?',
+        add_image_text: 'Add image',
+        upload_text: 'Upload',
+        file_extension_text: 'File Extensions',
+        number_of_files: 'Number of files',
+        you_can_upload: '#You can upload upto 10 files only.',
+        date_correct_answer_field_placeholder: 'Define The Date For Correct Answer',
+        correct_answer_field_placeholder: 'Define The Value For Correct Answer',
+        duration: 'Duration',
+        vtt: 'VTT',
+        enter_vtt: 'Enter VTT Here',
+        add_vtt: 'ADD',
+        add_transcript_msg: 'Add Transcript',
+        edit_transcript_msg: 'Edit Transcript',
+        edit_msg: 'Edit',
+        parent_guid_found: 'You cannot make changes in a child item. Do you want to open the parent item for making changes?',
+        del_row: 'Delete',
+        update_child: 'Update Child Items',
+        show_child: 'Show Child Item',
+        show_all: 'Show all child items',
+        generate_item: 'Generate Items',
+        plz_sel: 'Please Select',
+        csv_file: 'Import .csv file',
+        show_all_label: 'Open',
+        save_war_msg: 'The current item should be saved first before generating child items',
+        generate_items: 'Generate child items',
+        already_generated: 'Child items already generated',
+        child_not_generated: 'Child items not generated yet',
+        new_not_allowed: 'New .csv file cannot be added now, item already created',
+        add_option: 'Add Option',
+        add_child: 'Add row(s)',
+        child_not_selected: 'Child items not selected yet',
+        child_update: 'Changes have been made to the parent item. Do you want to update the child items?',
+        deletion_not_allowed: 'Child items are created. Deletion is not allowed now',
+        update_item: 'Update Item(s)',
+        new_row_tooltip: 'New row(s) added. Update child items',
+        interval_err: "Video interval can not be more than video duration",
+        image_prev_msg: "Image preview cannot be added as video has intervals.",
+        video_url_err: "Please add a valid video url",
+        delete_warning: 'Do you really want to delete this form block?',
+        add_elm: 'Add Elements',
+        set_seq: 'Set Sequence',
+        pass_elem: 'Password',
+        num_elem: 'Number',
+        time_elem: 'Time',
+        textarea_elem: 'Long Message',
+        text_elem: 'Short Message',
+        file_elem: 'Upload Image',
+        linear_elem: 'Linear Scale',
+        select_elem: 'Drop Down',
+        chk_elem: 'Checkbox',
+        rad_elem: 'Radio',
+        date_elem: 'Date',
+        add_point: 'Add point',
+        set_ans: 'Set Answer',
+        ok_btn: 'OK',
+        snap_to: 'SnapTo',
+        yinterval_val: 'Y (enter multiple values)',
+        xinterval_val: 'X (enter multiple values)',
+        set_color: 'Set Color',
+        primary_color: 'Primary',
+        warning_color: 'Warning',
+        danger_color: 'Danger',
+        default_representation: 'Default representation of chart.',
+        xaxis_title: 'X-axis Title',
+        yaxis_title: 'Y-axis Title',
+        chart_title: 'Chart Title',
+        column_label: 'Column',
+        line_label: 'Line',
+        histogram_label: 'Histogram',
+        height_label: 'Height [px]',
+        width_label: 'Width [px]',
+        chart_label: 'Chart',
+        plot_graph: 'Plot Graph',
+        xaxis_label: 'X-axis',
+        yaxis_label: 'Y-axis',
+        xaxis_interval: 'X-axis interval',
+        yaxis_interval: 'Y-axis interval',
+        width_label1: 'Width',
+        height_label1: 'Height',
+        axis_label: 'Axis',
+        number_line_association: 'Numberline Association',
+        numberline_plot: 'Numberline Plot',
+        fill_warning: 'Please fill out this field',
+        equation: 'Equation',
+        both_xy: 'Both X & Y',
+        only_x: 'X',
+        only_y: 'Y',
+        inequality_num: 'Inequality Number Line Equation:',
+        equation_type: 'Equation Type',
+        standard_form: 'Standard Form : y=m*x+c',
+        circle_form: 'Standard Form : (x-x1)^2 + (y-y1)^2 = r^2',
+        parabola_form: 'Vertex Form : y=a*(x-h)^2+k',
+        sin_form: 'Standard Form : y=a*sin(b*x+c)+d',
+        cos_form: 'Standard Form : y=a*cos(b*x+c)+d',
+        polygon_type: 'Polygon Type',
+        point_graph: 'Point Graph',
+        line_graph: 'Line Graph',
+        circle_graph: 'Circle Graph',
+        ray_graph: 'Ray Graph',
+        segment_graph: 'Segment Graph',
+        vector_graph: 'Vector Graph',
+        parabola_graph: 'Parabola Graph',
+        sine_graph: 'Sine Graph',
+        cos_graph: 'Cosine Graph',
+        polygon_graph: 'Polygon Graph',
+        association: 'Association',
+        current_item: 'Current Item',
+        used_in_items: 'Used In Items',
+        file_uploaded: 'File uploaded successfully.',
+        html5_not_supported: 'Browser does not support HTML5.',
+        upload_valid_csv: 'Please upload a valid .csv file.',
+        exact2_column_allowed: 'Exact 2 columns should be present in the .csv file. Upload denied.',
+        blank_column_notallowed: 'Blank cell(s) found in the .csv file. Upload denied.',
+        min_max_validation: 'Minimum 4 rows and maximum 500 rows are allowed in the .csv file. Upload denied.',
+        check_network: 'Something went wrong. Please check your network connection and click the "Generate Items" button again.',
+        min4_max500_allowed: 'Minimum 4 rows and maximum 500 rows are allowed for generate the child items.',
+        child_items_generated: 'Child items generated successfully.',
+        check_net_and_save: 'Something went wrong. Please check your network connection and save the current item.',
+        min4_rows_allowed: 'Minimum number of rows should be 4.',
+        child_updated: 'Child IDs updated successfully.',
+        max500_rows_allowed: 'Maximum number of rows should be 500.',
+        check_net_update_ids: 'Something went wrong. Please check your network connection and update the IDs again.',
+        fill_required_field: 'Please fill all the required Field! ',
+        image_width_range: 'Image width must be between 400px and 600px!',
+        edit_image: 'Edit Image',
+        image_url: 'Image URL',
+        browse: 'Browse',
+        image_alt: 'Image Alt',
+        image_caption: 'Image Caption',
+        image_width: 'Image Width',
+        marker_color: 'Marker Color',
+        text_align: 'Text Align',
+        bottom: 'Bottom',
+        on_click: 'On Click',
+        mark_symbol: 'Mark Symbol',
+        number_marker:'Number Marker',
+        plus_marker:'Plus Marker',
+        checkmark_marker:'Checkmark Marker',
+        cross_marker:'Cross Marker',
+        earth_marker:'Earth Marker',
+        notification_marker:'Notification Marker',
+        radio_marker:'Radio Marker',
+        minus_marker:'Minus Marker',
+        border: 'Border',
+        copy: 'Copy',
+        delete_points: 'Delete Points',
+        delete_no_of_points: 'To delete the numbers or symbols from the list, delete their mark points.',
+        change_image: "Changing Image or Image Width will reposition the markers (Not accurate).\n\n Do you want to reposition markers or reset the data?",
+        reposition: 'Reposition',
+        delete_confirmation: 'Deleting point will remove its content too! Do you want to delete?',
+        copid_paste: ' copied, Click to Paste!',
+        point: 'Point',
+        deleted_text: ' Deleted!',
+        image_err: 'Make Sure all the required fields are non-empty and Image width must be between 400px and 600px!',
+        image_alt_text: 'Image Alternative Text ',
+        reset_data: 'Do you really want to reset data?',
+        delete_row: 'Delete Row',
+        delete_column: 'Delete Column',
+        min_val: 'Min Value',
+        max_val: 'Max Value',
+        current_val: 'Current Value',
+        correct_val: 'Correct Answer',
+        add_slider: 'Add Slider',
+        canvas_options: 'Canvas Options',
+        cell_width: 'Cell Width',
+        multiple_of: 'Multiple of',
+        cell_height: 'Cell Height',
+        author_shaded: 'Author Shaded',
+        lock_shaded_cells: 'Lock shaded cells',
+        set_corr_ans: 'Set correct answer(s)',
+        method: 'Method',
+        set_corr_loc: 'Set Correct Location',
+        set_corr_count: 'Set Correct Count',
+        you_were_req_to_select: 'You were required to select',
+        grid_mark_ans_correct: 'grids to mark the answer correct.',
+        hindi_lang: 'Hindi',
+        spanish_lang: 'Spanish',
+        french_lang: 'French',
+        german_lang: 'German',
+        japanese_lang: 'Japanese',
+        korean_lang: 'Korean',
+        drag_drop_set_seq_msg: 'Drag and Drop to set sequence.',
+        please_enter_reply_comment : 'Please enter the reply comment',
+        embed_player: 'This player tag is used to embed a content.',
+        icon_not_blank: 'Icons name should not be blank!',	
+        heading_info: "Here, # is the parent (root) element of the tree and it will not be dragged, ## is the child of the parent element and it will also not be dragged, ### is the child of the parent's child element and it can be dragged and dropped.",	
+        key_info: "Key|Option text|Icon (Put comma after each line) Where  option text is the label for option of contextmenu list and icon is icon for that label and key is numeric value that helps to create the list option.",	
+        note_text: "*Note:",	
+        icons_list: "Icons List",	
+        hase_icon_3: "### icon",	
+        hase_icon_2: "## icon",	
+        hase_icon_1: "# icon",	
+        no_icons: 'No icons found!',	
+        search_icons: 'Search Icons',	
+        loading_icons: 'Please wait, Loading Icons...',	
+        select_icon: "You can get the icon name by clicking on the Icon list button!",
+        light_blue: "Light Blue",
+        dark_blue: "Dark Blue",
+        peach: "Peach",
+        green: "Green",
+        purple: "Purple",
+        table_width: "Table width",
+        themes: "Themes",
+        add_row: "Add row",
+        add_column: 'Add column',
+        upload_data: 'Upload Data',
+        hour: 'Hour',
+        day: 'Day',
+        week: 'Week',
+        month: 'Month',
+        graph: 'Graph :',
+        users: 'Users',
+        course_code: 'Course Code',
+        iot_graph: 'IOT Graphs',
+        from: 'From',
+        to: 'To',
+        star: '*',
+        apply: 'Apply',
+        colon: ':',
+        both_field_necessary: 'Both Date Field is necessary!',
+        load_efficiency: 'Load Efficiency',
+        avg_max_speed: 'Average load & max speed',
+        recent_fuel: 'Recent Fuel Reading',
+        truck_list: 'Truck List',
+        show_graph: 'Show Graph',
+        get_truck_list: 'Get Truck List',
+        no_data_found : 'No data Found!',
+        total_users: 'Total Users',
+        time_interval : 'Time Interval',
+        total_unique_users: 'Total Unique Users',
+        total_unique_users_per_day: 'Total Unique Users Per Day',
+        load_efficiency_for_truck: 'Load efficiency for Truck id',
+        max_speed: 'Max Speed',
+        avg_load : 'Average Load',
+        fuel_reading: 'Fuel Reading',
+        truck_id : 'Truck ID',
+        comment_choiceMatrix : 'Use #cm for comma.',
+        // dndAuthString.js
+        draggable: 'Draggable',
+        placeholder: 'Place Holder',
+        input_box: 'Input Box',
+        checkbox_input: 'Check Box Input',
+        multiline_text_box: 'Multiline Text Box',
+        radio_inout: 'Radio input',
+        select: 'Select',
+        select_dropdown: 'Select Dropdown',
+        new_menu: 'New Menu',
+        clickable: 'Clickable',
+        new_label: 'New Label',
+        hotspot : 'Hotspot',
+        new_steps: 'New Step',
+        insert_script: 'Insert Script',
+        select_list: 'Select List',
+        label: 'Label',
+        area_matrix: 'Area Matrix',
+        new_pills: 'New Pills',
+        base: 'Base',
+        choice_matrix: 'Choice Matrix',
+        delete_txt: 'Do you want to delete it?',
+        select_style: '-- Select Style --',
+        heading_arial: 'Heading Arial',
+        heading_georgia: 'Heading Georgia',
+        heading_cambria: 'Heading Cambria',
+        heading_calibri: 'Heading Calibri',
+        heading_verdana: 'Heading Verdana',
+        heading_roman: 'Heading Times New Roman',
+        content_arial: 'Content Arial',
+        content_georgia: 'Content Georgia',
+        content_cambria: 'Content Camabria',
+        content_calibri: 'Content Calibri',
+        content_verdana: 'Content Verdana',
+        content_roman: 'Content Times New Roman',
+        select_class: '-- Select Class --',
+        sql_terminal: 'SQL Terminal',
+        width_of_draggable: 'Width of Draggable',
+        height_of_drggable: 'Height of Draggable',
+        top_of_draggable: 'Top of Draggable',
+        top: 'Top',
+        left_of_drggable: 'Left of Draggable',
+        title_of_drggable: 'Title of draggable',
+        name_of_draggable: 'Name of draggable',
+        border_color: 'Border Color',
+        none: 'None',
+        black: 'Black',
+        gray: 'Gray',
+        grp_name: 'Group Name',
+        background_image: 'Background Image',
+        bg_of_draggble: 'Background image of draggable',
+        multiple_drag: 'Multiple Drag',
+        invisible: 'Invisible',
+        css_style: 'CSS Style',
+        css_style_of_txt: 'CSS style of Textbox',
+        detail_of_drag: 'Detail of draggable (guid or text)',
+        width_of_placeholder: 'Width of Place holder',
+        height_of_placeholder: 'Height of Place holder',
+        top_of_ph: 'Top of Place holder',
+        left_of_ph: 'Left of Place holder',
+        tilte_of_ph: 'Title of Place holder',
+        name_of_ph : 'Name of Place holder',
+        correct_answer_of_ph: 'Correct answer of Place holder',
+        default_answer_of_ph: 'Default answer of Place holder',
+        css_style_of_ph: 'CSS style of Place holder',
+        width_of_input : 'Width of Input box',
+        height_of_input: 'Height of Input box',
+        top_of_input: 'Top of Input box',
+        left_of_input: 'Left of Input box',
+        correct_answer_of_input: 'Correct answer of Input box',
+        default_ans_of_input: 'Default answer of Input box',
+        placeholder_of_ib: 'Place holder of Input box',
+        text_box: 'Text box',
+        password: 'Password',
+        parser: 'Parser',
+        parser_of_txt: 'Parser of Textbox',
+        sql: 'SQL',
+        multi_crct_answer: 'Multiple Correct Answers',
+        css_of_input: 'CSS style of Input box',
+        font_style: 'Font Style',
+        height_of_multiline: 'Height of Multiline',
+        width_of_multiline: 'Width of Multiline',
+        top_of_multiline: 'Top of Multiline',
+        left_of_multiline: 'Left of Multiline',
+        crct_ans_multiline: 'Correct answer of Multiline',
+        def_ans_multiline: 'Default answer of Multiline',
+        placeholder_multiline: 'Place holder of Multiline',
+        parser_of_multiline: 'Parser of Multiline',
+        css_class: 'CSS Class',
+        width_of_checkbox: 'Width of Checkbox',
+        height_of_checkbox: 'Height of Checkbox',
+        top_of_checkbox: 'Top of Checkbox',
+        left_of_checkbox: 'Left of Checkbox',
+        crct_of_chk: 'Correct answer of Checkbox',
+        def_of_chk : 'Default answer of checkbox',
+        css_of_chk: 'CSS style of checkbox',
+        width_of_radio: 'Width of Radio',
+        height_of_radio: 'Height of Radio',
+        top_of_radio: 'Top of Radio',
+        left_of_radio: 'Left of Radio',
+        crct_of_radio: 'Correct answer of Radio',
+        def_of_radio : 'Default answer of Radio',
+        chktype_of_radio: 'Check Type of Radio',
+        chk_type: 'Check Type',
+        css_style_radio: 'CSS style of Radio',
+        width_of_button: 'Width of button',
+        height_of_button: 'Height of button',
+        top_of_button: 'Top of button',
+        left_of_button: 'Left of button',
+        value_of_button: 'Value of button',
+        class_of_button: 'Class of button',
+        value: 'Value',
+        class: 'Class',
+        css_style_btn: 'CSS style of Button',
+        width_of_dropdown: 'Width of dropdown',
+        height_of_dropdown: 'Height of dropdown',
+        top_of_dropdown: 'Top of dropdown',
+        left_of_dropdown: 'Left of dropdown',
+        value_of_dropdown: 'Value of dropdown',
+        class_of_dropdown: 'Class of dropdown',
+        option_of_dropdown: 'Option of dropdown',
+        css_style_of_drpdwn: 'CSS style of Dropdown',
+        options: 'Options',
+        width_of_listbox: 'Width of listbox',
+        height_of_listbox: 'Height of listbox',
+        top_of_listbox: 'Top of listbox',
+        left_of_listbox: 'Left of listbox',
+        option_of_listbox: 'Option of listbox',
+        select_multiple: 'Select Multiple',
+        css_style_of_listbox: 'CSS style of listbox',
+        width_of_tabhead: 'Width of tabhead',
+        height_of_tabhead: 'Height of tabhead',
+        top_of_tabhead: 'Top of tabhead',
+        left_of_tabhead: 'Left of tabhead',
+        title_of_tabhead: 'Title of tabhead',
+        class_of_tabhead: 'Class of tabhead',
+        css_style_of_tabhead: 'CSS style of tabhead',
+        width_of_image: 'Width of image',
+        height_of_image: 'Height of image',
+        top_of_image: 'Top of image',
+        left_of_image: 'Left of image',
+        title_of_image: 'Title of image',
+        css_style_of_image: 'CSS style of image',
+        bg_of_img: 'Background image of Image',
+        width_of_label: 'Width of label',
+        height_of_label: 'Height of label',
+        top_of_label: 'Top of label',
+        left_of_label: 'Left of label',
+        title_of_label: 'Title of label',
+        border_size: 'Border Size',
+        blue: 'Blue',
+        red: 'Red',
+        bg_color: 'Background Color',
+        rich_text: 'Rich Textbox',
+        matrix: 'Matrix',
+        width_of_area: 'Width of area',
+        height_of_area: 'Height of area',
+        top_of_area: 'Top of area',
+        left_of_area: 'Left of area',
+        matrix_of_area: 'Matrix of area',
+        crt_of_area: 'Correct Answer of area',
+        def_of_area: 'Default Answer of area',
+        width_of_menulist: 'Width of menulist',
+        height_of_menulist: 'Height of menulist',
+        top_of_menulist: 'Top of menulist',
+        left_of_menulist: 'Left of menulist',
+        matrix_of_menulist: 'Matrix of menulist',
+        crt_of_menulist: 'Correct Answer of menulist',
+        event_value: 'Events value',
+        event_val_menulist: 'Events value of Menulist',
+        width_of_hotspot: 'Width of hotspot',
+        height_of_hotspot: 'Height of hotspot',
+        top_of_hotspot: 'Top of hotspot',
+        left_of_hotspot: 'Left of hotspot',
+        title_of_hotspot: 'Title of hotspot',
+        name_of_hotspot: 'Title of hotspot',
+        target_img: 'Target Image',
+        hide_target: 'Hide Target',
+        target_img_hpt: 'Target Image of Hotspot',
+        width_of_click: 'Width of click',
+        height_of_click: 'Height of click',
+        top_of_click: 'Top of click',
+        left_of_click: 'Left of click',
+        title_of_tab: 'Title of tab',
+        alt_of_image: 'Alt of image',
+        bg_of_tab: 'Background image of tab',
+        bg_of_step: 'Background image of Step',
+        alt_text: 'Alt',
+        display: 'Display',
+        width_of_base: 'Width of base',
+        height_of_base: 'Height of base',
+        bg_alt_text: 'Background Alt Text',
+        alt_text_base: 'Alt text of Base',
+        bg_of_base: 'Background image of Base',
+        add_border: 'Add Border',
+        width_of_cm: 'Width of Choice Matrix',
+        height_of_cm: 'Height of Choice Matrix',
+        top_of_cm: 'Top of Choice Matrix',
+        left_of_cm: 'Left of Choice Matrix',
+        name_of_cm: 'Name of Choice Matrix',
+        crt_of_cm: 'Correct Answer of Choice Matrix',
+        def_of_cm: 'Default Answer of Choice Matrix',
+        css_of_cm: 'CSS style of Choice Matrix',
+        on_dbl_click: 'On Double Click',
+        on_context: 'On Right Click',
+        on_drag_start: 'On Drag Start',
+        on_drag: 'On Drag',
+        on_drag_end: 'On Drag End',
+        on_drop: 'On Drop',
+        on_mouse_over: 'On Mouse over',
+        on_mouse_up : 'On Mouse Up',
+        on_mouse_down: 'On Mouse Down',
+        on_change: 'On Change',
+        on_focus: 'On Focus',
+        on_blur: 'On Blur',
+        on_key_up: 'On Key Up',
+        on_key_press: 'On Key Press',
+        on_key_down: 'On Key Down',
+        func_for: 'Function for ',
+        old_xml: 'This is old version of XML<br/>If you edit this item it might not work in the Prepkit<br/>For further assistance, please contact New Editor Team.',
+        base_steps: 'Base||Steps:',
+        timestream: 'Timestream',
+        edit_base: 'Base Settings',
+        sample_img: 'Sample Image',
+        module: 'Module',
+        select_instruction: 'Select Module & Click List Contents button for finding all the guid. To select any guid click on the guid.',
+        scene: 'Scene',
+        intro: 'Intro',
+        characters: 'Characters',
+        assets: 'Assets',
+        chat_windows: 'Chat Windows',
+        mission: 'Mission',
+        mission_name: 'Mission Name',
+        communication: 'Communication',
+        animation: 'Animation',
+        click_to_select: 'Click to select the ',
+        test: "Test",
+        learn: "Learn",
+        character_voice: 'Character Voice',
+        male_one: 'Male 1',
+        male_two: 'Male 2',
+        male_three: 'Male 3',
+        male_four: 'Male 4',
+        male: 'Male',
+        female: 'Female',
+        female_one: 'Female 1',
+        female_two: 'Female 2',
+        female_three: 'Female 3',
+        female_four: 'Female 4',
+        female_five: 'Female 5',
+        female_six: 'Female 6',
+        visibility: 'Visibility',
+        asset_visibility: 'Asset Visibility.',
+        asset_animation: 'Asset animation.',
+        tooltip: 'Tooltip',
+        tooltip_txt: 'Tooltip Text',
+        onclick_step: 'Onclick Step',
+        points: 'Points',
+        points_text: 'Provide points for the mission.',
+        add_mission: 'Add Mission',
+        choose_character: 'Choose character',
+        not_visible: 'Not visible',
+        voice: 'Voice',
+        narrater_voice: 'Narrator Voice',
+        conversion_type: 'Conversation Type',
+        statement: 'Statement',
+        choice: 'Choice',
+        multichoice: 'Multi Choice',
+        alert: 'Alert',
+        autocomplete: 'Auto Complete',
+        autocomplete_txt: 'After enabling this it will automatically switch to next step when the statement of this step will end.',
+        image_size_txt: 'Select image size more then 256KB and in png format.',
+        result_bg: 'Upload Background Image For Result',
+        result_info: 'Image displayed on game result screen.',
+
+        image_link: 'Image Link',
+        score: 'Score',
+        score_value: 'Score Value',
+        speech: 'Speech',
+        speech_txt: 'Enable speech convertor.',
+        speech_input: "After enabling this user will be able to answer by speaking. This feature will work on ucertify.com only.",
+        branch_condition: 'Branching Condition',
+        no_anim_avail: 'No animation available',
+        enter_choice_text: 'Enter Choice Text',
+        choice_text: 'Choice Text',
+        enter_choice_feedback: 'Enter Choice Feedback',
+        feedback_text: 'Feedback text',
+        fb_char_name: "Select the feedback character's name.",
+        fb_char: 'Feedback Character',
+        true: 'True',
+        false: 'False',
+        step_index: "Step Index",
+        step_index_txt: 'Provide the step index to go to that step.',
+        new_mission: 'Click to add a new mission.',
+        add_choice: 'Add Choice',
+        new_step: 'Click to add a new step.',
+        add_anim : 'Add Animation',
+        animation_play: 'Animation Play',
+        dialog: 'Dialog',
+        enter_result_title: 'Enter result title',
+        result_title: 'Result title',
+        result_btn_info: 'If you want to write the result title of your choice, write another title, otherwise skip this step.',
+        one_option_correct: 'Only one option can be selected or marked as correct.',
+        one_option_require: 'Please set one option as correct answer.',
+        delete_textbox: 'Do you want to delete the text box?',
+        delete_msg: 'Click the plotted points to delete them.',
+        last_delete_msg: 'Click the last plotted point of the item to delete the item!',
+        fill_field: 'Please fill out this field.',
+        value_gt_zero: 'Value must be greater than 0.',
+        enter_number: 'Please enter only number.',
+        graph_width: 'Width of graph',
+        graph_height: 'Height of graph',
+        xaxis_value: 'X-axis value',
+        yaxis_value: 'Y-axis value',
+        anskey: 'anskey',
+        reflection: 'reflection',
+        curve_start_point: 'This is the start point of the curve so you cannot delete this point',
+        warning_this_for: 'In this case this.for gets undefined and curve does not remove but xml of user answer updated. So prevented xml for being update.',
+        last_point: 'You are trying to delete a polygon but either the polygon is not drawn completely or you are trying to delete the polygon by clicking the point, which is not the last point',
+        insert_numeric_data: 'Insert numeric data',
+        pointy2: 'Point Y2',
+        pointx2: 'Point X2',
+        pointx1: 'Point X1',
+        pointy1: 'Point Y1',
+        pointx: 'Point X ',
+        pointy: 'Point Y ',
+        select_choics: 'Select true or false to indicate if the choice correct or not.',
+        select_game_mode: 'Select the game mode.',
+        start_button: 'Start Button.',
+        set_chr_visiblity: 'Set character visibility.',
+        add_chr_nm: 'Provide a character name.',
+        chr_voice: "Select the character's voice.",
+        type_of_step: 'Select the type of this step',
+        guid_value: 'Guid Value',
+        value_gt_one: 'Value must be greater than or equals to 1',
+        value_gt_interval: 'Value must be greater than interval',
+        value_gt_min: 'Value must be greater than min',
+        deprecated: 'Association Module is deprecated and will not work!',
+        exhibit_err: 'Exhibit player does not support this format',
+        open_modal: 'ADA button click to open modal box',
+        val_gt_limit: 'Value must be greater than 599!',
+        select_one_tool: 'Please select at least one tool.',
+        delete_point_msg: '* To delete the points, right click on the points.',
+        reset_module: 'Do you want reset the module?',
+        ans_correct: "Your's answer is correct!",
+        ans_incorrect: "Your's answer is incorrect!",
+        shortcuts: 'Shortcuts',
+        keys: 'Keys',
+        ctrl_z: 'Ctrl + Z or Ctrl + fn + Z',
+        undo: 'Undo',
+        ctrl_x: 'Ctrl + X or Ctrl + fn + X',
+        cut: 'Cut',
+        ctrl_y: 'Ctrl + Y or Ctrl + fn + Y',
+        redo: 'Redo',
+        enter : 'Enter',
+        enable_tool: 'Enable the Draw Tool',
+        shift_enter: 'Shift + Enter',
+        shift_arrow: 'Shift + arrow keys',
+        start_stop_tool: 'Start/Stop Drawing by Drawing tool',
+        compass_tools: 'Move the Compass components like Radius,center or its Angle / Move the Drawing point',
+        locking: 'Shift + L',
+        locking_txt: 'Lock the current Point when user is already pressed Enter on current Point',
+        draw_key: 'D',
+        draw_txt: 'When drawing by scribble tool by key events then fixed the path',
+        tab: 'Tab',
+        shift_tab: 'Shift + Tab',
+        esc: 'Esc',
+        focus_next: 'To move towards the next focus points',
+        focus_prev: 'To move towards the previous focus points',
+        exit_txt: 'To Exit this shortcut window',
+        compass_center: 'Compass Center',
+        shift_arrow_use : 'Use Shift and arrow keys to move the compass',
+        compass_radius: 'Compass Radius, Your Current Radius is ',
+        shift_arrow_radius: 'Use Shift and arrow keys to increase or decrease the radius.',
+        compass_angle: 'Compass Angle, Your Current Angle is ',
+        degree: ' degree',
+        compass_draw: 'Compass Draw',
+        shift_arrow_draw: ' Use Shift and arrow keys to draw throughout the circumference',
+        shift_arrow_angle: 'Use Shift and arrow keys to increase or decrease the radius angle',
+        reset_btn: 'Reset Button',
+        marking_tools: 'Marking tools',
+        removing_tools: 'Removing tools',
+        drawing_tools: 'Drawing Tools Container',
+        draw_tools: 'Draw tools',
+        scribble_tool: 'Scribble tool', 
+        line_tool: 'line tool',
+        compass_tool: 'compass tool',
+        line: 'Line',
+        compass: 'Compass',
+        scribble: 'Scribble',
+        delete_tool: 'Delete tool',
+        clear_screen: 'Clear Screen',
+        mark_finish_point: 'Mark/Finish Points',
+        mark_ans_point: 'Mark/Finish Answer Points',
+        mark_pnt: 'Mark Points',
+        delete_points: 'Do you want to delete the points?',
+        answer_point: 'Answer Points',
+        add_show_point: 'Add/Show Point',
+        add_finish_point: 'Add/Finish Focus Point',
+        add_focus_pnt: 'Add Focus Point',
+        def_mode: 'Default Mode',
+        access_mode: 'Accessibility Mode',
+        configuration: 'Configuration',
+        alt_txt_image: 'Alt Text of Image',
+        draw_color: 'Drawing Color',
+        itemtype_0 : "This task contains the radio buttons and checkboxes for options. The shortcut keys to perform this task are A to H and alt+1 to alt+9.",
+        itemtype_1 : "To perform the given task, you have to select an item from one side and place it in front of its correct item on the other side. The shortcut keys to perform this task are Press the Alt+down arrow key to activate. Press the arrow key to navigate through all the items. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove any navigated item, then selected that item and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
+        itemtype_4 : "In this type of question, you have to point out the specific area asked in the question. The shortcut keys to perform this task are. The Alt+down arrow key to activate the target. The arrow key to move the target.",
+        itemtype_6 : "Here, you have to select the options given in the list. The shortcut keys to perform this task are. The Alt+down arrow key to activate the answer area.  Use the arrow key for navigation. Press the Enter key to select the item. Again, press the Enter key to deselect the item.",
+        itemtype_7 : "Here, you have to arrange the options given in the list into their correct order. The shortcut keys to perform this task are. Press the Alt+down arrow key to activate the answer area. Navigate to the item using the arrow key. Press the Enter key to copy the item. Navigate the copied item to the desired position using the arrow keys. Press the Enter key to paste the item. If the item is at its correct position, just press the Enter key to keep that item in sequence. If you want to remove the item from its position, press the Delete key for Windows and the Fn+Delete key for Mac.",
+        itemtype_9 : "Here, this type of question contains the select box, text box, and drag and drop boxes. The shortcut keys to perform this task are. Press the Alt+down arrow key to activate the target. Press the arrow key to navigate through all the items. If the selected item is a text box or a select box, it will automatically get focused. If you want to drop the item in the droppable field, navigate to any of the draggable using the Tab key, and press the Enter key to copy the draggable, Now, navigate to any of the droppable field and press the Enter key to drop the copied item. If you want to remove the item from the droppable field, navigate to the droppable field and press the Delete key for Windows and the Fn+Delete key to remove the item.",
+        itemtype_14 : "Here, in this type of question, you have to match the item on the left with the correct item on the right by selecting and placing the item to its correct answer. Shortcut key to perform this task are. Press the Alt+down arrow key to activate the target. Press the arrow key to navigate through all the item. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove the item, navigate to any of the left side items and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
+        itemtype_26 : "To perform the given task, you have to select and place it in correct item on the. The shortcut keys to perform this task are Press the Alt+down arrow key to activate. Press the arrow key to navigate through all the items. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove any navigated item, then selected that item and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
+        itemtype_30 : "Here, in this type of questions, you have to access the range. you can use left arrow key for decreasing the value and right for increasing the value.",
+        itemtype_17 : "Here, you have to select the options given in the list. The shortcut keys to perform this task are: Press the tab for navigation. Press the Enter key to select the item and move using the tab key. Again, press the Enter key to deselect the item and place it on the correct option.",
+        itemtype_27 : "Here, in this type of questions, you have to identify the correct and incorrect statements by checking the True or False check boxes. The shortcut key to perform the task are. Press Tab for navigation. Press the Enter key for selecting the check box.",
+        itemtype_15 : "To perform the given task, you have to select an item from one side and place it in front of its correct item on the other side. The shortcut keys to perform this task are Press the Alt+down arrow key to activate. Press the arrow key to navigate through all the items. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove any navigated item, then selected that item and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
+        itemtype_13 : "Here, this type of question contains the terminal. You have to write command to perform this task.",
+        itemtype_22 : "In this type of question, you have to write command to perform the task. Press Tab key to navigate.",
+        es6_warining: "You are using Internet Explorer, ES6 functionality of javascript will not work!",
+        embed_content: "Embed Content",
+        plus_minus_option: "Please select the plus and minus option",
+        slash_option: 'Please select the slash option',
+        decimal_option: 'Please select the decimal option',
+    };
+
+    function styleInject(css, ref) {
+      if ( ref === void 0 ) ref = {};
+      var insertAt = ref.insertAt;
+
+      if (!css || typeof document === 'undefined') { return; }
+
+      var head = document.head || document.getElementsByTagName('head')[0];
+      var style = document.createElement('style');
+      style.type = 'text/css';
+
+      if (insertAt === 'top') {
+        if (head.firstChild) {
+          head.insertBefore(style, head.firstChild);
+        } else {
+          head.appendChild(style);
+        }
+      } else {
+        head.appendChild(style);
+      }
+
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+    }
+
+    var css_248z = "@-webkit-keyframes rotate{to{-webkit-transform:rotate(360deg)}}[id^=dndmain]{position:relative;margin:0;padding:0;min-height:30px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;border-radius:2px;font-family:Arial,\"Helvetica Neue\",Helvetica,sans-serif;font-size:14px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}[id^=dndmain]:after,[id^=dndmain]:before{display:table;line-height:0;content:\"\"}[id^=dndmain] .nav-pills{margin-top:10px}[id^=dndmain]:after{clear:both}[id^=dndmain] :after,[id^=dndmain] :before,[id^=dndmain] :not(.ttsimg_container):not(.tts_img){-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}#steps{text-align:center;border:1px solid #999;background-color:#ddd;width:100%;margin-bottom:5px}[id^=dndmain]>img{max-width:none;width:auto!important;height:auto!important}[id^=dndmain] .drag-resize,[id^=dndmain] .only-dragable{position:absolute;left:90px;top:50px;text-align:center;line-height:20px;background-size:100% 100%;padding:0}.dragable,.dropable{padding:2px;display:inline-table}.dndlabel p,.dragable p,.dropable p{display:table-cell;vertical-align:middle;text-align:center}[id^=dndmain] .dragable{cursor:move}[id^=dndmain] .clone{z-index:0!important;border:0!important}[class*=dnd_]{height:99%!important;width:96%!important;resize:none;font-size:12px;color:#000}.dndarea.cursor_move,.dndtabhead.cursor_move,.hotspot_auth,.hotspot_auth .hs_item{opacity:1;background-color:rgba(250,250,250,.6);box-shadow:0 0 1px #000 inset}.cursor_move:hover{background-color:rgba(240,240,240,.6);box-shadow:0 0 1px #000 inset;cursor:move}.cursor_move:hover .elem{display:none}.elemActive{background-color:rgba(173,216,230,.6)!important;opacity:1!important}.detail{position:absolute;display:block;z-index:1001;max-width:150px;border:1px solid #b2b2b2;border-radius:3px;padding:5px;background-color:#c3c3c3;top:0;left:0;color:#fff}.detail .close_detail{position:absolute;cursor:pointer;top:-10px;right:-10px;font-size:25px;font-weight:bolder;background-color:rgba(0,0,0,.6);border:4px double;border-radius:15px;height:22px;width:22px;text-align:center}.dndlabel{font-size:18px;color:#000;text-align:center;background-size:100% 100%;display:inline-table;line-height:20px}.hotspot .hs_item{border:2px solid red}.dndcheckbox,.dndradio{width:14px!important;height:14px!important;margin-bottom:5px!important}.dnd_select{margin:0!important;padding:0!important}.dnd_img,.dnd_select{overflow:hidden}.dnd_textarea,.dnd_textbox{margin:0!important;padding:0!important}.dnd_textbox{overflow:hidden}.dnd_textarea{border:1px solid gray!important;-webkit-border-radius:3px!important;-moz-border-radius:3px!important;border-radius:3px!important;padding: 2px!important;}.dnd_button{-webkit-border-radius:2px!important;-moz-border-radius:2px!important;-ms-border-radius:2px!important;border-radius:2px!important;outline:0;background:#f5f5f5;background:-moz-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#f5f5f5),color-stop(100%,#ddd));background:-webkit-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-o-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:-ms-linear-gradient(top,#f5f5f5 0,#ddd 100%);background:linear-gradient(to bottom,#f5f5f5 0,#ddd 100%);border:1px solid #a4a4a4;padding:0!important;overflow:hidden}.dnd_button:hover{background:#ddd;background:-moz-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#ddd),color-stop(72%,#f5f5f5));background:-webkit-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-o-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:-ms-linear-gradient(top,#ddd 0,#f5f5f5 72%);background:linear-gradient(to bottom,#ddd 0,#f5f5f5 72%)}.dnd_button:disabled,.dnd_button:disabled:hover{background:#efefef;color:#816d95;border:1px solid #d9d9d9;cursor:not-allowed}[id^=dndmain] .off,[id^=dndmain] .on{z-index:1000;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;border-radius:2px}.dndtabhead,[id^=dndmain] .off{background:0 0;background:#000;opacity:0;cursor:pointer}[id^=dndmain] .off:hover{background-color:rgba(173,222,252,.3);border:1px solid #addefc;opacity:1!important}[id^=dndmain] .on{background-color:rgba(113,183,250,.6);border:1px solid #71b7fa}.zoom1{-webkit-transform:scale(.25);-moz-transform:scale(.25);-o-transform:scale(.25);transform:scale(.25)}.zoom1,.zoom2,.zoom3,.zoom4,.zoom5,.zoom6,.zoom7{-webkit-transform-origin:top left;-moz-transform-origin:top left;-o-transform-origin:top left;transform-origin:top left}.zoom2{-webkit-transform:scale(.5);-moz-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.zoom3{-webkit-transform:scale(.75);-moz-transform:scale(.75);-o-transform:scale(.75);transform:scale(.75)}.zoom4{-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);transform:scale(1)}.zoom5{-webkit-transform:scale(2);-moz-transform:scale(2);-o-transform:scale(2);transform:scale(2)}.zoom6{-webkit-transform:scale(3);-moz-transform:scale(3);-o-transform:scale(3);transform:scale(3)}.zoom7{-webkit-transform:scale(4);-moz-transform:scale(4);-o-transform:scale(4);transform:scale(4)}.c_zoom,.c_zoom input{width:70px}.c_zoom{position:absolute;top:0;right:0;z-index:1001}.zoom_container{position:relative;overflow:auto;height:100%;width:100%}.record{cursor:pointer}.tools{position:absolute;right:1px;top:2px;z-index:25}.tools .labs-btn{padding:2px 5px}.cursor_move .tools{top:-28px;right:0}.events{height:200px;overflow-x:hidden;border:1px solid #a9a9a9;-ms-border-bottom-left-radius:10px;-ms-border-top-left-radius:10px;-moz-border-bottom-left-radius:10px;-moz-border-top-left-radius:10px;border-bottom-left-radius:10px;border-top-left-radius:10px}.event-input input{position:relative;border-right:none;border-top-right-radius:0;border-bottom-right-radius:0;z-index:1;width:90%}.event-input select{position:relative;top:-34px;z-index:0;width:265px}.drop-hover{border:1px dashed red!important;box-shadow:0 0 0 2px #ff0 inset;outline:1px solid #00f}.custRad{display:none}.customRad{width:20px;height:20px;display:block;line-height:22px;text-align:center;color:#000;font-size:40pt;cursor:pointer;position:relative}.custRad:checked+.customRad:before{opacity:1}.customRad:before{position:absolute;top:1px;left:1px;height:18px;width:18px;content:'';opacity:0}.dndCenter .dnd_textbox{text-align:center}.falseitemColor:before,.tureitemColor:before{content:'\\2713';color:#fff;font-size:15px;line-height:18px}.tureitemColor:before{background:green}.falseitemColor:before{background:red}.tureitemColor{background:#aeeca7}.falseitemColor{background:#e28e96}.tureitemColor:hover{background:#6fcf64}.falseitemColor:hover{background:#f44a37}input.dnd_textbox::-webkit-input-placeholder{text-align:center}input.dnd_textbox:-moz-placeholder{text-align:center}input.dnd_textbox::-moz-placeholder{text-align:center}input.dnd_textbox:-ms-input-placeholder{text-align:center}.selmatch{border:solid 2px red!important;border-radius:2px!important}.copiedclr{background-color:#ccc!important}.bla [id^=dndmain] .dragable:focus,.bla [id^=dndmain] .dropable:focus{box-shadow:inset 0 0 0 1px transparent,inset 0 0 0 1px #fff,inset 0 0 0 2px #fff;outline:0}.dndtabhead:focus,.menu:focus{outline:-webkit-focus-ring-color auto 5px;opacity:1;background:0 0}.heading_arial,.heading_calibri,.heading_cambria,.heading_georgia,.heading_roman,.heading_verdana{text-align:center;font-size:21px;font-weight:700}.content_arial,.content_calibri,.content_cambria,.content_georgia,.content_roman,.content_verdana{text-align:left;font-size:16px;line-height:1.2!important}.content_arial p,.content_calibri p,.content_cambria p,.content_georgia p,.content_roman p,.content_verdana p{text-align:left}.content_arial,.heading_arial{font-family:Arial}.content_georgia,.heading_georgia{font-family:Georgia}.content_cambria,.heading_cambria{font-family:Cambria}.content_calibri,.heading_calibri{font-family:Calibri}.content_verdana,.heading_verdana{font-family:Verdana}.content_roman,.heading_roman{font-family:\"Times New Roman\"}.ui-radio.ui-state-disabled{opacity:1}.sql_terminal{background-color:#000;border:0!important;color:silver;box-shadow:none;font-family:Courier;font-size:13px;font-weight:800;outline:0}[id^=dndmain]>.img-bordered{margin-top:1px}.container_div{position:relative;display:block}.baseradio{vertical-align:middle;margin-bottom:3px!important;margin:0 2px}.icomoon-cancel-circles,.icomoon-checkmark-circles{display:inline-block;position:relative;background-size:100%!important}.icomoon-checkmark-circles{height:16px!important;width:17px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAVCAYAAABc6S4mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEVSURBVEhL1ZWvDoJQFId/mozMN9DNYLdAlCbN6qNoMOBD8ALwBBqpBHwCC9WEBIOzIAcPyB+vXlCD38bYvYzv2zgMOnECfkiXzz/je4Ernyt8J3ANYFtD6I6HC29lfB5I5RoWYQD3MIdRiXwWyOVH3jjWIu0DNXnGANPRGD1ePQ8IBpYjlKswjR2WE4XXtcAFnqNjaNkIRJEGcqIQILmB+cFFEC6gPYs0lBMceMjzcVUjLeQEB3oYj6bJeMrkkXM7OVH6FkX7DWbbFTxev+a9nCgNWZkssTPM5NZ3yMmJylskE5GXE7UAIY40k6fQDEScfDNW14iRHmps+ie+Is/LAHGPtJMTUn+0KIyg9Bs8lgL//ssEblMER6y4OqEyAAAAAElFTkSuQmCC) no-repeat 80%}.icomoon-cancel-circles{height:14px!important;width:18px;right:2px!important;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAUCAYAAACXtf2DAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEoSURBVEhLtZXBbQIxEEUHlANIW0BaSAfLMS2QErjSQJQjlEALySEpAZEjJeQYSiBSrpHMt/ZbDOvx2Jc8abT2zPC/zI61kwDkH5nymfOxFtl8clPjB71P+M2Je0U8Qcb7Kh5riOcDkyXO6Fmw/z6Et2/mB3IDLV410eIpbk2Q0XyF0OtmFZmJJc7od+zBls8rv8cGE098Cw22AWQMXJPXZvEIsgU8EysM8QgqDq0mBfEIqhVqJo54pHzREt2DyOOCG4NY67i2oFEBZ1p0OJcR1RKN4ikKJqhYeHO+LL8TwwTZMQ2XqOkyDiCjab+hrSajKZqJzLnU9FuR/cvttHSYnv0RNe41cyVCI8XoFJU5z07i/0UJmtTEE8nEeMn+J/MPcTcsq5i9IheZ7IOr0kv1ugAAAABJRU5ErkJggg==) no-repeat}.dnd_select{width:100%!important}.native.falseitemColor:before,.native.tureitemColor:before{content:'\\\\25CF'!important}.native.customRad:before{top:0!important}.native.radio_sim{border-radius:50%!important;left:2.5px;position:relative}#errmsg.show{display:block!important}.loading{height:0;width:0;padding:15px;border:6px solid #ccc;border-right-color:#888;border-radius:22px;-webkit-animation:rotate 1s infinite linear;position:absolute;left:50%;top:50%}.spinner{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.26);z-index:99}.tabTools{position:relative!important;top:-68px!important}.p-sm{padding:3px}.context{position:absolute;top:0;left:0;min-width:180px;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:#000;background:#f5f5f5;font-size:9pt;border:1px solid #333;box-shadow:4px 4px 3px -1px rgba(0,0,0,.5);padding:3px 0;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1061}.context .item{padding:4px 19px;cursor:default;color:inherit;text-align:left}.context .item:hover{background:#e3e3e3!important}.context .item:hover .hotkey{color:#000!important}.context .disabled,.context .disabled:hover .hotkey{color:#878b90!important}.context .disabled:hover{background:inherit!important}.context .separator{margin:4px 0;height:0;padding:0;border-top:1px solid #b3b3b3}.hotkey{color:#878b90;float:right}.resizer{width:15px;height:15px;position:absolute;right:0;bottom:0;cursor:se-resize}.img-bordered{border:4px solid #fff;outline:1px solid #ddd;box-shadow:2px 3px 5px #939393;-webkit-box-shadow:2px 3px 5px #939393;-moz-box-shadow:2px 3px 5px #939393;-ms-box-shadow:2px 3px 5px #939393}";
+    styleInject(css_248z);
+
+    /* clsSMDragNDrop/DragNDropPreview.svelte generated by Svelte v3.34.0 */
+
+    const { Object: Object_1$9, console: console_1$2, document: document_1$1 } = globals;
+    const file$g = "clsSMDragNDrop/DragNDropPreview.svelte";
+
+    function add_css$1() {
+    	var style = element("style");
+    	style.id = "svelte-1n3xdnr-style";
+    	style.textContent = "#dndsteps.svelte-1n3xdnr{text-align:center;border:1px solid #999999;background-color:#DDDDDD;width:100%}#sm_controller{margin-top:20px;display:none}.correct_incorrect_icon{z-index:9 !important}input.dnd_textbox{text-align:center;border-radius:4px;background-color:#fff;border:1px solid #ccc;border-radius:4px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRHJhZ05Ecm9wUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBZ2RDLFNBQVMsZUFBQyxDQUFBLEFBQ1QsVUFBVSxDQUFFLE1BQU0sQ0FDbEIsTUFBTSxDQUFFLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUN6QixnQkFBZ0IsQ0FBRSxPQUFPLENBQ3pCLEtBQUssQ0FBRSxJQUFJLEFBQ1osQ0FBQSxBQUNRLGNBQWMsQUFBRSxDQUFBLEFBQ2pCLFVBQVUsQ0FBRSxJQUFJLENBQ2hCLE9BQU8sQ0FBRSxJQUFJLEFBQ2pCLENBQUEsQUFDSyx1QkFBdUIsQUFBRSxDQUFBLEFBQ2hDLE9BQU8sQ0FBRSxDQUFDLENBQUMsVUFBVSxBQUN0QixDQUFBLEFBQ1EsaUJBQWlCLEFBQUUsQ0FBQSxBQUMxQixVQUFVLENBQUUsTUFBTSxDQUNsQixhQUFhLENBQUUsR0FBRyxDQUNsQixnQkFBZ0IsQ0FBRSxJQUFJLENBQ3RCLE1BQU0sQ0FBRSxHQUFHLENBQUMsS0FBSyxDQUFDLElBQUksQ0FDdEIsYUFBYSxDQUFFLEdBQUcsQUFDbkIsQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJEcmFnTkRyb3BQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
+    	append_dev(document_1$1.head, style);
+    }
+
+    function get_each_context$f(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[34] = list[i];
+    	child_ctx[36] = i;
+    	return child_ctx;
+    }
+
+    // (395:2) {#if step && step.length}
+    function create_if_block_3(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*step*/ ctx[5];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$f(get_each_context$f(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*step*/ 32) {
+    				each_value = /*step*/ ctx[5];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$f(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$f(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(395:2) {#if step && step.length}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (396:3) {#each step as data, index}
+    function create_each_block$f(ctx) {
+    	let span;
+    	let input;
+    	let input_id_value;
+    	let t0;
+    	let t1_value = "dnd" + /*data*/ ctx[34]._id + "";
+    	let t1;
+    	let t2;
+    	let span_key_value;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler_1() {
+    		return /*click_handler_1*/ ctx[21](/*data*/ ctx[34]);
+    	}
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			input = element("input");
+    			t0 = space();
+    			t1 = text(t1_value);
+    			t2 = space();
+    			attr_dev(input, "id", input_id_value = "step_dnd" + /*data*/ ctx[34]._id);
+    			attr_dev(input, "type", "radio");
+    			attr_dev(input, "defaultvalue", "1");
+    			attr_dev(input, "name", "rbs");
+    			attr_dev(input, "class", "baseradio dndradio svelte-1n3xdnr");
+    			add_location(input, file$g, 397, 5, 11261);
+    			attr_dev(span, "key", span_key_value = /*index*/ ctx[36]);
+    			add_location(span, file$g, 396, 4, 11237);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    			append_dev(span, input);
+    			append_dev(span, t0);
+    			append_dev(span, t1);
+    			append_dev(span, t2);
+
+    			if (!mounted) {
+    				dispose = listen_dev(input, "click", click_handler_1, false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (dirty[0] & /*step*/ 32 && input_id_value !== (input_id_value = "step_dnd" + /*data*/ ctx[34]._id)) {
+    				attr_dev(input, "id", input_id_value);
+    			}
+
+    			if (dirty[0] & /*step*/ 32 && t1_value !== (t1_value = "dnd" + /*data*/ ctx[34]._id + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$f.name,
+    		type: "each",
+    		source: "(396:3) {#each step as data, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (436:3) {:else}
+    function create_else_block$3(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+    			attr_dev(img, "id", "pre_sample_image");
+    			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_content_static/bg_000PLn.png")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", img_alt_value = l.sample_img);
+    			add_location(img, file$g, 436, 16, 12561);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(img, "load", /*changeLoadState*/ ctx[15], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$3.name,
+    		type: "else",
+    		source: "(436:3) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (434:3) {#if bgImg}
+    function create_if_block_2$2(ctx) {
+    	let img;
+    	let img_height_value;
+    	let img_width_value;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+    			attr_dev(img, "height", img_height_value = /*imgHeight*/ ctx[3] + "px");
+    			attr_dev(img, "width", img_width_value = /*imgWidth*/ ctx[4] + "px");
+
+    			if (img.src !== (img_src_value = window.inNative
+    			? "____s3.amazonaws.com__jigyaasa_content_static__" + /*bgImg*/ ctx[2].replace(/\//g, "__")
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/" + /*bgImg*/ ctx[2])) attr_dev(img, "src", img_src_value);
+
+    			attr_dev(img, "class", /*borderclass*/ ctx[8]);
+    			attr_dev(img, "alt", img_alt_value = /*alt*/ ctx[6] ? /*alt*/ ctx[6] : l.sample_img);
+    			add_location(img, file$g, 434, 4, 12121);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(img, "error", /*error_handler*/ ctx[22], false, false, false),
+    					listen_dev(img, "load", /*load_handler*/ ctx[23], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*imgHeight*/ 8 && img_height_value !== (img_height_value = /*imgHeight*/ ctx[3] + "px")) {
+    				attr_dev(img, "height", img_height_value);
+    			}
+
+    			if (dirty[0] & /*imgWidth*/ 16 && img_width_value !== (img_width_value = /*imgWidth*/ ctx[4] + "px")) {
+    				attr_dev(img, "width", img_width_value);
+    			}
+
+    			if (dirty[0] & /*bgImg*/ 4 && img.src !== (img_src_value = window.inNative
+    			? "____s3.amazonaws.com__jigyaasa_content_static__" + /*bgImg*/ ctx[2].replace(/\//g, "__")
+    			: "https://s3.amazonaws.com/jigyaasa_content_static/" + /*bgImg*/ ctx[2])) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty[0] & /*borderclass*/ 256) {
+    				attr_dev(img, "class", /*borderclass*/ ctx[8]);
+    			}
+
+    			if (dirty[0] & /*alt*/ 64 && img_alt_value !== (img_alt_value = /*alt*/ ctx[6] ? /*alt*/ ctx[6] : l.sample_img)) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$2.name,
+    		type: "if",
+    		source: "(434:3) {#if bgImg}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (439:3) {#if state.data && image_loaded}
+    function create_if_block$g(ctx) {
+    	let dragpreview0;
+    	let t0;
+    	let dragpreview1;
+    	let t1;
+    	let droppreview0;
+    	let t2;
+    	let droppreview1;
+    	let t3;
+    	let selectpreview;
+    	let t4;
+    	let textboxpreview;
+    	let t5;
+    	let radiopreview;
+    	let t6;
+    	let multilineboxpreview;
+    	let t7;
+    	let checkboxpreview;
+    	let t8;
+    	let tabheadpreview;
+    	let t9;
+    	let labelpreview;
+    	let t10;
+    	let hotspotpreview;
+    	let t11;
+    	let menulistpreview;
+    	let t12;
+    	let buttonpreview;
+    	let t13;
+    	let steppreview;
+    	let t14;
+    	let tabpreview;
+    	let t15;
+    	let if_block_anchor;
+    	let current;
+
+    	dragpreview0 = new DragPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].drag,
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	dragpreview1 = new DragPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[1],
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	droppreview0 = new DropPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].drop,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	droppreview1 = new DropPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[2],
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	selectpreview = new SelectPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].select,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	textboxpreview = new TextboxPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].textbox,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	radiopreview = new RadioPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].radio,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	multilineboxpreview = new MultilineboxPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].multilinebox,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	checkboxpreview = new CheckboxPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].checkbox,
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	tabheadpreview = new TabheadPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].tabhead,
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	labelpreview = new LabelPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].label,
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	hotspotpreview = new HotspotPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].hotspot,
+    				module_type: /*moduleType*/ ctx[9],
+    				containerID: /*container_id*/ ctx[11],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	menulistpreview = new MenulistPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].menulist,
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	buttonpreview = new ButtonPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].button,
+    				containerID: /*container_id*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
+    	steppreview = new StepPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].step,
+    				containerID: /*container_id*/ ctx[11],
+    				checkImages: /*checkImages*/ ctx[12],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	tabpreview = new TabPreview({
+    			props: {
+    				modules: /*state*/ ctx[10].data[0].tab,
+    				containerID: /*container_id*/ ctx[11],
+    				checkImages: /*checkImages*/ ctx[12],
+    				uxml: /*uxml*/ ctx[0]
+    			},
+    			$$inline: true
+    		});
+
+    	let if_block = /*state*/ ctx[10].data[0].hotspot && create_if_block_1$9(ctx);
+
+    	const block = {
+    		c: function create() {
+    			create_component(dragpreview0.$$.fragment);
+    			t0 = space();
+    			create_component(dragpreview1.$$.fragment);
+    			t1 = space();
+    			create_component(droppreview0.$$.fragment);
+    			t2 = space();
+    			create_component(droppreview1.$$.fragment);
+    			t3 = space();
+    			create_component(selectpreview.$$.fragment);
+    			t4 = space();
+    			create_component(textboxpreview.$$.fragment);
+    			t5 = space();
+    			create_component(radiopreview.$$.fragment);
+    			t6 = space();
+    			create_component(multilineboxpreview.$$.fragment);
+    			t7 = space();
+    			create_component(checkboxpreview.$$.fragment);
+    			t8 = space();
+    			create_component(tabheadpreview.$$.fragment);
+    			t9 = space();
+    			create_component(labelpreview.$$.fragment);
+    			t10 = space();
+    			create_component(hotspotpreview.$$.fragment);
+    			t11 = space();
+    			create_component(menulistpreview.$$.fragment);
+    			t12 = space();
+    			create_component(buttonpreview.$$.fragment);
+    			t13 = space();
+    			create_component(steppreview.$$.fragment);
+    			t14 = space();
+    			create_component(tabpreview.$$.fragment);
+    			t15 = space();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(dragpreview0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(dragpreview1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(droppreview0, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(droppreview1, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(selectpreview, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(textboxpreview, target, anchor);
+    			insert_dev(target, t5, anchor);
+    			mount_component(radiopreview, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(multilineboxpreview, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(checkboxpreview, target, anchor);
+    			insert_dev(target, t8, anchor);
+    			mount_component(tabheadpreview, target, anchor);
+    			insert_dev(target, t9, anchor);
+    			mount_component(labelpreview, target, anchor);
+    			insert_dev(target, t10, anchor);
+    			mount_component(hotspotpreview, target, anchor);
+    			insert_dev(target, t11, anchor);
+    			mount_component(menulistpreview, target, anchor);
+    			insert_dev(target, t12, anchor);
+    			mount_component(buttonpreview, target, anchor);
+    			insert_dev(target, t13, anchor);
+    			mount_component(steppreview, target, anchor);
+    			insert_dev(target, t14, anchor);
+    			mount_component(tabpreview, target, anchor);
+    			insert_dev(target, t15, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const dragpreview0_changes = {};
+    			if (dirty[0] & /*state*/ 1024) dragpreview0_changes.modules = /*state*/ ctx[10].data[0].drag;
+    			dragpreview0.$set(dragpreview0_changes);
+    			const dragpreview1_changes = {};
+    			if (dirty[0] & /*state*/ 1024) dragpreview1_changes.modules = /*state*/ ctx[10].data[1];
+    			dragpreview1.$set(dragpreview1_changes);
+    			const droppreview0_changes = {};
+    			if (dirty[0] & /*state*/ 1024) droppreview0_changes.modules = /*state*/ ctx[10].data[0].drop;
+    			if (dirty[0] & /*uxml*/ 1) droppreview0_changes.uxml = /*uxml*/ ctx[0];
+    			droppreview0.$set(droppreview0_changes);
+    			const droppreview1_changes = {};
+    			if (dirty[0] & /*state*/ 1024) droppreview1_changes.modules = /*state*/ ctx[10].data[2];
+    			if (dirty[0] & /*uxml*/ 1) droppreview1_changes.uxml = /*uxml*/ ctx[0];
+    			droppreview1.$set(droppreview1_changes);
+    			const selectpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) selectpreview_changes.modules = /*state*/ ctx[10].data[0].select;
+    			if (dirty[0] & /*uxml*/ 1) selectpreview_changes.uxml = /*uxml*/ ctx[0];
+    			selectpreview.$set(selectpreview_changes);
+    			const textboxpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) textboxpreview_changes.modules = /*state*/ ctx[10].data[0].textbox;
+    			if (dirty[0] & /*uxml*/ 1) textboxpreview_changes.uxml = /*uxml*/ ctx[0];
+    			textboxpreview.$set(textboxpreview_changes);
+    			const radiopreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) radiopreview_changes.modules = /*state*/ ctx[10].data[0].radio;
+    			if (dirty[0] & /*uxml*/ 1) radiopreview_changes.uxml = /*uxml*/ ctx[0];
+    			radiopreview.$set(radiopreview_changes);
+    			const multilineboxpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) multilineboxpreview_changes.modules = /*state*/ ctx[10].data[0].multilinebox;
+    			if (dirty[0] & /*uxml*/ 1) multilineboxpreview_changes.uxml = /*uxml*/ ctx[0];
+    			multilineboxpreview.$set(multilineboxpreview_changes);
+    			const checkboxpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) checkboxpreview_changes.modules = /*state*/ ctx[10].data[0].checkbox;
+    			if (dirty[0] & /*uxml*/ 1) checkboxpreview_changes.uxml = /*uxml*/ ctx[0];
+    			checkboxpreview.$set(checkboxpreview_changes);
+    			const tabheadpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) tabheadpreview_changes.modules = /*state*/ ctx[10].data[0].tabhead;
+    			tabheadpreview.$set(tabheadpreview_changes);
+    			const labelpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) labelpreview_changes.modules = /*state*/ ctx[10].data[0].label;
+    			labelpreview.$set(labelpreview_changes);
+    			const hotspotpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) hotspotpreview_changes.modules = /*state*/ ctx[10].data[0].hotspot;
+    			if (dirty[0] & /*moduleType*/ 512) hotspotpreview_changes.module_type = /*moduleType*/ ctx[9];
+    			if (dirty[0] & /*uxml*/ 1) hotspotpreview_changes.uxml = /*uxml*/ ctx[0];
+    			hotspotpreview.$set(hotspotpreview_changes);
+    			const menulistpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) menulistpreview_changes.modules = /*state*/ ctx[10].data[0].menulist;
+    			menulistpreview.$set(menulistpreview_changes);
+    			const buttonpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) buttonpreview_changes.modules = /*state*/ ctx[10].data[0].button;
+    			buttonpreview.$set(buttonpreview_changes);
+    			const steppreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) steppreview_changes.modules = /*state*/ ctx[10].data[0].step;
+    			if (dirty[0] & /*uxml*/ 1) steppreview_changes.uxml = /*uxml*/ ctx[0];
+    			steppreview.$set(steppreview_changes);
+    			const tabpreview_changes = {};
+    			if (dirty[0] & /*state*/ 1024) tabpreview_changes.modules = /*state*/ ctx[10].data[0].tab;
+    			if (dirty[0] & /*uxml*/ 1) tabpreview_changes.uxml = /*uxml*/ ctx[0];
+    			tabpreview.$set(tabpreview_changes);
+
+    			if (/*state*/ ctx[10].data[0].hotspot) {
+    				if (if_block) ; else {
+    					if_block = create_if_block_1$9(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(dragpreview0.$$.fragment, local);
+    			transition_in(dragpreview1.$$.fragment, local);
+    			transition_in(droppreview0.$$.fragment, local);
+    			transition_in(droppreview1.$$.fragment, local);
+    			transition_in(selectpreview.$$.fragment, local);
+    			transition_in(textboxpreview.$$.fragment, local);
+    			transition_in(radiopreview.$$.fragment, local);
+    			transition_in(multilineboxpreview.$$.fragment, local);
+    			transition_in(checkboxpreview.$$.fragment, local);
+    			transition_in(tabheadpreview.$$.fragment, local);
+    			transition_in(labelpreview.$$.fragment, local);
+    			transition_in(hotspotpreview.$$.fragment, local);
+    			transition_in(menulistpreview.$$.fragment, local);
+    			transition_in(buttonpreview.$$.fragment, local);
+    			transition_in(steppreview.$$.fragment, local);
+    			transition_in(tabpreview.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(dragpreview0.$$.fragment, local);
+    			transition_out(dragpreview1.$$.fragment, local);
+    			transition_out(droppreview0.$$.fragment, local);
+    			transition_out(droppreview1.$$.fragment, local);
+    			transition_out(selectpreview.$$.fragment, local);
+    			transition_out(textboxpreview.$$.fragment, local);
+    			transition_out(radiopreview.$$.fragment, local);
+    			transition_out(multilineboxpreview.$$.fragment, local);
+    			transition_out(checkboxpreview.$$.fragment, local);
+    			transition_out(tabheadpreview.$$.fragment, local);
+    			transition_out(labelpreview.$$.fragment, local);
+    			transition_out(hotspotpreview.$$.fragment, local);
+    			transition_out(menulistpreview.$$.fragment, local);
+    			transition_out(buttonpreview.$$.fragment, local);
+    			transition_out(steppreview.$$.fragment, local);
+    			transition_out(tabpreview.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(dragpreview0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(dragpreview1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(droppreview0, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(droppreview1, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(selectpreview, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(textboxpreview, detaching);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(radiopreview, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(multilineboxpreview, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(checkboxpreview, detaching);
+    			if (detaching) detach_dev(t8);
+    			destroy_component(tabheadpreview, detaching);
+    			if (detaching) detach_dev(t9);
+    			destroy_component(labelpreview, detaching);
+    			if (detaching) detach_dev(t10);
+    			destroy_component(hotspotpreview, detaching);
+    			if (detaching) detach_dev(t11);
+    			destroy_component(menulistpreview, detaching);
+    			if (detaching) detach_dev(t12);
+    			destroy_component(buttonpreview, detaching);
+    			if (detaching) detach_dev(t13);
+    			destroy_component(steppreview, detaching);
+    			if (detaching) detach_dev(t14);
+    			destroy_component(tabpreview, detaching);
+    			if (detaching) detach_dev(t15);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$g.name,
+    		type: "if",
+    		source: "(439:3) {#if state.data && image_loaded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (457:4) {#if state.data[0].hotspot}
+    function create_if_block_1$9(ctx) {
+    	let img;
+    	let img_src_value;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+    			attr_dev(img, "class", "targetImg");
+    			attr_dev(img, "tabindex", "0");
+    			attr_dev(img, "alt", "target_img");
+    			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_assets/items/target.png")) attr_dev(img, "src", img_src_value);
+    			set_style(img, "display", "none");
+    			add_location(img, file$g, 457, 5, 14235);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$9.name,
+    		type: "if",
+    		source: "(457:4) {#if state.data[0].hotspot}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$g(ctx) {
+    	let div3;
+    	let itemhelper;
+    	let t0;
+    	let div0;
+    	let input;
+    	let t1;
+    	let t2_value = l.base_steps + "";
+    	let t2;
+    	let t3;
+    	let t4;
+    	let center;
+    	let div1;
+    	let button0;
+    	let t6;
+    	let button1;
+    	let t8;
+    	let div2;
+    	let t9;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	itemhelper = new ItemHelper({ $$inline: true });
+    	itemhelper.$on("setReview", /*setReview*/ ctx[13]);
+    	itemhelper.$on("unsetReview", /*unsetReview*/ ctx[14]);
+    	let if_block0 = /*step*/ ctx[5] && /*step*/ ctx[5].length && create_if_block_3(ctx);
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*bgImg*/ ctx[2]) return create_if_block_2$2;
+    		return create_else_block$3;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block1 = current_block_type(ctx);
+    	let if_block2 = /*state*/ ctx[10].data && /*image_loaded*/ ctx[1] && create_if_block$g(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div3 = element("div");
+    			create_component(itemhelper.$$.fragment);
+    			t0 = space();
+    			div0 = element("div");
+    			input = element("input");
+    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
+    			if (if_block0) if_block0.c();
+    			t4 = space();
+    			center = element("center");
+    			div1 = element("div");
+    			button0 = element("button");
+    			button0.textContent = `${l.correct_answer}`;
+    			t6 = space();
+    			button1 = element("button");
+    			button1.textContent = `${l.your_answer}`;
+    			t8 = space();
+    			div2 = element("div");
+    			if_block1.c();
+    			t9 = space();
+    			if (if_block2) if_block2.c();
+    			attr_dev(input, "id", "base");
+    			attr_dev(input, "type", "radio");
+    			attr_dev(input, "defaultvalue", "1");
+    			attr_dev(input, "defaultchecked", "");
+    			attr_dev(input, "name", "rbs");
+    			attr_dev(input, "class", "baseradio dndradio");
+    			add_location(input, file$g, 392, 2, 11016);
+    			attr_dev(div0, "id", "dndsteps");
+    			attr_dev(div0, "class", "h svelte-1n3xdnr");
+    			add_location(div0, file$g, 391, 1, 10983);
+    			attr_dev(button0, "type", "button");
+    			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_testing");
+    			attr_dev(button0, "id", "reviewCorrectAns");
+    			add_location(button0, file$g, 412, 3, 11612);
+    			attr_dev(button1, "type", "button");
+    			attr_dev(button1, "class", "btn active your-ans btn-light svelte_items_testing");
+    			attr_dev(button1, "id", "reviewUserAns");
+    			set_style(button1, "margin-left", "-4px");
+    			add_location(button1, file$g, 417, 3, 11762);
+    			attr_dev(div1, "class", "btn-group mb-xl clearfix review h mb-3");
+    			attr_dev(div1, "id", "sm_controller");
+    			add_location(div1, file$g, 411, 2, 11537);
+    			attr_dev(div2, "id", /*container_id*/ ctx[11]);
+    			attr_dev(div2, "zoom", "");
+    			attr_dev(div2, "totalcorrectans", /*totalcorrectans*/ ctx[7]);
+    			attr_dev(div2, "class", "container_div svelte-1n3xdnr");
+    			attr_dev(div2, "data-item", "svelte_items_testing");
+    			add_location(div2, file$g, 426, 2, 11961);
+    			add_location(center, file$g, 410, 1, 11526);
+    			add_location(div3, file$g, 386, 0, 10896);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div3, anchor);
+    			mount_component(itemhelper, div3, null);
+    			append_dev(div3, t0);
+    			append_dev(div3, div0);
+    			append_dev(div0, input);
+    			append_dev(div0, t1);
+    			append_dev(div0, t2);
+    			append_dev(div0, t3);
+    			if (if_block0) if_block0.m(div0, null);
+    			append_dev(div3, t4);
+    			append_dev(div3, center);
+    			append_dev(center, div1);
+    			append_dev(div1, button0);
+    			append_dev(div1, t6);
+    			append_dev(div1, button1);
+    			append_dev(center, t8);
+    			append_dev(center, div2);
+    			if_block1.m(div2, null);
+    			append_dev(div2, t9);
+    			if (if_block2) if_block2.m(div2, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(input, "click", /*click_handler*/ ctx[20], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*step*/ ctx[5] && /*step*/ ctx[5].length) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_3(ctx);
+    					if_block0.c();
+    					if_block0.m(div0, null);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block1) {
+    				if_block1.p(ctx, dirty);
+    			} else {
+    				if_block1.d(1);
+    				if_block1 = current_block_type(ctx);
+
+    				if (if_block1) {
+    					if_block1.c();
+    					if_block1.m(div2, t9);
+    				}
+    			}
+
+    			if (/*state*/ ctx[10].data && /*image_loaded*/ ctx[1]) {
+    				if (if_block2) {
+    					if_block2.p(ctx, dirty);
+
+    					if (dirty[0] & /*state, image_loaded*/ 1026) {
+    						transition_in(if_block2, 1);
+    					}
+    				} else {
+    					if_block2 = create_if_block$g(ctx);
+    					if_block2.c();
+    					transition_in(if_block2, 1);
+    					if_block2.m(div2, null);
+    				}
+    			} else if (if_block2) {
+    				group_outros();
+
+    				transition_out(if_block2, 1, 1, () => {
+    					if_block2 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (!current || dirty[0] & /*totalcorrectans*/ 128) {
+    				attr_dev(div2, "totalcorrectans", /*totalcorrectans*/ ctx[7]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(itemhelper.$$.fragment, local);
+    			transition_in(if_block2);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(itemhelper.$$.fragment, local);
+    			transition_out(if_block2);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div3);
+    			destroy_component(itemhelper);
+    			if (if_block0) if_block0.d();
+    			if_block1.d();
+    			if (if_block2) if_block2.d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$g.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function setTotalCorrectAns(qXml) {
+    	var item = qXml ? qXml.smxml : null;
+    	var count = 0;
+
+    	// if there is xml
+    	if (item) {
+    		// iterating throgh the xml and store the elements in item 
+    		for (let i in item) {
+    			if (Array.isArray(item[i]) == false) {
+    				let arr = [];
+    				arr.push(item[i]);
+    				item[i] = arr;
+    			}
+    		}
+
+    		/** Counting the total length of the element **/
+    		if (item["drop"]) {
+    			count = count + item["drop"].length;
+    		}
+
+    		if (item["select"]) {
+    			count = count + item["select"].length;
+    		}
+
+    		if (item["textbox"]) {
+    			count = count + item["textbox"].length;
+    		}
+
+    		if (item["checkbox"]) {
+    			count = count + item["checkbox"].length;
+    		}
+
+    		if (item["radio"]) {
+    			item["radio"].map(function (data) {
+    				if (parseInt(data._correctans) == 1) {
+    					count = count + 1;
+    				}
+    			});
+    		}
+
+    		if (item["hotspot"]) {
+    			item["hotspot"].map(function (data) {
+    				let innerText = JSON.parse(data.__text ? data.__text : data.__cdata);
+    				count = count + Object.keys(innerText).length;
+    			});
+    		}
+
+    		if (item["jscript"]) {
+    			try {
+    				eval.call(window, item["jscript"][0]);
+    			} catch(e) {
+    				console.warn(e);
+    			}
+    		}
+
+    		return count;
+    	}
+    }
+
+    // convert object to lower case
+    function objToLower(obj) {
+    	let newX = {};
+
+    	for (let index in obj) {
+    		newX[index.toLowerCase()] = obj[index];
+    	}
+
+    	return newX;
+    }
+
+    // return the data of the nested module according to the xml
+    function loadNestedModule(qXml) {
+    	var smxml = qXml ? qXml.smxml : null;
+    	var customDrag = [], customDrop = [];
+
+    	if (smxml) {
+    		if (smxml.div) {
+    			smxml.div.map(function (data, i) {
+    				data = objToLower(data);
+
+    				if (data._anskey == "" || data._anskey == undefined) {
+    					/*added this condition because key was diffrent with id*/
+    					if (data._key.indexOf("key") <= -1) {
+    						data._id = "ID" + data._key;
+    						data._key = "key" + data._key;
+    					}
+
+    					/********/
+    					customDrag.push(data);
+    				} else {
+    					let id = data._id.split("ID");
+
+    					/*added this condition because key was diffrent with id*/
+    					if (data._key.indexOf("key") <= -1) {
+    						data._id = "ID" + data._key;
+    						data._key = "key" + data._key;
+    						data._anskey = "ID" + data._anskey;
+    					} else {
+    						let key = data._key.split("key"); /********/
+
+    						if (id[1] == key[1]) {
+    							let k = data._anskey.split("key");
+    							let k2 = k[1];
+    							if (k2) data._anskey = "ID" + k2;
+    						} else if (parseInt(id[1]) != parseInt(key[1])) {
+    							if (data._anskey.indexOf("ID") <= -1) {
+    								data._anskey = "ID" + key[1];
+    							}
+    						}
+    					}
+
+    					customDrop.push(data);
+    				}
+    			});
+    		}
+
+    		return [smxml, customDrag, customDrop];
+    	}
+    }
+
+    function instance$g($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("DragNDropPreview", slots, []);
+    	let { xml } = $$props;
+    	let { uxml } = $$props;
+    	let { isReview } = $$props;
+    	let { showAns } = $$props;
+    	let { editorState } = $$props;
+
+    	// initializing the variable
+    	let QXML = "";
+
+    	let image_loaded = 0;
+    	let bgImg = "";
+    	let imgHeight = "";
+    	let imgWidth = "";
+    	let step = [];
+    	let alt = "";
+    	let totalcorrectans = 0;
+    	let borderclass = "";
+    	let borderclassname = "img-bordered";
+    	let container_id = "dndmainPreview";
+    	let moduleType = 1;
+    	let state = {};
+
+    	// writable for preview
+    	let preview_store = writable({
+    		xml: "",
+    		check: "checked",
+    		totalcorrectans: "",
+    		review: false,
+    		data: []
+    	});
+
+    	// subscribing to the store
+    	const unsubscribe = preview_store.subscribe(value => {
+    		$$invalidate(10, state = value);
+    	});
+
+    	// this is called for the first time use for binding the events
+    	onMount(async function () {
+    		if (window.inNative) {
+    			if (typeof window.getHeight == "function") {
+    				window.getHeight && window.getHeight();
+    			}
+    		}
+
+    		if (xml) {
+    			AH$1.setCss(document.getElementById("dndsteps"), { display: "none" });
+    		}
+
+    		AH$1.listen(document, "click", ".record", function (current_element) {
+    			if (!current_element.classList.contains("lab_disable")) current_element.setAttribute("clicked", 1);
+    		});
+
+    		AH$1.listen("body", "click", "#reviewUserAns", function () {
+    			// for your ans
+    			AH$1.selectAll("#sm_controller button", "removeClass", "active");
+
+    			AH$1.addClass("#sm_controller .your-ans", "active");
+    			yourAnswer();
+    		});
+
+    		AH$1.listen("body", "click", "#reviewCorrectAns", function () {
+    			// for correct ans
+    			AH$1.selectAll("#sm_controller button", "removeClass", "active");
+
+    			AH$1.addClass("#sm_controller .correct-ans", "active");
+    			correctAnswer();
+    		});
+
+    		AH$1.listen(document, "click", "#" + container_id, function () {
+    			displayAns();
+    		});
+
+    		AH$1.listen(document, "keyup", "#" + container_id, function () {
+    			displayAns();
+    		});
+
+    		AH$1.listen(document, "change", "#" + container_id, function () {
+    			displayAns();
+    		});
+
+    		AH$1.listen(document, "mouseup", "#" + container_id, function () {
+    			displayAns();
+    		});
+
+    		// prevent to open context menu
+    		AH$1.bind("body", "contextmenu", function (event) {
+    			event.preventDefault();
+    		});
+    	});
+
+    	// call everytime when updating will happen
+    	afterUpdate(async () => {
+    		// if there is change in xml
+    		if (state.xml != xml) {
+    			loadModule(xml);
+    		}
+
+    		// run only in case of editor no need to run it in case of preview
+    		// if (state.review != isReview && editorState ) { // Its creating issue in student area
+    		if (state.review != isReview) {
+    			preview_store.update(item => {
+    				item.review = isReview;
+    				return item;
+    			});
+
+    			if (isReview) {
+    				displayAns();
+    				DND.modeOn(1);
+    				DND.showansdrag("#" + container_id, "u", 1);
+    				AH$1.selectAll("#sm_controller button", "removeClass", "active");
+    				AH$1.addClass("#sm_controller .your-ans", "active");
+    			} else {
+    				DND.modeOn(0);
+    			}
+    		}
+    	});
+
+    	// for checking the answer and creating the user ans
+    	function displayAns() {
+    		//@Prabhat: Answer checking and attibute value updating happening at the same time so here we need to add the setTimeout for time laps in answer checking. 
+    		setTimeout(
+    			function () {
+    				let result = DND.checkAns("#" + container_id);
+    				if (typeof is_sm != "undefined") AH$1.showmsg(result.ans ? "Correct" : "Incorrect", 3000);
+
+    				if (editorState) {
+    					showAns(result.ans ? "Correct" : "Incorrect");
+    				}
+
+    				onUserAnsChange(result);
+    			},
+    			100
+    		);
+    	}
+
+    	// call whenever there is change in xml and changes the module accordingly
+    	function loadModule(loadXml) {
+    		let newXml = XMLToJSON(loadXml);
+    		parseXMLPreview(newXml);
+    		$$invalidate(7, totalcorrectans = setTotalCorrectAns(newXml));
+
+    		preview_store.update(item => {
+    			item.xml = loadXml;
+    			item.totalcorrectans = totalcorrectans;
+    			item.data = loadNestedModule(newXml);
+    			return item;
+    		});
+
+    		checkImages();
+    		refreshModule();
+    	}
+
+    	// whenever the module will refresh means there is change in xml it will called 
+    	function refreshModule() {
+    		let dnd_timeout = setTimeout(
+    			function () {
+    				DND.readyThis("#" + container_id);
+    				DND.showansdrag("#" + container_id, "u");
+
+    				if (isReview) {
+    					// if review mode is on
+    					displayAns(); // display the answe
+
+    					DND.modeOn(1); // for showing correct answer and your answer tab
+    					DND.showansdrag("#" + container_id, "u", 1);
+    					AH$1.selectAll("#sm_controller button", "removeClass", "active");
+    					AH$1.addClass("#sm_controller .your-ans", "active");
+    				} else {
+    					try {
+    						DND.modeOn(0);
+
+    						if (typeof showAns == "undefined") {
+    							displayAns();
+    						}
+    					} catch(err) {
+    						console.warn({ err });
+    					}
+    				}
+
+    				clearTimeout(dnd_timeout);
+    			},
+    			500
+    		);
+    	}
+
+    	// parse the xml for preview
+    	function parseXMLPreview(MYXML) {
+    		try {
+    			// getting he required data
+    			QXML = MYXML;
+
+    			$$invalidate(2, bgImg = MYXML.smxml._bgimg);
+    			$$invalidate(9, moduleType = MYXML.smxml._type || 1);
+    			$$invalidate(6, alt = MYXML.smxml._alt ? MYXML.smxml._alt : "");
+    			$$invalidate(3, imgHeight = MYXML.smxml._height);
+    			$$invalidate(4, imgWidth = MYXML.smxml._width);
+    			$$invalidate(8, borderclass = MYXML.smxml._borderrequired == 1 ? borderclassname : "");
+    			$$invalidate(5, step = MYXML.smxml.step);
+
+    			if (Array.isArray(step) == false && step) {
+    				$$invalidate(5, step = []);
+    				$$invalidate(5, step[0] = QXML.smxml.step, step);
+    			}
+    		} catch(error) {
+    			console.warn({
+    				error,
+    				fun: "parseXMLPreview",
+    				file: "DragNDropPreview.svelte"
+    			});
+    		}
+    	}
+
+    	// setting the container height and width on the basis of image height and width
+    	function checkImages(is_image_load) {
+    		let container = document.querySelectorAll("#" + container_id + " img");
+
+    		if (container.length > 0) {
+    			container.forEach(function (value) {
+    				if (value.complete) {
+    					let originalHeight = value.clientHeight > value.naturalHeight
+    					? value.clientHeight
+    					: value.naturalHeight;
+
+    					let originalWidth = value.clientWidth > value.naturalWidth
+    					? value.clientWidth
+    					: value.naturalWidth;
+
+    					if (Number(originalWidth) != 0 || Number(originalHeight) != 0 || typeof from_myproject != "undefined" && from_myproject == 1) {
+    						AH$1.setCss("#" + container_id, {
+    							height: (imgHeight && imgHeight >= originalHeight
+    							? imgHeight
+    							: originalHeight) + "px",
+    							width: (imgWidth && imgWidth >= originalWidth
+    							? imgWidth
+    							: originalWidth) + "px"
+    						});
+    					}
+    				}
+    			});
+    		}
+
+    		if (is_image_load == 1 || is_image_load == 2) {
+    			$$invalidate(1, image_loaded = 1);
+
+    			if (window.inNative) {
+    				window.postMessage(`height___${AH$1.select("#" + container_id + ">img").naturalHeight}`);
+    			}
+
+    			refreshModule();
+    		}
+    	}
+
+    	// for the correct answer
+    	function correctAnswer() {
+    		DND.showansdrag("#" + container_id, "c", 1);
+    	}
+
+    	// for showing the user ans
+    	function yourAnswer() {
+    		DND.showansdrag("#" + container_id, "u", 1);
+    	}
+
+    	// call on the setreview function
+    	function setReview() {
+    		displayAns();
+    		$$invalidate(16, isReview = true);
+    		DND.modeOn(1);
+    	}
+
+    	// unset review function
+    	function unsetReview() {
+    		$$invalidate(16, isReview = false);
+    		DND.modeOn(0);
+    	}
+
+    	// for changing the load stte
+    	function changeLoadState() {
+    		AH$1.select("#pre_sample_image").remove();
+    		$$invalidate(1, image_loaded = 1);
+    	}
+
+    	const writable_props = ["xml", "uxml", "isReview", "showAns", "editorState"];
+
+    	Object_1$9.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$2.warn(`<DragNDropPreview> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = () => DND.setStep("base");
+    	const click_handler_1 = data => DND.setStep("dnd" + data._id);
+
+    	const error_handler = e => {
+    		e.target.onerror = null;
+    		e.target.src = "https://s3.amazonaws.com/jigyaasa_content_static/" + bgImg;
+    	};
+
+    	const load_handler = () => {
+    		checkImages(1);
+    	};
+
+    	$$self.$$set = $$props => {
+    		if ("xml" in $$props) $$invalidate(17, xml = $$props.xml);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("isReview" in $$props) $$invalidate(16, isReview = $$props.isReview);
+    		if ("showAns" in $$props) $$invalidate(18, showAns = $$props.showAns);
+    		if ("editorState" in $$props) $$invalidate(19, editorState = $$props.editorState);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		afterUpdate,
+    		ItemHelper,
+    		AH: AH$1,
+    		onUserAnsChange,
+    		XMLToJSON,
+    		writable,
+    		DND,
+    		TextboxPreview,
+    		DragPreview,
+    		DropPreview,
+    		SelectPreview,
+    		RadioPreview,
+    		MultilineboxPreview,
+    		CheckboxPreview,
+    		TabheadPreview,
+    		LabelPreview,
+    		HotspotPreview,
+    		MenulistPreview,
+    		ButtonPreview,
+    		StepPreview,
+    		TabPreview,
+    		l,
+    		xml,
+    		uxml,
+    		isReview,
+    		showAns,
+    		editorState,
+    		QXML,
+    		image_loaded,
+    		bgImg,
+    		imgHeight,
+    		imgWidth,
+    		step,
+    		alt,
+    		totalcorrectans,
+    		borderclass,
+    		borderclassname,
+    		container_id,
+    		moduleType,
+    		state,
+    		preview_store,
+    		unsubscribe,
+    		displayAns,
+    		loadModule,
+    		refreshModule,
+    		parseXMLPreview,
+    		checkImages,
+    		setTotalCorrectAns,
+    		objToLower,
+    		loadNestedModule,
+    		correctAnswer,
+    		yourAnswer,
+    		setReview,
+    		unsetReview,
+    		changeLoadState
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("xml" in $$props) $$invalidate(17, xml = $$props.xml);
+    		if ("uxml" in $$props) $$invalidate(0, uxml = $$props.uxml);
+    		if ("isReview" in $$props) $$invalidate(16, isReview = $$props.isReview);
+    		if ("showAns" in $$props) $$invalidate(18, showAns = $$props.showAns);
+    		if ("editorState" in $$props) $$invalidate(19, editorState = $$props.editorState);
+    		if ("QXML" in $$props) QXML = $$props.QXML;
+    		if ("image_loaded" in $$props) $$invalidate(1, image_loaded = $$props.image_loaded);
+    		if ("bgImg" in $$props) $$invalidate(2, bgImg = $$props.bgImg);
+    		if ("imgHeight" in $$props) $$invalidate(3, imgHeight = $$props.imgHeight);
+    		if ("imgWidth" in $$props) $$invalidate(4, imgWidth = $$props.imgWidth);
+    		if ("step" in $$props) $$invalidate(5, step = $$props.step);
+    		if ("alt" in $$props) $$invalidate(6, alt = $$props.alt);
+    		if ("totalcorrectans" in $$props) $$invalidate(7, totalcorrectans = $$props.totalcorrectans);
+    		if ("borderclass" in $$props) $$invalidate(8, borderclass = $$props.borderclass);
+    		if ("borderclassname" in $$props) borderclassname = $$props.borderclassname;
+    		if ("container_id" in $$props) $$invalidate(11, container_id = $$props.container_id);
+    		if ("moduleType" in $$props) $$invalidate(9, moduleType = $$props.moduleType);
+    		if ("state" in $$props) $$invalidate(10, state = $$props.state);
+    		if ("preview_store" in $$props) preview_store = $$props.preview_store;
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		uxml,
+    		image_loaded,
+    		bgImg,
+    		imgHeight,
+    		imgWidth,
+    		step,
+    		alt,
+    		totalcorrectans,
+    		borderclass,
+    		moduleType,
+    		state,
+    		container_id,
+    		checkImages,
+    		setReview,
+    		unsetReview,
+    		changeLoadState,
+    		isReview,
+    		xml,
+    		showAns,
+    		editorState,
+    		click_handler,
+    		click_handler_1,
+    		error_handler,
+    		load_handler
+    	];
+    }
+
+    class DragNDropPreview extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		if (!document_1$1.getElementById("svelte-1n3xdnr-style")) add_css$1();
+
+    		init(
+    			this,
+    			options,
+    			instance$g,
+    			create_fragment$g,
+    			safe_not_equal,
+    			{
+    				xml: 17,
+    				uxml: 0,
+    				isReview: 16,
+    				showAns: 18,
+    				editorState: 19
+    			},
+    			[-1, -1]
+    		);
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "DragNDropPreview",
+    			options,
+    			id: create_fragment$g.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*xml*/ ctx[17] === undefined && !("xml" in props)) {
+    			console_1$2.warn("<DragNDropPreview> was created without expected prop 'xml'");
+    		}
+
+    		if (/*uxml*/ ctx[0] === undefined && !("uxml" in props)) {
+    			console_1$2.warn("<DragNDropPreview> was created without expected prop 'uxml'");
+    		}
+
+    		if (/*isReview*/ ctx[16] === undefined && !("isReview" in props)) {
+    			console_1$2.warn("<DragNDropPreview> was created without expected prop 'isReview'");
+    		}
+
+    		if (/*showAns*/ ctx[18] === undefined && !("showAns" in props)) {
+    			console_1$2.warn("<DragNDropPreview> was created without expected prop 'showAns'");
+    		}
+
+    		if (/*editorState*/ ctx[19] === undefined && !("editorState" in props)) {
+    			console_1$2.warn("<DragNDropPreview> was created without expected prop 'editorState'");
+    		}
+    	}
+
+    	get xml() {
+    		throw new Error("<DragNDropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set xml(value) {
+    		throw new Error("<DragNDropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get uxml() {
+    		throw new Error("<DragNDropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set uxml(value) {
+    		throw new Error("<DragNDropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isReview() {
+    		throw new Error("<DragNDropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isReview(value) {
+    		throw new Error("<DragNDropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get showAns() {
+    		throw new Error("<DragNDropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set showAns(value) {
+    		throw new Error("<DragNDropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get editorState() {
+    		throw new Error("<DragNDropPreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set editorState(value) {
+    		throw new Error("<DragNDropPreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /**
+     *  File Name   : main.js
+     *  Author      : Ayush Srivastava
+     *  Function    : DND
+     *  Version     : 1.0
+     *  Packege     : Drag and Drop (prev)
+     *  Last update : 19 Jan 2021
+     */
+
+    const defXMl = `<smxml type="1" name="DragNDrop" bgimg="lab-26_0007C9_000CsS.png" height="495" width="607"><drag id="ID0" top="442" left="307" width="120" height="25" value="Port operational"></drag><drag id="ID1" top="442" left="454" width="120" height="25" value="Layer 2 problem"></drag><drag id="ID2" top="442" left="10" width="120" height="25" value="Layer 1 problem"></drag><drag id="ID3" top="442" left="160" width="120" height="25" value="Port disabled"></drag><drop id="ID4" top="76" left="414" width="120" height="25" anskey="ID0" value="Drop Here"></drop><drop id="ID5" top="173" left="414" width="120" height="25" anskey="ID1" value="Drop Here"></drop><drop id="ID6" top="272" left="414" width="120" height="25" anskey="ID2" value="Drop Here"></drop><drop id="ID7" top="366" left="414" width="120" height="25" anskey="ID3" value="Drop Here"></drop></smxml>`;
+
+    // creating app
+    const app = new DragNDropPreview({
+    	target: document.getElementById(window.moduleContainer) || document.body,
+    	props: {
+    		xml: window.QXML || defXMl,
+    		uxml: window.uaXML,
+    		ansStatus: 0,
+    		isReview: window.isReviewMode || false,
+    	}
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle_q1.js.map
