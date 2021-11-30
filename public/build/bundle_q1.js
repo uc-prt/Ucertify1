@@ -2700,10 +2700,8 @@ var app = (function () {
     function create_if_block(ctx) {
     	let div;
     	let button0;
-    	let span0;
     	let t1;
     	let button1;
-    	let span1;
     	let mounted;
     	let dispose;
 
@@ -2711,24 +2709,20 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			button0 = element("button");
-    			span0 = element("span");
-    			span0.textContent = "Correct Answer";
+    			button0.textContent = "Correct Answer";
     			t1 = space();
     			button1 = element("button");
-    			span1 = element("span");
-    			span1.textContent = "Your Answer";
-    			add_location(span0, file, 38, 131, 1621);
+    			button1.textContent = "Your Answer";
     			attr_dev(button0, "tabindex", "0");
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "mode", "c");
     			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_test");
     			add_location(button0, file, 38, 8, 1498);
-    			add_location(span1, file, 39, 135, 1793);
     			attr_dev(button1, "tabindex", "0");
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "mode", "u");
     			attr_dev(button1, "class", "btn btn-light your-ans active svelte_items_test");
-    			add_location(button1, file, 39, 8, 1666);
+    			add_location(button1, file, 39, 8, 1653);
     			attr_dev(div, "class", "smControlerBtn btn-group mb-3");
     			attr_dev(div, "role", "group");
     			attr_dev(div, "aria-label", "Answer buttons");
@@ -2737,10 +2731,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, button0);
-    			append_dev(button0, span0);
     			append_dev(div, t1);
     			append_dev(div, button1);
-    			append_dev(button1, span1);
 
     			if (!mounted) {
     				dispose = [
@@ -7572,7 +7564,7 @@ var app = (function () {
     			option.textContent = "Please Select";
     			option.__value = "Please Select";
     			option.value = option.__value;
-    			add_location(option, file$4, 163, 24, 6139);
+    			add_location(option, file$4, 163, 24, 6143);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -7681,7 +7673,7 @@ var app = (function () {
     			attr_dev(option, "data-correctans", option_data_correctans_value = /*option*/ ctx[9].correctans);
     			attr_dev(option, "data-defaultans", option_data_defaultans_value = /*option*/ ctx[9].defaultans);
     			attr_dev(option, "data-userans", option_data_userans_value = /*option*/ ctx[9].userans);
-    			option.__value = option_value_value = /*option*/ ctx[9].key;
+    			option.__value = option_value_value = /*option*/ ctx[9].key + 1;
     			option.value = option.__value;
     			add_location(option, file$4, 159, 32, 5852);
     		},
@@ -7708,7 +7700,7 @@ var app = (function () {
     				attr_dev(option, "data-userans", option_data_userans_value);
     			}
 
-    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key)) {
+    			if (dirty & /*select_data*/ 1 && option_value_value !== (option_value_value = /*option*/ ctx[9].key + 1)) {
     				prop_dev(option, "__value", option_value_value);
     				option.value = option.__value;
     			}
@@ -16076,9 +16068,9 @@ var app = (function () {
     			attr_dev(input, "defaultvalue", "1");
     			attr_dev(input, "name", "rbs");
     			attr_dev(input, "class", "baseradio dndradio svelte-1n3xdnr");
-    			add_location(input, file$g, 397, 5, 11261);
+    			add_location(input, file$g, 397, 5, 11302);
     			attr_dev(span, "key", span_key_value = /*index*/ ctx[36]);
-    			add_location(span, file$g, 396, 4, 11237);
+    			add_location(span, file$g, 396, 4, 11278);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -16133,7 +16125,7 @@ var app = (function () {
     			attr_dev(img, "id", "pre_sample_image");
     			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_content_static/bg_000PLn.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = l.sample_img);
-    			add_location(img, file$g, 436, 16, 12561);
+    			add_location(img, file$g, 436, 16, 12602);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16184,7 +16176,7 @@ var app = (function () {
 
     			attr_dev(img, "class", /*borderclass*/ ctx[8]);
     			attr_dev(img, "alt", img_alt_value = /*alt*/ ctx[6] ? /*alt*/ ctx[6] : l.sample_img);
-    			add_location(img, file$g, 434, 4, 12121);
+    			add_location(img, file$g, 434, 4, 12162);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16666,7 +16658,7 @@ var app = (function () {
     			attr_dev(img, "alt", "target_img");
     			if (img.src !== (img_src_value = "https://s3.amazonaws.com/jigyaasa_assets/items/target.png")) attr_dev(img, "src", img_src_value);
     			set_style(img, "display", "none");
-    			add_location(img, file$g, 457, 5, 14235);
+    			add_location(img, file$g, 457, 5, 14276);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -16753,30 +16745,30 @@ var app = (function () {
     			attr_dev(input, "defaultchecked", "");
     			attr_dev(input, "name", "rbs");
     			attr_dev(input, "class", "baseradio dndradio");
-    			add_location(input, file$g, 392, 2, 11016);
+    			add_location(input, file$g, 392, 2, 11057);
     			attr_dev(div0, "id", "dndsteps");
     			attr_dev(div0, "class", "h svelte-1n3xdnr");
-    			add_location(div0, file$g, 391, 1, 10983);
+    			add_location(div0, file$g, 391, 1, 11024);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn btn-light correct-ans svelte_items_testing");
     			attr_dev(button0, "id", "reviewCorrectAns");
-    			add_location(button0, file$g, 412, 3, 11612);
+    			add_location(button0, file$g, 412, 3, 11653);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn active your-ans btn-light svelte_items_testing");
     			attr_dev(button1, "id", "reviewUserAns");
     			set_style(button1, "margin-left", "-4px");
-    			add_location(button1, file$g, 417, 3, 11762);
+    			add_location(button1, file$g, 417, 3, 11803);
     			attr_dev(div1, "class", "btn-group mb-xl clearfix review h mb-3");
     			attr_dev(div1, "id", "sm_controller");
-    			add_location(div1, file$g, 411, 2, 11537);
+    			add_location(div1, file$g, 411, 2, 11578);
     			attr_dev(div2, "id", /*container_id*/ ctx[11]);
     			attr_dev(div2, "zoom", "");
     			attr_dev(div2, "totalcorrectans", /*totalcorrectans*/ ctx[7]);
     			attr_dev(div2, "class", "container_div svelte-1n3xdnr");
     			attr_dev(div2, "data-item", "svelte_items_testing");
-    			add_location(div2, file$g, 426, 2, 11961);
-    			add_location(center, file$g, 410, 1, 11526);
-    			add_location(div3, file$g, 386, 0, 10896);
+    			add_location(div2, file$g, 426, 2, 12002);
+    			add_location(center, file$g, 410, 1, 11567);
+    			add_location(div3, file$g, 386, 0, 10937);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17247,9 +17239,9 @@ var app = (function () {
 
     					if (Number(originalWidth) != 0 || Number(originalHeight) != 0 || typeof from_myproject != "undefined" && from_myproject == 1) {
     						AH$1.setCss("#" + container_id, {
-    							height: (imgHeight && imgHeight >= originalHeight
+    							height: parseInt(imgHeight && imgHeight >= originalHeight
     							? imgHeight
-    							: originalHeight) + "px",
+    							: originalHeight) + 8 + "px", // 8px increas for border.
     							width: (imgWidth && imgWidth >= originalWidth
     							? imgWidth
     							: originalWidth) + "px"
