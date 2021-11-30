@@ -36,8 +36,8 @@
 <button tabindex="0" type="button" class="h h-imp svelte_items_test" id="unset-review" on:click="{()=>dispatch('unsetReview')}"></button>
 {#if reviewMode || customReviewMode}
     <div class="smControlerBtn btn-group mb-3" role="group" aria-label="Answer buttons">
-        <button tabindex="0" type="button" mode="c" class="btn btn-light correct-ans svelte_items_test" on:click="{handleSmClick}"><span>Correct Answer</span></button>
-        <button tabindex="0" type="button" mode="u" class="btn btn-light your-ans active svelte_items_test" on:click="{handleSmClick}"><span>Your Answer</span></button>
+        <button tabindex="0" type="button" mode="c" class="btn btn-light correct-ans svelte_items_test" on:click="{handleSmClick}">Correct Answer</button>
+        <button tabindex="0" type="button" mode="u" class="btn btn-light your-ans active svelte_items_test" on:click="{handleSmClick}">Your Answer</button>
     </div>
 {/if}
 </center>
