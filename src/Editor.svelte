@@ -45,6 +45,9 @@ export let is_algo;
 export let ajaxData = "";
 export let _user;
 export let subtype;
+
+let editorUrl = new URLSearchParams(window.location.search);
+
 if ((window.origin).includes('https://') && (location.host != "localhost")) {
 	window.baseUrl = (window.baseUrl).replace('http://', 'https://');
 }
@@ -2068,8 +2071,8 @@ function saveAction(event, customAction, saveType) {
 			break;
 		case 'save':
 			if (AH.get('save')) {
-				if (from_myproject == 1 && state.guid.length == 5 && state.course_list) {
-					publishSelected();
+				if (from_myproject == 1 && editorUrl.get('action') == 'new') {
+					saveData('1');
 				} else {
 					saveData('0');
 				}
@@ -2119,8 +2122,9 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 		state.saveDialog = false;
 		return false;
 	}
+
 	if (is_domain == 1 && state.domain.length != 5 && (state.viewConfig.isQuestion || getQueryString("is_flashcard") == 1)) {
-		if (from_coverage == "" && is_new != 1 && in_frame == "1") {
+		if (from_coverage == "" && is_new == 1 && in_frame == "1") {
 			state.message = "Please select a domain.";
 			state.snackback = true;
 			state.domainToggle = true;
@@ -2128,6 +2132,7 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 			return;
 		}
 	}
+
 	let reject = editorConfig.checkBlank(state, Items, updateModuleState);
 	if (reject) {
 		return;
