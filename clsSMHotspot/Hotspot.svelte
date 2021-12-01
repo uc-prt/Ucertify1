@@ -1048,7 +1048,7 @@
                 style="width: -webkit-fill-available;"
             />
             <div class="d-flex">
-                <div class={(state.valueMultiple == 4) ? "d-inline-block pr-2 mt-2 w-sm" : "hidden"}>
+                <div class="d-inline-block pr-2 mt-2 w-sm">
                     <span>
                         <label for="hotBorder" class="my-1 text-dark">Border width</label>
                     </span>
@@ -1061,7 +1061,7 @@
                         <option value="5">5</option>
                     </select>
                 </div>
-                <div class={(state.valueMultiple == 4) ? "d-inline-block mt-2 w-sm" : "hidden"}>
+                <div class="d-inline-block mt-2 w-sm">
                     <span>
                         <label for="hotBorderColor" class="my-1 text-dark">Border color</label>
                     </span>

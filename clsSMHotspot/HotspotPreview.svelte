@@ -48,6 +48,8 @@
 	let item_type       = "";
 	let xmlHeight       = 0;
 	let xmlWidth        = 0;
+	let xmlBorderColor = '';
+	let xmlBorderWidth = '0'
 	let userCorrect     = "";
 	let correctans		= "";
 	let totalCorrectAns;
@@ -102,9 +104,10 @@
 		xmlParser();
 		preRender();
 	}
-
-	onMount(async () => {
+	onMount(() => {
 		parseXml = XMLToJSON(xml);
+		xmlBorderWidth = parseXml['smxml']['hotBorder'];
+		xmlBorderColor = parseXml['smxml']['hotBorderColor'];
 		xmlParser();
 		preRender();
 		HotJS.readyThis('hptmain0', isReview);
@@ -174,7 +177,7 @@
 					//getting the width and height
 					divHeight = parseXml.smxml._height+'px';
 					divWidth = parseXml.smxml._width+'px';
-					// for parsing the xml
+					// for parsing the xmlpreviewArea
 					parseTextClick(parseXml.smxml.div.__cdata);
 					AH.select(AH.parent('#textID0'), 'show', 'block');
 					AH.selectAll('#drawPreview,table[id="hptmain2"]', 'hide');
@@ -199,6 +202,8 @@
 					image.addEventListener('load', function(event) {
 						state.imgheight = (parseXml.smxml._height > this.height) ? parseXml.smxml._height+'px' : this.height+'px';
 						state.imgwidth = (parseXml.smxml._width > this.width) ? parseXml.smxml._width + 'px' : this.width + 'px';
+						itemBorder  = parseXml.smxml.div._border;
+						itemBorderColor  = parseXml.smxml.div._bordercolor;
 						AH.find('#hptdraw0', 'canvas', {action: 'attr', actionData: {height:  state.imgheight, width: state.imgwidth} });
 						AH.empty('#textID0');
 						unsetReview();
@@ -652,7 +657,7 @@
 							background-image: url('{bgImgPath+img_url}'); 
 							background-repeat: no-repeat; 
 							position: relative; 
-							border: 2px solid #d9e7fd;
+							border: {itemBorder}px solid {itemBorderColor};
 						"
 					></div>
 					{#if scrollEnabled}
