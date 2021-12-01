@@ -67,17 +67,20 @@
 	})
 
 	$: {
-		if (isReview) {
-			//targetView = "block";
-			setReview();
-			if(editorState && ansDisable == 0) {
-				showAns(answerStatus ? "Correct" : "Incorrect");
-				ansDisable = 1;
+		if(isReview != customIsReview){
+			if (isReview) {
+				//targetView = "block";
+				setReview();
+				if(editorState && ansDisable == 0) {
+					showAns(answerStatus ? "Correct" : "Incorrect");
+					ansDisable = 1;
+				}
+			} else {
+				//targetView = "none";
+				ansDisable = 0;
+				unsetReview();
 			}
-		} else {
-			//targetView = "none";
-			ansDisable = 0;
-			unsetReview();
+			customIsReview = isReview;
 		}
 	}
 
