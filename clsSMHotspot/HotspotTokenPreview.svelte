@@ -414,10 +414,10 @@
                                 tabIndex={(state.pointerEvents == "auto") ? "0" : "1"}
                                 class="pointer float-left text-left font14 token {(data.selected) ? 'token_selected' : ''}"
                                 style="
-                                    
+                                    margin: 1px;
                                     user-select: none;
                                     border: 1px solid transparent;
-                                    padding: 1px;
+                                    padding: 1px 1px;
                                     border-radius: 3px;
                                     pointer-events: {state.pointerEvents}
                                 "
