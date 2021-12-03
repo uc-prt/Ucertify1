@@ -154,6 +154,13 @@
 		AH.listen('#previewArea', 'click', '[type="textselect"]', function() {
 			checkAnswer();
 		});
+		AH.listen("#review_buttons", 'click', "#set-review", function() {
+            setReview();
+        });
+
+        AH.listen("#review_buttons", "click", "#unset-review", function() {
+            unsetReview();
+        });
 	});
 	
 	function xmlParser() {
@@ -561,6 +568,11 @@
 				customReviewMode={customIsReview}
 				reviewMode={isReview}
 			/>
+		{:else}
+			<div class="h h-imp" id="review_buttons">
+				<button tabindex="0" type="button" class="h h-imp svelte_items_test" id="set-review"></button>
+				<button tabindex="0" type="button" class="h h-imp svelte_items_test" id="unset-review"></button>		
+			</div>
 		{/if}
 		<div id="previewArea" class="relative">
 			<!-- if the type is text click or text select -->
