@@ -50,6 +50,15 @@
             }
         })
 
+        AH.listen(".preview_modal_container #preview_confirm_modal","keydown","#StopRecord",function(_this,e){
+            if(e.which === 13) {
+                AH.getBS('#preview_confirm_modal','Modal').hide();
+                setTimeout(function(){
+                    manageData();
+                },200)
+                
+            }
+        })
         ///// ADA for stop and play button ////
         AH.listen('#controls_container','keydown','#preview_stopButton',function(_this,e){
             if(e.which === 13) {
@@ -612,7 +621,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="preview_dismiss_modal btn btn-light pr-2" data-bs-dismiss="modal" data-dismiss="modal" on:click={modalResponse} tabindex="0" aria-label="Click on this button for neglecte to override previous recording">{l.no_label}</button>
-                    <button type="button" class="preview_dismiss_done btn btn-primary" data-bs-dismiss="modal" data-dismiss="modal" on:click={manageData} tabindex="0" aria-label="Click on this button for override the previous recording">{l.yes_label}</button>
+                    <button type="button" id="StopRecord" class="preview_dismiss_done btn btn-primary" data-bs-dismiss="modal" data-dismiss="modal" on:click={manageData} tabindex="0" aria-label="Click on this button for override the previous recording">{l.yes_label}</button>
                 </div>
             </div>
         </div>

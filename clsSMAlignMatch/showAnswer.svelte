@@ -21,8 +21,9 @@
                     {#if rowTagWise }
                         {#each rowTagWise as col, ind}
                             <td key={ind} col={col.id} class='position-relative {your_ans_class} align-middle column_{ind + 1}'>
+                                
                                 {#if user_ans_table == 1}
-                                    {#if col.imagealt && col.imageurl && state.userAnswerArr[col.tags][ind].imageurl != ''}
+                                    {#if col.imageurl && state.userAnswerArr[col.tags][ind].imageurl != ''}
                                         <img
                                             class="imagData"
                                             src="//s3.amazonaws.com/jigyaasa_content_static//{state.userAnswerArr[col.tags][ind].imageurl}"
@@ -38,7 +39,7 @@
                                         >{ @html state.userAnswerArr[col.tags][ind].label }</div>
                                     {/if}
                                 {:else}
-                                    {#if col.imagealt && col.imageurl && col.imageurl != ''}
+                                    {#if  col.imageurl && col.imageurl != ''}
                                         <div>
                                             <img
                                                 class="imagData"
