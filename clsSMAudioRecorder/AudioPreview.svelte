@@ -3,8 +3,8 @@
  *  Description : Container for all AudioRecorder Preview Module
  *  Author      : Rashmi Kumari
  *  Package     : svelte_items
- *  Last update : 15-Feb-2021
- *  Last Updated By : Rashmi Kumari
+ *  Last update : 01-Dec-21
+ *  Last Updated By : Sundaram Tripathi
 -->
 <script>
     import { onMount, afterUpdate } from "svelte";
@@ -50,14 +50,15 @@
             }
         })
 
+        ///// ADA for stop and play button ////
         AH.listen('#controls_container','keydown','#preview_stopButton',function(_this,e){
             if(e.which === 13) {
-                console.log('checking....')
                 playRecording();
                 AH.find('#controls_container','#preview_stopButton').style.disabled = state.disabled;
             }
         })
 
+        //// ADA for reset/////
         AH.listen('#controls_container','keydown','#resetButton',function(_this,e){
             if(e.which === 13) {
                 setData();
