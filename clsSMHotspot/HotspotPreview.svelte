@@ -551,7 +551,7 @@
 		}
 	}
 </script>
-<main>
+<main class="pt-1">
 	<center>
 		{#if moduleArr[item_type] == "1" || moduleArr[item_type] == "2"}
 			<ItemHelper 
