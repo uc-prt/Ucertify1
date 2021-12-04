@@ -483,12 +483,12 @@
             }
         }
         // sets Default label at the second last position of contextmenu list
-        json['opt' + Object.keys(json).length] = {
-            "seq": 0,
-            "label": "Default",
-            "icon": icons[2],
-            "action": "contextAction"
-        };
+        // json['opt' + Object.keys(json).length] = {
+        //     "seq": 0,
+        //     "label": "Default",
+        //     "icon": icons[2],
+        //     "action": "contextAction"
+        // };
         // sets Delete label at the end of contextmenu list
         json['opt' + Object.keys(json).length] = {
             "label": "Delete",
