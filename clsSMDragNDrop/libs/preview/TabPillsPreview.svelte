@@ -39,7 +39,7 @@
         <ul class="nav nav-pills margin-bottom dndTest" data-correctans="" data-userans="" data-defaultans="" role="tablist">
             {#each tab_pills_preview as data, index}
                 <li key={"tab_pills_list_" + index} class="nav-item">
-                    <a class={"nav-link" + ((data._display == "1") ? " active" :"")} href={"#dnd"+data._id} data-bs-toggle="pill" data-bs-target={"#dnd"+data._id} >{data._value}</a>
+                    <a class={"nav-link" + ((data._display == "1") ? " active" :"")} href={"#dnd"+data._id} data-bs-toggle="pill" data-toggle="pill"  data-bs-target={"#dnd"+data._id} data-target={"#dnd"+data._id} >{data._value}</a>
                 </li>
             {/each}
         </ul>
