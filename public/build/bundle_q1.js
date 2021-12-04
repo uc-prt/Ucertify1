@@ -3199,7 +3199,7 @@ var app = (function () {
                         this.target = current;
                         AI.selectAll('.dropable','removeClass','drop-hover');
                         this.target.classList.add('drop-hover');
-                        this.target.style.opacity = '0.7';
+                        this.target.style.opacity = '1';
                         this.onOver && this.onOver(current);
                     }
                 });
