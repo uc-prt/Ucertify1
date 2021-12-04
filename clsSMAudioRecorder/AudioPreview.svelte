@@ -46,19 +46,36 @@
         ///////////////  For ADA //////////////
         AH.listen('#controls_container','keydown','#preview_recordButton',function(_this,e){
             if(e.which === 13) {
-                startRecording();
+                AH.select("#preview_recordButton").click();
+               // startRecording();
             }
         })
 
-        AH.listen(".preview_modal_container #preview_confirm_modal","keydown","#StopRecord",function(_this,e){
+        ////// ADA for close dialogbox with close icon /////
+        AH.listen(".preview_modal_container #preview_confirm_modal","keydown",".close",function(_this,e){
             if(e.which === 13) {
-                AH.getBS('#preview_confirm_modal','Modal').hide();
-                setTimeout(function(){
-                    manageData();
-                },200)
-                
+                AI.find('.preview_modal_container #preview_confirm_modal','.close').click()
             }
         })
+        ////// ADA for close dialogbox with close button /////
+        AH.listen(".preview_modal_container #preview_confirm_modal","keydown",".preview_dismiss_modal",function(_this,e){
+            if(e.which === 13) {
+                AI.find('.preview_modal_container #preview_confirm_modal','.preview_dismiss_modal').click();
+            }
+        })
+        ////// ADA for override voice /////////
+        AH.listen(".preview_modal_container #preview_confirm_modal","keydown","#StopRecord",function(_this,e){
+            if(e.which === 13) {
+                AH.select("#StopRecord").click()
+            }
+        })
+
+        // AH.listen("#controls_container","keydown","#preview_recordButton",function() {
+        //     if(e.which === 13) {
+        //         startRecording();
+        //     }
+        // })
+
         ///// ADA for stop and play button ////
         AH.listen('#controls_container','keydown','#preview_stopButton',function(_this,e){
             if(e.which === 13) {
@@ -70,9 +87,13 @@
         //// ADA for reset/////
         AH.listen('#controls_container','keydown','#resetButton',function(_this,e){
             if(e.which === 13) {
-                setData();
+                AI.select("#resetButton").click();
+                //setData();
             }
         })
+
+
+      
 
 
         if (!(window.webkitSpeechRecognition || window.SpeechRecognition)) {
@@ -574,7 +595,7 @@
                             class="btn btn-light py-0" 
                             aria-label="Click for {areaLabelForPreviewRecordButton}"
                         >
-                            <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-bs-placement="top" title={((state.status == "recording") ? "Stop Recording": "Start Recording")} id="recordButtonTooltip" name="recordButtonTooltip"></span>
+                            <span class="icomoon-circle-2 s2 text-danger position-relative top1" data-bs-toggle="tooltip" data-toggle="tooltip" data-bs-placement="top" data-placement="top" title={((state.status == "recording") ? "Stop Recording": "Start Recording")} id="recordButtonTooltip" name="recordButtonTooltip"></span>
                         </button>
                         <button 
                             type="button" 
