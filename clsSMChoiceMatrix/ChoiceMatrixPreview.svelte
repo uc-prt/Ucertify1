@@ -77,7 +77,14 @@
 
     afterUpdate(()=> {
         disableItem(customIsReview);
-        if(!isReview) hideCorIncorIcon();
+        if(!isReview) { 
+            hideCorIncorIcon();
+        }
+        if (customIsReview) {
+            setTimeout(function() {
+                showCorIncorIcon();
+            }, 300);
+        }
     })
     
     onMount(()=> {
@@ -291,7 +298,7 @@
         }
     }
     // This function showing correct or incorrect icon////////////////
-    function showCorIncorIcon() {     
+    function showCorIncorIcon() { 
         AH.select(".dbg-success input", "checked").forEach((_elm)=>{
             AH.siblings(_elm,'.fa-check').forEach((_e)=>{
                 _e.style.display = "inline-flex";
