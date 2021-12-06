@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35731/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -3199,7 +3199,7 @@ var app = (function () {
                         this.target = current;
                         AI.selectAll('.dropable','removeClass','drop-hover');
                         this.target.classList.add('drop-hover');
-                        this.target.style.opacity = '0.7';
+                        this.target.style.opacity = '1';
                         this.onOver && this.onOver(current);
                     }
                 });
@@ -12394,7 +12394,7 @@ var app = (function () {
     			attr_dev(div, "class", "tab-content dndTest");
     			attr_dev(div, "type", "tab");
     			set_style(div, "position", "relative");
-    			add_location(div, file$d, 45, 8, 1721);
+    			add_location(div, file$d, 45, 8, 1771);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -12512,6 +12512,7 @@ var app = (function () {
     	let a_class_value;
     	let a_href_value;
     	let a_data_bs_target_value;
+    	let a_data_target_value;
     	let t1;
     	let li_key_value;
 
@@ -12524,7 +12525,9 @@ var app = (function () {
     			attr_dev(a, "class", a_class_value = "nav-link" + (/*data*/ ctx[5]._display == "1" ? " active" : ""));
     			attr_dev(a, "href", a_href_value = "#dnd" + /*data*/ ctx[5]._id);
     			attr_dev(a, "data-bs-toggle", "pill");
+    			attr_dev(a, "data-toggle", "pill");
     			attr_dev(a, "data-bs-target", a_data_bs_target_value = "#dnd" + /*data*/ ctx[5]._id);
+    			attr_dev(a, "data-target", a_data_target_value = "#dnd" + /*data*/ ctx[5]._id);
     			add_location(a, file$d, 41, 20, 1495);
     			attr_dev(li, "key", li_key_value = "tab_pills_list_" + /*index*/ ctx[7]);
     			attr_dev(li, "class", "nav-item");
@@ -12549,6 +12552,10 @@ var app = (function () {
 
     			if (dirty & /*tab_pills_preview*/ 4 && a_data_bs_target_value !== (a_data_bs_target_value = "#dnd" + /*data*/ ctx[5]._id)) {
     				attr_dev(a, "data-bs-target", a_data_bs_target_value);
+    			}
+
+    			if (dirty & /*tab_pills_preview*/ 4 && a_data_target_value !== (a_data_target_value = "#dnd" + /*data*/ ctx[5]._id)) {
+    				attr_dev(a, "data-target", a_data_target_value);
     			}
     		},
     		d: function destroy(detaching) {
@@ -12584,7 +12591,7 @@ var app = (function () {
     			: "https://s3.amazonaws.com/jigyaasa_content_static/") + /*data*/ ctx[5]._bgimg)) attr_dev(img, "src", img_src_value);
 
     			attr_dev(img, "alt", img_alt_value = /*data*/ ctx[5]._alt);
-    			add_location(img, file$d, 58, 24, 2307);
+    			add_location(img, file$d, 58, 24, 2357);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12751,7 +12758,7 @@ var app = (function () {
     			attr_dev(div, "data-correctans", "");
     			attr_dev(div, "data-userans", "");
     			attr_dev(div, "data-defaultans", "");
-    			add_location(div, file$d, 47, 16, 1861);
+    			add_location(div, file$d, 47, 16, 1911);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
