@@ -1615,3 +1615,99 @@ function bindSql(lab_url, player_id) {
     myModal.show();
     AH.activate(0);
 }
+
+const ucFeature_image_annotation = {
+    ucInit : function (selector) {
+        this.addPopup(selector);
+        this.bindUpEvent();
+    },
+    addPopup: function(selector) {
+        let description = JSON.parse(selector.querySelector('[json]').getAttribute('json'));
+        let markers = AI.find(selector, '.an_num_p', 'all');
+        let image_width = selector.width;
+        let image_height = selector.height;
+        let current_index = -1;
+        markers.forEach((_this, index) => {
+            current_index++;
+            if (description[index]['heading'] != '' || description[index]['content'] != '') {
+                let html = '<div id="ucfeature_image_ann_' + (current_index + 1) + '" p_up class="position-absolute imageannotation_popup_div"><div p_up class="imageannotation_popup_container" id="popup_div_' + (current_index + 1) + '"><div p_up class="imageannotation_top_div clearfix"><div p_up class="imageannotation_header_div imageannotation_float_left" id="header_div_' + (current_index + 1) + '"><header p_up class="imageannotation_header_style text-truncate" spellcheck="false" id="header_container_' + (current_index + 1) + '" title="'+ description[index]["heading"] +'">'+ description[index]["heading"] +'</header></div><div p_up class="imageannotation_float_right imageannotation_btn_group"><a p_up href="#/" onclick="ucFeature_image_annotation.prevPopup(' + (current_index + 1) + ', event)" class="imageannotation_btn_next_prev imageannotation_previous imageannotation_round" title="Prev" id="prev_btn_' + (current_index + 1) + '">‹</a><a p_up href="#/" class="imageannotation_btn_next_prev imageannotation_next imageannotation_round" title="Next" onclick="ucFeature_image_annotation.nextPopup(' + (current_index + 1) + ', event)" id="next_btn_' + (current_index + 1) + '">›</a></div></div><div p_up class="imageannotation_bottom_div"><article p_up class="imageannotation_articles annotate_new_article" spellcheck="false" id="article_container_' + (current_index + 1) + '">'+ description[index]["content"] +'</article></div></div></div>';
+                _this.parentElement.insertAdjacentHTML('beforeend',html);
+                let popup_width = _this?.parentElement?.querySelector('#ucfeature_image_ann_' + (current_index + 1))?.offsetWidth;
+                let popup_height = _this?.parentElement?.querySelector('#ucfeature_image_ann_' + (current_index + 1))?.offsetHeight;
+                let top,left;
+                if (image_width > (Number(_this.offsetLeft) + popup_width + 46)) {
+                    left = Number(_this.offsetLeft) + 35;
+                } else {
+                    left = Number(_this.offsetLeft) - popup_width - 7;
+                }
+
+                if (image_height > (Number(_this.offsetTop) + popup_height)) {
+                    top = Number(_this.offsetTop);
+                } else {
+                    top = Number(_this.offsetTop) - popup_height + 28;
+                }
+                _this?.parentElement?.querySelector('#ucfeature_image_ann_' + (current_index + 1) + ' .imageannotation_bottom_div *')?.setAttribute('p_up','');
+                _this?.parentElement?.querySelector('#ucfeature_image_ann_' + (current_index + 1))?.setAttribute('style', 'top: ' + top + 'px; left: '+left + 'px;  margin: 0');
+                _this?.setAttribute('data-id', '#ucfeature_image_ann_' + (current_index + 1));
+                _this?.setAttribute('p_up', '')
+                _this?.querySelector('span')?.setAttribute('p_up','');
+            } else {
+                current_index--;
+            }
+        });
+    },
+
+    nextPopup: function(cur_index, event) {
+        event.stopPropagation();
+        const selector = event.target;
+        let current_parent = selector.closest('.an_c');
+        let total_markers = current_parent.querySelectorAll('.imageannotation_popup_div')?.length || 0;
+        current_parent?.querySelector('#ucfeature_image_ann_' + cur_index)?.classList?.remove('d-block');
+        current_parent?.querySelector('.an_num_p.focus')?.classList?.remove('focus');
+        if (cur_index == total_markers) {
+            cur_index = 0;
+        }
+        current_parent?.querySelector('[data-id="#ucfeature_image_ann_' + (cur_index + 1) + '"]')?.classList.add('focus');
+        current_parent?.querySelector('#ucfeature_image_ann_' + (cur_index + 1))?.classList.add('d-block');
+    },
+    prevPopup: function(cur_index, event) {
+        event.stopPropagation();
+        const selector = event.target;
+        let current_parent = selector.closest('.an_c');
+        let total_markers = current_parent.querySelectorAll('.imageannotation_popup_div')?.length || 0;
+        current_parent?.querySelector('#ucfeature_image_ann_' + cur_index)?.classList?.remove('d-block');
+        current_parent?.querySelector('.an_num_p.focus')?.classList?.remove('focus');
+        if (cur_index == 1) {
+            cur_index = total_markers + 1;
+        }
+        current_parent?.querySelector('[data-id="#ucfeature_image_ann_' + (cur_index - 1) + '"]')?.classList.add('focus');
+        current_parent?.querySelector('#ucfeature_image_ann_' + (cur_index - 1))?.classList.add('d-block');
+    },
+    bindUpEvent: function() {
+        AI.listen(document,'click', 'body',function(_this, event) {
+            if(!event.target.closest('.imageannotation_popup_div')){
+                const elements = _this.parentElement.querySelectorAll('.imageannotation_popup_div');
+                const elementNum = _this.parentElement.querySelectorAll('.an_num_p.focus');
+                for(let ele of elements){
+                    ele.classList.remove('d-block');
+                }
+                for(let ele of elementNum){
+                    ele.classList.remove('focus');
+                }
+            }
+        });
+
+        AI.listen(document,'click', '.an_num_p',function(_this, event) {
+            event.stopPropagation();
+            const elements = _this.parentElement.querySelectorAll('.imageannotation_popup_div');
+            for(let ele of elements){
+                ele.classList.remove('d-block');
+            }
+            if(_this.getAttribute('data-id')){
+                const showDiv = _this.parentElement.querySelector(_this.getAttribute('data-id'));
+                showDiv.classList.add('d-block');
+                _this.classList.add('focus');
+            }
+        });
+    }
+}

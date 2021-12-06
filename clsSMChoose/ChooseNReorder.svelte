@@ -462,7 +462,7 @@
                     </div>
                     <div class="clearfix mt ps-4">
                         <div class="col-md-3 pd-0 float-left">
-                            <Checkbox on:click={updateSetting} id="allowSort" color="" checked = {((state.allowSort == 1)? true : false)}>{l.allow_sort}</Checkbox>
+                            <Checkbox on:click={updateSetting} id="allowSort" color="" style="{(state.isParagraph == "1" || state.isSentence == "1")?"cursor: not-allowed":""}" checked = {((state.allowSort == 1)? true : false)}>{l.allow_sort}</Checkbox>
                         </div> 
                         <div class="col-md-3 pd-0 float-left">
                                 <Checkbox on:click={updateSetting} id="isSentence" color="primary" checked = {((state.isSentence == 1)? true : false)} >{l.in_sentence}</Checkbox>

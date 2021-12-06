@@ -58,7 +58,7 @@ export default class DooScribPlugin {
 		    if (false === this.hasTouch()) {
 		        document.getElementById(this.ID).addEventListener('mousedown', this.clickDown.bind(this), true);
 		        document.getElementById(this.ID).addEventListener('mousemove', this.moved.bind(this), true);
-		        document.getElementById(this.ID).addEventListener('mouseup', this.clickUp.bind(this), true);
+		        document.addEventListener('mouseup', this.clickUp.bind(this), true);
 		    }
 		    else {
 		        document.getElementById(this.ID).addEventListener('touchstart', this.clickDown.bind(this), true);

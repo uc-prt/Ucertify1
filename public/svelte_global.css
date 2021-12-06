@@ -11881,7 +11881,10 @@ table thead th .filter-menu * {
 .bla #edi_tabs > li > a {
   color: #b0281a !important;
 }
-
+/*Added to show the bold for the strong tag in essay preview*/
+#suneditor_essay_edit strong {
+  font-weight: bold !important;
+}
 /*# sourceMappingURL=main.css.map */
 
 /* TABLE */
@@ -23223,9 +23226,9 @@ div[sub_type="image-annotation"] *:after {
   min-width: 150px;
 }
 
-div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"]{
+/* div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"]{
   display: none;
-}
+} */
 
 #authoringDiv div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"] {
   display: block;
