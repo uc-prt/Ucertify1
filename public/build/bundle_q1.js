@@ -5661,7 +5661,7 @@ var app = (function () {
         return correct_incorrect_mark;
     };
     // function for cheking module answers
-    DND.checkAns = function(dndid) {
+    DND.checkAns = function(dndid) { 
         let userAnsXML = "<smans type='15'>\n";
         result = true;
         user_points = 0;
