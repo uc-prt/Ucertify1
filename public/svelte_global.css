@@ -17113,10 +17113,7 @@ word-break: break-word;
 .nm {
 margin: 0 !important;
 }
-figure.fs-img img:nth-child(2), 
-.fs-img img:last-child {
-display: none;
-}
+
 figure.fs-img img,
 .fs-img img {
 cursor:pointer;           
