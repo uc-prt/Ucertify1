@@ -654,7 +654,7 @@
                     <div class="outer_variables mt-xl clearboth">
                     <hr />
                     {#each editorState.single_variables as item, index}
-                        {#if item}
+                        {#if item && item.split('=').length>1}
                             <div key={index} class="new_variable seq_inbox d-flex">
                                 <div 
                                     class="inline-block section_table form-control func_name cursorPonter" 
