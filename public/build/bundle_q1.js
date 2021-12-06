@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35731/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -5648,7 +5648,7 @@ var app = (function () {
                 droped_value_indicator_html = '<span class="icomoon-checkmark-circle" style="color:green;">';
             }
 
-            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
+            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-11px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
         } else if (is_correct != 1 && anstest == true) {
             if (window.inNative) {
                 droped_value_indicator_html = '<span class="icomoon-cancel-circles" style="color:red;">';
@@ -5656,7 +5656,7 @@ var app = (function () {
                 droped_value_indicator_html = '<span class="icomoon-cancel-circle style="color:red;">';
             }
 
-            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
+            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-10px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
         }
         return correct_incorrect_mark;
     };
