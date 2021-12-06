@@ -1727,7 +1727,7 @@ DND.markUserAnswerChoiceMatrix = function(is_correct, anstest) {
             droped_value_indicator_html = '<span class="icomoon-checkmark-circle" style="color:green;">';
         }
 
-        correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>'
+        correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-11px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>'
     } else if (is_correct != 1 && anstest == true) {
         if (window.inNative) {
             droped_value_indicator_html = '<span class="icomoon-cancel-circles" style="color:red;">';
@@ -1735,7 +1735,7 @@ DND.markUserAnswerChoiceMatrix = function(is_correct, anstest) {
             droped_value_indicator_html = '<span class="icomoon-cancel-circle style="color:red;">';
         }
 
-        correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-42px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>'
+        correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-10px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>'
     }
     return correct_incorrect_mark;
 }
