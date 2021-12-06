@@ -1446,6 +1446,7 @@ function editorPaneShow(event) {
 		activateMathMl(state.stem + state.remediation + state.content, state.variable_button, mathMLRender);
 		state.editorView = 'preview';
 		AH.selectAll('.mce-tinymce.mce-tinymce-inline.mce-arrow.mce-container.mce-panel.mce-floatpanel', 'hide', {action: 'hide'});
+		startImageAnnotateForPopUp();	
 	}
 }
 
@@ -2668,6 +2669,13 @@ function toggleRemediation(event) {
 	} 
 }
 
+const startImageAnnotateForPopUp = () => {
+	const imageAnnotationList = AH.selectAll('#previewSection [sub_type="image-annotation"][h_over="1"]');
+	for(let imgAnnot of imageAnnotationList){
+		ucFeature_image_annotation.ucInit(imgAnnot);
+		imgAnnot.querySelector('[img-anno-desc="d"]').classList.add('d-none');
+	}
+}
 // handle switch tab for shortcuts
 function switchTabs() {
 	if (preview_edit != 1) {

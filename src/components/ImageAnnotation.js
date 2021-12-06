@@ -494,9 +494,11 @@ export default class ImageAnnotation {
                             desc_selector.prepend('<br>');
                         }
                         if (JS.select('#annotate_image_align').value == "2") {
+                            current_object.closest('[sub_type="image-annotation"]').setAttribute('h_over', 1);
                             this.setHover(current_object);
+                        } else{
+                            current_object.closest('[sub_type="image-annotation"]').setAttribute('h_over', 0);
                         }
-                        current_object.closest('[sub_type="image-annotation"]').setAttribute('h_over', 1);
                         break;
                 }
 
@@ -652,7 +654,7 @@ export default class ImageAnnotation {
     // call in case of onclick functionality
     setHover (current_object, key) {
         let key_list = [37, 38, 39, 40];
-        if (!JS.findInArray(key, key_list)) {
+        if (JS.findInArray(key, key_list)) {
             return;
         }
         let markers = JS.find(current_object, '.an_num_p', 'all');
@@ -676,6 +678,7 @@ export default class ImageAnnotation {
                 hover_array[index]['heading'] = '';
                 hover_array[index]['content'] = html.trim();
             }
+            current_object.appendChild(_this)
         });
         if (JS.find(current_object, '[json]', 'all').length == 0) {
             JS.insert(current_object, '<div json class="h-imp"></div>', 'beforeend');
@@ -805,11 +808,3 @@ export default class ImageAnnotation {
         };
     }
 }
-
-// check if uc_image_annotate is available in window or not
-// if (typeof(window.uc_image_annotate) == "undefined") {
-//     var uc_image_annotate = new imageAnnotate();
-//     window.uc_image_annotate = uc_image_annotate;
-//     uc_image_annotate.init();
-// } else {
-// }

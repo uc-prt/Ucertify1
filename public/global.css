@@ -6174,9 +6174,9 @@ div[sub_type="image-annotation"] *:after {
   min-width: 150px;
 }
 
-div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"]{
+/* div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"]{
   display: none;
-}
+} */
 
 #authoringDiv div[sub_type="image-annotation"][h_over="1"] [img-anno-desc="d"] {
   display: block;
