@@ -43,7 +43,7 @@
         <ul class="nav nav-pills margin-bottom mt-3 px-2" role="tablist">
             {#each tab_pills_preview as data, index}
                 <li for={data._id} key={"tab_pills_list_" + index} class="nav-item">
-                    <a data-bs-toggle="pill" data-bs-target={"#"+data._id} class={"nav-link" + ((data._display == "1") ? " active" :"")} href={"#"+data._id} >{data._value}</a>
+                    <a data-bs-toggle="pill" data-toggle="pill" data-bs-target={"#"+data._id} data-target={"#"+data._id} class={"nav-link" + ((data._display == "1") ? " active" :"")} href={"#"+data._id} >{data._value}</a>
                 </li>
             {/each}
         </ul>

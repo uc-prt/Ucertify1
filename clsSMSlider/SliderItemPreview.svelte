@@ -93,6 +93,9 @@
         if (window.inNative) {
             window.getHeight && window.getHeight();
         }
+        setTimeout(function () {
+            displayAns();
+        }, 300);
     });
 
     // converts json into array

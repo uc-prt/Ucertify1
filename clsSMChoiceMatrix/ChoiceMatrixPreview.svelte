@@ -77,7 +77,14 @@
 
     afterUpdate(()=> {
         disableItem(customIsReview);
-        if(!isReview) hideCorIncorIcon();
+        if(!isReview) { 
+            hideCorIncorIcon();
+        }
+        if (customIsReview) {
+            setTimeout(function() {
+                showCorIncorIcon();
+            }, 300);
+        }
     })
     
     onMount(()=> {
@@ -291,7 +298,7 @@
         }
     }
     // This function showing correct or incorrect icon////////////////
-    function showCorIncorIcon() {     
+    function showCorIncorIcon() { 
         AH.select(".dbg-success input", "checked").forEach((_elm)=>{
             AH.siblings(_elm,'.fa-check').forEach((_e)=>{
                 _e.style.display = "inline-flex";
@@ -363,94 +370,92 @@
 		}
 	}
 </script>
-<main>
-    <div id = "choicemain" style = {'margin-bottom:20px'}>
-        <ItemHelper
-            on:setReview = {setReview}
-            on:unsetReview = {unSetReview}
-            handleReviewClick={handleReview}
-            reviewMode={isReview}
-            customReviewMode={customIsReview}
-        />
-        <center>
-            <table class = {"table testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">
-                <thead>
-                    <tr class = "table-head">
-                        <th
-                            class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : " text-center") }
-                            tabindex = {0}
-                        >
-                        {state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
-                        {#if state.cdata}
-                            {#each state.cdata.option as data, i} 
-                                <th
-                                    key = {i}
-                                    class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
-                                    tabindex = {0}
-                                >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
-                            {/each}
-                        {/if}
-                    </tr> 
-                </thead>
-                <tbody>
-                    {#if cm.cdata}
-                        {#each cm.cdata.term as data,i} 
-                            <tr key = {i}>
-                                <td
-                                    class = { (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  +" "+  data.id +" position-relative"}
-                                    tabindex = {0}
-                                    style = "font-size:14pt;vertical-align:middle;font-family:{state.font}"
-                                >
-                                {@html data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
-                                
-                                {#each cm.cdata.option as data2, j} 
-                                <td
-                                    key = {j}
-                                    id = {'tb' + (i) + (j)}
-                                    
-                                    class = {  (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  + " "+"text-center test_area"  + ((data2.id == data.correct) ? ' dbg-success' : ' dbg-danger') +' position-relative'} 
-                                    
-                                >
-                                    <i
-                                        class = "fa fa-check"
-                                        aria-hidden = "true"
-                                        style = {setIconStyle(isIE)}
-                                    ></i>  
-                                    <i
-                                        class = "fa fa-close"
-                                        aria-hidden = "true"
-                                        style = {setIconStyle(isIE)}
-                                    ></i>
-                                    <input
-                                        type = "radio"
-                                        class = "test_radio CMRad"
-                                        style = {'vertical-align:middle;'}
-                                        value = {data2.id}
-                                        name = {"tm" + (i + 1)}
-                                        id = {'t' + (i) + (j)}
-                                        data-termid = {data.id}
-                                        data-correct = {data.correct}
-                                        data-userans = ""
-                                        on:click = {setUserAns}
-                                        data-role = "none"
-                                        tabindex = {-1}
-                                    />
-                                    <label 
-                                        tabindex = {0} 
-                                        class = "label_choice customRadCM {((j % 2 == 0) ? 'tureitemColorCM' : 'falseitemColorCM')}" 
-                                        for={'t' + (i) + (j)}
-                                    >
-                                    </label>
-                                </td>
-                                {/each}
-                            </tr>
+<div class="mainAdaArea" id="choicemain" style = {'margin-bottom:20px'}>
+    <ItemHelper
+        on:setReview = {setReview}
+        on:unsetReview = {unSetReview}
+        handleReviewClick={handleReview}
+        reviewMode={isReview}
+        customReviewMode={customIsReview}
+    />
+    <center>
+        <table class = {"table testmode_table "} id="test_table" style="{'position:relative; margin-top:20px;width:'+state.maxWidth+"px"};font-family: Georgia;">
+            <thead>
+                <tr class = "table-head">
+                    <th
+                        class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header " + ((state.theme !== "theme3") ? "text-center text-white" : " text-center") }
+                        tabindex = {0}
+                    >
+                    {state.stem.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
+                    {#if state.cdata}
+                        {#each state.cdata.option as data, i} 
+                            <th
+                                key = {i}
+                                class = {(((theme_color[state.theme]) == '#5B9BD5') ? 'theme_color_theme1' : ((theme_color[state.theme]) == '#3B67BC') ? 'theme_color_theme2': ((theme_color[state.theme]) == '#F6C3A2') ?  'theme_color_theme3' : ((theme_color[state.theme]) == '#70AD47') ? 'theme_color_theme4' : ((theme_color[state.theme]) == '#745998') ? 'theme_color_theme5' : '' ) + " preview_header adjust_width " + ((state.theme !== "theme3") ? data.id + "text-center text-white" : data.id + "text-center")}
+                                tabindex = {0}
+                            >{data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</th>
                         {/each}
                     {/if}
-                </tbody>
-            </table>
-        </center>               
-    </div>
-</main>
+                </tr> 
+            </thead>
+            <tbody>
+                {#if cm.cdata}
+                    {#each cm.cdata.term as data,i} 
+                        <tr key = {i}>
+                            <td
+                                class = { (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  +" "+  data.id +" position-relative"}
+                                tabindex = {0}
+                                style = "font-size:14pt;vertical-align:middle;font-family:{state.font}"
+                            >
+                            {@html data.text.replace(/\n/gm, "</br>").replace(/#cm/gm,",")}</td>
+                            
+                            {#each cm.cdata.option as data2, j} 
+                            <td
+                                key = {j}
+                                id = {'tb' + (i) + (j)}
+                                
+                                class = {  (((i % 2)==0) ? (((theme_color_terms[state.theme]) == '#DEEAF6') ? 'theme_color_terms_theme1' : ((theme_color_terms[state.theme]) == '#D4DEF1') ? 'theme_color_terms_theme2': ((theme_color_terms[state.theme]) == '#FAE0CF') ?  'theme_color_terms_theme3' : ((theme_color_terms[state.theme]) == '#E2EFD9') ? 'theme_color_terms_theme4' : ((theme_color_terms[state.theme]) == '#E1DAE9') ? 'theme_color_terms_theme5' : '#FFF' )  : '#FFF' )  + " "+"text-center test_area"  + ((data2.id == data.correct) ? ' dbg-success' : ' dbg-danger') +' position-relative'} 
+                                
+                            >
+                                <i
+                                    class = "fa fa-check"
+                                    aria-hidden = "true"
+                                    style = {setIconStyle(isIE)}
+                                ></i>  
+                                <i
+                                    class = "fa fa-close"
+                                    aria-hidden = "true"
+                                    style = {setIconStyle(isIE)}
+                                ></i>
+                                <input
+                                    type = "radio"
+                                    class = "test_radio CMRad"
+                                    style = {'vertical-align:middle;'}
+                                    value = {data2.id}
+                                    name = {"tm" + (i + 1)}
+                                    id = {'t' + (i) + (j)}
+                                    data-termid = {data.id}
+                                    data-correct = {data.correct}
+                                    data-userans = ""
+                                    on:click = {setUserAns}
+                                    data-role = "none"
+                                    tabindex = {-1}
+                                />
+                                <label 
+                                    tabindex = {0} 
+                                    class = "label_choice customRadCM {((j % 2 == 0) ? 'tureitemColorCM' : 'falseitemColorCM')}" 
+                                    for={'t' + (i) + (j)}
+                                >
+                                </label>
+                            </td>
+                            {/each}
+                        </tr>
+                    {/each}
+                {/if}
+            </tbody>
+        </table>
+    </center>               
+</div>
 <style>
     :global(.fa-close) {
         margin-left: 20px; 
