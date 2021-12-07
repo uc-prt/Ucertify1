@@ -481,7 +481,6 @@ ucMlid.bindKeyup = function(mlid) {
             _ui_drag.setAttribute("data-userans", userans);
         
             answerPasteDraggable = ucMlid.checkAns(mlid);
-            console.log('answerPasteDraggable',answerPasteDraggable);
             _ui_drag.classList.remove('copiedclr');
             copied_id = "";
             return answerPasteDraggable
