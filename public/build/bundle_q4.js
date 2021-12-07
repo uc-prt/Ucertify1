@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -1260,24 +1260,23 @@ var app = (function () {
             });
         }
 
-        jsonFormEncode(formData, prop, jsonArray) {
-            try {
-                if (Array.isArray(jsonArray)) {
-                    for (let i = 0; i < jsonArray.length; i++) {
-                        for (let key in jsonArray[i]) {
-                            formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key]);
-                        }
-                    }
-                } else {
-                    for (var key in jsonArray) {
-                        formData.append(`${prop}[${key}]`, jsonArray[key]);
-                    }
+        jsonFormEncode(formData, prop, jsonArray) {try {
+            if (Array.isArray(jsonArray)) {
+                for(let i = 0; i< jsonArray.length; i++){
+                    this.jsonFormEncode(formData, `${prop}[${i}]`, jsonArray[i]);
                 }
-            } catch(error) {
-                console.warn("Please provide valid JSON Object in ajax data."+ error);
+            } else if (typeof jsonArray == "object") {
+                for(let key in jsonArray){
+                    this.jsonFormEncode(formData, `${prop}[${key}]`, jsonArray[key]);
+                }
+            } else {
+                formData.append(prop, jsonArray);
             }
-            return formData;
+        } catch(error) {
+            console.warn("Please provide valid JSON Object in ajax data."+ error);
         }
+        return formData;
+    }
 
         // get script from url
         getJSON(url) {
@@ -2796,7 +2795,7 @@ var app = (function () {
     		    if (false === this.hasTouch()) {
     		        document.getElementById(this.ID).addEventListener('mousedown', this.clickDown.bind(this), true);
     		        document.getElementById(this.ID).addEventListener('mousemove', this.moved.bind(this), true);
-    		        document.getElementById(this.ID).addEventListener('mouseup', this.clickUp.bind(this), true);
+    		        document.addEventListener('mouseup', this.clickUp.bind(this), true);
     		    }
     		    else {
     		        document.getElementById(this.ID).addEventListener('touchstart', this.clickDown.bind(this), true);
@@ -3989,11 +3988,11 @@ var app = (function () {
     function add_css$1() {
     	var style = element("style");
     	style.id = "svelte-11usv4u-style";
-    	style.textContent = "main.svelte-11usv4u{text-align:center !important;padding:1em;max-width:240px;margin:0 auto;font-size:26px}.targetImg.svelte-11usv4u{display:none;position:absolute;z-index:10;width:17px;height:15px;border-radius:50%;background:#fff;color:#1c3ad4}.showBlock.svelte-11usv4u{display:block}@media(min-width: 640px){main.svelte-11usv4u{max-width:none}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSG90c3BvdFByZXZpZXcuc3ZlbHRlIiwibWFwcGluZ3MiOiJBQWlyQkMsSUFBSSxlQUFDLENBQUEsQUFDSixVQUFVLENBQUUsTUFBTSxDQUFDLFVBQVUsQ0FDN0IsT0FBTyxDQUFFLEdBQUcsQ0FDWixTQUFTLENBQUUsS0FBSyxDQUNoQixNQUFNLENBQUUsQ0FBQyxDQUFDLElBQUksQ0FDZCxTQUFTLENBQUUsSUFBSSxBQUNoQixDQUFBLEFBQ0EsVUFBVSxlQUFDLENBQUEsQUFDVixPQUFPLENBQUcsSUFBSSxDQUNkLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLE9BQU8sQ0FBRSxFQUFFLENBQ1gsS0FBSyxDQUFFLElBQUksQ0FDWCxPQUFPLElBQUksQ0FDWCxhQUFhLENBQUUsR0FBRyxDQUNsQixVQUFVLENBQUUsSUFBSSxDQUNoQixLQUFLLENBQUUsT0FBTyxBQUNmLENBQUMsQUFFRCxVQUFVLGVBQUMsQ0FBQSxBQUNWLE9BQU8sQ0FBRyxLQUFLLEFBQ2hCLENBQUEsQUFFQSxNQUFNLEFBQUMsWUFBWSxLQUFLLENBQUMsQUFBQyxDQUFBLEFBQ3pCLElBQUksZUFBQyxDQUFBLEFBQ0osU0FBUyxDQUFFLElBQUksQUFDaEIsQ0FBQSxBQUNELENBQUEiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiSG90c3BvdFByZXZpZXcuc3ZlbHRlIl19 */";
+    	style.textContent = "main.svelte-11usv4u{text-align:center !important;padding:1em;max-width:240px;margin:0 auto;font-size:26px}.targetImg.svelte-11usv4u{display:none;position:absolute;z-index:10;width:17px;height:15px;border-radius:50%;background:#fff;color:#1c3ad4}.showBlock.svelte-11usv4u{display:block}@media(min-width: 640px){main.svelte-11usv4u{max-width:none}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSG90c3BvdFByZXZpZXcuc3ZlbHRlIiwibWFwcGluZ3MiOiJBQXlyQkMsSUFBSSxlQUFDLENBQUEsQUFDSixVQUFVLENBQUUsTUFBTSxDQUFDLFVBQVUsQ0FDN0IsT0FBTyxDQUFFLEdBQUcsQ0FDWixTQUFTLENBQUUsS0FBSyxDQUNoQixNQUFNLENBQUUsQ0FBQyxDQUFDLElBQUksQ0FDZCxTQUFTLENBQUUsSUFBSSxBQUNoQixDQUFBLEFBQ0EsVUFBVSxlQUFDLENBQUEsQUFDVixPQUFPLENBQUcsSUFBSSxDQUNkLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLE9BQU8sQ0FBRSxFQUFFLENBQ1gsS0FBSyxDQUFFLElBQUksQ0FDWCxPQUFPLElBQUksQ0FDWCxhQUFhLENBQUUsR0FBRyxDQUNsQixVQUFVLENBQUUsSUFBSSxDQUNoQixLQUFLLENBQUUsT0FBTyxBQUNmLENBQUMsQUFFRCxVQUFVLGVBQUMsQ0FBQSxBQUNWLE9BQU8sQ0FBRyxLQUFLLEFBQ2hCLENBQUEsQUFFQSxNQUFNLEFBQUMsWUFBWSxLQUFLLENBQUMsQUFBQyxDQUFBLEFBQ3pCLElBQUksZUFBQyxDQUFBLEFBQ0osU0FBUyxDQUFFLElBQUksQUFDaEIsQ0FBQSxBQUNELENBQUEiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiSG90c3BvdFByZXZpZXcuc3ZlbHRlIl19 */";
     	append_dev(document_1$1.head, style);
     }
 
-    // (571:2) {:else}
+    // (579:2) {:else}
     function create_else_block_1(ctx) {
     	let div;
     	let button0;
@@ -4010,15 +4009,15 @@ var app = (function () {
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "h h-imp svelte_items_test");
     			attr_dev(button0, "id", "set-review");
-    			add_location(button0, file$1, 572, 4, 18684);
+    			add_location(button0, file$1, 580, 4, 19033);
     			attr_dev(button1, "tabindex", "0");
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "h h-imp svelte_items_test");
     			attr_dev(button1, "id", "unset-review");
-    			add_location(button1, file$1, 573, 4, 18783);
+    			add_location(button1, file$1, 581, 4, 19132);
     			attr_dev(div, "class", "h h-imp");
     			attr_dev(div, "id", "review_buttons");
-    			add_location(div, file$1, 571, 3, 18638);
+    			add_location(div, file$1, 579, 3, 18987);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4038,14 +4037,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(571:2) {:else}",
+    		source: "(579:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (563:2) {#if moduleArr[item_type] == "1" || moduleArr[item_type] == "2"}
+    // (571:2) {#if moduleArr[item_type] == "1" || moduleArr[item_type] == "2"}
     function create_if_block_3(ctx) {
     	let itemhelper;
     	let current;
@@ -4053,7 +4052,7 @@ var app = (function () {
     	itemhelper = new ItemHelper({
     			props: {
     				handleReviewClick: /*handleReview*/ ctx[25],
-    				customReviewMode: /*customIsReview*/ ctx[18],
+    				customReviewMode: /*customIsReview*/ ctx[1],
     				reviewMode: /*isReview*/ ctx[0]
     			},
     			$$inline: true
@@ -4072,6 +4071,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const itemhelper_changes = {};
+    			if (dirty[0] & /*customIsReview*/ 2) itemhelper_changes.customReviewMode = /*customIsReview*/ ctx[1];
     			if (dirty[0] & /*isReview*/ 1) itemhelper_changes.reviewMode = /*isReview*/ ctx[0];
     			itemhelper.$set(itemhelper_changes);
     		},
@@ -4093,17 +4093,17 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(563:2) {#if moduleArr[item_type] == \\\"1\\\" || moduleArr[item_type] == \\\"2\\\"}",
+    		source: "(571:2) {#if moduleArr[item_type] == \\\"1\\\" || moduleArr[item_type] == \\\"2\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (674:3) {:else}
+    // (682:3) {:else}
     function create_else_block(ctx) {
     	let html_tag;
-    	let raw_value = /*loadModule*/ ctx[24](/*moduleArr*/ ctx[20][/*item_type*/ ctx[15]]) + "";
+    	let raw_value = /*loadModule*/ ctx[24](/*moduleArr*/ ctx[20][/*item_type*/ ctx[16]]) + "";
     	let html_anchor;
 
     	const block = {
@@ -4116,7 +4116,7 @@ var app = (function () {
     			insert_dev(target, html_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*item_type*/ 32768 && raw_value !== (raw_value = /*loadModule*/ ctx[24](/*moduleArr*/ ctx[20][/*item_type*/ ctx[15]]) + "")) html_tag.p(raw_value);
+    			if (dirty[0] & /*item_type*/ 65536 && raw_value !== (raw_value = /*loadModule*/ ctx[24](/*moduleArr*/ ctx[20][/*item_type*/ ctx[16]]) + "")) html_tag.p(raw_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(html_anchor);
@@ -4128,14 +4128,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(674:3) {:else}",
+    		source: "(682:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (636:41) 
+    // (644:41) 
     function create_if_block_1(ctx) {
     	let center;
     	let div1;
@@ -4147,7 +4147,7 @@ var app = (function () {
     	let div2;
     	let div2_dd_value;
     	let t3;
-    	let if_block = /*scrollEnabled*/ ctx[17] && create_if_block_2(ctx);
+    	let if_block = /*scrollEnabled*/ ctx[18] && create_if_block_2(ctx);
 
     	const block = {
     		c: function create() {
@@ -4164,36 +4164,36 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(span0, "class", "icomoon-new-24px-reset-1 s3");
     			set_style(span0, "vertical-align", "text-top");
-    			add_location(span0, file$1, 649, 7, 21042);
+    			add_location(span0, file$1, 657, 7, 21391);
     			attr_dev(span1, "class", "position-relative bottom1");
-    			add_location(span1, file$1, 650, 7, 21133);
+    			add_location(span1, file$1, 658, 7, 21482);
     			attr_dev(div0, "id", "reset");
     			set_style(div0, "height", "27px");
     			set_style(div0, "width", "90px");
     			set_style(div0, "top", "2px");
     			attr_dev(div0, "class", "reset btn btn-outline-primary position-relative btn-sm mt-sm2 mr-sm2 float-end");
-    			add_location(div0, file$1, 645, 6, 20864);
+    			add_location(div0, file$1, 653, 6, 21213);
     			set_style(div1, "height", "34px");
 
     			set_style(div1, "width", window.inNative
     			? window.innerWidth
-    			: /*state*/ ctx[3].imgwidth);
+    			: /*state*/ ctx[4].imgwidth);
 
     			set_style(div1, "background", "#d9e7fd");
     			set_style(div1, "border-top", "2px solid #96bbf6");
-    			add_location(div1, file$1, 637, 5, 20663);
+    			add_location(div1, file$1, 645, 5, 21012);
     			attr_dev(div2, "id", "hptmain0");
-    			attr_dev(div2, "totalcorrectans", /*totalCorrectAns*/ ctx[1]);
-    			attr_dev(div2, "dd", div2_dd_value = /*state*/ ctx[3].imgwidth);
-    			set_style(div2, "width", /*state*/ ctx[3].imgwidth || "250px");
-    			set_style(div2, "height", /*state*/ ctx[3].imgheight || "600px");
-    			set_style(div2, "background-image", "url('" + (/*bgImgPath*/ ctx[19] + /*img_url*/ ctx[14]) + "')");
+    			attr_dev(div2, "totalcorrectans", /*totalCorrectAns*/ ctx[2]);
+    			attr_dev(div2, "dd", div2_dd_value = /*state*/ ctx[4].imgwidth);
+    			set_style(div2, "width", /*state*/ ctx[4].imgwidth || "250px");
+    			set_style(div2, "height", /*state*/ ctx[4].imgheight || "600px");
+    			set_style(div2, "background-image", "url('" + (/*bgImgPath*/ ctx[19] + /*img_url*/ ctx[15]) + "')");
     			set_style(div2, "background-repeat", "no-repeat");
     			set_style(div2, "position", "relative");
-    			set_style(div2, "border", "2px solid #d9e7fd");
-    			add_location(div2, file$1, 653, 5, 21216);
+    			set_style(div2, "border", /*itemBorder*/ ctx[5] + "px solid " + /*itemBorderColor*/ ctx[6]);
+    			add_location(div2, file$1, 661, 5, 21565);
     			attr_dev(center, "key", "imageHeight_3");
-    			add_location(center, file$1, 636, 4, 20629);
+    			add_location(center, file$1, 644, 4, 20978);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, center, anchor);
@@ -4208,33 +4208,37 @@ var app = (function () {
     			if (if_block) if_block.m(center, null);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*state*/ 8) {
+    			if (dirty[0] & /*state*/ 16) {
     				set_style(div1, "width", window.inNative
     				? window.innerWidth
-    				: /*state*/ ctx[3].imgwidth);
+    				: /*state*/ ctx[4].imgwidth);
     			}
 
-    			if (dirty[0] & /*totalCorrectAns*/ 2) {
-    				attr_dev(div2, "totalcorrectans", /*totalCorrectAns*/ ctx[1]);
+    			if (dirty[0] & /*totalCorrectAns*/ 4) {
+    				attr_dev(div2, "totalcorrectans", /*totalCorrectAns*/ ctx[2]);
     			}
 
-    			if (dirty[0] & /*state*/ 8 && div2_dd_value !== (div2_dd_value = /*state*/ ctx[3].imgwidth)) {
+    			if (dirty[0] & /*state*/ 16 && div2_dd_value !== (div2_dd_value = /*state*/ ctx[4].imgwidth)) {
     				attr_dev(div2, "dd", div2_dd_value);
     			}
 
-    			if (dirty[0] & /*state*/ 8) {
-    				set_style(div2, "width", /*state*/ ctx[3].imgwidth || "250px");
+    			if (dirty[0] & /*state*/ 16) {
+    				set_style(div2, "width", /*state*/ ctx[4].imgwidth || "250px");
     			}
 
-    			if (dirty[0] & /*state*/ 8) {
-    				set_style(div2, "height", /*state*/ ctx[3].imgheight || "600px");
+    			if (dirty[0] & /*state*/ 16) {
+    				set_style(div2, "height", /*state*/ ctx[4].imgheight || "600px");
     			}
 
-    			if (dirty[0] & /*img_url*/ 16384) {
-    				set_style(div2, "background-image", "url('" + (/*bgImgPath*/ ctx[19] + /*img_url*/ ctx[14]) + "')");
+    			if (dirty[0] & /*img_url*/ 32768) {
+    				set_style(div2, "background-image", "url('" + (/*bgImgPath*/ ctx[19] + /*img_url*/ ctx[15]) + "')");
     			}
 
-    			if (/*scrollEnabled*/ ctx[17]) {
+    			if (dirty[0] & /*itemBorder, itemBorderColor*/ 96) {
+    				set_style(div2, "border", /*itemBorder*/ ctx[5] + "px solid " + /*itemBorderColor*/ ctx[6]);
+    			}
+
+    			if (/*scrollEnabled*/ ctx[18]) {
     				if (if_block) ; else {
     					if_block = create_if_block_2(ctx);
     					if_block.c();
@@ -4255,14 +4259,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(636:41) ",
+    		source: "(644:41) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (579:3) {#if moduleArr[item_type] == "4"}
+    // (587:3) {#if moduleArr[item_type] == "4"}
     function create_if_block$1(ctx) {
     	let table;
     	let tbody;
@@ -4300,34 +4304,34 @@ var app = (function () {
     			attr_dev(img, "id", "im0");
     			attr_dev(img, "tabindex", "0");
     			set_style(img, "max-width", "none");
-    			set_style(img, "width", /*state*/ ctx[3].imgwidth);
-    			set_style(img, "height", /*state*/ ctx[3].imgheight);
+    			set_style(img, "width", /*state*/ ctx[4].imgwidth);
+    			set_style(img, "height", /*state*/ ctx[4].imgheight);
     			attr_dev(img, "class", "hotSpotImg");
-    			if (img.src !== (img_src_value = /*bgImgPath*/ ctx[19] + /*img_url*/ ctx[14])) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", /*alt*/ ctx[2]);
-    			add_location(img, file$1, 597, 10, 19605);
+    			if (img.src !== (img_src_value = /*bgImgPath*/ ctx[19] + /*img_url*/ ctx[15])) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", /*alt*/ ctx[3]);
+    			add_location(img, file$1, 605, 10, 19954);
     			attr_dev(div0, "id", "hotArea");
     			attr_dev(div0, "class", "hotArea hotArea hotAreaPreview");
 
     			attr_dev(div0, "style", div0_style_value = `
-												display: ${/*targetView*/ ctx[11]};
-												left:${/*itemAreaLeft*/ ctx[10]};
-												top:${/*itemAreaTop*/ ctx[7]};
-												height:${/*itemAreaHeight*/ ctx[8]};
-												width:${/*itemAreaWidth*/ ctx[9]};
+												display: ${/*targetView*/ ctx[12]};
+												left:${/*itemAreaLeft*/ ctx[11]};
+												top:${/*itemAreaTop*/ ctx[8]};
+												height:${/*itemAreaHeight*/ ctx[9]};
+												width:${/*itemAreaWidth*/ ctx[10]};
 											`);
 
-    			add_location(div0, file$1, 606, 10, 19891);
+    			add_location(div0, file$1, 614, 10, 20240);
     			attr_dev(span, "id", "target");
     			attr_dev(span, "class", "target targetImg icomoon-plus-circle-2 svelte-11usv4u");
 
     			attr_dev(span, "style", span_style_value = `
-												left:${/*ans_x*/ ctx[12]}px;
-												top:${/*ans_y*/ ctx[13]}px;
+												left:${/*ans_x*/ ctx[13]}px;
+												top:${/*ans_y*/ ctx[14]}px;
 											`);
 
-    			toggle_class(span, "showBlock", /*isUxmlTarget*/ ctx[6]);
-    			add_location(span, file$1, 619, 10, 20242);
+    			toggle_class(span, "showBlock", /*isUxmlTarget*/ ctx[7]);
+    			add_location(span, file$1, 627, 10, 20591);
     			attr_dev(div1, "id", "SM0");
     			attr_dev(div1, "class", "SM position-relative m-0 p-0");
 
@@ -4337,23 +4341,23 @@ var app = (function () {
 											padding: 0px;
 											width: 100%;
 											height: 100%;
-											border: ${/*itemBorder*/ ctx[4]
-			? /*itemBorder*/ ctx[4] + "px solid"
+											border: ${/*itemBorder*/ ctx[5]
+			? /*itemBorder*/ ctx[5] + "px solid"
 			: ""};
-											border-color: ${/*itemBorderColor*/ ctx[5]};
+											border-color: ${/*itemBorderColor*/ ctx[6]};
 										`);
 
-    			add_location(div1, file$1, 584, 9, 19235);
+    			add_location(div1, file$1, 592, 9, 19584);
     			attr_dev(div2, "id", "SM0");
     			attr_dev(div2, "class", "relative");
-    			add_location(div2, file$1, 583, 8, 19194);
+    			add_location(div2, file$1, 591, 8, 19543);
     			attr_dev(td, "class", "border");
-    			add_location(td, file$1, 582, 7, 19166);
-    			add_location(tr, file$1, 581, 6, 19154);
-    			add_location(tbody, file$1, 580, 5, 19140);
+    			add_location(td, file$1, 590, 7, 19515);
+    			add_location(tr, file$1, 589, 6, 19503);
+    			add_location(tbody, file$1, 588, 5, 19489);
     			attr_dev(table, "id", "hptmain0");
     			attr_dev(table, "class", "smbase smhotspot border-0 h-auto w-auto uc-table no_overflow_wrapper");
-    			add_location(table, file$1, 579, 4, 19036);
+    			add_location(table, file$1, 587, 4, 19385);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, table, anchor);
@@ -4375,53 +4379,53 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*state*/ 8) {
-    				set_style(img, "width", /*state*/ ctx[3].imgwidth);
+    			if (dirty[0] & /*state*/ 16) {
+    				set_style(img, "width", /*state*/ ctx[4].imgwidth);
     			}
 
-    			if (dirty[0] & /*state*/ 8) {
-    				set_style(img, "height", /*state*/ ctx[3].imgheight);
+    			if (dirty[0] & /*state*/ 16) {
+    				set_style(img, "height", /*state*/ ctx[4].imgheight);
     			}
 
-    			if (dirty[0] & /*img_url*/ 16384 && img.src !== (img_src_value = /*bgImgPath*/ ctx[19] + /*img_url*/ ctx[14])) {
+    			if (dirty[0] & /*img_url*/ 32768 && img.src !== (img_src_value = /*bgImgPath*/ ctx[19] + /*img_url*/ ctx[15])) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty[0] & /*alt*/ 4) {
-    				attr_dev(img, "alt", /*alt*/ ctx[2]);
+    			if (dirty[0] & /*alt*/ 8) {
+    				attr_dev(img, "alt", /*alt*/ ctx[3]);
     			}
 
-    			if (dirty[0] & /*targetView, itemAreaLeft, itemAreaTop, itemAreaHeight, itemAreaWidth*/ 3968 && div0_style_value !== (div0_style_value = `
-												display: ${/*targetView*/ ctx[11]};
-												left:${/*itemAreaLeft*/ ctx[10]};
-												top:${/*itemAreaTop*/ ctx[7]};
-												height:${/*itemAreaHeight*/ ctx[8]};
-												width:${/*itemAreaWidth*/ ctx[9]};
+    			if (dirty[0] & /*targetView, itemAreaLeft, itemAreaTop, itemAreaHeight, itemAreaWidth*/ 7936 && div0_style_value !== (div0_style_value = `
+												display: ${/*targetView*/ ctx[12]};
+												left:${/*itemAreaLeft*/ ctx[11]};
+												top:${/*itemAreaTop*/ ctx[8]};
+												height:${/*itemAreaHeight*/ ctx[9]};
+												width:${/*itemAreaWidth*/ ctx[10]};
 											`)) {
     				attr_dev(div0, "style", div0_style_value);
     			}
 
-    			if (dirty[0] & /*ans_x, ans_y*/ 12288 && span_style_value !== (span_style_value = `
-												left:${/*ans_x*/ ctx[12]}px;
-												top:${/*ans_y*/ ctx[13]}px;
+    			if (dirty[0] & /*ans_x, ans_y*/ 24576 && span_style_value !== (span_style_value = `
+												left:${/*ans_x*/ ctx[13]}px;
+												top:${/*ans_y*/ ctx[14]}px;
 											`)) {
     				attr_dev(span, "style", span_style_value);
     			}
 
-    			if (dirty[0] & /*isUxmlTarget*/ 64) {
-    				toggle_class(span, "showBlock", /*isUxmlTarget*/ ctx[6]);
+    			if (dirty[0] & /*isUxmlTarget*/ 128) {
+    				toggle_class(span, "showBlock", /*isUxmlTarget*/ ctx[7]);
     			}
 
-    			if (dirty[0] & /*itemBorder, itemBorderColor*/ 48 && div1_style_value !== (div1_style_value = `
+    			if (dirty[0] & /*itemBorder, itemBorderColor*/ 96 && div1_style_value !== (div1_style_value = `
 											position: relative;
 											margin: 0px;
 											padding: 0px;
 											width: 100%;
 											height: 100%;
-											border: ${/*itemBorder*/ ctx[4]
-			? /*itemBorder*/ ctx[4] + "px solid"
+											border: ${/*itemBorder*/ ctx[5]
+			? /*itemBorder*/ ctx[5] + "px solid"
 			: ""};
-											border-color: ${/*itemBorderColor*/ ctx[5]};
+											border-color: ${/*itemBorderColor*/ ctx[6]};
 										`)) {
     				attr_dev(div1, "style", div1_style_value);
     			}
@@ -4437,14 +4441,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(579:3) {#if moduleArr[item_type] == \\\"4\\\"}",
+    		source: "(587:3) {#if moduleArr[item_type] == \\\"4\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (667:5) {#if scrollEnabled}
+    // (675:5) {#if scrollEnabled}
     function create_if_block_2(ctx) {
     	let div;
 
@@ -4457,7 +4461,7 @@ var app = (function () {
     			set_style(div, "left", "0");
     			set_style(div, "bottom", "0");
     			set_style(div, "background", "rgba(0,0,0,0.4)");
-    			add_location(div, file$1, 667, 6, 21618);
+    			add_location(div, file$1, 675, 6, 21988);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4471,7 +4475,7 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(667:5) {#if scrollEnabled}",
+    		source: "(675:5) {#if scrollEnabled}",
     		ctx
     	});
 
@@ -4492,7 +4496,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[15]] == "1" || /*moduleArr*/ ctx[20][/*item_type*/ ctx[15]] == "2") return 0;
+    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[16]] == "1" || /*moduleArr*/ ctx[20][/*item_type*/ ctx[16]] == "2") return 0;
     		return 1;
     	}
 
@@ -4500,8 +4504,8 @@ var app = (function () {
     	if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[15]] == "4") return create_if_block$1;
-    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[15]] == "3") return create_if_block_1;
+    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[16]] == "4") return create_if_block$1;
+    		if (/*moduleArr*/ ctx[20][/*item_type*/ ctx[16]] == "3") return create_if_block_1;
     		return create_else_block;
     	}
 
@@ -4520,16 +4524,16 @@ var app = (function () {
     			input = element("input");
     			attr_dev(div, "id", "previewArea");
     			attr_dev(div, "class", "relative");
-    			add_location(div, file$1, 576, 2, 18902);
-    			add_location(center, file$1, 561, 1, 18360);
+    			add_location(div, file$1, 584, 2, 19251);
+    			add_location(center, file$1, 569, 1, 18709);
     			attr_dev(input, "type", "hidden");
     			attr_dev(input, "id", "special_module_parse");
     			attr_dev(input, "name", "special_module_parse");
     			attr_dev(input, "userans", "");
-    			input.value = /*userCorrect*/ ctx[16];
-    			add_location(input, file$1, 678, 1, 21867);
-    			attr_dev(main, "class", "pt-1 svelte-11usv4u");
-    			add_location(main, file$1, 560, 0, 18339);
+    			input.value = /*userCorrect*/ ctx[17];
+    			add_location(input, file$1, 686, 1, 22237);
+    			attr_dev(main, "class", "pt-0 svelte-11usv4u");
+    			add_location(main, file$1, 568, 0, 18688);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4584,8 +4588,8 @@ var app = (function () {
     				}
     			}
 
-    			if (!current || dirty[0] & /*userCorrect*/ 65536) {
-    				prop_dev(input, "value", /*userCorrect*/ ctx[16]);
+    			if (!current || dirty[0] & /*userCorrect*/ 131072) {
+    				prop_dev(input, "value", /*userCorrect*/ ctx[17]);
     			}
     		},
     		i: function intro(local) {
@@ -4662,6 +4666,8 @@ var app = (function () {
     	let item_type = "";
     	let xmlHeight = 0;
     	let xmlWidth = 0;
+    	let xmlBorderColor = "";
+    	let xmlBorderWidth = "0";
     	let userCorrect = "";
     	let correctans = "";
     	let totalCorrectAns;
@@ -4678,11 +4684,13 @@ var app = (function () {
     	var correctHtml = "";
 
     	const unsubscribe = items => {
-    		$$invalidate(3, state = items);
+    		$$invalidate(4, state = items);
     	};
 
-    	onMount(async () => {
+    	onMount(() => {
     		parseXml = XMLToJSON$1(xml);
+    		xmlBorderWidth = parseXml["smxml"]["hotBorder"];
+    		xmlBorderColor = parseXml["smxml"]["hotBorderColor"];
     		xmlParser();
     		preRender();
     		HotJS.readyThis("hptmain0", isReview);
@@ -4736,23 +4744,23 @@ var app = (function () {
     	});
 
     	function xmlParser() {
-    		$$invalidate(15, item_type = parseXml["smxml"]["div"]["_type"]);
+    		$$invalidate(16, item_type = parseXml["smxml"]["div"]["_type"]);
     		xmlHeight = parseXml["smxml"]["_height"];
     		xmlWidth = parseXml["smxml"]["_width"];
 
     		if (item_type == undefined || item_type == "") {
-    			$$invalidate(15, item_type = parseXml["smxml"]["_name"].toLowerCase());
+    			$$invalidate(16, item_type = parseXml["smxml"]["_name"].toLowerCase());
     		}
 
     		typeName = item_type;
-    		$$invalidate(14, img_url = parseXml["smxml"]["_bgimg"]);
+    		$$invalidate(15, img_url = parseXml["smxml"]["_bgimg"]);
 
     		switch (moduleArr[item_type]) {
     			case "1":
     				//getting the width and height
     				divHeight = parseXml.smxml._height + "px";
     				divWidth = parseXml.smxml._width + "px";
-    				// for parsing the xml
+    				// for parsing the xmlpreviewArea
     				parseTextClick(parseXml.smxml.div.__cdata);
     				AH.select(AH.parent("#textID0"), "show", "block");
     				AH.selectAll("#drawPreview,table[id=\"hptmain2\"]", "hide");
@@ -4780,7 +4788,7 @@ var app = (function () {
     						"load",
     						function (event) {
     							$$invalidate(
-    								3,
+    								4,
     								state.imgheight = parseXml.smxml._height > this.height
     								? parseXml.smxml._height + "px"
     								: this.height + "px",
@@ -4788,12 +4796,15 @@ var app = (function () {
     							);
 
     							$$invalidate(
-    								3,
+    								4,
     								state.imgwidth = parseXml.smxml._width > this.width
     								? parseXml.smxml._width + "px"
     								: this.width + "px",
     								state
     							);
+
+    							$$invalidate(5, itemBorder = parseXml.smxml.div._border);
+    							$$invalidate(6, itemBorderColor = parseXml.smxml.div._bordercolor);
 
     							AH.find("#hptdraw0", "canvas", {
     								action: "attr",
@@ -4818,21 +4829,21 @@ var app = (function () {
     				{
     					// in case of hotspot (spot an image)
     					// setting backgroundImage , alt, width, height, left , top ,border, bordercolor on the basis of xml
-    					$$invalidate(14, img_url = parseXml.smxml._bgimg); // used for set the background image of the Draw highlighted module
+    					$$invalidate(15, img_url = parseXml.smxml._bgimg); // used for set the background image of the Draw highlighted module
 
-    					$$invalidate(2, alt = parseXml.smxml._alt);
-    					$$invalidate(13, ans_y = parseFloat(parseXml["smxml"]["div"]["_top"]));
-    					$$invalidate(12, ans_x = parseFloat(parseXml["smxml"]["div"]["_left"]) + 13);
+    					$$invalidate(3, alt = parseXml.smxml._alt);
+    					$$invalidate(14, ans_y = parseFloat(parseXml["smxml"]["div"]["_top"]));
+    					$$invalidate(13, ans_x = parseFloat(parseXml["smxml"]["div"]["_left"]) + 13);
     					ans_h = parseFloat(parseXml["smxml"]["div"]["_height"]);
     					ans_w = parseFloat(parseXml["smxml"]["div"]["_width"]);
-    					$$invalidate(2, alt = parseXml["smxml"]["div"]["_alt"]);
+    					$$invalidate(3, alt = parseXml["smxml"]["div"]["_alt"]);
     					type = parseXml["smxml"]["div"]["type"];
-    					$$invalidate(4, itemBorder = parseXml.smxml.div._border);
-    					$$invalidate(5, itemBorderColor = parseXml.smxml.div._bordercolor);
-    					$$invalidate(9, itemAreaWidth = parseXml.smxml.div._width + "px");
-    					$$invalidate(8, itemAreaHeight = parseXml.smxml.div._height + "px");
-    					$$invalidate(10, itemAreaLeft = parseInt(parseXml.smxml.div._left) + 4 + "px");
-    					$$invalidate(7, itemAreaTop = parseInt(parseXml.smxml.div._top) + 2 + "px");
+    					$$invalidate(5, itemBorder = parseXml.smxml.div._border);
+    					$$invalidate(6, itemBorderColor = parseXml.smxml.div._bordercolor);
+    					$$invalidate(10, itemAreaWidth = parseXml.smxml.div._width + "px");
+    					$$invalidate(9, itemAreaHeight = parseXml.smxml.div._height + "px");
+    					$$invalidate(11, itemAreaLeft = parseInt(parseXml.smxml.div._left) + 4 + "px");
+    					$$invalidate(8, itemAreaTop = parseInt(parseXml.smxml.div._top) + 2 + "px");
     					let image = new Image();
 
     					image.onload = function () {
@@ -4840,7 +4851,7 @@ var app = (function () {
     						let bgImgWidth = this.width + "px";
 
     						$$invalidate(
-    							3,
+    							4,
     							state.imgheight = parseXml.smxml.div._imgheight
     							? parseXml.smxml.div._imgheight + "px"
     							: "auto !important",
@@ -4848,7 +4859,7 @@ var app = (function () {
     						);
 
     						$$invalidate(
-    							3,
+    							4,
     							state.imgwidth = parseXml.smxml.div._imgwidth
     							? parseXml.smxml.div._imgwidth + "px"
     							: "auto !important",
@@ -4866,7 +4877,7 @@ var app = (function () {
 
     	function preRender() {
     		if (isReview) {
-    			$$invalidate(11, targetView = "block");
+    			$$invalidate(12, targetView = "block");
     		}
 
     		var image = new Image();
@@ -4874,7 +4885,7 @@ var app = (function () {
     		image.onload = function () {
     			if (moduleArr[item_type] == "3") {
     				$$invalidate(
-    					3,
+    					4,
     					state.imgheight = parseXml.smxml._height > this.height
     					? parseXml.smxml._height + "px"
     					: this.height + "px",
@@ -4882,7 +4893,7 @@ var app = (function () {
     				);
 
     				$$invalidate(
-    					3,
+    					4,
     					state.imgwidth = parseXml.smxml._width > this.width
     					? parseXml.smxml._width + "px"
     					: this.width + "px",
@@ -4890,7 +4901,7 @@ var app = (function () {
     				);
     			} else {
     				$$invalidate(
-    					3,
+    					4,
     					state.imgheight = parseXml.smxml.div._imgheight
     					? parseXml.smxml.div._imgheight + "px"
     					: "auto !important",
@@ -4898,7 +4909,7 @@ var app = (function () {
     				);
 
     				$$invalidate(
-    					3,
+    					4,
     					state.imgwidth = parseXml.smxml.div._imgwidth
     					? parseXml.smxml.div._imgwidth + "px"
     					: "auto !important",
@@ -4910,13 +4921,13 @@ var app = (function () {
     		if (img_url) image.src = bgImgPath + img_url;
 
     		if (uxml) {
-    			$$invalidate(16, userCorrect = uxml);
+    			$$invalidate(17, userCorrect = uxml);
     			let parseUxml = XMLToJSON$1(uxml);
 
     			if (parseUxml.SMANS && parseUxml.SMANS.div) {
-    				$$invalidate(6, isUxmlTarget = true);
-    				$$invalidate(12, ans_x = parseUxml.SMANS.div._targetLeft);
-    				$$invalidate(13, ans_y = parseUxml.SMANS.div._targetTop);
+    				$$invalidate(7, isUxmlTarget = true);
+    				$$invalidate(13, ans_x = parseUxml.SMANS.div._targetLeft);
+    				$$invalidate(14, ans_y = parseUxml.SMANS.div._targetTop);
     			}
     		}
     	}
@@ -4929,9 +4940,9 @@ var app = (function () {
     			$$invalidate(31, answerStatus = result.ans);
     		} else {
     			result = movetarget(event, ans_h, ans_w, parseInt(itemAreaLeft), parseInt(itemAreaTop));
-    			$$invalidate(6, isUxmlTarget = true);
-    			$$invalidate(12, ans_x = result.left);
-    			$$invalidate(13, ans_y = result.top);
+    			$$invalidate(7, isUxmlTarget = true);
+    			$$invalidate(13, ans_x = result.left);
+    			$$invalidate(14, ans_y = result.top);
     			$$invalidate(26, ansStatus = result.ans);
     			$$invalidate(31, answerStatus = ansStatus);
     			if (editorState) showAns(ansStatus ? "Correct" : "Incorrect");
@@ -4942,13 +4953,13 @@ var app = (function () {
 
     	// used in native for toggle
     	function toggleSelectArea() {
-    		$$invalidate(17, scrollEnabled = scrollEnabled ? false : true);
+    		$$invalidate(18, scrollEnabled = scrollEnabled ? false : true);
     	}
 
     	// when remediation mode is on
     	function setReview() {
     		$$invalidate(0, isReview = true);
-    		$$invalidate(11, targetView = "block");
+    		$$invalidate(12, targetView = "block");
 
     		//isDotCreate = false;
     		// if the module is imagehighlight then it draw the correct answer on the module using the function drawOnCanvas
@@ -4970,7 +4981,7 @@ var app = (function () {
     	// when remediation mode is off
     	function unsetReview() {
     		$$invalidate(0, isReview = false);
-    		$$invalidate(11, targetView = "none");
+    		$$invalidate(12, targetView = "none");
 
     		// if the module is imagehighlight then it hide the correct answer ans show user ans on the module using the function drawOnCanvas
     		if (moduleArr[item_type] == "3") {
@@ -5047,7 +5058,7 @@ var app = (function () {
     				surface.clearSurface();
     				drawstr = "";
     				count = 0;
-    				$$invalidate(16, userCorrect = "");
+    				$$invalidate(17, userCorrect = "");
     				AH.selectAll(AH.select(hid).children, "attr", { userans: "" });
     				$$invalidate(31, answerStatus = false);
     			});
@@ -5090,7 +5101,7 @@ var app = (function () {
     			// puuting the value in the textarea for saving the user ans
     			AH.select("#special_module_user_xml").value = drawstr;
 
-    			$$invalidate(16, userCorrect = drawstr);
+    			$$invalidate(17, userCorrect = drawstr);
     			xaxis = [];
     			yaxis = [];
 
@@ -5114,12 +5125,12 @@ var app = (function () {
     			if (flag > 0) {
     				inNativeIsCorrect = true;
     				message = "Correct";
-    				$$invalidate(3, state.answerType3 = true, state);
+    				$$invalidate(4, state.answerType3 = true, state);
     				if (editorState) showAns("Correct");
     			} else {
     				inNativeIsCorrect = false;
     				message = "Incorrect";
-    				$$invalidate(3, state.answerType3 = false, state);
+    				$$invalidate(4, state.answerType3 = false, state);
     			}
 
     			if (editorState) showAns(message);
@@ -5145,7 +5156,7 @@ var app = (function () {
     		var correctans = cdata.match(/%{(.*?)}%/gm);
 
     		if (correctans) {
-    			$$invalidate(1, totalCorrectAns = correctans.length);
+    			$$invalidate(2, totalCorrectAns = correctans.length);
 
     			for (var i = 0; i < correctans.length; i++) {
     				// replacing the space with <uc:space> and then replacing the correctans with it
@@ -5194,7 +5205,7 @@ var app = (function () {
     			// replace the symbol with the span
     			correctHtml = cdata.replace(/%{/gm, "<span class=\"selecttext selected\">").replace(/}%/gm, "<span>");
 
-    			$$invalidate(1, totalCorrectAns = correctans.length);
+    			$$invalidate(2, totalCorrectAns = correctans.length);
 
     			// removing last pipe symbol in the correctAnsStr
     			correctAnsStr = correctAnsStr.replace(/\|$/gm, "");
@@ -5322,6 +5333,8 @@ var app = (function () {
     		item_type,
     		xmlHeight,
     		xmlWidth,
+    		xmlBorderColor,
+    		xmlBorderWidth,
     		userCorrect,
     		correctans,
     		totalCorrectAns,
@@ -5359,36 +5372,38 @@ var app = (function () {
     		if ("isReview" in $$props) $$invalidate(0, isReview = $$props.isReview);
     		if ("showAns" in $$props) $$invalidate(29, showAns = $$props.showAns);
     		if ("editorState" in $$props) $$invalidate(30, editorState = $$props.editorState);
-    		if ("customIsReview" in $$props) $$invalidate(18, customIsReview = $$props.customIsReview);
+    		if ("customIsReview" in $$props) $$invalidate(1, customIsReview = $$props.customIsReview);
     		if ("parseXml" in $$props) parseXml = $$props.parseXml;
     		if ("answerStatus" in $$props) $$invalidate(31, answerStatus = $$props.answerStatus);
     		if ("ansDisable" in $$props) $$invalidate(32, ansDisable = $$props.ansDisable);
     		if ("bgImgPath" in $$props) $$invalidate(19, bgImgPath = $$props.bgImgPath);
-    		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
+    		if ("alt" in $$props) $$invalidate(3, alt = $$props.alt);
     		if ("moduleArr" in $$props) $$invalidate(20, moduleArr = $$props.moduleArr);
-    		if ("state" in $$props) $$invalidate(3, state = $$props.state);
+    		if ("state" in $$props) $$invalidate(4, state = $$props.state);
     		if ("hdd" in $$props) hdd = $$props.hdd;
-    		if ("itemBorder" in $$props) $$invalidate(4, itemBorder = $$props.itemBorder);
-    		if ("itemBorderColor" in $$props) $$invalidate(5, itemBorderColor = $$props.itemBorderColor);
-    		if ("isUxmlTarget" in $$props) $$invalidate(6, isUxmlTarget = $$props.isUxmlTarget);
-    		if ("itemAreaTop" in $$props) $$invalidate(7, itemAreaTop = $$props.itemAreaTop);
-    		if ("itemAreaHeight" in $$props) $$invalidate(8, itemAreaHeight = $$props.itemAreaHeight);
-    		if ("itemAreaWidth" in $$props) $$invalidate(9, itemAreaWidth = $$props.itemAreaWidth);
-    		if ("itemAreaLeft" in $$props) $$invalidate(10, itemAreaLeft = $$props.itemAreaLeft);
-    		if ("targetView" in $$props) $$invalidate(11, targetView = $$props.targetView);
-    		if ("ans_x" in $$props) $$invalidate(12, ans_x = $$props.ans_x);
-    		if ("ans_y" in $$props) $$invalidate(13, ans_y = $$props.ans_y);
+    		if ("itemBorder" in $$props) $$invalidate(5, itemBorder = $$props.itemBorder);
+    		if ("itemBorderColor" in $$props) $$invalidate(6, itemBorderColor = $$props.itemBorderColor);
+    		if ("isUxmlTarget" in $$props) $$invalidate(7, isUxmlTarget = $$props.isUxmlTarget);
+    		if ("itemAreaTop" in $$props) $$invalidate(8, itemAreaTop = $$props.itemAreaTop);
+    		if ("itemAreaHeight" in $$props) $$invalidate(9, itemAreaHeight = $$props.itemAreaHeight);
+    		if ("itemAreaWidth" in $$props) $$invalidate(10, itemAreaWidth = $$props.itemAreaWidth);
+    		if ("itemAreaLeft" in $$props) $$invalidate(11, itemAreaLeft = $$props.itemAreaLeft);
+    		if ("targetView" in $$props) $$invalidate(12, targetView = $$props.targetView);
+    		if ("ans_x" in $$props) $$invalidate(13, ans_x = $$props.ans_x);
+    		if ("ans_y" in $$props) $$invalidate(14, ans_y = $$props.ans_y);
     		if ("ans_h" in $$props) ans_h = $$props.ans_h;
     		if ("ans_w" in $$props) ans_w = $$props.ans_w;
     		if ("type" in $$props) type = $$props.type;
-    		if ("img_url" in $$props) $$invalidate(14, img_url = $$props.img_url);
-    		if ("item_type" in $$props) $$invalidate(15, item_type = $$props.item_type);
+    		if ("img_url" in $$props) $$invalidate(15, img_url = $$props.img_url);
+    		if ("item_type" in $$props) $$invalidate(16, item_type = $$props.item_type);
     		if ("xmlHeight" in $$props) xmlHeight = $$props.xmlHeight;
     		if ("xmlWidth" in $$props) xmlWidth = $$props.xmlWidth;
-    		if ("userCorrect" in $$props) $$invalidate(16, userCorrect = $$props.userCorrect);
+    		if ("xmlBorderColor" in $$props) xmlBorderColor = $$props.xmlBorderColor;
+    		if ("xmlBorderWidth" in $$props) xmlBorderWidth = $$props.xmlBorderWidth;
+    		if ("userCorrect" in $$props) $$invalidate(17, userCorrect = $$props.userCorrect);
     		if ("correctans" in $$props) $$invalidate(33, correctans = $$props.correctans);
-    		if ("totalCorrectAns" in $$props) $$invalidate(1, totalCorrectAns = $$props.totalCorrectAns);
-    		if ("scrollEnabled" in $$props) $$invalidate(17, scrollEnabled = $$props.scrollEnabled);
+    		if ("totalCorrectAns" in $$props) $$invalidate(2, totalCorrectAns = $$props.totalCorrectAns);
+    		if ("scrollEnabled" in $$props) $$invalidate(18, scrollEnabled = $$props.scrollEnabled);
     		if ("linecolor" in $$props) linecolor = $$props.linecolor;
     		if ("drawstr" in $$props) drawstr = $$props.drawstr;
     		if ("count" in $$props) count = $$props.count;
@@ -5406,26 +5421,30 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*isReview, editorState, showAns*/ 1610612737 | $$self.$$.dirty[1] & /*ansDisable, answerStatus*/ 3) {
+    		if ($$self.$$.dirty[0] & /*isReview, customIsReview, editorState, showAns*/ 1610612739 | $$self.$$.dirty[1] & /*ansDisable, answerStatus*/ 3) {
     			 {
-    				if (isReview) {
-    					//targetView = "block";
-    					setReview();
+    				if (isReview != customIsReview) {
+    					if (isReview) {
+    						//targetView = "block";
+    						setReview();
 
-    					if (editorState && ansDisable == 0) {
-    						showAns(answerStatus ? "Correct" : "Incorrect");
-    						$$invalidate(32, ansDisable = 1);
+    						if (editorState && ansDisable == 0) {
+    							showAns(answerStatus ? "Correct" : "Incorrect");
+    							$$invalidate(32, ansDisable = 1);
+    						}
+    					} else {
+    						//targetView = "none";
+    						$$invalidate(32, ansDisable = 0);
+
+    						unsetReview();
     					}
-    				} else {
-    					//targetView = "none";
-    					$$invalidate(32, ansDisable = 0);
 
-    					unsetReview();
+    					$$invalidate(1, customIsReview = isReview);
     				}
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*xml, totalCorrectAns*/ 134217730 | $$self.$$.dirty[1] & /*correctans*/ 4) {
+    		if ($$self.$$.dirty[0] & /*xml, totalCorrectAns*/ 134217732 | $$self.$$.dirty[1] & /*correctans*/ 4) {
     			 if (xml) {
     				// Here replacing the not standard cdata into the valid cdata format
     				let myXml = xml.replace("<!--[CDATA[", "<![CDATA[").replace("]]-->", "]]>");
@@ -5435,10 +5454,10 @@ var app = (function () {
     					// saving value b/w the {, } symbol
     					$$invalidate(33, correctans = myXml.toString().match(/{(.*)}/gmi));
 
-    					$$invalidate(1, totalCorrectAns = correctans.toString().match(/},"\d+"/gm));
-    					$$invalidate(1, totalCorrectAns = totalCorrectAns ? totalCorrectAns.pop() : null);
+    					$$invalidate(2, totalCorrectAns = correctans.toString().match(/},"\d+"/gm));
+    					$$invalidate(2, totalCorrectAns = totalCorrectAns ? totalCorrectAns.pop() : null);
 
-    					$$invalidate(1, totalCorrectAns = totalCorrectAns
+    					$$invalidate(2, totalCorrectAns = totalCorrectAns
     					? totalCorrectAns.replace(/"|}|,/gm, "")
     					: 1);
 
@@ -5455,6 +5474,7 @@ var app = (function () {
 
     	return [
     		isReview,
+    		customIsReview,
     		totalCorrectAns,
     		alt,
     		state,
@@ -5472,7 +5492,6 @@ var app = (function () {
     		item_type,
     		userCorrect,
     		scrollEnabled,
-    		customIsReview,
     		bgImgPath,
     		moduleArr,
     		checkAnswer,
