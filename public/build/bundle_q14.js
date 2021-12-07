@@ -1669,24 +1669,23 @@ var app = (function () {
             });
         }
 
-        jsonFormEncode(formData, prop, jsonArray) {
-            try {
-                if (Array.isArray(jsonArray)) {
-                    for (let i = 0; i < jsonArray.length; i++) {
-                        for (let key in jsonArray[i]) {
-                            formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key]);
-                        }
-                    }
-                } else {
-                    for (var key in jsonArray) {
-                        formData.append(`${prop}[${key}]`, jsonArray[key]);
-                    }
+        jsonFormEncode(formData, prop, jsonArray) {try {
+            if (Array.isArray(jsonArray)) {
+                for(let i = 0; i< jsonArray.length; i++){
+                    this.jsonFormEncode(formData, `${prop}[${i}]`, jsonArray[i]);
                 }
-            } catch(error) {
-                console.warn("Please provide valid JSON Object in ajax data."+ error);
+            } else if (typeof jsonArray == "object") {
+                for(let key in jsonArray){
+                    this.jsonFormEncode(formData, `${prop}[${key}]`, jsonArray[key]);
+                }
+            } else {
+                formData.append(prop, jsonArray);
             }
-            return formData;
+        } catch(error) {
+            console.warn("Please provide valid JSON Object in ajax data."+ error);
         }
+        return formData;
+    }
 
         // get script from url
         getJSON(url) {
@@ -8514,7 +8513,7 @@ var app = (function () {
     			}
 
     			attr_dev(div0, "class", "row-fluid match_options shuffleList2");
-    			add_location(div0, file$4, 891, 6, 26178);
+    			add_location(div0, file$4, 891, 6, 26170);
     			attr_dev(div1, "class", "row-fluid shuffleList1");
     			add_location(div1, file$4, 853, 5, 25065);
     		},
@@ -8761,7 +8760,6 @@ var app = (function () {
     	let div2_data_userans_value;
     	let div2_mrel_value;
     	let div2_tabindex_value;
-    	let div2_aria_label_value;
     	let div2_data_originalseq_value;
     	let div3_key_value;
 
@@ -8806,7 +8804,7 @@ var app = (function () {
     			attr_dev(div2, "dropzone", "1");
     			attr_dev(div2, "draggable", "true");
     			attr_dev(div2, "tabindex", div2_tabindex_value = 0);
-    			attr_dev(div2, "aria-label", div2_aria_label_value = `Droped`);
+    			attr_dev(div2, "aria-label", "");
 
     			attr_dev(div2, "data-originalseq", div2_data_originalseq_value = /*data*/ ctx[54].originalseq
     			? /*data*/ ctx[54].originalseq
@@ -8933,7 +8931,7 @@ var app = (function () {
     			? /*data*/ ctx[54].originalseq
     			: "0");
 
-    			add_location(div, file$4, 893, 8, 26268);
+    			add_location(div, file$4, 893, 8, 26260);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -9138,10 +9136,10 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "close";
     			attr_dev(span, "class", "u-sr-only svelte-bi3u6x");
-    			add_location(span, file$4, 925, 54, 27195);
+    			add_location(span, file$4, 925, 54, 27187);
     			attr_dev(i_1, "class", "mi mi-close");
     			set_style(i_1, "font-size", "1.5rem");
-    			add_location(i_1, file$4, 925, 5, 27146);
+    			add_location(i_1, file$4, 925, 5, 27138);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i_1, anchor);
@@ -9215,24 +9213,24 @@ var app = (function () {
     			label.textContent = "Do not show this dialog again";
     			attr_dev(div0, "title", "How to drop?");
     			attr_dev(div0, "class", "float-start float-left");
-    			add_location(div0, file$4, 922, 3, 26921);
+    			add_location(div0, file$4, 922, 3, 26913);
     			attr_dev(div1, "class", "float-end float-right");
-    			add_location(div1, file$4, 923, 3, 27000);
+    			add_location(div1, file$4, 923, 3, 26992);
     			attr_dev(img, "alt", "gif file");
     			if (img.src !== (img_src_value = AH.select("#matchmain").getAttribute("path") + "match_drop_000BOG.gif")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$4, 931, 4, 27299);
-    			add_location(br, file$4, 935, 4, 27420);
+    			add_location(img, file$4, 931, 4, 27291);
+    			add_location(br, file$4, 935, 4, 27412);
     			attr_dev(input, "type", "checkbox");
     			set_style(input, "top", "2px");
     			attr_dev(input, "class", "relative donotshowdialog");
     			attr_dev(input, "id", "dropId");
-    			add_location(input, file$4, 937, 5, 27455);
+    			add_location(input, file$4, 937, 5, 27447);
     			attr_dev(label, "for", "dropId");
-    			add_location(label, file$4, 938, 5, 27548);
+    			add_location(label, file$4, 938, 5, 27540);
     			attr_dev(span, "class", "mt-2");
-    			add_location(span, file$4, 936, 4, 27430);
-    			add_location(div2, file$4, 930, 3, 27289);
-    			add_location(div3, file$4, 929, 2, 27280);
+    			add_location(span, file$4, 936, 4, 27422);
+    			add_location(div2, file$4, 930, 3, 27281);
+    			add_location(div3, file$4, 929, 2, 27272);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
