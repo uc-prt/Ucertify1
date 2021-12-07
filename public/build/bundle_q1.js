@@ -1219,24 +1219,23 @@ var app = (function () {
             });
         }
 
-        jsonFormEncode(formData, prop, jsonArray) {
-            try {
-                if (Array.isArray(jsonArray)) {
-                    for (let i = 0; i < jsonArray.length; i++) {
-                        for (let key in jsonArray[i]) {
-                            formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key]);
-                        }
-                    }
-                } else {
-                    for (var key in jsonArray) {
-                        formData.append(`${prop}[${key}]`, jsonArray[key]);
-                    }
+        jsonFormEncode(formData, prop, jsonArray) {try {
+            if (Array.isArray(jsonArray)) {
+                for(let i = 0; i< jsonArray.length; i++){
+                    this.jsonFormEncode(formData, `${prop}[${i}]`, jsonArray[i]);
                 }
-            } catch(error) {
-                console.warn("Please provide valid JSON Object in ajax data."+ error);
+            } else if (typeof jsonArray == "object") {
+                for(let key in jsonArray){
+                    this.jsonFormEncode(formData, `${prop}[${key}]`, jsonArray[key]);
+                }
+            } else {
+                formData.append(prop, jsonArray);
             }
-            return formData;
+        } catch(error) {
+            console.warn("Please provide valid JSON Object in ajax data."+ error);
         }
+        return formData;
+    }
 
         // get script from url
         getJSON(url) {
@@ -5648,7 +5647,7 @@ var app = (function () {
                 droped_value_indicator_html = '<span class="icomoon-checkmark-circle" style="color:green;">';
             }
 
-            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:20px;right:-9px;top:-11px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
+            correct_incorrect_mark = '<span class="correct_incorrect_icon" style="position:absolute;width:15px;height:15px;right:-9px;top:-10px;background:white;border-radius:15px 12px 12px;font-size:17px;"> ' + droped_value_indicator_html + '</span></span>';
         } else if (is_correct != 1 && anstest == true) {
             if (window.inNative) {
                 droped_value_indicator_html = '<span class="icomoon-cancel-circles" style="color:red;">';
