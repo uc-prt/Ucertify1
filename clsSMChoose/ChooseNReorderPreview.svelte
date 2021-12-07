@@ -91,12 +91,12 @@
 
     })
 
-	
-		
-		
 
 
-    // this function returns the height of editorRender class	
+
+
+
+	// this function returns the height of editorRender class	
 	function getHeight() {
 		
 

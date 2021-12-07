@@ -452,76 +452,12 @@ ucChoose.bindKeyup = function(chid) {
         return is_focus;
     }
 
-    
-    hotkeys('down, up, enter, alt+down, delete, left, right, tab, shift+tab, esc', 'choose' + chid, function(event, handler) {
-        switch (handler.key) {
-            case 'up' :
-            case 'left':
-                if (checkFocus()) {
-                    
-                    var selected_opt = AH.find(chid,"#sortable .copied");
-                    
-                    var b = AH.find(chid,'.ks').length;
-                    let focus_element = AH.select('.ks:focus');
-                    let ks_element = AH.selectAll('.ks')[0];
-                    
-                    if (focus_element.id == ks_element.id) {
-                        if (selected_opt && selected_opt.classList.contains("copied")) {
-                            selected_opt.insertAfter(AH.find(chid,".ks:nth("+(b-1)+")"));
-                            selected_opt.focus();
-                        } else {
-                            
-                            AH.selectAll(".ks")[AH.selectAll(".ks").length-1].focus();
-                        }
-                    } else {
-                        if (selected_opt &&  selected_opt.classList.contains("copied")) {
-                            selected_opt.insertBefore(AH.find(chid,"#sortable .copied").previousElementSibling);
-                            selected_opt.focus();
-                        } else {
-                            tabMove(focus_element,0)
-                        }
-                    }
-                    event.preventDefault();
-                }
-            break;
-            case 'down' :
-            case 'right':
-                if (checkFocus())  {
-                    console.log('check');
-                    
-                    var selected_opt = AH.find(chid,'#sortable .copied');
-                    
-                    var a = AH.selectAll(chid+' .ks').length;
-                    
-                    let focus_element = AH.select('.ks:focus');
-                    let ks_last_element = AH.selectAll('.ks')[AH.selectAll('.ks').length - 1];
-                    if(focus_element.id == ks_last_element.id) {
-                        if (selected_opt && selected_opt.classList.contains("copied")) {
-                            selected_opt.insertBefore(AH.find(chid,".ks:nth(0)"));
-                            selected_opt.focus();
-                        } else {
-                            
-                            AH.selectAll('.ks')[0].focus();
-                        }
-                    } else {
-                        
-                            if (selected_opt && selected_opt.classList.contains("copied")) {
-                                
-                                var clone = AH.find(chid,'#sortable .copied').nextSibling.cloneNode(true);
-                                selected_opt.insertAfter(clone,AH.find(chid,'#sortable .copied').nextSibling)
-                                
-                                selected_opt.focus();
-                            } else {
-                                tabMove(focus_element,1);
-                            }
-                        
-                    }
-                    event.preventDefault();
-                }
-            break;
-            case 'enter':
-                if (checkFocus()) {
-                    event.preventDefault();
+    AH.listen(document,'keydown','.ks',function(data,e) {
+		let chid = '#choose';
+		
+
+		if(e.which === 13) {
+			e.preventDefault();
                     
                     if (AH.find(chid, "#sortable").getAttribute("checkseq") == "0") {
                         
@@ -559,13 +495,183 @@ ucChoose.bindKeyup = function(chid) {
                                 action: 'addClass',
                                 actionData: 'copied'
                             })
-                            //copied_id = jQuery(chid).find("#sortable li:focus").attr('optid')
-                            //copied_id = AH.find(chid, '#sortable li:focus').getAttribute('optid');
+                            
                         }
                     }
+		}
 
-                }
-                break;
+		if(e.which === 39 || e.which === 40) {
+        
+			var selected_opt = AH.find(chid,'#sortable .copied');
+                    var a = AH.selectAll(chid+' .ks').length;
+                    
+                    let focus_element = AH.select('.ks:focus');
+                    let ks_last_element = AH.selectAll('.ks')[AH.selectAll('.ks').length - 1];
+                    if(focus_element.id == ks_last_element.id) {
+                        if (selected_opt && selected_opt.classList.contains("copied")) {
+                            selected_opt.parentNode.insertBefore(selected_opt, AH.selectAll('.ks')[0]);
+                            selected_opt.focus();
+                        } else {
+                            AH.selectAll('.ks')[0].focus();
+                        }
+                    } else {
+                            if (selected_opt && selected_opt.classList.contains("copied")) {
+                            
+                                // var clone = AH.find(chid,'#sortable .copied').nextSibling.cloneNode(true);
+                                AH.find(chid,'#sortable .copied').nextSibling.insertAdjacentElement('afterend',AH.find(chid,'#sortable .copied')); 
+                               //selected_opt.parentNode.insertBefore(selected_opt, AH.find(chid,"#sortable .copied").nextSibling);
+                                selected_opt.focus();
+                            } else {
+                                tabMove(focus_element,1);
+                            }
+                        
+                    }
+                    e.preventDefault();
+		}
+
+		if(e.which === 38 || e.which === 37) {
+			var selected_opt = AH.find(chid,"#sortable .copied");
+                    
+                    var b = AH.find(chid,'.ks').length;
+                    let focus_element = AH.select('.ks:focus');
+                    let ks_element = AH.selectAll('.ks')[0];
+                    
+                    if (focus_element.id == ks_element.id) {
+                        if (selected_opt && selected_opt.classList.contains("copied")) {
+                            AH.selectAll('.ks')[AH.selectAll('.ks').length - 1].insertAdjacentElement('afterend',selected_opt);
+                            //AH.find(chid,'#sortable .copied').previousElementSibling.insertAdjacentElement('afterend',AH.find(chid,'#sortable .copied')); 
+                            selected_opt.focus();
+                        } else {
+                            
+                            AH.selectAll(".ks")[AH.selectAll(".ks").length-1].focus();
+                        }
+                    } else {
+						let ch = document.querySelector(chid);
+                        if (selected_opt &&  selected_opt.classList.contains("copied")) {
+                           // ch.insertBefore(selected_opt,AH.find(chid,"#sortable .copied").previousElementSibling);
+
+							selected_opt.parentNode.insertBefore(selected_opt, AH.find(chid,"#sortable .copied").previousElementSibling);
+                            selected_opt.focus();
+                        } else {
+                            tabMove(focus_element,0)
+                        }
+                    }
+                    e.preventDefault();
+		}
+	})
+
+    
+    hotkeys('down, up, enter, alt+down, delete, left, right, tab, shift+tab, esc', 'choose' + chid, function(event, handler) {
+        switch (handler.key) {
+            // case 'up' :
+            // case 'left':
+            //     if (checkFocus()) {
+                    
+            //         var selected_opt = AH.find(chid,"#sortable .copied");
+                    
+            //         var b = AH.find(chid,'.ks').length;
+            //         let focus_element = AH.select('.ks:focus');
+            //         let ks_element = AH.selectAll('.ks')[0];
+                    
+            //         if (focus_element.id == ks_element.id) {
+            //             if (selected_opt && selected_opt.classList.contains("copied")) {
+            //                 selected_opt.insertAfter(AH.find(chid,".ks:nth("+(b-1)+")"));
+            //                 selected_opt.focus();
+            //             } else {
+                            
+            //                 AH.selectAll(".ks")[AH.selectAll(".ks").length-1].focus();
+            //             }
+            //         } else {
+            //             debugger;
+            //             if (selected_opt &&  selected_opt.classList.contains("copied")) {
+            //                 selected_opt.insertBefore(AH.find(chid,"#sortable .copied").previousElementSibling);
+            //                 selected_opt.focus();
+            //             } else {
+            //                 tabMove(focus_element,0)
+            //             }
+            //         }
+            //         event.preventDefault();
+            //     }
+            // break;
+            // case 'down' :
+            // case 'right':
+            //     if (checkFocus())  {
+            //         var selected_opt = AH.find(chid,'#sortable .copied');
+            //         var a = AH.selectAll(chid+' .ks').length;
+                    
+            //         let focus_element = AH.select('.ks:focus');
+            //         let ks_last_element = AH.selectAll('.ks')[AH.selectAll('.ks').length - 1];
+            //         if(focus_element.id == ks_last_element.id) {
+            //             if (selected_opt && selected_opt.classList.contains("copied")) {
+            //                 selected_opt.insertBefore(AH.find(chid,".ks:nth(0)"));
+            //                 selected_opt.focus();
+            //             } else {
+                            
+            //                 AH.selectAll('.ks')[0].focus();
+            //             }
+            //         } else {
+                        
+            //                 if (selected_opt && selected_opt.classList.contains("copied")) {
+                                
+            //                     var clone = AH.find(chid,'#sortable .copied').nextSibling.cloneNode(true);
+            //                     selected_opt.insertAfter(clone,AH.find(chid,'#sortable .copied').nextSibling)
+                                
+            //                     selected_opt.focus();
+            //                 } else {
+            //                     tabMove(focus_element,1);
+            //                 }
+                        
+            //         }
+            //         event.preventDefault();
+            //     }
+            // break;
+            // case 'enter':
+            //     if (checkFocus()) {
+            //         event.preventDefault();
+                    
+            //         if (AH.find(chid, "#sortable").getAttribute("checkseq") == "0") {
+                        
+            //             ucChoose.ow = AH.find(chid, '#sortable li:focus', 'all')[0];
+                        
+            //             ucChoose.t = setTimeout(function() {
+            //                 ucChoose.setUserAns(chid, ucChoose.ow, true)
+            //             }, 100);
+                        
+            //         } else if (AH.find(chid, "#sortable").getAttribute("checkseq") == "1") {
+                        
+            //             if (AH.find(chid, '#sortable li:focus').classList.contains("copied")) {
+                            
+            //                 ucChoose.ow = AH.find(chid, '#sortable li:focus', 'all')[0];
+                            
+            //                 ucChoose.t = setTimeout(function() {
+                                
+            //                     ucChoose.setUserAns(chid, ucChoose.ow, ((AH.find(chid, "#sortable li:focus").classList.contains("choose_sel")) ? false : true));
+            //                 }, 100);
+                            
+            //                 AH.find(chid, '#sortable li:focus', {
+            //                     action: 'removeClass',
+            //                     actionData: 'copied'
+            //                 })
+            //             } else {
+                            
+            //                 ucChoose.ow = AH.find(chid, '#sortable li:focus', 'all')[0];
+                            
+            //                 ucChoose.t = setTimeout(function() {
+                                
+            //                     ucChoose.setUserAns(chid, ucChoose.ow, ((AH.find(chid, "#sortable li:focus").classList.contains("choose_sel")) ? false : true));
+            //                 }, 100);
+                            
+            //                 AH.find(chid, '#sortable li:focus', {
+            //                     action: 'addClass',
+            //                     actionData: 'copied'
+            //                 })
+            //                 //copied_id = jQuery(chid).find("#sortable li:focus").attr('optid')
+            //                 //copied_id = AH.find(chid, '#sortable li:focus').getAttribute('optid');
+            //             }
+            //         }
+
+            //     }
+            //     break;
             case 'alt+down':
                 activateKs();
                 break;
@@ -865,7 +971,6 @@ ucChoose.dragSenParItem = function(chid) {
     new Sortable(AH.find(chid, "#sortable"), {
         // Element dragging started
         onStart: function(evt) {
-            console.log('start =>' + evt);
         // this.copyHelper = ui.clone().insertAfter(ui);
     // 	    jQuery(this).data('copied', false);
     // 	   	return ui.clone().css({'background':'#DCDCDC','max-height':'100px','max-width':'400px','opacity':'0.5','overflow':'hidden','min-height':'35px'});
