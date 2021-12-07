@@ -370,7 +370,8 @@ function didMount(node, action) {
 		AH.toggleDom('#savePublish', (state.guid.length == '5' && from_myproject == 1 ? 'show' : 'hide'));
 		updateEbookContent();
 		setupEditor(urlVars);
-
+		
+		prettyPrint();
 		if(editorUrl.get('from_educator') == '1' || editorUrl.get('from_myproject') == '1'){
 			previewButton?.click();
 		}
