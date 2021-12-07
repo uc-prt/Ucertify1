@@ -6970,7 +6970,7 @@ var app = (function () {
     function add_css$2() {
     	var style = element("style");
     	style.id = "svelte-4djjpi-style";
-    	style.textContent = ".token.svelte-4djjpi.svelte-4djjpi:hover{border:1px solid #000!important}.bla .token:hover{border:1px solid #fff!important}.token_selected.svelte-4djjpi.svelte-4djjpi{background-color:#64bb63;color:#fff}.bla .token_highlight_heading{color:#000!important}.hotspot-token-preview.svelte-4djjpi br.svelte-4djjpi{clear:both}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSG90c3BvdFRva2VuUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBd2NJLGtDQUFNLE1BQU0sQUFBQyxDQUFBLEFBQ1QsTUFBTSxDQUFFLEdBQUcsQ0FBQyxLQUFLLENBQUMsSUFBSSxVQUFVLEFBQ3BDLENBQUEsQUFFUSxpQkFBaUIsQUFBQyxDQUFBLEFBQ3RCLE1BQU0sQ0FBRSxHQUFHLENBQUMsS0FBSyxDQUFDLElBQUksVUFBVSxBQUNwQyxDQUFBLEFBRUEsZUFBZSw0QkFBQyxDQUFBLEFBQ1osZ0JBQWdCLENBQUUsT0FBTyxDQUN6QixLQUFLLENBQUUsSUFBSSxBQUNmLENBQUEsQUFFUSw2QkFBNkIsQUFBRSxDQUFBLEFBQ25DLEtBQUssQ0FBRSxJQUFJLFVBQVUsQUFDekIsQ0FBQSxBQUVBLG9DQUFzQixDQUFDLEVBQUUsY0FBQyxDQUFBLEFBQ3RCLEtBQUssQ0FBRSxJQUFJLEFBQ2YsQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJIb3RzcG90VG9rZW5QcmV2aWV3LnN2ZWx0ZSJdfQ== */";
+    	style.textContent = ".token.svelte-4djjpi.svelte-4djjpi:hover{border:1px solid #000!important}.bla .token:hover{border:1px solid #fff!important}.token_selected.svelte-4djjpi.svelte-4djjpi{background-color:#64bb63;color:#fff}.bla .token_highlight_heading{color:#000!important}.hotspot-token-preview.svelte-4djjpi br.svelte-4djjpi{clear:both}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSG90c3BvdFRva2VuUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBeWNJLGtDQUFNLE1BQU0sQUFBQyxDQUFBLEFBQ1QsTUFBTSxDQUFFLEdBQUcsQ0FBQyxLQUFLLENBQUMsSUFBSSxVQUFVLEFBQ3BDLENBQUEsQUFFUSxpQkFBaUIsQUFBQyxDQUFBLEFBQ3RCLE1BQU0sQ0FBRSxHQUFHLENBQUMsS0FBSyxDQUFDLElBQUksVUFBVSxBQUNwQyxDQUFBLEFBRUEsZUFBZSw0QkFBQyxDQUFBLEFBQ1osZ0JBQWdCLENBQUUsT0FBTyxDQUN6QixLQUFLLENBQUUsSUFBSSxBQUNmLENBQUEsQUFFUSw2QkFBNkIsQUFBRSxDQUFBLEFBQ25DLEtBQUssQ0FBRSxJQUFJLFVBQVUsQUFDekIsQ0FBQSxBQUVBLG9DQUFzQixDQUFDLEVBQUUsY0FBQyxDQUFBLEFBQ3RCLEtBQUssQ0FBRSxJQUFJLEFBQ2YsQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJIb3RzcG90VG9rZW5QcmV2aWV3LnN2ZWx0ZSJdfQ== */";
     	append_dev(document.head, style);
     }
 
@@ -7019,18 +7019,18 @@ var app = (function () {
     			set_style(div0, "max-width", "600px");
     			set_style(div0, "border-top", "2px solid #96bbf6");
     			set_style(div0, "background-color", "#d9e7fd");
-    			add_location(div0, file$2, 367, 8, 13107);
+    			add_location(div0, file$2, 367, 8, 13113);
     			attr_dev(div1, "class", "p-2");
     			set_style(div1, "max-width", "600px");
     			set_style(div1, "border", "2px solid #d9e7fd");
     			set_style(div1, "display", "flow-root");
     			set_style(div1, "text-align", "left");
     			set_style(div1, "justify-content", "left");
-    			add_location(div1, file$2, 377, 8, 13401);
-    			add_location(center, file$2, 360, 8, 12890);
+    			add_location(div1, file$2, 377, 8, 13407);
+    			add_location(center, file$2, 360, 8, 12896);
     			attr_dev(div2, "class", "hotspot-token-preview svelte-4djjpi");
     			attr_dev(div2, "tabindex", "0");
-    			add_location(div2, file$2, 359, 4, 12833);
+    			add_location(div2, file$2, 359, 4, 12839);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -7098,9 +7098,9 @@ var app = (function () {
     			div = element("div");
     			span = element("span");
     			span.textContent = "Oops Something went wrong please check your ParseXML Function";
-    			add_location(span, file$2, 356, 8, 12734);
+    			add_location(span, file$2, 356, 8, 12740);
     			attr_dev(div, "class", "alert alert-danger font-weight-bold");
-    			add_location(div, file$2, 355, 4, 12676);
+    			add_location(div, file$2, 355, 4, 12682);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7295,7 +7295,7 @@ var app = (function () {
     			set_style(span0, "padding", "1px 1px");
     			set_style(span0, "border-radius", "3px");
     			set_style(span0, "pointer-events", /*state*/ ctx[0].pointerEvents + "\n                                ");
-    			add_location(span0, file$2, 408, 28, 14811);
+    			add_location(span0, file$2, 409, 28, 14846);
 
     			attr_dev(span1, "class", span1_class_value = "position-relative " + (AH.findInArray("ID" + /*i*/ ctx[27], /*state*/ ctx[0].correctAns)
     			? "icomoon-new-24px-checkmark-circle-1"
@@ -7312,7 +7312,7 @@ var app = (function () {
     			? "marked as correct"
     			: "marked as incorrect");
 
-    			add_location(span1, file$2, 441, 32, 16654);
+    			add_location(span1, file$2, 442, 32, 16689);
     			attr_dev(span2, "class", span2_class_value = "" + (null_to_empty(/*state*/ ctx[0].iconVisible) + " svelte-4djjpi"));
     			set_style(span2, "position", "absolute");
     			set_style(span2, "width", "17px");
@@ -7328,10 +7328,10 @@ var app = (function () {
     			? "block"
     			: "none") + "\n                                ");
 
-    			add_location(span2, file$2, 426, 28, 15870);
+    			add_location(span2, file$2, 427, 28, 15905);
     			attr_dev(div, "key", div_key_value = /*i*/ ctx[27]);
     			attr_dev(div, "class", "tokenHeader position-relative float-left d-inline");
-    			add_location(div, file$2, 407, 24, 14711);
+    			add_location(div, file$2, 407, 24, 14717);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7424,7 +7424,7 @@ var app = (function () {
     		c: function create() {
     			br = element("br");
     			attr_dev(br, "class", "svelte-4djjpi");
-    			add_location(br, file$2, 405, 24, 14653);
+    			add_location(br, file$2, 405, 24, 14659);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, br, anchor);
@@ -7463,11 +7463,11 @@ var app = (function () {
     			attr_dev(span, "class", "float-left position-absolute");
     			set_style(span, "left", "-2.5px");
     			set_style(span, "top", "2px");
-    			add_location(span, file$2, 399, 28, 14353);
+    			add_location(span, file$2, 399, 28, 14359);
     			attr_dev(div, "class", "float-left position-relative d-inline");
     			set_style(div, "width", "1.5px");
     			set_style(div, "height", "1px");
-    			add_location(div, file$2, 398, 24, 14239);
+    			add_location(div, file$2, 398, 24, 14245);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7524,7 +7524,7 @@ var app = (function () {
     			if_block2.c();
     			if_block2_anchor = empty();
     			attr_dev(div, "class", "h");
-    			add_location(div, file$2, 389, 20, 13771);
+    			add_location(div, file$2, 389, 20, 13777);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7776,7 +7776,7 @@ var app = (function () {
     		showAnswer("yans", "showIcon");
 
     		//$('#sm_controller .your-ans').addClass("btn-light active"); 
-    		AH.select(".tokenHeader", "attr", { tabIndex: "0" });
+    		AH.selectAll(".tokenHeader", "attr", { tabIndex: "0" });
     	}
 
     	// when review mode is off
@@ -7785,7 +7785,7 @@ var app = (function () {
     		$$invalidate(0, state.smController = "h", state);
     		$$invalidate(0, state.pointerEvents = "auto", state);
     		showAnswer("yans", "hideIcon");
-    		AH.select(".tokenHeader", "removeAttr", "tabindex");
+    		AH.selectAll(".tokenHeader", "removeAttr", "tabindex");
     	} //$('#sm_controller button').removeClass("active btn-primary text-white bg-primary");
 
     	// for resetting the value
