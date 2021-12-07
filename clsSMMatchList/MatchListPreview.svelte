@@ -881,7 +881,7 @@
 										dropzone = "1"
 										draggable = "true"
 										tabindex={0}
-										aria-label={`Droped`}
+										aria-label=''
 										data-originalseq={(data.originalseq)?data.originalseq:"0"}
 									>
 										Place Here
