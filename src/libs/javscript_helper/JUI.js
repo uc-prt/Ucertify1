@@ -683,24 +683,23 @@ export default class JUI extends API{
         });
     }
 
-    jsonFormEncode(formData, prop, jsonArray) {
-        try {
-            if (Array.isArray(jsonArray)) {
-                for (let i = 0; i < jsonArray.length; i++) {
-                    for (let key in jsonArray[i]) {
-                        formData.append(`${prop}[${i}][${key}]`, jsonArray[i][key])
-                    }
-                }
-            } else {
-                for (var key in jsonArray) {
-                    formData.append(`${prop}[${key}]`, jsonArray[key])
-                }
+    jsonFormEncode(formData, prop, jsonArray) {try {
+        if (Array.isArray(jsonArray)) {
+            for(let i = 0; i< jsonArray.length; i++){
+                this.jsonFormEncode(formData, `${prop}[${i}]`, jsonArray[i]);
             }
-        } catch(error) {
-            console.warn("Please provide valid JSON Object in ajax data."+ error);
+        } else if (typeof jsonArray == "object") {
+            for(let key in jsonArray){
+                this.jsonFormEncode(formData, `${prop}[${key}]`, jsonArray[key]);
+            }
+        } else{
+            formData.append(prop, jsonArray);
         }
-        return formData;
+    } catch(error) {
+        console.warn("Please provide valid JSON Object in ajax data."+ error);
     }
+    return formData;
+}
 
     // get script from url
     getJSON(url) {

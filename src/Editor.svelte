@@ -46,6 +46,7 @@ export let ajaxData = "";
 export let _user;
 export let subtype;
 
+let previewButton;
 let editorUrl = new URLSearchParams(window.location.search);
 
 if ((window.origin).includes('https://') && (location.host != "localhost")) {
@@ -369,6 +370,10 @@ function didMount(node, action) {
 		AH.toggleDom('#savePublish', (state.guid.length == '5' && from_myproject == 1 ? 'show' : 'hide'));
 		updateEbookContent();
 		setupEditor(urlVars);
+
+		if(editorUrl.get('from_educator') == '1' || editorUrl.get('from_myproject') == '1'){
+			previewButton?.click();
+		}
 	}, 200);
 	// check if uc_image_annotate is available in window or not
 	if (typeof(window.uc_image_annotate) == "undefined") {
@@ -2750,7 +2755,7 @@ afterUpdate(() => {
 	>
         <ul class="nav nav-tabs editorTabs" id="edi_tabs">
             <li><a data-bs-toggle="tab" href="#authoringDiv" class="active">{"Authoring"}</a></li>
-            <li><a data-bs-toggle="tab" href={state.viewConfig.isFullMode ? "#fullMode_custom_columnize" : "#custom_columnize"}>{"Preview"}</a></li>
+            <li><a bind:this={previewButton} data-bs-toggle="tab" href={state.viewConfig.isFullMode ? "#fullMode_custom_columnize" : "#custom_columnize"}>{"Preview"}</a></li>
         </ul>
         <div class="tab-content editorTabContent">
             <div
