@@ -354,10 +354,10 @@ ucMlid.bindKeyup = function(mlid) {
         return title
     } // No Need to fix
 
-    function pasteDraggable() {
-        
+    ucMlid.pasteDraggable = function() {
         //var _dropthis = jQuery(mlid).find(".ks:focus");
         let _dropthis = AH.find(mlid,".ks:focus");
+        let answerPaste;
         if (copied_id != "" /*&& _dropthis.hasClass('ui-droppable')*/ ) {
             //var _ui_drag = jQuery(mlid).find("#" + copied_id + "");
             let _ui_drag = AH.find(mlid, '[id="'+copied_id+'"]');
@@ -443,17 +443,19 @@ ucMlid.bindKeyup = function(mlid) {
             //jQuery('.clone').remove();
             AH.remove(".clone");
             //if (_ui_drag.hasClass("ui-droppable")) {
-            if (_ui_drag.classList.contains("ui-droppable")) {
-               // _ui_drag.removeClass("dropped").text("Place Here").attr("data-userans", "").draggable("destroy"); // Need to fixed it.
-            }
-            ucMlid.checkAns(mlid);
+            // if (_ui_drag.classList.contains("ui-droppable")) {
+            //    // _ui_drag.removeClass("dropped").text("Place Here").attr("data-userans", "").draggable("destroy"); // Need to fixed it.
+            // }
+            answerPaste = ucMlid.checkAns(mlid);
             _ui_drag.classList.remove('copiedclr');
             copied_id = "";
+            //console.log('answerPaste',answerPaste);
+            return answerPaste;
         }
     }    
 
-    function pasteDraggableList3() {
-      
+    ucMlid.pasteDraggableList3 = function() {  
+        let answerPasteDraggable;
         var _dropthis = AH.find(mlid,".ks:focus");
         if (copied_id != "") {
             //var _ui_drag = AH.find(mlid,"#" + '[id="'+copied_id+'"]' + "");
@@ -477,9 +479,11 @@ ucMlid.bindKeyup = function(mlid) {
             userans = userans.join(',');
             if (userans.substr(0, 1) == ',') userans = userans.substr(1, userans.length);
             _ui_drag.setAttribute("data-userans", userans);
-            ucMlid.checkAns(mlid);
+        
+            answerPasteDraggable = ucMlid.checkAns(mlid);
             _ui_drag.classList.remove('copiedclr');
             copied_id = "";
+            return answerPasteDraggable
         }
     }
 
@@ -636,12 +640,13 @@ ucMlid.bindKeyup = function(mlid) {
                     break;
                 case 'enter':
                     event.preventDefault();
-                    if (checkFocus("list3")) {
-                        pasteDraggableList3();
-                    }
-                    else if (checkFocus("list2")) {
-                        pasteDraggable();
-                    } else if (checkFocus("list1") || checkFocus("list4")) {
+                    // if (checkFocus("list3")) {
+                    //     pasteDraggableList3();
+                    // }
+                    // else if (checkFocus("list2")) {
+                    //     //pasteDraggable();
+                    // }
+                    if (checkFocus("list1") || checkFocus("list4")) {
                         copyDraggable();
                     }
                     break;

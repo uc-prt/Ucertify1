@@ -179,6 +179,29 @@
 			},200)    
 		})
 
+		//////// Answer saved list2 with ADA /////////////
+
+		AH.listen('#matchmain','keydown','.list2',function(data,e) {
+			let ans;
+			if(e.which === 13) {
+				ans = ucMlid.pasteDraggable();  
+				onUserAnsChange({uXml:ans.u,ans:ans?.ans});
+			}
+		}) 
+
+		///////// Answer saved list3 with ADA ///////////
+		AH.listen('#matchmain','keydown','.list3',function(data,e) {
+			let ans;
+			//debugger;
+			if(e.which === 13) {
+				ans = ucMlid.pasteDraggableList3();  
+				setTimeout(function() {
+					AH.select(data,'removeClass','copiedclr');
+				},200)
+				onUserAnsChange({uXml:ans.u,ans:ans?.ans});
+			}
+		}) 
+
 
 		AH.listen(document,'click','#set-review',function(){
 			setReview();
@@ -724,6 +747,15 @@
 		AH.selectAll('.clr','addClass','btn-light');
 		AH.select(_this,'removeClass','btn-light');
 		AH.select(_this,'addClass','btn-primary');
+	})
+
+	AH.listen('body','keydown','.clr',(_this,e)=>{
+		if(e.which === 13) {
+			AH.selectAll('.clr','removeClass','btn-primary');
+			AH.selectAll('.clr','addClass','btn-light');
+			AH.select(_this,'removeClass','btn-light');
+			AH.select(_this,'addClass','btn-primary');
+		}
 	})
 
 
