@@ -133,9 +133,6 @@
 					if(ans_y < 1) {
 						ans_y = 1;
 					}
-					if (image_elem.y + ans_y > image_elem.top) {
-						ans_y = image_elem.right;
-					}
 					break;
 				case 39:  
 					ans_x = parseInt(ans_x) + 2;
