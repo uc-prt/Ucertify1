@@ -2194,6 +2194,9 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 				data['coverage_courses'] = coverageCourses;
 				data['old_content_guid'] = state.guid;
 			}
+			if(state.item == 10 || state.content_type == 'f'){
+				data['card_type'] = state?.card_type || 0;
+			}
 			if (getQueryString("from_temp_id")) {
 				data['from_temp_id'] = getQueryString("from_temp_id");
 			}
@@ -3052,6 +3055,7 @@ afterUpdate(() => {
 			{#if item.permission}
 				<Button
 					id={item.type}
+					class="my-1"
 					style="margin-right: 10px;"
 					title={item.tooltip}
 					color={item.func  ? "primary" : "#ccc"}

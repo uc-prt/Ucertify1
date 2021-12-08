@@ -284,6 +284,8 @@ function get_ucsyntax(content) {
 				let re = new RegExp(RegExp.quote(cnt_arr[i]), "gm");
 				// var re = new RegExp(cnt_arr[i],"gm");
 				content = content.replace(re, str);
+                content = content.replace(/<div>/g, '');
+                content = content.replace(/<\/div>/g, '<br />');
 			}
 		}
 		return content;
