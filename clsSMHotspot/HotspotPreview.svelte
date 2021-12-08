@@ -118,39 +118,43 @@
 		}
 
 		AH.listen('#previewArea','keydown','#im0', function(_this,e) {
-			if (e.which === 13) {
-				checkAnswer(e);
-			}
-
+			var image_elem = AH.select('#im0').getBoundingClientRect();
+			var ans_size = 24;
 			switch (e.which) {
-				case 37: 
-					window.scroll({
-						left: "-=2",
-						behavior: 'smooth'  
-          			});
+				case 37:  
+					ans_x = parseInt(ans_x) - 2;
+					if(ans_x < 1) {
+						ans_x = 1;
+					}
+					
 					break;
-				case 38:  
-					window.scroll({
-						top: "-=2",
-						behavior: 'smooth'  
-          			});
+				case 38:   
+					ans_y = parseInt(ans_y) - 2;
+					if(ans_y < 1) {
+						ans_y = 1;
+					}
+					if (image_elem.y + ans_y > image_elem.top) {
+						ans_y = image_elem.right;
+					}
 					break;
-				case 39: 
-					window.scroll({
-						left: "+=2",
-						behavior: 'smooth'  
-          			});
+				case 39:  
+					ans_x = parseInt(ans_x) + 2;
+					if ((ans_x + ans_size )> image_elem.width) {
+						ans_x = image_elem.width - ans_size;
+					}
 					break;
 				case 40:   
-					window.scroll({
-						top: "+=2",
-						behavior: 'smooth'  
-          			});
+					ans_y = parseInt(ans_y) + 2;
+					if ((ans_y + ans_size )> image_elem.height) {
+						ans_y = image_elem.height - ans_size;
+					}
 					break;
 				case 13:    //Press Enter key Set Answer
 					checkAnswer();
 					break;
-			}		
+			}	
+			console.log('ans_x', ans_x);
+			console.log('ans_y', ans_y);
 		})
 
 		AH.listen('#previewArea', 'click', '.textClick', function() {
@@ -236,8 +240,8 @@
 					itemBorderColor  = parseXml.smxml.div._bordercolor;
 					itemAreaWidth = parseXml.smxml.div._width+'px';
 					itemAreaHeight = parseXml.smxml.div._height+'px';
-					itemAreaLeft = (parseInt(parseXml.smxml.div._left) + 4)+'px';
-					itemAreaTop = (parseInt(parseXml.smxml.div._top) + 2)+'px';
+					itemAreaLeft = (parseInt(parseXml.smxml.div._left) + 4);
+					itemAreaTop = (parseInt(parseXml.smxml.div._top) + 2);
 					
 					let image = new Image();
 					image.onload = function() {
@@ -615,13 +619,7 @@
 										<div 
 											id='hotArea' 
 											class="hotArea hotArea hotAreaPreview" 
-											style="{`
-												display: ${targetView};
-												left:${itemAreaLeft};
-												top:${itemAreaTop};
-												height:${itemAreaHeight};
-												width:${itemAreaWidth};
-											`}"
+											style="display: {targetView};left:{itemAreaLeft}px;top:{itemAreaTop}px;height:{itemAreaHeight};width:{itemAreaWidth};"
 										>
 											&nbsp;
 										</div>
@@ -629,10 +627,7 @@
 											id='target' 
 											class="target targetImg icomoon-plus-circle-2"
 											class:showBlock="{isUxmlTarget}"
-											style = "{`
-												left:${ans_x}px;
-												top:${ans_y}px;
-											`}"
+											style = "left:{ans_x}px;top:{ans_y}px;"
 										>
 										</span>
 									</div>
