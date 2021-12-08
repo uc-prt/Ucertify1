@@ -192,7 +192,6 @@
 		///////// Answer saved list3 with ADA ///////////
 		AH.listen('#matchmain','keydown','.list3',function(data,e) {
 			let ans;
-			//debugger;
 			if(e.which === 13) {
 				ans = ucMlid.pasteDraggableList3();  
 				setTimeout(function() {
@@ -822,7 +821,7 @@
 									data-userans={data.userans}
 									style={'position:relative;'}
 									tabindex={0}
-									draggable = "true"
+									draggable = {(isReview === true) ? "false" : "true"}
 									data-originalseq={(data.originalseq)?data.originalseq:"0"}
 								>
 									{@html setList1Html(data,i)}
@@ -898,7 +897,7 @@
 									class="list4 ui-draggable"
 									data-correctans=""
 									dragable = "1"
-									draggable = "true"
+									draggable = {(isReview === true) ? "false" : "true"}
 
 									data-userans=""
 									tabindex={0}

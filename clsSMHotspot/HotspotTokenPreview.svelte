@@ -114,7 +114,7 @@
         state.pointerEvents = "none";
         showAnswer("yans", "showIcon");
         //$('#sm_controller .your-ans').addClass("btn-light active"); 
-        AH.select(".tokenHeader", 'attr', {tabIndex: "0"});
+        AH.selectAll(".tokenHeader", 'attr', {tabIndex: "0"});
     }
 
     // when review mode is off
@@ -123,7 +123,7 @@
         state.smController = "h";
         state.pointerEvents = "auto";
         showAnswer("yans", "hideIcon");
-        AH.select(".tokenHeader", 'removeAttr', 'tabindex');
+        AH.selectAll(".tokenHeader", 'removeAttr', 'tabindex');
         //$('#sm_controller button').removeClass("active btn-primary text-white bg-primary");
     }
 
@@ -406,12 +406,13 @@
                         <br/>
                     {:else}
                         <div key={i} class="tokenHeader position-relative float-left d-inline">
+                            
                             <span
                                 data-id={"ID"+i}
                                 data-correct={AH.findInArray("ID"+i, state.correctAns)}
                                 on:click={setSelected.bind(this, i)}
                                 data-selected={data.selected}
-                                tabIndex={(state.pointerEvents == "auto") ? "0" : "1"}
+                                tabindex={(state.pointerEvents == "auto") ? "0" : "1"}
                                 class="pointer float-left text-left font14 token {(data.selected) ? 'token_selected' : ''}"
                                 style="
                                     margin: 1px;
