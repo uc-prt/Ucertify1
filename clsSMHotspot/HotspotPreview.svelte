@@ -701,8 +701,8 @@
 		display : none;
 		position: absolute;
 		z-index: 10;
-		width: 17px;
-		height:15px;
+		width: 24px;
+		height:24px;
 		border-radius: 50%;
 		background: #fff;
 		color: #1c3ad4;
