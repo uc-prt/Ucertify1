@@ -2,8 +2,9 @@
     import { beforeUpdate, onMount } from "svelte";
     import {AH, XMLToJSON, onUserAnsChange} from '../helper/HelperAI.svelte';
     import ItemHelper from '../helper/ItemHelper.svelte';
-    import sunEditor from 'suneditor';
-    import plugins from 'suneditor/src/plugins';
+    import sunEditor from '../helper/sunEditor/src/suneditor.js';
+    import plugins from '../helper/sunEditor/src/plugins';
+    import '../helper/sunEditor/dist/css/suneditor.min.css';
     import EssayNewReact from './eaasy_new_react.js';
     import '../helper/sunEditor/src/assets/css/suneditor.css';
 
