@@ -17,9 +17,15 @@
         // let hObj = document.getElementById('hotArea')[0];
         let pointer_size = 13;
         let scoreFlag;
-        //let targetData;
-        let targetData = {x: e.layerX, y: e.layerY, top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
-        if(e.which != 13) {
+        let targetData;
+        //debugger;
+        if(e) {
+            targetData = {x: e.layerX, y: e.layerY, top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
+        } else {
+            targetData = {x: '', y: '', top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
+        }
+        
+        if(e && e.which != 13) {
             
             if (e.layerX && e.layerY) {
                 targetData.top = e.layerY - pointer_size;
