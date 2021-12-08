@@ -61,7 +61,6 @@
         init();
         let domainGuids = url.get('router_guid') ? url.get('router_guid') : url.get('content_guid');
         if (fromProject) {
-            AH.activate(1);
             if(domainGuids){        
                 domainGuids = domainGuids.split(',').map(ele => `guids[]=`+ele);
                 let res = await AH.ajax({
@@ -412,7 +411,7 @@
 
     function convertToFlashcard (e){
         state.convertToCard = e.target.checked;
-        editorState.convertToCard = e.target.checked;
+        editorState.card_type = e.target.checked? 0: -1;
     }
 </script>
 
