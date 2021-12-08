@@ -530,13 +530,13 @@ import Button from 'svelte-mui/src/Button.svelte';
                             <div class="col-xs-5">
                                 <div class="mt-2 pull-right">
                                     <button 
-                                        class="btn btn-outline-dark add_transcript mr-2" 
+                                        class="btn btn-outline-dark add_transcript mr-2 my-1" 
                                         on:click={()=>{handleTranscriptDialog()}} 
                                         title={l.add_transcript_msg}
                                     >
                                         {l.add_transcript_msg}
                                     </button>
-                                    <button disabled="disabled" class="btn btn-outline-dark edit_transcript" title={l.edit_transcript_msg}>{l.edit_msg}</button>
+                                    <button disabled="disabled" class="btn btn-outline-dark edit_transcript  my-1" title={l.edit_transcript_msg}>{l.edit_msg}</button>
                                 </div>
                             </div>
                         </div>
