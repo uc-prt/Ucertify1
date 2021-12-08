@@ -1,6 +1,6 @@
 <script>
     import { onMount, beforeUpdate} from 'svelte';
-	import { Button, Dialog, Checkbox } from 'svelte-mui/src';
+	import { Button, Dialog, Checkbox} from 'svelte-mui/src';
     import { writable } from 'svelte/store';
     import { AH } from '../helper/HelperAI.svelte';
     export let guid;
@@ -43,6 +43,7 @@
         disExercise: false,
         testSetList: [],
         caseid_val: "",
+        convertToCard: false,
         test: {
             q: false,
             p: false,
@@ -60,7 +61,6 @@
         init();
         let domainGuids = url.get('router_guid') ? url.get('router_guid') : url.get('content_guid');
         if (fromProject) {
-            AH.activate(1);
             if(domainGuids){        
                 domainGuids = domainGuids.split(',').map(ele => `guids[]=`+ele);
                 let res = await AH.ajax({
@@ -158,6 +158,7 @@
             setTestValue("t", url.get("e"));
             setTestValue("p", url.get("d"));
         }
+        state.convertToCard = (domainData?.e == -1 || url.get("e") == -1) ? false : true
     }
 
     beforeUpdate(async ()=> {
@@ -407,6 +408,11 @@
             console.log(e);
         }
     }
+
+    function convertToFlashcard (e){
+        state.convertToCard = e.target.checked;
+        editorState.card_type = e.target.checked? 0: -1;
+    }
 </script>
 
 <Dialog bind:visible={state.open} width="700" style="background: #fff; border-radius: 5px;">
@@ -572,6 +578,16 @@
                                 </Checkbox>
                             </div>
                         {/if}
+                    </div>
+                {/if}
+                {#if smdata?.content_type == 'f' && smdata?.item == 10 } 
+                    <div class="float-left ml-4 pl mt">
+                        <div class="col-md-12 flashcard mt-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={state.convertToCard?'checked':undefined} on:click={convertToFlashcard}>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Flashcard</label>
+                            </div>
+                        </div>
                     </div>
                 {/if}
             </div>
