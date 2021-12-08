@@ -118,36 +118,43 @@
 		}
 
 		AH.listen('#previewArea','keydown','#im0', function(_this,e) {
-			// if (e.which === 13) {
-			// 	checkAnswer(e);
-			// }
-			
+			var image_elem = AH.select('#im0').getBoundingClientRect();
+			var ans_size = 24;
 			switch (e.which) {
 				case 37:  
 					ans_x = parseInt(ans_x) - 2;
 					if(ans_x < 1) {
 						ans_x = 1;
 					}
-					// console.log('itemAreaLeft',itemAreaLeft);
-					// console.log('itemAreaTop',itemAreaTop);
+					
 					break;
 				case 38:   
 					ans_y = parseInt(ans_y) - 2;
 					if(ans_y < 1) {
 						ans_y = 1;
 					}
+					if (image_elem.y + ans_y > image_elem.top) {
+						ans_y = image_elem.right;
+					}
 					break;
 				case 39:  
 					ans_x = parseInt(ans_x) + 2;
-
+					if ((ans_x + ans_size )> image_elem.width) {
+						ans_x = image_elem.width - ans_size;
+					}
 					break;
 				case 40:   
 					ans_y = parseInt(ans_y) + 2;
+					if ((ans_y + ans_size )> image_elem.height) {
+						ans_y = image_elem.height - ans_size;
+					}
 					break;
 				case 13:    //Press Enter key Set Answer
 					checkAnswer();
 					break;
-			}		
+			}	
+			console.log('ans_x', ans_x);
+			console.log('ans_y', ans_y);
 		})
 
 		AH.listen('#previewArea', 'click', '.textClick', function() {
