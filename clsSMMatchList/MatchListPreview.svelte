@@ -303,14 +303,17 @@
 			}
 			
 		}
+		
 		///  Draggable disabled on review mode /// 
 		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list1').forEach((_this)=>{
 				_this.setAttribute('draggable',false); 
 			})
 		}
 
 		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list4').forEach((_this)=>{
 				_this.setAttribute('draggable',false); 
 			})
@@ -340,12 +343,14 @@
 
 		/// Draggable enabled on unset review mode ///
 		if(AH.selectAll('.list4').length == 0) {
+			AH.selectAll('.list1 > img', 'attr', {'draggable': true});
 			AH.selectAll('.list1').forEach((_this)=>{
 				_this.setAttribute('draggable',true); 
 			})
 		}
 
 		if(AH.selectAll('.list4').length > 0) {
+			AH.selectAll('.list4 > img', 'attr', {'draggable': true});
 			AH.selectAll('.list4').forEach((_this)=>{
 				_this.setAttribute('draggable',true); 
 			})
@@ -810,7 +815,7 @@
 				
 				{#if (multimatch == 0 || multimatch == 1)}
 				<div class="row-fluid">
-					<div class="span4 shuffleList1" dragable="1">
+					<div class="span4 shuffleList1" dragable={(isReview === true) ? 0 : 1}>
 						{#each list1 as data,i}
 								<div
 									data-cy={'id'+data.id}
@@ -896,7 +901,7 @@
 									id={data.id}
 									class="list4 ui-draggable"
 									data-correctans=""
-									dragable = "1"
+									dragable = {(isReview === true) ? 0 : 1}
 									draggable = {(isReview === true) ? "false" : "true"}
 
 									data-userans=""
