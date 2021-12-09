@@ -3118,7 +3118,7 @@ afterUpdate(() => {
 		</Button>
 	</div>
 </Dialog>
-<Snackbar bind:visible={state.snackback} bg="#333" bottom={true}  timeout={10} style="position:fixed; bottom:50px">
+<Snackbar bind:visible={state.snackback} bg="#333" bottom={true}  timeout={10} style="position:fixed; bottom:50px; left: 50%; transform: translateX(-50%);">
 	{#if state.message}
 		{state.message}
 	{:else} 
