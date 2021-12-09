@@ -3,7 +3,7 @@
         let yourScore = 0;
         let ansDivHeight = targetData.ans_top + targetData.ans_h;
         let ansDivWidth = targetData.ans_left + targetData.ans_w;
-        if ((targetData.top + pointer_size) > targetData.ans_top && (targetData.top + parseInt(pointer_size / 2)) < ansDivHeight && (targetData.left + pointer_size) > targetData.ans_left && (targetData.left + parseInt(pointer_size / 2)) < ansDivWidth) {
+        if ((targetData.top + pointer_size + 4) > targetData.ans_top && (targetData.top + parseInt(pointer_size / 2)) < ansDivHeight && (targetData.left + pointer_size) > targetData.ans_left && (targetData.left + parseInt(pointer_size / 2)) < ansDivWidth) {
             yourScore = 1;
         }
         return yourScore;
