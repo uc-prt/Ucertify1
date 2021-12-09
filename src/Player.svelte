@@ -14,7 +14,7 @@
     const option = ['nofeedback', 'embed', 'no_of_attempt', 'correct', 'default', 'isplayer', 'display', 'mode_checkbox', 'show_caption', 'hide_caption', 'button_name', 'intervals', 'notitle', 'token', 'wid', 'loid', 'inline'];
     const style = ['class', 'style', 'height', 'width' ,'color', 'align', 'size', 'layout', 'bordered'];
     const guid = ['guid', 'guids', 'labguid', 'help', 'asset'];
-    const category = {'quiz' : 'knowledge_check', 'terminal': 'lab', 'simulation' : 'lab', 'insight' : 'lab', 'lablink' : 'lab', 'playground' : 'lab', 'video' : 'media', 'audio' : 'media', 'exhibit' : 'link', 'pdf' : 'link', 'weblink' : 'link', 'download' : 'link', 'object3d' : 'objects'};
+    const category = {'quiz' : 'knowledge_check', 'terminal': 'lab', 'simulation' : 'lab', 'insight' : 'lab', 'lablink' : 'lab', 'playground' : 'lab', 'video' : 'media', 'audio' : 'media', 'exhibit' : 'link', 'pdf' : 'link', 'weblink' : 'link', 'embed_content': 'link', 'download' : 'link', 'object3d' : 'objects'};
     const mapping = {'stepplayer' : 'video', 'wguvideo' : 'video', 'external' : 'simulation', 'label' : 'title', 'imgwidth' : 'width', 'imgheight' : 'height', 'imgsrc' : 'img', 'imgalt' : 'alt', 'image_url' : 'img', 'alt_txt' : 'alt', 'toggle_link' : 'hide_caption', 'lab' : 'insight', 'image' : 'img', 'scorm_caption_id': 'group_guids'};
     const listItem = ['exhibit', 'insight', 'lablink', 'playground', 'simulation', 'external'];
     const transcript_hide = ['youtube', 'lynda'];
@@ -507,7 +507,7 @@
             }
         }
         let selector = state.category + '_tag', exhibit_txt = '', entity = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&apos;', '"': '&quot;' };
-        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon', 'exhibit_inline_checkbox', 'graded_checkbox'];
+        const ignoreAttrs = ['type','intervals_checkbox', 'multiple_checkbox', 'isplayer_checkbox', 'icon', 'exhibit_inline_checkbox', 'graded_checkbox', 'asset_checkbox'];
         AH.selectAll('.' + selector + ' input, .' + selector + ' select, .' + selector + ' #text').forEach((_this)=> {
             if (_this.getAttribute('id') && !ignoreAttrs.includes(_this.getAttribute('id'))  && !_this.disabled && _this.value.trim() != 'false') {
                 if (option.indexOf(_this.getAttribute('id')) > -1) {

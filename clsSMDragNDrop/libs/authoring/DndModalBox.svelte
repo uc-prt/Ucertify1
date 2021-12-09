@@ -1049,7 +1049,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row h">
+                            <div class="row">
                                 <div class="col-sm-6 px-1">
                                     <div class="form-group">
                                         <label class="control-label font-weight-normal mb-0" for="hpt-targetimg">{l.target_img}</label>

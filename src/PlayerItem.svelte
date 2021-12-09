@@ -29,6 +29,7 @@ import Button from 'svelte-mui/src/Button.svelte';
     let prevValueOption = {};
 
     let securityCheckbox = false;
+    let embededInlineCheckbox = false;
     let styles = {};
 
     function getJsonAttrValue(data, input_id) {
@@ -214,6 +215,7 @@ import Button from 'svelte-mui/src/Button.svelte';
             AH.select('#xml_data').value = playground_val.trim();
         }
         securityCheckbox = playerState.prevValue?.security_checkbox == "on";
+        embededInlineCheckbox = playerState.inline;
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
         correctLabelStyle();    
         styles = JSON.parse(playerState?.prevValue?.styles || "{}");
@@ -725,19 +727,19 @@ import Button from 'svelte-mui/src/Button.svelte';
                             fullWidth="true"
                             placeholder={l.enter_item}
                             label={l.item_id}
-                            value={playerState.snt}
+                            value={playerState.prevValue.asset || ''}
                         />
                         <div class="mt-4">
                             <input 
                                 type="checkbox" 
                                 class="custom_checkbox_new"
                                 id="asset_checkbox"
-                                bind:checked={playerState.inline}
-                                value={playerState.inline}
+                                bind:checked={embededInlineCheckbox}
+                                value={embededInlineCheckbox}
                                 color="default"
                             />
                             <label for="asset_checkbox" class="position-relative top_minus4">{l.inline}</label>
-                            <input type="hidden" id="inline" name="inline" value={playerState.inline ? 1 : ''} />
+                            <input type="hidden" id="inline" name="inline" value={embededInlineCheckbox ? 1 : ''} />
                         </div>
                     </div>
                 {:else}
@@ -879,6 +881,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                             rows="4"
                             variant="outlined"
                             fullWidth="true"
+                            value="{playerState?.prevValue?.text || ''}"
                             label={l.text}
                         />
                     </div>
