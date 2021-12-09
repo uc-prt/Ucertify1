@@ -3,7 +3,7 @@
         let yourScore = 0;
         let ansDivHeight = targetData.ans_top + targetData.ans_h;
         let ansDivWidth = targetData.ans_left + targetData.ans_w;
-        if ((targetData.top + pointer_size + 4) > targetData.ans_top && (targetData.top + parseInt(pointer_size / 2)) < ansDivHeight && (targetData.left + pointer_size) > targetData.ans_left && (targetData.left + parseInt(pointer_size / 2)) < ansDivWidth) {
+        if ((targetData.top + pointer_size) > targetData.ans_top && (targetData.top + parseInt(pointer_size / 2)) < ansDivHeight && (targetData.left + pointer_size) > targetData.ans_left && (targetData.left + parseInt(pointer_size / 2)) < ansDivWidth) {
             yourScore = 1;
         }
         return yourScore;
@@ -18,13 +18,22 @@
         let pointer_size = 13;
         let scoreFlag;
         let targetData;
-        //debugger;
-        if(e) {
-            targetData = {x: e.layerX, y: e.layerY, top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
-        } else {
-            targetData = {x: '', y: '', top: 0, left : 0, uXml: "", ans: false, ans_h, ans_w, ans_left, ans_top};
-        }
         
+    //debugger;
+        targetData = {
+            x: e && e.layerX, 
+            y: e && e.layerY, 
+            top: 0, 
+            left : 0, 
+            uXml: "", 
+            ans: false,
+            ans_h, 
+            ans_w, 
+            ans_left, 
+            ans_top
+        };
+        
+        console.log(targetData);
         if(e && e.which != 13) {
             
             if (e.layerX && e.layerY) {
