@@ -33,7 +33,6 @@
             ans_top
         };
         
-        console.log(targetData);
         if(e && e.which != 13) {
             
             if (e.layerX && e.layerY) {
