@@ -1,5 +1,6 @@
 import JUI, {Draggable} from '../src/libs/javscript_helper/JUI.js';
 const JS = new JUI();
+
 export default class fillJS {
 	constructor(options) {
 		//super();
@@ -266,7 +267,8 @@ export default class fillJS {
 		let drop_target = "";
 
 		JS.listen(document, "click", fillid, (_this, event)=> {
-			if (!this.checkFocus("ks")) {
+			
+			if (!window.isReview && !this.checkFocus("ks")) {
 				JS.selectAll(JS.find(fillid, ".copiedclr", 'all'), 'removeClass', "copiedclr");
 				count = 0;
 				count_prev = 0;
@@ -557,6 +559,7 @@ export default class fillJS {
 	}
 
 	checkAns(fillid) {
+		
 		this.userAnsXML = "<smans type='9'>\n";
 		this.result = true;
 		this.temp = 0;
@@ -598,6 +601,7 @@ export default class fillJS {
 	}
 
 	checkChildAnswer(fillid, pElem, userAnsXML) {
+		
 		if (pElem.classList.contains('dropable')) {
 			var ansKey = pElem.getAttribute('anskey').split(',');
 			if (JS.findInArray(pElem.getAttribute('userans'), ansKey) == undefined || JS.findInArray(pElem.getAttribute('userans'), ansKey) == false) {
