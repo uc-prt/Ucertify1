@@ -9,7 +9,7 @@
     <h4 class="mt-1 font21 mb-4" style="text-align: left; {modal.header.style}">
         {@html modal.header.body}
     </h4>
-    <div class="modalContent" style="overflow-y: auto; overflow-x: hidden; {modal.body.style}">{@html modal.body.body}</div>
+    <div class="modalContent" style="overflow-y: auto; overflow-x: hidden; {modal.body.style}" on:click|preventDefault>{@html modal.body.body}</div>
     <div slot="actions" class="actions center" style="display: {modal.action ? 'block' : 'none'}">
         {#if modal.action}{@html modal.action.body} {/if}
     </div>
