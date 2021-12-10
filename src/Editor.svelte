@@ -2190,7 +2190,7 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 			data['from_myproject'] = from_myproject;
 			data['user_current_permission'] = user_current_permission;
 			data['is_owner'] = is_owner;
-			if (coverageCourses && coverageCourses.toString() != "[object Object]") {
+			if (coverageCourses && !(coverageCourses instanceof PointerEvent)) {
 				data['coverage_courses'] = coverageCourses;
 				data['old_content_guid'] = state.guid;
 			}
@@ -2214,7 +2214,7 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 			if (AH.get('stop')){
 				console.warn("Saving is paused -");
 				return;
-			} 
+			}
 			AH.ajax({
 				url: baseUrl + 'editor/index.php', // point to server-side PHP script
 				datatype: 'json',
