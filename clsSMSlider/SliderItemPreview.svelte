@@ -292,7 +292,7 @@
                         {#if (targetView == "block" && user_ans_tab == true)}
                             {#if data.anskey == state.datauserans[data.sliderid]}
                                 <span class="correct_incorrect_icon_fill position-absolute">
-                                    <span class="icomoon-new-24px-checkmark-circle-1 font-weight-bold text-success"></span>
+                                    <span class="icomoon-new-24px-checkmark-circle-1 font-weight-bold correctAns"></span>
                                 </span>
                             {:else}
                                 <span class="correct_incorrect_icon_fill position-absolute">

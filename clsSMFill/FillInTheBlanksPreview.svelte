@@ -393,17 +393,21 @@
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
 		// show the answer and also bind the keys event for ada
-		ucFill.modeOn("on");
-		ucFill.showdragans(ajax_eId, 'u', 1);
-		AH.selectAll('.remed_disable', 'show');
-		autoresize(1);
-		let mathItem = document.getElementById(containerID);
-		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
-		if (mathItem) {
-			AH.setCss(ajax_eId, {"position": "relative"});
-			AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
-		}
-		displayAns();
+		
+		setTimeout(function(){
+			ucFill.modeOn("on");
+			ucFill.showdragans(ajax_eId, 'u', 1);
+			AH.selectAll('.remed_disable', 'show');
+			autoresize(1);
+			//ucFill.modeOn("on");
+			let mathItem = document.getElementById(containerID);
+			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
+			if (mathItem) {
+				AH.setCss(ajax_eId, {"position": "relative"});
+				AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
+			}
+			displayAns();
+		})
 	}
 
 	// function calls when remediation mode is off
@@ -847,9 +851,9 @@
 
 	// for showing user answer.
 	function yourAnswer() {
-		ucFill.showdragans(ajax_eId, 'u', 1);
-		AH.selectAll('.corr_div', 'hide');
-		autoresize(1);
+			ucFill.showdragans(ajax_eId, 'u', 1);
+			AH.selectAll('.corr_div', 'hide');
+			autoresize(1);
 	}
 
 	//To handle review toggle

@@ -355,6 +355,7 @@ ucMlid.bindKeyup = function(mlid) {
     } // No Need to fix
 
     ucMlid.pasteDraggable = function() {
+        let match_lines = [];
         //var _dropthis = jQuery(mlid).find(".ks:focus");
         let _dropthis = AH.find(mlid,".ks:focus");
         let answerPaste;

@@ -122,6 +122,11 @@
 
 		// ucMlid = await import ('./matchlistJSString');
 
+		if(AH.selectAll('.list1 img').length > 0) {
+			AH.selectAll('.list1 img','attr',{'draggable':false})
+		} else if(AH.selectAll('.list4 img').length > 0){
+			AH.selectAll('.list4 img','attr',{'draggable':false})
+		}
 		loadLibs();
 		
 		dragable = new Draggable({
@@ -242,6 +247,7 @@
 		setTimeout(function(){
 			listen();
 		},1500);
+
 	})
 
 	// function for binding keyup using hotkeys function which is defined in prepengine-footer.js
@@ -306,14 +312,12 @@
 		
 		///  Draggable disabled on review mode /// 
 		if(AH.selectAll('.list4').length == 0) {
-			AH.selectAll('.list1 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list1').forEach((_this)=>{
 				_this.setAttribute('draggable',false); 
 			})
 		}
 
 		if(AH.selectAll('.list4').length > 0) {
-			AH.selectAll('.list4 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list4').forEach((_this)=>{
 				_this.setAttribute('draggable',false); 
 			})
@@ -343,14 +347,14 @@
 
 		/// Draggable enabled on unset review mode ///
 		if(AH.selectAll('.list4').length == 0) {
-			AH.selectAll('.list1 > img', 'attr', {'draggable': true});
+			AH.selectAll('.list1 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list1').forEach((_this)=>{
 				_this.setAttribute('draggable',true); 
 			})
 		}
 
 		if(AH.selectAll('.list4').length > 0) {
-			AH.selectAll('.list4 > img', 'attr', {'draggable': true});
+			AH.selectAll('.list4 > img', 'attr', {'draggable': false});
 			AH.selectAll('.list4').forEach((_this)=>{
 				_this.setAttribute('draggable',true); 
 			})

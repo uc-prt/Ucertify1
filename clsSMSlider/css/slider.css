@@ -157,3 +157,6 @@ input[type=range]::-ms-thumb {
     border-color: #2572f2!important;
     border-top-color: #0c57d3!important;
 }
+.correctAns {
+    color:green;
+}
