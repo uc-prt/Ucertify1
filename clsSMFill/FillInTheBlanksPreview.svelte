@@ -70,10 +70,13 @@
 			AH.selectAll("div" + ajax_eId,  'css', {'overflow': 'auto'});
 		}
 		// Binding the events 
-		AH.bind(ajax_eId, 'click', displayAns);
-		AH.bind(ajax_eId, 'keyup', displayAns);
-		AH.bind(ajax_eId, 'change', displayAns);
-		AH.bind(ajax_eId, 'dragend', displayAns);
+		
+			AH.bind(ajax_eId, 'click', displayAns);
+			AH.bind(ajax_eId, 'keyup', displayAns);
+			AH.bind(ajax_eId, 'change', displayAns);
+			AH.bind(ajax_eId, 'dragend', displayAns);
+		
+		
 		
 		AH.listen(document, "click", "span.mq-editable-field.mq-focused", oneditoFocused);
 		AH.listen(document, "change", "span.mq-editable-field.mq-focused", oneditoFocused);
@@ -389,12 +392,15 @@
 	// function calls when remediation mode is on
 	function setReview() {
 		isReview = true;
+		window.isReview = true;
 		// For mathqul based 
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
 		// show the answer and also bind the keys event for ada
+
 		
 		setTimeout(function(){
+			
 			ucFill.modeOn("on");
 			ucFill.showdragans(ajax_eId, 'u', 1);
 			AH.selectAll('.remed_disable', 'show');
@@ -403,15 +409,18 @@
 			let mathItem = document.getElementById(containerID);
 			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 			if (mathItem) {
-				AH.setCss(ajax_eId, {"position": "relative"});
-				AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
+				AH.selectAll('.fillintheblank','attr',{'disabled':true});
+		    	//console.log(AH.selectAll('.fillintheblank'));
+				// AH.setCss(ajax_eId, {"position": "relative"});
+				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
 			displayAns();
-		})
+		},100);
 	}
 
 	// function calls when remediation mode is off
 	function unsetReview() {
+		AH.selectAll('.fillintheblank','attr',{'disabled':false});
 		isReview = false;
 		AH.selectAll('.mathquill', 'css', {'border': 'none'});
 		ucFill.modeOn();
@@ -444,9 +453,11 @@
 	}
 
 	// for displaying the answer
-	function displayAns() {
-		// check the ans and create user ans
-		let ans = ucFill.checkAns(ajax_eId);
+	function displayAns(e) {
+		//console.trace();
+		//debugger;
+		//check the ans and create user ans
+		let ans =  ucFill.checkAns(ajax_eId);
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
 		onUserAnsChange(answer);
@@ -658,7 +669,7 @@
 			txtWidth[j] = ((anslen[j].length)*10+30);
 		});
 		// adding information of the tag and textbox
-		let textbox = `<input type="text" class="fillintheblank ks" anskey="${anskey.trim()}" value="${userAnswer}" userans="${userAnswer}" defaultans="" haskeywords="" codetype="${codetype}" hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:${Math.max(...txtWidth)}px;${csStyle}" />`
+		let textbox = `<input type="text" class="fillintheblank ks" anskey="${anskey.trim()}" value="${userAnswer}" userans="${userAnswer}" defaultans="" haskeywords="" codetype="${codetype}" hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:${Math.max(...txtWidth)}px;${csStyle}"  />`
 		let tag = `<div id="elem${i}" class="fillelement">${textbox}</div>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData,tag);
