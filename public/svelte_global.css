@@ -17600,9 +17600,6 @@ visibility: visible !important;
 table .headerSortDown {
 text-shadow: none;
 }
-.sorttable thead tr th {
-  min-width: 150px;
-}
 /* Table End */
 /*Listing*/
 .center_img1 div, 
