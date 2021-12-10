@@ -108,8 +108,11 @@
     // parses the xml and updates the values of sliders elements
     function parseXMLAuthoring(MYXML) {
         try {
-            state.correctAns = (MYXML.smxml._correctAns.trim()) ? MYXML.smxml._correctAns.split(",") : [];
             state.authorMethod = MYXML.smxml._correctCount ? 'byCount' : 'byLocation';
+            state.correctAns = state.authorMethod == 'byCount'? MYXML.smxml._correctCount: MYXML.smxml._correctAns.trim().split(",");
+            if(state.authorMethod == 'byCount'){
+                state.methodCount = MYXML.smxml._correctCount;
+            }
             state.shadedCell = (MYXML.smxml._shadedCell.trim()) ? MYXML.smxml._shadedCell.split(",") : [];
             state.rowCount = MYXML.smxml._rowCount;
             state.colCount = MYXML.smxml._colCount;
