@@ -192,7 +192,7 @@
 					innerKey = "Multiline";
 					icon = "icomoon-insert-template";
 				}
-				let regex = new RegExp("(?=[^'])"+RegExp.quote(originalKey)+"(?=[^'])*","gmi"); //@updesh  added for more than one same originalKey value
+				let regex = new RegExp(`(?!["])(?=[^'])`+RegExp.quote(originalKey)+`(?=[^'])`,"gmi"); //@updesh  added for more than one same originalKey value
 				// convert &apos; with #apos#
 				originalKey = replaceCharactersFunc(originalKey, replaceCharacters, "reverse");
 				cdata = cdata.replace(regex,"<span id=\"latexSpan"+(++window.spanCounter)+"\" "+latexKey+" type='"+type+"' class='alert alert-info editFill "+editMath+"' originalKey='"+originalKey+"' style='padding: 5px;outline: none;line-height:40px;cursor:move;color:#000' contentEditable='false'><i style='padding-right:4px' class='"+icon+"'></i>"+innerKey+"</span>");

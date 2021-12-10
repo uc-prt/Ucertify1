@@ -1581,6 +1581,7 @@ async function parseSpanLinks(e, window_data) {
     const guid = e.getAttribute('guid');
     const embed = e.getAttribute('embed');
     let url = '', data='';
+    const show_caption = e.innerText;
 
     if (guid) {
         url += `${document.location.origin}/preview?content_guid=${guid}&change_links_target=1`;
@@ -1599,11 +1600,11 @@ async function parseSpanLinks(e, window_data) {
                     e.attributes.toggle_link = e.innerText;
                     e.innerText = txt;
                 }
-            } else if(e.nextSibling.getAttribute('linkedGuid') != null) {
-                if (e.nextSibling.style.display == 'none') {
-                    e.nextSibling.style.display = 'block';
+            } else if(e.nextElementSibling?.getAttribute('linkedGuid')) {
+                if (e.nextElementSibling.style.display == 'none') {
+                    e.nextElementSibling.style.display = 'block';
                 } else {
-                    e.nextSibling.style.display = 'none';
+                    e.nextElementSibling.style.display = 'none';
                 }
             } else {
                 const response = await AH.ajax({
@@ -1617,10 +1618,10 @@ async function parseSpanLinks(e, window_data) {
                 e.insertAdjacentHTML('afterend', data);
                 prettyPrint();
                 e.nextSibling.style.display = 'block';
-                ele.nextSibling.querySelector('.close')?.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    ele.classList.add('h');
-                    aEle.innerText = show_caption;
+                e.nextSibling.querySelector('.close')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    e.nextSibling.style.display = 'none';
+                    e.innerText = show_caption;
                 });
             }
             break;
@@ -1677,6 +1678,7 @@ function exhibitAction(action, player_id, v){
     AH.activate(1);
     const aEle = document.querySelector(`[player_id='${player_id}']`);
     if(!aEle){
+        AH.activate(0);
         return;
     }
     const show_caption = aEle?.attributes['data-show']?.value;
