@@ -133,6 +133,7 @@
                 bool = userAnswer.smans.div._correct;
                // $("#answer").prop("checked", bool)
                 ans = userAns;
+                state.userList = userAns;
                 //forceUpdate();
             }
     }
@@ -230,7 +231,7 @@
             if(editorState) {
                 showAns(countRes);
             }
-            ansBool = (countRes == "correct") ? true : false;
+            ansBool = (countRes == "Correct") ? true : false;
 
             userXML = "<smans><div type='56' correct='"+isAnswerCorrect+"' userAns='"+state.userList+"'></div></smans>"
             
@@ -340,7 +341,7 @@
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
 
-            uxml = userXML
+            uxml = userXML;
             onUserAnsChange({uXml:resNew,ans:ansBool});
         
         
@@ -521,7 +522,6 @@
     ///////////////// Set review and unset review function//////////////
 
     function setReview() {
-        console.trace();
         state.smController = "",
         state.pointerEvents = "none"
         isReview = true;
@@ -656,7 +656,7 @@
                     customReviewMode={customIsReview}
                 />
             </center>
-            <table border="1" id="tab2" style={'border-collapse:collapse;text-align:center'} >
+            <table border="1" id="tab2" class="w-auto" style={'border-collapse:collapse;text-align:center'} >
                 <tr style="display:flex;padding:0">
                     {#each ColsPre as val,i}
                         {#if val.decpoint == true}
@@ -682,7 +682,7 @@
                         class1 = "tdFont plus_tab"
                         className="tdFontP plus_tab items_element"
                         tableId ="plus_minus_tab"
-                        tableClass ="plus_minus_tab gridded_tab mt-0 myP"
+                        tableClass ="plus_minus_tab gridded_tab mt-0 myP w-auto"
                         value = "+"
                     ></GriddedHelper>
                     <GriddedHelper 
@@ -691,7 +691,7 @@
                         class1 = "tdFont plus_tab"
                         className="tdFontP plus_tab items_element minus_point"
                         tableId ="plus_minus_tab"
-                        tableClass ="plus_minus_tab gridded_tab mt-0 myP"
+                        tableClass ="plus_minus_tab gridded_tab mt-0 myP w-auto"
                         value = "-"
                     ></GriddedHelper>
                 {/if}
@@ -703,7 +703,7 @@
                         class1 = "tdFont points"
                         className="tdFontP text-center items_element sla_point"
                         tableId ="tdFontP slash_tab"
-                        tableClass ="slash_tab gridded_tab mt-0"
+                        tableClass ="slash_tab gridded_tab mt-0 w-auto"
                         value = "/"
                     ></GriddedHelper>
                 {/if}
@@ -715,13 +715,13 @@
                         class1 = "tdFont points"
                         className="tdFontP text-center items_element decl_point"
                         tableId ="slash_tab"
-                        tableClass ="slash_tab gridded_tab mt-0 mb-0 myP"
+                        tableClass ="slash_tab gridded_tab mt-0 mb-0 myP w-auto"
                         value = "."
                     ></GriddedHelper>
                 {/if}
             
         
-            <table id="gridded_sheet" class="gridded_tab mt-0 lastGrid create_tab myP">
+            <table id="gridded_sheet" class="gridded_tab mt-0 lastGrid create_tab myP w-auto">
                 <tbody>
                     {#each totalRows as data,no}
                         <tr key={data.key}>
