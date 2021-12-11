@@ -551,7 +551,7 @@
                         name="cdata" 
                         class="w-100 form-control {(state.useransstatus == true) ? 'border-success typeCorrect' : 'border-danger typeIncorrect' }" 
                         rows="2" 
-                        value={state.cdata} 
+                        value={(state.cdata == '') ? 'No record found' :  state.cdata} 
                         readOnly="readonly" 
                         tabindex="0" 
                         aria-label="Your answer is {state.cdata} which is {((state.cdata.toLowerCase().trim() == state.correctAns.toLowerCase().trim()) ? "Correct": "Incorrect")}"></textarea>
