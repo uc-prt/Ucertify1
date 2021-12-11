@@ -892,8 +892,8 @@
 
     :global(.answer_icon) {
         position: absolute;
-        top: 7px;
-        right: 34px;
+        top: 6px;
+        right: 31px;
     }
 
     :global(.myP tbody) {
