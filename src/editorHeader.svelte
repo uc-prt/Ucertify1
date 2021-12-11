@@ -766,14 +766,6 @@
                         <span class="icomoon-info s3"></span>Info
                     </button>
                     <ul class="dropdown-menu dropdown-menu-left info_controls">
-                        {#if editorState.viewConfig.isQuestion && (window.from_myproject == 1 || window.from_ebook == 1)}
-                            <Menuitem on:click={showContext}>
-                                <span>
-                                    <span class="icomoon-newspaper mr-sm"></span>
-                                    Context
-                                </span>
-                            </Menuitem>
-                        {/if}
                         <Menuitem on:click={showItemMeta}>
                             <span>
                                 <span class="icomoon-globe-2 mr-sm"></span>
