@@ -223,6 +223,7 @@
                 });
                 preview_data.userAns += (i != 0 ? ('\n') : '' ).concat(val.value);
             });
+            updateOnSorting(); // Fixing issue after useranswer xml  checking answer
         }
     
         // add values in the array
