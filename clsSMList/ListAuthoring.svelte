@@ -481,7 +481,7 @@
                 routerGuid.push(_this.getAttribute('target-guid'));
             })
             // url for show the selected child guids
-            let futureUrl = baseUrl + 'editor/v2/?action=edit&content_guid=' + routerGuid[0] + '&no_header=1&react_content=1&item=listItem&no_domain=1&router_guid=' + routerGuid.join(",");
+            let futureUrl = baseUrl + 'editor/v2/?action=edit&content_guid=' + routerGuid[0] + '&no_header=1&react_content=1&preview_only=1&item=listItem&no_domain=1&router_guid=' + routerGuid.join(",");
             // opens the url in new tab
             window.open(futureUrl, '_blank');
         }

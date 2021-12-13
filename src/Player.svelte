@@ -72,6 +72,9 @@
 
 
     afterUpdate(async ()=> {
+        if(!state.open){
+            handleClose();
+        }
         AH.enableBsAll("[rel=tooltip]", 'Tooltip'); // Enable tooltip for all selected dom.
         let isFound = itemArray.indexOf(state.type);
         if (isFound > -1) {
