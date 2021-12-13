@@ -7,7 +7,7 @@
  *  Last Updated By : Rashmi Kumari
 -->
 <script>
-    import { onMount, afterUpdate } from "svelte";
+    import { onMount, afterUpdate, beforeUpdate } from "svelte";
     import l from '../src/libs/editorLib/language';
     import ItemHelper from '../helper/ItemHelper.svelte';
     import Sortable from 'sortablejs-swap';
@@ -92,6 +92,11 @@
                 window.getHeight && window.getHeight();
             }
 
+            if(!editorState) {
+                //setTimeout(function () {
+                    displayAns();
+                //}, 300);
+            }
         });
     
         afterUpdate(()=> {
@@ -218,6 +223,7 @@
                 });
                 preview_data.userAns += (i != 0 ? ('\n') : '' ).concat(val.value);
             });
+            updateOnSorting(); // Fixing issue after useranswer xml  checking answer
         }
     
         // add values in the array
@@ -330,15 +336,19 @@
     
         // checks and show the answer, shows correct answer and your answer button and not allow the user to perform the task
         function setReview() {
+            isReview = true;
             targetView = "block";
             state.snackback = true;
             state.static = true;
             showcorrectanswer = true;
-            displayAns();
+            setTimeout(function(){
+                displayAns();
+            },200)
         }
     
         // allow the user to perform the task and hides correct answer and your answer button
         function unsetReview() {
+            isReview = false;
             targetView = "none";
             state.snackback = false;
             state.static = false;
@@ -365,13 +375,14 @@
         }
     
         // display the correct or incorrect according to the answer matched
-        function displayAns() {
+        function displayAns() { 
             // contains correct or incorrect according to the return value of checkAns method
             let ans = checkAns();
             if (editorState) {
                 // shows the answer correct or incorrect according to the value of variable 'ans'
                 showAns(ans);
-            } else {console.log('lllll', preview_data.userAns);
+            } else {//console.log('lllll', preview_data.userAns);
+                ans = (ans === "Correct") ? true : false;
                 let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';console.log('gg', userXml);
                 onUserAnsChange({uXml: userXml, ans: ans});
             }
@@ -425,12 +436,7 @@
         }
     </script>
     
-    <!-- <link
-        onload="this.rel='stylesheet'"
-        rel="preload"
-        as="style"
-        href={editor.baseUrlTheme + "clsSMChoose/css/ChooseMultiGrid.min.css"}
-    /> -->
+    
     <div id="chid">
         <ItemHelper
             on:setReview={setReview}
@@ -452,15 +458,15 @@
                 >
                     {#if showcorrectanswer == false}
                         {#each preview_data.correctxmlarray as value, i}
-                            <li 
+                            <li
                                 tabindex={value.ischecked == true ? '-1' : '0'}
                                 id={'p'+i}
                                 name={i}
                                 key={'p'+i}
                                 data-optid={i}
                                 data-ischecked={value.ischecked}
-                                class="matchlist_item pe-none {value.ischecked == true ? 'bg-primary text-white' : ''} align-items-center justify-content-center d-flex position-relative ui-draggable m-0"
-                                style="width: {box_width};overflow:auto;"
+                                class="matchlist_item {isReview? 'drag-none': ''} {value.ischecked == true ? 'bg-primary text-white' : ''} position-relative ui-draggable m-0 overflow-auto multiGrid"
+                                style="width: {box_width};"
                             >
                                 {#if value.value.charAt(0) == "!"}
                                     {#if value.value.charAt(1) == "*"}
@@ -486,6 +492,7 @@
                             </li>
                         {/each}
                     {/if}
+                    
                     {#each preview_data.localCData as value, i}
                         <li
                             tabindex={value.ischecked == true ? '-1' : '0'}
@@ -495,19 +502,22 @@
                             data-optid={i}
                             data-ischecked={value.ischecked}
                             on:keydown={hotkeysAda}
-                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : 'd-flex'} {isReview ? 'isreviewbgcolor pe-none' : ''} {value.ischecked == true ? 'bg-primary text-white pe-none' : ''} align-items-center justify-content-center position-relative ui-draggable m-0"
-                            style="width: {box_width};overflow:auto;"
+                            class={'matchlist_item '+ ((showcorrectanswer == false) ? 'd-none' : '') + (isReview ? ' isreviewbgcolor drag-none ' : '') + ((value.ischecked == true) ? ' bg-primary text-white' : '')+ " position-relative ui-draggable m-0 overflow-auto multiGrid"}
+                            style="width: {box_width};"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-                                {#if value.iscorrect == true}
-                                    <span
-                                        class="icomoon-new-24px-checkmark-circle-1 s4 text-success position-absolute userans_status"
-                                    />
-                                {:else}
-                                    <span
-                                        class="icomoon-new-24px-cancel-circle-1 s4 text-danger position-absolute userans_status"
-                                    />
-                                {/if}
+                                <div class="text-end pe-1 w-100 positionSticky">
+                                    
+                                    {#if value.iscorrect == true}
+                                        <i
+                                            class="icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status float-right"
+                                        />
+                                    {:else}
+                                        <i
+                                            class="icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status float-right"
+                                        />
+                                    {/if}
+                                </div>
                             {/if}
                             {#if value.value.charAt(0) == "!"}
                                 {#if value.value.charAt(1) == "*"}
@@ -545,3 +555,19 @@
         </div>
     </div>
     
+    <style>
+        .drag-none{
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag:none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        li[data-ischecked="true"]{
+            pointer-events: none;
+        }
+        .positionSticky {
+            position: sticky;
+            top: 0px;
+        }
+    </style>
