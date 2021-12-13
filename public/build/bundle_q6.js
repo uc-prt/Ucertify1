@@ -27,6 +27,9 @@ var app = (function () {
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -12647,8 +12650,8 @@ var app = (function () {
 
     function add_css$1() {
     	var style = element("style");
-    	style.id = "svelte-1a6lpxt-style";
-    	style.textContent = ".drag-none.svelte-1a6lpxt{user-select:none;-moz-user-select:none;-webkit-user-drag:none;-webkit-user-select:none;-ms-user-select:none}li[data-ischecked=\"true\"].svelte-1a6lpxt{pointer-events:none}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvb3NlTXVsdGlHcmlkUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBOGlCUSx5QkFBVSxDQUFBLEFBQ04sV0FBVyxDQUFFLElBQUksQ0FDakIsZ0JBQWdCLENBQUUsSUFBSSxDQUN0QixrQkFBa0IsSUFBSSxDQUN0QixtQkFBbUIsQ0FBRSxJQUFJLENBQ3pCLGVBQWUsQ0FBRSxJQUFJLEFBQ3pCLENBQUEsQUFDQSxFQUFFLENBQUMsY0FBYyxDQUFDLE1BQU0sZ0JBQUMsQ0FBQSxBQUNyQixjQUFjLENBQUUsSUFBSSxBQUN4QixDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkNob29zZU11bHRpR3JpZFByZXZpZXcuc3ZlbHRlIl19 */";
+    	style.id = "svelte-8s9lqe-style";
+    	style.textContent = ".drag-none.svelte-8s9lqe{user-select:none;-moz-user-select:none;-webkit-user-drag:none;-webkit-user-select:none;-ms-user-select:none}li[data-ischecked=\"true\"].svelte-8s9lqe{pointer-events:none}.positionSticky.svelte-8s9lqe{position:sticky;top:0px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvb3NlTXVsdGlHcmlkUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBOGlCUSx3QkFBVSxDQUFBLEFBQ04sV0FBVyxDQUFFLElBQUksQ0FDakIsZ0JBQWdCLENBQUUsSUFBSSxDQUN0QixrQkFBa0IsSUFBSSxDQUN0QixtQkFBbUIsQ0FBRSxJQUFJLENBQ3pCLGVBQWUsQ0FBRSxJQUFJLEFBQ3pCLENBQUEsQUFDQSxFQUFFLENBQUMsY0FBYyxDQUFDLE1BQU0sZUFBQyxDQUFBLEFBQ3JCLGNBQWMsQ0FBRSxJQUFJLEFBQ3hCLENBQUEsQUFDQSxlQUFlLGNBQUMsQ0FBQSxBQUNaLFFBQVEsQ0FBRSxNQUFNLENBQ2hCLEdBQUcsQ0FBRSxHQUFHLEFBQ1osQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDaG9vc2VNdWx0aUdyaWRQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
     	append_dev(document_1$1.head, style);
     }
 
@@ -12784,7 +12787,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 482, 36, 20072);
+    			add_location(img, file$2, 482, 36, 20076);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12919,7 +12922,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 472, 40, 19351);
+    			add_location(img, file$2, 472, 40, 19355);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12990,10 +12993,10 @@ var app = (function () {
 
     			attr_dev(li, "class", li_class_value = "matchlist_item " + (/*isReview*/ ctx[0] ? "drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
     			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-1a6lpxt");
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-8s9lqe");
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 460, 28, 18560);
+    			add_location(li, file$2, 460, 28, 18564);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -13023,7 +13026,7 @@ var app = (function () {
 
     			if (dirty & /*isReview, preview_data*/ 3 && li_class_value !== (li_class_value = "matchlist_item " + (/*isReview*/ ctx[0] ? "drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
     			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-1a6lpxt")) {
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-8s9lqe")) {
     				attr_dev(li, "class", li_class_value);
     			}
 
@@ -13064,8 +13067,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", "text-end pe-1 w-100");
-    			add_location(div, file$2, 508, 32, 21668);
+    			attr_dev(div, "class", "text-end pe-1 w-100 positionSticky svelte-8s9lqe");
+    			add_location(div, file$2, 508, 32, 21691);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13107,7 +13110,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status float-right");
-    			add_location(i, file$2, 515, 40, 22106);
+    			add_location(i, file$2, 515, 40, 22144);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -13136,7 +13139,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status float-right");
-    			add_location(i, file$2, 511, 40, 21845);
+    			add_location(i, file$2, 511, 40, 21883);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -13209,7 +13212,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 534, 32, 23303);
+    			add_location(img, file$2, 534, 32, 23341);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13350,7 +13353,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 523, 36, 22560);
+    			add_location(img, file$2, 523, 36, 22598);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13429,12 +13432,12 @@ var app = (function () {
     			attr_dev(li, "data-optid", li_data_optid_value = /*i*/ ctx[29]);
     			attr_dev(li, "data-ischecked", li_data_ischecked_value = /*value*/ ctx[27].ischecked);
 
-    			attr_dev(li, "class", li_class_value = "matchlist_item " + (/*showcorrectanswer*/ ctx[4] == false ? "d-none" : "") + " " + (/*isReview*/ ctx[0] ? "isreviewbgcolor drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
-    			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-1a6lpxt");
+    			attr_dev(li, "class", li_class_value = "" + (null_to_empty("matchlist_item " + (/*showcorrectanswer*/ ctx[4] == false ? "d-none" : "") + (/*isReview*/ ctx[0] ? " isreviewbgcolor drag-none " : "") + (/*value*/ ctx[27].ischecked == true
+    			? " bg-primary text-white"
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid") + " svelte-8s9lqe"));
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 496, 24, 20831);
+    			add_location(li, file$2, 496, 24, 20835);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -13482,9 +13485,9 @@ var app = (function () {
     				attr_dev(li, "data-ischecked", li_data_ischecked_value);
     			}
 
-    			if (dirty & /*showcorrectanswer, isReview, preview_data*/ 19 && li_class_value !== (li_class_value = "matchlist_item " + (/*showcorrectanswer*/ ctx[4] == false ? "d-none" : "") + " " + (/*isReview*/ ctx[0] ? "isreviewbgcolor drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
-    			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-1a6lpxt")) {
+    			if (dirty & /*showcorrectanswer, isReview, preview_data*/ 19 && li_class_value !== (li_class_value = "" + (null_to_empty("matchlist_item " + (/*showcorrectanswer*/ ctx[4] == false ? "d-none" : "") + (/*isReview*/ ctx[0] ? " isreviewbgcolor drag-none " : "") + (/*value*/ ctx[27].ischecked == true
+    			? " bg-primary text-white"
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid") + " svelte-8s9lqe"))) {
     				attr_dev(li, "class", li_class_value);
     			}
 
@@ -13572,22 +13575,22 @@ var app = (function () {
     			div2 = element("div");
     			div2.textContent = `${l.drag_drop_set_seq_msg}`;
     			attr_dev(div0, "class", "choose_header font17 text-left rounded-top m-0");
-    			add_location(div0, file$2, 448, 12, 18009);
+    			add_location(div0, file$2, 448, 12, 18013);
     			attr_dev(ul, "id", "sortable");
     			attr_dev(ul, "data-row", ul_data_row_value = /*preview_data*/ ctx[1].maxRow);
     			attr_dev(ul, "data-col", ul_data_col_value = /*preview_data*/ ctx[1].maxCol);
     			attr_dev(ul, "class", "p-2 d-inline-block w-100 m-0");
-    			add_location(ul, file$2, 452, 16, 18191);
+    			add_location(ul, file$2, 452, 16, 18195);
     			attr_dev(div1, "class", "choose_body bg-white");
-    			add_location(div1, file$2, 451, 12, 18140);
+    			add_location(div1, file$2, 451, 12, 18144);
     			attr_dev(div2, "class", "choose_bottom font12 m-0 text-left font-weight-bold text-danger p-2 rounded-bottom");
     			attr_dev(div2, "id", "instruction");
-    			add_location(div2, file$2, 548, 12, 23998);
+    			add_location(div2, file$2, 548, 12, 24036);
     			attr_dev(div3, "id", "choose");
     			attr_dev(div3, "class", "text-center mx-auto");
-    			add_location(div3, file$2, 447, 8, 17951);
+    			add_location(div3, file$2, 447, 8, 17955);
     			attr_dev(div4, "id", "chid");
-    			add_location(div4, file$2, 439, 4, 17689);
+    			add_location(div4, file$2, 439, 4, 17693);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13759,13 +13762,9 @@ var app = (function () {
     		}
 
     		if (!editorState) {
-    			setTimeout(
-    				function () {
-    					displayAns();
-    				},
-    				300
-    			);
-    		}
+    			//setTimeout(function () {
+    			displayAns();
+    		} //}, 300);
     	});
 
     	afterUpdate(() => {
@@ -14312,7 +14311,7 @@ var app = (function () {
     class ChooseMultiGridPreview extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		if (!document_1$1.getElementById("svelte-1a6lpxt-style")) add_css$1();
+    		if (!document_1$1.getElementById("svelte-8s9lqe-style")) add_css$1();
 
     		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
     			xml: 11,

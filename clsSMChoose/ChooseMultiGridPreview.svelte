@@ -93,9 +93,9 @@
             }
 
             if(!editorState) {
-                setTimeout(function () {
+                //setTimeout(function () {
                     displayAns();
-                }, 300);
+                //}, 300);
             }
         });
     
@@ -502,11 +502,11 @@
                             data-optid={i}
                             data-ischecked={value.ischecked}
                             on:keydown={hotkeysAda}
-                            class="matchlist_item {showcorrectanswer == false ? 'd-none' : ''} {isReview ? 'isreviewbgcolor drag-none' : ''} {value.ischecked == true ? 'bg-primary text-white' : ''} position-relative ui-draggable m-0 overflow-auto multiGrid"
+                            class={'matchlist_item '+ ((showcorrectanswer == false) ? 'd-none' : '') + (isReview ? ' isreviewbgcolor drag-none ' : '') + ((value.ischecked == true) ? ' bg-primary text-white' : '')+ " position-relative ui-draggable m-0 overflow-auto multiGrid"}
                             style="width: {box_width};"
                         >
                             {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-                                <div class="text-end pe-1 w-100">
+                                <div class="text-end pe-1 w-100 positionSticky">
                                     
                                     {#if value.iscorrect == true}
                                         <i
@@ -565,5 +565,9 @@
         }
         li[data-ischecked="true"]{
             pointer-events: none;
+        }
+        .positionSticky {
+            position: sticky;
+            top: 0px;
         }
     </style>
