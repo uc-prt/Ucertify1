@@ -2078,7 +2078,7 @@ function saveAction(event, customAction, saveType) {
 			break;
 		case 'save':
 			if (AH.get('save')) {
-				if (from_myproject == 1 && editorUrl.get('action') == 'new') {
+				if (from_myproject == 1 && editorUrl.get('action') == 'new' && !state.guid) {
 					saveData('1');
 				} else {
 					saveData('0');
