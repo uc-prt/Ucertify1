@@ -145,7 +145,7 @@
     });
 
     function setDomainData(domainData) {
-        if (domainData && url.get('router_guid')) {
+        if (domainData) {
             url.set("e", domainData["e"]);
             url.set("d", domainData["d"]);
             url.set("p1", domainData['p1']);
@@ -411,7 +411,7 @@
 
     function convertToFlashcard (e){
         state.convertToCard = e.target.checked;
-        editorState.card_type = e.target.checked? 0: -1;
+        editorState.card_type = e.target.checked? '0': '-1';
     }
 </script>
 
