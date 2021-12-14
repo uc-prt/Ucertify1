@@ -345,9 +345,9 @@
             state.snackback = true;
             state.static = true;
             showcorrectanswer = true;
-            setTimeout(function(){
+            //setTimeout(function(){
                 displayAns();
-            },200)
+            //},200)
         }
     
         // allow the user to perform the task and hides correct answer and your answer button
@@ -491,7 +491,9 @@
                                             alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                         />
                                     {:else}
-                                        {value.value.slice(1)}
+                                        {#if value.value != "!undefined"}
+                                            {value.value.slice(1)}
+                                        {/if}
                                     {/if}
                                 {:else if value.value.charAt(0) == "*"}
                                     <img
