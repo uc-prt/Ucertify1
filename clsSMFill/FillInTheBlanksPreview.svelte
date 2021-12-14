@@ -40,6 +40,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
+	let preReview = isReview;
 	
 	let hdd = writable({
 			matchtype : "0",
@@ -55,7 +56,17 @@
 		state = items;
 	})
 
-	$: (isReview) ? setReview() : unsetReview();
+	$:{
+		if(isReview != preReview){
+			if (isReview) {
+				setReview();
+			}
+			else{
+				unsetReview()
+			}
+			preReview = isReview;
+		}
+	}
 
 	onMount(async()=> {
 		if (in_editor) {
@@ -457,7 +468,7 @@
 		//console.trace();
 		//debugger;
 		//check the ans and create user ans
-		let ans =  ucFill.checkAns(ajax_eId);
+		let ans =  ucFill.checkAns(ajax_eId) || 'Incorrect';
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
 		onUserAnsChange(answer);

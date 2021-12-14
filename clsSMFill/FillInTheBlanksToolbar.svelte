@@ -111,7 +111,7 @@
                 <option value="6">&#8898;</option>
                 <option value="7">{l.sin}</option>
                 <option value="8">&alpha;</option>
-                <option value="9">{l.Mis}c</option>
+                <option value="9">{l.Misc}</option>
                 <option value="10">{l.Discrete}</option>
                 <option value="11">{l.kg}</option>
                 <option value="12">{l.lb}</option>
