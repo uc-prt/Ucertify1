@@ -68,7 +68,7 @@
                 if (uxml) {
                     let counter = 1, tempxml = XMLToJSON(xml);
                     preview_data.user_ans_xml = uxml;
-                    xml = preview_data.user_ans_xml;console.log(uxml,'j');
+                    xml = preview_data.user_ans_xml;//console.log(uxml,'j');
                 } 
                 // update the value of state 'xml'
                 state.xml = xml;
@@ -77,9 +77,8 @@
                 box_width = (632 / preview_data.countcol).toFixed(2) + 'px';
             }
         }
-    
-        onMount(() => {
-            loadModule(xml);
+
+        $:{
             try {
                 if (uxml == '<smans type="6"></smans>') {
                     uxml = '';
@@ -87,6 +86,11 @@
             } catch(error) {
                 console.warn({'error': error});
             }
+        }
+    
+        onMount(() => {
+            loadModule(xml);
+            
                 
             if (window.inNative) {
                 window.getHeight && window.getHeight();
@@ -124,7 +128,7 @@
                     preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
                     AH.selectAll('#sortable li').forEach((value, i) => {
                         preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img')?.getAttribute('img_val'));
-                    }) ;console.log(preview_data.userAns, 'kijk');
+                    }) ;//console.log(preview_data.userAns, 'kijk');
                     updateOnSorting();
                 },
             });
@@ -166,7 +170,7 @@
             loadXml = XMLToJSON(loadXml);
             state.headingCorrect = loadXml.smxml.list._headingCorrect;
             preview_data.maxRow = parseInt(loadXml.smxml.list._row);
-            preview_data.maxCol = parseInt(loadXml.smxml.list._col);console.log(loadXml,'hhh');
+            preview_data.maxCol = parseInt(loadXml.smxml.list._col);//console.log(loadXml,'hhh');
             parseXMLPreview(loadXml);
         }
     
@@ -383,7 +387,7 @@
                 showAns(ans);
             } else {//console.log('lllll', preview_data.userAns);
                 ans = (ans === "Correct") ? true : false;
-                let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';console.log('gg', userXml);
+                let userXml = '<smxml type="6" name="ChooseAndReorder"><list groupcheck="false" whichfixed="" headingCorrect="'+  state.headingCorrect +'" row="' +  preview_data.countrow +'" col="' +  preview_data.countcol + '"><!--[CDATA[' + preview_data.userAns + ']]--></list></smxml>';//console.log('gg', userXml);
                 onUserAnsChange({uXml: userXml, ans: ans});
             }
         }
@@ -423,7 +427,7 @@
                     AH.select('#sortable').replaceChild(AH.select(removeclass),aHolder);
                     AH.select('#sortable').replaceChild(AH.select(selected_opt),bHolder);
                     preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray);
-                    console.log('hrllo', preview_data.correctxmlarray);
+                    //console.log('hrllo', preview_data.correctxmlarray);
                     AH.selectAll('#sortable li').forEach((value, i) => {
                         preview_data.userAns += (i != 0 ? ('\n').concat(preview_data.correctxmlarray[i].ischecked ? '!' : '') : (preview_data.correctxmlarray[i].ischecked ? '!' : '')) + (AH.select("#"+ value.getAttribute('id')).innerText != '' ? AH.select("#"+ value.getAttribute('id')).innerText : AH.find("#"+ value.getAttribute('id'), 'img')?.getAttribute('img_val'));
                     }) ;
@@ -433,6 +437,14 @@
                 }
             }
             updateOnSorting();
+        }
+
+        function checkBgColor(data) {
+            if(data.charAt(0) == '!') {
+                return true;
+            } else {
+                return false;
+            }
         }
     </script>
     
@@ -458,6 +470,8 @@
                 >
                     {#if showcorrectanswer == false}
                         {#each preview_data.correctxmlarray as value, i}
+                        
+                        
                             <li
                                 tabindex={value.ischecked == true ? '-1' : '0'}
                                 id={'p'+i}
@@ -465,7 +479,7 @@
                                 key={'p'+i}
                                 data-optid={i}
                                 data-ischecked={value.ischecked}
-                                class="matchlist_item {isReview? 'drag-none': ''} {value.ischecked == true ? 'bg-primary text-white' : ''} position-relative ui-draggable m-0 overflow-auto multiGrid"
+                                class={"matchlist_item " + ((isReview == true) ? 'drag-none ': '') + (checkBgColor(value.value) ? ' bg-primary text-white' : '') + " position-relative ui-draggable m-0 overflow-auto multiGrid"}
                                 style="width: {box_width};"
                             >
                                 {#if value.value.charAt(0) == "!"}
@@ -492,8 +506,8 @@
                             </li>
                         {/each}
                     {/if}
-                    
                     {#each preview_data.localCData as value, i}
+                   
                         <li
                             tabindex={value.ischecked == true ? '-1' : '0'}
                             id={'p'+i}
@@ -529,7 +543,9 @@
                                         alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                     />
                                 {:else}
-                                    {value.value.slice(1)}
+                                    {#if value.value != "!undefined"}
+                                        {value.value.slice(1)}
+                                    {/if}
                                 {/if}
                             {:else if value.value.charAt(0) == "*"}
                                 <img

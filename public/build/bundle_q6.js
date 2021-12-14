@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -10092,6 +10092,7 @@ var app = (function () {
         itemtype_17 : "Here, you have to select the options given in the list. The shortcut keys to perform this task are: Press the tab for navigation. Press the Enter key to select the item and move using the tab key. Again, press the Enter key to deselect the item and place it on the correct option.",
         itemtype_27 : "Here, in this type of questions, you have to identify the correct and incorrect statements by checking the True or False check boxes. The shortcut key to perform the task are. Press Tab for navigation. Press the Enter key for selecting the check box.",
         itemtype_15 : "To perform the given task, you have to select an item from one side and place it in front of its correct item on the other side. The shortcut keys to perform this task are Press the Alt+down arrow key to activate. Press the arrow key to navigate through all the items. Copy the left item using the Enter key. Paste the item using the Enter key. If you want to remove any navigated item, then selected that item and press the Delete key to remove for Windows and the Fn+Delete key for Mac.",
+        itemtype_56 : "In this type of question, you have to select or input the correct option in the given grid. The shortcut keys to perform this task are: Press Tab for navigation. Type values directly or press the Enter key to select the grid.",
         itemtype_13 : "Here, this type of question contains the terminal. You have to write command to perform this task.",
         itemtype_22 : "In this type of question, you have to write command to perform the task. Press Tab key to navigate.",
         es6_warining: "You are using Internet Explorer, ES6 functionality of javascript will not work!",
@@ -12651,7 +12652,7 @@ var app = (function () {
     function add_css$1() {
     	var style = element("style");
     	style.id = "svelte-8s9lqe-style";
-    	style.textContent = ".drag-none.svelte-8s9lqe{user-select:none;-moz-user-select:none;-webkit-user-drag:none;-webkit-user-select:none;-ms-user-select:none}li[data-ischecked=\"true\"].svelte-8s9lqe{pointer-events:none}.positionSticky.svelte-8s9lqe{position:sticky;top:0px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvb3NlTXVsdGlHcmlkUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBOGlCUSx3QkFBVSxDQUFBLEFBQ04sV0FBVyxDQUFFLElBQUksQ0FDakIsZ0JBQWdCLENBQUUsSUFBSSxDQUN0QixrQkFBa0IsSUFBSSxDQUN0QixtQkFBbUIsQ0FBRSxJQUFJLENBQ3pCLGVBQWUsQ0FBRSxJQUFJLEFBQ3pCLENBQUEsQUFDQSxFQUFFLENBQUMsY0FBYyxDQUFDLE1BQU0sZUFBQyxDQUFBLEFBQ3JCLGNBQWMsQ0FBRSxJQUFJLEFBQ3hCLENBQUEsQUFDQSxlQUFlLGNBQUMsQ0FBQSxBQUNaLFFBQVEsQ0FBRSxNQUFNLENBQ2hCLEdBQUcsQ0FBRSxHQUFHLEFBQ1osQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDaG9vc2VNdWx0aUdyaWRQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
+    	style.textContent = ".drag-none.svelte-8s9lqe{user-select:none;-moz-user-select:none;-webkit-user-drag:none;-webkit-user-select:none;-ms-user-select:none}li[data-ischecked=\"true\"].svelte-8s9lqe{pointer-events:none}.positionSticky.svelte-8s9lqe{position:sticky;top:0px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hvb3NlTXVsdGlHcmlkUHJldmlldy5zdmVsdGUiLCJtYXBwaW5ncyI6IkFBOGpCUSx3QkFBVSxDQUFBLEFBQ04sV0FBVyxDQUFFLElBQUksQ0FDakIsZ0JBQWdCLENBQUUsSUFBSSxDQUN0QixrQkFBa0IsSUFBSSxDQUN0QixtQkFBbUIsQ0FBRSxJQUFJLENBQ3pCLGVBQWUsQ0FBRSxJQUFJLEFBQ3pCLENBQUEsQUFDQSxFQUFFLENBQUMsY0FBYyxDQUFDLE1BQU0sZUFBQyxDQUFBLEFBQ3JCLGNBQWMsQ0FBRSxJQUFJLEFBQ3hCLENBQUEsQUFDQSxlQUFlLGNBQUMsQ0FBQSxBQUNaLFFBQVEsQ0FBRSxNQUFNLENBQ2hCLEdBQUcsQ0FBRSxHQUFHLEFBQ1osQ0FBQSIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJDaG9vc2VNdWx0aUdyaWRQcmV2aWV3LnN2ZWx0ZSJdfQ== */";
     	append_dev(document_1$1.head, style);
     }
 
@@ -12669,8 +12670,8 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (459:20) {#if showcorrectanswer == false}
-    function create_if_block_5(ctx) {
+    // (471:20) {#if showcorrectanswer == false}
+    function create_if_block_6(ctx) {
     	let each_1_anchor;
     	let each_value_1 = /*preview_data*/ ctx[1].correctxmlarray;
     	validate_each_argument(each_value_1);
@@ -12696,7 +12697,7 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*preview_data, isReview, box_width*/ 35) {
+    			if (dirty & /*preview_data, isReview, checkBgColor, box_width*/ 35) {
     				each_value_1 = /*preview_data*/ ctx[1].correctxmlarray;
     				validate_each_argument(each_value_1);
     				let i;
@@ -12728,17 +12729,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_5.name,
+    		id: create_if_block_6.name,
     		type: "if",
-    		source: "(459:20) {#if showcorrectanswer == false}",
+    		source: "(471:20) {#if showcorrectanswer == false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (489:32) {:else}
-    function create_else_block_4(ctx) {
+    // (503:32) {:else}
+    function create_else_block_3(ctx) {
     	let t_value = /*value*/ ctx[27].value + "";
     	let t;
 
@@ -12759,17 +12760,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_4.name,
+    		id: create_else_block_3.name,
     		type: "else",
-    		source: "(489:32) {:else}",
+    		source: "(503:32) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (482:71) 
-    function create_if_block_8(ctx) {
+    // (496:71) 
+    function create_if_block_9(ctx) {
     	let img;
     	let img_src_value;
     	let img_alt_value;
@@ -12787,7 +12788,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 482, 36, 20076);
+    			add_location(img, file$2, 496, 36, 20382);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12810,24 +12811,24 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_8.name,
+    		id: create_if_block_9.name,
     		type: "if",
-    		source: "(482:71) ",
+    		source: "(496:71) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (471:32) {#if value.value.charAt(0) == "!"}
-    function create_if_block_6(ctx) {
+    // (485:32) {#if value.value.charAt(0) == "!"}
+    function create_if_block_7(ctx) {
     	let show_if;
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
     		if (show_if == null || dirty & /*preview_data*/ 2) show_if = !!(/*value*/ ctx[27].value.charAt(1) == "*");
-    		if (show_if) return create_if_block_7;
-    		return create_else_block_3;
+    		if (show_if) return create_if_block_8;
+    		return create_else_block_2;
     	}
 
     	let current_block_type = select_block_type_1(ctx, -1);
@@ -12863,17 +12864,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_6.name,
+    		id: create_if_block_7.name,
     		type: "if",
-    		source: "(471:32) {#if value.value.charAt(0) == \\\"!\\\"}",
+    		source: "(485:32) {#if value.value.charAt(0) == \\\"!\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (479:36) {:else}
-    function create_else_block_3(ctx) {
+    // (493:36) {:else}
+    function create_else_block_2(ctx) {
     	let t_value = /*value*/ ctx[27].value.slice(1) + "";
     	let t;
 
@@ -12894,17 +12895,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_3.name,
+    		id: create_else_block_2.name,
     		type: "else",
-    		source: "(479:36) {:else}",
+    		source: "(493:36) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (472:36) {#if value.value.charAt(1) == "*"}
-    function create_if_block_7(ctx) {
+    // (486:36) {#if value.value.charAt(1) == "*"}
+    function create_if_block_8(ctx) {
     	let img;
     	let img_src_value;
     	let img_alt_value;
@@ -12922,7 +12923,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 472, 40, 19355);
+    			add_location(img, file$2, 486, 40, 19661);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -12945,16 +12946,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_7.name,
+    		id: create_if_block_8.name,
     		type: "if",
-    		source: "(472:36) {#if value.value.charAt(1) == \\\"*\\\"}",
+    		source: "(486:36) {#if value.value.charAt(1) == \\\"*\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (460:24) {#each preview_data.correctxmlarray as value, i}
+    // (472:24) {#each preview_data.correctxmlarray as value, i}
     function create_each_block_1(ctx) {
     	let li;
     	let show_if;
@@ -12970,10 +12971,10 @@ var app = (function () {
 
     	function select_block_type(ctx, dirty) {
     		if (show_if == null || dirty & /*preview_data*/ 2) show_if = !!(/*value*/ ctx[27].value.charAt(0) == "!");
-    		if (show_if) return create_if_block_6;
+    		if (show_if) return create_if_block_7;
     		if (show_if_1 == null || dirty & /*preview_data*/ 2) show_if_1 = !!(/*value*/ ctx[27].value.charAt(0) == "*");
-    		if (show_if_1) return create_if_block_8;
-    		return create_else_block_4;
+    		if (show_if_1) return create_if_block_9;
+    		return create_else_block_3;
     	}
 
     	let current_block_type = select_block_type(ctx, -1);
@@ -12991,12 +12992,12 @@ var app = (function () {
     			attr_dev(li, "data-optid", li_data_optid_value = /*i*/ ctx[29]);
     			attr_dev(li, "data-ischecked", li_data_ischecked_value = /*value*/ ctx[27].ischecked);
 
-    			attr_dev(li, "class", li_class_value = "matchlist_item " + (/*isReview*/ ctx[0] ? "drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
-    			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-8s9lqe");
+    			attr_dev(li, "class", li_class_value = "" + (null_to_empty("matchlist_item " + (/*isReview*/ ctx[0] == true ? "drag-none " : "") + (checkBgColor(/*value*/ ctx[27].value)
+    			? " bg-primary text-white"
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid") + " svelte-8s9lqe"));
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 460, 28, 18564);
+    			add_location(li, file$2, 474, 28, 18843);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -13024,9 +13025,9 @@ var app = (function () {
     				attr_dev(li, "data-ischecked", li_data_ischecked_value);
     			}
 
-    			if (dirty & /*isReview, preview_data*/ 3 && li_class_value !== (li_class_value = "matchlist_item " + (/*isReview*/ ctx[0] ? "drag-none" : "") + " " + (/*value*/ ctx[27].ischecked == true
-    			? "bg-primary text-white"
-    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid" + " svelte-8s9lqe")) {
+    			if (dirty & /*isReview, preview_data*/ 3 && li_class_value !== (li_class_value = "" + (null_to_empty("matchlist_item " + (/*isReview*/ ctx[0] == true ? "drag-none " : "") + (checkBgColor(/*value*/ ctx[27].value)
+    			? " bg-primary text-white"
+    			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid") + " svelte-8s9lqe"))) {
     				attr_dev(li, "class", li_class_value);
     			}
 
@@ -13044,20 +13045,20 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(460:24) {#each preview_data.correctxmlarray as value, i}",
+    		source: "(472:24) {#each preview_data.correctxmlarray as value, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (508:28) {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-    function create_if_block_3(ctx) {
+    // (522:28) {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
+    function create_if_block_4(ctx) {
     	let div;
 
     	function select_block_type_2(ctx, dirty) {
-    		if (/*value*/ ctx[27].iscorrect == true) return create_if_block_4;
-    		return create_else_block_2;
+    		if (/*value*/ ctx[27].iscorrect == true) return create_if_block_5;
+    		return create_else_block_1;
     	}
 
     	let current_block_type = select_block_type_2(ctx);
@@ -13068,7 +13069,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "text-end pe-1 w-100 positionSticky svelte-8s9lqe");
-    			add_location(div, file$2, 508, 32, 21691);
+    			add_location(div, file$2, 522, 32, 21996);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13093,24 +13094,24 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_3.name,
+    		id: create_if_block_4.name,
     		type: "if",
-    		source: "(508:28) {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}",
+    		source: "(522:28) {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (515:36) {:else}
-    function create_else_block_2(ctx) {
+    // (529:36) {:else}
+    function create_else_block_1(ctx) {
     	let i;
 
     	const block = {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status float-right");
-    			add_location(i, file$2, 515, 40, 22144);
+    			add_location(i, file$2, 529, 40, 22449);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -13122,24 +13123,24 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_2.name,
+    		id: create_else_block_1.name,
     		type: "else",
-    		source: "(515:36) {:else}",
+    		source: "(529:36) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (511:36) {#if value.iscorrect == true}
-    function create_if_block_4(ctx) {
+    // (525:36) {#if value.iscorrect == true}
+    function create_if_block_5(ctx) {
     	let i;
 
     	const block = {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status float-right");
-    			add_location(i, file$2, 511, 40, 21883);
+    			add_location(i, file$2, 525, 40, 22188);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -13151,17 +13152,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_4.name,
+    		id: create_if_block_5.name,
     		type: "if",
-    		source: "(511:36) {#if value.iscorrect == true}",
+    		source: "(525:36) {#if value.iscorrect == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (542:28) {:else}
-    function create_else_block_1(ctx) {
+    // (558:28) {:else}
+    function create_else_block$1(ctx) {
     	let t_value = /*value*/ ctx[27].value + "";
     	let t;
 
@@ -13182,17 +13183,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_1.name,
+    		id: create_else_block$1.name,
     		type: "else",
-    		source: "(542:28) {:else}",
+    		source: "(558:28) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (534:67) 
-    function create_if_block_2(ctx) {
+    // (550:67) 
+    function create_if_block_3(ctx) {
     	let img;
     	let img_img_val_value;
     	let img_src_value;
@@ -13212,7 +13213,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 534, 32, 23341);
+    			add_location(img, file$2, 550, 32, 23762);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13239,16 +13240,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2.name,
+    		id: create_if_block_3.name,
     		type: "if",
-    		source: "(534:67) ",
+    		source: "(550:67) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (522:28) {#if value.value.charAt(0) == "!"}
+    // (536:28) {#if value.value.charAt(0) == "!"}
     function create_if_block$2(ctx) {
     	let show_if;
     	let if_block_anchor;
@@ -13256,27 +13257,27 @@ var app = (function () {
     	function select_block_type_4(ctx, dirty) {
     		if (show_if == null || dirty & /*preview_data*/ 2) show_if = !!(/*value*/ ctx[27].value.charAt(1) == "*");
     		if (show_if) return create_if_block_1;
-    		return create_else_block$1;
+    		if (/*value*/ ctx[27].value != "!undefined") return create_if_block_2;
     	}
 
     	let current_block_type = select_block_type_4(ctx, -1);
-    	let if_block = current_block_type(ctx);
+    	let if_block = current_block_type && current_block_type(ctx);
 
     	const block = {
     		c: function create() {
-    			if_block.c();
+    			if (if_block) if_block.c();
     			if_block_anchor = empty();
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
+    			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
     			if (current_block_type === (current_block_type = select_block_type_4(ctx, dirty)) && if_block) {
     				if_block.p(ctx, dirty);
     			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
+    				if (if_block) if_block.d(1);
+    				if_block = current_block_type && current_block_type(ctx);
 
     				if (if_block) {
     					if_block.c();
@@ -13285,7 +13286,10 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
+    			if (if_block) {
+    				if_block.d(detaching);
+    			}
+
     			if (detaching) detach_dev(if_block_anchor);
     		}
     	};
@@ -13294,15 +13298,15 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(522:28) {#if value.value.charAt(0) == \\\"!\\\"}",
+    		source: "(536:28) {#if value.value.charAt(0) == \\\"!\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (531:32) {:else}
-    function create_else_block$1(ctx) {
+    // (546:36) {#if value.value != "!undefined"}
+    function create_if_block_2(ctx) {
     	let t_value = /*value*/ ctx[27].value.slice(1) + "";
     	let t;
 
@@ -13323,16 +13327,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$1.name,
-    		type: "else",
-    		source: "(531:32) {:else}",
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(546:36) {#if value.value != \\\"!undefined\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (523:32) {#if value.value.charAt(1) == "*"}
+    // (537:32) {#if value.value.charAt(1) == "*"}
     function create_if_block_1(ctx) {
     	let img;
     	let img_img_val_value;
@@ -13353,7 +13357,7 @@ var app = (function () {
     			? /*value*/ ctx[27].value.split("##")[1]
     			: null);
 
-    			add_location(img, file$2, 523, 36, 22598);
+    			add_location(img, file$2, 537, 36, 22903);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -13382,14 +13386,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(523:32) {#if value.value.charAt(1) == \\\"*\\\"}",
+    		source: "(537:32) {#if value.value.charAt(1) == \\\"*\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (496:20) {#each preview_data.localCData as value, i}
+    // (509:20) {#each preview_data.localCData as value, i}
     function create_each_block$1(ctx) {
     	let li;
     	let t0;
@@ -13405,14 +13409,14 @@ var app = (function () {
     	let li_class_value;
     	let mounted;
     	let dispose;
-    	let if_block0 = /*targetView*/ ctx[3] == "block" && /*showcorrectanswer*/ ctx[4] == true && /*value*/ ctx[27].ischecked == false && create_if_block_3(ctx);
+    	let if_block0 = /*targetView*/ ctx[3] == "block" && /*showcorrectanswer*/ ctx[4] == true && /*value*/ ctx[27].ischecked == false && create_if_block_4(ctx);
 
     	function select_block_type_3(ctx, dirty) {
     		if (show_if == null || dirty & /*preview_data*/ 2) show_if = !!(/*value*/ ctx[27].value.charAt(0) == "!");
     		if (show_if) return create_if_block$2;
     		if (show_if_1 == null || dirty & /*preview_data*/ 2) show_if_1 = !!(/*value*/ ctx[27].value.charAt(0) == "*");
-    		if (show_if_1) return create_if_block_2;
-    		return create_else_block_1;
+    		if (show_if_1) return create_if_block_3;
+    		return create_else_block$1;
     	}
 
     	let current_block_type = select_block_type_3(ctx, -1);
@@ -13437,7 +13441,7 @@ var app = (function () {
     			: "") + " position-relative ui-draggable m-0 overflow-auto multiGrid") + " svelte-8s9lqe"));
 
     			set_style(li, "width", /*box_width*/ ctx[5]);
-    			add_location(li, file$2, 496, 24, 20835);
+    			add_location(li, file$2, 510, 24, 21140);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -13456,7 +13460,7 @@ var app = (function () {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_3(ctx);
+    					if_block0 = create_if_block_4(ctx);
     					if_block0.c();
     					if_block0.m(li, t0);
     				}
@@ -13508,7 +13512,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(496:20) {#each preview_data.localCData as value, i}",
+    		source: "(509:20) {#each preview_data.localCData as value, i}",
     		ctx
     	});
 
@@ -13544,7 +13548,7 @@ var app = (function () {
 
     	itemhelper.$on("setReview", /*setReview*/ ctx[7]);
     	itemhelper.$on("unsetReview", /*unsetReview*/ ctx[8]);
-    	let if_block = /*showcorrectanswer*/ ctx[4] == false && create_if_block_5(ctx);
+    	let if_block = /*showcorrectanswer*/ ctx[4] == false && create_if_block_6(ctx);
     	let each_value = /*preview_data*/ ctx[1].localCData;
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -13575,22 +13579,22 @@ var app = (function () {
     			div2 = element("div");
     			div2.textContent = `${l.drag_drop_set_seq_msg}`;
     			attr_dev(div0, "class", "choose_header font17 text-left rounded-top m-0");
-    			add_location(div0, file$2, 448, 12, 18013);
+    			add_location(div0, file$2, 460, 12, 18242);
     			attr_dev(ul, "id", "sortable");
     			attr_dev(ul, "data-row", ul_data_row_value = /*preview_data*/ ctx[1].maxRow);
     			attr_dev(ul, "data-col", ul_data_col_value = /*preview_data*/ ctx[1].maxCol);
     			attr_dev(ul, "class", "p-2 d-inline-block w-100 m-0");
-    			add_location(ul, file$2, 452, 16, 18195);
+    			add_location(ul, file$2, 464, 16, 18424);
     			attr_dev(div1, "class", "choose_body bg-white");
-    			add_location(div1, file$2, 451, 12, 18144);
+    			add_location(div1, file$2, 463, 12, 18373);
     			attr_dev(div2, "class", "choose_bottom font12 m-0 text-left font-weight-bold text-danger p-2 rounded-bottom");
     			attr_dev(div2, "id", "instruction");
-    			add_location(div2, file$2, 548, 12, 24036);
+    			add_location(div2, file$2, 564, 12, 24457);
     			attr_dev(div3, "id", "choose");
     			attr_dev(div3, "class", "text-center mx-auto");
-    			add_location(div3, file$2, 447, 8, 17955);
+    			add_location(div3, file$2, 459, 8, 18184);
     			attr_dev(div4, "id", "chid");
-    			add_location(div4, file$2, 439, 4, 17693);
+    			add_location(div4, file$2, 451, 4, 17922);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13626,7 +13630,7 @@ var app = (function () {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block_5(ctx);
+    					if_block = create_if_block_6(ctx);
     					if_block.c();
     					if_block.m(ul, t3);
     				}
@@ -13706,6 +13710,14 @@ var app = (function () {
     	return array;
     }
 
+    function checkBgColor(data) {
+    	if (data.charAt(0) == "!") {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("ChooseMultiGridPreview", slots, []);
@@ -13748,14 +13760,6 @@ var app = (function () {
 
     	onMount(() => {
     		loadModule(xml);
-
-    		try {
-    			if (uxml == "<smans type=\"6\"></smans>") {
-    				$$invalidate(12, uxml = "");
-    			}
-    		} catch(error) {
-    			console.warn({ error });
-    		}
 
     		if (window.inNative) {
     			window.getHeight && window.getHeight();
@@ -13813,9 +13817,8 @@ var app = (function () {
     							: AH$1.find("#" + value.getAttribute("id"), "img")?.getAttribute("img_val")),
     							preview_data
     						);
-    					});
+    					}); //console.log(preview_data.userAns, 'kijk');
 
-    					console.log(preview_data.userAns, "kijk");
     					updateOnSorting();
     				}
     			});
@@ -13862,8 +13865,7 @@ var app = (function () {
     		loadXml = XMLToJSON(loadXml);
     		$$invalidate(2, state.headingCorrect = loadXml.smxml.list._headingCorrect, state);
     		$$invalidate(1, preview_data.maxRow = parseInt(loadXml.smxml.list._row), preview_data);
-    		$$invalidate(1, preview_data.maxCol = parseInt(loadXml.smxml.list._col), preview_data);
-    		console.log(loadXml, "hhh");
+    		$$invalidate(1, preview_data.maxCol = parseInt(loadXml.smxml.list._col), preview_data); //console.log(loadXml,'hhh');
     		parseXMLPreview(loadXml);
     	}
 
@@ -14095,8 +14097,7 @@ var app = (function () {
     			//console.log('lllll', preview_data.userAns);
     			ans = ans === "Correct" ? true : false;
 
-    			let userXml = "<smxml type=\"6\" name=\"ChooseAndReorder\"><list groupcheck=\"false\" whichfixed=\"\" headingCorrect=\"" + state.headingCorrect + "\" row=\"" + preview_data.countrow + "\" col=\"" + preview_data.countcol + "\"><!--[CDATA[" + preview_data.userAns + "]]--></list></smxml>";
-    			console.log("gg", userXml);
+    			let userXml = "<smxml type=\"6\" name=\"ChooseAndReorder\"><list groupcheck=\"false\" whichfixed=\"\" headingCorrect=\"" + state.headingCorrect + "\" row=\"" + preview_data.countrow + "\" col=\"" + preview_data.countcol + "\"><!--[CDATA[" + preview_data.userAns + "]]--></list></smxml>"; //console.log('gg', userXml);
     			onUserAnsChange({ uXml: userXml, ans });
     		}
     	}
@@ -14150,8 +14151,8 @@ var app = (function () {
     				AH$1.select("#sortable").replaceChild(AH$1.select(removeclass), aHolder);
     				AH$1.select("#sortable").replaceChild(AH$1.select(selected_opt), bHolder);
     				$$invalidate(1, preview_data.correctxmlarray = storeIndexValue(preview_data.correctxmlarray), preview_data);
-    				console.log("hrllo", preview_data.correctxmlarray);
 
+    				//console.log('hrllo', preview_data.correctxmlarray);
     				AH$1.selectAll("#sortable li").forEach((value, i) => {
     					$$invalidate(
     						1,
@@ -14224,7 +14225,8 @@ var app = (function () {
     		checkAns,
     		displayAns,
     		hotkeysAda,
-    		exchangeValue
+    		exchangeValue,
+    		checkBgColor
     	});
 
     	$$self.$inject_state = $$props => {
@@ -14258,6 +14260,18 @@ var app = (function () {
     			}
     		}
 
+    		if ($$self.$$.dirty & /*uxml*/ 4096) {
+    			 {
+    				try {
+    					if (uxml == "<smans type=\"6\"></smans>") {
+    						$$invalidate(12, uxml = "");
+    					}
+    				} catch(error) {
+    					console.warn({ error });
+    				}
+    			}
+    		}
+
     		if ($$self.$$.dirty & /*xml, state, preview_data, uxml*/ 6150) {
     			 {
     				if (xml != state.xml) {
@@ -14273,8 +14287,7 @@ var app = (function () {
     					if (uxml) {
     						let tempxml = XMLToJSON(xml);
     						$$invalidate(1, preview_data.user_ans_xml = uxml, preview_data);
-    						$$invalidate(11, xml = preview_data.user_ans_xml);
-    						console.log(uxml, "j");
+    						$$invalidate(11, xml = preview_data.user_ans_xml); //console.log(uxml,'j');
     					}
 
     					// update the value of state 'xml'
