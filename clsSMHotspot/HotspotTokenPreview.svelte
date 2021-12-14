@@ -9,6 +9,8 @@
     export let isReview;
     export let showAns;
     export let uxml;
+
+    let customReview = false;
     let ansSwitch = 0;
     let state = {}; 
     let hdd = writable({
@@ -31,18 +33,20 @@
 
     // go in block if there is change in remediation mode
     $:{
-        
-        if (isReview) {
-            setReview(); 
-            if(editorState && ansSwitch == 0) {
-                // check tha answer
-                ansSwitch = 1;
-                checkAns();
+        if (isReview != customReview){
+            if (isReview) {
+                setReview(); 
+                if(editorState && ansSwitch == 0) {
+                    // check tha answer
+                    ansSwitch = 1;
+                    checkAns();
+                }
+            } else {
+                // if review mode is off
+                ansSwitch = 0;
+                if (editorState) unsetReview();
             }
-        } else {
-            // if review mode is off
-            ansSwitch = 0;
-            if (editorState) unsetReview();
+            customReview = isReview;
         }
     }
 
@@ -57,16 +61,6 @@
             // load the module
             loadModule(xml);
         }
-
-        // go in block if there is change in remediation mode
-        // if (isReview) {
-        //     // check tha answer
-        //     checkAns();
-        //     setReview(); 
-        // } else {
-        //     // if review mode is off
-        //     if (editorState) unsetReview();
-        // }
     })
 
     // run just after rendering
@@ -82,29 +76,6 @@
         if (window.inNative) {
             window.getHeight && window.getHeight();
         }
-        // //Toggle Button Color
-        // AH.bind('#sm_controller button').click(function() {
-        //     $('#sm_controller button').removeClass("active btn-primary text-white bg-primary");
-        //     $(this).addClass('active btn-primary text-white bg-primary');
-        // });
-
-        // Binding set-review and unset-review with the click event
-        //For modeOn functions in prepkit
-        // $("#set-review").on('click', function() {
-        //     setReview();
-        // });
-        
-        // $("#unset-review").on('click', function() {
-        //     unsetReview();
-        // });
-        // binding token with enter key in case of IE
-        // if (isIE) {
-        //     AH.listen(document, "keyup", ".hotspot-token-preview .token", (_this, event)=> {
-        //         if (event.which == 13) {
-        //             _this.click();
-        //         }
-        //     });
-        // }
     });
 
     // when review mode is on
@@ -113,7 +84,6 @@
         state.smController = "";
         state.pointerEvents = "none";
         showAnswer("yans", "showIcon");
-        //$('#sm_controller .your-ans').addClass("btn-light active"); 
         AH.selectAll(".tokenHeader", 'attr', {tabIndex: "0"});
     }
 
@@ -124,7 +94,6 @@
         state.pointerEvents = "auto";
         showAnswer("yans", "hideIcon");
         AH.selectAll(".tokenHeader", 'removeAttr', 'tabindex');
-        //$('#sm_controller button').removeClass("active btn-primary text-white bg-primary");
     }
 
     // for resetting the value
@@ -351,7 +320,6 @@
         }
     }
 </script>
-   
 {#if onError != ""}
     <div class="alert alert-danger font-weight-bold">
         <span>Oops Something went wrong please check your ParseXML Function </span>

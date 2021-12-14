@@ -246,7 +246,7 @@ function get_ucsyntax(content) {
 	if (content) {
 		content = content.replace(/\$/g, "&#36;");
 		let cnt_arr = content.match(/<uc:syntax([\s\S]*?)<\/uc:syntax>/gi);
-		if (cnt_arr) {
+        if (cnt_arr) {
 			for (let i = 0; i < cnt_arr.length; i++) {
 				let str = "";
 				let classes = "";
@@ -280,12 +280,12 @@ function get_ucsyntax(content) {
 				}
 				get_content = get_content.replace(/<uc:syntax(.*?)>/gim, "");
 				get_content = get_content.replace(/<\/uc:syntax>/gim, "");
+                get_content = get_content.replace(/<div>/g, '');
+                get_content = get_content.replace(/<\/div>/g, '<br />');
 				str += `<pre class="${classes}">${get_content}</pre>`;
 				let re = new RegExp(RegExp.quote(cnt_arr[i]), "gm");
 				// var re = new RegExp(cnt_arr[i],"gm");
 				content = content.replace(re, str);
-                content = content.replace(/<div>/g, '');
-                content = content.replace(/<\/div>/g, '<br />');
 			}
 		}
 		return content;

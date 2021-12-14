@@ -20,6 +20,7 @@
     export let CM;
     let useransNew;
     let customIsReview = isReview;
+    let preReview = isReview;
     let cm = { cdata:"" };
     let isIE;
     let mainId = ""; 
@@ -53,17 +54,20 @@
     })
 
     $:  {
-        if (isReview) {
-            // this condition will true in test area
-            modeOn();
-            if(editorState && ansDisable == 0) {
-                ansDisable = 1;
-                displayAnswer();
-            }                                   
-        } else {
-            ansDisable = 0;
-            previewUserAns();
-            modeOff();
+        if (preReview != isReview){
+            if (isReview) {
+                // this condition will true in test area
+                modeOn();
+                if(editorState && ansDisable == 0) {
+                    ansDisable = 1;
+                    displayAnswer();
+                }                                   
+            } else {
+                ansDisable = 0;
+                previewUserAns();
+                modeOff();
+            }
+            preReview = isReview;
         }
     }
 
