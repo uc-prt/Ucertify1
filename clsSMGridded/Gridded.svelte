@@ -61,6 +61,13 @@
                 _this.click();
             }
         }))
+
+        setTimeout(function() {
+            const e = new Event("change"); 
+            const element = document.querySelector('#Fixed_decimal_column') 
+            element.dispatchEvent(e);
+        },300)
+        
     })
 
     afterUpdate(()=>{
@@ -90,6 +97,7 @@
                 state.textSize = MYXML.smxml._font;
                 state.correctAns =  MYXML.smxml._correctAns;
                 state.correctAnsSplit = MYXML.smxml._correctAns.split(',');
+                state.fixed_point = MYXML.smxml._fixed_point;
 
                 getChildXml(JSONToXML(MYXML));
                 if (MYXML.smxml._plusminus == 1) {
@@ -101,6 +109,11 @@
                 if (MYXML.smxml._decimal == 1) {
                     document.getElementById('floating_decimal_checkbox').checked = true;
                 }
+                
+                    if(MYXML.smxml._fixed_point > 0 && document.getElementById('fixed_decimal_checkbox').checked != true) {
+                        document.getElementById('fixed_decimal_checkbox').click();
+                    }
+                
             } catch (events) {
                 console.warn({
                 'error': events.message,
@@ -686,8 +699,8 @@
                 <div class="row form-group">
                     <div class="col-sm-6">
                         <div class="inline-block">
-                                <input type="checkbox" id = "fixed_decimal_checkbox" class="custom_checkbox_new float-left" inputProps={{ 'aria-label': 'Fixed Decimal' }} on:click = {fixedFunc}
-                                /> <label for="fixed_decimal_checkbox" class="pl-1"> Fixed Decimal</label>
+                                <input type="checkbox" id = "fixed_decimal_checkbox"  class="custom_checkbox_new float-left" inputProps={{ 'aria-label': 'Fixed Decimal' }} on:click = {fixedFunc}
+                                /> <label for="fixed_decimal_checkbox" class="pl-1" > Fixed Decimal</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -699,7 +712,7 @@
                 </div>
                 <div class="col-sm-6 inline-block pl-0">
                     <div>
-                        <input type="number" min="1" max="7"  name="Fixed_decimal_column" id="Fixed_decimal_column" class="form-control  inline-block" placeholder="Fixed decimal column" style={'display: none'} data-label="Fixed decimal column" disabled="true" on:change={fixedDecimalPoints} />
+                        <input type="number" min="1" max="7"  name="Fixed_decimal_column" id="Fixed_decimal_column" value={state.fixed_point} class="form-control  inline-block" placeholder="Fixed decimal column" style={'display: none'} data-label="Fixed decimal column" disabled="true" on:change={fixedDecimalPoints} />
                     </div>
                 </div>
                 </div>

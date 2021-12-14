@@ -349,6 +349,12 @@
 
     function rowValidation(event) {  
         let a = state.rowNum - 1;
+        let regx = /[a-z A-Z *%&$!@#=,"";:`~|)(?]/;
+        if(regx.test(event.target.value)) {
+            AH.alert('Not allowed alphabets and special symbols');
+            event.target.value = '';
+            return false;
+        }
         if (event.target.value.length > 1) {
             AH.alert('Double digit not accepted');
             event.target.value = '';
@@ -663,12 +669,13 @@
                             <input type="text" style={'width:50px;text-align:center;'}  value="." disabled="true" class="tdFont" />
                         {:else}
                             
-                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?" ":myAns[i]} class="tdFont">
-                            
-                                <span  class={state.iconVisible+' relative'}>
-                                    <span id={val.spanid} class="answer_icon">
+                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?"":myAns[i]} class="tdFont">
+                                {#if myAns[i] != undefined && myAns[i] != ' '}
+                                    <span  class={state.iconVisible+' relative'}>
+                                        <span id={val.spanid} class="answer_icon">
+                                        </span>
                                     </span>
-                                </span>
+                                {/if}
                             
                         {/if}
                     {/each}
