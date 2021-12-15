@@ -26,6 +26,7 @@
 	export let smValidate;
 	export let showAns;
 	// variable declaration
+	let anserDisable = false;
 	let customIsReview = isReview;
 	let smControllerCallback;
 	let cdata = "";
@@ -455,9 +456,8 @@
 	// for displaying the answer
 	function displayAns(e) {
 		//console.trace();
-		//debugger;
 		//check the ans and create user ans
-		let ans =  ucFill.checkAns(ajax_eId);
+		let ans =  !anserDisable && ucFill.checkAns(ajax_eId);
 		// To save the user answer
 		let answer = { ans: ucFill.result, uXml: ucFill.userAnsXML};
 		onUserAnsChange(answer);
@@ -589,7 +589,7 @@
 
 		AH.select('#elem'+i,'css',{display:'none'});
 
-		let matheq = `<span id="elem${i}" class="auto_height edit_step fillmathelement mathquill" userAnsSeq="${randomKey}" userans="${userans}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1"></span>`;
+		let matheq = `<span id="elem${i}" class="auto_height auto_width edit_step fillmathelement mathquill" userAnsSeq="${randomKey}" userans="${userans}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1"></span>`;
 
 		let tag = `<div id="main_div" class="text-center filter auto_height fillelement mathitem inline-block"><div class="disable_div fh fwidth absolute h"></div><div class="remed_disable fh fwidth absolute h"></div>
 			<span  id="m${i}" style="display:none;" class="auto_height h corr_div fillmathelement mathquill" userAnsSeq="${randomKey}" anskey="${anskey}" defaultans="${defaultans}" mathtype="1">
@@ -848,6 +848,7 @@
 		let drop = '<div id="elem'+i+'" tabindex="0" dropzone="1" class="drag-resize dropable ks" path="//s3.amazonaws.com/jigyaasa_content_static/" anskey="'+dropAns.slice(0,-1)+'" caption="" userans="'+userAnswer+'" droped="'+userAnswer+'" bgcolor="#FFFFCC" style="background-color: rgb(255, 255, 204); min-width: 50px; height: auto; padding: 5px 10px 5px;">'+userAnswer+'</div>';
 		// replace the cdata
 		cdata = cdata.replace(originalData,drop);
+		//console.log('cdata',cdata);
 		state.footerStr = true;
 	}
 	/*----------------------------------------------------------------- */
@@ -870,8 +871,10 @@
 	//To handle review toggle
 	function handleReview(mode, event) {
 		if (mode == 'c') {
+			anserDisable = true;
 			correctAnswer(event)
 		} else {
+			anserDisable = false;
 			yourAnswer(event);
 		}
 	}
@@ -1128,6 +1131,9 @@
 	}
 	:global(.auto_height) {
 		height:auto!important;
+	}
+	:global(.auto_width) {
+		width:auto;
 	}
 	:global(.prettyprint) {
 		display: -ms-grid!important;
