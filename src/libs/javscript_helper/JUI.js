@@ -591,7 +591,11 @@ export default class JUI extends API{
     }
 
     // Enable all mathced node's bootstrap5 compoenent
-    enableBsAll(selector, comp, options) {
+    enableBsAll(selector, comp, options = {}) {
+        options = {
+            ...options,
+            trigger: 'hover'
+        }
         if (this.bsCat1.includes(comp)) {
             let triggerList = [].slice.call(document.querySelectorAll(selector));
             let fireList = triggerList.map(function (triggerElm) {

@@ -44,6 +44,8 @@
     export let stopPreviewUpdate;
 	export let isReview;
 	export let uxml;
+
+	let MQ;
 	let customIsReview = isReview;
     let stateData = writable({
             blank                   : true,
@@ -64,19 +66,22 @@
         state = items;
     })
 
-	// $:{
-	// 	if (isReview) {
-	// 		var timer = setTimeout(function() {
-	// 			setReview();
-	// 			clearTimeout(timer);
-	// 		},500);	
-	// 	} else {
-	// 		var timer_next = setTimeout(function() {
-	// 			unsetReview();
-	// 			clearTimeout(timer_next);
-	// 		},200);
-	// 	}
-	// }
+	$:{
+		if(customIsReview != isReview){
+			if (isReview) {
+				var timer = setTimeout(function() {
+					setReview();
+					clearTimeout(timer);
+				},500);	
+			} else {
+				var timer_next = setTimeout(function() {
+					unsetReview();
+					clearTimeout(timer_next);
+				},200);
+			}
+			customIsReview = isReview;
+		}
+	}
 
 	beforeUpdate(()=>{
 		AH.addScript("", itemUrl + "src/libs/mathQuill_new.js");
@@ -90,8 +95,7 @@
 				}
 			}
 		}
-	
-		if (xml != state.xml) {
+		if (xml != state.xml) {		
 			state.xml = xml;
 			if (stopPreviewUpdate == true) return false;
 			if (!uxml) {
@@ -111,10 +115,11 @@
 
 		AH.listen(document,'keydown','.edit_step',function(data,e) {
 			//let ele = $(this);
-			
-			let l = (data.value.split('').length * 10) + 45 +'px';
+			let l = (e.target.value.split('').length * 10) + 45 +'px';
 			data.style.width = l;
-			e.target.previousSibling.style.width = l;
+			if(e.target.previousSibling){
+				e.target.previousSibling.style.width = l;
+			}
 			globWith = l;
 		})
 
@@ -652,7 +657,7 @@
 		if(index != undefined) {
 			element_id = "s"+index+"_t"+i;
 			element_div = "s"+index;
-			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_st" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" />';
+			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" />';
 			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="text" class="corr_div" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" >'+data[0]+'</span>'+textbox+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
@@ -863,15 +868,6 @@
 		nextStep();
 	}
 
-	function handleToggle(btn) {
-		if (btn == 1) {
-			btntype = "correctans";
-		} else if (btn == 2) {
-			btntype = "yourans";
-		}
-		//forceUpdate(); 
-	}
-
 	function setReview() {
 		
 		isReview = true;
@@ -911,14 +907,12 @@
 	}
 
 	function correctAnswer() {
-		//handleToggle(1);
 		state.display = -1;
-		//jQuery('.fillintheblank').addClass('default-hover');
 		AH.selectAll('.fillintheblank','addClass','default-hover');
-		
 
 		/// Manage correct answer position ////
-		AH.selectAll('.edit_st ','css',{display:'none'});
+		AH.selectAll('.edit_step', 'hide');
+		AH.selectAll('.corr_div', 'removeClass', 'h-imp');
 		AH.selectAll('#text','removeClass','corr_div');
 		AH.selectAll('#text','addClass','corr_div_correct');
 		showCorrect();
@@ -940,16 +934,15 @@
 	}
 
 	function yourAnswer() {
-		//handleToggle(2);
 		state.display = 1;
 		state.hideNext = true;
 		state.smController = '';
 		
 		//$('.fillintheblank').removeClass('default-hover');
 		AH.selectAll(".fillintheblank","removeClass","default-hover");
-
+		AH.selectAll('.corr_div','addClass', 'h-imp');
 	
-		AH.selectAll('.edit_st ','css',{display:'block'});
+		AH.selectAll('.edit_step','show');
 		AH.selectAll('#text','addClass','corr_div');
 		AH.selectAll('#text','removeClass','corr_div_correct');
 
@@ -1004,7 +997,6 @@
 
 		//To handle review toggle
 	function handleReview(mode, event) {
-		
 		if (mode == 'c') {
 			correctAnswer();
 		} else {
@@ -1049,25 +1041,27 @@
 			element_id = "s0"+index+"_t"+i;
 			element_div = "s0"+index;
 			let ans_id = "m0"+index+"_t"+i;
-			let matheq = '<span  id="'+element_id+'" class="auto_height edit_st fillmathelement mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div fillmathelement mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
+			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
 		} else {
 			element_id = "s"+steps_counter+"_t"+i;
 			element_div = "s"+steps_counter;
 			let ans_id = "m"+steps_counter+"_t"+i;
-			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div h-imp fillmathelement mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
+			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div h-imp fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans);
 			special_module.smans = smans;
 		}
 
 		let time_interval = setInterval(function() { 
-			if (typeof MathQuill == "function") {
+			if (typeof MathQuill == "function" && window.jQuery) {
 				clearInterval(time_interval);
-				let MQ = MathQuill.getInterface(2);
+				if(!MQ){
+					MQ = MathQuill.getInterface(2);
+				}
 				//jQuery(".mathquill.mq"+steps_counter).each(function() {
 				AH.selectAll(".mathquill.mq"+steps_counter).forEach((_this)=> {
 					//let math_itemid  = jQuery(this).attr('id');
@@ -1102,8 +1096,7 @@
 		let userans;
 		if (math_user == "math_user") {
 			userans = original_latex; 
-		} else {
-			let MQ = MathQuill.getInterface(2);
+		} else {;
 			let math_item = MQ.StaticMath(document.getElementById(math_itemid));
 			for (let i=0; i<= math_item.innerFields.length-1 ; i++) {
 				innerfield[i] = math_item.innerFields[i].latex();
@@ -1141,12 +1134,12 @@
 				reviewMode={isReview}
 				customReviewMode={customIsReview}
 			/>
-			<div class={state.main_steps ? 'h-imp': 'inNativeStyle'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<div class={'inNativeStyle'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				
 				{#each state.itemArray as item, index}
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3" tabindex={0}> 	 	
-							<div id={"s"+index} class={"bg-white " + ((state.display == 1) ? ((special_module.smans != undefined) ?  ((special_module.smans["s"+index] != undefined) ? ((special_module.smans["s"+index].overall == 1) ? 'border_green': 'border_red') : '')  : '')  : '')}>
-								<div id={'data-block_'+index} class={"main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " +((index == state.classChange) ? ((state.isColor) ? 'border_green' : 'border_red') : '')} key={index}>
+							<div id={"s"+index} class={"bg-white"}>
+								<div id={'data-block_'+index} class={"main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + ((state.display == 1 && special_module?.smans && special_module?.smans["s"+index] != undefined && isReview) ? ((special_module?.smans["s"+index].overall == 1) ? 'border_green': 'border_red') : '')} key={index}>
 									<div seq={"s"+index}>{@html item.cdata}</div>
 								</div>
 							</div>
@@ -1154,26 +1147,25 @@
 				{/each}
 				
 			</div>
-			<div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<!-- <div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				{#each answer_array as item,index}
 			
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3"  tabindex={0}>
-							<div id={"s"+index} class={"bg-white " + ((state.display == 1) ? ((special_module.smans != undefined) ?  ((special_module.smans["s"+index] != undefined) ? ((special_module.smans["s"+index].overall == 1) ? 'border_green': 'border_red') : '')  : '')  : '')}>
-								<div id={'data-block_'+index} class={"main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " +((index == state.classChange) ? ((state.isColor) ? 'border_green' : 'border_red') : '')} key={index}>
+							<div id={"s"+index} class={"bg-white "}>
+								<div id={'data-block_'+index} class={"main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + ((state.display == 1 && special_module?.smans && special_module.smans["s"+index] != undefined && isReview) ? ((special_module.smans["s"+index].overall == 1) ? 'border_green': 'border_red') : '')} key={index}>
 									<div seq={"s"+index}>{@html item.__cdata}</div>
 								</div>
 							</div>
 						</div>
 				
 				{/each}
-			</div>
-			{#if state.showToolbar}
-				<FillInTheBlanksToolbar  spanId={state.spanId} divId={state.divId} action={fill_math[fillId]} show={(value) => {toggleToolbar(value)}}/>
-			{/if}
+			</div> -->
 
-				<div class={state.hideNext ? 'h-imp': null}>
-					<button type="button" style={'width:auto;font-size:15px;margin:15px 0;'} class="btn btn-sm btn-outline-primary imgcenter next_step px-md-5 px-sm-3"  on:click={() => setTimeout(function(){moveNext()},100)} >{l.next}</button>
-				</div>
+			<FillInTheBlanksToolbar bind:display={state.showToolbar}  spanId={state.spanId} divId={state.divId} action={fill_math[fillId]} show={toggleToolbar}/>
+
+			<div class={state.hideNext ? 'h-imp': null}>
+				<button type="button" style={'width:auto;font-size:15px;margin:15px 0;'} class="btn btn-sm btn-outline-primary imgcenter next_step px-md-5 px-sm-3"  on:click={() => setTimeout(function(){moveNext()},100)} >{l.next}</button>
+			</div>
 		</center>
 	{/if}
 </main>

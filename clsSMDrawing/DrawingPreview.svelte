@@ -1435,9 +1435,7 @@
                 'width': state.imgWidth,
             });
 
-            AH.enableBsAll('.tooltip_btn', 'Tooltip', {
-                container:'body'
-            });
+            AH.enableBsAll('.tooltip_btn', 'Tooltip');
         } catch (error) {
             console.warn({
                 error,
