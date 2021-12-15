@@ -42,10 +42,14 @@
         icons: "database-icon,table-icon,file-icon",
     });
     const unsubscribe = hdd.subscribe((items)=> state = items);
-    $: if (isReview) {
-        setReview();
-    } else {
-        unsetReview();
+    let preReview = isReview;
+    $: if(preReview != isReview){
+        if (isReview) {
+            setReview();
+        } else {
+            unsetReview();
+        }
+        preReview = isReview;
     }
     // Built-in method of react lifecycle and called just afetr render method once throughtout the program execution  
     onMount(async ()=> {
@@ -571,7 +575,15 @@
     // returns the numeric data according to matching the data of passed arguments when called it with the data of array 'listItemAll' have index 'i' of key 'item'
     function setOptions(optionName, ID, level, isParant, pID) {
         var totalItem = listItemAll.length;
-        for (var i = 0; i < totalItem; i++) {
+        // create a variable with index length of array listItemAll and assign the data to it
+        listItemAll[totalItem] = [];
+        listItemAll[totalItem]['item'] = optionName;
+        listItemAll[totalItem]['ID'] = ID;
+        listItemAll[totalItem]['level'] = level;
+        listItemAll[totalItem]['pID'] = pID;
+        listItemAll[totalItem]['isParant'] = isParant;
+        
+        for (var i = 0; i <= totalItem; i++) {
             if (listItemAll[i]['isParant'] == '{1}') {
                 // set not to drag draggable element multiple time for creating the tree below droppable container
                 listItemAll[i]['multi'] = 0;
@@ -590,18 +602,11 @@
                 return listItemAll[i]['ID'];
             }
         }
-        // create a variable with index length of array listItemAll and assign the data to it
-        listItemAll[totalItem] = [];
-        listItemAll[totalItem]['item'] = optionName;
-        listItemAll[totalItem]['ID'] = ID;
-        listItemAll[totalItem]['level'] = level;
-        listItemAll[totalItem]['pID'] = pID;
-        listItemAll[totalItem]['isParant'] = isParant;
         return ID;
     }
     
         // used for handle the UI of preview component according to change in state or props
-    </script> 
+</script> 
     <main>
         {#if state.blank}
             <div></div>
@@ -643,7 +648,7 @@
                                                     tid={_listItemCorrect.ID} 
                                                     correctans={_listItemCorrect.correctAns} 
                                                     userans={_listItemCorrect.userAns} 
-                                                    data-jstree={JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false)})}
+                                                    data-jstree="{JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false)})}"
                                                 >
                                                     {_listItemCorrect.item}
                                                 </li>
@@ -654,7 +659,7 @@
                                                     tid={_listItemCorrect.ID} 
                                                     correctans={_listItemCorrect.correctAns} 
                                                     userans={_listItemCorrect.userAns} 
-                                                    data-jstree={JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false), icon: getIcon(_listItemCorrect['level'])})}
+                                                    data-jstree="{JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false), icon: getIcon(_listItemCorrect['level'])})}"
                                                 >
                                                     {_listItemCorrect.item}
                                                 </li> 
@@ -678,7 +683,7 @@
                                                 tid={data.ID} 
                                                 seq={data.isParant.toString().replace(/,\s|{|}/gmi, '')} 
                                                 multi={data.multi} 
-                                                data-jstree={JSON.stringify({icon: getIcon(data.level)})}
+                                                data-jstree="{JSON.stringify({icon: getIcon(data.level)})}"
                                             >
                                                 <span class="data_style">{data.item}</span>
                                                 <span class="delete_button"></span>
