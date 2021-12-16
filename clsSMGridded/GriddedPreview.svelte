@@ -253,7 +253,7 @@
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
             uxml = userXML
-            onUserAnsChange({uXml:resNew,ans:ansBool,data:true});
+            onUserAnsChange({uXml:resNew,ans:ansBool,debug:true});
         
         
     }
@@ -350,7 +350,7 @@
             }
 
             uxml = userXML;
-            onUserAnsChange({uXml:resNew,ans:ansBool,data:true});
+            onUserAnsChange({uXml:resNew,ans:ansBool,debug:true});
 
 
     }

@@ -31,7 +31,7 @@
 
     // Accept Object argument with key ans and uXml to store user answer and status
     export function onUserAnsChange(result) {
-        if(result.data  == true) {
+        if(result.debug  == true) {
             console.log('result',result);
             console.trace();
         }

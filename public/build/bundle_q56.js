@@ -4027,7 +4027,7 @@ var app = (function () {
     }
 
     function onUserAnsChange(result) {
-    	if (result.data == true) {
+    	if (result.debug == true) {
     		console.log("result", result);
     		console.trace();
     	}
@@ -4882,7 +4882,7 @@ var app = (function () {
     			: /*myAns*/ ctx[1][/*i*/ ctx[51]];
 
     			attr_dev(input, "class", "tdFont unCheck");
-    			add_location(input, file$2, 680, 32, 22103);
+    			add_location(input, file$2, 680, 32, 22105);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -4965,7 +4965,7 @@ var app = (function () {
     			input.value = ".";
     			input.disabled = "true";
     			attr_dev(input, "class", "tdFont");
-    			add_location(input, file$2, 677, 28, 21906);
+    			add_location(input, file$2, 677, 28, 21908);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -5002,9 +5002,9 @@ var app = (function () {
     			t = space();
     			attr_dev(span0, "id", span0_id_value = /*val*/ ctx[49].spanid);
     			attr_dev(span0, "class", "answer_icon");
-    			add_location(span0, file$2, 683, 40, 22530);
+    			add_location(span0, file$2, 683, 40, 22532);
     			attr_dev(span1, "class", span1_class_value = "" + (null_to_empty(/*state*/ ctx[2].iconVisible + " relative") + " svelte-2kbm1c"));
-    			add_location(span1, file$2, 682, 36, 22444);
+    			add_location(span1, file$2, 682, 36, 22446);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span1, anchor);
@@ -5310,10 +5310,10 @@ var app = (function () {
     			attr_dev(span, "data-tag", span_data_tag_value = /*val*/ ctx[49].dataTag);
     			attr_dev(span, "class", "tdFontP text-center td_data algn items_element");
     			attr_dev(span, "id", span_id_value = /*val*/ ctx[49].id);
-    			add_location(span, file$2, 749, 40, 25575);
+    			add_location(span, file$2, 749, 40, 25577);
     			attr_dev(td, "width", "50");
     			attr_dev(td, "class", "text-center");
-    			add_location(td, file$2, 748, 36, 25499);
+    			add_location(td, file$2, 748, 36, 25501);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -5376,7 +5376,7 @@ var app = (function () {
     			attr_dev(td, "class", "tdFont text-center");
     			attr_dev(td, "width", "50");
     			attr_dev(td, "disabled", "true");
-    			add_location(td, file$2, 745, 36, 25303);
+    			add_location(td, file$2, 745, 36, 25305);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -5476,7 +5476,7 @@ var app = (function () {
 
     			t = space();
     			attr_dev(tr, "key", tr_key_value = /*data*/ ctx[46].key);
-    			add_location(tr, file$2, 742, 24, 25141);
+    			add_location(tr, file$2, 742, 24, 25143);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -5608,23 +5608,23 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(center0, file$2, 666, 12, 21391);
+    			add_location(center0, file$2, 666, 12, 21393);
     			set_style(tr, "display", "flex");
     			set_style(tr, "padding", "0");
-    			add_location(tr, file$2, 674, 16, 21746);
+    			add_location(tr, file$2, 674, 16, 21748);
     			attr_dev(table0, "border", "1");
     			attr_dev(table0, "id", "tab2");
     			attr_dev(table0, "class", "w-auto");
     			attr_dev(table0, "style", table0_style_value = "border-collapse:collapse;text-align:center");
-    			add_location(table0, file$2, 673, 12, 21632);
-    			add_location(tbody, file$2, 740, 16, 25060);
+    			add_location(table0, file$2, 673, 12, 21634);
+    			add_location(tbody, file$2, 740, 16, 25062);
     			attr_dev(table1, "id", "gridded_sheet");
     			attr_dev(table1, "class", "gridded_tab mt-0 lastGrid create_tab myP w-auto");
-    			add_location(table1, file$2, 739, 12, 24961);
+    			add_location(table1, file$2, 739, 12, 24963);
     			attr_dev(div, "class", "griddedModule");
-    			add_location(div, file$2, 665, 8, 21351);
-    			add_location(center1, file$2, 664, 4, 21334);
-    			add_location(main, file$2, 663, 0, 21323);
+    			add_location(div, file$2, 665, 8, 21353);
+    			add_location(center1, file$2, 664, 4, 21336);
+    			add_location(main, file$2, 663, 0, 21325);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6058,7 +6058,7 @@ var app = (function () {
     		}
 
     		$$invalidate(15, uxml = userXML);
-    		onUserAnsChange({ uXml: resNew, ans: ansBool, data: true });
+    		onUserAnsChange({ uXml: resNew, ans: ansBool, debug: true });
     	}
 
     	function handleClickCombo(event) {
@@ -6152,7 +6152,7 @@ var app = (function () {
     		}
 
     		$$invalidate(15, uxml = userXML);
-    		onUserAnsChange({ uXml: resNew, ans: ansBool, data: true });
+    		onUserAnsChange({ uXml: resNew, ans: ansBool, debug: true });
     	}
 
     	function rowValidation(event) {
