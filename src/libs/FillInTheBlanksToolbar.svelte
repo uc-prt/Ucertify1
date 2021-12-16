@@ -7,6 +7,7 @@
     export let divId;
     export let action;
     export let show;
+    export let display = true;
     
     let state = {};
     let type;
@@ -65,7 +66,7 @@
         show(false);
     }
 </script>
-<div class="toolbar_container_one" id="toolbar_container_one">
+<div class="toolbar_container_one" class:d-none={!display} id="toolbar_container_one">
     <div class="upper_part_toolbar">
         <div class="draggable_area" on:click={closeToolbar}>
             <div class="dots_container">
@@ -88,7 +89,7 @@
                 <option value="6">&#8898;</option>
                 <option value="7">{l.sin}</option>
                 <option value="8">&alpha;</option>
-                <option value="9">{l.Mis}c</option>
+                <option value="9">{l.Misc}</option>
                 <option value="10">{l.Discrete}</option>
                 <option value="11">{l.kg}</option>
                 <option value="12">{l.lb}</option>
