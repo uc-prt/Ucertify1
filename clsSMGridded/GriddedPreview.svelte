@@ -116,14 +116,18 @@
             
             //if (window.uaXML) {
             if(uxml) {
-                
                     parseUserAns(uxml)
-                
+            // } else {
+            //     checkAns();
             }
 		} catch (error) {
                 let onError = error;
                 console.log({'error':error.message,'function name':'parseXMLPreview','File name':'GriddedPreview.js'});
         }
+    }
+
+    function checkAns() {
+        onUserAnsChange({uXml:'',ans:false});
     }
 
     function parseUserAns(uans) {
@@ -135,6 +139,8 @@
                 ans = userAns;
                 state.userList = userAns;
                 //forceUpdate();
+            // } else {
+            //     checkAns();
             }
     }
 
@@ -156,9 +162,8 @@
     })
 
     function handleClick(event) {
-        
-        //////////////changing color according to user/////////
-        let cell_class = event.target.getAttribute('name');
+        if(!isReview) {
+            let cell_class = event.target.getAttribute('name');
             let column_index = document.getElementsByName(cell_class);
             for (let i = 0; i < column_index.length; i++) {
                 if (column_index[i].classList.contains("active")) {
@@ -172,6 +177,10 @@
             let target_to_display = target_id.split("-"); 
             document.getElementById(target_to_display[0]).value = event.target.innerHTML;
             setUserAns(event); //////// Call function for answer checking
+        }
+       //debugger;
+        //////////////changing color according to user/////////
+        
     }
 
     function setUserAns (event)  {
@@ -253,9 +262,9 @@
 
 
     function handleClickCombo(event) {
-        
-        //////////////changing color according to user/////////
-        let cell_class = (event.detail.target).getAttribute('name');
+        if(!isReview) {
+             //////////////changing color according to user/////////
+            let cell_class = (event.detail.target).getAttribute('name');
             let column_index = document.getElementsByName(cell_class);
             for (let i = 0; i < column_index.length; i++) {
                 if (column_index[i].classList.contains("active")) {
@@ -269,6 +278,7 @@
             let target_to_display = target_id.split("-"); 
             document.getElementById(target_to_display[0]).value = (event.detail.target).innerHTML;
             setUserAnsCombo(event); //////// Call function for answer checking
+        }
     }
 
     function setUserAnsCombo (event)  {
@@ -343,8 +353,8 @@
 
             uxml = userXML;
             onUserAnsChange({uXml:resNew,ans:ansBool});
-        
-        
+
+
     }
 
     function rowValidation(event) {  
@@ -528,6 +538,7 @@
     ///////////////// Set review and unset review function//////////////
 
     function setReview() {
+        AH.selectAll('.unCheck','attr',{'disabled':true});
         state.smController = "",
         state.pointerEvents = "none"
         isReview = true;
@@ -537,7 +548,6 @@
 
         AH.selectAll(".tokenHeader","attr",{"tabindex":0})
 
-       
         setTimeout(getCorrect(),200); 
         // if (!window.QXML) {
         if(editorState) {
@@ -559,6 +569,7 @@
 	}
  
     function unsetReview() {  
+        AH.selectAll('.unCheck','removeAttr','disabled');
         state.smController = "h",
         state.pointerEvents = "auto"
         isReview = false;
@@ -669,7 +680,7 @@
                             <input type="text" style={'width:50px;text-align:center;'}  value="." disabled="true" class="tdFont" />
                         {:else}
                             
-                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?"":myAns[i]} class="tdFont">
+                                <input type="text" id={val.id} data-tag={val.dataTag} name={val.name} style={'width:50px;text-align:center;'} on:change={rowValidation} on:input={highLight} value={(myAns[i] === undefined)?"":myAns[i]} class="tdFont unCheck">
                                 {#if myAns[i] != undefined && myAns[i] != ' '}
                                     <span  class={state.iconVisible+' relative'}>
                                         <span id={val.spanid} class="answer_icon">
