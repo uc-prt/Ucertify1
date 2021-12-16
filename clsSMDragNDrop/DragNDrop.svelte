@@ -822,7 +822,7 @@
         <!-- https://s3.amazonaws.com/jigyaasa_content_static/ -->
         <div 
             id="dndmain" 
-            path="" 
+            path="https://s3.amazonaws.com/jigyaasa_content_static/"
             style='height: 400px;width:100%;'
             bind:this={dndMain}
             bind:clientWidth={baseWidth}
