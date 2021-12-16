@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -4023,6 +4023,9 @@ var app = (function () {
     }
 
     function onUserAnsChange(result) {
+    	console.log("result", result);
+    	console.trace();
+
     	if (result) {
     		AH.select("#answer", "checked", result.ans ? true : false);
     		AH.select("#special_module_user_xml", "value", result.uXml);
@@ -4817,32 +4820,32 @@ var app = (function () {
     function add_css$2() {
     	var style = element("style");
     	style.id = "svelte-2kbm1c-style";
-    	style.textContent = ".layoutHeading{font-weight:bold;font-size:16px;color:#1877b1}.items_element:hover{border:1.2px solid #777}.moreOptions{-webkit-box-shadow:3px 4px 6px #c4c5c5;-moz-box-shadow:3px 4px 6px #c4c5c5;box-shadow:3px 4px 6px #c4c5c5;background-color:#f0f0f0;border-top:1px solid #1877b1;border-bottom:1px solid #1877b1}.moreOptionDetails{background-color:#f7f7f7}.input_col{position:relative;left:5px}.layoutheading{padding:5px;font-size:20px;font-weight:bold}.numbr_range{position:relative;left:130px}.numbr_range_txt{position:relative;left:200px}.plus_minus_fraction{position:relative;top:20px}.floating_fraction{position:relative;top:27px}.plus_minus_span{position:relative;left:5px}.floating_decimal{float:right;margin-right:45px}.fontStyle{width:100px;float:right;margin-right:60px}.fraction_slash{position:relative;left:177px}.minus_tab,.plus_tab.svelte-2kbm1c,.slash_tab.svelte-2kbm1c{text-align:center}.gridded_tab{background-color:#f0f0f0!important;user-select:none!important;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}.font_size_label{position:relative;left:198px}.font_size{position:relative;left:225px}.decimal_col{position:relative;left:208px;width:90px}.correct_color{background-color:#E9FFE9}.fixed_decimal_check{position:relative;top:26px;left:13px}.correct_incorrect_icon_fill{position:relative;width:19px;height:19px;right:121px;top:-55px;background:white;border-radius:50%}.row_column_decimal{position:relative;top:30px;left:5px}.fixed_point_class{position:relative;left:7px}.row_column{position:relative;left:5px}.answer_icon{position:absolute;top:6px;right:31px}.myP tbody{cursor:pointer}.col_range{width:205px}.posSize{position:relative;left:7px}.fontSmall{font-size:12px;text-align:center}.fontNormal{font-size:14px;text-align:center}.fontLarge{font-size:24px;text-align:center}.fontExtraLarge{font-size:26px;text-align:center}.grid{position:relative;top:10px;box-shadow:10px 5px 10px #000}.items_element{border:1px solid #8080807a;padding:6px 10px;border-radius:50%;background-color:white}.griddedModule .active{color:white;transition:1s;background:#696969;border:2px solid #fff}.minus_point,.decl_point.svelte-2kbm1c{padding:6px 12px}.sla_point{padding:6px 11px}.griddedModule table tr td:last-child{border-right:1px solid #ccc !important}.griddedModule .lastGrid tr:last-child td{border-bottom:1px solid #ccc !important}.griddedModule td{border:1px solid #f0f0f0 !important;border-left:1px solid #ccc !important}.token:hover{border:1px solid #000 !important}.bla .token:hover{border:1px solid #fff !important}.token_selected{background-color:#64bb63;color:#fff}.bla .token_highlight_heading{color:#000 !important}.griddedModule .expandIcon{font-size:27px;font-weight:bold;color:#1877b1}table td{padding:.5rem .5rem!important;vertical-align:top!important;border-top:1px solid #dee2e6!important}table th{padding:.5rem .5rem!important;vertical-align:top!important;border-top:1px solid #dee2e6!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,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 */";
+    	style.textContent = ".layoutHeading{font-weight:bold;font-size:16px;color:#1877b1}.items_element:hover{border:1.2px solid #777}.moreOptions{-webkit-box-shadow:3px 4px 6px #c4c5c5;-moz-box-shadow:3px 4px 6px #c4c5c5;box-shadow:3px 4px 6px #c4c5c5;background-color:#f0f0f0;border-top:1px solid #1877b1;border-bottom:1px solid #1877b1}.moreOptionDetails{background-color:#f7f7f7}.input_col{position:relative;left:5px}.layoutheading{padding:5px;font-size:20px;font-weight:bold}.numbr_range{position:relative;left:130px}.numbr_range_txt{position:relative;left:200px}.plus_minus_fraction{position:relative;top:20px}.floating_fraction{position:relative;top:27px}.plus_minus_span{position:relative;left:5px}.floating_decimal{float:right;margin-right:45px}.fontStyle{width:100px;float:right;margin-right:60px}.fraction_slash{position:relative;left:177px}.minus_tab,.plus_tab.svelte-2kbm1c,.slash_tab.svelte-2kbm1c{text-align:center}.gridded_tab{background-color:#f0f0f0!important;user-select:none!important;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}.font_size_label{position:relative;left:198px}.font_size{position:relative;left:225px}.decimal_col{position:relative;left:208px;width:90px}.correct_color{background-color:#E9FFE9}.fixed_decimal_check{position:relative;top:26px;left:13px}.correct_incorrect_icon_fill{position:relative;width:19px;height:19px;right:121px;top:-55px;background:white;border-radius:50%}.row_column_decimal{position:relative;top:30px;left:5px}.fixed_point_class{position:relative;left:7px}.row_column{position:relative;left:5px}.answer_icon{position:absolute;top:6px;right:31px}.myP tbody{cursor:pointer}.col_range{width:205px}.posSize{position:relative;left:7px}.fontSmall{font-size:12px;text-align:center}.fontNormal{font-size:14px;text-align:center}.fontLarge{font-size:24px;text-align:center}.fontExtraLarge{font-size:26px;text-align:center}.grid{position:relative;top:10px;box-shadow:10px 5px 10px #000}.items_element{border:1px solid #8080807a;padding:6px 10px;border-radius:50%;background-color:white}.griddedModule .active{color:white;transition:1s;background:#696969;border:2px solid #fff}.minus_point,.decl_point.svelte-2kbm1c{padding:6px 12px}.sla_point{padding:6px 11px}.griddedModule table tr td:last-child{border-right:1px solid #ccc !important}.griddedModule .lastGrid tr:last-child td{border-bottom:1px solid #ccc !important}.griddedModule td{border:1px solid #f0f0f0 !important;border-left:1px solid #ccc !important}.token:hover{border:1px solid #000 !important}.bla .token:hover{border:1px solid #fff !important}.token_selected{background-color:#64bb63;color:#fff}.bla .token_highlight_heading{color:#000 !important}.griddedModule .expandIcon{font-size:27px;font-weight:bold;color:#1877b1}table td{padding:.5rem .5rem!important;vertical-align:top!important;border-top:1px solid #dee2e6!important}table th{padding:.5rem .5rem!important;vertical-align:top!important;border-top:1px solid #dee2e6!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,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 */";
     	append_dev(document_1$1.head, style);
     }
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[45] = list[i];
-    	child_ctx[47] = i;
+    	child_ctx[46] = list[i];
+    	child_ctx[48] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[48] = list[i];
-    	child_ctx[50] = i;
+    	child_ctx[49] = list[i];
+    	child_ctx[51] = i;
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[48] = list[i];
-    	child_ctx[50] = i;
+    	child_ctx[49] = list[i];
+    	child_ctx[51] = i;
     	return child_ctx;
     }
 
-    // (675:24) {:else}
+    // (681:24) {:else}
     function create_else_block_1(ctx) {
     	let input;
     	let input_id_value;
@@ -4854,7 +4857,7 @@ var app = (function () {
     	let if_block_anchor;
     	let mounted;
     	let dispose;
-    	let if_block = /*myAns*/ ctx[1][/*i*/ ctx[50]] != undefined && /*myAns*/ ctx[1][/*i*/ ctx[50]] != " " && create_if_block_5(ctx);
+    	let if_block = /*myAns*/ ctx[1][/*i*/ ctx[51]] != undefined && /*myAns*/ ctx[1][/*i*/ ctx[51]] != " " && create_if_block_5(ctx);
 
     	const block = {
     		c: function create() {
@@ -4863,17 +4866,17 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(input, "type", "text");
-    			attr_dev(input, "id", input_id_value = /*val*/ ctx[48].id);
-    			attr_dev(input, "data-tag", input_data_tag_value = /*val*/ ctx[48].dataTag);
-    			attr_dev(input, "name", input_name_value = /*val*/ ctx[48].name);
+    			attr_dev(input, "id", input_id_value = /*val*/ ctx[49].id);
+    			attr_dev(input, "data-tag", input_data_tag_value = /*val*/ ctx[49].dataTag);
+    			attr_dev(input, "name", input_name_value = /*val*/ ctx[49].name);
     			attr_dev(input, "style", input_style_value = "width:50px;text-align:center;");
 
-    			input.value = input_value_value = /*myAns*/ ctx[1][/*i*/ ctx[50]] === undefined
+    			input.value = input_value_value = /*myAns*/ ctx[1][/*i*/ ctx[51]] === undefined
     			? ""
-    			: /*myAns*/ ctx[1][/*i*/ ctx[50]];
+    			: /*myAns*/ ctx[1][/*i*/ ctx[51]];
 
     			attr_dev(input, "class", "tdFont unCheck");
-    			add_location(input, file$2, 676, 32, 21984);
+    			add_location(input, file$2, 682, 32, 22123);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -4891,25 +4894,25 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*ColsPre*/ 8 && input_id_value !== (input_id_value = /*val*/ ctx[48].id)) {
+    			if (dirty[0] & /*ColsPre*/ 8 && input_id_value !== (input_id_value = /*val*/ ctx[49].id)) {
     				attr_dev(input, "id", input_id_value);
     			}
 
-    			if (dirty[0] & /*ColsPre*/ 8 && input_data_tag_value !== (input_data_tag_value = /*val*/ ctx[48].dataTag)) {
+    			if (dirty[0] & /*ColsPre*/ 8 && input_data_tag_value !== (input_data_tag_value = /*val*/ ctx[49].dataTag)) {
     				attr_dev(input, "data-tag", input_data_tag_value);
     			}
 
-    			if (dirty[0] & /*ColsPre*/ 8 && input_name_value !== (input_name_value = /*val*/ ctx[48].name)) {
+    			if (dirty[0] & /*ColsPre*/ 8 && input_name_value !== (input_name_value = /*val*/ ctx[49].name)) {
     				attr_dev(input, "name", input_name_value);
     			}
 
-    			if (dirty[0] & /*myAns*/ 2 && input_value_value !== (input_value_value = /*myAns*/ ctx[1][/*i*/ ctx[50]] === undefined
+    			if (dirty[0] & /*myAns*/ 2 && input_value_value !== (input_value_value = /*myAns*/ ctx[1][/*i*/ ctx[51]] === undefined
     			? ""
-    			: /*myAns*/ ctx[1][/*i*/ ctx[50]]) && input.value !== input_value_value) {
+    			: /*myAns*/ ctx[1][/*i*/ ctx[51]]) && input.value !== input_value_value) {
     				prop_dev(input, "value", input_value_value);
     			}
 
-    			if (/*myAns*/ ctx[1][/*i*/ ctx[50]] != undefined && /*myAns*/ ctx[1][/*i*/ ctx[50]] != " ") {
+    			if (/*myAns*/ ctx[1][/*i*/ ctx[51]] != undefined && /*myAns*/ ctx[1][/*i*/ ctx[51]] != " ") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -4936,14 +4939,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(675:24) {:else}",
+    		source: "(681:24) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (673:24) {#if val.decpoint == true}
+    // (679:24) {#if val.decpoint == true}
     function create_if_block_4(ctx) {
     	let input;
     	let input_style_value;
@@ -4956,7 +4959,7 @@ var app = (function () {
     			input.value = ".";
     			input.disabled = "true";
     			attr_dev(input, "class", "tdFont");
-    			add_location(input, file$2, 673, 28, 21787);
+    			add_location(input, file$2, 679, 28, 21926);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -4971,14 +4974,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(673:24) {#if val.decpoint == true}",
+    		source: "(679:24) {#if val.decpoint == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (678:32) {#if myAns[i] != undefined && myAns[i] != ' '}
+    // (684:32) {#if myAns[i] != undefined && myAns[i] != ' '}
     function create_if_block_5(ctx) {
     	let span1;
     	let span0;
@@ -4991,11 +4994,11 @@ var app = (function () {
     			span1 = element("span");
     			span0 = element("span");
     			t = space();
-    			attr_dev(span0, "id", span0_id_value = /*val*/ ctx[48].spanid);
+    			attr_dev(span0, "id", span0_id_value = /*val*/ ctx[49].spanid);
     			attr_dev(span0, "class", "answer_icon");
-    			add_location(span0, file$2, 679, 40, 22411);
+    			add_location(span0, file$2, 685, 40, 22550);
     			attr_dev(span1, "class", span1_class_value = "" + (null_to_empty(/*state*/ ctx[2].iconVisible + " relative") + " svelte-2kbm1c"));
-    			add_location(span1, file$2, 678, 36, 22325);
+    			add_location(span1, file$2, 684, 36, 22464);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span1, anchor);
@@ -5003,7 +5006,7 @@ var app = (function () {
     			append_dev(span1, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*ColsPre*/ 8 && span0_id_value !== (span0_id_value = /*val*/ ctx[48].spanid)) {
+    			if (dirty[0] & /*ColsPre*/ 8 && span0_id_value !== (span0_id_value = /*val*/ ctx[49].spanid)) {
     				attr_dev(span0, "id", span0_id_value);
     			}
 
@@ -5020,19 +5023,19 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(678:32) {#if myAns[i] != undefined && myAns[i] != ' '}",
+    		source: "(684:32) {#if myAns[i] != undefined && myAns[i] != ' '}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (672:20) {#each ColsPre as val,i}
+    // (678:20) {#each ColsPre as val,i}
     function create_each_block_2(ctx) {
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*val*/ ctx[48].decpoint == true) return create_if_block_4;
+    		if (/*val*/ ctx[49].decpoint == true) return create_if_block_4;
     		return create_else_block_1;
     	}
 
@@ -5071,14 +5074,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(672:20) {#each ColsPre as val,i}",
+    		source: "(678:20) {#each ColsPre as val,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (690:16) {#if state.plus_minus == 1}
+    // (696:16) {#if state.plus_minus == 1}
     function create_if_block_3(ctx) {
     	let griddedhelper0;
     	let t;
@@ -5155,14 +5158,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(690:16) {#if state.plus_minus == 1}",
+    		source: "(696:16) {#if state.plus_minus == 1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (711:16) {#if state.slash_val == 1}
+    // (717:16) {#if state.slash_val == 1}
     function create_if_block_2(ctx) {
     	let griddedhelper;
     	let current;
@@ -5212,14 +5215,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(711:16) {#if state.slash_val == 1}",
+    		source: "(717:16) {#if state.slash_val == 1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (723:16) {#if state.decimal_val == 1}
+    // (729:16) {#if state.decimal_val == 1}
     function create_if_block_1(ctx) {
     	let griddedhelper;
     	let current;
@@ -5269,18 +5272,18 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(723:16) {#if state.decimal_val == 1}",
+    		source: "(729:16) {#if state.decimal_val == 1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (744:32) {:else}
+    // (750:32) {:else}
     function create_else_block$1(ctx) {
     	let td;
     	let span;
-    	let t_value = +/*no*/ ctx[47] + "";
+    	let t_value = +/*no*/ ctx[48] + "";
     	let t;
     	let span_tabindex_value;
     	let span_key_value;
@@ -5295,16 +5298,16 @@ var app = (function () {
     			td = element("td");
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "tabindex", span_tabindex_value = /*val*/ ctx[48].tabIndex);
-    			attr_dev(span, "key", span_key_value = /*val*/ ctx[48].key);
-    			attr_dev(span, "name", span_name_value = /*val*/ ctx[48].name);
-    			attr_dev(span, "data-tag", span_data_tag_value = /*val*/ ctx[48].dataTag);
+    			attr_dev(span, "tabindex", span_tabindex_value = /*val*/ ctx[49].tabIndex);
+    			attr_dev(span, "key", span_key_value = /*val*/ ctx[49].key);
+    			attr_dev(span, "name", span_name_value = /*val*/ ctx[49].name);
+    			attr_dev(span, "data-tag", span_data_tag_value = /*val*/ ctx[49].dataTag);
     			attr_dev(span, "class", "tdFontP text-center td_data algn items_element");
-    			attr_dev(span, "id", span_id_value = /*val*/ ctx[48].id);
-    			add_location(span, file$2, 745, 40, 25456);
+    			attr_dev(span, "id", span_id_value = /*val*/ ctx[49].id);
+    			add_location(span, file$2, 751, 40, 25595);
     			attr_dev(td, "width", "50");
     			attr_dev(td, "class", "text-center");
-    			add_location(td, file$2, 744, 36, 25380);
+    			add_location(td, file$2, 750, 36, 25519);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -5317,23 +5320,23 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*totalCols*/ 32 && span_tabindex_value !== (span_tabindex_value = /*val*/ ctx[48].tabIndex)) {
+    			if (dirty[0] & /*totalCols*/ 32 && span_tabindex_value !== (span_tabindex_value = /*val*/ ctx[49].tabIndex)) {
     				attr_dev(span, "tabindex", span_tabindex_value);
     			}
 
-    			if (dirty[0] & /*totalCols*/ 32 && span_key_value !== (span_key_value = /*val*/ ctx[48].key)) {
+    			if (dirty[0] & /*totalCols*/ 32 && span_key_value !== (span_key_value = /*val*/ ctx[49].key)) {
     				attr_dev(span, "key", span_key_value);
     			}
 
-    			if (dirty[0] & /*totalCols*/ 32 && span_name_value !== (span_name_value = /*val*/ ctx[48].name)) {
+    			if (dirty[0] & /*totalCols*/ 32 && span_name_value !== (span_name_value = /*val*/ ctx[49].name)) {
     				attr_dev(span, "name", span_name_value);
     			}
 
-    			if (dirty[0] & /*totalCols*/ 32 && span_data_tag_value !== (span_data_tag_value = /*val*/ ctx[48].dataTag)) {
+    			if (dirty[0] & /*totalCols*/ 32 && span_data_tag_value !== (span_data_tag_value = /*val*/ ctx[49].dataTag)) {
     				attr_dev(span, "data-tag", span_data_tag_value);
     			}
 
-    			if (dirty[0] & /*totalCols*/ 32 && span_id_value !== (span_id_value = /*val*/ ctx[48].id)) {
+    			if (dirty[0] & /*totalCols*/ 32 && span_id_value !== (span_id_value = /*val*/ ctx[49].id)) {
     				attr_dev(span, "id", span_id_value);
     			}
     		},
@@ -5348,14 +5351,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(744:32) {:else}",
+    		source: "(750:32) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (741:32) {#if val.decpoint}
+    // (747:32) {#if val.decpoint}
     function create_if_block$2(ctx) {
     	let td;
     	let td_key_value;
@@ -5363,17 +5366,17 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "key", td_key_value = /*val*/ ctx[48].key);
+    			attr_dev(td, "key", td_key_value = /*val*/ ctx[49].key);
     			attr_dev(td, "class", "tdFont text-center");
     			attr_dev(td, "width", "50");
     			attr_dev(td, "disabled", "true");
-    			add_location(td, file$2, 741, 36, 25184);
+    			add_location(td, file$2, 747, 36, 25323);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*totalCols*/ 32 && td_key_value !== (td_key_value = /*val*/ ctx[48].key)) {
+    			if (dirty[0] & /*totalCols*/ 32 && td_key_value !== (td_key_value = /*val*/ ctx[49].key)) {
     				attr_dev(td, "key", td_key_value);
     			}
     		},
@@ -5386,19 +5389,19 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(741:32) {#if val.decpoint}",
+    		source: "(747:32) {#if val.decpoint}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (740:28) {#each totalCols as val,i}
+    // (746:28) {#each totalCols as val,i}
     function create_each_block_1(ctx) {
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*val*/ ctx[48].decpoint) return create_if_block$2;
+    		if (/*val*/ ctx[49].decpoint) return create_if_block$2;
     		return create_else_block$1;
     	}
 
@@ -5437,14 +5440,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(740:28) {#each totalCols as val,i}",
+    		source: "(746:28) {#each totalCols as val,i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (738:20) {#each totalRows as data,no}
+    // (744:20) {#each totalRows as data,no}
     function create_each_block$1(ctx) {
     	let tr;
     	let t;
@@ -5466,8 +5469,8 @@ var app = (function () {
     			}
 
     			t = space();
-    			attr_dev(tr, "key", tr_key_value = /*data*/ ctx[45].key);
-    			add_location(tr, file$2, 738, 24, 25022);
+    			attr_dev(tr, "key", tr_key_value = /*data*/ ctx[46].key);
+    			add_location(tr, file$2, 744, 24, 25161);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -5503,7 +5506,7 @@ var app = (function () {
     				each_blocks.length = each_value_1.length;
     			}
 
-    			if (dirty[0] & /*totalRows*/ 16 && tr_key_value !== (tr_key_value = /*data*/ ctx[45].key)) {
+    			if (dirty[0] & /*totalRows*/ 16 && tr_key_value !== (tr_key_value = /*data*/ ctx[46].key)) {
     				attr_dev(tr, "key", tr_key_value);
     			}
     		},
@@ -5517,7 +5520,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(738:20) {#each totalRows as data,no}",
+    		source: "(744:20) {#each totalRows as data,no}",
     		ctx
     	});
 
@@ -5599,23 +5602,23 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			add_location(center0, file$2, 662, 12, 21272);
+    			add_location(center0, file$2, 668, 12, 21411);
     			set_style(tr, "display", "flex");
     			set_style(tr, "padding", "0");
-    			add_location(tr, file$2, 670, 16, 21627);
+    			add_location(tr, file$2, 676, 16, 21766);
     			attr_dev(table0, "border", "1");
     			attr_dev(table0, "id", "tab2");
     			attr_dev(table0, "class", "w-auto");
     			attr_dev(table0, "style", table0_style_value = "border-collapse:collapse;text-align:center");
-    			add_location(table0, file$2, 669, 12, 21513);
-    			add_location(tbody, file$2, 736, 16, 24941);
+    			add_location(table0, file$2, 675, 12, 21652);
+    			add_location(tbody, file$2, 742, 16, 25080);
     			attr_dev(table1, "id", "gridded_sheet");
     			attr_dev(table1, "class", "gridded_tab mt-0 lastGrid create_tab myP w-auto");
-    			add_location(table1, file$2, 735, 12, 24842);
+    			add_location(table1, file$2, 741, 12, 24981);
     			attr_dev(div, "class", "griddedModule");
-    			add_location(div, file$2, 661, 8, 21232);
-    			add_location(center1, file$2, 660, 4, 21215);
-    			add_location(main, file$2, 659, 0, 21204);
+    			add_location(div, file$2, 667, 8, 21371);
+    			add_location(center1, file$2, 666, 4, 21354);
+    			add_location(main, file$2, 665, 0, 21343);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5912,7 +5915,8 @@ var app = (function () {
     			//if (window.uaXML) {
     			if (uxml) {
     				parseUserAns(uxml);
-    			}
+    			} // } else {
+    			//     checkAns();
     		} catch(error) {
 
     			console.log({
@@ -5921,6 +5925,10 @@ var app = (function () {
     				"File name": "GriddedPreview.js"
     			});
     		}
+    	}
+
+    	function checkAns() {
+    		onUserAnsChange({ uXml: "", ans: false });
     	}
 
     	function parseUserAns(uans) {
@@ -5935,7 +5943,8 @@ var app = (function () {
 
     			$$invalidate(2, state.userList = userAns, state);
     		} //forceUpdate();
-    	}
+    		// } else {
+    	} //     checkAns();
 
     	beforeUpdate(() => {
     		if (xml != state.xml) {
@@ -6461,6 +6470,7 @@ var app = (function () {
     		unsubscribe,
     		loadModule,
     		parseXMLPreview,
+    		checkAns,
     		parseUserAns,
     		handleClick,
     		setUserAns,
