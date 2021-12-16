@@ -1442,24 +1442,24 @@
             <div class="mt-2 mb-2">
                 <div class="btn-toolbar auth_drawing_toolbar" role="toolbar" aria-label={l.drawing_tools}>
                     <div tabindex="0" class="btn-group mr-2" role="group" aria-label={l.draw_tools}>
-                        <button type="button" tabindex="0" data-title="scribble" title={l.scribble} name="authoring_scribble" id="authoring_scribble" class="btn btn-light auth_toolbar geometryTool tooltip_btn authoring_btn active"><i class="icomoon-pencil"></i></button>
-                        <button type="button" tabindex="0" data-title="line" title={l.line} name="authoring_line" id="authoring_line" class="btn btn-light auth_toolbar geometryTool tooltip_btn authoring_btn">/</button>
-                        <button type="button" tabindex="0" data-title="compass" title={l.compass} name="compass" id="authoring_compass" class="btn btn-light auth_toolbar geometryTool tooltip_btn authoring_btn"><i class="icomoon-compass1"></i></button>
+                        <button type="button" tabindex="0" data-title="scribble" data-bs-toggle="tooltip" title={l.scribble} name="authoring_scribble" id="authoring_scribble" class="btn btn-light auth_toolbar geometryTool authoring_btn active"><i class="icomoon-pencil"></i></button>
+                        <button type="button" tabindex="0" data-title="line" data-bs-toggle="tooltip" title={l.line} name="authoring_line" id="authoring_line" class="btn btn-light auth_toolbar geometryTool authoring_btn">/</button>
+                        <button type="button" tabindex="0" data-title="compass" data-bs-toggle="tooltip" title={l.compass} name="compass" id="authoring_compass" class="btn btn-light auth_toolbar geometryTool authoring_btn"><i class="icomoon-compass1"></i></button>
                     </div>
                     <div tabindex="0" class="btn-group mr-2" role="group" aria-label={l.removing_tools}>
-                        <button type="button" tabindex="0" data-title="eraser" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn tooltip_btn"><i class="icomoon-delete-sm"></i></button>
-                        <button type="button" title={l.clear_screen} tabindex="0"  name="clearScreen" id="authoring_clearScreen" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-close-2"></i></button>
-                        <button type="button" tabindex="0" title={l.redo} name="redo" id="authoring_redo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-redo-2"></i></button>
-                        <button type="button" tabindex="0" title={l.undo} name="undo" id="authoring_undo" disabled="disabled" class="btn btn-light tooltip_btn"><i class="icomoon-undo-2"></i></button>
+                        <button type="button" tabindex="0" data-title="eraser" data-bs-toggle="tooltip" title={l.delete_tool} name="eraser" id="authoring_eraser" class="btn btn-light auth_toolbar authoring_btn"><i class="icomoon-delete-sm"></i></button>
+                        <button type="button" data-bs-toggle="tooltip" title={l.clear_screen} tabindex="0"  name="clearScreen" id="authoring_clearScreen" disabled="disabled" class="btn btn-light"><i class="icomoon-close-2"></i></button>
+                        <button type="button" tabindex="0" data-bs-toggle="tooltip" title={l.redo} name="redo" id="authoring_redo" disabled="disabled" class="btn btn-light"><i class="icomoon-redo-2"></i></button>
+                        <button type="button" tabindex="0" data-bs-toggle="tooltip" title={l.undo} name="undo" id="authoring_undo" disabled="disabled" class="btn btn-light"><i class="icomoon-undo-2"></i></button>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label={l.answer_point}>
-                        <button type="button" tabindex="0" data-title="authoring_point" title={l.add_show_point} name="authoring_point" id="authoring_point" class="btn btn-light tooltip_btn">{l.add_point}</button>
+                        <button type="button" tabindex="0" data-title="authoring_point" data-bs-toggle="tooltip" title={l.add_show_point} name="authoring_point" id="authoring_point" class="btn btn-light">{l.add_point}</button>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label={l.access_mode}>
-                        <button type="button" tabindex="0" title={l.add_finish_point} name="focus_point" id="focus_point" class="btn btn-light tooltip_btn">{l.add_focus_pnt}</button>
+                        <button type="button" tabindex="0" data-bs-toggle="tooltip" title={l.add_finish_point} name="focus_point" id="focus_point" class="btn btn-light">{l.add_focus_pnt}</button>
                     </div>
                     <div class="btn-group mr-2" role="group" aria-label={l.def_mode}>
-                        <button type="button" tabindex="0" title={l.reset} name="default_button" id="reset_btn" class="btn btn-light tooltip_btn"><i class="icomoon-new-24px-reset-1"></i></button>
+                        <button type="button" tabindex="0" data-bs-toggle="tooltip" title={l.reset} name="default_button" id="reset_btn" class="btn btn-light"><i class="icomoon-new-24px-reset-1"></i></button>
                     </div>
                 </div>
                 <div id="add_point_msg" class="text-danger my-1">{l.delete_point_msg}</div>
@@ -1467,7 +1467,7 @@
             <div>
                 <div id="centerImg" class="centerImg authCenterImg my-auto relative ml-0">
                     <div class="btn-group position-absolute setting_btn">
-                        <button type="button" tabindex="0" title="Configuration" on:click={openModal} class="btn tooltip_btn btn-light p-1" >
+                        <button type="button" tabindex="0" title="Configuration" on:click={openModal} class="btn btn-light p-1" >
                             <i class="icomoon-24px-settings-1"></i>
                         </button>
                     </div>
