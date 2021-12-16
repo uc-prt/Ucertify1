@@ -514,7 +514,7 @@ DND_AUTH.elemModal = function(type, _this, key, bgImg, state = {}) {
                 if(selectedElement){
                     AI.select('#authoring-modal #lbl_border_size').value = selectedElement.style.borderWidth.slice(0, selectedElement.style.borderWidth.length-2);
                     AI.select('#authoring-modal #lbl_border_color').value = selectedElement.style.borderColor;
-                    const headingClass = selectedElement.classList.value.split(' ').filter(ele => ele.startsWith('heading'))
+                    const headingClass = selectedElement.classList.value.split(' ').filter(ele => ele.startsWith('heading') || ele.startsWith('content'))
                     AI.select('#authoring-modal #label_class').value = headingClass[0] || null;
                 }
                 DND_AUTH.visible_class = '.labal';
