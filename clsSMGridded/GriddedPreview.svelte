@@ -13,6 +13,7 @@
     import { afterUpdate, beforeUpdate, onMount } from 'svelte';
     import GriddedHelper from './GriddedHelper.svelte';
 
+    //debugger;
     export let isReview;
     export let xml;
     export let showAns;
@@ -69,6 +70,17 @@
         }
     }
 
+    // $:{
+    //     debugger;
+    //         try {
+    //             if (uxml == "<smans type='20'>\\n</smans>") {
+    //                 uxml = '';
+    //             }
+    //         } catch(error) {
+    //             console.warn({'error': error});
+    //         }
+    //     }
+
     onMount(()=>{
        
         AH.listen(document,'keydown','.td_data',((data,e)=>{
@@ -102,6 +114,7 @@
     }
 
     function parseXMLPreview(MYXML) {
+        //debugger;
 	    try {
 			
 			state.rowNum = MYXML.smxml._row;
@@ -115,15 +128,20 @@
 
             
             //if (window.uaXML) {
+                //debugger;
             if(uxml) {
-                
                     parseUserAns(uxml)
-                
+            // } else {
+            //     checkAns();
             }
 		} catch (error) {
                 let onError = error;
                 console.log({'error':error.message,'function name':'parseXMLPreview','File name':'GriddedPreview.js'});
         }
+    }
+
+    function checkAns() {
+        onUserAnsChange({uXml:'',ans:false});
     }
 
     function parseUserAns(uans) {
@@ -135,6 +153,8 @@
                 ans = userAns;
                 state.userList = userAns;
                 //forceUpdate();
+            // } else {
+            //     checkAns();
             }
     }
 
@@ -178,6 +198,7 @@
     }
 
     function setUserAns (event)  {
+        //debugger;
         let countRes;
         let resNew;
         let ansBool;
@@ -249,6 +270,7 @@
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
             uxml = userXML
+            //debugger
             onUserAnsChange({uXml:resNew,ans:ansBool});
         
         
@@ -346,9 +368,8 @@
             }
 
             uxml = userXML;
+            debugger;
             onUserAnsChange({uXml:resNew,ans:ansBool});
-        
-        
     }
 
     function rowValidation(event) {  
@@ -532,6 +553,7 @@
     ///////////////// Set review and unset review function//////////////
 
     function setReview() {
+       // debugger;
         AH.selectAll('.unCheck','attr',{'disabled':true});
         state.smController = "",
         state.pointerEvents = "none"
