@@ -482,29 +482,31 @@
                                 class={"matchlist_item " + ((isReview == true) ? 'drag-none ': '') + (checkBgColor(value.value) ? ' bg-primary text-white' : '') + " position-relative ui-draggable m-0 overflow-auto multiGrid"}
                                 style="width: {box_width};"
                             >
-                                {#if value.value.charAt(0) == "!"}
-                                    {#if value.value.charAt(1) == "*"}
+                                <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    {#if value.value.charAt(0) == "!"}
+                                        {#if value.value.charAt(1) == "*"}
+                                            <img
+                                                style="height: 70px; width: 100%; object-fit: contain;"
+                                                class="px-2"
+                                                src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
+                                                alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                                            />
+                                        {:else}
+                                            {#if value.value != "!undefined"}
+                                                {value.value.slice(1)}
+                                            {/if}
+                                        {/if}
+                                    {:else if value.value.charAt(0) == "*"}
                                         <img
                                             style="height: 70px; width: 100%; object-fit: contain;"
                                             class="px-2"
-                                            src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
+                                            src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
                                             alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                         />
                                     {:else}
-                                        {#if value.value != "!undefined"}
-                                            {value.value.slice(1)}
-                                        {/if}
+                                        {value.value}
                                     {/if}
-                                {:else if value.value.charAt(0) == "*"}
-                                    <img
-                                        style="height: 70px; width: 100%; object-fit: contain;"
-                                        class="px-2"
-                                        src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
-                                        alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                                    />
-                                {:else}
-                                    {value.value}
-                                {/if}
+                                </div>
                             </li>
                         {/each}
                     {/if}
@@ -521,45 +523,51 @@
                             class={'matchlist_item '+ ((showcorrectanswer == false) ? 'd-none' : '') + (isReview ? ' isreviewbgcolor drag-none ' : '') + ((value.ischecked == true) ? ' bg-primary text-white' : '')+ " position-relative ui-draggable m-0 overflow-auto multiGrid"}
                             style="width: {box_width};"
                         >
-                            {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-                                <div class="text-end pe-1 w-100 positionSticky">
-                                    
-                                    {#if value.iscorrect == true}
-                                        <i
-                                            class="icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status float-right"
+                            <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
+                                    <div class="text-end pe-1 positionSticky position-absolute w-100">
+                                
+                                        {#if value.iscorrect == true}
+                                            <i
+                                                class="icomoon-new-24px-checkmark-circle-1 s4 text-success userans_status float-right"
+                                            />
+                                        {:else}
+                                            <i
+                                                class="icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status float-right"
+                                            />
+                                        {/if}
+                                    </div>
+                                    <div style="height: 30px;" class="w-100"></div>
+                                {/if}
+                                
+                                <div class="w-100">
+                                    {#if value.value.charAt(0) == "!"}
+                                        {#if value.value.charAt(1) == "*"}
+                                            <img
+                                                img_val={value.value}
+                                                style="height: 70px; width: 100%; object-fit: contain;"
+                                                class="px-2"
+                                                src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
+                                                alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
+                                            />
+                                        {:else}
+                                            {#if value.value != "!undefined"}
+                                                {value.value.slice(1)}
+                                            {/if}
+                                        {/if}
+                                    {:else if value.value.charAt(0) == "*"}
+                                        <img
+                                            img_val={value.value}
+                                            style="height: 70px; width: 100%; object-fit: contain;"
+                                            class="px-2"
+                                            src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
+                                            alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                         />
                                     {:else}
-                                        <i
-                                            class="icomoon-new-24px-cancel-circle-1 s4 text-danger userans_status float-right"
-                                        />
+                                        {value.value}
                                     {/if}
                                 </div>
-                            {/if}
-                            {#if value.value.charAt(0) == "!"}
-                                {#if value.value.charAt(1) == "*"}
-                                    <img
-                                        img_val={value.value}
-                                        style="height: 70px; width: 100%; object-fit: contain;"
-                                        class="px-2"
-                                        src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split('!')[1].split("##")[0].slice(1)}"
-                                        alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                                    />
-                                {:else}
-                                    {#if value.value != "!undefined"}
-                                        {value.value.slice(1)}
-                                    {/if}
-                                {/if}
-                            {:else if value.value.charAt(0) == "*"}
-                                <img
-                                    img_val={value.value}
-                                    style="height: 70px; width: 100%; object-fit: contain;"
-                                    class="px-2"
-                                    src="//s3.amazonaws.com/jigyaasa_content_static/{value.value.split("##")[0].slice(1)}"
-                                    alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
-                                />
-                            {:else}
-                                {value.value}
-                            {/if}
+                            </div>
                         </li>
                     {/each}
                 </ul>
