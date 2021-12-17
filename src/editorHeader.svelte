@@ -760,12 +760,12 @@
                         type="button"
                         tabIndex="0"
                         class="btn_design backbtncomp r-sm bg-transparent"
-                        data-bs-placement="bottom"
                         data-bs-toggle="dropdown"
+                        data-toggle="dropdown"
                     >
                         <span class="icomoon-info s3"></span>Info
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-left info_controls">
+                    <ul class="dropdown-menu dropdown-menu-left info_controls" aria-labelledby="infoButton">
                         <Menuitem on:click={showItemMeta}>
                             <span>
                                 <span class="icomoon-globe-2 mr-sm"></span>
@@ -781,12 +781,12 @@
                     type="button"
                     tabIndex="0"
                     class="btn_design backbtncomp r-sm bg-transparent"
-                    data-bs-placement="top"
                     data-bs-toggle="dropdown"
+                    data-toggle="dropdown"
                 >
                     <span class="icomoon-help s3"></span>Help
                 </button>
-                <ul class="dropdown-menu dropdown-menu-left help_controls">
+                <ul class="dropdown-menu dropdown-menu-left help_controls" aria-labelledby="helpButton">
                     <Menuitem on:click={handleHelp}>
                         <span>
                             <span class="icomoon-24px-help-video mr-sm"></span> Help Video
