@@ -1,7 +1,7 @@
 import JUI, {Draggable} from '../src/libs/javscript_helper/JUI.js';
 const JS = new JUI();
 
-
+let previous_droped_item = {};
 export default class fillJS {
 	constructor(options) {
 		//super();
@@ -11,7 +11,7 @@ export default class fillJS {
 		this.delPreSpaces = {};
 		this.init();
 		this.iscorrect = '-2';
-		this.previous_droped_item = {};
+		
 	}
 	init() {
 		this.delPreSpaces = {
@@ -202,10 +202,10 @@ export default class fillJS {
 					if (drag_id && JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
 						this.dnd.disableDrag('#' + drag_id);
 						// Remove the dragable disabled from previous
-						if (Object.entries(this.previous_droped_item) && this.previous_droped_item[drop_target]) {
-							this.previous_droped_item[drop_target].setAttribute('draggable','true');
-							this.previous_droped_item[drop_target].setAttribute('aria-disabled','false');
-							this.previous_droped_item[drop_target].classList.remove('ui-draggable-disabled', 'ui-state-disabled');
+						if (previous_droped_item && Object.entries(previous_droped_item) && previous_droped_item[drop_target]) {
+							previous_droped_item[drop_target].setAttribute('draggable','true');
+							previous_droped_item[drop_target].setAttribute('aria-disabled','false');
+							previous_droped_item[drop_target].classList.remove('ui-draggable-disabled', 'ui-state-disabled');
 						}
 						
 						// Add the diabled features to current droped item
@@ -213,7 +213,7 @@ export default class fillJS {
 						selected.setAttribute('draggable','false');
 						selected.setAttribute('aria-disabled','true');
 						selected.classList.add('ui-draggable-disabled', 'ui-state-disabled');
-						this.previous_droped_item[drop_target] = selected;
+						previous_droped_item[drop_target] = selected;
 					}
 				}
 				this.checkAns(fillid);
@@ -294,6 +294,7 @@ export default class fillJS {
 						_this.classList.remove("copiedclr");
 					}
 				});
+				//const drop_id = dragElm.getAttribute('droped') ? dragElm.getAttribute('droped') : dragElm.getAttribute('id');
 				copied_id = copy_drag.id;
 				copy_drag.classList.add('copiedclr');
 			} else {
@@ -305,7 +306,6 @@ export default class fillJS {
 		function pasteDraggable() {
 			//var paste_drag = $(fillid).find(".ks:focus");
 			var paste_drag = JS.select(fillid+" .ks:focus");
-			debugger;
 			//if (copied_id != "" && paste_drag.hasClass('dropable')) {
 			if (copied_id != "" && paste_drag.classList.contains('dropable')) {
 				//var _this_drag = $(".footerstr").find("#"+copied_id+"");
@@ -323,7 +323,7 @@ export default class fillJS {
 				// 	$(fillid).find('#'+$(paste_drag).attr("droped")).draggable('enable');
 				// }
 				if(paste_drag.getAttribute("droped").trim() != "" ) {
-					JS.find(fillid,'#'+paste_drag).getAttribute("droped");
+					//JS.find(fillid,'#'+paste_drag).getAttribute("droped");
 				}
 				// if ($.browser.msie && $(fillid).find('#'+drop_id).text() == "") {
 				// 	$(_this_drag).css("background-color","transparent");
@@ -340,6 +340,8 @@ export default class fillJS {
 				paste_drag.setAttribute('userans',drop_id);
 				let _this_drag_style = window.getComputedStyle(_this_drag);
 				paste_drag.style.backgroundColor = _this_drag_style.getPropertyValue('background-color');
+				paste_drag.setAttribute('droped',drop_id);
+				paste_drag.setAttribute('path',_this_drag.getAttribute('path'));
 
 
 
@@ -347,7 +349,7 @@ export default class fillJS {
 
 				// .draggable($.extend(ucFill.dragOptionFill,{revert:false}))
 				// .attr({'droped':drop_id,'path':$(_this_drag).attr('path')});
-				drop_target = $(paste_drag).attr("id");
+				drop_target = paste_drag.getAttribute("id");
 				ucFill.checkAns(fillid);
 	
 				dragStop(_this_drag);
@@ -355,66 +357,168 @@ export default class fillJS {
 			}
 		}
 
+		function disableDrag(target) {
+			let selected = (typeof target == 'object') ? target : document.querySelector(target);
+			if (selected) {
+				selected.removeAttribute(['dragable','draggable']);
+				selected.classList.remove('dragable')
+			}
+		}
+
+
+		function dragStop(_this_drag) {
+			let drop_id = _this_drag.getAttribute('userans');
+			if(_this_drag.classList.contains('dropable')) {
+				if (_this_drag.getAttribute("drag_enable")) {
+					//$(fillid).find('#'+$(_this_drag).attr('droped')).draggable('enable');
+					_this_drag.getAttribute('droped');
+				}
+
+				_this_drag.style.backgroundColor = _this_drag.getAttribute('bgcolor');
+				_this_drag.innerText = _this_drag.getAttribute('caption');
+				_this_drag.setAttribute('droped','');
+				_this_drag.setAttribute('userans','');
+
+
+			}
+			//drag_id = $(_this_drag).attr("id");
+			drag_id = _this_drag.getAttribute("id");
+			
+			if(JS.select("#"+drag_id).classList.contains('dropable')) {
+				var rel_id = drop_target && JS.select('#' + drop_target).getAttribute('droped');
+				if (rel_id && JS('#' + rel_id).getAttribute('drag-single') == 1) {
+					//$('#' + rel_id).draggable({ disabled: true });
+					
+				
+				} 
+				else {
+					
+					// if (JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
+						//disableDrag('#' + drag_id);
+						if (JS.select('#'+drop_id)) { //&& previous_droped_item[copied_id]
+							JS.select('#'+drop_id).setAttribute('draggable','true');
+							JS.select('#'+drop_id).setAttribute('aria-disabled','false');
+							JS.select('#'+drop_id).classList.remove('ui-draggable-disabled', 'ui-state-disabled');
+						}
+						
+						// // Add the diabled features to current droped item
+						//let selected = document.querySelector('#' + drag_id);
+						// selected.setAttribute('draggable','false');
+						// selected.setAttribute('aria-disabled','true');
+						// selected.classList.add('ui-draggable-disabled', 'ui-state-disabled');
+						// previous_droped_item[drop_target] = selected;
+	
+						
+					//}
+				}
+			} else {
+				if (JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
+					disableDrag('#' + drag_id);
+					if (Object.entries(previous_droped_item) && previous_droped_item[drop_target]) {
+						previous_droped_item[drop_target].setAttribute('draggable','true');
+						previous_droped_item[drop_target].setAttribute('aria-disabled','false');
+						previous_droped_item[drop_target].classList.remove('ui-draggable-disabled', 'ui-state-disabled');
+					}
+					
+					// // Add the diabled features to current droped item
+					let selected = document.querySelector('#' + drag_id);
+					selected.setAttribute('draggable','false');
+					selected.setAttribute('aria-disabled','true');
+					selected.classList.add('ui-draggable-disabled', 'ui-state-disabled');
+					previous_droped_item[drop_target] = selected;
+
+					
+				}
+			}
+			setTimeout(function() {ucFill.checkAns(fillid)},100);
+			drop_target="";
+		}
+
+		function removeDraggable() {
+			//var remove_id = $(fillid).find(".ks:focus");
+			var remove_id = JS.select(fillid+" .ks:focus");
+			if (remove_id.getAttribute("droped")) {
+				//$(remove_id).data("drag_enable",true);
+				remove_id.setAttribute("drag_enable",true);
+				dragStop(remove_id);
+			}
+		}
+
 		JS.listen(document,'keydown','.dragable',function(data,e){
 			if(e.which === 13) {
-				console.log('checking');
-				copyDraggable();
+				//debugger;
+				if (!window.isReview) {
+					copyDraggable();
+				}
 			}
 		})
 
 		JS.listen(document,'keydown','.dropable',function(data,e){
 			if(e.which === 13) {
-				console.log('checking');
-				pasteDraggable();
-			}
+				if (!window.isReview) {
+					pasteDraggable();
+				}
+			} else if(e.which === 8) {
+				if (!window.isReview) {
+					removeDraggable();
+				}
+			}			
 		})
+
+		// JS.listen(document,'keydown','.dropable',function(data,e){
+		// 	if(e.which === 8) {
+		// 		removeDraggable();
+		// 	}
+		// })
+
+		
 
 
 
 		
-		if (typeof hotkeys == 'function') {
-			hotkeys.unbind('alt+down,enter,delete,esc','fillintheblank');
-			hotkeys("alt+down,enter,delete,esc",'fillintheblank', (event, handler)=> {
-				switch (handler.key) {
-					case 'alt+down' :
-						activateKs();
-					break;
-					case 'enter' :
-						if ($("#sm_controller").css("display") == "none") {
-							if (checkFocus("dragable")) {
-								copyDraggable();
-							} else if (checkFocus("dropable")) {
-								pasteDraggable();
-							}
-						}
-					break;
-					case 'delete' :
-						if ($("#sm_controller").css("display") == "none") {
-							if (checkFocus("dropable")) {
-								removeDraggable();
-							}
-						}
-					break;
-					case 'esc' :
-						if ($("#sm_controller").css("display") == "none") {
-							if (checkFocus("ks")) {
-								$(fillid).find(".copiedclr").removeClass("copiedclr");
-								count = 0;
-								count_prev = 0;
-								copied_id = "";
-								ks_activated = false;
-								$('.ks').last().focus();
-								$('.ks').last().blur();
-							}	
-						}
-					break;
-				}
-			});
-			hotkeys.setScope('fillintheblank');
-			hotkeys.filter = function(event) {
-				return true;
-			}
-		}
+		// if (typeof hotkeys == 'function') {
+		// 	hotkeys.unbind('alt+down,enter,delete,esc','fillintheblank');
+		// 	hotkeys("alt+down,enter,delete,esc",'fillintheblank', (event, handler)=> {
+		// 		switch (handler.key) {
+		// 			case 'alt+down' :
+		// 				activateKs();
+		// 			break;
+		// 			case 'enter' :
+		// 				if ($("#sm_controller").css("display") == "none") {
+		// 					if (checkFocus("dragable")) {
+		// 						copyDraggable();
+		// 					} else if (checkFocus("dropable")) {
+		// 						pasteDraggable();
+		// 					}
+		// 				}
+		// 			break;
+		// 			case 'delete' :
+		// 				if ($("#sm_controller").css("display") == "none") {
+		// 					if (checkFocus("dropable")) {
+		// 						removeDraggable();
+		// 					}
+		// 				}
+		// 			break;
+		// 			case 'esc' :
+		// 				if ($("#sm_controller").css("display") == "none") {
+		// 					if (checkFocus("ks")) {
+		// 						$(fillid).find(".copiedclr").removeClass("copiedclr");
+		// 						count = 0;
+		// 						count_prev = 0;
+		// 						copied_id = "";
+		// 						ks_activated = false;
+		// 						$('.ks').last().focus();
+		// 						$('.ks').last().blur();
+		// 					}	
+		// 				}
+		// 			break;
+		// 		}
+		// 	});
+		// 	hotkeys.setScope('fillintheblank');
+		// 	hotkeys.filter = function(event) {
+		// 		return true;
+		// 	}
+		// }
 		
 	}
 

@@ -427,7 +427,6 @@
 			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 			if (mathItem) {
 				AH.selectAll('.fillintheblank','attr',{'disabled':true});
-		    	//console.log(AH.selectAll('.fillintheblank'));
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
@@ -474,7 +473,6 @@
 
 	// for displaying the answer
 	function displayAns(e) {
-		//console.trace();
 		//check the ans and create user ans
 		let ans =  !anserDisable && ucFill.checkAns(ajax_eId) || 'Incorrect';
 		// To save the user answer
@@ -867,7 +865,6 @@
 		let drop = '<div id="elem'+i+'" tabindex="0" dropzone="1" class="drag-resize dropable ks" path="//s3.amazonaws.com/jigyaasa_content_static/" anskey="'+dropAns.slice(0,-1)+'" caption="" userans="'+userAnswer+'" droped="'+userAnswer+'" bgcolor="#FFFFCC" style="background-color: rgb(255, 255, 204); min-width: 50px; height: auto; padding: 5px 10px 5px;">'+userAnswer+'</div>';
 		// replace the cdata
 		cdata = cdata.replace(originalData,drop);
-		//console.log('cdata',cdata);
 		state.footerStr = true;
 	}
 	/*----------------------------------------------------------------- */
