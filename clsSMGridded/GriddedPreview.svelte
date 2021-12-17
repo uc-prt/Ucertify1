@@ -219,13 +219,11 @@
                     }   
                 }
                 if (c == user.length) {
-                   
                     countRes = l.correct
                     isAnswerCorrect = true;
                     c = 0;
                 //return true;
                 } else {
-                   
                     countRes = l.incorrect;
                     isAnswerCorrect = false;
                     c = 0;
@@ -255,7 +253,7 @@
                 AH.select("#answer",'attr',{"checked":isAnswerCorrect});
             }
             uxml = userXML
-            onUserAnsChange({uXml:resNew,ans:ansBool});
+            onUserAnsChange({uXml:resNew,ans:ansBool,debug:true});
         
         
     }
@@ -352,7 +350,7 @@
             }
 
             uxml = userXML;
-            onUserAnsChange({uXml:resNew,ans:ansBool});
+            onUserAnsChange({uXml:resNew,ans:ansBool,debug:true});
 
 
     }
