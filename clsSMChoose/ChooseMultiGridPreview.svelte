@@ -525,7 +525,7 @@
                         >
                             <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                                 {#if targetView == 'block' && showcorrectanswer == true && value.ischecked == false}
-                                    <div class="text-end pe-1 w-100 positionSticky">
+                                    <div class="text-end pe-1 positionSticky position-absolute w-100">
                                 
                                         {#if value.iscorrect == true}
                                             <i
@@ -537,6 +537,7 @@
                                             />
                                         {/if}
                                     </div>
+                                    <div style="height: 30px;" class="w-100"></div>
                                 {/if}
                                 
                                 <div class="w-100">
