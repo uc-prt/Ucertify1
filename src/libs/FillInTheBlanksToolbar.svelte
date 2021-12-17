@@ -993,7 +993,7 @@
         width: 80px;
         height: 58px;
         padding: 20px;
-        border-right: 1px solid #91653E;
+        border-right: 0px solid #91653E;
     }
 
     .first_btn:hover,
@@ -1013,7 +1013,7 @@
     .scnd_btn,
     .fourth_btn {
         border-top: 1px solid #91653E;
-        border-bottom: 1px solid #91653E;
+        border-bottom: 0px solid #91653E;
     }
 
     .columns_design {

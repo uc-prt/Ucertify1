@@ -1,6 +1,7 @@
 import JUI, {Draggable} from '../src/libs/javscript_helper/JUI.js';
 const JS = new JUI();
 
+
 export default class fillJS {
 	constructor(options) {
 		//super();
@@ -284,7 +285,93 @@ export default class fillJS {
 		// 	}
 		// });
 
-		/*
+
+		function copyDraggable() {
+			var copy_drag = JS.select(fillid+" .ks:focus");
+			if(copy_drag.classList.contains('dragable') && !copy_drag.classList.contains('ui-state-disabled')) {
+				JS.selectAll(fillid + ' .dragable').forEach(function(_this){
+					if(_this.classList.contains('copiedclr')) {
+						_this.classList.remove("copiedclr");
+					}
+				});
+				copied_id = copy_drag.id;
+				copy_drag.classList.add('copiedclr');
+			} else {
+				showmsg('You cannot drop this, as it is already dropped', 3);
+			}
+		}
+
+
+		function pasteDraggable() {
+			//var paste_drag = $(fillid).find(".ks:focus");
+			var paste_drag = JS.select(fillid+" .ks:focus");
+			debugger;
+			//if (copied_id != "" && paste_drag.hasClass('dropable')) {
+			if (copied_id != "" && paste_drag.classList.contains('dropable')) {
+				//var _this_drag = $(".footerstr").find("#"+copied_id+"");
+				var _this_drag = JS.select('.footerStr '+"#"+copied_id)
+
+				//_this_drag.removeClass("copiedclr");
+				_this_drag.classList.remove("copiedclr");
+				//$(_this_drag).data("drag_enable",true);
+				_this_drag.setAttribute("drag_enable",true)
+	
+				//var drop_id = $(_this_drag).attr('droped')?$(_this_drag).attr('droped'):$(_this_drag).attr('id');
+				var drop_id = _this_drag.getAttribute('droped') ? _this_drag.getAttribute('droped') : _this_drag.getAttribute('id');
+				
+				// if ($.trim($(paste_drag).attr("droped")) != "") {
+				// 	$(fillid).find('#'+$(paste_drag).attr("droped")).draggable('enable');
+				// }
+				if(paste_drag.getAttribute("droped").trim() != "" ) {
+					JS.find(fillid,'#'+paste_drag).getAttribute("droped");
+				}
+				// if ($.browser.msie && $(fillid).find('#'+drop_id).text() == "") {
+				// 	$(_this_drag).css("background-color","transparent");
+				// }
+
+				if (JS.find(fillid,'#'+drop_id).innerText == "") {
+					_this_drag.style.backgroundColor ="transparent";
+				}
+
+
+				//$(paste_drag).html($(_this_drag).html()).attr('userans',drop_id).css({"background-color":$(_this_drag).css("background-color")})
+
+				paste_drag.innerHTML = _this_drag.innerHTML;
+				paste_drag.setAttribute('userans',drop_id);
+				let _this_drag_style = window.getComputedStyle(_this_drag);
+				paste_drag.style.backgroundColor = _this_drag_style.getPropertyValue('background-color');
+
+
+
+
+
+				// .draggable($.extend(ucFill.dragOptionFill,{revert:false}))
+				// .attr({'droped':drop_id,'path':$(_this_drag).attr('path')});
+				drop_target = $(paste_drag).attr("id");
+				ucFill.checkAns(fillid);
+	
+				dragStop(_this_drag);
+				copied_id = "";
+			}
+		}
+
+		JS.listen(document,'keydown','.dragable',function(data,e){
+			if(e.which === 13) {
+				console.log('checking');
+				copyDraggable();
+			}
+		})
+
+		JS.listen(document,'keydown','.dropable',function(data,e){
+			if(e.which === 13) {
+				console.log('checking');
+				pasteDraggable();
+			}
+		})
+
+
+
+		
 		if (typeof hotkeys == 'function') {
 			hotkeys.unbind('alt+down,enter,delete,esc','fillintheblank');
 			hotkeys("alt+down,enter,delete,esc",'fillintheblank', (event, handler)=> {
@@ -328,8 +415,10 @@ export default class fillJS {
 				return true;
 			}
 		}
-		*/
+		
 	}
+
+	
 
 	checkFocus(list) {
 		this.checkAns && this.checkAns(ajax_eId);
@@ -349,8 +438,10 @@ export default class fillJS {
 			this.showchilddragans(fillid, _this, ansType, review);
 		});
 	}
+
 	
-	showchilddragans(fillid, pElem, ansType, review) { 
+	
+	showchilddragans(fillid, pElem, ansType, review) {
 		let is_correct = -2;
 		if (pElem.classList.contains('dropable')) {
 			pElem.innerHTML = pElem.getAttribute('caption').replace(/\#doublequote#/gmi,'"');
@@ -425,8 +516,13 @@ export default class fillJS {
 						anskey.forEach((value, index)=> {
 							tooltip += "(" + (index + 1) + ") " + value.replace(/#cm/g,',')  + "<br>"
 						});
-						JS.setAttr(pElem, {'rel': 'multiple_answers', 'title' : tooltip + '</p>' , 'data-html': 'true'});
-						//$('[rel="multiple_answers"]').tooltip();
+						setTimeout(function(){
+							JS.select(pElem,'attr', {'rel': 'multiple_answers', 'title' : tooltip + '</p>' , 'data-original-title' : tooltip + '</p>' , 'data-placement':'top','data-toggle':'tooltip',});
+							//$('[rel="multiple_answers"]').tooltip();
+							//JS.enableBsAll("[data-toggle='tooltip']", 'Tooltip', {container: 'body'});
+						},300)
+						
+						
 					}
 					pElem.value = pElem.getAttribute("anskey").replace(/#cm/g,',');
 				} else if (ansType=='u') {  //user answer

@@ -12,7 +12,7 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import FillInTheBlanksToolbar from "./../src/libs/FillInTheBlanksToolbar.svelte";
 	import { writable } from 'svelte/store';
-	import { beforeUpdate, onMount } from 'svelte';
+	import { beforeUpdate, onMount,afterUpdate } from 'svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
@@ -41,7 +41,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
-	let preReview = isReview;
+	let preReview = !isReview;
 	
 	let hdd = writable({
 			matchtype : "0",
@@ -69,11 +69,15 @@
 		}
 	}
 
+	
+
 	onMount(async()=> {
 		if (in_editor) {
 			AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 		}
 		AH.addScript("", window.itemUrl + "src/libs/mathQuill_new.js");
+		
+		//AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
 
 		ucFill.setUpdate(updateModule.bind(this));
 		let mathItem = document.getElementById(containerID);
@@ -102,6 +106,7 @@
 	** any thing changes in xml this function will call automatically
 	*/
 	beforeUpdate(() => {
+		
 		// for checking that there is change in the xml
 		if (xml != state.xml) {
 			if (editorState && editorState.stopPreviewUpdate == true) {
@@ -437,7 +442,10 @@
 		AH.selectAll('.mathquill', 'css', {'border': 'none'});
 		ucFill.modeOn();
 		AH.selectAll('.remed_disable, .corr_div', 'hide');
-		ucFill.showdragans(ajax_eId, 'u', 0);
+		setTimeout(function(){
+			ucFill.showdragans(ajax_eId, 'u', 0);
+		},300)
+		
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		autoresize();
@@ -766,7 +774,7 @@
 		});
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
-		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
+		let tag = `<div id="elem${i}" class="fillelement" tabindex ="0">${selectbox}</div>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData,tag);
 	}
@@ -906,11 +914,12 @@
 			id={containerID}
 			class="fillmain {isReview ? 'pe-none' : null}"
 			matchtype={state.matchtype}
+			tabindex="0"
 			multi={state.multi}
 			ignoretype={state.ignoretype}
 			manual_grade={manual_grade || 0}
 			totalcorrectans={state.totalcorrectans}
-			style='font-family:"Open Sans",sans-serif; font-size: 15px'
+			style='font-family: Roboto, sans-serif;font-size: 1em;'
 		>
 	
 		<div class="string" id="previewArea"></div>
@@ -1099,12 +1108,12 @@
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
-		color: #555;
+		color: #171718;
 		background-color: #FFE;
 		vertical-align: middle;
 		background-image: none;
 		border: 1px solid #ccc;
-		font-family: Helvetica,Arial,'Times New Roman',Verdana,sans-serif;
+		font-family: Roboto, sans-serif;
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 		-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;

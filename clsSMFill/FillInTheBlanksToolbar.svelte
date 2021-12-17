@@ -985,7 +985,7 @@
         width: 80px;
         height: 58px;
         padding: 20px;
-        border-right: 1px solid #91653E;
+        border-right: 0px solid #91653E;
     }
 
     .first_btn:hover,
