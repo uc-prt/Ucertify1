@@ -635,7 +635,11 @@
 						if(latex != undefined)
 						AH.select('#'+mathItemId, 'text', latex); 
 					} else {
-						AH.select('#'+mathItemId, 'text', _this.getAttribute('userans'));
+						let usans = _this.getAttribute('userans');
+						if(usans != null) {
+							AH.select('#'+mathItemId, 'text', usans);
+						}
+						
 					}
 					/**
 					 * According to Api doc

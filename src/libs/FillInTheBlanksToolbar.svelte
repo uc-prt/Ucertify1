@@ -992,7 +992,7 @@
         text-align: center;
         width: 80px;
         height: 58px;
-        padding: 20px;
+        padding: 12px;
         border-right: 0px solid #91653E;
     }
 
