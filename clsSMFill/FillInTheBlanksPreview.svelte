@@ -1160,7 +1160,7 @@
 		height:auto!important;
 	}
 	:global(.auto_width) {
-		width:auto;
+		width:auto!important;
 	}
 	:global(.prettyprint) {
 		display: -ms-grid!important;
