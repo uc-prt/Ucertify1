@@ -12,7 +12,7 @@
 	import ItemHelper from '../helper/ItemHelper.svelte';
 	import FillInTheBlanksToolbar from "./../src/libs/FillInTheBlanksToolbar.svelte";
 	import { writable } from 'svelte/store';
-	import { beforeUpdate, onMount } from 'svelte';
+	import { beforeUpdate, onMount,afterUpdate } from 'svelte';
 	import { AH, onUserAnsChange, XMLToJSON } from '../helper/HelperAI.svelte';
 
 	//Mathquill, seq is important and mathquil is dependent on query, so do not remove this
@@ -41,7 +41,7 @@
 	let containerID = "fillmain";
 	globalThis.ajax_eId = "#fillmain";
 	let state = {};
-	let preReview = isReview;
+	let preReview = !isReview;
 	
 	let hdd = writable({
 			matchtype : "0",
@@ -69,11 +69,15 @@
 		}
 	}
 
+	
+
 	onMount(async()=> {
 		if (in_editor) {
 			AH.addScript("", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js");
 		}
 		AH.addScript("", window.itemUrl + "src/libs/mathQuill_new.js");
+		
+		//AH.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
 
 		ucFill.setUpdate(updateModule.bind(this));
 		let mathItem = document.getElementById(containerID);
@@ -102,6 +106,7 @@
 	** any thing changes in xml this function will call automatically
 	*/
 	beforeUpdate(() => {
+		
 		// for checking that there is change in the xml
 		if (xml != state.xml) {
 			if (editorState && editorState.stopPreviewUpdate == true) {
@@ -422,7 +427,6 @@
 			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 			if (mathItem) {
 				AH.selectAll('.fillintheblank','attr',{'disabled':true});
-		    	//console.log(AH.selectAll('.fillintheblank'));
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
@@ -437,7 +441,10 @@
 		AH.selectAll('.mathquill', 'css', {'border': 'none'});
 		ucFill.modeOn();
 		AH.selectAll('.remed_disable, .corr_div', 'hide');
-		ucFill.showdragans(ajax_eId, 'u', 0);
+		setTimeout(function(){
+			ucFill.showdragans(ajax_eId, 'u', 0);
+		},300)
+		
 		let mathItem = document.getElementById(containerID);
 		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 		autoresize();
@@ -466,7 +473,6 @@
 
 	// for displaying the answer
 	function displayAns(e) {
-		//console.trace();
 		//check the ans and create user ans
 		let ans =  !anserDisable && ucFill.checkAns(ajax_eId) || 'Incorrect';
 		// To save the user answer
@@ -629,7 +635,11 @@
 						if(latex != undefined)
 						AH.select('#'+mathItemId, 'text', latex); 
 					} else {
-						AH.select('#'+mathItemId, 'text', _this.getAttribute('userans'));
+						let usans = _this.getAttribute('userans');
+						if(usans != null) {
+							AH.select('#'+mathItemId, 'text', usans);
+						}
+						
 					}
 					/**
 					 * According to Api doc
@@ -766,7 +776,7 @@
 		});
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
-		let tag = `<div id="elem${i}" class="fillelement">${selectbox}</div>`;
+		let tag = `<div id="elem${i}" class="fillelement" tabindex ="0">${selectbox}</div>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData,tag);
 	}
@@ -859,7 +869,6 @@
 		let drop = '<div id="elem'+i+'" tabindex="0" dropzone="1" class="drag-resize dropable ks" path="//s3.amazonaws.com/jigyaasa_content_static/" anskey="'+dropAns.slice(0,-1)+'" caption="" userans="'+userAnswer+'" droped="'+userAnswer+'" bgcolor="#FFFFCC" style="background-color: rgb(255, 255, 204); min-width: 50px; height: auto; padding: 5px 10px 5px;">'+userAnswer+'</div>';
 		// replace the cdata
 		cdata = cdata.replace(originalData,drop);
-		//console.log('cdata',cdata);
 		state.footerStr = true;
 	}
 	/*----------------------------------------------------------------- */
@@ -906,11 +915,12 @@
 			id={containerID}
 			class="fillmain {isReview ? 'pe-none' : null}"
 			matchtype={state.matchtype}
+			tabindex="0"
 			multi={state.multi}
 			ignoretype={state.ignoretype}
 			manual_grade={manual_grade || 0}
 			totalcorrectans={state.totalcorrectans}
-			style='font-family:"Open Sans",sans-serif; font-size: 15px'
+			style='font-family: Roboto, sans-serif;font-size: 1em;'
 		>
 	
 		<div class="string" id="previewArea"></div>
@@ -1099,12 +1109,12 @@
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
-		color: #555;
+		color: #171718;
 		background-color: #FFE;
 		vertical-align: middle;
 		background-image: none;
 		border: 1px solid #ccc;
-		font-family: Helvetica,Arial,'Times New Roman',Verdana,sans-serif;
+		font-family: Roboto, sans-serif;
 		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 		-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
