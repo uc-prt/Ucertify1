@@ -492,7 +492,7 @@
                                         />
                                     {:else}
                                         {#if value.value != "!undefined"}
-                                            {value.value.slice(1)}
+                                        <div class="position-absolute w-100" style="top: 30%; left: 0; right: 0;">{value.value.slice(1)}</div>
                                         {/if}
                                     {/if}
                                 {:else if value.value.charAt(0) == "*"}
@@ -503,7 +503,7 @@
                                         alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                     />
                                 {:else}
-                                    {value.value}
+                                <div class="position-absolute w-100" style="top: 30%; left: 0; right: 0;">{value.value}</div>
                                 {/if}
                             </li>
                         {/each}
@@ -546,7 +546,7 @@
                                     />
                                 {:else}
                                     {#if value.value != "!undefined"}
-                                        {value.value.slice(1)}
+                                        <div class="position-absolute w-100" style="top: 30%; left: 0; right: 0;">{value.value.slice(1)}</div>
                                     {/if}
                                 {/if}
                             {:else if value.value.charAt(0) == "*"}
@@ -558,7 +558,7 @@
                                     alt={(value.value.split("##")[1]) ? value.value.split("##")[1] :null}
                                 />
                             {:else}
-                                {value.value}
+                            <div class="position-absolute w-100" style="top: 30%; left: 0; right: 0;">{value.value}</div>
                             {/if}
                         </li>
                     {/each}

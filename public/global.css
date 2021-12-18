@@ -6870,7 +6870,8 @@ pre.black.prettyprint.linenums.hidelinenums {
   display:block;
 }
 
-#authoringSection .uc_answer_hint li:last-child, #authoringSection .uc_answer_hint, #authoringSection .board, #authoringSection ul, #authoringSection ol, #authoringSection div[data-section*="sec_button"] .ins_ans.space-15:last-child, #authoringSection .drop_list, #authoringSection .def_factbox, #authoringSection .panel {
+#authoringSection .uc_answer_hint li:last-child, #authoringSection .uc_answer_hint, #authoringSection .board, #authoringSection ul, #authoringSection ol, #authoringSection div[data-section*="sec_button"] .ins_ans.space-15:last-child, #authoringSection .drop_list, #authoringSection .def_factbox, #authoringSection .panel, 
+#columnize ul, #columnize ol {
   margin-bottom:0!important;
 }
 #authoringSection #slide {
