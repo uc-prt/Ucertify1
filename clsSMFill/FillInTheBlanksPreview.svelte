@@ -410,6 +410,7 @@
 	function setReview() {
 		isReview = true;
 		window.isReview = true;
+		window.learn = true;
 		// For mathqul based 
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
@@ -444,6 +445,7 @@
 	function unsetReview() {
 		AH.selectAll('.fillintheblank','attr',{'disabled':false});
 		isReview = false;
+		window.learn = false;
 		AH.selectAll('.mathquill', 'css', {'border': 'none'});
 		ucFill.modeOn();
 		AH.selectAll('.remed_disable, .corr_div', 'hide');

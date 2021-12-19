@@ -392,13 +392,13 @@ export default class fillJS {
 				
 				} 
 				else {
-					
 					// if (JS.select('#' + drag_id).getAttribute('drag-single') == 1 && drop_target != "") {
 						//disableDrag('#' + drag_id);
 						if (JS.select('#'+drop_id)) { //&& previous_droped_item[copied_id]
 							JS.select('#'+drop_id).setAttribute('draggable','true');
 							JS.select('#'+drop_id).setAttribute('aria-disabled','false');
 							JS.select('#'+drop_id).classList.remove('ui-draggable-disabled', 'ui-state-disabled');
+							JS.select('#'+drop_id).classList.add('dragable');
 						}
 						
 						// // Add the diabled features to current droped item
@@ -446,8 +446,7 @@ export default class fillJS {
 
 		JS.listen(document,'keydown','.dragable',function(data,e){
 			if(e.which === 13) {
-				//debugger;
-				if (!window.isReview) {
+				if (!window.learn) {
 					copyDraggable();
 				}
 			}
@@ -455,11 +454,11 @@ export default class fillJS {
 
 		JS.listen(document,'keydown','.dropable',function(data,e){
 			if(e.which === 13) {
-				if (!window.isReview) {
+				if (!window.learn) {
 					pasteDraggable();
 				}
 			} else if(e.which === 8) {
-				if (!window.isReview) {
+				if (!window.learn) {
 					removeDraggable();
 				}
 			}			
