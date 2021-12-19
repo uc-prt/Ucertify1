@@ -426,7 +426,13 @@
 			let mathItem = document.getElementById(containerID);
 			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
 			if (mathItem) {
+				if(AI.selectAll('.textarea').length > 0) {
+					AI.selectAll('.textarea').forEach((_this)=>{
+    					_this.setAttribute('disabled','true');
+					})
+				}
 				AH.selectAll('.fillintheblank','attr',{'disabled':true});
+
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
@@ -1154,7 +1160,7 @@
 		height:auto!important;
 	}
 	:global(.auto_width) {
-		width:auto;
+		width:auto!important;
 	}
 	:global(.prettyprint) {
 		display: -ms-grid!important;
