@@ -933,6 +933,7 @@
                                         <span 
                                         class="icomoon-help float-right s4" 
                                         data-bs-toggle="tooltip" 
+                                        data-bs-html="true"
                                         title="{`1. attr_match?HTML?tag name&#123;1&#125;?occurance.(for tag match)&#013;
                                                 2. attr_match?HTML?tag name&#123;string that has to be check inside tag's innerHTML&#123;2&#125;?occurance.(for string match inside perticular tag) &#013;
                                                 3. attr_match?HTML?tag name&#123;attribute&#123;3&#125;?occurance.(for attribute match of perticular tag) &#013;
