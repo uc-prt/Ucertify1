@@ -112,6 +112,7 @@
 		} else {
 			state.input_ans = ans;
 		}	
+        state.math_input_box = '';
     }
 
     function editMathbox(key) {
@@ -131,6 +132,7 @@
 		} else {
             state.math_input_box = ans;
 		}	
+        state.input_ans = '';
 	}
     
     beforeUpdate(()=>{
