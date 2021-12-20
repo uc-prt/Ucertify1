@@ -6366,6 +6366,7 @@ textarea{
   min-height: 35px;
   min-width: 20px;
 	border-radius: 4px;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
 .mce-visualblocks uc\:hed:not(:empty) ,.mce-visualblocks uc\:ref:not(:empty), .mce-visualblocks uc\:stx:not(:empty) , .mce-visualblocks uc\:kwd:not(:empty), .mce-visualblocks uc\:cpr:not(:empty) {
   display: inline-block; 
