@@ -621,12 +621,9 @@ export default class fillJS {
 							tooltip += "(" + (index + 1) + ") " + value.replace(/#cm/g,',')  + "<br>"
 						});
 						setTimeout(function(){
-							JS.select(pElem,'attr', {'rel': 'multiple_answers', 'title' : tooltip + '</p>' , 'data-original-title' : tooltip + '</p>' , 'data-placement':'top','data-toggle':'tooltip',});
-							//$('[rel="multiple_answers"]').tooltip();
-							//JS.enableBsAll("[data-toggle='tooltip']", 'Tooltip', {container: 'body'});
+							JS.select(pElem.parentElement,'attr', {'rel': 'multiple_answers', 'title' : tooltip + '</p>' ,'data-bs-toggle':'tooltip', 'data-toggle':'tooltip', 'data-bs-html':'true','data-html':'true'});
+							JS.enableBsAll("[data-bs-toggle='tooltip']", 'Tooltip', {container: 'body'});
 						},300)
-						
-						
 					}
 					pElem.value = pElem.getAttribute("anskey").replace(/#cm/g,',');
 				} else if (ansType=='u') {  //user answer
