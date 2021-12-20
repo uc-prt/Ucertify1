@@ -293,15 +293,17 @@
 			}
 		} else {
 			// if drag & drop
+			if(AH.select("#"+containerID+" "+"#sm_controller_default").nodeName) {
+				AH.select("#"+containerID+" "+"#sm_controller_default").classList.add("h");
 			
-			AH.select("#"+containerID+" "+"#sm_controller_default").classList.add("h");
+				AH.find("#"+containerID,"#sm_controller_default").style.display = "none";
 			
-			AH.find("#"+containerID,"#sm_controller_default").style.display = "none";
+				AH.select("#"+containerID+" "+"#sm_controller").style.display = "inline-block";
+				//containerId.querySelector('#ssm_controller').style.display = "inline-block";
+			}
 			
-			AH.select("#"+containerID+" "+"#sm_controller").style.display = "inline-block";
-			//containerId.querySelector('#ssm_controller').style.display = "inline-block";
 
-			if(AH.find("#"+containerID,'#sm_controller_default .your-ans')) {
+			if(AH.find("#"+containerID,'#sm_controller_default .your-ans') && AH.find("#"+containerID,'#sm_controller_default .your-ans').length > 0) {
 				var timer_next = setTimeout(function() {
 						AH.find("#"+containerID,'#sm_controller_default .your-ans').click();
 						clearTimeout(timer_next);				
