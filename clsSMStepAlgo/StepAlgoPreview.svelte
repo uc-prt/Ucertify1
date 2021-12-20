@@ -507,6 +507,7 @@
 	}
 
 	function moveNext() {
+		step_xml.smxml.step[steps]._attempt = '1';
 		if (typeof QUIZPLAYERID != "undefined") {
 			var timer = setTimeout(function(){
 				window.parentElement.autoResize(QUIZPLAYERID);
@@ -1214,7 +1215,6 @@
 	}
 
 	:global(.corr_div) {
-		position: absolute!important;
 		width: 38px;
 		line-height: 30px;
 		background-color: #21a81d;

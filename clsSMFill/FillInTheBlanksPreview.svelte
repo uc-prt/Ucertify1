@@ -919,7 +919,7 @@
 		
 		<div 
 			id={containerID}
-			class="fillmain {isReview ? 'pe-none' : null}"
+			class="fillmain"
 			matchtype={state.matchtype}
 			tabindex="0"
 			multi={state.multi}
@@ -1164,5 +1164,8 @@
 	}
 	:global(.prettyprint) {
 		display: -ms-grid!important;
+	}
+	:global(.tooltip-inner) {
+    	text-align: left;
 	}
 </style>
