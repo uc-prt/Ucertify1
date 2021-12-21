@@ -150,18 +150,21 @@
 
     function sendToFrame(data) {
 		let allStyles      = document.querySelectorAll('style');
-	 	let allStylesLink  = document.querySelectorAll('link');
-	 	let allScripts     = document.querySelectorAll('script');
-	 	let Alltags = [allStyles,allStylesLink,allScripts];
-	 	let libs = "";
-	 	for (let i = 0; i < 3; i++) {
-	 		for (let j = 0; j < Alltags[i].length; j++) {
-	 			if (/bundle\.js/gm.test(Alltags[i][j].outerHTML)) {
-	 				continue;
-	 			}
-	 			libs += Alltags[i][j].outerHTML;
-	 		}
-		 }
+		let allStylesLink  = document.querySelectorAll('link');
+		let allScripts     = document.querySelectorAll('script');
+		let Alltags = [allStyles,allStylesLink,allScripts];
+		let libs = "";
+		for (let i = 0; i < 3; i++) {
+			for (let j = 0; j < Alltags[i].length; j++) {
+				if (/bundle\.js/gm.test(Alltags[i][j].outerHTML)) {
+					continue;
+				}
+				libs += Alltags[i][j].outerHTML;
+			}
+			}
+		libs += `<link rel="stylesheet" href="${window.themeUrl}ux/css/bootstrap4.min.css" />`;
+		libs += `<script src="${window.themeUrl}ux/js/jquery-3.0.min.js"><\/script>`;
+		libs += `<script src="${window.themeUrl}ux/js/bootstrap.min.js"><\/script>`;
 		let fullData = "<!DOCTYPE html><html><head>"+libs+"</head><body>"+data+"</body></html>"
 		let frame = document.querySelector("#layoutMode").firstElementChild;
 		frame.className = "fwidth border-0";
