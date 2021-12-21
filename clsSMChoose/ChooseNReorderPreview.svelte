@@ -409,9 +409,9 @@
                     totalcorrectans={state.totalcorrectans}
                     checkseq={state.allowSort}
                     class="ui-sortable w-auto mt-0 p-2"
-                    on:mouseup={cmu.bind(this)}
-                    on:mousemove = {cmm.bind(this)}
-                    on:mousedown = {cmd.bind(this)} 
+                    on:mouseup={((isReview != true) ? cmu.bind(this) : '')}
+                    on:mousemove = {((isReview != true) ? cmm.bind(this) : '')}
+                    on:mousedown = {((isReview != true) ? cmd.bind(this) : '')} 
                     style = {'border-left:10px solid #d9e7fd;border-right: 10px solid #d9e7fd'}
                 >
                     {#each localCData as data,i} 
