@@ -2852,7 +2852,13 @@ var app = (function () {
     					}
     					pElem.value = pElem.getAttribute("anskey").replace(/#cm/g,',');
     				} else if (ansType=='u') {  //user answer
-    					pElem.removeAttribute(['rel', 'title', 'data-html']);
+    					//JS.select(pElem.parentElement,'removeAttr',['rel','title','data-html'])
+    					pElem.parentElement.removeAttribute('data-original-title');
+    					pElem.parentElement.removeAttribute('data-html');
+    					pElem.parentElement.removeAttribute('data-bs-html');
+    					pElem.parentElement.removeAttribute('data-bs-toggle');
+    					pElem.parentElement.removeAttribute('rel');
+    					pElem.parentElement.removeAttribute('data-toggle');
     					//$('[rel=multiple_answers]').tooltip('dispose');
     					if (pElem.getAttribute("userans") == "" && pElem.getAttribute("defaultAns") !== "") {
     						pElem.value = pElem.getAttribute("defaultAns");
