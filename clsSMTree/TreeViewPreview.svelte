@@ -8,6 +8,7 @@
     
     import './libs/treeview.min.css';
     import '../css/jstree/style.css';
+    //debugger;
     export let isReview;
     export let xml;
     export let uxml;
@@ -43,13 +44,13 @@
     });
     const unsubscribe = hdd.subscribe((items)=> state = items);
     let preReview = isReview;
-    $: if(preReview != isReview){
+    $: {//if(preReview != isReview){
         if (isReview) {
             setReview();
         } else {
             unsetReview();
         }
-        preReview = isReview;
+        //preReview = isReview;
     }
     // Built-in method of react lifecycle and called just afetr render method once throughtout the program execution  
     onMount(async ()=> {
@@ -237,15 +238,20 @@
                 setTimeout(function(){
                     ucTree.treeInit('#' + treeid, state.parsedOptions);
                 }, 1000);
+                let result 
                 if (editorState) {
                     showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
                 } else {
+                    //debugger
+                    result = ucTree.checkAns('#' + treeid);
+                    
                     // Shows correct or incorrect according to the return value of ucTree.checkAns() method
-                    let result = ucTree.checkAns('#' + treeid);
-                    onUserAnsChange(result);
+                    //let result = ucTree.checkAns('#' + treeid);
+                    
+                    //onUserAnsChange(result);
                     result && ucTree.showans(result.ans);
                 }
-                // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perform the task
+                // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perforn the task
                 ucTree.modeOn('on');
             }
         } catch (error) {
@@ -301,6 +307,9 @@
         listItem = listItem.split(/\n/gmi);
         // for set the data to draggable and non dragable elements
         setItemValueAll(listItem, userXML);
+        // used to initialized tree plugin and bind some required events that needed
+        //debugger;
+        //ucTree.readyThis('#' + treeid, state.parsedOptions);
     }
     
     // assign the draggable elements label text to treeData state
@@ -583,7 +592,7 @@
         listItemAll[totalItem]['pID'] = pID;
         listItemAll[totalItem]['isParant'] = isParant;
         
-        for (var i = 0; i <= totalItem; i++) {
+        for (var i = 0; i < totalItem; i++) {
             if (listItemAll[i]['isParant'] == '{1}') {
                 // set not to drag draggable element multiple time for creating the tree below droppable container
                 listItemAll[i]['multi'] = 0;
@@ -604,6 +613,15 @@
         }
         return ID;
     }
+
+    function handleReview(mode) {
+        //debugger;
+		if (mode == 'c') {
+			ucTree.showans('#treemain0', 'c');
+		} else {
+			ucTree.showans('#treemain0', 'u');
+		}
+	}
     
         // used for handle the UI of preview component according to change in state or props
 </script> 
@@ -616,7 +634,7 @@
                     <ItemHelper 
                         on:setReview = {setReview}
                         on:unsetReview = {unsetReview}
-                        handleReviewClick={(mode)=> ucTree.showans('#treemain0', mode)}
+                        handleReviewClick={handleReview}
                         reviewMode={isReview}
                         customReviewMode={customIsReview}
                     />
