@@ -384,16 +384,6 @@
 		} else {
 			var curr = steps;
 		}
-		var timer = setTimeout(function() {
-			if((step_xml.smxml.step[curr+1] == undefined && step_xml.smxml.step[curr]._attempt == "1") || (step_xml.smxml.step[curr+1] == undefined && step_xml.smxml.step[curr]._viewonly == "1")) {
-				try {
-					// self.setState({hideNext:true}); 
-				} catch(e) {
-					console.log(e);
-				}
-			}
-			clearTimeout(timer);
-		},500);
 	}
 
     function reset() {
@@ -558,7 +548,7 @@
 		}
 		if (steps != step_xml.smxml.step.length -1) {
 			steps += 1;
-			createStep();
+			createStep(steps);
 			setUserAns(usans);
 			overAll();
 		} else {
@@ -1120,7 +1110,9 @@
 		setUserAns(usans);
 	}
 	
-
+	afterUpdate(() => {
+		AH.selectAll( `[data-mce-bogus="all"]`, 'remove', 'remove');
+	});
 </script>
 
 <main>

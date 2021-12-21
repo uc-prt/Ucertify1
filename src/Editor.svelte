@@ -2121,7 +2121,7 @@ function saveData(is_new, coverageCourses = false, saveCoverage = false) {
 	//jQuery("span[data-mce-bogus]").contents().unwrap();
 	AH.unwrap("[data-mce-bogus='1']");
 	changedKeys.map((type)=> {
-		state[type] =  ucEditor.getContent(type, 'raw');
+		state[type] =  ucEditor.getContent(type, 'raw') || state[type];
 	})
 	if (is_owner != 1 && is_viewer == 1) {
 		state.message = JSL.viewer_error_msg_js;
