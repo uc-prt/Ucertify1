@@ -62,7 +62,6 @@
     })
 
     onMount(async()=> {
-        console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
             AH.addScript("", baseUrlTheme + 'svelte_items/src/libs/editorLib/webparser.js');
         }
@@ -103,13 +102,16 @@
     })
 
     function didMount() {
-        AH.listen(document.body, 'click', '.deleteinterval', function (_this) {
+        AH.listen(document.body, 'click', '.deleteinterval', function (_this, e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (AH.selectAll('.stepplayertable tbody tr').length > 1) {
                 state.delNode = true;
                 state.rowID = _this.getAttribute('data-id');
             } else {
                 AH.showmsg(l.can_not_del);
             }
+            return;
         });
         AH.listen(document.body, 'click', '#table_list tr', function (_this) {
             let item_id = AH.select('#showPlayerList #asset').value.trim();
@@ -490,7 +492,7 @@
         AH.getBS('#modal_editor', 'Modal', {'backdrop':'static'}).show();
     }
     function changeDeleteValues() {
-        AH.select('.stepplayertable tr[data-id='+state.rowID+']').remove();
+        AH.select(`.stepplayertable tr[data-id="${state.rowID}"]`)?.remove();
         state.delNode = false;
     }
     function handleSubmit() {
@@ -868,19 +870,18 @@
         </div>
     </h4>
     <div>{l.del_confirmation}</div>
-    <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    <div slot="footer" class="footer text-end py-1 pe-3" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
         <Button
-            id="xmlDone"
-            variant="contained"
-            disableRipple="true"
-            on:click={setInputState.bind(this, 'delNode', false)}
+            unelevated={true}
+            outlined={true}
             color="#ccc"
+            on:click={setInputState.bind(this, 'delNode', false)}
         >
             {l.no_label}
         </Button>
         <Button
-            variant="contained"
-            disableRipple="true"
+            class="submitBtton"
+            unelevated={true}
             on:click={changeDeleteValues}
             color="primary"
         >
