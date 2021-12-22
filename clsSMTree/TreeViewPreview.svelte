@@ -46,7 +46,9 @@
     let preReview = isReview;
     $: {//if(preReview != isReview){
         if (isReview) {
-            setReview();
+            setTimeout(function(){
+                setReview();
+            },400)
         } else {
             unsetReview();
         }
@@ -231,6 +233,7 @@
     
     // Used to disabled the activity to be performed when it is in review mode 
     function setReview() {
+        debugger;
         ucTree.tempVar = 'c';
         isReview = true;
         try {
@@ -242,14 +245,16 @@
                 if (editorState) {
                     showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
                 } else {
+                    console.log('ucTree  checkedAns',ucTree?.checkedAns);
+                    result = ucTree?.checkedAns;
                     //debugger
-                    result = ucTree.checkAns('#' + treeid);
+                    //result = ucTree.checkAns('#' + treeid);
                     
                     // Shows correct or incorrect according to the return value of ucTree.checkAns() method
                     //let result = ucTree.checkAns('#' + treeid);
-                    
-                    //onUserAnsChange(result);
-                    result && ucTree.showans(result.ans);
+                    console.log(result);
+                    onUserAnsChange(result);
+                    //result && ucTree.showans(result.ans);
                 }
                 // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perforn the task
                 ucTree.modeOn('on');
@@ -592,7 +597,7 @@
         listItemAll[totalItem]['pID'] = pID;
         listItemAll[totalItem]['isParant'] = isParant;
         
-        for (var i = 0; i < totalItem; i++) {
+        for (var i = 0; i <= totalItem; i++) {
             if (listItemAll[i]['isParant'] == '{1}') {
                 // set not to drag draggable element multiple time for creating the tree below droppable container
                 listItemAll[i]['multi'] = 0;
