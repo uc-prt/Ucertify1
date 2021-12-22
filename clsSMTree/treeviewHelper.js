@@ -249,7 +249,7 @@ class treeviewHelper {
                 // deselect the node if it is selected
                 jstValue.deselect_node(J(treeid).find('#' + data.old_parent));
             }
-            this.checkAns(treeid, this.lcrt);
+            let result = this.checkAns(treeid, this.lcrt);
             var timer1 = setTimeout(()=> {
                 // Click the element having id delNodes
                 document.querySelector("#delNodes").click();
@@ -263,7 +263,24 @@ class treeviewHelper {
             // opens a node, revealing its children. If the node is not loaded it will be loaded and opened once ready 
             jstValue.open_node(J(treeid).find('#' + data.parent));
             // called for check the answer 
-            this.checkAns(treeid, this.lcrt);
+            let that = this;
+            setTimeout(function(){
+                let result = that.checkAns(treeid, that.lcrt);
+                // console.log(result);
+                // debugger;
+                if (result) {
+                    JS.select("#answer", 'checked', result.ans ? true : false);
+                    JS.select("#special_module_user_xml", 'value', result.uXml);
+                    if (typeof window == 'object') {
+                        window.ISSPECIALMODULEUSERXMLCHANGE = 1;
+                        if (typeof calculatePoint != "undefined") {
+                            calculatePoint(result.correctPoints || 1, result.ansPoint || result.ans);
+                        }
+                    }
+                    globalThis.saveUserAnswerInSapper?.(result);
+                }
+            },300)
+            
             var timer2 = setTimeout(()=> {
                 // Click the element having id delNodes
                 document.querySelector("#delNodes").click();
@@ -428,6 +445,7 @@ class treeviewHelper {
 
     // used for check the answer
     checkAns(treeid, elemnt) {
+        //console.trace();
         elemnt = elemnt || J(treeid).find('.treeall')
         // if (!this.labBinded) {
         //     return false;
