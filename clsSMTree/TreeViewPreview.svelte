@@ -615,7 +615,7 @@
         listItemAll[totalItem]['pID'] = pID;
         listItemAll[totalItem]['isParant'] = isParant;
         
-        for (var i = 0; i < totalItem; i++) {
+        for (var i = 0; i <= totalItem; i++) {
             if (listItemAll[i]['isParant'] == '{1}') {
                 // set not to drag draggable element multiple time for creating the tree below droppable container
                 listItemAll[i]['multi'] = 0;

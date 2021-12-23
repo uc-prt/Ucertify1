@@ -350,16 +350,16 @@ function didMount(node, action) {
 				setBasicData(state.title, state.stem, state.remediation, "skip_state_set");
 				initAddFeature(state.title, editorConfig.maintainAlignments(state.stem), editorConfig.maintainAlignments(state.remediation));
 			} else {
-				let contentText = (state.propsAjaxData?.content.replace(/\n/g,"<br>") || state.content);
+				let contentText = (state.propsAjaxData?.content.replace(/\n/g,"<br>") || state.content || '');
 				contentText = replaceUnwantedTags(contentText);
 				contentText = editorConfig.replaceUnwantedEntity(contentText, 'only_self_close');
 				let tempContent = editorConfig.replaceUnwantedEntity(contentText, 'onlyEntity');
 				AH.select("#content").innerHTML = editorConfig.maintainAlignments(tempContent);
 				AH.select('#content_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(contentText));
-				AH.select("#title").innerHTML = editorConfig.replaceUnwantedEntity(state.title, 'onlyEntity');
-				AH.select("#title_show").innerHTML = editorConfig.replaceUnwantedEntity(state.title, 'onlyEntity');
-				AH.select("#info").innerHTML = state.info;
-				AH.select("#info_show").innerHTML = state.info;
+				AH.select("#title").innerHTML = editorConfig.replaceUnwantedEntity(state.title || '', 'onlyEntity');
+				AH.select("#title_show").innerHTML = editorConfig.replaceUnwantedEntity(state.title || '', 'onlyEntity');
+				AH.select("#info").innerHTML = state.info || '';
+				AH.select("#info_show").innerHTML = state.info || '';
 				if(AH.isValid(state.vtt)){
 					AH.select("#vtt").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
 					AH.select("#vtt_show").innerHTML = state.vtt.replace(/&nbsp;/g, " ").replace(/  /g, " &nbsp;").replace(/\n/g, "<br />");
@@ -436,7 +436,7 @@ function setBasicData(title, stem, remediation, skip = false) {
 	stem = editorConfig.replaceUnwantedEntity(stem, 'cleanHiddenEnity');
 	AH.select("#stem").innerHTML = stem;
 	AH.select('#stem_show').innerHTML = editorConfig.maintainAlignments(get_ucsyntax(stem));
-	remediation = editorConfig.replaceUnwantedEntity(remediation, 'cleanHiddenEnity');
+	remediation = editorConfig.replaceUnwantedEntity(remediation || '', 'cleanHiddenEnity');
 	// This is code written here because in snt tag initAddFeature function call creating issue. So resovled value we need to pass. 
 	state.remediation = remediation;
 	AH.select("#remediation").innerHTML = remediation;
