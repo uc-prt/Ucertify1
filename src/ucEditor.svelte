@@ -798,7 +798,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             let tag_html = tag_parent.innerHTML;
                             AH.replaceWith(tag_parent, "<ol>" + tag_html + "</ol>");
                           } else {
@@ -856,7 +856,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             let tag_html = tag_parent.innerHTML;
                             AH.replaceWith(tag_parent, '<ol nested="alpha-order">' + tag_html + "</ol>");
                           } else {
@@ -877,7 +877,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             let tag_html = tag_parent.innerHTML;
                             AH.replaceWith(tag_parent, "<ul>" + tag_html + "</ul>");
                           } else {
@@ -897,7 +897,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "arrowlistBullet");
                             tag_parent.setAttribute("nested", "arrow-bullet,circle-bullet darkblue-txt");
                           } else {
@@ -918,7 +918,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "arrow-bullet");
                           } else {
                             var selected =
@@ -938,7 +938,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "arrow-bullet arrow-bullet-list");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
@@ -957,7 +957,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "circle-bullet darkblue-txt");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
@@ -976,7 +976,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "circle-bullet ");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
@@ -995,7 +995,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "whitecircle-list la");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
@@ -1014,7 +1014,7 @@
                           editor.focus();
                           let tag = tinyMCE.activeEditor.selection.getNode();
                           let tag_parent = getParent(tag);
-                          if (tag_parent.length > 0) {
+                          if (tag_parent) {
                             tag_parent.setAttribute("class", "tickBullet");
                           } else {
                             var selected = editor.selection.getContent() == "" ? " " : editor.selection.getContent();
@@ -1033,7 +1033,7 @@
                             editor.focus();
                             let tag = tinyMCE.activeEditor.selection.getNode();
                             let tag_parent = getParent(tag);
-                            if (tag_parent.length > 0) {
+                            if (tag_parent) {
                               let tag_html = tag_parent.innerHTML;
                               AH.replaceWith(tag_parent, "<ul class='list_nostyle'>" + tag_html + "</ul>");
                             } else {
