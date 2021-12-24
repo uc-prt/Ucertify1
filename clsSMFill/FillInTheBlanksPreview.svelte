@@ -415,10 +415,7 @@
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
 		// show the answer and also bind the keys event for ada
-
-		
 		setTimeout(function(){
-			
 			ucFill.modeOn("on");
 			ucFill.showdragans(ajax_eId, 'u', 1);
 			AH.selectAll('.remed_disable', 'show');
@@ -433,12 +430,11 @@
 					})
 				}
 				AH.selectAll('.fillintheblank','attr',{'disabled':true});
-
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
 			displayAns();
-		},100);
+		}, 50);
 	}
 
 	// function calls when remediation mode is off
@@ -1148,7 +1144,6 @@
 	}
 	:global(.corr_div) {
 		display: none;
-		position: absolute;
 		width: 100%;
 		height: 100%;
 		background-color: #21a81d;
