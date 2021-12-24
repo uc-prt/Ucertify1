@@ -1591,7 +1591,7 @@ function setupEditor(urlVars) {
 		tinymce.EditorManager.editors = [];
 		ucEditor.initEditor();
 	}
-	let tempHeight = (from_myproject == "1") ? window.parent.document.body.clientHeight : window.innerHeight;
+	let tempHeight = window.innerHeight;
 	let calculatedHeight = (tempHeight - (tempHeight * 0.08)) + 'px';
 	AH.setCss("#editorViewPane", {minHeight: calculatedHeight, height: calculatedHeight });
 	if (preview_edit != 1) {

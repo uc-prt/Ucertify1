@@ -8,7 +8,7 @@
  *  Last update : 11 Sep 2021
  */
 
-import { onMount, beforeUpdate } from 'svelte';
+import { onMount, afterUpdate } from 'svelte';
 import { writable } from 'svelte/store';
 import { AH } from '../../helper/HelperAI.svelte';
 
@@ -16,9 +16,10 @@ export let allItemTemp;
 let userData = [];
 let counter = 0;
 let localdata = {};
-let len = 0;
+$: len = 0;
 let state = {};
-console.log('allItemTemp', allItemTemp);
+let user_guid = '';
+
 let hdd = writable({
 	localdata   : {},
 	allItemTemp	: ''
@@ -26,36 +27,35 @@ let hdd = writable({
 const unsubscribe = hdd.subscribe((items) => {
 	state = items;
 });
-onMount(async ()=> {
-    state.localdata = JSON.parse(localStorage.getItem('storedata'));
-    console.log( state.localdata);
-});
 
-beforeUpdate(async () => {
-    setTimeout(function() {
+const updateData = () => {
+    state.localdata = JSON.parse(localStorage.getItem('storedata'));
+    if(state.localdata){
+        len = (state.localdata != null && state.localdata[user_guid] !=null) ? Object.keys(state.localdata[user_guid]).length : 0;
+        userData = Object.values(state.localdata[user_guid]);
         if(allItemTemp) {
             state.allItemTemp = allItemTemp;
         }
-    }, 200);
-    counter = 0;
-    localdata = state.localdata;
-    len = (localdata != null && localdata[user_guid] !=null) ? Object.keys(localdata[user_guid]).length : 0;
-    if (len > 0) {
-        userData = Object.values(localdata[user_guid]);
     }
+}
+onMount(async ()=> {
+    user_guid = window.user_guid
+    updateData();
 });
 
-function discardstorage(content_guid,user_guid) {
+
+function discardstorage(_this, content_guid,user_guid) {
     if(confirm('Do you want to discard it?')) {
         var localdatatemp = state.localdata;
         delete localdatatemp[user_guid][content_guid];
         var newObj = (localdatatemp);
         state.localdata=newObj;
         localStorage.setItem('storedata',JSON.stringify(newObj));
-    }		
+        updateData();
+    }
 }
 
-function saverecord(content_guid_temp,user_guid) {
+function saverecord(_this, content_guid_temp,user_guid) {
     AH.activate(1);
     var localdatatemp = state.localdata;
     var data = localdatatemp[user_guid][content_guid_temp];
@@ -70,8 +70,6 @@ function saverecord(content_guid_temp,user_guid) {
         var save_response = JSON.parse(save_response);
         if(!save_response['error']) {
             var content_guid = save_response['content_guid'];
-            AH.activate(0);
-
             var localdatatemp = state.localdata;
             delete localdatatemp[user_guid][content_guid_temp];
             var newObj = (localdatatemp);
@@ -81,10 +79,13 @@ function saverecord(content_guid_temp,user_guid) {
         }
     }).catch((error) => {
         console.log("errorr");   
+    }).finally(() => {    
+        AH.activate(0);
+        updateData();
     });
 }
 
-function viewrecord(content_guid_temp,user_guid) {
+function viewrecord(_this, content_guid_temp,user_guid) {
     AH.activate(1);
     var localdatatemp = state.localdata;
     var data = localdatatemp[user_guid][content_guid_temp];
@@ -98,17 +99,18 @@ function viewrecord(content_guid_temp,user_guid) {
             var save_response = JSON.parse(save_response);
             if(!save_response['error']) {
                 var content_guid = save_response['content_guid'];
-                activate(0);
-
                 var localdatatemp = state.localdata;
                 delete localdatatemp[user_guid][content_guid_temp];
                 var newObj = (localdatatemp);
                 state.localdata=newObj;
                 localStorage.setItem('storedata',JSON.stringify(newObj));
-                window.open(baseUrl+'editor/?action=edit&content_guid='+content_guid+'&react_content=1', '_tab');
+                window.open(baseUrl+'editor/v2/?action=edit&content_guid='+content_guid+'&react_content=1', '_tab');
             }
     }).catch((error)=> {
         console.log("errorr");  
+    }).finally(() => {    
+        AH.activate(0);
+        updateData();
     });
 }
 
@@ -143,7 +145,7 @@ function localStorageData(user_guid, data, type, content_guid) {
 }
 </script>
 {#if len > 0}
-    <div class="card ml-lg mt-md p-md" style={{width:'95%'}}>
+    <div class="card  mt-2 p-3" style={{width:'95%'}}>
         <div class="alert alert-warning mb-0">
             <span class="font-weight-bold">Note:</span> There {(len == 1)?"is":"are"} {len} unsaved {(len == 1)?"item":"items"}.
         </div>
@@ -161,7 +163,7 @@ function localStorageData(user_guid, data, type, content_guid) {
                 {#each userData as data, i} 	
                     {#if state.allItemTemp}
                         <tr key={counter++}>
-                            <td class="text-center align-middle"><span class="mr-sm pl-2">{(i.length == 5) ? i:"-"}</span></td>
+                            <td class="text-center align-middle"><span class="mr-sm pl-2">{(data.content_guid?.length == 5) ? data.content_guid:"-"}</span></td>
                             <td class="text-center pt-3 span2 align-middle font22">
                                 <span rel="tooltip" class="mr-sm pl-2 {state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]['icon']}" data-original-title={state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]['title']} ></span>
                             </td>	
@@ -173,9 +175,9 @@ function localStorageData(user_guid, data, type, content_guid) {
                             </td>
                             <td class="align-middle pb-0" >
                                 <div class="float-right">
-                                    <input type="button" class="btn btn-sm btn-secondary savecontinue mr-md mb-2" value="Save & Continue" on:click={saverecord.bind(this,data.content_guid, user_guid)} />
-                                    <input type="button" class="from_educator btn btn-sm btn-secondary savecontinue mr-md mb-2" value="View and Edit" on:click={viewrecord.bind(this,data.content_guid, user_guid)}/>
-                                    <input type="button" class="btn btn-sm btn-danger discardstorage mb-2" value="Discard" on:click={discardstorage.bind(this,data.content_guid,user_guid)} />
+                                    <input type="button" class="btn btn-sm btn-secondary savecontinue mr-md mb-2" value="Save & Continue" on:click={e => saverecord(e.target,data.content_guid, user_guid)} />
+                                    <input type="button" class="from_educator btn btn-sm btn-secondary savecontinue mr-md mb-2" value="View and Edit" on:click={e => viewrecord(e.target,data.content_guid, user_guid)}/>
+                                    <input type="button" class="btn btn-sm btn-danger discardstorage mb-2" value="Discard" on:click={e => discardstorage(e.target,data.content_guid,user_guid)} />
                                 </div>
                             </td>						
                         </tr>					
@@ -185,3 +187,8 @@ function localStorageData(user_guid, data, type, content_guid) {
         </table>    		
     </div>
 {/if}
+<style>
+    table>thead>tr>th {
+        background-color: #e3e3e3;
+    }
+</style>

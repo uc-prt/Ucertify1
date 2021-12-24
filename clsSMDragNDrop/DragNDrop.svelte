@@ -736,15 +736,15 @@
     function resizeX(e){
         let dx = m_posX - e.x;
         m_posX = e.x;
-        const width = (parseInt(getComputedStyle(dndMain, '').width) - dx) + "px";
-        dndMain.style.width = width;
+        const width = (parseInt(getComputedStyle(dndMain, '').width) - dx);
+        dndMain.style.width = width+ "px";
         imgWidth = width;
     }
     function resizeY(e){
         let dy = m_posY - e.y;
         m_posY = e.y;
-        const height = (parseInt(getComputedStyle(dndMain, '').height) - dy) + "px";
-        dndMain.style.height = height;
+        const height = (parseInt(getComputedStyle(dndMain, '').height) - dy);
+        dndMain.style.height = height + "px";
         imgHeight = height;
     }
     function resizeXY(e){
@@ -752,10 +752,10 @@
         let dy = m_posY - e.y;
         m_posX = e.x;
         m_posY = e.y;
-        const width = (parseInt(getComputedStyle(dndMain, '').width) - dx) + "px"
-        const height = (parseInt(getComputedStyle(dndMain, '').height) - dy) + "px";
-        dndMain.style.width = width;
-        dndMain.style.height = height;
+        const width = (parseInt(getComputedStyle(dndMain, '').width) - dx);
+        const height = (parseInt(getComputedStyle(dndMain, '').height) - dy);
+        dndMain.style.width = width + "px";
+        dndMain.style.height = height + "px";
         imgHeight = height;
         imgWidth = width;
     }

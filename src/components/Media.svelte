@@ -923,8 +923,8 @@
 </script>
 
 <div class="modal_plugin">
-    <div class="modal fade upload_containter" id="modal-media-upload" style="z-index: 99999 !important;">
-        <div class="modal-dialog modal-dialog-centered modal-lg overflow-hide">
+    <div class="modal fade upload_containter" id="modal-media-upload" style="z-index: 99999 !important;" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered modal-lg overflow-hide" style="z-index: 999999 !important">
             <div class="modal-content">
                 <div class="modal-header">
                     <ul class="nav nav-pills">
@@ -1104,8 +1104,8 @@
             </div>
         </div>			
     </div>
-    <div class="modal" id="media_information" tabindex="-1" style="z-index: 99999 !important;">
-        <div class="modal-dialog modal-dialog-centered modal-lg overflow-hide">
+    <div class="modal" id="media_information" tabindex="-1" style="z-index: 99999 !important;" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered modal-lg overflow-hide" style="z-index: 999999 !important">
             <div class="modal-content min_height_500 shadow border border-dark">
                 <div class="modal-header">
                     <h4 class="modal-title">Review Media</h4>
@@ -1147,8 +1147,8 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="details_div" tabindex="-1" style="z-index: 99999 !important;">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal" id="details_div" tabindex="-1" style="z-index: 99999 !important;" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered" style="z-index: 999999 !important">
             <div class="modal-content shadow border">
                 <div class="modal-header">
                     <h4 class="modal-title">Copy Embed Code</h4>
@@ -1201,9 +1201,10 @@
     tabindex="-1" 
     aria-labelledby="Gallary" 
     aria-hidden="true" 
-    style="z-index:99999 !important;"
+    style="z-index: 99999 !important;"
+    role="dialog" 
 >
-    <div class="modal-dialog" id="lightBoxDialog" style="height: {window.innerHeight}px;">
+    <div class="modal-dialog" id="lightBoxDialog" style="height: {window.innerHeight}px; z-index: 999999 !important">
         <div class="modal-content" style="height: {window.innerHeight}px;">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

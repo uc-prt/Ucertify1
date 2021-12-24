@@ -149,7 +149,7 @@
         input_id = input_id || '.' + state.category + '_tag';
         AH.find(input_id, 'input[type="text"], textarea', 'all').forEach(function (_this) {
             if (_this.value.trim().length != 0) {
-                AH.find(_this.parentElement.parentElement, 'label', 'all').forEach((_currThis)=> AH.setCss(_currThis,{transform: "translate(0, 1.5px) scale(0.75)", "color": "rgba(0, 0, 0, 0.54)"}) );
+                AH.find(_this.parentElement, 'label', 'all').forEach((_currThis)=> AH.setCss(_currThis,{transform: "translate(0, 1.5px) scale(0.75)", "color": "rgba(0, 0, 0, 0.54)"}) );
             } else {
                 AH.find(_this.parentElement.parentElement, 'label', 'all').forEach((_currThis)=>_currThis.removeAttribute('style') );
             }
