@@ -416,29 +416,25 @@
 		state.showToolbar = false;
 		// show the answer and also bind the keys event for ada
 
-		
-		setTimeout(function(){
-			
-			ucFill.modeOn("on");
-			ucFill.showdragans(ajax_eId, 'u', 1);
-			AH.selectAll('.remed_disable', 'show');
-			autoresize(1);
-			//ucFill.modeOn("on");
-			let mathItem = document.getElementById(containerID);
-			mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
-			if (mathItem) {
-				if(AI.selectAll('.textarea').length > 0) {
-					AI.selectAll('.textarea').forEach((_this)=>{
-    					_this.setAttribute('disabled','true');
-					})
-				}
-				AH.selectAll('.fillintheblank','attr',{'disabled':true});
-
-				// AH.setCss(ajax_eId, {"position": "relative"});
-				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
+		ucFill.modeOn("on");
+		ucFill.showdragans(ajax_eId, 'u', 1);
+		AH.selectAll('.remed_disable', 'show');
+		autoresize(1);
+		//ucFill.modeOn("on");
+		let mathItem = document.getElementById(containerID);
+		mathItem = mathItem ? mathItem.getElementsByClassName('mathquill') : mathItem;
+		if (mathItem) {
+			if(AI.selectAll('.textarea').length > 0) {
+				AI.selectAll('.textarea').forEach((_this)=>{
+					_this.setAttribute('disabled','true');
+				})
 			}
-			displayAns();
-		},100);
+			AH.selectAll('.fillintheblank','attr',{'disabled':true});
+
+			// AH.setCss(ajax_eId, {"position": "relative"});
+			// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
+		}
+		displayAns();
 	}
 
 	// function calls when remediation mode is off

@@ -31,12 +31,6 @@
 
     // Accept Object argument with key ans and uXml to store user answer and status
     export function onUserAnsChange(result) {
-        if(result.debug  == true) {
-            console.log('result',result);
-            console.trace();
-        }
-        
-
         if (result) {
             AH.select("#answer", 'checked', result.ans ? true : false);
             AH.select("#special_module_user_xml", 'value', result.uXml);
