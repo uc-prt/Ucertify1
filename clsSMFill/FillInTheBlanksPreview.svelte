@@ -1148,7 +1148,6 @@
 	}
 	:global(.corr_div) {
 		display: none;
-		position: absolute;
 		width: 100%;
 		height: 100%;
 		background-color: #21a81d;
