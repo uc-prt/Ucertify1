@@ -20,7 +20,6 @@ class treeviewHelper {
 
         // Called after selecting the option in contextmenu
     contextAction(obj) {
-        debugger;
         let treeid = "#" + obj.reference.closest('[id^="treemain"]').attr("id");
         this.lcrt = J(treeid).find('.treeall')
         // id of draggable element on which contextmenu event fired 
@@ -37,9 +36,8 @@ class treeviewHelper {
         //this.checkAns(treeid, this.lcrt);
         let that = this;
             setTimeout(function(){
-               // debugger;
                 let result = that.checkAns(treeid, that.lcrt);
-                console.log('Primary Key',result)
+                //console.log('Primary Key',result)
                 that.onUserAnswerChange(result)
             },300)
     };
@@ -60,7 +58,6 @@ class treeviewHelper {
 
     // Remove the draggable element from droppable conatiner to draggable container
     deleteList(obj) {
-        debugger;
         let treeid = "#" + obj.reference.closest('[id^="treemain"]').attr("id");
         /* Container element where elements are dropped after drag */
         this.lcrt = J(treeid).find('.treeall');
@@ -75,27 +72,11 @@ class treeviewHelper {
         // Delete the draggable element on which contextmenu event fired from droppable area
         this.lcrt.jstree(true).delete_node(id);
         //let result = this.checkAns(treeid, this.lcrt);
-        //console.log('checling... =>',result);
         let that = this;
             setTimeout(function(){
-               // debugger;
                 let result = that.checkAns(treeid, that.lcrt);
-                console.log('delete',result)
+                //console.log('delete',result)
                 that.onUserAnswerChange(result)
-                // console.log('result =>',result);
-                // // debugger;
-                // if (result) {
-                //     //console.log('checking....');
-                //     JS.select("#answer", 'checked', result.ans ? true : false);
-                //     JS.select("#special_module_user_xml", 'value', result.uXml);
-                //     if (typeof window == 'object') {
-                //         window.ISSPECIALMODULEUSERXMLCHANGE = 1;
-                //         if (typeof calculatePoint != "undefined") {
-                //             calculatePoint(result.correctPoints || 1, result.ansPoint || result.ans);
-                //         }
-                //     }
-                //     globalThis.saveUserAnswerInSapper?.(result);
-                // }
             },300)
 
     };
@@ -314,10 +295,7 @@ class treeviewHelper {
             //console.log('result =>',result)
             let that = this;
             setTimeout(function(){
-               // debugger;
                 let result = that.checkAns(treeid, that.lcrt);
-                console.log('result =>',result);
-                // debugger;
                 if (result) {
                     //console.log('checking....');
                     JS.select("#answer", 'checked', result.ans ? true : false);
@@ -513,6 +491,7 @@ class treeviewHelper {
                 this.result = true;
                 this.temp = 0;
                 var tree = J.jstree.reference(elemnt)._model.data;
+                //console.log('tree =>',tree);
                 J.each(tree, (index, value)=> {
                     if (index != '#' || tree[index].icon == "icomoon-database") {
                         // set the userAnsXML to this.userAnsXML returned from this.checkChildAns method

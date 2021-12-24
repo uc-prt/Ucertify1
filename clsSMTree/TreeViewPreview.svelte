@@ -233,7 +233,6 @@
     
     // Used to disabled the activity to be performed when it is in review mode 
     function setReview() {
-        debugger;
         ucTree.tempVar = 'c';
         isReview = true;
         try {
@@ -245,7 +244,6 @@
                 if (editorState) {
                     showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
                 } else {
-                    console.log('ucTree  checkedAns',ucTree?.checkedAns);
                     result = ucTree?.checkedAns;
                     //debugger
                     //result = ucTree.checkAns('#' + treeid);
@@ -643,7 +641,7 @@
     }
 
     function handleReview(mode) {
-        //debugger;
+        
 		if (mode == 'c') {
 			ucTree.showans('#treemain0', 'c');
 		} else {
