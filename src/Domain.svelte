@@ -77,10 +77,12 @@
             if (!error['domains']) {
                 let is_draft = '';
                 for (let i in domains) {
-                    if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
-                        is_draft = ' (Unpublished)';
+                    if(domains[i]?.level == '1'){
+                        if (AH.isValid(domains[i].is_draft) && domains[i].is_draft == 1) {
+                            is_draft = ' (Unpublished)';
+                        }
+                        items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
                     }
-                    items.push({value: i, key: i, label: domains[i].f + " " + domains[i].snippet.replace(/&nbsp;|&\#160;/g, " ") + is_draft });
                 }
             }
             if (!error['my_courses']) {

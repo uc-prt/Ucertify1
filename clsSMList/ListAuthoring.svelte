@@ -177,6 +177,7 @@
                 state.EditorModalBox = true;
                 editorModalUpdate(true);
             }
+            state.data_cdata = [...state.data_cdata];
         }
     
         // used for update the guids which exist in "Current Guid" and "Used in Guids" field of respective row
@@ -717,8 +718,8 @@
                                                             <div class="inline-block btn-secondary btn-circle rounded-circle width27 height27 font12 text-center p-1 btn-sm square">{((index < 10) ? '0' + index : index)}</div>
                                                         </span>
                                                     </td>
-                                                    <td id={"col_" + index + "_" + 0} contentEditable="true" on:blur={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c1}</td>
-                                                    <td id={"col_" + index + "_" + 1} contentEditable="true" on:blur={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c2}</td>
+                                                    <td id={"col_" + index + "_" + 0} contentEditable="true" on:input={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c1}</td>
+                                                    <td id={"col_" + index + "_" + 1} contentEditable="true" on:input={handleEdit} class="min_wid_95 width_max_content max_width_300 word-wrap-break align-middle">{object_data.c2}</td>
                                                     <td class="width65 text-center align-middle">
                                                         <span class="d-inline-block ml-2">
                                                             <button class={"btn" + ((object_data.cg) ? ' pointer_event_none': '')}  name={"delete_elm" + index} id={"delete_elm" + index} on:click={()=>{handleDelete(index)}} disabled={((object_data.cg) ? true: false)}>

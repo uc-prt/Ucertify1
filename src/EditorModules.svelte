@@ -4,6 +4,7 @@
     import {AH} from '../helper/HelperAI.svelte';
     import { flip } from 'svelte/animate';
     import { onMount, tick } from 'svelte';
+	import GetLocalStoragedata from './components/LocalStorage.svelte';
     // export let enableClose;
     export let isAjax;
     export let onClose = false;
@@ -199,6 +200,9 @@
             <span aria-hidden="true">×</span>
         </button> -->
         {/if} 
+        {#if actionData.allItemTemp && window.user_guid}
+            <GetLocalStoragedata allItemTemp={actionData.allItemTemp} />
+        {/if}
         <div class="mainArea isotope grid" style = "overflow: auto; height: 379px;">
             {#each editorItems as data, i (data.id)} 
                 <div

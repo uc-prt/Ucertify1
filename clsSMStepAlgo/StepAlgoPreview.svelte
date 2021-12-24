@@ -649,7 +649,7 @@
 			element_id = "s"+index+"_t"+i;
 			element_div = "s"+index;
 			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" />';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="text" class="corr_div" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" >'+data[0]+'</span>'+textbox+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="text" class="corr_div" style="width:'+(Math.max(...txtWidth) + 20)+'px;'+csStyle+'" >'+data[0]+'</span>'+textbox+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
 		} else {	
@@ -661,7 +661,7 @@
 			element_id = "s"+steps_counter+"_t"+i;
 			element_div = "s"+steps_counter;
 			let textbox = '<input type="text" id="'+element_id+'" class="fillintheblank ks nmb text-center span0 edit_step" defaultans="" haskeywords=""  hasnotkeywords="" keywordtype="" autocomplete="off" data-role="none"  style="width:38px;'+csStyle+'" />';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="" class="corr_div h-imp">'+data[0]+'</span>'+textbox+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="remed_disable fh fwidth absolute h"></span><span id="" class="corr_div h-imp">'+data[0]+'</span>'+textbox+'</span>';
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans)
 			special_module.smans = smans;
@@ -774,12 +774,9 @@
 				AH.select(AH.select('#'+elem).previousElementSibling,'removeClass','h-imp');
 			}
 			if(step_xml.smxml._fixed != 1) {
-				var timer = setTimeout(function() {
-					//jQuery('#'+elem).prev().addClass('h-imp');
-					AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
-					AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
-				 	clearTimeout(timer);
-				},2000);
+				//jQuery('#'+elem).prev().addClass('h-imp');
+				AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
+				AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
 			}
 		}
 		if (uxml) {
@@ -902,8 +899,7 @@
 		AH.selectAll('.fillintheblank','addClass','default-hover');
 
 		/// Manage correct answer position ////
-		AH.selectAll('.edit_step', 'hide');
-		AH.selectAll('.corr_div', 'removeClass', 'h-imp');
+		// AH.selectAll('.edit_step', 'hide');
 		AH.selectAll('#text','removeClass','corr_div');
 		AH.selectAll('#text','addClass','corr_div_correct');
 		showCorrect();
@@ -931,9 +927,7 @@
 		
 		//$('.fillintheblank').removeClass('default-hover');
 		AH.selectAll(".fillintheblank","removeClass","default-hover");
-		AH.selectAll('.corr_div','addClass', 'h-imp');
-	
-		AH.selectAll('.edit_step','show');
+		
 		AH.selectAll('#text','addClass','corr_div');
 		AH.selectAll('#text','removeClass','corr_div_correct');
 
@@ -1033,7 +1027,7 @@
 			element_div = "s0"+index;
 			let ans_id = "m0"+index+"_t"+i;
 			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div fillmathelement position-absolute h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
 		} else {
@@ -1041,7 +1035,7 @@
 			element_div = "s"+steps_counter;
 			let ans_id = "m"+steps_counter+"_t"+i;
 			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div h-imp fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div h-imp fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans);
 			special_module.smans = smans;
@@ -1127,7 +1121,7 @@
 				reviewMode={isReview}
 				customReviewMode={customIsReview}
 			/>
-			<div class={'inNativeStyle'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<div class={state.correct_answer ? '': 'h-imp'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				
 				{#each state.itemArray as item, index}
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3" tabindex={0}> 	 	
@@ -1140,7 +1134,7 @@
 				{/each}
 				
 			</div>
-			<!-- <div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				{#each answer_array as item,index}
 			
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3"  tabindex={0}>
@@ -1152,7 +1146,7 @@
 						</div>
 				
 				{/each}
-			</div> -->
+			</div>
 
 			<FillInTheBlanksToolbar bind:display={state.showToolbar}  spanId={state.spanId} divId={state.divId} action={fill_math[fillId]} show={toggleToolbar}/>
 
@@ -1215,6 +1209,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		cursor: default;
+		position: absolute !important;
 	}
 
 	:global(.corr_div_correct) {

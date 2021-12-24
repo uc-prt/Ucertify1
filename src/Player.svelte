@@ -20,6 +20,7 @@
     const transcript_hide = ['youtube', 'lynda'];
     let state = {};
     let prevState = {};
+    $: addTranscriptDialog = false;
     let hdd = writable({
             open: true,
             add_transcript: false,
@@ -61,7 +62,6 @@
     })
 
     onMount(async()=> {
-        console.warn("on player mount", editorState.playerArr);
         if (typeof (window.WebVTTParser) == "undefined") {
             AH.addScript("", baseUrlTheme + 'svelte_items/src/libs/editorLib/webparser.js');
         }
@@ -102,13 +102,16 @@
     })
 
     function didMount() {
-        AH.listen(document.body, 'click', '.deleteinterval', function (_this) { 
+        AH.listen(document.body, 'click', '.deleteinterval', function (_this, e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (AH.selectAll('.stepplayertable tbody tr').length > 1) {
                 state.delNode = true;
                 state.rowID = _this.getAttribute('data-id');
             } else {
                 AH.showmsg(l.can_not_del);
             }
+            return;
         });
         AH.listen(document.body, 'click', '#table_list tr', function (_this) {
             let item_id = AH.select('#showPlayerList #asset').value.trim();
@@ -146,7 +149,7 @@
         input_id = input_id || '.' + state.category + '_tag';
         AH.find(input_id, 'input[type="text"], textarea', 'all').forEach(function (_this) {
             if (_this.value.trim().length != 0) {
-                AH.find(_this.parentElement.parentElement, 'label', 'all').forEach((_currThis)=> AH.setCss(_currThis,{transform: "translate(0, 1.5px) scale(0.75)", "color": "rgba(0, 0, 0, 0.54)"}) );
+                AH.find(_this.parentElement, 'label', 'all').forEach((_currThis)=> AH.setCss(_currThis,{transform: "translate(0, 1.5px) scale(0.75)", "color": "rgba(0, 0, 0, 0.54)"}) );
             } else {
                 AH.find(_this.parentElement.parentElement, 'label', 'all').forEach((_currThis)=>_currThis.removeAttribute('style') );
             }
@@ -268,19 +271,24 @@
                 is_error = 1;
             }
         });
-
         if (is_error == 1) {
             AI.showmsg(l.required_field);
         } else {
+            const data = {};
+            const sendData =  AH.serialize('#vtt_module');
+            sendData.split('&').forEach(ele => {
+                const [key,value] = ele.split('='); 
+                data[key] = value;
+            });
             AH.ajax({
                 url: baseUrl+'utils/vtt_parser.php',
                 type: 'POST',
-                data: AH.serialize('#vtt_module'),
+                data: data,
                 onStart: function() {
                     AI.activate(2);
                 },
             }).then((response)=> {
-                    state.add_transcript = false;
+                    addTranscriptDialog = false;
                     AH.select('.media_tag #group_guids').value = response;
                     AH.trigger('.media_tag #group_guids', 'change');
                     AH.select('.edit_transcript').setAttribute('guid', response);
@@ -332,7 +340,7 @@
         });
         video.addEventListener('error', function(event) { 
             AH.showmsg(l.valid_link);
-            state.add_transcript = false;
+            addTranscriptDialog = false;
             AI.activate(0);
         }, true);
     }
@@ -484,7 +492,7 @@
         AH.getBS('#modal_editor', 'Modal', {'backdrop':'static'}).show();
     }
     function changeDeleteValues() {
-        AH.select('.stepplayertable tr[data-id='+state.rowID+']').remove();
+        AH.select(`.stepplayertable tr[data-id="${state.rowID}"]`)?.remove();
         state.delNode = false;
     }
     function handleSubmit() {
@@ -715,7 +723,7 @@
     }
 
     function handleTranscriptDialog() {
-        if (!state.add_transcript) {
+        if (!addTranscriptDialog) {
             if (window.editor.course == null) {
                 AH.alert(l.load_course);
             } else if (AH.select('.media_tag #asset').value == '') {
@@ -739,8 +747,8 @@
                         AH.select('.media_tag #group_guids').value = response.guid;
                         AH.trigger('.media_tag #group_guids', 'change');
                     } else {
-                        state.add_transcript = true;
-                        if (state.add_transcript) {
+                        addTranscriptDialog = true;
+                        if (addTranscriptDialog) {
                             setTimeout(function() {
                                 AH.select('#media_title').value = AH.select('.media_tag #title').value;
                                 AH.select('#media_url').value = AH.select('.media_tag #asset').value;
@@ -753,7 +761,7 @@
                 },'json');
             }
         } else {
-            state.add_transcript = false;
+            addTranscriptDialog = false;
         }
     }
 </script>
@@ -862,19 +870,18 @@
         </div>
     </h4>
     <div>{l.del_confirmation}</div>
-    <div slot="footer" class="footer" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
+    <div slot="footer" class="footer text-end py-1 pe-3" style="border-top: 1px solid var(--divider, rgba(0, 0, 0, 0.1));">
         <Button
-            id="xmlDone"
-            variant="contained"
-            disableRipple="true"
-            on:click={setInputState.bind(this, 'delNode', false)}
+            unelevated={true}
+            outlined={true}
             color="#ccc"
+            on:click={setInputState.bind(this, 'delNode', false)}
         >
             {l.no_label}
         </Button>
         <Button
-            variant="contained"
-            disableRipple="true"
+            class="submitBtton"
+            unelevated={true}
             on:click={changeDeleteValues}
             color="primary"
         >
@@ -882,7 +889,7 @@
         </Button>
     </div>
 </Dialog>
-<Dialog width="600" bind:visible={state.add_transcript} style="background-color:#fff; border-radius: 5px;">
+<Dialog width="600" bind:visible={addTranscriptDialog} style="background-color:#fff; border-radius: 5px;">
     <h4 class="mt-1 font21 mb-4">
         <div class="d-flex justify-content-between">
             <div>{l.add_transcript_msg}</div>

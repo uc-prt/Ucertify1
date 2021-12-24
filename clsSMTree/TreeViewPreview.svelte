@@ -341,12 +341,35 @@
             // text of label of Draggable element
             let leafItem = AH.find(e, 'span').innerText;
             let leafCount = 0;
-            for (let n of allAssignedNodes) {
-                // checks if leafItem is equals to dragged elements label text then increase the leafCount value by 1
-                if (AH.find(n, 'span').innerText == leafItem) {
-                    ++leafCount;
+            if(allAssignedNodes.length > 0){
+                for (let n of allAssignedNodes) {
+                    // checks if leafItem is equals to dragged elements label text then increase the leafCount value by 1
+                    if (AH.find(n, 'span').innerText == leafItem) {
+                        ++leafCount;
+                    }
+                    // checks if Dragged element exist in Draggable elements array then assign the value to 1 otherwise 0 is applied
+                    let valInArray = countInArray(leafItem, state.treeData);
+                    // If leafCount equals to valInArray and valInArray is greater than 0 then adds 'h-imp' class to draggable elements in case of web not in mobile
+                    if (leafCount == valInArray && valInArray > 0 ) {
+                        if (window.inNative && window.inNative != undefined) {
+                            AH.select(e, 'hide');
+                        } else {
+                            // adds h-imp class to draggable element
+                            AH.select(e, 'addClass', 'h-imp');
+                            //e.className += " h-imp";
+                        }
+    
+                    } else {
+                        if (window.inNative && window.inNative != undefined) {
+                            e.style.display = "block";
+                        } else {
+                            // removes the 'h-imp' class from draggable element	
+                            //e.className = e.className.replace(/h-imp/g, "");
+                            AH.select(e, 'removeClass', 'h-imp');
+                        }
+                    }
                 }
-                // checks if Dragged element exist in Draggable elements array then assign the value to 1 otherwise 0 is applied
+            } else{
                 let valInArray = countInArray(leafItem, state.treeData);
                 // If leafCount equals to valInArray and valInArray is greater than 0 then adds 'h-imp' class to draggable elements in case of web not in mobile
                 if (leafCount == valInArray && valInArray > 0 ) {
@@ -670,7 +693,7 @@
                                                     class='liItemIndex' 
                                                     tid={_listItemCorrect.ID} 
                                                     correctans={_listItemCorrect.correctAns} 
-                                                    userans={_listItemCorrect.userAns} 
+                                                    userans={_listItemCorrect.userAns || ""} 
                                                     data-jstree="{JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false)})}"
                                                 >
                                                     {_listItemCorrect.item}
@@ -681,7 +704,7 @@
                                                     class='liItemIndex' 
                                                     tid={_listItemCorrect.ID} 
                                                     correctans={_listItemCorrect.correctAns} 
-                                                    userans={_listItemCorrect.userAns} 
+                                                    userans={_listItemCorrect.userAns || ""} 
                                                     data-jstree="{JSON.stringify({opened: true, selected: (_listItemCorrect.isParant ? true : false), icon: getIcon(_listItemCorrect['level'])})}"
                                                 >
                                                     {_listItemCorrect.item}
