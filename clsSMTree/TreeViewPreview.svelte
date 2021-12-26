@@ -46,7 +46,9 @@
     let preReview = isReview;
     $: {//if(preReview != isReview){
         if (isReview) {
-            setReview();
+            setTimeout(function(){
+                setReview();
+            },400)
         } else {
             unsetReview();
         }
@@ -242,14 +244,15 @@
                 if (editorState) {
                     showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
                 } else {
+                    result = ucTree?.checkedAns;
                     //debugger
-                    result = ucTree.checkAns('#' + treeid);
+                    //result = ucTree.checkAns('#' + treeid);
                     
                     // Shows correct or incorrect according to the return value of ucTree.checkAns() method
                     //let result = ucTree.checkAns('#' + treeid);
-                    
-                    //onUserAnsChange(result);
-                    result && ucTree.showans(result.ans);
+                    console.log(result);
+                    onUserAnsChange(result);
+                    //result && ucTree.showans(result.ans);
                 }
                 // shows the button of currect answer and your answer and check the answer and shows and does not allow the user to perforn the task
                 ucTree.modeOn('on');
@@ -638,7 +641,7 @@
     }
 
     function handleReview(mode) {
-        //debugger;
+        
 		if (mode == 'c') {
 			ucTree.showans('#treemain0', 'c');
 		} else {

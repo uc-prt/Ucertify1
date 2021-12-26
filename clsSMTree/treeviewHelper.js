@@ -33,11 +33,31 @@ class treeviewHelper {
         // set the icon for draggable element on which contextmenu event fired according to selected value from contextmenu bar
         this.lcrt.jstree(true).set_icon(id, obj.item.icon);
         // Calls for check the answer
-        this.checkAns(treeid, this.lcrt);
+        //this.checkAns(treeid, this.lcrt);
+        let that = this;
+            setTimeout(function(){
+                let result = that.checkAns(treeid, that.lcrt);
+                //console.log('Primary Key',result)
+                that.onUserAnswerChange(result)
+            },300)
     };
 
+    onUserAnswerChange(result) {
+        if (result) {
+            JS.select("#answer", 'checked', result.ans ? true : false);
+            JS.select("#special_module_user_xml", 'value', result.uXml);
+            if (typeof window == 'object') {
+                window.ISSPECIALMODULEUSERXMLCHANGE = 1;
+                if (typeof calculatePoint != "undefined") {
+                    calculatePoint(result.correctPoints || 1, result.ansPoint || result.ans);
+                }
+            }
+            globalThis.saveUserAnswerInSapper?.(result);
+        }
+    }
+
     // Remove the draggable element from droppable conatiner to draggable container
-    deleteList(obj) {   
+    deleteList(obj) {
         let treeid = "#" + obj.reference.closest('[id^="treemain"]').attr("id");
         /* Container element where elements are dropped after drag */
         this.lcrt = J(treeid).find('.treeall');
@@ -51,6 +71,14 @@ class treeviewHelper {
         this.lall.jstree(true).paste('#');
         // Delete the draggable element on which contextmenu event fired from droppable area
         this.lcrt.jstree(true).delete_node(id);
+        //let result = this.checkAns(treeid, this.lcrt);
+        let that = this;
+            setTimeout(function(){
+                let result = that.checkAns(treeid, that.lcrt);
+                //console.log('delete',result)
+                that.onUserAnswerChange(result)
+            },300)
+
     };
 
     // Used to copy the draggable element
@@ -263,12 +291,13 @@ class treeviewHelper {
             // opens a node, revealing its children. If the node is not loaded it will be loaded and opened once ready 
             jstValue.open_node(J(treeid).find('#' + data.parent));
             // called for check the answer 
+            //let result = this.checkAns(treeid, this.lcrt);
+            //console.log('result =>',result)
             let that = this;
             setTimeout(function(){
                 let result = that.checkAns(treeid, that.lcrt);
-                // console.log(result);
-                // debugger;
                 if (result) {
+                    //console.log('checking....');
                     JS.select("#answer", 'checked', result.ans ? true : false);
                     JS.select("#special_module_user_xml", 'value', result.uXml);
                     if (typeof window == 'object') {
@@ -462,6 +491,7 @@ class treeviewHelper {
                 this.result = true;
                 this.temp = 0;
                 var tree = J.jstree.reference(elemnt)._model.data;
+                //console.log('tree =>',tree);
                 J.each(tree, (index, value)=> {
                     if (index != '#' || tree[index].icon == "icomoon-database") {
                         // set the userAnsXML to this.userAnsXML returned from this.checkChildAns method

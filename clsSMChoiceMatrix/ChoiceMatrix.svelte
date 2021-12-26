@@ -595,6 +595,9 @@
 	position:relative;
 	top:5px;
 }
+.table>:not(:first-child) {
+    border-top: 1px solid;
+}
 
 
-</style>
+</style>x
