@@ -8377,7 +8377,7 @@ input:checked + .uc_syntax_slider:before {
   z-index: 2090 !important;
 }
 .overlay, .side-panel {
-  z-index: 9999 !important;
+  z-index: 2000 !important;
 }
 .divider {
   border-right: solid 2px #ccc;
@@ -8704,4 +8704,7 @@ i.mce-ico.mce-i-mytextwithicon::before {
 .annotator-color0, .color0 {
     background-color: rgba(255, 255, 10, 0.3) !important;
     color: black;
+}
+#modal-media-upload {
+  z-index: 99999 !important;
 }
