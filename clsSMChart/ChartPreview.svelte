@@ -217,11 +217,12 @@
                 openModal();
             }
         });
-        if(AI.selectAll('.highcharts-axis-line'),length > 0) {
-            setTimeout(function(){
-            AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
-        },500)
-        }
+        setTimeout(function() {
+            if(AI.selectAll('.highcharts-axis-line').length > 0) {
+                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
+            }
+        },300);
+        
         
     })
 
