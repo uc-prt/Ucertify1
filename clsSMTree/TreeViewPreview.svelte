@@ -8,7 +8,6 @@
     
     import './libs/treeview.min.css';
     import '../css/jstree/style.css';
-    //debugger;
     export let isReview;
     export let xml;
     export let uxml;
@@ -245,12 +244,9 @@
                     showAns(ucTree?.checkedAns?.ans ? "Correct" : "Incorrect");
                 } else {
                     result = ucTree?.checkedAns;
-                    //debugger
                     //result = ucTree.checkAns('#' + treeid);
-                    
                     // Shows correct or incorrect according to the return value of ucTree.checkAns() method
                     //let result = ucTree.checkAns('#' + treeid);
-                    console.log(result);
                     onUserAnsChange(result);
                     //result && ucTree.showans(result.ans);
                 }
@@ -311,7 +307,6 @@
         // for set the data to draggable and non dragable elements
         setItemValueAll(listItem, userXML);
         // used to initialized tree plugin and bind some required events that needed
-        //debugger;
         //ucTree.readyThis('#' + treeid, state.parsedOptions);
     }
     
@@ -405,6 +400,7 @@
 
     // for set the data to draggable and non dragable elements
     function setItemValueAll(listItem, userXML) {
+        //console.log('listItemAll =>',listItemAll);
         let userDiv;
         let useransArray = [];
         if (userXML) {
@@ -522,12 +518,12 @@
             }
         }
         // sets Default label at the second last position of contextmenu list
-        // json['opt' + Object.keys(json).length] = {
-        //     "seq": 0,
-        //     "label": "Default",
-        //     "icon": icons[2],
-        //     "action": "contextAction"
-        // };
+        json['opt' + Object.keys(json).length] = {
+            "seq": 0,
+            "label": "Default",
+            "icon": icons[2],
+            "action": "contextAction"
+        };
         // sets Delete label at the end of contextmenu list
         json['opt' + Object.keys(json).length] = {
             "label": "Delete",
@@ -611,14 +607,8 @@
     function setOptions(optionName, ID, level, isParant, pID) {
         var totalItem = listItemAll.length;
         // create a variable with index length of array listItemAll and assign the data to it
-        listItemAll[totalItem] = [];
-        listItemAll[totalItem]['item'] = optionName;
-        listItemAll[totalItem]['ID'] = ID;
-        listItemAll[totalItem]['level'] = level;
-        listItemAll[totalItem]['pID'] = pID;
-        listItemAll[totalItem]['isParant'] = isParant;
         
-        for (var i = 0; i <= totalItem; i++) {
+        for (var i = 0; i < totalItem; i++) {
             if (listItemAll[i]['isParant'] == '{1}') {
                 // set not to drag draggable element multiple time for creating the tree below droppable container
                 listItemAll[i]['multi'] = 0;
@@ -636,7 +626,14 @@
                 // returns value of listItemAll[i]['ID']
                 return listItemAll[i]['ID'];
             }
+            
         }
+        listItemAll[totalItem] = [];
+        listItemAll[totalItem]['item'] = optionName;
+        listItemAll[totalItem]['ID'] = ID;
+        listItemAll[totalItem]['level'] = level;
+        listItemAll[totalItem]['pID'] = pID;
+        listItemAll[totalItem]['isParant'] = isParant;
         return ID;
     }
 

@@ -296,18 +296,7 @@ class treeviewHelper {
             let that = this;
             setTimeout(function(){
                 let result = that.checkAns(treeid, that.lcrt);
-                if (result) {
-                    //console.log('checking....');
-                    JS.select("#answer", 'checked', result.ans ? true : false);
-                    JS.select("#special_module_user_xml", 'value', result.uXml);
-                    if (typeof window == 'object') {
-                        window.ISSPECIALMODULEUSERXMLCHANGE = 1;
-                        if (typeof calculatePoint != "undefined") {
-                            calculatePoint(result.correctPoints || 1, result.ansPoint || result.ans);
-                        }
-                    }
-                    globalThis.saveUserAnswerInSapper?.(result);
-                }
+                that.onUserAnswerChange(result);
             },300)
             
             var timer2 = setTimeout(()=> {
@@ -573,11 +562,21 @@ class treeviewHelper {
                         this.userAnsXML.append('<div id="' + pElem.li_attr.tid + '" uans="' + uans + '"></div>');
                     }
 
-                    if (pElem.li_attr.userans) {
-                        if (pElem.li_attr.userans.length == cans.length) {
-                            if (pElem.li_attr.userans.match(/\{2}/g) || pElem.li_attr.userans.match(/\*/g)) {
+
+                    // if (pElem.li_attr.userans) {
+                    //     if (pElem.li_attr.userans.length == cans.length) {
+                    //         if (pElem.li_attr.userans.match(/\{2}/g) || pElem.li_attr.userans.match(/\*/g)) {
+                    //             // assign the value in 'uans' variable
+                    //             uans = pElem.li_attr.userans;
+                    //         }
+                    //     }
+                    // }
+
+                    if (uans) {
+                        if (uans.length == cans.length) {
+                            if (uans.match(/\{2}/g) || uans.match(/\*/g)) {
                                 // assign the value in 'uans' variable
-                                uans = pElem.li_attr.userans;
+                                uans = uans;
                             }
                         }
                     }
