@@ -76,6 +76,13 @@
     const unsubscribe = preview_store.subscribe(value => {
 		state = value;
 	});
+
+
+    $:{
+        if(uxml == '{"items":{"item_1":["item_2","item_3",2],"item_4":["item_5","item_6",2],"item_7":["item_8","item_9",2],"item_10":["item_11","item_12",2]},"correct_attempt":["item_1","item_4","item_7","item_10"],"answer":2}') {
+            uxml = '';
+        }
+    }
     
     // updating module on change of the xml
     beforeUpdate(async()=> {
@@ -210,6 +217,13 @@
                 openModal();
             }
         });
+        setTimeout(function() {
+            if(AI.selectAll('.highcharts-axis-line').length > 0) {
+                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
+            }
+        },300);
+        
+        
     })
 
     // function called for opening the modal
@@ -476,6 +490,7 @@
 
     // function when the review mode is off
     function unsetReview () {
+        let result;
         isReview = false;
         // used for show the user answer
         CHART.tempVar = 'u';
@@ -484,7 +499,8 @@
         // shows the user answer but not change the border color or column/point color and not shows check or cancel mark
         CHART.showansdrag("#chartmain0", 'u', 0);
         // returns the result status and creates the user answer xml and shows the correct or incorrect message according to the status of result in snackbar
-        CHART.checkAns("#chartmain0");
+        result = CHART.checkAns("#chartmain0");
+        onUserAnsChange(result);
         // shows the 'add' (+), 'delete' and 'ADA' buttons
         AH.selectAll('#chartmain0 .setdata', 'css', {
             display: 'block'

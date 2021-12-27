@@ -494,6 +494,10 @@
         width: 10%;
         text-align: center;
     }
+
+    .table>:not(:first-child) {
+        border-top: 1px solid;
+    }
     .theme_color_theme1 {
         background-color: #5B9BD5!important;
     }

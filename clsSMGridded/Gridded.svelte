@@ -62,11 +62,12 @@
             }
         }))
 
-        setTimeout(function() {
-            const e = new Event("change"); 
-            const element = document.querySelector('#Fixed_decimal_column') 
-            element.dispatchEvent(e);
-        },300)
+
+        // setTimeout(function() {
+        //     const e = new Event("change"); 
+        //     const element = document.querySelector('#Fixed_decimal_column') 
+        //     element.dispatchEvent(e);
+        // },2000)
         
     })
 
@@ -89,6 +90,12 @@
 
     function parseXMLAuthoring(MYXML) {
         try {
+                state.fixed_point = MYXML.smxml._fixed_point;
+                if(state.fixed_point && state.fixed_point != 0 ) {
+                    const e = new Event("change"); 
+                    const element = document.querySelector('#Fixed_decimal_column') 
+                    element.dispatchEvent(e);
+                }
                 state.rowNum = MYXML.smxml._row;
                 state.colNum = MYXML.smxml._col;
                 state.slash_val =  MYXML.smxml._slash;
@@ -97,7 +104,7 @@
                 state.textSize = MYXML.smxml._font;
                 state.correctAns =  MYXML.smxml._correctAns;
                 state.correctAnsSplit = MYXML.smxml._correctAns.split(',');
-                state.fixed_point = MYXML.smxml._fixed_point;
+                
 
                 getChildXml(JSONToXML(MYXML));
                 if (MYXML.smxml._plusminus == 1) {
@@ -208,15 +215,19 @@
 
     function fixedDecimalPoints(event) {
         let decimalPosition = event.target.value;
+        if(event.target.value == '' && parseInt(state.fixed_point) > 0) {
+            decimalPosition = parseInt(state.fixed_point);
+        }
+        
         if((event.target.value).length > 1) {
             AH.alert('accept only single value');
             event.target.value = "";
             return false;
         }
-        if (event.target.value == "") {
+        if (decimalPosition == "") {
             decimalPosition = '';
         }
-        if (event.target.value.length > 1 || event.target.value < 1 || state.colNum <= event.target.value) {
+        if ((decimalPosition != "") && (decimalPosition.length > 1 || decimalPosition < 1 || state.colNum <= decimalPosition)) {
             decimalPosition = 1;
             event.target.value = 1;
             AH.alert(l.decimal_position+(state.colNum-1)+".");
