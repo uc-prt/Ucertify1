@@ -160,15 +160,15 @@ function localStorageData(user_guid, data, type, content_guid) {
                     </tr>
             </thead>			
             <tbody>			
-                {#each userData as data, i} 	
+                {#each userData as data, i}
                     {#if state.allItemTemp}
                         <tr key={counter++}>
                             <td class="text-center align-middle"><span class="mr-sm pl-2">{(data.content_guid?.length == 5) ? data.content_guid:"-"}</span></td>
                             <td class="text-center pt-3 span2 align-middle font22">
-                                <span rel="tooltip" class="mr-sm pl-2 {state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]['icon']}" data-original-title={state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]['title']} ></span>
+                                <span rel="tooltip" class="mr-sm pl-2 {state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]?.icon}" data-original-title={state.allItemTemp[data.content_type][data.content_subtype][data.content_icon]?.title} ></span>
                             </td>	
                             <td class="span6 align-middle"> 
-                                {(data.title != "") ? data.title :data['question'].replace(/<[^>]*>?/gm, '')}
+                                {@html (data.title != "") ? data.title :data['question'].replace(/<[^>]*>?/gm, '')}
                             </td>					
                             <td class="align-middle text-center" >
                             {data.datetime}
