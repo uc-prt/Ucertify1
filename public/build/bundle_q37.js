@@ -11309,25 +11309,25 @@ var app = (function () {
     function add_css$2() {
     	var style = element("style");
     	style.id = "svelte-dzqcfp-style";
-    	style.textContent = ".darkgrey_border{border:1px solid #ccc!important}.p-lg{padding:15px}.true-hover{outline:0;border:2px solid #14ca14!important}.false-hover{outline:0;border:1px solid #e45252!important}.default-hover{border-color:transparent!important;-webkit-box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important;-moz-box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important;box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important}.blocked{display:block !important}.border_green{border:3px solid green!important}.border_red{border:3px solid red!important}.sticky{z-index:800;position:sticky;top:0\n\t}.corr_div{width:38px;line-height:30px;background-color:#21a81d;color:#ffffff;z-index:1;display:inline-block;vertical-align:middle;cursor:default;position:absolute !important}.corr_div_correct{position:relative;width:38px;line-height:30px;background-color:#21a81d;color:#ffffff;z-index:1;display:inline-block;vertical-align:middle;cursor:default}[id^=\"fillmain\"]{overflow:hidden;text-align:left}[id^=\"fillmain\"] pre{background:none;border:none;font-size:14px!important}[id^=\"fillmain\"] .string{min-height:50px;margin-top:10px;margin-right:10px}[id^=\"fillmain\"] .footerstr{position:relative;margin-top:10px;background-color:#ccc;padding:15px;min-height:60px}[id^=\"fillmain\"] .footerstr .arrow-up{position:absolute;top:-10px;right:50%;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #ccc}[id^=\"fillmain\"] .fill-row{padding:6px}#fillmain .fillelement{height:30px;display:inline-block;position:relative;min-height:30px;margin:1px}#fillmain .drag-resize{height:30px;display:inline-block;position:relative;min-height:30px;margin:1px}[id^=\"fillmain\"] input[type=\"text\"]{height:99%!important;resize:none;font-size:12px;color:#000;max-width:800px}[id^=\"fillmain\"] select{height:99%!important;resize:none;font-size:12px;color:#000;max-width:800px}[id^=\"fillmain\"] .drag-resize{vertical-align:middle;border:1px solid #31B731;text-align:center;padding:3px;font-size:14px}[id^=\"fillmain\"] .drag-resize.ui-draggable{cursor:move}[id^=\"fillmain\"] .drop-hover{border:1px dashed red!important;box-shadow:0 0 0 2px yellow inset;outline:1px solid blue}[id^=\"fillmain\"] .fillcheck ul{width:220px}[id^=\"fillmain\"] .fillcheck li.selected{background-color:#E5E5E5}.fillcheck .selected .icomoon-checkmark-3:before{float:left;color:blue;padding:3px;position:relative;right:14px}.fillcheck .icomoon-close-2:before{float:left;color:blue;position:relative;right:14px;font-size:20px}.MathJax_Display{display:inline!important}[id^=\"fillmain\"] .select{font-size:15px}[id^=\"fillmain\"] .textarea{vertical-align:middle;border-radius:3px;background:#ffe;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075)}.ui-draggable-disabled{cursor:no-drop!important;opacity:0.5!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,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 */";
+    	style.textContent = ".darkgrey_border{border:1px solid #ccc!important}.p-lg{padding:15px}.true-hover{outline:0;border:2px solid #14ca14!important}.false-hover{outline:0;border:1px solid #e45252!important}.default-hover{border-color:transparent!important;-webkit-box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important;-moz-box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important;box-shadow:inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 1px rgba(2, 2, 2, 0.9)!important}.blocked{display:block !important}.border_green{border:3px solid green!important}.border_red{border:3px solid red!important}.sticky{z-index:800;position:sticky;top:0\n\t}.corr_div{width:38px;line-height:30px;background-color:#21a81d;color:#ffffff;z-index:1;display:inline-block;vertical-align:middle;cursor:default;position:absolute !important}.corr_div_correct{position:relative;width:38px;line-height:30px;background-color:#21a81d;color:#ffffff;z-index:1;display:inline-block;vertical-align:middle;cursor:default}[id^=\"fillmain\"]{overflow:hidden;text-align:left}[id^=\"fillmain\"] pre{background:none;border:none;font-size:14px!important}[id^=\"fillmain\"] .string{min-height:50px;margin-top:10px;margin-right:10px}[id^=\"fillmain\"] .footerstr{position:relative;margin-top:10px;background-color:#ccc;padding:15px;min-height:60px}[id^=\"fillmain\"] .footerstr .arrow-up{position:absolute;top:-10px;right:50%;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #ccc}[id^=\"fillmain\"] .fill-row{padding:6px}#fillmain .fillelement{height:30px;display:inline-block;position:relative;min-height:30px;margin:1px}#fillmain .drag-resize{height:30px;display:inline-block;position:relative;min-height:30px;margin:1px}[id^=\"fillmain\"] input[type=\"text\"]{height:99%!important;resize:none;font-size:12px;color:#000;max-width:800px}[id^=\"fillmain\"] select{height:99%!important;resize:none;font-size:12px;color:#000;max-width:800px}[id^=\"fillmain\"] .drag-resize{vertical-align:middle;border:1px solid #31B731;text-align:center;padding:3px;font-size:14px}[id^=\"fillmain\"] .drag-resize.ui-draggable{cursor:move}[id^=\"fillmain\"] .drop-hover{border:1px dashed red!important;box-shadow:0 0 0 2px yellow inset;outline:1px solid blue}[id^=\"fillmain\"] .fillcheck ul{width:220px}[id^=\"fillmain\"] .fillcheck li.selected{background-color:#E5E5E5}.fillcheck .selected .icomoon-checkmark-3:before{float:left;color:blue;padding:3px;position:relative;right:14px}.fillcheck .icomoon-close-2:before{float:left;color:blue;position:relative;right:14px;font-size:20px}.MathJax_Display{display:inline!important}[id^=\"fillmain\"] .select{font-size:15px}[id^=\"fillmain\"] .textarea{vertical-align:middle;border-radius:3px;background:#ffe;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075)}.ui-draggable-disabled{cursor:no-drop!important;opacity:0.5!important}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,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 */";
     	append_dev(document_1$1.head, style);
     }
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[70] = list[i];
-    	child_ctx[72] = i;
+    	child_ctx[71] = list[i];
+    	child_ctx[73] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[70] = list[i];
-    	child_ctx[72] = i;
+    	child_ctx[71] = list[i];
+    	child_ctx[73] = i;
     	return child_ctx;
     }
 
-    // (1115:1) {#if state.blank == false}
+    // (1143:1) {#if state.blank == false}
     function create_if_block$2(ctx) {
     	let center;
     	let itemhelper;
@@ -11426,17 +11426,17 @@ var app = (function () {
     			button.textContent = `${l.next}`;
     			attr_dev(div0, "class", div0_class_value = /*state*/ ctx[6].correct_answer ? "" : "h-imp");
     			attr_dev(div0, "style", div0_style_value = "width:" + (AH.isValid(window.inNative) ? "100%" : "700px"));
-    			add_location(div0, file$2, 1125, 3, 34183);
+    			add_location(div0, file$2, 1153, 3, 34811);
     			attr_dev(div1, "class", div1_class_value = /*state*/ ctx[6].correct_answer ? "h-imp" : "");
     			attr_dev(div1, "style", div1_style_value = "width:" + (AH.isValid(window.inNative) ? "100%" : "700px"));
-    			add_location(div1, file$2, 1138, 3, 34935);
+    			add_location(div1, file$2, 1166, 3, 35563);
     			attr_dev(button, "type", "button");
     			attr_dev(button, "style", button_style_value = "width:auto;font-size:15px;margin:15px 0;");
     			attr_dev(button, "class", "btn btn-sm btn-outline-primary imgcenter next_step px-md-5 px-sm-3");
-    			add_location(button, file$2, 1155, 4, 35884);
+    			add_location(button, file$2, 1183, 4, 36512);
     			attr_dev(div2, "class", div2_class_value = /*state*/ ctx[6].hideNext ? "h-imp" : null);
-    			add_location(div2, file$2, 1154, 3, 35835);
-    			add_location(center, file$2, 1116, 2, 33977);
+    			add_location(div2, file$2, 1182, 3, 36463);
+    			add_location(center, file$2, 1144, 2, 34605);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, center, anchor);
@@ -11572,20 +11572,20 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(1115:1) {#if state.blank == false}",
+    		source: "(1143:1) {#if state.blank == false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1128:4) {#each state.itemArray as item, index}
+    // (1156:4) {#each state.itemArray as item, index}
     function create_each_block_1(ctx) {
     	let div3;
     	let div2;
     	let div1;
     	let div0;
-    	let raw_value = /*item*/ ctx[70].cdata + "";
+    	let raw_value = /*item*/ ctx[71].cdata + "";
     	let div0_seq_value;
     	let div1_id_value;
     	let div1_class_value;
@@ -11603,25 +11603,25 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "seq", div0_seq_value = "s" + /*index*/ ctx[72]);
-    			add_location(div0, file$2, 1131, 9, 34817);
-    			attr_dev(div1, "id", div1_id_value = "data-block_" + /*index*/ ctx[72]);
+    			attr_dev(div0, "seq", div0_seq_value = "s" + /*index*/ ctx[73]);
+    			add_location(div0, file$2, 1159, 9, 35445);
+    			attr_dev(div1, "id", div1_id_value = "data-block_" + /*index*/ ctx[73]);
 
-    			attr_dev(div1, "class", div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[72]] != undefined && /*isReview*/ ctx[0]
-    			? /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[72]].overall == 1
+    			attr_dev(div1, "class", div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[73]] != undefined && /*isReview*/ ctx[0]
+    			? /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[73]].overall == 1
     				? "border_green"
     				: "border_red"
     			: ""));
 
-    			attr_dev(div1, "key", div1_key_value = /*index*/ ctx[72]);
-    			add_location(div1, file$2, 1130, 8, 34490);
-    			attr_dev(div2, "id", div2_id_value = "s" + /*index*/ ctx[72]);
+    			attr_dev(div1, "key", div1_key_value = /*index*/ ctx[73]);
+    			add_location(div1, file$2, 1158, 8, 35118);
+    			attr_dev(div2, "id", div2_id_value = "s" + /*index*/ ctx[73]);
     			attr_dev(div2, "class", div2_class_value = "bg-white");
-    			add_location(div2, file$2, 1129, 7, 34442);
-    			attr_dev(div3, "data-sticky", div3_data_sticky_value = /*isSticky*/ ctx[7](/*index*/ ctx[72]));
+    			add_location(div2, file$2, 1157, 7, 35070);
+    			attr_dev(div3, "data-sticky", div3_data_sticky_value = /*isSticky*/ ctx[7](/*index*/ ctx[73]));
     			attr_dev(div3, "class", "bt-pd bg-white mt-3");
     			attr_dev(div3, "tabindex", div3_tabindex_value = 0);
-    			add_location(div3, file$2, 1128, 6, 34354);
+    			add_location(div3, file$2, 1156, 6, 34982);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -11632,9 +11632,9 @@ var app = (function () {
     			append_dev(div3, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*state*/ 64 && raw_value !== (raw_value = /*item*/ ctx[70].cdata + "")) div0.innerHTML = raw_value;
-    			if (dirty[0] & /*state, special_module, isReview*/ 81 && div1_class_value !== (div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[72]] != undefined && /*isReview*/ ctx[0]
-    			? /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[72]].overall == 1
+    			if (dirty[0] & /*state*/ 64 && raw_value !== (raw_value = /*item*/ ctx[71].cdata + "")) div0.innerHTML = raw_value;
+    			if (dirty[0] & /*state, special_module, isReview*/ 81 && div1_class_value !== (div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[73]] != undefined && /*isReview*/ ctx[0]
+    			? /*special_module*/ ctx[4]?.smans["s" + /*index*/ ctx[73]].overall == 1
     				? "border_green"
     				: "border_red"
     			: ""))) {
@@ -11650,20 +11650,20 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(1128:4) {#each state.itemArray as item, index}",
+    		source: "(1156:4) {#each state.itemArray as item, index}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (1140:4) {#each answer_array as item,index}
+    // (1168:4) {#each answer_array as item,index}
     function create_each_block(ctx) {
     	let div3;
     	let div2;
     	let div1;
     	let div0;
-    	let raw_value = /*item*/ ctx[70].__cdata + "";
+    	let raw_value = /*item*/ ctx[71].__cdata + "";
     	let div0_seq_value;
     	let div1_id_value;
     	let div1_class_value;
@@ -11681,25 +11681,25 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			t = space();
-    			attr_dev(div0, "seq", div0_seq_value = "s" + /*index*/ ctx[72]);
-    			add_location(div0, file$2, 1144, 9, 35560);
-    			attr_dev(div1, "id", div1_id_value = "data-block_" + /*index*/ ctx[72]);
+    			attr_dev(div0, "seq", div0_seq_value = "s" + /*index*/ ctx[73]);
+    			add_location(div0, file$2, 1172, 9, 36188);
+    			attr_dev(div1, "id", div1_id_value = "data-block_" + /*index*/ ctx[73]);
 
-    			attr_dev(div1, "class", div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[72]] != undefined && /*isReview*/ ctx[0]
-    			? /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[72]].overall == 1
+    			attr_dev(div1, "class", div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[73]] != undefined && /*isReview*/ ctx[0]
+    			? /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[73]].overall == 1
     				? "border_green"
     				: "border_red"
     			: ""));
 
-    			attr_dev(div1, "key", div1_key_value = /*index*/ ctx[72]);
-    			add_location(div1, file$2, 1143, 8, 35235);
-    			attr_dev(div2, "id", div2_id_value = "s" + /*index*/ ctx[72]);
+    			attr_dev(div1, "key", div1_key_value = /*index*/ ctx[73]);
+    			add_location(div1, file$2, 1171, 8, 35863);
+    			attr_dev(div2, "id", div2_id_value = "s" + /*index*/ ctx[73]);
     			attr_dev(div2, "class", div2_class_value = "bg-white ");
-    			add_location(div2, file$2, 1142, 7, 35186);
-    			attr_dev(div3, "data-sticky", div3_data_sticky_value = /*isSticky*/ ctx[7](/*index*/ ctx[72]));
+    			add_location(div2, file$2, 1170, 7, 35814);
+    			attr_dev(div3, "data-sticky", div3_data_sticky_value = /*isSticky*/ ctx[7](/*index*/ ctx[73]));
     			attr_dev(div3, "class", "bt-pd bg-white mt-3");
     			attr_dev(div3, "tabindex", div3_tabindex_value = 0);
-    			add_location(div3, file$2, 1141, 6, 35101);
+    			add_location(div3, file$2, 1169, 6, 35729);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -11710,9 +11710,9 @@ var app = (function () {
     			append_dev(div3, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*answer_array*/ 8 && raw_value !== (raw_value = /*item*/ ctx[70].__cdata + "")) div0.innerHTML = raw_value;
-    			if (dirty[0] & /*state, special_module, isReview*/ 81 && div1_class_value !== (div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[72]] != undefined && /*isReview*/ ctx[0]
-    			? /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[72]].overall == 1
+    			if (dirty[0] & /*answer_array*/ 8 && raw_value !== (raw_value = /*item*/ ctx[71].__cdata + "")) div0.innerHTML = raw_value;
+    			if (dirty[0] & /*state, special_module, isReview*/ 81 && div1_class_value !== (div1_class_value = "main_item darkgrey_border secure-icon p-lg jqsfield spanlink_nav " + (/*state*/ ctx[6].display == 1 && /*special_module*/ ctx[4]?.smans && /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[73]] != undefined && /*isReview*/ ctx[0]
+    			? /*special_module*/ ctx[4].smans["s" + /*index*/ ctx[73]].overall == 1
     				? "border_green"
     				: "border_red"
     			: ""))) {
@@ -11728,7 +11728,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(1140:4) {#each answer_array as item,index}",
+    		source: "(1168:4) {#each answer_array as item,index}",
     		ctx
     	});
 
@@ -11744,7 +11744,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			if (if_block) if_block.c();
-    			add_location(main, file$2, 1113, 0, 33937);
+    			add_location(main, file$2, 1141, 0, 34565);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11842,6 +11842,7 @@ var app = (function () {
     	let state = {};
     	let txtWidth = [];
     	let globWith = "";
+    	let new_xml;
     	let { xml } = $$props;
     	let { stopPreviewUpdate } = $$props;
     	let { isReview } = $$props;
@@ -11896,7 +11897,7 @@ var app = (function () {
     			}
 
     			$$invalidate(6, state.blank = false, state);
-    			let new_xml = XMLToJSON(state.xml);
+    			new_xml = XMLToJSON(state.xml);
     			loadModule(new_xml);
     		}
     	});
@@ -12777,8 +12778,19 @@ var app = (function () {
 
     		/// Manage correct answer position ////
     		// AH.selectAll('.edit_step', 'hide');
-    		AH.selectAll("#text", "removeClass", "corr_div");
+    		// AI.selectAll('.edit_step').forEach((_this)=>{
+    		// 	_this.style.display = 'none';
+    		// })
+    		setTimeout(
+    			function () {
+    				AI.selectAll(".corr_div_correct").forEach(_this => {
+    					_this.style.position = "absolute";
+    				});
+    			},
+    			100
+    		);
 
+    		AH.selectAll("#text", "removeClass", "corr_div");
     		AH.selectAll("#text", "addClass", "corr_div_correct");
     		showCorrect();
     		$$invalidate(6, state.main_steps = true, state);
@@ -12804,6 +12816,23 @@ var app = (function () {
     		$$invalidate(6, state.hideNext = true, state);
     		$$invalidate(6, state.smController = "", state);
 
+    		setTimeout(
+    			function () {
+    				AI.selectAll(".corr_div_correct").forEach(_this => {
+    					_this.style.position = "relative";
+    				});
+    			},
+    			100
+    		);
+
+    		// AI.selectAll('.edit_step').forEach((_this)=>{
+    		// 		_this.style.display = 'none';
+    		// })
+    		// if(new_xml.smxml._fixed === '1') {
+    		// 	AI.selectAll('.edit_step').forEach((_this)=>{
+    		// 		_this.style.display = 'none';
+    		// 	})
+    		// }
     		//$('.fillintheblank').removeClass('default-hover');
     		AH.selectAll(".fillintheblank", "removeClass", "default-hover");
 
@@ -13086,6 +13115,7 @@ var app = (function () {
     		state,
     		txtWidth,
     		globWith,
+    		new_xml,
     		xml,
     		stopPreviewUpdate,
     		isReview,
@@ -13158,6 +13188,7 @@ var app = (function () {
     		if ("state" in $$props) $$invalidate(6, state = $$props.state);
     		if ("txtWidth" in $$props) txtWidth = $$props.txtWidth;
     		if ("globWith" in $$props) globWith = $$props.globWith;
+    		if ("new_xml" in $$props) new_xml = $$props.new_xml;
     		if ("xml" in $$props) $$invalidate(13, xml = $$props.xml);
     		if ("stopPreviewUpdate" in $$props) $$invalidate(14, stopPreviewUpdate = $$props.stopPreviewUpdate);
     		if ("isReview" in $$props) $$invalidate(0, isReview = $$props.isReview);
@@ -13165,8 +13196,8 @@ var app = (function () {
     		if ("MQ" in $$props) MQ = $$props.MQ;
     		if ("customIsReview" in $$props) $$invalidate(1, customIsReview = $$props.customIsReview);
     		if ("stateData" in $$props) stateData = $$props.stateData;
-    		if ("timer" in $$props) $$invalidate(39, timer = $$props.timer);
-    		if ("timer_next" in $$props) $$invalidate(40, timer_next = $$props.timer_next);
+    		if ("timer" in $$props) $$invalidate(40, timer = $$props.timer);
+    		if ("timer_next" in $$props) $$invalidate(41, timer_next = $$props.timer_next);
     	};
 
     	if ($$props && "$$inject" in $$props) {
