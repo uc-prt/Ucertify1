@@ -497,7 +497,6 @@
 	}
 
 	function moveNext() {
-		step_xml.smxml.step[steps]._attempt = '1';
 		if (typeof QUIZPLAYERID != "undefined") {
 			var timer = setTimeout(function(){
 				window.parentElement.autoResize(QUIZPLAYERID);
@@ -774,9 +773,12 @@
 				AH.select(AH.select('#'+elem).previousElementSibling,'removeClass','h-imp');
 			}
 			if(step_xml.smxml._fixed != 1) {
-				//jQuery('#'+elem).prev().addClass('h-imp');
-				AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
-				AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
+				var timer = setTimeout(function() {
+					//jQuery('#'+elem).prev().addClass('h-imp');
+					AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
+					AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
+				 	clearTimeout(timer);
+				},2000);
 			}
 		}
 		if (uxml) {
