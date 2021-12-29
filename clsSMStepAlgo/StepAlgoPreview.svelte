@@ -823,7 +823,8 @@
 			if (j<=oldstep) {
 				smans[outer].overall = overall;
 			} else {
-				smans[element_div].overall = overall;
+				//smans[element_div].overall = overall; this line break for after review mode
+				smans[outer].overall = overall;
 				nextStep();
 			}
 		}
@@ -1000,7 +1001,7 @@
 			}
 		});
 		if (step_xml.smxml.step[steps]._attempt == 1) {
-			checkAns();
+			checkAns(steps);
 		} else { 
 			nextStep();
 			addSticky();
