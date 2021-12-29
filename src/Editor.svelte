@@ -350,7 +350,7 @@ function didMount(node, action) {
 				setBasicData(state.title, state.stem, state.remediation, "skip_state_set");
 				initAddFeature(state.title, editorConfig.maintainAlignments(state.stem), editorConfig.maintainAlignments(state.remediation));
 			} else {
-				let contentText = (state.propsAjaxData?.content.replace(/\n/g,"<br>") || state.content || '');
+				let contentText = (state.propsAjaxData?.content?.replace(/\n/g,"<br>") || state.content || '');
 				contentText = replaceUnwantedTags(contentText);
 				contentText = editorConfig.replaceUnwantedEntity(contentText, 'only_self_close');
 				let tempContent = editorConfig.replaceUnwantedEntity(contentText, 'onlyEntity');

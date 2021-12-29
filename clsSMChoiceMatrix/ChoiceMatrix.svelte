@@ -598,6 +598,4 @@
 .table>:not(:first-child) {
     border-top: 1px solid;
 }
-
-
-</style>x
+</style>
