@@ -360,91 +360,94 @@
             handleReviewClick = {handleReviewMode}
             customReviewMode={customIsReview}
         />
+        {#if state.QXML._type != undefined}
         <div
             id="mathmain"
             class="userAns position-relative bg-white"
             style = "height:{(Number(state.QXML._height) + 2)}px;width:{state.QXML._width}px;"
         >
-        <div id="option-toolbar" class="text-dark">
-            <ul class="controls">
-                <li value="plotgraph" class="selected-option text-uppercase m-0">{state.QXML._type}</li>
-            </ul>
-            <button 
-                tabindex="0" 
-                id="ADA_button" 
-                class= "ADAButton float-start mt-1 btn w-auto h-auto p-1 btn-light ml" 
-                aria-label={l.ada_graph_msg} 
-            >
-                <span data-bs-toggle="tooltip"  title={l.ada_graph_msg} class="icomoon-keyboard-2 s2"></span>
-            </button>
-            <div
-                class="btn-group tools delElem h-imp" 
-            >
-                <button
-                    type="button"
-                    class="btn btn-light p-1 focus_div"
-                    id="delButton"
-                    data-placement="right"
-                    tabindex="0"
-                    aria-label={l.ada_message} 
-                >
-                    <span title={l.delete} data-bs-toggle="tooltip"  class={"icomoon-new-24px-delete-1"}></span>
-                </button>
-            </div>
-        </div>
+                <div id="option-toolbar" class="text-dark">
+                    <ul class="controls">
+                    
+                        <li value="plotgraph" class="selected-option text-uppercase m-0">{(state.QXML._type === undefined) ? '' : state.QXML._type}</li>
+                    </ul>
+                    <button 
+                        tabindex="0" 
+                        id="ADA_button" 
+                        class= "ADAButton float-start mt-1 btn w-auto h-auto p-1 btn-light ml" 
+                        aria-label={l.ada_graph_msg} 
+                    >
+                        <span data-bs-toggle="tooltip"  title={l.ada_graph_msg} class="icomoon-keyboard-2 s2"></span>
+                    </button>
+                    <div
+                        class="btn-group tools delElem h-imp" 
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-light p-1 focus_div"
+                            id="delButton"
+                            data-placement="right"
+                            tabindex="0"
+                            aria-label={l.ada_message} 
+                        >
+                            <span title={l.delete} data-bs-toggle="tooltip"  class={"icomoon-new-24px-delete-1"}></span>
+                        </button>
+                    </div>
+                </div>
 
-        {#if state.QXML._reflection}
-            <div
-                id={state.QXML._id + "Preview"} 
-                data-userans={state.userAns_data}
-                data-anskey={state.QXML._anskey}
-                type={state.QXML._type} 
-                class={"drag-resize dropable " + state.QXML._type}
-                data-xtickdistance={state.QXML._xtickdistance}
-                data-ytickdistance={state.QXML._ytickdistance} 
-                data-xaxis={state.QXML._xaxis} 
-                data-yaxis={state.QXML._yaxis} 
-                data-snapsize={state.QXML._snapsize} 
-                data-equation={state.QXML._equation}
-                data-reflection = {state.QXML._reflection}
-                style = "
-                    height: {state.QXML._height - 40}px;
-                    width: {state.QXML._width}px;
-                    border: 1px solid #ccc;
-                "
-            ></div>
-        {:else}
-            <div
-                id={state.QXML._id + "Preview"} 
-                data-userans={state.userAns_data}
-                data-anskey={state.QXML._anskey}
-                type={state.QXML._type} 
-                class={"drag-resize dropable " + state.QXML._type}
-                data-xtickdistance={state.QXML._xtickdistance}
-                data-ytickdistance={state.QXML._ytickdistance} 
-                data-xaxis={state.QXML._xaxis} 
-                data-yaxis={state.QXML._yaxis} 
-                data-snapsize={state.QXML._snapsize} 
-                data-equation={state.QXML._equation}
-                style = "
-                    height: {state.QXML._height - 40}px;
-                    width: {state.QXML._width}px;
-                    border: 1px solid #ccc;
-                "
-            ></div>
-        {/if}
-        <ul class="footer_toolbox h">
-            <li class="btn_active btn-point" rel="point" data-value="P"></li>
-            <li rel="segment" class="btn-segment" data-value="S"></li>
-            <li rel="segment_left_point_hollow" class="btn-SLH" data-value="SLH"></li>
-            <li rel="segment_right_point_hollow" class="btn-SRH" data-value="SRH"></li>
-            <li rel="segment_both_point_hollow" class="btn-SBH" data-value="SBH"></li>
-            <li rel="ray_left_direction" class="btn-RL" data-value="RL"></li>
-            <li rel="ray_right_direction" class="btn-RR" data-value="RR"></li>
-            <li rel="ray_left_direction_right_hollow" class="btn-RRH" data-value="RRH"></li>
-            <li rel="ray_right_direction_left_hollow" class="btn-RLH" data-value="RLH"></li>	
-        </ul>
+            {#if state.QXML._reflection}
+                <div
+                    id={state.QXML._id + "Preview"} 
+                    data-userans={state.userAns_data}
+                    data-anskey={state.QXML._anskey}
+                    type={state.QXML._type} 
+                    class={"drag-resize dropable " + state.QXML._type}
+                    data-xtickdistance={state.QXML._xtickdistance}
+                    data-ytickdistance={state.QXML._ytickdistance} 
+                    data-xaxis={state.QXML._xaxis} 
+                    data-yaxis={state.QXML._yaxis} 
+                    data-snapsize={state.QXML._snapsize} 
+                    data-equation={state.QXML._equation}
+                    data-reflection = {state.QXML._reflection}
+                    style = "
+                        height: {state.QXML._height - 40}px;
+                        width: {state.QXML._width}px;
+                        border: 1px solid #ccc;
+                    "
+                ></div>
+            {:else}
+                <div
+                    id={state.QXML._id + "Preview"} 
+                    data-userans={state.userAns_data}
+                    data-anskey={state.QXML._anskey}
+                    type={state.QXML._type} 
+                    class={"drag-resize dropable " + state.QXML._type}
+                    data-xtickdistance={state.QXML._xtickdistance}
+                    data-ytickdistance={state.QXML._ytickdistance} 
+                    data-xaxis={state.QXML._xaxis} 
+                    data-yaxis={state.QXML._yaxis} 
+                    data-snapsize={state.QXML._snapsize} 
+                    data-equation={state.QXML._equation}
+                    style = "
+                        height: {state.QXML._height - 40}px;
+                        width: {state.QXML._width}px;
+                        border: 1px solid #ccc;
+                    "
+                ></div>
+            {/if}
+            <ul class="footer_toolbox h">
+                <li class="btn_active btn-point" rel="point" data-value="P"></li>
+                <li rel="segment" class="btn-segment" data-value="S"></li>
+                <li rel="segment_left_point_hollow" class="btn-SLH" data-value="SLH"></li>
+                <li rel="segment_right_point_hollow" class="btn-SRH" data-value="SRH"></li>
+                <li rel="segment_both_point_hollow" class="btn-SBH" data-value="SBH"></li>
+                <li rel="ray_left_direction" class="btn-RL" data-value="RL"></li>
+                <li rel="ray_right_direction" class="btn-RR" data-value="RR"></li>
+                <li rel="ray_left_direction_right_hollow" class="btn-RRH" data-value="RRH"></li>
+                <li rel="ray_right_direction_left_hollow" class="btn-RLH" data-value="RLH"></li>	
+            </ul>
         </div>
+        {/if}
     </center>
 
     <div id="graph_modal" class="modal fade" tabIndex="-1">
