@@ -39,6 +39,7 @@
     let state = {};
 	let txtWidth = [];
 	let globWith = '';
+	let new_xml ;
 
     export let xml;
     export let stopPreviewUpdate;
@@ -106,7 +107,7 @@
 				reset();
 			}
 			state.blank = false;
-			let new_xml = XMLToJSON(state.xml);
+			new_xml = XMLToJSON(state.xml);
 			loadModule(new_xml);
 		}
 	})
@@ -497,7 +498,6 @@
 	}
 
 	function moveNext() {
-		step_xml.smxml.step[steps]._attempt = '1';
 		if (typeof QUIZPLAYERID != "undefined") {
 			var timer = setTimeout(function(){
 				window.parentElement.autoResize(QUIZPLAYERID);
@@ -774,9 +774,12 @@
 				AH.select(AH.select('#'+elem).previousElementSibling,'removeClass','h-imp');
 			}
 			if(step_xml.smxml._fixed != 1) {
-				//jQuery('#'+elem).prev().addClass('h-imp');
-				AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
-				AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
+				var timer = setTimeout(function() {
+					//jQuery('#'+elem).prev().addClass('h-imp');
+					AH.select(AH.select('#'+elem).previousElementSibling.nextSibling,'css',{width:globWith});
+					AH.select(AH.select('#'+elem).previousElementSibling,'addClass','h-imp');
+				 	clearTimeout(timer);
+				},2000);
 			}
 		}
 		if (uxml) {
@@ -900,6 +903,15 @@
 
 		/// Manage correct answer position ////
 		// AH.selectAll('.edit_step', 'hide');
+		// AI.selectAll('.edit_step').forEach((_this)=>{
+		// 	_this.style.display = 'none';
+		// })
+		setTimeout(function(){
+			AI.selectAll('.corr_div_correct').forEach((_this)=>{
+				_this.style.position = "absolute";
+			})
+		},100);
+		
 		AH.selectAll('#text','removeClass','corr_div');
 		AH.selectAll('#text','addClass','corr_div_correct');
 		showCorrect();
@@ -924,8 +936,26 @@
 		state.display = 1;
 		state.hideNext = true;
 		state.smController = '';
+
+		setTimeout(function(){
+			AI.selectAll('.corr_div_correct').forEach((_this)=>{
+				_this.style.position = "relative";
+			})
+		},100)
+
+		// AI.selectAll('.edit_step').forEach((_this)=>{
+		// 		_this.style.display = 'none';
+		// })
+
+		// if(new_xml.smxml._fixed === '1') {
+		// 	AI.selectAll('.edit_step').forEach((_this)=>{
+		// 		_this.style.display = 'none';
+		// 	})
+		// }
 		
 		//$('.fillintheblank').removeClass('default-hover');
+
+		
 		AH.selectAll(".fillintheblank","removeClass","default-hover");
 		
 		AH.selectAll('#text','addClass','corr_div');
