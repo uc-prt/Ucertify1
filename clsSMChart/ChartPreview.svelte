@@ -221,7 +221,7 @@
             if(AI.selectAll('.highcharts-axis-line').length > 0) {
                 AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
             }
-        },300);
+        },1000);
         
         
     })
