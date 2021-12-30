@@ -290,7 +290,7 @@
 		AH.selectAll('.shadingPreview .shadingTable .gridSelected').forEach(function(value) {
 			state.userAns.push(value.getAttribute("pevdata-id"))
 		});
-        AH.select("#special_module_user_xml").innerText = "<smans userAns='"+state.userAns.join()+"'></smans>";
+        AH.select("#special_module_user_xml").value = "<smans userAns='"+state.userAns.join()+"'></smans>";
 		state.userxml = "<smans userAns='"+state.userAns.join()+"'></smans>";
 
 		if (state.correctAns != "") {
