@@ -97,7 +97,7 @@
                     ...preview_table, {
                         id: 'p' + cellIndex,
                         tabindex: (state.pointerEvents == "auto") ? "0" : "",
-                        arialabel: "Grids row "+ (i+1) + " and column " + (j+1) + " is selected",
+                        arialabel: "Grids row "+ (i+1) + " and column " + (j+1) + " is "+((showSelectedAns=="gridSelected")?"selected":"unselected" ),
                         pevdata: cellIndex,
                         class: showSelectedAns,
                         width: parseInt(state.gridWidth) + 'px',

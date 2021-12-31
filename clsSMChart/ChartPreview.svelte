@@ -468,7 +468,8 @@
             display: 'none'
         });
         // shows the message correct or incorrect according to the return value of 'CHART.checkAns' method
-        displayAns();
+        //displayAns();
+        
         // sets the value of css properties opacity and visibility of columns/points
         AH.selectAll(".highcharts-tracker", 'css' , {
             opacity: "1",
