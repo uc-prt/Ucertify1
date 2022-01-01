@@ -510,6 +510,7 @@
 			} else {	
 				if (step_xml.smxml.step[steps]._attempt == 1) {
 					if (AH.selectAll('.edit_step').length == AH.selectAll('.answer_input').length) {
+						//checkAns();
 						checkAns(steps);
 					} else {
 						notFilled();
@@ -813,7 +814,8 @@
 			if (j<=oldstep) {
 				smans[outer].overall = overall;
 			} else {
-				smans[element_div].overall = overall;
+				//smans[element_div].overall = overall;
+				smans[outer].overall = overall;
 				overAll();
 			}
 		} else {
