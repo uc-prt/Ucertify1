@@ -510,7 +510,7 @@
 			} else {	
 				if (step_xml.smxml.step[steps]._attempt == 1) {
 					if (AH.selectAll('.edit_step').length == AH.selectAll('.answer_input').length) {
-						checkAns();
+						checkAns(steps);
 					} else {
 						notFilled();
 					}
@@ -903,7 +903,7 @@
 		AH.selectAll('.fillintheblank','addClass','default-hover');
 
 		/// Manage correct answer position ////
-		// AH.selectAll('.edit_step', 'hide');
+		AH.selectAll('.edit_step', 'hide');
 		// AI.selectAll('.edit_step').forEach((_this)=>{
 		// 	_this.style.display = 'none';
 		// })
@@ -944,9 +944,12 @@
 			})
 		},100)
 
-		// AI.selectAll('.edit_step').forEach((_this)=>{
-		// 		_this.style.display = 'none';
-		// })
+		
+		AI.selectAll('.your .edit_step').forEach((_this)=>{
+			_this.style.display = 'block';
+		})
+		AI.remove('.correct .edit_step');
+		//AH.select('.edit_step', 'show');
 
 		// if(new_xml.smxml._fixed === '1') {
 		// 	AI.selectAll('.edit_step').forEach((_this)=>{
@@ -1152,7 +1155,7 @@
 				reviewMode={isReview}
 				customReviewMode={customIsReview}
 			/>
-			<div class={state.correct_answer ? '': 'h-imp'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<div class={state.correct_answer ? 'your': 'your h-imp'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				
 				{#each state.itemArray as item, index}
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3" tabindex={0}> 	 	
@@ -1165,7 +1168,7 @@
 				{/each}
 				
 			</div>
-			<div class={state.correct_answer ? 'h-imp': ''} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
+			<div class={state.correct_answer ? 'h-imp correct': 'correct'} style={"width:" + (AH.isValid(window.inNative) ? "100%" : "700px")}>
 				{#each answer_array as item,index}
 			
 						<div data-sticky={isSticky(index)} class="bt-pd bg-white mt-3"  tabindex={0}>
