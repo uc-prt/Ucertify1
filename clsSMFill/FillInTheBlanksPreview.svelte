@@ -418,6 +418,12 @@
 			})
 		}
 
+		if(AH.selectAll('.mq-root-block textarea').length > 0) {
+			AH.selectAll('.mq-root-block textarea').forEach((_this)=>{
+				_this.setAttribute('disabled','true');
+			})
+		}
+
 		// For mathqul based 
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
