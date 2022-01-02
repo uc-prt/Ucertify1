@@ -538,7 +538,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                                     >
                                         {l.add_transcript_msg}
                                     </button>
-                                    <button disabled="disabled" class="btn btn-outline-dark edit_transcript  my-1" title={l.edit_transcript_msg}>{l.edit_msg}</button>
+                                    <button class="btn btn-outline-dark edit_transcript  my-1" title={l.edit_transcript_msg} disabled={playerState?.prevValue?.group_guids?false:true} guid="{playerState?.prevValue?.group_guids || ""}">{l.edit_msg}</button>
                                 </div>
                             </div>
                         </div>
