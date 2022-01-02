@@ -172,8 +172,10 @@
 			if (AH.select(".shadingAuth #"+targetId).getAttribute("data-grid") == "no") {
                 AH.select(".shadingAuth #"+targetId).setAttribute("data-grid", "selected");
                 AH.selectAll(".shadingAuth #"+targetId, 'addClass', 'gridSelected');
-				if (!state.correctAns.includes( selectedGrid)) {
-					state.correctAns.push(selectedGrid);
+				if (!state.correctAns.includes(selectedGrid)) {
+					//state.correctAns.push(selectedGrid);
+                    
+                    state.correctAns = [...state.correctAns,selectedGrid];
 				}
 			} else {
 				index = state.correctAns.indexOf(selectedGrid);
@@ -189,6 +191,7 @@
     // updates the xml when the value of any elements changed
     function updateXml() {
 		setTimeout( function() {
+            state.correctAns = state.correctAns.filter(n => n)
 			let updatedXml = '<smxml type="44" name="Shading" rowCount="' + state.rowCount + '" colCount="' + state.colCount + '" cellWidth="' + state.cellWidth + '" cellHeight="' + state.cellHeight + '" correctAns="' + state.correctAns + '" correctCount="' + state.methodCount + '" shadedCell="' + state.shadedCell + '" lockedCell="' + state.cellLocked + '" HiddenCell="' + state.hiddenCell + '" lockedCellValue="' + state.lockedCellValue + '"><!--[CDATA[]]--></smxml>';
 			getChildXml(updatedXml);			
 		}, 100);
@@ -297,7 +300,7 @@
         AH.selectAll('.'+_this.options[_this.selectedIndex].getAttribute('data-show'), 'addClass', 'd-inline-block')
         AH.selectAll('.'+_this.options[_this.selectedIndex].getAttribute('data-hide'), 'removeClass', 'd-inline-block')
         if (AH.select("[name='"+event.target.name+"']").value == "byCount") {
-			state.correctAns = "";
+			state.correctAns = [];
 			state.methodCount = 1;
 		} else {
 			state.methodCount = "";

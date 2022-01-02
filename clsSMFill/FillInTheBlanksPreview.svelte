@@ -411,6 +411,19 @@
 		isReview = true;
 		window.isReview = true;
 		window.learn = true;
+		
+		if(AH.selectAll(".dragable").length > 0) {
+			AH.selectAll(".dragable").forEach((_this)=>{
+				_this.setAttribute("draggable","false");
+			})
+		}
+
+		if(AH.selectAll('.mq-root-block textarea').length > 0) {
+			AH.selectAll('.mq-root-block textarea').forEach((_this)=>{
+				_this.setAttribute('disabled','true');
+			})
+		}
+
 		// For mathqul based 
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
@@ -442,6 +455,11 @@
 		AH.selectAll('.fillintheblank','attr',{'disabled':false});
 		isReview = false;
 		window.learn = false;
+		if(AH.selectAll(".dragable").length > 0) {
+			AH.selectAll(".dragable").forEach((_this)=>{
+				_this.setAttribute("draggable","true");
+			})
+		}
 		AH.selectAll('.mathquill', 'css', {'border': 'none'});
 		ucFill.modeOn();
 		AH.selectAll('.remed_disable, .corr_div', 'hide');

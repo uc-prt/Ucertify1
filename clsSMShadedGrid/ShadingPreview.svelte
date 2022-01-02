@@ -97,7 +97,7 @@
                     ...preview_table, {
                         id: 'p' + cellIndex,
                         tabindex: (state.pointerEvents == "auto") ? "0" : "",
-                        arialabel: "Grids row "+ (i+1) + " and column " + (j+1) + " is selected",
+                        arialabel: "Grids row "+ (i+1) + " and column " + (j+1) + " is "+((showSelectedAns=="gridSelected")?"selected":"unselected" ),
                         pevdata: cellIndex,
                         class: showSelectedAns,
                         width: parseInt(state.gridWidth) + 'px',
@@ -290,7 +290,7 @@
 		AH.selectAll('.shadingPreview .shadingTable .gridSelected').forEach(function(value) {
 			state.userAns.push(value.getAttribute("pevdata-id"))
 		});
-        AH.select("#special_module_user_xml").innerText = "<smans userAns='"+state.userAns.join()+"'></smans>";
+        AH.select("#special_module_user_xml").value = "<smans userAns='"+state.userAns.join()+"'></smans>";
 		state.userxml = "<smans userAns='"+state.userAns.join()+"'></smans>";
 
 		if (state.correctAns != "") {
