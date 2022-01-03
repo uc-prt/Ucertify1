@@ -270,7 +270,7 @@
             let queryData = { 
                 ajax: "1", 
                 action: 'update_editor_item_inf', 
-                content_guid: AH.get('current_guid'),
+                content_guid: editorState.guid,
                 ref_id: AH.select(".item_ref_id").textContent,
                 isDraft: AH.get('draft'),
                 content_icon:  AH.get("current_item_icon"),
@@ -285,6 +285,7 @@
                     AH.activate(0);
                     if (response == 1) {
                         AH.showmsg("Data updated successfully.");
+                        handleModal();
                     } else {
                         AH.showmsg("Updation failed.");
                     }
