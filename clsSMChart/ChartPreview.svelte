@@ -453,6 +453,12 @@
 
     // function when the review mode is on
     function setReview () {
+        //// For borders /////
+        setTimeout(function() {
+            if(AI.selectAll('.highcharts-axis-line').length > 0) {
+                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
+            }
+        },1000);
         isReview = true;
         // used for show the correct answer
         CHART.tempVar = 'c';
@@ -491,6 +497,12 @@
 
     // function when the review mode is off
     function unsetReview () {
+        //// For borders /////
+        setTimeout(function() {
+            if(AI.selectAll('.highcharts-axis-line').length > 0) {
+                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
+            }
+        },1000);
         let result;
         isReview = false;
         // used for show the user answer

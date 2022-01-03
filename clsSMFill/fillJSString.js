@@ -457,7 +457,7 @@ export default class fillJS {
 				if (!window.learn) {
 					pasteDraggable();
 				}
-			} else if(e.which === 8) {
+			} else if(e.which === 8 || e.which === 46) {
 				if (!window.learn) {
 					removeDraggable();
 				}
