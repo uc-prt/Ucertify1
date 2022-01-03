@@ -4351,7 +4351,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (390:12) {#if total_row_count && total_row_count.length > 0}
+    // (394:12) {#if total_row_count && total_row_count.length > 0}
     function create_if_block$1(ctx) {
     	let each_1_anchor;
     	let each_value = /*total_row_count*/ ctx[2];
@@ -4412,14 +4412,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(390:12) {#if total_row_count && total_row_count.length > 0}",
+    		source: "(394:12) {#if total_row_count && total_row_count.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (393:24) {#if preview_table && preview_table.length > 0}
+    // (397:24) {#if preview_table && preview_table.length > 0}
     function create_if_block_1(ctx) {
     	let each_1_anchor;
     	let each_value_1 = /*preview_table*/ ctx[1];
@@ -4480,14 +4480,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(393:24) {#if preview_table && preview_table.length > 0}",
+    		source: "(397:24) {#if preview_table && preview_table.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (395:32) {#if i == data.rowno}
+    // (399:32) {#if i == data.rowno}
     function create_if_block_2(ctx) {
     	let td;
     	let t;
@@ -4522,7 +4522,7 @@ var app = (function () {
     			set_style(td, "width", /*data*/ ctx[41].width);
     			set_style(td, "height", /*data*/ ctx[41].height);
     			set_style(td, "pointerEvents", "pointerEvents");
-    			add_location(td, file$1, 395, 36, 14375);
+    			add_location(td, file$1, 399, 36, 14502);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -4598,14 +4598,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(395:32) {#if i == data.rowno}",
+    		source: "(399:32) {#if i == data.rowno}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (407:40) {#if isReview}
+    // (411:40) {#if isReview}
     function create_if_block_3(ctx) {
     	let if_block_anchor;
 
@@ -4649,14 +4649,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(407:40) {#if isReview}",
+    		source: "(411:40) {#if isReview}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (412:44) {:else}
+    // (416:44) {:else}
     function create_else_block(ctx) {
     	let span1;
     	let span0;
@@ -4670,8 +4670,8 @@ var app = (function () {
     			attr_dev(span0, "class", span0_class_value = /*data*/ ctx[41].corrspanclass);
     			attr_dev(span0, "aria-label", span0_aria_label_value = /*data*/ ctx[41].spanarialabel);
     			set_style(span0, "color", /*data*/ ctx[41].corrspanstyle);
-    			add_location(span0, file$1, 413, 52, 15891);
-    			add_location(span1, file$1, 412, 48, 15832);
+    			add_location(span0, file$1, 417, 52, 16018);
+    			add_location(span1, file$1, 416, 48, 15959);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span1, anchor);
@@ -4699,14 +4699,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(412:44) {:else}",
+    		source: "(416:44) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (408:44) {#if userTab == true}
+    // (412:44) {#if userTab == true}
     function create_if_block_4(ctx) {
     	let span1;
     	let span0;
@@ -4721,10 +4721,10 @@ var app = (function () {
     			attr_dev(span0, "class", span0_class_value = /*data*/ ctx[41].spanclass);
     			attr_dev(span0, "aria-label", span0_aria_label_value = /*data*/ ctx[41].spanarialabel);
     			set_style(span0, "color", /*data*/ ctx[41].spanstyle);
-    			add_location(span0, file$1, 409, 52, 15571);
+    			add_location(span0, file$1, 413, 52, 15698);
     			attr_dev(span1, "class", span1_class_value = /*state*/ ctx[3].iconVisible);
     			set_style(span1, "display", /*data*/ ctx[41].spandisplay);
-    			add_location(span1, file$1, 408, 48, 15450);
+    			add_location(span1, file$1, 412, 48, 15577);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span1, anchor);
@@ -4760,14 +4760,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(408:44) {#if userTab == true}",
+    		source: "(412:44) {#if userTab == true}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (394:28) {#each preview_table as data}
+    // (398:28) {#each preview_table as data}
     function create_each_block_1(ctx) {
     	let if_block_anchor;
     	let if_block = /*i*/ ctx[40] == /*data*/ ctx[41].rowno && create_if_block_2(ctx);
@@ -4805,14 +4805,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(394:28) {#each preview_table as data}",
+    		source: "(398:28) {#each preview_table as data}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (391:16) {#each total_row_count as val, i}
+    // (395:16) {#each total_row_count as val, i}
     function create_each_block(ctx) {
     	let tr;
     	let t;
@@ -4823,7 +4823,7 @@ var app = (function () {
     			tr = element("tr");
     			if (if_block) if_block.c();
     			t = space();
-    			add_location(tr, file$1, 391, 20, 14150);
+    			add_location(tr, file$1, 395, 20, 14277);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -4854,7 +4854,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(391:16) {#each total_row_count as val, i}",
+    		source: "(395:16) {#each total_row_count as val, i}",
     		ctx
     	});
 
@@ -4907,17 +4907,17 @@ var app = (function () {
     			t4 = text(t4_value);
     			t5 = space();
     			t6 = text(t6_value);
-    			add_location(tbody, file$1, 388, 8, 14008);
+    			add_location(tbody, file$1, 392, 8, 14135);
     			attr_dev(table, "id", "table");
     			attr_dev(table, "class", "table-bordered shadingTable");
     			set_style(table, "pointer-events", /*isReview*/ ctx[0] ? "none" : "");
-    			add_location(table, file$1, 387, 4, 13895);
+    			add_location(table, file$1, 391, 4, 14022);
     			attr_dev(div0, "class", "h mt-5 text-center");
     			attr_dev(div0, "id", "correctCountStatus");
     			set_style(div0, "color", /*incorrectCls*/ ctx[5]);
-    			add_location(div0, file$1, 426, 4, 16404);
+    			add_location(div0, file$1, 430, 4, 16531);
     			attr_dev(div1, "class", "shadingPreview");
-    			add_location(div1, file$1, 379, 0, 13645);
+    			add_location(div1, file$1, 383, 0, 13772);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5305,7 +5305,11 @@ var app = (function () {
     			}
     		}
 
-    		countRes = countRes === "Correct" ? true : false;
+    		if (countRes) {
+    			countRes = countRes === "Correct" ? true : false;
+    		} else {
+    			countRes = ans_val === "Correct" ? true : false;
+    		}
 
     		if (!editorState) {
     			onUserAnsChange({ uXml: state.userxml, ans: countRes });

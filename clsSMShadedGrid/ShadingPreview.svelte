@@ -335,8 +335,12 @@
 			    showAns(countRes);
             }
 		}
-
-        countRes = (countRes === "Correct") ? true : false;
+        if(countRes) {
+            countRes =  (countRes === "Correct") ? true : false;
+        } else {
+            countRes =  (ans_val === "Correct") ? true : false;
+        }
+        
         
         if(!editorState) {
             onUserAnsChange({uXml: state.userxml, ans: countRes});
