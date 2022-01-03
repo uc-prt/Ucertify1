@@ -905,18 +905,15 @@
 		AH.selectAll('.fillintheblank','addClass','default-hover');
 
 		/// Manage correct answer position ////
-		AH.selectAll('.edit_step', 'hide');
-		// AI.selectAll('.edit_step').forEach((_this)=>{
-		// 	_this.style.display = 'none';
-		// })
-		setTimeout(function(){
-			AI.selectAll('.corr_div_correct').forEach((_this)=>{
-				_this.style.position = "absolute";
-			})
-		},100);
+		//AH.selectAll('.edit_step', 'hide');
+		// setTimeout(function(){
+		// 	AI.selectAll('.corr_div_correct').forEach((_this)=>{
+		// 		_this.style.position = "absolute";
+		// 	})
+		// },100);
 		
-		AH.selectAll('#text','removeClass','corr_div');
-		AH.selectAll('#text','addClass','corr_div_correct');
+		// AH.selectAll('#text','removeClass','corr_div');
+		// AH.selectAll('#text','addClass','corr_div_correct');
 		showCorrect();
 		state.main_steps = true;
 		state.correct_answer = false;
@@ -940,22 +937,21 @@
 		state.hideNext = true;
 		state.smController = '';
 
-		setTimeout(function(){
-			AI.selectAll('.corr_div_correct').forEach((_this)=>{
-				_this.style.position = "relative";
-			})
-		},100)
+		// setTimeout(function(){
+		// 	AI.selectAll('.corr_div_correct').forEach((_this)=>{
+		// 		_this.style.position = "relative";
+		// 	})
+		// },100)
 
 		
-		AI.selectAll('.your .edit_step').forEach((_this)=>{
-			_this.style.display = 'block';
-		})
-		AI.remove('.correct .edit_step');
-		//AH.select('.edit_step', 'show');
+		// AI.selectAll('.your .edit_step').forEach((_this)=>{
+		// 	_this.style.display = 'block';
+		// })
+		//AI.remove('.correct .edit_step');
 
 		// if(new_xml.smxml._fixed === '1') {
-		// 	AI.selectAll('.edit_step').forEach((_this)=>{
-		// 		_this.style.display = 'none';
+		// 	AH.selectAll('.your .corr_div').forEach((_this)=>{
+		// 		_this.style.position = "relative!important"
 		// 	})
 		// }
 		
@@ -964,8 +960,8 @@
 		
 		AH.selectAll(".fillintheblank","removeClass","default-hover");
 		
-		AH.selectAll('#text','addClass','corr_div');
-		AH.selectAll('#text','removeClass','corr_div_correct');
+		// AH.selectAll('#text','addClass','corr_div');
+		// AH.selectAll('#text','removeClass','corr_div_correct');
 
 		state.main_steps = false;
 		state.correct_answer = true;
@@ -1062,7 +1058,7 @@
 			element_id = "s0"+index+"_t"+i;
 			element_div = "s0"+index;
 			let ans_id = "m0"+index+"_t"+i;
-			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
+			let matheq = '<span  id="'+element_id+'" class="auto_height auto_width  edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
 			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div fillmathelement position-absolute h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			let cd_ans = org_cdata.replace(original_data, tag);
 			answer_array[index].__cdata = cd_ans;
@@ -1070,8 +1066,8 @@
 			element_id = "s"+steps_counter+"_t"+i;
 			element_div = "s"+steps_counter;
 			let ans_id = "m"+steps_counter+"_t"+i;
-			let matheq = '<span  id="'+element_id+'" class="auto_height edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
-			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div h-imp fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
+			let matheq = '<span  id="'+element_id+'" class="auto_height auto_width edit_step fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" userans="'+userans+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+'s'+'</span>';
+			let tag = '<span id="'+element_div+'" class="text-center filter fillelement position-relative inline-block"><span class="disable_div fh fwidth absolute h"></span><span class="remed_disable fh fwidth absolute h"></span><span  id="'+ans_id+'" class="corr_div  h-imp fillmathelement h-100 mathquill mq'+steps_counter+'" userAnsSeq="'+random_key+'" anskey="'+anskey+'" defaultans="'+defaultans+'" mathtype="1">'+answer_element+'</span>'+matheq+'</span>';
 			cdata = cdata.replace(original_data, tag);
 			smans = createAns(smans, element_id, element_div, corr_ans);
 			special_module.smans = smans;
@@ -1237,7 +1233,8 @@
 	}
 
 	:global(.corr_div) {
-		width: 38px;
+		position: absolute!important;
+		width: 100%;
 		line-height: 30px;
 		background-color: #21a81d;
 		color: #ffffff;
@@ -1245,7 +1242,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		cursor: default;
-		position: absolute !important;
+		
 	}
 
 	:global(.corr_div_correct) {
@@ -1377,5 +1374,8 @@
         cursor: no-drop!important;
         opacity: 0.5!important;
     }
+	:global(.auto_width) {
+		width: auto!important;
+	}
 
 </style>
