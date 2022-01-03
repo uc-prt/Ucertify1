@@ -428,9 +428,14 @@
 			if(AI.selectAll('.fillmain .fillelement select').length > 0) {
 			AI.selectAll('.fillmain .fillelement select').forEach((data,i)=>{
 				console.log(data.getAttribute('title'));
-				data.parentElement.setAttribute('title',data.getAttribute('title'));
-				data.parentElement.setAttribute('aria-label',data.getAttribute('title'));
+				let selectData;
 				data.parentElement.setAttribute('tabindex','0');
+				data.removeAttribute("readonly");
+				data.setAttribute("disabled",true);
+				selectData = data.querySelector('option[value="'+ data.value +'"]').innerText
+				selectData = selectData.trim();
+				data.parentElement.setAttribute('title',data.getAttribute('title'));
+				data.parentElement.setAttribute('aria-label',selectData+' '+data.getAttribute('title'));
 			})
 		}
 		},200);
@@ -442,7 +447,6 @@
 		state.showToolbar = false;
 		// show the answer and also bind the keys event for ada
 		setTimeout(function(){
-			debugger;
 			ucFill.modeOn("on");
 			ucFill.showdragans(ajax_eId, 'u', 1);
 			AH.selectAll('.remed_disable', 'show');
@@ -456,6 +460,7 @@
     					_this.setAttribute('disabled','true');
 					})
 				}
+				
 				AH.selectAll('.fillintheblank','attr',{'readonly':true});
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
@@ -473,6 +478,7 @@
 				data.parentElement.setAttribute('title','');
 				data.parentElement.setAttribute('aria-label','');
 				data.parentElement.removeAttribute('tabindex');
+				//data.removeAttribute("readonly");
 			})
 		}
 		},200);
