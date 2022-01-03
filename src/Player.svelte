@@ -275,11 +275,10 @@
             AI.showmsg(l.required_field);
         } else {
             const data = {};
-            const sendData =  AH.serialize('#vtt_module');
-            sendData.split('&').forEach(ele => {
-                const [key,value] = ele.split('='); 
-                data[key] = value;
-            });
+            const formData =  new FormData(AH.select('#vtt_module'));
+            for (var p of formData) {
+                data[p[0]] = p[1];
+            }
             AH.ajax({
                 url: baseUrl+'utils/vtt_parser.php',
                 type: 'POST',

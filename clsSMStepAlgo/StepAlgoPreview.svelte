@@ -1246,6 +1246,7 @@
 		vertical-align: middle;
 		cursor: default;
 		position: absolute !important;
+		left: 0;
 	}
 
 	:global(.corr_div_correct) {
