@@ -1242,7 +1242,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		cursor: default;
-		
+		left: 0;
 	}
 
 	:global(.corr_div_correct) {

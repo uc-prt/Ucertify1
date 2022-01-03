@@ -310,7 +310,12 @@
     }
 
     function handleSave(id, fillid) {
-        let data = document.querySelector('#'+fillid).innerHTML;
+        let data = document.querySelector('#'+fillid);
+        const unwantedTag = data?.querySelectorAll('[data-mce-bogus="all"]');
+        if(unwantedTag?.length>0){
+            unwantedTag.forEach(ele => ele.remove());
+        }
+        data = data.innerHTML
         data = data.replace(/&amp;/g,'&'); // replace amp to maintain html entity.
         all_steps[id].__cdata = data; 
         AH.select('#save_step_'+id,'attr',{disabled:'disabled'})
