@@ -926,8 +926,17 @@
 	// for showing correct answer.
 	function correctAnswer() {
 		ucFill.showdragans(ajax_eId, 'c', 1);
-		AH.selectAll('.corr_div','css',{display:'block'});
+		// AH.selectAll('.corr_div','css',{display:'block!important'});
+		// AH.selectAll('.remed_disable','css',{display:'block!important'});
+		AH.selectAll('.corr_div').forEach((_this)=>{
+			_this.classList.remove('h');
+			_this.style.display = 'block';
+		})
 		AH.selectAll('.remed_disable','css',{display:'block'});
+		AH.selectAll('.remed_disable').forEach((_this)=>{
+			_this.classList.remove('h');
+			_this.style.display = 'block';
+		})
 		autoresize(1);
 	}
 
