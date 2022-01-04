@@ -159,6 +159,8 @@
             }
 
         }
+        /// For Border ////
+        lineWidth();
     })
 
     // Binding some initial events for answer checking
@@ -217,11 +219,6 @@
                 openModal();
             }
         });
-        setTimeout(function() {
-            if(AI.selectAll('.highcharts-axis-line').length > 0) {
-                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
-            }
-        },1000);
         
         
     })
@@ -451,14 +448,14 @@
         }
     }
 
-    // function when the review mode is on
-    function setReview () {
-        //// For borders /////
-        setTimeout(function() {
-            if(AI.selectAll('.highcharts-axis-line').length > 0) {
+    function lineWidth() {
+        if(AI.selectAll('.highcharts-axis-line').length > 0) {
                 AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
             }
-        },1000);
+    }
+
+    // function when the review mode is on
+    function setReview () {
         isReview = true;
         // used for show the correct answer
         CHART.tempVar = 'c';
@@ -473,6 +470,8 @@
         AH.selectAll('#chartmain0 .setdata', 'css', {
             display: 'none'
         });
+        /// For Border ////
+        lineWidth();
         // shows the message correct or incorrect according to the return value of 'CHART.checkAns' method
         //displayAns();
         
@@ -497,12 +496,6 @@
 
     // function when the review mode is off
     function unsetReview () {
-        //// For borders /////
-        setTimeout(function() {
-            if(AI.selectAll('.highcharts-axis-line').length > 0) {
-                AI.selectAll('.highcharts-axis-line')[2].setAttribute("stroke","#000");
-            }
-        },1000);
         let result;
         isReview = false;
         // used for show the user answer
@@ -522,6 +515,8 @@
         if (window.inNative) {
             AH.select('#chartmain0 #ADA_Btn_point').classList.add('h');
         }
+        /// For Border ////
+        lineWidth();
         // sets the border color of the chart container
         AH.selectAll('#answerID0', 'css', {
             "border": "1px solid rgb(204, 204, 204)" 

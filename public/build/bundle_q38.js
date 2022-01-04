@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -5749,7 +5749,7 @@ var app = (function () {
     function add_css$1() {
     	var style = element("style");
     	style.id = "svelte-1hjssff-style";
-    	style.textContent = "#chart_modal.svelte-1hjssff .modal-body.svelte-1hjssff{max-height:350px}.native_chart_header.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;height:36px}.chart_preview_container.svelte-1hjssff.svelte-1hjssff{border:1px solid #ccc;overflow:visible !important}.native_add.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;width:auto;bottom:10px\n    }.native_add_text.svelte-1hjssff.svelte-1hjssff{bottom:2px;left:2px}.native_remove.svelte-1hjssff.svelte-1hjssff{padding:7.5px;background:#e0e0e0;width:auto;left:220px;top:7px}#chart_header_container.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;height:41px}.setdata.svelte-1hjssff.svelte-1hjssff{-webkit-appearance:none;cursor:pointer;margin-right:5px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hhcnRQcmV2aWV3LnN2ZWx0ZSIsIm1hcHBpbmdzIjoiQUFzbUJJLDJCQUFZLENBQUMsV0FBVyxlQUFDLENBQUEsQUFDckIsVUFBVSxDQUFFLEtBQUssQUFDckIsQ0FBQSxBQUVBLG9CQUFvQiw4QkFBQyxDQUFBLEFBQ2pCLFVBQVUsQ0FBRSxPQUFPLENBQ25CLE1BQU0sQ0FBRSxJQUFJLEFBQ2hCLENBQUEsQUFFQSx3QkFBd0IsOEJBQUMsQ0FBQSxBQUNyQixNQUFNLENBQUUsR0FBRyxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQ3RCLFFBQVEsQ0FBRSxPQUFPLENBQUMsVUFBVSxBQUNoQyxDQUFBLEFBRUEsV0FBVyw4QkFBQyxDQUFBLEFBQ1IsVUFBVSxDQUFFLE9BQU8sQ0FDbkIsS0FBSyxDQUFFLElBQUksQ0FDWCxNQUFNLENBQUUsSUFBQTtJQUNaLENBQUEsQUFFQSxnQkFBZ0IsOEJBQUMsQ0FBQSxBQUNiLE1BQU0sQ0FBRSxHQUFHLENBQ1gsSUFBSSxDQUFFLEdBQUcsQUFDYixDQUFBLEFBRUEsY0FBYyw4QkFBQyxDQUFBLEFBQ1gsT0FBTyxDQUFFLEtBQUssQ0FDZCxVQUFVLENBQUUsT0FBTyxDQUNuQixLQUFLLENBQUUsSUFBSSxDQUNYLElBQUksQ0FBRSxLQUFLLENBQ1gsR0FBRyxDQUFFLEdBQUcsQUFDWixDQUFBLEFBQ0EsdUJBQXVCLDhCQUFDLENBQUEsQUFDcEIsVUFBVSxDQUFFLE9BQU8sQ0FDbkIsTUFBTSxDQUFFLElBQUksQUFDaEIsQ0FBQSxBQUNBLFFBQVEsOEJBQUMsQ0FBQSxBQUNMLGtCQUFrQixDQUFFLElBQUksQ0FDeEIsTUFBTSxDQUFFLE9BQU8sQ0FDZixZQUFZLENBQUUsR0FBRyxBQUNyQixDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkNoYXJ0UHJldmlldy5zdmVsdGUiXX0= */";
+    	style.textContent = "#chart_modal.svelte-1hjssff .modal-body.svelte-1hjssff{max-height:350px}.native_chart_header.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;height:36px}.chart_preview_container.svelte-1hjssff.svelte-1hjssff{border:1px solid #ccc;overflow:visible !important}.native_add.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;width:auto;bottom:10px\n    }.native_add_text.svelte-1hjssff.svelte-1hjssff{bottom:2px;left:2px}.native_remove.svelte-1hjssff.svelte-1hjssff{padding:7.5px;background:#e0e0e0;width:auto;left:220px;top:7px}#chart_header_container.svelte-1hjssff.svelte-1hjssff{background:#e0e0e0;height:41px}.setdata.svelte-1hjssff.svelte-1hjssff{-webkit-appearance:none;cursor:pointer;margin-right:5px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2hhcnRQcmV2aWV3LnN2ZWx0ZSIsIm1hcHBpbmdzIjoiQUFpbUJJLDJCQUFZLENBQUMsV0FBVyxlQUFDLENBQUEsQUFDckIsVUFBVSxDQUFFLEtBQUssQUFDckIsQ0FBQSxBQUVBLG9CQUFvQiw4QkFBQyxDQUFBLEFBQ2pCLFVBQVUsQ0FBRSxPQUFPLENBQ25CLE1BQU0sQ0FBRSxJQUFJLEFBQ2hCLENBQUEsQUFFQSx3QkFBd0IsOEJBQUMsQ0FBQSxBQUNyQixNQUFNLENBQUUsR0FBRyxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQ3RCLFFBQVEsQ0FBRSxPQUFPLENBQUMsVUFBVSxBQUNoQyxDQUFBLEFBRUEsV0FBVyw4QkFBQyxDQUFBLEFBQ1IsVUFBVSxDQUFFLE9BQU8sQ0FDbkIsS0FBSyxDQUFFLElBQUksQ0FDWCxNQUFNLENBQUUsSUFBQTtJQUNaLENBQUEsQUFFQSxnQkFBZ0IsOEJBQUMsQ0FBQSxBQUNiLE1BQU0sQ0FBRSxHQUFHLENBQ1gsSUFBSSxDQUFFLEdBQUcsQUFDYixDQUFBLEFBRUEsY0FBYyw4QkFBQyxDQUFBLEFBQ1gsT0FBTyxDQUFFLEtBQUssQ0FDZCxVQUFVLENBQUUsT0FBTyxDQUNuQixLQUFLLENBQUUsSUFBSSxDQUNYLElBQUksQ0FBRSxLQUFLLENBQ1gsR0FBRyxDQUFFLEdBQUcsQUFDWixDQUFBLEFBQ0EsdUJBQXVCLDhCQUFDLENBQUEsQUFDcEIsVUFBVSxDQUFFLE9BQU8sQ0FDbkIsTUFBTSxDQUFFLElBQUksQUFDaEIsQ0FBQSxBQUNBLFFBQVEsOEJBQUMsQ0FBQSxBQUNMLGtCQUFrQixDQUFFLElBQUksQ0FDeEIsTUFBTSxDQUFFLE9BQU8sQ0FDZixZQUFZLENBQUUsR0FBRyxBQUNyQixDQUFBIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkNoYXJ0UHJldmlldy5zdmVsdGUiXX0= */";
     	append_dev(document_1$1.head, style);
     }
 
@@ -5760,7 +5760,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (556:12) {:else}
+    // (551:12) {:else}
     function create_else_block(ctx) {
     	let div2;
     	let div1;
@@ -5799,7 +5799,7 @@ var app = (function () {
     			span5 = element("span");
     			span4 = element("span");
     			attr_dev(span0, "class", "icomoon-plus s2");
-    			add_location(span0, file$1, 560, 32, 23593);
+    			add_location(span0, file$1, 555, 32, 23223);
     			attr_dev(span1, "tabindex", "0");
     			attr_dev(span1, "title", span1_title_value = l.add);
     			attr_dev(span1, "data-bs-toggle", "tooltip");
@@ -5807,9 +5807,9 @@ var app = (function () {
     			attr_dev(span1, "data-original-title", span1_data_original_title_value = l.add);
     			attr_dev(span1, "id", "add_prev");
     			attr_dev(span1, "class", "setdata btn-light btn w-auto h-auto p-1 bg-white border  svelte-1hjssff");
-    			add_location(span1, file$1, 559, 28, 23308);
+    			add_location(span1, file$1, 554, 28, 22938);
     			attr_dev(span2, "class", "icomoon-new-24px-delete-1 s2");
-    			add_location(span2, file$1, 563, 32, 23995);
+    			add_location(span2, file$1, 558, 32, 23625);
     			attr_dev(span3, "tabindex", "0");
     			attr_dev(span3, "title", span3_title_value = l.delete);
     			attr_dev(span3, "data-bs-toggle", "tooltip");
@@ -5817,9 +5817,9 @@ var app = (function () {
     			attr_dev(span3, "data-original-title", span3_data_original_title_value = l.delete);
     			attr_dev(span3, "id", "delete_prev");
     			attr_dev(span3, "class", "setdata btn-light btn w-auto h-auto p-1 bg-white border  svelte-1hjssff");
-    			add_location(span3, file$1, 562, 28, 23695);
+    			add_location(span3, file$1, 557, 28, 23325);
     			attr_dev(span4, "class", "icomoon-keyboard-2 s2");
-    			add_location(span4, file$1, 566, 32, 24361);
+    			add_location(span4, file$1, 561, 32, 23991);
     			attr_dev(span5, "tabindex", "0");
     			attr_dev(span5, "title", span5_title_value = l.ada_chart_msg);
     			attr_dev(span5, "data-bs-toggle", "tooltip");
@@ -5827,15 +5827,15 @@ var app = (function () {
     			attr_dev(span5, "data-original-title", span5_data_original_title_value = l.ada_chart_msg);
     			attr_dev(span5, "id", "ADA_Btn_point");
     			attr_dev(span5, "class", "setdata btn-light btn w-auto h-auto p-1 bg-white border svelte-1hjssff");
-    			add_location(span5, file$1, 565, 28, 24111);
+    			add_location(span5, file$1, 560, 28, 23741);
     			attr_dev(div0, "class", "float-start d-flex");
-    			add_location(div0, file$1, 558, 24, 23247);
+    			add_location(div0, file$1, 553, 24, 22877);
     			attr_dev(div1, "class", "float-right pt-1 pr-1");
-    			add_location(div1, file$1, 557, 20, 23187);
+    			add_location(div1, file$1, 552, 20, 22817);
     			attr_dev(div2, "id", "chart_header_container");
     			set_style(div2, "width", /*state*/ ctx[2].width + "px");
     			attr_dev(div2, "class", "svelte-1hjssff");
-    			add_location(div2, file$1, 556, 16, 23101);
+    			add_location(div2, file$1, 551, 16, 22731);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -5875,14 +5875,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(556:12) {:else}",
+    		source: "(551:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (551:12) {#if window.inNative}
+    // (546:12) {#if window.inNative}
     function create_if_block_1(ctx) {
     	let div;
     	let span2;
@@ -5908,20 +5908,20 @@ var app = (function () {
     			span4 = element("span");
     			span4.textContent = `${l.remove}`;
     			attr_dev(span0, "class", "s3");
-    			add_location(span0, file$1, 552, 152, 22723);
+    			add_location(span0, file$1, 547, 152, 22353);
     			attr_dev(span1, "class", "position-relative native_add_text svelte-1hjssff");
-    			add_location(span1, file$1, 552, 176, 22747);
+    			add_location(span1, file$1, 547, 176, 22377);
     			attr_dev(span2, "class", "setdata native_add p-2 float-end position-relative svelte-1hjssff");
-    			add_location(span2, file$1, 552, 20, 22591);
+    			add_location(span2, file$1, 547, 20, 22221);
     			attr_dev(span3, "class", "s3");
-    			add_location(span3, file$1, 553, 144, 22961);
+    			add_location(span3, file$1, 548, 144, 22591);
     			attr_dev(span4, "class", "position-relative");
-    			add_location(span4, file$1, 553, 168, 22985);
+    			add_location(span4, file$1, 548, 168, 22615);
     			attr_dev(span5, "class", "setdata position-relative native_remove svelte-1hjssff");
-    			add_location(span5, file$1, 553, 20, 22837);
+    			add_location(span5, file$1, 548, 20, 22467);
     			attr_dev(div, "class", "native_chart_header svelte-1hjssff");
     			set_style(div, "width", /*state*/ ctx[2].width + "px");
-    			add_location(div, file$1, 551, 16, 22506);
+    			add_location(div, file$1, 546, 16, 22136);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -5958,14 +5958,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(551:12) {#if window.inNative}",
+    		source: "(546:12) {#if window.inNative}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (592:24) {#if data.moduleType == 'column' ||  data.moduleType == 'line' ||  data.moduleType == 'histogram' ||  data.moduleType == 'dotplot'}
+    // (587:24) {#if data.moduleType == 'column' ||  data.moduleType == 'line' ||  data.moduleType == 'histogram' ||  data.moduleType == 'dotplot'}
     function create_if_block$1(ctx) {
     	let div;
     	let label0;
@@ -6008,20 +6008,20 @@ var app = (function () {
     			input0.value = input0_value_value = /*i*/ ctx[36];
     			input0.readOnly = "readonly";
     			attr_dev(input0, "class", "getFieldVal form-control mt-2");
-    			add_location(input0, file$1, 595, 36, 26371);
+    			add_location(input0, file$1, 590, 36, 26001);
     			attr_dev(label0, "class", "col-6 text-body");
-    			add_location(label0, file$1, 593, 32, 26246);
+    			add_location(label0, file$1, 588, 32, 25876);
     			attr_dev(input1, "type", "number");
     			input1.value = input1_value_value = /*data*/ ctx[34].value;
     			attr_dev(input1, "placeholder", "Insert numeric data");
     			attr_dev(input1, "class", "point_x_1 getFieldVal form-control mt-2 svelte-1hjssff");
     			attr_dev(input1, "id", input1_id_value = "setAnsByKey" + (/*i*/ ctx[36] + 1));
-    			add_location(input1, file$1, 599, 36, 26661);
+    			add_location(input1, file$1, 594, 36, 26291);
     			attr_dev(label1, "class", "col-6 text-body");
-    			add_location(label1, file$1, 597, 32, 26536);
+    			add_location(label1, file$1, 592, 32, 26166);
     			attr_dev(div, "class", "row mainDiv mt-2 svelte-1hjssff");
     			attr_dev(div, "id", div_id_value = "divAllTextBox" + /*i*/ ctx[36]);
-    			add_location(div, file$1, 592, 28, 26156);
+    			add_location(div, file$1, 587, 28, 25786);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -6059,14 +6059,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(592:24) {#if data.moduleType == 'column' ||  data.moduleType == 'line' ||  data.moduleType == 'histogram' ||  data.moduleType == 'dotplot'}",
+    		source: "(587:24) {#if data.moduleType == 'column' ||  data.moduleType == 'line' ||  data.moduleType == 'histogram' ||  data.moduleType == 'dotplot'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (591:20) {#each  state.modalViewLayout as data, i}
+    // (586:20) {#each  state.modalViewLayout as data, i}
     function create_each_block(ctx) {
     	let if_block_anchor;
     	let if_block = (/*data*/ ctx[34].moduleType == "column" || /*data*/ ctx[34].moduleType == "line" || /*data*/ ctx[34].moduleType == "histogram" || /*data*/ ctx[34].moduleType == "dotplot") && create_if_block$1(ctx);
@@ -6104,7 +6104,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(591:20) {#each  state.modalViewLayout as data, i}",
+    		source: "(586:20) {#each  state.modalViewLayout as data, i}",
     		ctx
     	});
 
@@ -6246,47 +6246,47 @@ var app = (function () {
     			attr_dev(div0, "title", div0_title_value = /*state*/ ctx[2].title);
     			attr_dev(div0, "color", div0_color_value = /*state*/ ctx[2].color);
     			set_style(div0, "width", /*state*/ ctx[2].width + "px");
-    			add_location(div0, file$1, 572, 12, 24559);
+    			add_location(div0, file$1, 567, 12, 24189);
     			attr_dev(div1, "id", "chartmain0");
     			attr_dev(div1, "class", "userAns");
-    			add_location(div1, file$1, 549, 8, 22418);
-    			add_location(center, file$1, 541, 4, 22156);
+    			add_location(div1, file$1, 544, 8, 22048);
+    			add_location(center, file$1, 536, 4, 21786);
     			attr_dev(h5, "class", "modal-title");
-    			add_location(h5, file$1, 579, 20, 25289);
+    			add_location(h5, file$1, 574, 20, 24919);
     			attr_dev(button0, "class", "btn btn-light");
     			attr_dev(button0, "id", "updateRow");
-    			add_location(button0, file$1, 583, 32, 25497);
+    			add_location(button0, file$1, 578, 32, 25127);
     			attr_dev(button1, "class", "btn btn-light ml-1");
     			attr_dev(button1, "id", "delete_btn");
-    			add_location(button1, file$1, 584, 32, 25632);
+    			add_location(button1, file$1, 579, 32, 25262);
     			attr_dev(div2, "class", "float-end");
-    			add_location(div2, file$1, 582, 28, 25441);
+    			add_location(div2, file$1, 577, 28, 25071);
     			attr_dev(div3, "class", "col-12");
-    			add_location(div3, file$1, 581, 24, 25392);
+    			add_location(div3, file$1, 576, 24, 25022);
     			attr_dev(div4, "class", "row");
-    			add_location(div4, file$1, 580, 20, 25350);
+    			add_location(div4, file$1, 575, 20, 24980);
     			attr_dev(div5, "class", "modal-header");
-    			add_location(div5, file$1, 578, 16, 25242);
+    			add_location(div5, file$1, 573, 16, 24872);
     			attr_dev(div6, "class", "modal-body overflow-y svelte-1hjssff");
-    			add_location(div6, file$1, 589, 16, 25874);
+    			add_location(div6, file$1, 584, 16, 25504);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "class", "btn btn-light");
     			attr_dev(button2, "data-bs-dismiss", "modal");
-    			add_location(button2, file$1, 606, 20, 27079);
+    			add_location(button2, file$1, 601, 20, 26709);
     			attr_dev(button3, "type", "button");
     			attr_dev(button3, "class", "btn btn-secondary");
-    			add_location(button3, file$1, 607, 20, 27187);
+    			add_location(button3, file$1, 602, 20, 26817);
     			attr_dev(div7, "class", "modal-footer");
-    			add_location(div7, file$1, 605, 16, 27032);
+    			add_location(div7, file$1, 600, 16, 26662);
     			attr_dev(div8, "class", "modal-content");
-    			add_location(div8, file$1, 577, 12, 25198);
+    			add_location(div8, file$1, 572, 12, 24828);
     			attr_dev(div9, "class", "modal-dialog modal-dialog-centered");
-    			add_location(div9, file$1, 576, 8, 25137);
+    			add_location(div9, file$1, 571, 8, 24767);
     			attr_dev(div10, "id", "chart_modal");
     			attr_dev(div10, "class", "modal fade svelte-1hjssff");
     			attr_dev(div10, "tabindex", "-1");
-    			add_location(div10, file$1, 575, 4, 25073);
-    			add_location(div11, file$1, 540, 0, 22146);
+    			add_location(div10, file$1, 570, 4, 24703);
+    			add_location(div11, file$1, 535, 0, 21776);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6469,6 +6469,12 @@ var app = (function () {
     	return block;
     }
 
+    function lineWidth() {
+    	if (AI.selectAll(".highcharts-axis-line").length > 0) {
+    		AI.selectAll(".highcharts-axis-line")[2].setAttribute("stroke", "#000");
+    	}
+    }
+
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("ChartPreview", slots, []);
@@ -6627,6 +6633,9 @@ var app = (function () {
     				}
     			}
     		}
+
+    		/// For Border ////
+    		lineWidth();
     	});
 
     	// Binding some initial events for answer checking
@@ -6691,15 +6700,6 @@ var app = (function () {
     				openModal();
     			}
     		});
-
-    		setTimeout(
-    			function () {
-    				if (AI.selectAll(".highcharts-axis-line").length > 0) {
-    					AI.selectAll(".highcharts-axis-line")[2].setAttribute("stroke", "#000");
-    				}
-    			},
-    			1000
-    		);
     	});
 
     	// function called for opening the modal
@@ -6971,16 +6971,6 @@ var app = (function () {
 
     	// function when the review mode is on
     	function setReview() {
-    		//// For borders /////
-    		setTimeout(
-    			function () {
-    				if (AI.selectAll(".highcharts-axis-line").length > 0) {
-    					AI.selectAll(".highcharts-axis-line")[2].setAttribute("stroke", "#000");
-    				}
-    			},
-    			1000
-    		);
-
     		$$invalidate(0, isReview = true);
 
     		// used for show the correct answer
@@ -6997,6 +6987,9 @@ var app = (function () {
 
     		// hides the add, delete and ADA buttons
     		AH.selectAll("#chartmain0 .setdata", "css", { display: "none" });
+
+    		/// For Border ////
+    		lineWidth();
 
     		// shows the message correct or incorrect according to the return value of 'CHART.checkAns' method
     		//displayAns();
@@ -7021,16 +7014,6 @@ var app = (function () {
 
     	// function when the review mode is off
     	function unsetReview() {
-    		//// For borders /////
-    		setTimeout(
-    			function () {
-    				if (AI.selectAll(".highcharts-axis-line").length > 0) {
-    					AI.selectAll(".highcharts-axis-line")[2].setAttribute("stroke", "#000");
-    				}
-    			},
-    			1000
-    		);
-
     		let result;
     		$$invalidate(0, isReview = false);
 
@@ -7055,6 +7038,9 @@ var app = (function () {
     		if (window.inNative) {
     			AH.select("#chartmain0 #ADA_Btn_point").classList.add("h");
     		}
+
+    		/// For Border ////
+    		lineWidth();
 
     		// sets the border color of the chart container
     		AH.selectAll("#answerID0", "css", { "border": "1px solid rgb(204, 204, 204)" });
@@ -7135,6 +7121,7 @@ var app = (function () {
     		updateXmlData,
     		parseXml,
     		handleReviewMode,
+    		lineWidth,
     		setReview,
     		displayAns,
     		unsetReview,
