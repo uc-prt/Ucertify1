@@ -169,6 +169,7 @@
 		state = value;
 	});
 
+
     // for adding all the necessary events and the css files
     onMount(async() => {
         state.uxml = uxml;
@@ -1309,7 +1310,9 @@
                 // sets the value of state lineColor to the value of key color of json defaultXML
                 item.lineColor = defaultXML.smxml._color;
                 // sets the value of state focusDATA to the value of subkey cdata of key backgroundPoint of json defaultXML
-                item.focusDATA = defaultXML.smxml.backgroundPoint.__cdata;
+                if(defaultXML.smxml.backgroundPoint) {
+                    item.focusDATA = defaultXML.smxml.backgroundPoint.__cdata;
+                }
                 // sets the value of state markPointColor to the value of key markPointColor of json defaultXML
                 item.markPointColor = defaultXML.smxml._markPointColor;
                 // sets the value of state selectedTools to the value of key 'selectedDrawingType' after joining it with commam of json defaultXML
@@ -1441,7 +1444,7 @@
                 error,
                 func: 'parseXMLForGettingData @271'
             });
-        }
+       }
     }
 
     // joins the marked points by the help of line that starts with first mark point and ends at last masked point by moving in sequencial order
