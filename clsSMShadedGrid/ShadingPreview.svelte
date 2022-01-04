@@ -335,12 +335,18 @@
 			    showAns(countRes);
             }
 		}
-        
-        if(!editorState) {
-            onUserAnsChange({uXml: state.userxml, ans: ans_status});
+        if(countRes) {
+            countRes =  (countRes === "Correct") ? true : false;
+        } else {
+            countRes =  (ans_val === "Correct") ? true : false;
         }
         
-        return ans_status;
+        
+        if(!editorState) {
+            onUserAnsChange({uXml: state.userxml, ans: countRes});
+        }
+        
+        return countRes;
     }
 
     //if review mode is OFF
