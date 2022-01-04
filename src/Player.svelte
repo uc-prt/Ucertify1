@@ -233,8 +233,11 @@
         if (id != 'guid') {
             AH.select('.media_tag #asset').setAttribute('data-value', newValue);
             AH.setAttr('.edit_transcript', {'disabled': true, 'guid': ''});
-            AH.select('#group_guids', 'enabled')[0].value = '';
-            AH.trigger(AH.select('#group_guids', 'enabled')[0], 'change');
+            const groupGuids = AH.select('#group_guids', 'enabled');
+            if(groupGuids?.length){
+                AH.select('#group_guids', 'enabled')[0].value = '';
+                AH.trigger(AH.select('#group_guids', 'enabled')[0], 'change');
+            }
         } else {
             AH.select('.edit_transcript').setAttribute('guid', newValue);
             AH.select('.edit_transcript').disabled =  !(AH.select('.edit_transcript').getAttribute('guid').length == '5');
@@ -497,7 +500,12 @@
     function handleSubmit() {
         let player = '', option_attr = '', style_attr = '', id_value = '', tag_category = (category[state.type] != undefined) ? category[state.type] : '';
         player = '<player category="' + tag_category + '" type="' + state.type + '"';
+        state.prevValue.security = AH.select('.media_tag #security_checkbox')?.checked;
         if (state.type == 'video') {
+            const mediaTagStepCaption = AH.select('.media_tag #stepcaptions');
+            if(mediaTagStepCaption){
+                mediaTagStepCaption.value = '';
+            }
             if (state.intervals) {
                 let interval_array = [], caption_array = [];
                 AH.selectAll('.stepplayertable tbody tr').forEach(function(_this) {
@@ -509,7 +517,7 @@
                 });
                 AH.select('.media_tag #intervals').value = interval_array.join(",");
                 let captionstr = caption_array.join("###");
-                AH.select('.media_tag #stepcaptions').value = captionstr;
+                mediaTagStepCaption.value = captionstr;
             } else if (!state.security) {
                 let transcript = AH.select('.media_tag #group_guids').value.trim();
                 setVideoAsset((transcript != '') ? 'guid' : 'asset', AH.select('.media_tag #asset').value);
@@ -527,7 +535,7 @@
                 } else if (guid.indexOf(_this.getAttribute('id')) > -1) {
                     player += ' asset="' + _this.value.trim()+'"';
                 } else {
-                    if (_this.getAttribute('id') == 'security') {
+                    if (_this.getAttribute('id') == 'security' && _this.value?.trim()) {
                         id_value = _this.value.trim();
                         player += " "+_this.getAttribute('id')+"='" + id_value.replace(/'/g,'"') + "'";
                     } else if (_this.getAttribute('id') == 'text') {
@@ -543,9 +551,10 @@
                             player +=` ${_this.getAttribute('id')}="on"`;
                         }
                     } else {
-                        player +=` ${_this.getAttribute('id')}="${_this.value.trim()}"`;
+                        if( _this.value?.trim()){
+                            player +=` ${_this.getAttribute('id')}="${_this.value.trim()}"`;
+                        }
                     }
-                    
                 }
             }
         });
@@ -670,6 +679,7 @@
                 }
             } else {
                 //Check video intervals should not more than video duration
+                state.intervals = AH.select(".media_tag #intervals_checkbox")?.checked || false;
                 if (state.type == 'video' && state.intervals) {
                     validateVideoIterval();
                 } else {
@@ -682,6 +692,7 @@
     }
     function validateVideoIterval() {
         let video_url = AH.select('.media_tag #asset').value;
+        state.prevValue.asset = video_url;
         AH.empty('.get_video_duration');
         if (video_url != '') {
             if (video_url.indexOf("//s3.amazonaws.com/jigyaasa_content_stream/") == -1 && video_url.indexOf("https://") == -1 && video_url.indexOf("//player.vimeo.com") == -1) {

@@ -1713,3 +1713,21 @@ const ucFeature_image_annotation = {
         });
     }
 }
+
+function wguVideoPlayer(self, player_title) {
+    var security = '', url_data = '';
+    if (self.getAttribute('security') && self.getAttribute('security') != '') {
+    security = JSON.parse(self.getAttribute('security'));
+        for (var key in security) {
+            url_data += (url_data != '') ?  '&' + key + '=' + security[key] : key + '=' + security[key];
+        }
+    }
+    var tag_prefix = '<iframe tabindex-1" title="' + player_title + '" allowfullscreen="" frameborder="0" height="410" src="https://wgu.idm.oclc.org/login?' + "url=";
+    var tag_postfix = '&amp;w=640&amp;h=360&amp;fWidth=660&amp;fHeight=410&#10;ref=http://wgu.libguides.com.wgu.idm.oclc.org/c.php?g=57662&amp;p=1384747" style="border:1px solid #ddd;" width="660">&amp;amp;nbsp;</iframe>';
+    var tag_url = "https://fod.infobase.com/OnDemandEmbed.aspx?" + url_data + "&amp;plt=FOD"
+    var frame = tag_prefix + tag_url + tag_postfix;
+    var tag_href = 'https://wgu.idm.oclc.org/login?&url=' + tag_url + '&amp;w=640&amp;h=360&amp;fWidth=660&amp;fHeight=410';
+    var msg = '<div class="alert alert-info clearfix"><b>Error in displaying video?</b> Please click on SHOW VIDEO button to open the video in new tab.';
+    msg += '<a class="btn btn-primary float-right" href="' + tag_href + '" target="_blank">Show Video</a></div>';
+    self.insertAdjacentHTML('beforeend', msg + frame);
+}
