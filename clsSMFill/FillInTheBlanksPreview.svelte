@@ -96,6 +96,8 @@
 		
 		AH.listen(document, "click", "span.mq-editable-field.mq-focused", oneditoFocused);
 		AH.listen(document, "change", "span.mq-editable-field.mq-focused", oneditoFocused);
+		AH.listen(document, "keyup", "span.mq-editable-field.mq-focused", oneditoFocused);
+		
 
 		// for loading the module on the basis of the updated the xml
 		loadModule();
