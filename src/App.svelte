@@ -75,11 +75,15 @@
 			if (editorUrl.get('content_guid')) {
 				window.content_guid = editorUrl.get('content_guid');
 				AH.getAPIDataJ('cat2.item_content_draft_get', where, async (res)=> {
-					apiData = await checkRevision(res);
-					apiData = apiData[editorUrl.get('content_guid')];
-					searchQuery['content'] = JSON.stringify(apiData);
-					ajaxRes = await AI.ajax({url: server, data: searchQuery });
-					onDataGet();
+					if(res && (res.length || Object.keys(res).length)){
+						apiData = await checkRevision(res);
+						apiData = apiData[editorUrl.get('content_guid')];
+						searchQuery['content'] = JSON.stringify(apiData);
+						ajaxRes = await AI.ajax({url: server, data: searchQuery });
+						onDataGet();
+					} else{
+						window.location.href = window.baseUrl + "/editor/v2/?action=new";
+					}
 				});
 			} else {
 				ajaxRes = await AH.ajax({url: server, data: searchQuery});
