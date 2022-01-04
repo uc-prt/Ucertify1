@@ -12421,18 +12421,18 @@ var app = (function () {
     			if (if_block1) if_block1.c();
     			attr_dev(div0, "class", "string");
     			attr_dev(div0, "id", "previewArea");
-    			add_location(div0, file$2, 984, 2, 33510);
+    			add_location(div0, file$2, 984, 2, 33490);
     			set_style(div1, "color", "#b94a48");
     			set_style(div1, "margin-top", "5px");
     			attr_dev(div1, "class", "smnotes");
-    			add_location(div1, file$2, 985, 3, 33557);
+    			add_location(div1, file$2, 985, 3, 33537);
     			attr_dev(div2, "class", "arrow-up");
-    			add_location(div2, file$2, 993, 4, 33841);
+    			add_location(div2, file$2, 993, 4, 33821);
     			attr_dev(center0, "class", "dragArea");
-    			add_location(center0, file$2, 994, 4, 33874);
+    			add_location(center0, file$2, 994, 4, 33854);
     			attr_dev(div3, "class", "footerStr");
     			set_style(div3, "display", /*state*/ ctx[6].footerStr ? "block" : "none");
-    			add_location(div3, file$2, 992, 3, 33759);
+    			add_location(div3, file$2, 992, 3, 33739);
     			attr_dev(div4, "id", /*containerID*/ ctx[8]);
     			attr_dev(div4, "class", "fillmain");
     			attr_dev(div4, "matchtype", div4_matchtype_value = /*state*/ ctx[6].matchtype);
@@ -12443,10 +12443,10 @@ var app = (function () {
     			attr_dev(div4, "totalcorrectans", div4_totalcorrectans_value = /*state*/ ctx[6].totalcorrectans);
     			set_style(div4, "font-family", "Roboto, sans-serif");
     			set_style(div4, "font-size", "1em");
-    			add_location(div4, file$2, 972, 2, 33215);
-    			add_location(center1, file$2, 961, 1, 32980);
+    			add_location(div4, file$2, 972, 2, 33195);
+    			add_location(center1, file$2, 961, 1, 32960);
     			attr_dev(div5, "class", div5_class_value = /*xml*/ ctx[2] ? "mx-4 pl-2 pl-md-0" : "");
-    			add_location(div5, file$2, 960, 0, 32935);
+    			add_location(div5, file$2, 960, 0, 32915);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13642,8 +13642,8 @@ var app = (function () {
     	function correctAnswer() {
     		ucFill.showdragans(ajax_eId, "c", 1);
 
-    		// AH.selectAll('.corr_div','css',{display:'block!important'});
-    		// AH.selectAll('.remed_disable','css',{display:'block!important'});
+    		// AH.selectAll('.corr_div','css',{display:'block'});
+    		// AH.selectAll('.remed_disable','css',{display:'block'});
     		AH.selectAll(".corr_div").forEach(_this => {
     			_this.classList.remove("h");
     			_this.style.display = "block";
