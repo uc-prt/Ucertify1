@@ -984,12 +984,12 @@ export function tag_player(obj) {
                 break;
             case 'video':
                 _this.classList.add('w-100');
-                if (_this.hasAttribute('security')) {
+                if (_this.getAttribute('security')) {
                     wguVideoPlayer(_this, player_title);
                     player_id++;
                     break;
                 }
-                if (_this.hasAttribute('stepcaptions')) {
+                if (_this.getAttribute('stepcaptions')) {
                     intervals = getPlayerAttrVal(_this, 'intervals');
                     stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
                     player_id++;
@@ -2283,6 +2283,9 @@ function toggleFullScreen(ele, self, height) {
     }
 }
 function stepplayer(player, asset, title, intervals, stepcaptions, player_id) {
+    if (asset.indexOf("//s3.amazonaws.com/jigyaasa_content_stream/") == -1 && asset.indexOf("https://") == -1 && asset.indexOf("//player.vimeo.com") == -1) {
+        asset = '//s3.amazonaws.com/jigyaasa_content_stream/' + asset;
+    }
     if (stepcaptions) {
         stepcaptions = stepcaptions.replace(/\\(\W)/gm, '$1');
     }
