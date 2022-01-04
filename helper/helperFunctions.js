@@ -984,12 +984,12 @@ export function tag_player(obj) {
                 break;
             case 'video':
                 _this.classList.add('w-100');
-                if (_this.hasAttribute('security')) {
+                if (_this.getAttribute('security')) {
                     wguVideoPlayer(_this, player_title);
                     player_id++;
                     break;
                 }
-                if (_this.hasAttribute('stepcaptions')) {
+                if (_this.getAttribute('stepcaptions')) {
                     intervals = getPlayerAttrVal(_this, 'intervals');
                     stepplayer(_this, asset, title, intervals, _this.getAttribute('stepcaptions'));
                     player_id++;

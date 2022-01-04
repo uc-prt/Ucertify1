@@ -30,6 +30,8 @@ import Button from 'svelte-mui/src/Button.svelte';
 
     let securityCheckbox = false;
     let embededInlineCheckbox = false;
+    let multipleVideoCheckbox = false;
+    let intervalVideoCheckbox = false;
     let styles = {};
 
     function getJsonAttrValue(data, input_id) {
@@ -98,13 +100,10 @@ import Button from 'svelte-mui/src/Button.svelte';
         for (let key in oldValue) {
             if (key != 'type' && key != 'obj' && key != 'bookmark' && key != 'category' && oldValue[key] != '') {
                 if (key == 'security' || key == 'token') {
-                    playerState.security = true;
+                    securityCheckbox = true;
                 }
                 if (key == 'is_multiple' && oldValue[key] == 1) {
-                    playerState.multiple = true;
-                }
-                if (!playerState.intervals && (key == 'stepcaptions' || key == 'intervals')) {
-                    playerState.intervals = true;
+                    multipleVideoCheckbox = true;
                 }
                 if ((key == 'sub_type' || key == 'imgsrc') && player_type == 'weblink') {
                     playerState.embed = (oldValue[key] == 'embed' && !AI.isValid(oldValue.imgsrc)) ? 'inline' : 'new_tab';
@@ -214,9 +213,11 @@ import Button from 'svelte-mui/src/Button.svelte';
             }
             AH.select('#xml_data').value = playground_val.trim();
         }
-        securityCheckbox = playerState.prevValue?.security_checkbox == "on";
         embededInlineCheckbox = playerState.inline;
         prevValueOption = JSON.parse(playerState?.prevValue?.option || "{}");
+        if(prevValueOption?.intervals == "1"){
+            intervalVideoCheckbox = true;
+        }
         correctLabelStyle();    
         styles = JSON.parse(playerState?.prevValue?.styles || "{}");
     });
@@ -500,7 +501,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                         placeholder={l.enter_title}
                         label={l.title}
                         value={playerState?.prevValue?.title || ""}
-                        disabled={(playerState.security && playerState.type == 'video') ? true : false}
+                        disabled={(securityCheckbox && playerState.type == 'video') ? true : false}
                     />
                 </div>
                 <div class="mt-sm">
@@ -511,13 +512,13 @@ import Button from 'svelte-mui/src/Button.svelte';
                         value={playerState?.prevValue?.asset || ""}
                         placeholder={l.media_url}
                         label={l.url_txt}
-                        disabled={(playerState.security && playerState.type == 'video') ? true : false}
+                        disabled={(securityCheckbox && playerState.type == 'video') ? true : false}
                     />
                 </div>
                 {#if playerState.type == 'video'}
                     <div>
                         <div 
-                            class="{(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? 'transcript_container d-none' : 'd-flex transcript_container mt-sm'}"
+                            class="{(securityCheckbox || intervalVideoCheckbox || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? 'transcript_container d-none' : 'd-flex transcript_container mt-sm'}"
                         >
                             <div item class="col-xs-7 position-relative textTranscript">
                                 <Textfield
@@ -526,7 +527,7 @@ import Button from 'svelte-mui/src/Button.svelte';
                                     label={l.transcript_id}
                                     placeholder={l.enter_id}
                                     value="{playerState?.prevValue?.group_guids || ''}"
-                                    disabled={(playerState.security || playerState.intervals || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? true : false}
+                                    disabled={(securityCheckbox || intervalVideoCheckbox || playerState.sub_type == 'youtube' || playerState.sub_type == 'lynda') ? true : false}
                                 />
                             </div>
                             <div class="col-xs-5">
@@ -542,14 +543,14 @@ import Button from 'svelte-mui/src/Button.svelte';
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-sm" rel={(playerState.security || playerState.intervals) ? "tooltip" : ""} data-original-title={(playerState.security || playerState.intervals) ? l.image_prev_msg : ''} >
+                        <div class="mt-sm" rel={(securityCheckbox || intervalVideoCheckbox) ? "tooltip" : ""} data-original-title={(securityCheckbox || intervalVideoCheckbox) ? l.image_prev_msg : ''} >
                             <Textfield
                                 id="preview"
                                 label={l.preview_img}
                                 value={playerState?.prevValue?.preview || prevValueOption?.preview || ''}
                                 fullWidth="true"
                                 placeholder={l.preview_url}
-                                disabled={playerState.security || playerState.intervals}
+                                disabled={securityCheckbox || intervalVideoCheckbox}
                             />
                         </div>
                         <div class="mt-4">
@@ -557,73 +558,61 @@ import Button from 'svelte-mui/src/Button.svelte';
                                 <input
                                     type="checkbox"
                                     bind:checked={securityCheckbox}
-                                    on:change={e => {
-                                        if(securityCheckbox){
-                                            playerState.prevValue.security_checkbox = 'on';
-                                        }else{
-                                            playerState.prevValue.security_checkbox = 'off';
-                                            playerState.prevValue.security = '';
-                                        }
-                                    }}
                                     color="default"
                                     class="custom_checkbox_new"
                                     id="security_checkbox"
-                                    disabled={playerState.multiple || playerState.intervals}
+                                    disabled={multipleVideoCheckbox || intervalVideoCheckbox}
                                 />
-                                <label for="security_checkbox" class="position-relative top_minus4 {(playerState.multiple || playerState.intervals) ? 'text-muted' : ''}">
+                                <label for="security_checkbox" class="position-relative top_minus4 {(multipleVideoCheckbox || intervalVideoCheckbox) ? 'text-muted' : ''}">
                                     {l.security_info}
-                                    {#if playerState.security}
-                                        <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"  title={l.security_title}></span>
+                                    {#if securityCheckbox}
+                                        <span class={(multipleVideoCheckbox || intervalVideoCheckbox) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 " : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"  title={l.security_title}></span>
                                     {:else}
-                                        <span class={(playerState.multiple || playerState.intervals) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative" : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"   title={l.security_title}></span>
+                                        <span class={(multipleVideoCheckbox || intervalVideoCheckbox) ? "icomoon-info s2 align-middle pl MuiFormControlLabel-label-88 MuiFormControlLabel-disabled-87 position-relative" : "icomoon-info s2 align-middle pl position-relative"} rel="tooltip"   title={l.security_title}></span>
                                     {/if}
                                 </label>
                             </div>
-                            {#if securityCheckbox}
-                                <div class='position-relative alignLeft'>
-                                    <Textfield
-                                        id="security"
-                                        label={l.security_txt}
-                                        fullWidth="true"
-                                        value="{playerState?.prevValue?.security || ""}"
-                                        placeholder={l.security_place}
-                                    />
-                                </div>
+                            <div class='position-relative alignLeft' class:h={!securityCheckbox}>
+                                <Textfield
+                                    id="security"
+                                    label={l.security_txt}
+                                    fullWidth="true"
+                                    value="{securityCheckbox?playerState?.prevValue?.security || "": ""}"
+                                    placeholder={l.security_place}
+                                />
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <input
+                                type="checkbox"
+                                bind:checked={multipleVideoCheckbox}
+                                color="default"
+                                class="custom_checkbox_new"
+                                id="multiple_checkbox"
+                                disabled={securityCheckbox || intervalVideoCheckbox}
+                            />
+                            <label for="multiple_checkbox" class="position-relative top_minus4 {(securityCheckbox || intervalVideoCheckbox) ? 'text-muted' : ''}">
+                                {l.multiple_video}
+                            </label>
+                            {#if multipleVideoCheckbox}
+                                <p class="mt-md mb-0">{l.multiple_info}</p>
                             {/if}
                         </div>
                         <div class="mt-2">
                             <input
                                 type="checkbox"
-                                bind:checked={playerState.multiple}
-                                value={playerState.multiple}
-                                color="default"
-                                class="custom_checkbox_new"
-                                id="multiple_checkbox"
-                                disabled={playerState.security || playerState.intervals}
-                            />
-                            <label for="multiple_checkbox" class="position-relative top_minus4 {(playerState.security || playerState.intervals) ? 'text-muted' : ''}">
-                                {l.multiple_video}
-                            </label>
-                            {#if playerState.multiple}
-                                <p class="mt-md mb-0">{l.multiple_info}</p>
-                            {/if}
-                        </div>
-                        <div class={playerState.multiple ? "mt-md" : "mt-2"}>
-                            <input
-                                type="checkbox"
-                                bind:checked={playerState.intervals}
-                                value={playerState.intervals}
+                                bind:checked={intervalVideoCheckbox}
                                 color="default"
                                 class="custom_checkbox_new"
                                 id="intervals_checkbox"
-                                disabled={playerState.security || playerState.multiple}
+                                disabled={securityCheckbox || multipleVideoCheckbox}
                             />
-                            <label for="intervals_checkbox" class="position-relative top_minus4 {(playerState.security || playerState.multiple) ? 'text-muted' : ''}">
+                            <label for="intervals_checkbox" class="position-relative top_minus4 {(securityCheckbox || multipleVideoCheckbox) ? 'text-muted' : ''}">
                                 {l.add_interval}
                             </label>
                         </div>
                         <div>
-                            {#if playerState.intervals}
+                            {#if intervalVideoCheckbox}
                                 <div class="mt-md">
                                     <div class="get_video_duration h"></div>
                                     <table class="table table-hover table-striped stepplayertable table-bordered" tablesorter="">
@@ -648,14 +637,14 @@ import Button from 'svelte-mui/src/Button.svelte';
                                         <p class="help-block text-danger mb-0 mt">{playerState.msg}</p>
                                     {/if}
                                     <button class="btn mt-3 btn-secondary float-left mt-lg" on:click={()=>{createSteptable('add')}}>{l.add_interval}</button>
-                                    <input type="hidden" id="intervals" name="intervals" value="{prevValueOption?.intervals || ''}" />
-                                    <input type="hidden" id="stepcaptions" name="stepcaptions" value="{playerState?.prevValue?.stepcaptions || ''}" />
                                 </div>
                             {/if}
+                            <input type="hidden" id="intervals" name="intervals" value="{intervalVideoCheckbox?prevValueOption?.intervals || '':''}" />
+                            <input type="hidden" id="stepcaptions" name="stepcaptions" value="{intervalVideoCheckbox?playerState?.prevValue?.stepcaptions || '':''}"/>
                         </div>
-                        {#if (!playerState.security && !playerState.intervals)}
+                        {#if (!securityCheckbox && !intervalVideoCheckbox)}
                             <div>
-                                <input type="hidden" id="is_multiple" name="is_multiple" value={playerState.multiple ? 1 : 0} />
+                                <input type="hidden" id="is_multiple" name="is_multiple" value={multipleVideoCheckbox ? 1 : 0} />
                                 <input type="hidden" id="sub_type" name="sub_type" value={playerState.sub_type} />
                             </div>
                         {/if}
