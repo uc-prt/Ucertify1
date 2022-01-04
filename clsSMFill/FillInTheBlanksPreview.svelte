@@ -96,6 +96,8 @@
 		
 		AH.listen(document, "click", "span.mq-editable-field.mq-focused", oneditoFocused);
 		AH.listen(document, "change", "span.mq-editable-field.mq-focused", oneditoFocused);
+		AH.listen(document, "keyup", "span.mq-editable-field.mq-focused", oneditoFocused);
+		
 
 		// for loading the module on the basis of the updated the xml
 		loadModule();
@@ -423,7 +425,7 @@
 				_this.setAttribute('disabled','true');
 			})
 		}
-
+		
 		// For mathqul based 
 		if (xml.includes("user Response{") ) window.isResetMath = true;
 		state.showToolbar = false;
@@ -442,17 +444,33 @@
     					_this.setAttribute('disabled','true');
 					})
 				}
-				AH.selectAll('.fillintheblank','attr',{'disabled':true});
+				
+				AH.selectAll('.fillintheblank','attr',{'readonly':true});
 				// AH.setCss(ajax_eId, {"position": "relative"});
 				// AH.insert(ajax_eId, "<div class='spinner-wrapper' style='position:absolute!important;opacity:0!important;'></div>", 'afterbegin');
 			}
+			
+			if(AI.selectAll('.fillmain .fillelement select').length > 0) {
+				AI.selectAll('.fillmain .fillelement select').forEach((data,i)=>{
+					console.log(data.getAttribute('title'));
+					let selectData;
+					data.parentElement.setAttribute('tabindex','0');
+					data.removeAttribute("readonly");
+					data.setAttribute("disabled",true);
+					selectData = data.querySelector('option[value="'+ data.value +'"]').innerText
+					selectData = selectData.trim();
+					data.parentElement.setAttribute('title',data.getAttribute('title'));
+					data.parentElement.setAttribute('aria-label',selectData+' '+data.getAttribute('title'));
+				})
+			}
 			displayAns();
 		}, 50);
+		
 	}
 
 	// function calls when remediation mode is off
 	function unsetReview() {
-		AH.selectAll('.fillintheblank','attr',{'disabled':false});
+		AH.selectAll('.fillintheblank','removeAttr','readonly');
 		isReview = false;
 		window.learn = false;
 		if(AH.selectAll(".dragable").length > 0) {
@@ -473,6 +491,16 @@
 		if (mathItem) {
 			AH.selectAll(ajax_eId, 'css', {"position": "unset"});
 			AH.selectAll(".spinner-wrapper", 'remove');
+		}
+		//// ADA For select element ////
+		if(AI.selectAll('.fillmain .fillelement select').length > 0) {
+			AI.selectAll('.fillmain .fillelement select').forEach((data,i)=>{
+				console.log(data.getAttribute('title'));
+				data.parentElement.setAttribute('title','');
+				data.parentElement.setAttribute('aria-label','');
+				data.parentElement.removeAttribute('tabindex');
+				//data.removeAttribute("readonly");
+			})
 		}
 	}
 
@@ -798,7 +826,7 @@
 		});
 		// creating selectbox
 		let selectbox = `<select class="fillintheblank ks" data-role="none">${options}</select>`;
-		let tag = `<div id="elem${i}" class="fillelement" tabindex ="0">${selectbox}</div>`;
+		let tag = `<div id="elem${i}" class="fillelement" tabindex="0">${selectbox}</div>`;
 		// replace the cdata
 		cdata = cdata.replace(originalData,tag);
 	}
