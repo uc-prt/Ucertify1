@@ -2283,6 +2283,9 @@ function toggleFullScreen(ele, self, height) {
     }
 }
 function stepplayer(player, asset, title, intervals, stepcaptions, player_id) {
+    if (asset.indexOf("//s3.amazonaws.com/jigyaasa_content_stream/") == -1 && asset.indexOf("https://") == -1 && asset.indexOf("//player.vimeo.com") == -1) {
+        asset = '//s3.amazonaws.com/jigyaasa_content_stream/' + asset;
+    }
     if (stepcaptions) {
         stepcaptions = stepcaptions.replace(/\\(\W)/gm, '$1');
     }
