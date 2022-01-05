@@ -1025,7 +1025,9 @@
 		xml = xml ? xml : xml;
 		let editorData = stringBetween(xml, "editor");
 		editor.setValue(editorData ? editorData.trim() : "");
-
+		setTimeout(function() {
+			editor.refresh();
+		},1);
 		let preData = stringBetween(xml, "pre");
 		(typeof(preEditor) == "object" ? preEditor.setValue(preData ? preData.trim() : "") : true);
 
